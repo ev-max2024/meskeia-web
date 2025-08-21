@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta básicas mejoradas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="meskeIA">
+    
+    <!-- SEO Principal -->
+    <title>meskeIA - Biblioteca de Utilidades Web Gratuitas | Cuaderno Digital y Herramientas Online</title>
+    <meta name="description" content="Biblioteca gratuita de utilidades web: cuaderno digital con editor Markdown, generador de contraseñas seguras, calculadoras financieras, temporizador Pomodoro, paleta de colores, simulador de cartera y más herramientas online sin registro.">
+    <meta name="keywords" content="cuaderno digital, editor markdown, notas privadas, utilidades web, herramientas online gratuitas, generador contraseñas, calculadora préstamos, calculadora IRPF 2025, declaración renta online, temporizador pomodoro, paleta colores, calculadora salud IMC, simulador cartera, calculadora interés compuesto, meskeIA">
+    
+    <link rel="canonical" href="https://meskeia.com/">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPGLJBQ4Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SPPGLJBQ4Z');
+    </script>
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="meskeIA - Cuaderno Digital y Utilidades Web Gratuitas">
+    <meta property="og:description" content="Cuaderno digital con Markdown, calculadoras financieras, temporizadores, simulador de cartera y más. Todo gratis y sin registro.">
+    <meta property="og:url" content="https://tudominio.com">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="meskeIA - Cuaderno Digital y Utilidades Gratuitas">
+    <meta name="twitter:description" content="Herramientas web útiles: cuaderno digital, calculadoras y más utilidades gratuitas">
+    
+    <!-- Favicon mejorado -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon_meskeia.png">
+    <link rel="apple-touch-icon" href="assets/icon_meskeia.png">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "meskeIA - Biblioteca de Utilidades",
+        "description": "Biblioteca gratuita de utilidades web para facilitar tareas cotidianas",
+        "url": "https://tudominio.com",
+        "author": {
+            "@type": "Person",
+            "name": "meskeIA"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser"
+    }
+    </script>
+
+    <style>
+        /* Reset y Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2E86AB;
+            --secondary-teal: #48A9A6;
+            --light-blue: #7FB3D3;
+            --dark-gray: #2C3E50;
+            --light-gray: #ECF0F1;
+            --white: #FFFFFF;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            --shadow-hover: 0 8px 30px rgba(46, 134, 171, 0.15);
+            
+            /* Nuevos colores por categorías */
+            --security-red: #D4AF37;
+            --finance-blue: #3182ce;
+            --productivity-green: #38a169;
+            --design-purple: #805ad5;
+            --data-orange: #dd6b20;
+            --health-light-green: #48bb78;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Header con Logo */
+        .header {
+            background: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+        }
+
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .neural-dot:nth-child(1) { top: 6px; left: 10px; }
+        .neural-dot:nth-child(2) { top: 12px; right: 8px; }
+        .neural-dot:nth-child(3) { bottom: 10px; left: 6px; }
+        .neural-dot:nth-child(4) { bottom: 6px; right: 12px; }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .meske {
+            color: var(--primary-blue);
+        }
+
+        .ia {
+            color: var(--secondary-teal);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-teal), var(--light-blue));
+            border-radius: 1px;
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--dark-gray);
+        }
+
+        /* Sección de Descripción Principal con estructura SEO mejorada */
+        .description-section {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .description-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .description-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark-gray);
+        }
+
+        .description-content h1 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .description-content h2 {
+            color: var(--secondary-teal);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        /* Controles de filtro */
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        select {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            background: white;
+            font-size: 0.9rem;
+            min-width: 220px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* Grid de Programas */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+        }
+
+        /* Cards de Programa con microdata */
+        .program-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .program-card-header {
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            opacity: 0.9;
+        }
+
+        .program-card-header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .program-category {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .program-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--dark-gray);
+            opacity: 0.5;
+        }
+
+        .program-card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-description {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            opacity: 0.8;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Colores de cards por categorías */
+        .card-security .program-card-header { background: var(--security-red); }
+        .card-finance .program-card-header { background: var(--finance-blue); }
+        .card-productivity .program-card-header { background: var(--productivity-green); }
+        .card-design .program-card-header { background: var(--design-purple); }
+        .card-data .program-card-header { background: var(--data-orange); }
+        .card-health .program-card-header { background: var(--health-light-green); }
+
+        /* Footer con información adicional SEO */
+        .footer {
+            background: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--light-blue);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1200px;
+            margin: 4rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .faq-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-container h2 {
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-item h3 {
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .faq-item div[itemprop="text"] {
+            color: var(--dark-gray);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Estados */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--dark-gray);
+            opacity: 0.7;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+        }
+
+        /* ===================================== */
+        /*          CHATBOT STYLES              */
+        /* ===================================== */
+
+        /* Botón flotante del chatbot */
+        .chatbot-float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 24px;
+        }
+
+        .chatbot-float-btn:hover {
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 8px 30px rgba(46, 134, 171, 0.4);
+        }
+
+        /* Notificación de nuevo chatbot */
+        .chatbot-float-btn::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4757;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Modal del chatbot */
+        .chatbot-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .chatbot-container {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            height: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-modal.active .chatbot-container {
+            transform: scale(1);
+        }
+
+        /* Header del chat */
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Área de mensajes */
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .message.claude .message-avatar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #6c757d;
+            color: white;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.claude .message-content {
+            background: white;
+            color: var(--dark-gray);
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user .message-content {
+            background: var(--primary-blue);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        /* Input del chat */
+        .chatbot-input {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            background: white;
+        }
+
+        .chatbot-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .chatbot-input textarea {
+            flex: 1;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 12px 16px;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+            max-height: 100px;
+            transition: border-color 0.3s ease;
+        }
+
+        .chatbot-input textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .chatbot-send {
+            background: var(--primary-blue);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .chatbot-send:hover:not(:disabled) {
+            background: var(--secondary-teal);
+        }
+
+        .chatbot-send:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Indicador de escritura */
+        .typing-indicator {
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        .typing-indicator .message-content {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ccc;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem 2rem;
+            }
+
+            .description-section {
+                padding: 0 1rem;
+            }
+
+            .program-actions {
+                justify-content: center;
+            }
+
+            select {
+                min-width: auto !important;
+                width: 100%;
+            }
+
+            .faq-section {
+                padding: 0 1rem;
+            }
+            
+            .faq-container {
+                padding: 1.5rem;
+            }
+            
+            .faq-container h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Chatbot responsive */
+            .chatbot-float-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .chatbot-container {
+                width: 95%;
+                height: 90vh;
+                margin: 20px;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .program-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con Logo -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-icon" role="img" aria-label="Logo meskeIA">
+                <div class="neural-network">
+                    <div class="neural-dot"></div>
+                    <div class="neural-dot"></div>
+                    <div class="neural-dot"></div>
+                    <div class="neural-dot"></div>
+                </div>
+            </div>
+            <div class="logo-text">
+                <span class="meske">meske</span><span class="ia">IA</span>
+            </div>
+        </div>
+        <h1 class="header-title">Biblioteca de Utilidades</h1>
+    </header>
+
+    <!-- Sección de Descripción Principal con estructura SEO -->
+    <section class="description-section">
+        <div class="description-card">
+            <div class="description-content">
+                <h1>🚀 Utilidades Web Gratuitas - meskeIA</h1>
+                <p>Descubre nuestra <strong>biblioteca gratuita de herramientas web</strong> diseñada para facilitar tus tareas cotidianas. Destacamos nuestro <strong>Cuaderno Digital con editor Markdown</strong> para gestión de notas privadas, junto con <strong>generador de contraseñas seguras</strong>, <strong>calculadoras financieras avanzadas</strong> (préstamos, hipotecas e interés compuesto), <strong>simulador de cartera de inversión</strong>, <strong>temporizador Pomodoro</strong> para productividad, y <strong>generador de paletas de colores</strong> para diseñadores.</p>
+                
+                <h2>🛠️ Herramientas Disponibles</h2>
+                <p>Nuestra colección incluye <strong>cuaderno digital con editor Markdown</strong>, <strong>generador de contraseñas seguras</strong>, <strong>calculadoras financieras avanzadas</strong> (préstamos, hipotecas e interés compuesto), <strong>simulador de cartera de inversión</strong>, <strong>temporizador Pomodoro</strong> para productividad, <strong>generador de paletas de colores</strong> para diseñadores, y herramientas meteorológicas precisas.</p>
+                
+                <h2>🔒 Privacidad Garantizada</h2>
+                <p><strong>Importante:</strong> Todas las aplicaciones funcionan localmente en tu navegador. No almacenamos datos en servidores externos, garantizando tu <strong>privacidad total</strong> y permitiendo el uso offline.</p>
+
+                <h2>🤖 Asistente IA Integrado</h2>
+                <p><strong>¡Novedad!</strong> Ahora cuentas con un <strong>asistente inteligente</strong> que te ayudará a usar nuestras herramientas, resolver dudas y optimizar tu experiencia. Haz clic en el botón del chat para comenzar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Controles de filtro -->
+    <div class="controls">
+        <div class="filter-group">
+            <label for="categoryFilter">Categoría:</label>
+            <select id="categoryFilter" aria-label="Filtrar por categoría">
+                <option value="">Todas las categorías</option>
+                <option value="Seguridad y Contraseñas">🔒 Seguridad y Contraseñas</option>
+                <option value="Finanzas y Cálculos">💰 Finanzas y Cálculos</option>
+                <option value="Productividad y Gestión del Tiempo">⏰ Productividad y Gestión del Tiempo</option>
+                <option value="Diseño y Creatividad">🎨 Diseño y Creatividad</option>
+                <option value="Datos y Consultas">📊 Datos y Consultas</option>
+                <option value="Salud y Bienestar">🥼 Salud y Bienestar</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Grid de programas -->
+    <main class="programs-grid" id="programsGrid" role="main" aria-label="Lista de utilidades disponibles">
+        <!-- Las cards se generarán dinámicamente aquí -->
+    </main>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">¿Son gratuitas todas las herramientas?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <div itemprop="text">Sí, todas las utilidades de meskeIA son completamente gratuitas y no requieren registro.</div>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">¿Se almacenan mis datos personales?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <div itemprop="text">Utilizamos Google Analytics para estadísticas básicas de uso, pero nunca accedemos a los datos que introduces en las calculadoras. Todos los cálculos se realizan localmente en tu navegador.</div>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">¿La calculadora IRPF 2025 está actualizada?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <div itemprop="text">Sí, incluye los tipos impositivos vigentes para 2025 según la normativa fiscal española.</div>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">¿Puedo usar la calculadora de salud para diagnósticos médicos?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <div itemprop="text">No. Es una herramienta informativa que no sustituye consultas médicas profesionales.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">¿Cómo funciona el asistente IA?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <div itemprop="text">Nuestro asistente inteligente puede ayudarte a usar las herramientas, explicar conceptos financieros y de salud, y sugerir qué utilidad es mejor para tu necesidad específica. Solo haz clic en el botón de chat.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer mejorado -->
+    <footer class="footer">
+        <p>&copy; 2025 meskeIA - Biblioteca de Utilidades Web Gratuitas</p>
+        <p>Herramientas desarrolladas con dedicación para facilitar tu día a día</p>
+        <div class="footer-links">
+            <a href="privacidad.html" aria-label="Política de privacidad">Privacidad</a>
+            <a href="terminos.html" aria-label="Términos de uso">Términos</a>
+            <span>Contacto: <strong>meskeia24@gmail.com</strong></span>
+        </div>
+    </footer>
+
+    <!-- ===================================== -->
+    <!--          CHATBOT HTML               -->
+    <!-- ===================================== -->
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-float-btn" onclick="openChatbot()" aria-label="Abrir asistente IA">
+        🤖
+    </button>
+
+    <!-- Modal del chatbot -->
+    <div class="chatbot-modal" id="chatbotModal" onclick="closeChatbotOnOverlay(event)">
+        <div class="chatbot-container">
+            <!-- Header del chat -->
+            <div class="chatbot-header">
+                <h3>🤖 Asistente meskeIA</h3>
+                <button class="chatbot-close" onclick="closeChatbot()" aria-label="Cerrar chat">
+                    ×
+                </button>
+            </div>
+
+            <!-- Área de mensajes -->
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message claude">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        ¡Hola! Soy tu asistente de meskeIA. Puedo ayudarte a:
+                        <br><br>
+                        • 📊 Explicar cómo usar las calculadoras
+                        <br>• 💡 Sugerir qué herramienta necesitas
+                        <br>• ❓ Resolver dudas sobre finanzas o salud
+                        <br>• 🔧 Dar consejos técnicos
+                        <br><br>
+                        ¿En qué puedo ayudarte hoy?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicador de escritura -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="message claude">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input del chat -->
+            <div class="chatbot-input">
+                <div class="chatbot-input-group">
+                    <textarea 
+                        id="chatbotInput" 
+                        placeholder="Escribe tu pregunta aquí..."
+                        rows="1"
+                        onkeydown="handleChatInput(event)"
+                    ></textarea>
+                    <button class="chatbot-send" id="chatbotSend" onclick="sendMessage()" aria-label="Enviar mensaje">
+                        ➤
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Base de datos de programas con nuevas categorías
+        const programs = [
+            {
+                id: 1,
+                title: "Cuaderno Digital - Notas Privadas",
+                category: "Productividad y Gestión del Tiempo",
+                description: "Organizador personal con editor Markdown en tiempo real. Crea, gestiona y exporta notas con categorías, colores y búsqueda avanzada. Todo se guarda privadamente en tu navegador.",
+                image: "📝",
+                link: "programas/Cuaderno%20Digital/cuaderno-digital.html",
+                colorClass: "card-productivity",
+                keywords: "cuaderno digital, notas privadas, editor markdown, organizador personal, gestión notas, productividad, markdown editor"
+            },
+            {
+                id: 2,
+                title: "Calculadora de Préstamos e Hipotecas",
+                category: "Finanzas y Cálculos",
+                description: "Calcula cuotas, intereses y tabla de amortización de préstamos e hipotecas. Genera informes detallados y gráficos comparativos para tomar mejores decisiones financieras.",
+                image: "🏦",
+                link: "programas/Calculadora Prestamos/calculadora_prestamos.html",
+                colorClass: "card-finance",
+                keywords: "calculadora hipoteca, préstamos, amortización, finanzas personales"
+            },
+            {
+                id: 3,
+                title: "Generador Paletas de Colores",
+                category: "Diseño y Creatividad",
+                description: "Crea hermosas combinaciones de colores con diferentes esquemas cromáticos. Exporta paletas en CSS, JSON o texto plano para tus proyectos de diseño web y gráfico.",
+                image: "🎨",
+                link: "programas/Paleta de Colores/paleta-colores.html",
+                colorClass: "card-design",
+                keywords: "paleta colores, diseño web, colores hex, esquemas cromáticos"
+            },
+            {
+                id: 4,
+                title: "Simulador de Cartera de Inversión",
+                category: "Finanzas y Cálculos",
+                description: "Diseña tu cartera ideal con asset allocation personalizado. Analiza riesgo, simula crecimiento y optimiza tu estrategia de inversión con métricas profesionales como el ratio Sharpe.",
+                image: "💼",
+                link: "programas/Simulador Cartera/simulador-cartera.html",
+                colorClass: "card-finance",
+                keywords: "simulador cartera, asset allocation, diversificación, gestión carteras"
+            },
+            {
+                id: 5,
+                title: "Calculadora de Salud Integral",
+                category: "Salud y Bienestar",
+                description: "Análisis completo de indicadores de salud: IMC, riesgo cardiovascular, metabolismo basal, edad biológica y fitness score. Herramienta informativa basada en fórmulas científicas validadas.",
+                image: "🩺",
+                link: "programas/Calculadora de Salud/calculadora-salud.html",
+                colorClass: "card-health",
+                keywords: "calculadora salud, IMC, índice masa corporal, riesgo cardiovascular, metabolismo basal, edad biológica, fitness score, análisis salud, indicadores salud, VO2 máximo, grasa corporal, gasto energético, forma física, salud integral, evaluación física"
+            },
+            {
+                id: 6,
+                title: "Calculadora de Interés Compuesto",
+                category: "Finanzas y Cálculos",
+                description: "Descubre el poder del crecimiento exponencial de tus inversiones. Calcula proyecciones futuras, analiza diferentes escenarios y visualiza el efecto del interés compuesto a largo plazo.",
+                image: "🚀",
+                link: "programas/Calculadora Interes Compuesto/calculadora-interes-compuesto.html",
+                colorClass: "card-finance",
+                keywords: "interés compuesto, inversiones, crecimiento exponencial, ahorro"
+            },
+            {
+                id: 7,
+                title: "El Tiempo - Meteorología Precisa",
+                category: "Datos y Consultas",
+                description: "Consulta datos meteorológicos actualizados de tu localidad o cualquier ciudad del mundo. Información detallada del clima, pronóstico y condiciones atmosféricas en tiempo real.",
+                image: "🌤️",
+                link: "programas/El Tiempo/el_tiempo.html",
+                colorClass: "card-data",
+                keywords: "el tiempo, meteorología, pronóstico clima, tiempo atmosférico"
+            },
+            {
+                id: 8,
+                title: "Temporizador Pomodoro Cíclico",
+                category: "Productividad y Gestión del Tiempo",
+                description: "Temporizador elegante con reinicio automático, perfecto para técnica Pomodoro, ejercicios, o cualquier actividad que requiera intervalos regulares. Mejora tu productividad y concentración.",
+                image: "⏱️",
+                link: "programas/Temporizador/temporizador.html",
+                colorClass: "card-productivity",
+                keywords: "temporizador pomodoro, productividad, concentración, gestión tiempo"
+            },
+            {
+                id: 9,
+                title: "Calculadora IRPF 2025",
+                category: "Finanzas y Cálculos",
+                description: "Calcula impuestos sobre rendimientos del capital mobiliario",
+                image: "🏦",
+                link: "programas/Calculadora IRPF/irpf.html",
+                colorClass: "card-finance",
+                keywords: "IRPF 2025, calculadora impuestos, capital mobiliario, dividendos, plusvalías, hacienda, declaración renta"
+            },
+            {
+                id: 10,
+                title: "Generador de Contraseñas Seguras",
+                category: "Seguridad y Contraseñas",
+                description: "Genera contraseñas seguras y personalizables con diferentes criterios de complejidad. Incluye historial, medidor de seguridad y opciones de exportación. Herramienta esencial para ciberseguridad.",
+                image: "🔐",
+                link: "programas/Generador de contraseñas/generador.html",
+                colorClass: "card-security",
+                keywords: "generador contraseñas, contraseñas seguras, seguridad online"
+            }
+        ];
+
+        let currentFilter = '';
+
+        // Renderizar programas con microdata
+        function renderPrograms() {
+            const grid = document.getElementById('programsGrid');
+            let filteredPrograms = programs;
+
+            if (currentFilter) {
+                filteredPrograms = programs.filter(program => program.category === currentFilter);
+            }
+
+            if (filteredPrograms.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No hay programas disponibles</h3>
+                        <p>No se encontraron utilidades en esta categoría</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredPrograms.map(program => createProgramCard(program)).join('');
+        }
+
+        // Crear card de programa con microdata
+        function createProgramCard(program) {
+            return `
+                <article class="program-card ${program.colorClass}" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="program-card-header">
+                        <h3 class="program-title" itemprop="name">${program.title}</h3>
+                        <div class="program-category" itemprop="applicationCategory">${program.category}</div>
+                    </div>
+                    <div class="program-image" role="img" aria-label="Icono de ${program.title}">${program.image}</div>
+                    <div class="program-card-body">
+                        <div class="program-description" itemprop="description">
+                            ${program.description}
+                        </div>
+                        <div class="program-actions">
+                            <a href="${program.link}" 
+                               class="btn btn-primary" 
+                               target="_blank"
+                               itemprop="url"
+                               aria-label="Abrir ${program.title}">
+                                <span>🚀</span>
+                                Abrir Programa
+                            </a>
+                        </div>
+                    </div>
+                    <meta itemprop="operatingSystem" content="Web Browser">
+                    <meta itemprop="price" content="0">
+                    <meta itemprop="priceCurrency" content="EUR">
+                </article>
+            `;
+        }
+
+        // Event listeners
+        document.getElementById('categoryFilter').addEventListener('change', (e) => {
+            currentFilter = e.target.value;
+            renderPrograms();
+        });
+
+        // ===================================== //
+        //          CHATBOT JAVASCRIPT          //
+        // ===================================== //
+
+        // Variables del chatbot
+        let chatHistory = [];
+
+        // Abrir chatbot
+        function openChatbot() {
+            const modal = document.getElementById('chatbotModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            
+            // Focus en el input
+            setTimeout(() => {
+                document.getElementById('chatbotInput').focus();
+            }, 300);
+        }
+
+        // Cerrar chatbot
+        function closeChatbot() {
+            const modal = document.getElementById('chatbotModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Cerrar chatbot al hacer clic en overlay
+        function closeChatbotOnOverlay(event) {
+            if (event.target === event.currentTarget) {
+                closeChatbot();
+            }
+        }
+
+        // Manejar input del chat
+        function handleChatInput(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Enviar mensaje
+        async function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Añadir mensaje del usuario
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Deshabilitar envío
+            const sendBtn = document.getElementById('chatbotSend');
+            sendBtn.disabled = true;
+            
+            // Mostrar indicador de escritura
+            showTypingIndicator();
+            
+            try {
+                // Llamar a la API a través del proxy
+                const response = await fetch('./claude-proxy.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: buildContextualMessage(message)
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    addMessage(data.response, 'claude');
+                } else {
+                    throw new Error(data.error || 'Error desconocido');
+                }
+
+            } catch (error) {
+                console.error('Error en chatbot:', error);
+                addMessage(
+                    'Lo siento, no puedo procesar tu mensaje en este momento. Por favor, inténtalo de nuevo más tarde.', 
+                    'claude'
+                );
+            }
+            
+            // Rehabilitar envío
+            sendBtn.disabled = false;
+            hideTypingIndicator();
+            input.focus();
+        }
+
+        // Construir mensaje contextual
+        function buildContextualMessage(userMessage) {
+            const context = `Eres el asistente inteligente de meskeIA, una biblioteca de utilidades web gratuitas. 
+
+Nuestras herramientas incluyen:
+- 📝 Cuaderno Digital con editor Markdown
+- 🏦 Calculadoras financieras (préstamos, IRPF, interés compuesto)
+- 💼 Simulador de cartera de inversión
+- 🩺 Calculadora de salud integral (IMC, riesgo cardiovascular)
+- ⏱️ Temporizador Pomodoro
+- 🎨 Generador de paletas de colores
+- 🌤️ Información meteorológica
+- 🔐 Generador de contraseñas seguras
+
+Tu rol es ayudar a los usuarios a:
+1. Entender cómo usar nuestras herramientas
+2. Resolver dudas sobre finanzas, salud o productividad
+3. Sugerir qué utilidad necesitan según su consulta
+4. Dar consejos prácticos y útiles
+
+Mantén un tono amigable, profesional y útil. Si no sabes algo específico, sé honesto pero siempre intenta ayudar.
+
+Pregunta del usuario: ${userMessage}`;
+
+            return context;
+        }
+
+        // Añadir mensaje al chat
+        function addMessage(content, type) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const avatarIcon = type === 'claude' ? '🤖' : '👤';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatarIcon}</div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll al final
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Agregar al historial
+            chatHistory.push({ type, content });
+        }
+
+        // Mostrar indicador de escritura
+        function showTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.style.display = 'block';
+            
+            const messagesContainer = document.getElementById('chatbotMessages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Ocultar indicador de escritura
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.style.display = 'none';
+        }
+
+        // Auto-resize del textarea
+        document.getElementById('chatbotInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPrograms();
+        });
+
+        // Generar sitemap dinámico (para consola del desarrollador)
+        function generateSitemap() {
+            const baseUrl = window.location.origin + window.location.pathname.replace('index.html', '');
+            const urls = [''];
+            programs.forEach(program => {
+                urls.push(program.link);
+            });
+            
+            console.log('URLs para sitemap:', urls.map(url => baseUrl + url));
+        }
+    </script>
+</body>
+</html>

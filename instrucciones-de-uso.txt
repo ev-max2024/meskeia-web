@@ -1,0 +1,198 @@
+📋 Instrucciones de uso:
+
+Hacer backup del archivo original
+Copiar BLOQUE 1 dentro de <style> (al final de los estilos existentes)
+Copiar BLOQUE 2 justo después de <body>
+Guardar y probar en navegador
+
+💡 Consejos para evitar problemas:
+
+Pega el CSS al final de los estilos existentes (antes del </style>)
+Pega el HTML inmediatamente después de <body>
+
+BLOQUE 1
+
+/* Logo meskeIA - Componente reutilizable */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .meskeia-logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        gap: 8px;
+    }
+    
+    .meskeia-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .meskeia-logo-icon::before {
+        width: 9px;
+        height: 9px;
+        top: 7.5px;
+        left: 7.5px;
+    }
+    
+    .meskeia-logo-icon::after {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    .meskeia-logo-text {
+        font-size: 1rem;
+    }
+}
+
+
+BLOQUE 2
+
+<!-- Logo meskeIA -->
+<div class="meskeia-logo-container">
+    <div class="meskeia-logo-icon">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+    </div>
+    <div class="meskeia-logo-text">
+        <span class="meske">meske</span><span class="ia">IA</span>
+    </div>
+</div>
+
+
+BLOQUE 3
+
+📍 DÓNDE COLOCARLO
+Posición exacta:
+ANTES del cierre de </body> - Al final de todo el contenido
+
+Este primer código pone el copyright en la parte inferior derecha.
+
+<!-- Footer meskeIA -->
+<footer style="position: fixed; bottom: 10px; right: 20px; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; z-index: 999;">
+    © 2025 meskeIA
+</footer>
+
+Y este segundo código pone el copyright en la parte inferior central
+
+<!-- Footer meskeIA centrado -->
+<footer style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; z-index: 999;">
+    © 2025 meskeIA
+</footer>
+
+BLOQUE 4
+
+Línea de programa para insertar el ICON 
+
+<link rel="icon" type="image/png" href="../../assets/icon_meskeia.png">
+
