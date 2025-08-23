@@ -1,0 +1,25 @@
+{
+  "name": "meskeIA - Biblioteca de Utilidades",
+  "short_name": "meskeIA",
+  "description": "Biblioteca gratuita de utilidades web",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2E86AB",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/icon_meskeia.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon_meskeia.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
