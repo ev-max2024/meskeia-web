@@ -14,17 +14,31 @@
     
     <style>
         :root {
-            --primary-blue: #2E86AB;
-            --secondary-teal: #48A9A6;
-            --light-blue: #7FB3D3;
-            --dark-gray: #2C3E50;
-            --light-gray: #ECF0F1;
-            --white: #FFFFFF;
-            --warning: #E74C3C;
-            --success: #16A085;
-            --border-radius: 12px;
-            --shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
-            --shadow-hover: 0 8px 30px rgba(46, 134, 171, 0.15);
+            /* Paleta Minimalista meskeIA */
+            --bg-primary: #FAFAFA;      
+            --bg-card: #FFFFFF;         
+            --primary: #2E86AB;         
+            --primary-hover: #246b8a;   
+            --text-primary: #1A1A1A;    
+            --text-secondary: #666666;  
+            --text-muted: #999999;      
+            --border: #E5E5E5;          
+            --hover: #F5F5F5;           
+            
+            /* Elementos legales suaves */
+            --info-light: #F8FAFC;
+            --warning-light: #FFFEF7;
+            --medical-light: #FEF7F7;
+            --success-light: #F7FEF8;
+            
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
         }
 
         * {
@@ -35,17 +49,22 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
             min-height: 100vh;
-            color: var(--dark-gray);
-            line-height: 1.7;
         }
 
+        /* Header Minimalista */
         .header {
-            background: white;
-            padding: 1.5rem 2rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
+            background: var(--bg-card);
+            padding: var(--spacing-md) var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-content {
@@ -54,20 +73,20 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1rem;
+            gap: var(--spacing-md);
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: var(--spacing-sm);
         }
 
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
-            border-radius: var(--border-radius);
+            background: var(--primary);
+            border-radius: var(--radius);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -91,7 +110,7 @@
             position: absolute;
             width: 8px;
             height: 8px;
-            background: var(--primary-blue);
+            background: var(--primary);
             border-radius: 50%;
             top: 16px;
             left: 16px;
@@ -120,16 +139,16 @@
         .logo-text {
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--dark-gray);
+            color: var(--text-primary);
             text-decoration: none;
         }
 
         .meske {
-            color: var(--primary-blue);
+            color: var(--primary);
         }
 
         .ia {
-            color: var(--secondary-teal);
+            color: var(--primary);
             font-weight: 700;
             position: relative;
         }
@@ -141,158 +160,168 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, var(--secondary-teal), var(--light-blue));
+            background: var(--primary);
             border-radius: 1px;
         }
 
         .header-nav {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: var(--spacing-md);
         }
 
         .back-link {
-            color: var(--primary-blue);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            border: 2px solid var(--primary-blue);
+            gap: var(--spacing-xs);
+            transition: all 0.2s ease;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius);
+            border: 1px solid var(--primary);
         }
 
         .back-link:hover {
-            background: var(--primary-blue);
+            background: var(--primary);
             color: white;
         }
 
         .header-title {
             font-size: 1.8rem;
             font-weight: 600;
-            color: var(--dark-gray);
+            color: var(--text-primary);
         }
 
+        /* Contenido Principal */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 2rem 4rem;
+            padding: 0 var(--spacing-lg) var(--spacing-xl);
         }
 
         .legal-document {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-light);
+            margin-bottom: var(--spacing-lg);
         }
 
         .document-header {
             text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--light-gray);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
         }
 
         .document-title {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
         }
 
         .last-updated {
-            color: var(--dark-gray);
-            opacity: 0.8;
+            color: var(--text-secondary);
             font-style: italic;
         }
 
-        .warning-box {
-            background: linear-gradient(135deg, #fff5f5, #fed7d7);
-            border: 1px solid var(--warning);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--warning);
-        }
-
-        .warning-title {
-            font-weight: 700;
-            color: var(--warning);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
+        /* Cajas de información minimalistas */
         .info-box {
-            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
-            border: 1px solid var(--primary-blue);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--primary-blue);
+            background: var(--info-light);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
         }
 
         .info-title {
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--spacing-xs);
+        }
+
+        .warning-box {
+            background: var(--warning-light);
+            border: 1px solid var(--border);
+            border-left: 3px solid #D97706;
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .warning-title {
+            font-weight: 600;
+            color: #D97706;
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
         }
 
         .medical-box {
-            background: linear-gradient(135deg, #fff5f5, #fed7d7);
-            border: 2px solid var(--warning);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 6px solid var(--warning);
+            background: var(--medical-light);
+            border: 1px solid var(--border);
+            border-left: 4px solid #DC2626;
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
         }
 
         .medical-title {
-            font-weight: 700;
-            color: var(--warning);
-            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #DC2626;
+            margin-bottom: var(--spacing-sm);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.2rem;
+            gap: var(--spacing-xs);
+            font-size: 1.1rem;
         }
 
+        /* Tipografía */
         h2 {
             font-size: 1.8rem;
-            color: var(--primary-blue);
+            color: var(--primary);
             margin: 2.5rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: var(--spacing-xs);
+            border-bottom: 1px solid var(--border);
         }
 
         h3 {
             font-size: 1.4rem;
-            color: var(--secondary-teal);
-            margin: 2rem 0 1rem 0;
+            color: var(--text-primary);
+            margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+            font-weight: 600;
         }
 
         p {
-            margin-bottom: 1.2rem;
+            margin-bottom: var(--spacing-sm);
             text-align: justify;
         }
 
         ul, ol {
-            margin: 1rem 0 1.5rem 2rem;
+            margin: var(--spacing-sm) 0 var(--spacing-md) var(--spacing-lg);
         }
 
         li {
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-xs);
         }
 
         strong {
-            color: var(--dark-gray);
+            color: var(--text-primary);
             font-weight: 600;
         }
 
@@ -304,51 +333,57 @@
         }
 
         .contact-info {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            margin: 2rem 0;
+            background: var(--hover);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            margin: var(--spacing-lg) 0;
             text-align: center;
         }
 
+        /* Footer Minimalista */
         .footer {
-            background: var(--dark-gray);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+            background: var(--text-primary);
+            color: var(--bg-card);
+            text-align: center; 
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
         }
 
         .footer p {
             opacity: 0.8;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-xs);
         }
 
         .footer-links {
-            margin-top: 1rem;
+            margin-top: var(--spacing-sm);
             font-size: 0.9rem;
+            text-align: center;
         }
 
         .footer-links a {
-            color: var(--light-blue);
+            color: var(--primary);
             text-decoration: none;
-            margin: 0 1rem;
+            margin: 0 var(--spacing-sm);
         }
 
         .footer-links a:hover {
             text-decoration: underline;
         }
+        .footer-links span {
+    color: var(--primary) !important;
+}
 
+        /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
-                gap: 1rem;
+                gap: var(--spacing-sm);
             }
 
             .header-nav {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--spacing-sm);
             }
 
             .header-title {
@@ -364,11 +399,11 @@
             }
 
             .legal-document {
-                padding: 2rem 1.5rem;
+                padding: var(--spacing-lg) var(--spacing-md);
             }
 
             .container {
-                padding: 0 1rem 2rem;
+                padding: 0 var(--spacing-sm) var(--spacing-lg);
             }
 
             h2 {
@@ -430,18 +465,6 @@
                 <li><strong>Calculadoras relacionadas con la salud (únicamente informativas)</strong></li>
             </ul>
 
-            <h3>2.1 Aplicación Web Progresiva (PWA)</h3>
-            <p>meskeIA ofrece la opción de instalarse como <strong>aplicación web progresiva (PWA)</strong> 
-            en dispositivos compatibles para facilitar el acceso rápido desde la pantalla de inicio. 
-            Esta funcionalidad:</p>
-            <ul>
-                <li>Es <strong>completamente opcional</strong> y reversible</li>
-                <li><strong>No implica</strong> recopilación de datos adicionales</li>
-                <li><strong>No requiere</strong> permisos especiales del dispositivo</li>
-                <li>Funciona con el mismo sistema de privacidad local descrito en estos términos</li>
-                <li>Puede desinstalarse en cualquier momento como cualquier otra aplicación</li>
-            </ul>
-
             <div class="info-box">
                 <div class="info-title">
                     <span>📊</span> RECOPILACIÓN DE ESTADÍSTICAS
@@ -456,42 +479,21 @@
                 <p><strong>IMPORTANTE:</strong> Esta recopilación estadística NO incluye los datos que introduce en las calculadoras. Sus cálculos, contraseñas, información financiera y de salud permanecen completamente privados.</p>
             </div>
 
-            <!-- NUEVA SECCIÓN ESPECÍFICA PARA CALCULADORA DE SALUD -->
             <div class="medical-box">
                 <div class="medical-title">
                     <span>⚕️</span> SECCIÓN ESPECIAL: CALCULADORA DE SALUD
                 </div>
                 
-                <h3>2.2 Naturaleza de la Herramienta de Salud</h3>
+                <h3>2.1 Naturaleza de la Herramienta de Salud</h3>
                 <p><strong>La calculadora de salud de meskeIA es ÚNICAMENTE una herramienta informativa y educativa.</strong> NO es un dispositivo médico, NO realiza diagnósticos, y NO sustituye en ningún caso la consulta médica profesional.</p>
                 
-                <h3>2.3 Limitaciones Específicas</h3>
+                <h4>Limitaciones Específicas:</h4>
                 <ul>
                     <li><strong>Solo estimaciones:</strong> Todos los cálculos se basan en fórmulas poblacionales que proporcionan estimaciones generales</li>
                     <li><strong>Variabilidad individual:</strong> Los resultados pueden diferir significativamente de análisis médicos profesionales</li>
                     <li><strong>No diagnóstica:</strong> La herramienta NO diagnostica enfermedades ni condiciones médicas</li>
                     <li><strong>Solo informativa:</strong> Los resultados son únicamente para fines educativos y de concientización</li>
                 </ul>
-                
-                <h3>2.4 Restricciones de Uso Médico</h3>
-                <p><strong>PROHIBIDO:</strong></p>
-                <ul>
-                    <li>Usar la herramienta para tomar decisiones médicas</li>
-                    <li>Sustituir consultas médicas profesionales con estos resultados</li>
-                    <li>Utilizar los resultados para autodiagnóstico</li>
-                    <li>Recomendar tratamientos basándose en estos cálculos</li>
-                    <li>Uso comercial o profesional en entornos sanitarios</li>
-                </ul>
-                
-                <h3>2.5 Obligaciones del Usuario</h3>
-                <p><strong>Al usar la calculadora de salud, usted se compromete a:</strong></p>
-                <ol>
-                    <li>Ser mayor de 18 años o contar con supervisión de un adulto</li>
-                    <li>Usar la herramienta únicamente para fines informativos</li>
-                    <li>Consultar SIEMPRE con profesionales sanitarios antes de tomar decisiones de salud</li>
-                    <li>No responsabilizar a meskeIA por decisiones tomadas basándose en los resultados</li>
-                    <li>Entender que los valores introducidos son autorreportados y pueden afectar la precisión</li>
-                </ol>
             </div>
 
             <h2>3. Descargo de Responsabilidad General</h2>
@@ -511,17 +513,15 @@
             </div>
 
             <h3>3.1 Calculadoras Financieras</h3>
-            <p>Los resultados de las <strong>calculadoras de préstamos, hipotecas y financieras</strong> son aproximaciones para fines informativos únicamente. <span class="highlight">NO constituyen asesoramiento financiero profesional</span>. Para decisiones financieras importantes, consulte sempre con un asesor financiero cualificado.</p>
+            <p>Los resultados de las <strong>calculadoras de préstamos, hipotecas y financieras</strong> son aproximaciones para fines informativos únicamente. <span class="highlight">NO constituyen asesoramiento financiero profesional</span>. Para decisiones financieras importantes, consulte siempre con un asesor financiero cualificado.</p>
 
             <h3>3.2 Herramientas Relacionadas con la Salud</h3>
             
-            <div class="warning-box">
-                <div class="warning-title">
+            <div class="medical-box">
+                <div class="medical-title">
                     <span>🏥</span> AVISO MÉDICO IMPORTANTE
                 </div>
                 <p><strong>Las calculadoras de salud NO sustituyen el consejo médico profesional.</strong> Los resultados son únicamente informativos y educativos. <strong>SIEMPRE consulte con su médico</strong> antes de tomar decisiones relacionadas con su salud, dieta, ejercicio o tratamiento médico.</p>
-                
-                <p><strong>RIESGO DE AUTODIAGNÓSTICO:</strong> El uso inadecuado de los resultados para autodiagnóstico puede ser peligroso. Esta herramienta NO puede detectar enfermedades, NO evalúa síntomas específicos, y NO proporciona diagnósticos médicos de ningún tipo.</p>
                 
                 <p><strong>EMERGENCIAS MÉDICAS:</strong> En caso de síntomas graves o emergencias médicas, contacte inmediatamente con servicios de emergencia (112 en España) o acuda al centro médico más cercano. NO use esta calculadora en situaciones de emergencia.</p>
             </div>
@@ -544,13 +544,9 @@
                 <li>Sobrecargar intencionalmente los servidores</li>
                 <li><strong>Usar la calculadora de salud para proporcionar consejos médicos a terceros</strong></li>
                 <li><strong>Presentar los resultados como diagnósticos médicos profesionales</strong></li>
-                <li>Interferir con el funcionamiento de Google Analytics o intentar manipular las estadísticas</li>
             </ol>
 
-            <h2>5. Propiedad Intelectual</h2>
-            <p>Todos los derechos de propiedad intelectual del sitio web, incluyendo pero no limitado a código, diseño, textos y logotipos, pertenecen a <strong>meskeIA</strong>. El uso de las herramientas no le otorga ningún derecho de propiedad sobre el contenido.</p>
-
-            <h2>6. Privacidad y Datos</h2>
+            <h2>5. Privacidad y Datos</h2>
             
             <div class="info-box">
                 <div class="info-title">
@@ -564,29 +560,15 @@
                     <li>No enviamos datos de salud a ningún servidor externo</li>
                     <li>Google Analytics no puede acceder a esta información</li>
                     <li>Los resultados solo se almacenan temporalmente en su navegador</li>
-                    <li>Puede borrar todos los datos cerrando la aplicación</li>
                 </ul>
             </div>
 
-            <h2>7. Google Analytics y Estadísticas de Uso</h2>
-            
-            <div class="info-box">
-                <div class="info-title">
-                    <span>📈</span> TRANSPARENCIA SOBRE ESTADÍSTICAS
-                </div>
-                <p><strong>Utilizamos Google Analytics para mejorar nuestro servicio:</strong></p>
-                <ul>
-                    <li><strong>Finalidad:</strong> Entender qué herramientas son más útiles y cómo mejorar la experiencia</li>
-                    <li><strong>Datos recopilados:</strong> Páginas visitadas, tiempo en sitio, país, dispositivo</li>
-                    <li><strong>Datos NO recopilados:</strong> Información introducida en las calculadoras</li>
-                    <li><strong>Retención:</strong> Los datos se eliminan automáticamente según las políticas de Google</li>
-                    <li><strong>Control del usuario:</strong> Puede desactivar Analytics desde su navegador</li>
-                </ul>
-                
-                <p><strong>Al usar este sitio web, acepta el uso de Google Analytics para estos fines estadísticos básicos.</strong></p>
-            </div>
+            <h2>6. Limitación de Responsabilidad</h2>
+            <p><strong>EN NINGÚN CASO meskeIA SERÁ RESPONSABLE DE DAÑOS DIRECTOS, INDIRECTOS, INCIDENTALES, ESPECIALES O CONSECUENCIALES</strong> que resulten del uso o la imposibilidad de usar las herramientas, incluso si se ha advertido de la posibilidad de tales daños.</p>
 
-            <h2>8. Modificaciones del Servicio</h2>
+            <p>La responsabilidad total de meskeIA, si la hubiera, no excederá en ningún caso el importe de <strong>cero euros (0€)</strong>, dado que el servicio es gratuito.</p>
+
+            <h2>7. Modificaciones del Servicio</h2>
             <p>meskeIA se reserva el derecho de:</p>
             <ul>
                 <li>Modificar, suspender o discontinuar cualquier herramienta</li>
@@ -595,68 +577,8 @@
                 <li>Actualizar configuraciones de Google Analytics</li>
                 <li><strong>Actualizar algoritmos de cálculo médico según nuevos estándares científicos</strong></li>
             </ul>
-            <p>Los cambios significativos serán notificados mediante actualización de la fecha en esta página.</p>
 
-            <h2>9. Limitación de Responsabilidad</h2>
-            <p><strong>EN NINGÚN CASO meskeIA SERÁ RESPONSABLE DE DAÑOS DIRECTOS, INDIRECTOS, INCIDENTALES, ESPECIALES O CONSECUENCIALES</strong> que resulten del uso o la imposibilidad de usar las herramientas, incluso si se ha advertido de la posibilidad de tales daños.</p>
-
-            <p>La responsabilidad total de meskeIA, si la hubiera, no excederá en ningún caso el importe de <strong>cero euros (0€)</strong>, dado que el servicio es gratuito.</p>
-
-            <div class="warning-box">
-                <div class="warning-title">
-                    <span>⚕️</span> LIMITACIÓN ESPECÍFICA PARA SALUD
-                </div>
-                <p><strong>ESPECÍFICAMENTE PARA LA CALCULADORA DE SALUD:</strong> meskeIA no se hace responsable de:</p>
-                <ul>
-                    <li>Diagnósticos incorrectos realizados por el usuario basándose en los resultados</li>
-                    <li>Retrasos en buscar atención médica profesional</li>
-                    <li>Decisiones de tratamiento médico basadas en las estimaciones</li>
-                    <li>Consecuencias de cambios en dieta, ejercicio o medicación</li>
-                    <li>Deterioro de la salud por confiar únicamente en estos resultados</li>
-                </ul>
-            </div>
-
-            <h2>10. Indemnización</h2>
-            <p>Usted acepta defender, indemnizar y eximir de responsabilidad a meskeIA de cualquier reclamación, daño, pérdida o gasto (incluyendo honorarios de abogados) que surja de:</p>
-            <ul>
-                <li>Su uso de las herramientas</li>
-                <li>Su violación de estos términos</li>
-                <li>Su violación de derechos de terceros</li>
-                <li><strong>Uso inadecuado de la calculadora de salud para propósitos médicos</strong></li>
-                <li><strong>Consejos médicos proporcionados a terceros basándose en nuestros resultados</strong></li>
-                <li>Interferencia con el funcionamiento del sistema de estadísticas</li>
-            </ul>
-
-            <h2>11. Legislación Aplicable</h2>
-            <p>Estos términos se rigen por la legislación española. Cualquier disputa será resuelta en los tribunales competentes de <strong>España</strong>.</p>
-
-            <h2>12. Divisibilidad</h2>
-            <p>Si alguna disposición de estos términos es declarada inválida o inaplicable, las disposiciones restantes permanecerán en pleno vigor y efecto.</p>
-
-            <h2>13. Menores de Edad</h2>
-            <p>Las herramientas de meskeIA están diseñadas para usuarios mayores de 18 años. Los menores pueden usar las herramientas bajo <strong>supervisión de un adulto responsable</strong>, quien acepta estos términos en nombre del menor.</p>
-            
-            <p><strong>ESPECÍFICO PARA CALCULADORA DE SALUD:</strong> Los menores de 18 años NO deben usar la calculadora de salud sin supervisión médica profesional, ya que los rangos y fórmulas están validados para adultos.</p>
-
-            <p><strong>GOOGLE ANALYTICS Y MENORES:</strong> El uso de Google Analytics cumple con las regulaciones sobre protección de menores online, ya que no recopila información personal identificable.</p>
-
-            <h2>14. Cookies y Consentimiento</h2>
-            
-            <div class="info-box">
-                <div class="info-title">
-                    <span>🍪</span> USO DE COOKIES
-                </div>
-                <p><strong>Al utilizar este sitio web, usted consiente el uso de cookies técnicas y de Google Analytics:</strong></p>
-                <ul>
-                    <li><strong>Cookies técnicas:</strong> Necesarias para el funcionamiento básico del sitio</li>
-                    <li><strong>Cookies de Google Analytics:</strong> Para estadísticas agregadas de uso</li>
-                    <li><strong>Sin cookies de publicidad:</strong> No utilizamos cookies de marketing o seguimiento publicitario</li>
-                </ul>
-                
-                <p><strong>Control de cookies:</strong> Puede desactivar las cookies desde la configuración de su navegador, aunque esto puede afectar la funcionalidad del sitio.</p>
-            </div>
-
-            <h2>15. Contacto</h2>
+            <h2>8. Contacto</h2>
             
             <div class="contact-info">
                 <p><strong>Para consultas sobre estos términos:</strong></p>
@@ -678,13 +600,6 @@
                     <li>Consultará con profesionales de salud para decisiones médicas</li>
                     <li>No responsabilizará a meskeIA por consecuencias de decisiones de salud</li>
                 </ul>
-                
-                <p><strong>RECONOCIMIENTO SOBRE ESTADÍSTICAS:</strong> Al usar este sitio web, usted reconoce que:</p>
-                <ul>
-                    <li>Acepta el uso de Google Analytics para estadísticas básicas</li>
-                    <li>Entiende que sus datos sensibles permanecen locales en su dispositivo</li>
-                    <li>Puede desactivar las cookies de análisis si lo desea</li>
-                </ul>
             </div>
 
             <div class="warning-box">
@@ -692,20 +607,18 @@
                     <span>🚨</span> AVISO FINAL IMPORTANTE
                 </div>
                 <p><strong>Si tiene dudas sobre su salud, consulte inmediatamente con un profesional médico cualificado. Ninguna herramienta online puede sustituir el juicio clínico profesional.</strong></p>
-                
-                <p><strong>Para consultas sobre privacidad o el uso de Google Analytics, consulte nuestra <a href="privacidad.html">Política de Privacidad</a> o contáctenos directamente.</strong></p>
             </div>
         </article>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 meskeIA - Biblioteca de Utilidades Web Gratuitas</p>
-        <p>Herramientas desarrolladas con dedicación para facilitar tu día a día</p>
-        <div class="footer-links">
-            <a href="index.html">Inicio</a>
-            <a href="privacidad.html">Privacidad</a>
-            <a href="mailto:meskeia24@gmail.com">Contacto</a>
-        </div>
-    </footer>
+    <p>&copy; 2025 meskeIA - Biblioteca de Aplicaciones Web Gratuitas</p>
+    <p>Aplicaciones desarrolladas para simplificar tu día a día</p>
+    <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="privacidad.html">Privacidad</a>
+        
+    </div>
+</footer>
 </body>
 </html>
