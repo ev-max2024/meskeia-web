@@ -9,9 +9,9 @@
     <meta name="theme-color" content="#2E86AB">
     
     <!-- SEO Principal -->
-    <title>meskeIA - Biblioteca de Utilidades Web Gratuitas | Herramientas Online Minimalistas</title>
-    <meta name="description" content="Biblioteca gratuita de utilidades web: simulador de hipoteca, cuaderno digital, generador de contraseñas, creador de paletas, evaluador de salud y más herramientas online minimalistas sin registro.">
-    <meta name="keywords" content="herramientas web gratuitas, simulador hipoteca, cuaderno digital, generador contraseñas, creador paletas, evaluador salud, utilidades online, meskeIA">
+    <title>meskeIA - Biblioteca de Aplicaciones Web Gratuitas | Herramientas Online Minimalistas</title>
+    <meta name="description" content="Biblioteca gratuita de aplicaciones web: cuaderno digital, simulador de hipoteca, calculadora de fechas, generador lorem ipsum, evaluador de salud y más herramientas online sin registro. Diseño minimalista para España.">
+    <meta name="keywords" content="cuaderno digital, simulador hipoteca, calculadora fechas, lorem ipsum, generador contraseñas, calculadora irpf, herramientas web gratuitas, aplicaciones online España, meskeIA">
     
     <link rel="canonical" href="https://meskeia.com/">
     <link rel="manifest" href="manifest.json">
@@ -27,16 +27,16 @@
 
     <!-- Open Graph para redes sociales -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="meskeIA - Aplicaciones Web Minimalistas y Gratuitas">
-    <meta property="og:description" content="Simulador de hipoteca, cuaderno digital, generador de contraseñas y más aplicaciones web. Todo gratis y sin registro.">
+    <meta property="og:title" content="meskeIA - Biblioteca de Aplicaciones Web Gratuitas">
+    <meta property="og:description" content="Cuaderno digital, simulador de hipoteca, calculadora de fechas y más aplicaciones web. Todo gratis y sin registro.">
     <meta property="og:url" content="https://meskeia.com">
     <meta property="og:site_name" content="meskeIA">
     <meta property="og:locale" content="es_ES">
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="meskeIA - Aplicaciones Web Minimalistas">
-    <meta name="twitter:description" content="Aplicaciones web gratuitas con diseño limpio y funcional">
+    <meta name="twitter:title" content="meskeIA - Biblioteca de Aplicaciones Web Gratuitas">
+    <meta name="twitter:description" content="Aplicaciones web gratuitas con diseño limpio y funcional para España">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icon_meskeia.png">
@@ -47,8 +47,8 @@
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "meskeIA - Biblioteca de Utilidades",
-        "description": "Biblioteca gratuita de utilidades web minimalistas para facilitar tareas cotidianas",
+        "name": "meskeIA - Biblioteca de Aplicaciones",
+        "description": "Biblioteca gratuita de aplicaciones web minimalistas para facilitar tareas cotidianas en España",
         "url": "https://meskeia.com",
         "author": {
             "@type": "Person",
@@ -60,7 +60,12 @@
             "priceCurrency": "EUR"
         },
         "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Web Browser"
+        "operatingSystem": "Web Browser",
+        "inLanguage": "es-ES",
+        "audience": {
+            "@type": "Audience",
+            "geographicArea": "Spain"
+        }
     }
     </script>
 
@@ -410,8 +415,8 @@
             border-radius: var(--radius);
             padding: var(--spacing-lg);
             box-shadow: var(--shadow-light);
-            max-width: 800px;  /* Reducir de ~1400px */
-            margin: 0 auto;    /* Centrar */
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .faq-item {
@@ -495,7 +500,7 @@
             box-shadow: 0 6px 20px rgba(46, 134, 171, 0.3);
         }
 
-        /* Modal del chatbot (mantenemos funcionalidad actual) */
+        /* Modal del chatbot */
         .chatbot-modal {
             position: fixed;
             top: 0;
@@ -832,14 +837,14 @@
     <main class="main-content">
 
         <!-- Categorías Principales -->
-        <section class="categories-grid" role="main" aria-label="Categorías de herramientas">
+        <section class="categories-grid" role="main" aria-label="Categorías de aplicaciones">
             <div class="category-card" onclick="toggleCategory('finanzas')" itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="category-header">
                     <div class="category-icon">💰</div>
-                    <h2 class="category-title">Finanzas</h2>
+                    <h2 class="category-title">Finanzas y Fiscalidad</h2>
                 </div>
                 <p class="category-description">
-                    Herramientas para planificación financiera, préstamos e inversiones con cálculos precisos.
+                    Herramientas para planificación financiera, préstamos, inversiones e impuestos con cálculos precisos.
                 </p>
                 <ul class="category-tools" id="finanzas-tools" style="display: none;" onclick="event.stopPropagation()">
                     <li><a href="Aplicaciones/Simulador de Hipoteca/simulador-hipoteca.html" onclick="event.stopPropagation()">Simulador de Hipoteca</a></li>
@@ -851,48 +856,48 @@
                 </ul>
             </div>
 
+            <div class="category-card" onclick="toggleCategory('calculadoras')" itemscope itemtype="https://schema.org/SoftwareApplication">
+                <div class="category-header">
+                    <div class="category-icon">🧮</div>
+                    <h2 class="category-title">Calculadoras y Utilidades</h2>
+                </div>
+                <p class="category-description">
+                    Herramientas de cálculo matemático, conversión de unidades y utilidades prácticas para el día a día.
+                </p>
+                <ul class="category-tools" id="calculadoras-tools" style="display: none;" onclick="event.stopPropagation()">
+                    <li><a href="Aplicaciones/Calculadora de Fechas/calculadora-fechas.html" onclick="event.stopPropagation()">Calculadora de Fechas</a></li>
+                    <li><a href="Aplicaciones/Calculadora Estadística/calculadora-estadistica.html" onclick="event.stopPropagation()">Calculadora Estadística</a></li>
+                    <li><a href="Aplicaciones/Calculadora Matemática Avanzada/calculadora-matematica.html" onclick="event.stopPropagation()">Calculadora Matemática Avanzada</a></li>
+                    <li><a href="Aplicaciones/Conversor de Unidades/conversor-unidades.html" onclick="event.stopPropagation()">Conversor de Unidades</a></li>
+                    <li><a href="Aplicaciones/Evaluador de Salud/evaluador-salud.html" onclick="event.stopPropagation()">Evaluador de Salud</a></li>
+                </ul>
+            </div>
+
             <div class="category-card" onclick="toggleCategory('productividad')" itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="category-header">
                     <div class="category-icon">⚡</div>
-                    <h2 class="category-title">Productividad</h2>
+                    <h2 class="category-title">Herramientas de Productividad</h2>
                 </div>
                 <p class="category-description">
-                    Optimiza tu tiempo y organización con herramientas simples y efectivas.
+                    Optimiza tu tiempo y flujo de trabajo con herramientas simples y efectivas para ser más productivo.
                 </p>
                 <ul class="category-tools" id="productividad-tools" style="display: none;" onclick="event.stopPropagation()">
                     <li><a href="Aplicaciones/Cuaderno Digital/cuaderno-digital.html" onclick="event.stopPropagation()">Cuaderno Digital</a></li>
                     <li><a href="Aplicaciones/Temporizador Pomodoro/temporizador-pomodoro.html" onclick="event.stopPropagation()">Temporizador Pomodoro</a></li>
                     <li><a href="Aplicaciones/Información del Tiempo/informacion-tiempo.html" onclick="event.stopPropagation()">Información del Tiempo</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card" onclick="toggleCategory('herramientas')" itemscope itemtype="https://schema.org/SoftwareApplication">
-                <div class="category-header">
-                    <div class="category-icon">🛠️</div>
-                    <h2 class="category-title">Herramientas</h2>
-                </div>
-                <p class="category-description">
-                    Utilidades esenciales para seguridad, diseño y evaluación personal.
-                </p>
-                <ul class="category-tools" id="herramientas-tools" style="display: none;" onclick="event.stopPropagation()">
                     <li><a href="Aplicaciones/Generador de Contraseñas/generador-contraseñas.html" onclick="event.stopPropagation()">Generador de Contraseñas</a></li>
-                    <li><a href="Aplicaciones/Calculadora de Fechas/calculadora-fechas.html" onclick="event.stopPropagation()">Calculadora de Fechas</a></li>
-                    <li><a href="Aplicaciones/Creador de Paletas/creador-paletas.html" onclick="event.stopPropagation()">Creador de Paletas</a></li>
-                    <li><a href="Aplicaciones/Evaluador de Salud/evaluador-salud.html" onclick="event.stopPropagation()">Evaluador de Salud</a></li>
-                    <li><a href="Aplicaciones/Calculadora Matemática Avanzada/calculadora-matematica.html" onclick="event.stopPropagation()">Calculadora Matemática Avanzada</a></li>
-                    <li><a href="Aplicaciones/Conversor de Unidades/conversor-unidades.html" onclick="event.stopPropagation()">Conversor de Unidades</a></li>
-                    <li><a href="Aplicaciones/Calculadora Estadística/calculadora-estadistica.html" onclick="event.stopPropagation()">Calculadora Estadística</a></li>
                     <li><a href="Aplicaciones/Generador Lorem Ipsum/lorem-ipsum.html" onclick="event.stopPropagation()">Generador Lorem Ipsum</a></li>
+                    <li><a href="Aplicaciones/Creador de Paletas/creador-paletas.html" onclick="event.stopPropagation()">Creador de Paletas</a></li>
                 </ul>
             </div>
 
             <div class="category-card" onclick="toggleCategory('entretenimiento')" itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="category-header">
                     <div class="category-icon">🎮</div>
-                    <h2 class="category-title">Entretenimiento</h2>
+                    <h2 class="category-title">Juegos y Entretenimiento</h2>
                 </div>
                 <p class="category-description">
-                    Juegos clásicos y rompecabezas para momentos de diversión y relajación.
+                    Juegos clásicos y rompecabezas para momentos de diversión y relajación mental.
                 </p>
                 <ul class="category-tools" id="entretenimiento-tools" style="display: none;" onclick="event.stopPropagation()">
                     <li><a href="Aplicaciones/Sudoku Clásico/sudoku-clasico.html" onclick="event.stopPropagation()">Sudoku Clásico</a></li>
@@ -913,8 +918,8 @@
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-icon">🔒</div>
-                    <h3 class="advantage-title">Completamente Privado</h3>
-                    <p class="advantage-text">Procesamiento local. Tus datos nunca salen de tu dispositivo.</p>
+                    <h3 class="advantage-title">Datos Seguros</h3>
+                    <p class="advantage-text">Procesamiento local de aplicaciones. Solo Google Analytics para estadísticas.</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-icon">🤖</div>
@@ -941,9 +946,9 @@
         </div>
         
         <div class="faq-item" itemscope itemtype="https://schema.org/Question">
-            <h3 class="faq-question" itemprop="name">¿Se almacenan mis datos personales?</h3>
+            <h3 class="faq-question" itemprop="name">¿Qué datos recopilan de los usuarios?</h3>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                <p class="faq-answer" itemprop="text">No. Todas las aplicaciones procesan datos localmente en tu navegador.</p>
+                <p class="faq-answer" itemprop="text">Solo usamos Google Analytics para estadísticas básicas de uso. Las aplicaciones procesan datos localmente en tu navegador.</p>
             </div>
         </div>
         
@@ -992,7 +997,7 @@
                     <div class="message-content">
                         ¡Hola! Soy tu asistente de meskeIA. Puedo ayudarte con:<br><br>
                         • 🔧 Explicar cómo usar las herramientas<br>
-                        • 💡 Sugerir qué utilidad necesitas<br>
+                        • 💡 Sugerir qué aplicación necesitas<br>
                         • ❓ Resolver dudas sobre finanzas o salud<br><br>
                         ¿En qué puedo ayudarte?
                     </div>
@@ -1063,12 +1068,7 @@
             }
         }
 
-        // Alternativa para dispositivos táctiles
-        function handleCategoryTouch(categoryId) {
-            toggleCategory(categoryId);
-        }
-
-        // Funcionalidad del Chatbot (manteniendo la funcionalidad actual)
+        // Funcionalidad del Chatbot
         let chatHistory = [];
 
         function openChatbot() {
@@ -1119,7 +1119,7 @@
             showTypingIndicator();
             
             try {
-                // Llamar a la API a través del proxy (manteniendo funcionalidad actual)
+                // Llamar a la API a través del proxy
                 const response = await fetch('./claude-proxy.php', {
                     method: 'POST',
                     headers: {
@@ -1159,10 +1159,10 @@
             const context = `Eres el asistente inteligente de meskeIA, una biblioteca de aplicaciones web gratuitas con diseño minimalista. 
 
 Nuestras aplicaciones incluyen:
-- 💰 Finanzas: Simulador de Hipoteca, Calculadora de Inversiones, Interés Compuesto, Simulador IRPF
-- ⚡ Productividad: Cuaderno Digital, Temporizador Pomodoro, Información del Tiempo
-- 🛠️ Herramientas: Generador de Contraseñas, Creador de Paletas, Evaluador de Salud
-- 🎮 Entretenimiento: Próximamente Sudoku y Tres en Raya
+- 💰 Finanzas y Fiscalidad: Simulador de Hipoteca, Calculadora de Inversiones, Interés Compuesto, Simulador IRPF, Calculadora Impuesto de Donaciones, Calculadora Impuesto de Sucesiones
+- 🧮 Calculadoras y Utilidades: Calculadora de Fechas, Calculadora Estadística, Calculadora Matemática Avanzada, Conversor de Unidades, Evaluador de Salud
+- ⚡ Herramientas de Productividad: Cuaderno Digital, Temporizador Pomodoro, Información del Tiempo, Generador de Contraseñas, Generador Lorem Ipsum, Creador de Paletas
+- 🎮 Juegos y Entretenimiento: Sudoku Clásico, Tres en Raya, Juego de Memoria
 
 Tu rol es ayudar a los usuarios a:
 1. Entender cómo usar nuestras aplicaciones minimalistas
