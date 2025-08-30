@@ -154,7 +154,7 @@ BLOQUE 2
 Pega el HTML inmediatamente después de <body>
 
 <!-- Logo meskeIA -->
-<div class="meskeia-logo-container">
+<div class="meskeia-logo-container" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
     <div class="meskeia-logo-icon">
         <div class="meskeia-neural-network">
             <div class="meskeia-neural-dot"></div>
