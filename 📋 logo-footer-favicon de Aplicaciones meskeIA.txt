@@ -1,16 +1,13 @@
 📋 Instrucciones de uso:
 
-Hacer backup del archivo original
-Copiar BLOQUE 1 dentro de <style> (al final de los estilos existentes)
-Copiar BLOQUE 2 justo después de <body>
-Guardar y probar en navegador
 
 💡 Consejos para evitar problemas:
 
-Pega el CSS al final de los estilos existentes (antes del </style>)
-Pega el HTML inmediatamente después de <body>
+BLOQUE 1 - LOGO (CSS)
+Este código inserta las instrucciones CSS del logo meskeIA.
 
-BLOQUE 1
+📍 DÓNDE COLOCARLO
+Pega el CSS al final de los estilos existentes (antes del </style>)
 
 /* Logo meskeIA - Componente reutilizable */
 .meskeia-logo-container {
@@ -152,10 +149,15 @@ BLOQUE 1
 }
 
 
-BLOQUE 2
+
+BLOQUE 2 - LOGO (HTML)
+Este código inserta las instrucciones HTML del logo meskeIA.
+
+📍 DÓNDE COLOCARLO
+Pega el HTML inmediatamente después de <body>
 
 <!-- Logo meskeIA -->
-<div class="meskeia-logo-container">
+<div class="meskeia-logo-container" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
     <div class="meskeia-logo-icon">
         <div class="meskeia-neural-network">
             <div class="meskeia-neural-dot"></div>
@@ -170,29 +172,32 @@ BLOQUE 2
 </div>
 
 
-BLOQUE 3
+
+
+BLOQUE 3 - FOOTER
+Este código pone el copyright en la parte inferior derecha.
 
 📍 DÓNDE COLOCARLO
-Posición exacta:
-ANTES del cierre de </body> - Al final de todo el contenido
-
-Este primer código pone el copyright en la parte inferior derecha.
+Posición exacta: ANTES del cierre de </body> - Al final de todo el contenido
 
 <!-- Footer meskeIA -->
-<footer style="position: fixed; bottom: 10px; right: 20px; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; z-index: 999;">
+<footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
     © 2025 meskeIA
 </footer>
 
-Y este segundo código pone el copyright en la parte inferior central
 
-<!-- Footer meskeIA centrado -->
-<footer style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; z-index: 999;">
-    © 2025 meskeIA
-</footer>
 
-BLOQUE 4
+BLOQUE 4 - FAVICON
+Este código pone el icon meskeIA para que aparezca en el navegador.
 
-Línea de programa para insertar el ICON 
+📍 DÓNDE COLOCARLO
+Pega el siguiente código en <head> después de:  <meta name=”viewport” …..
 
 <link rel="icon" type="image/png" href="../../assets/icon_meskeia.png">
+
+
+
+
+
+
 
