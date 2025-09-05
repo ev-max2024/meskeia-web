@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página principal -->
+  <url>
+    <loc>https://meskeia.com/</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Páginas legales -->
+  <url>
+    <loc>https://meskeia.com/privacidad.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/terminos.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Aplicaciones de Finanzas -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Simulador%20de%20Hipoteca/simulador-hipoteca.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Jubilaci%C3%B3n/calculadora-jubilacion.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Inversiones/calculadora-inversiones.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Inter%C3%A9s%20Compuesto/interes-compuesto.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Simulador%20IRPF/simulador-irpf.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Impuesto%20de%20Donaciones/impuesto-donaciones.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Impuesto%20de%20Sucesiones/impuesto-sucesiones.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Calculadoras y Utilidades -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Fechas/calculadora-fechas.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Notas%20Acad%C3%A9micas/calculadora-notas.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Conversor%20de%20Tallas%20Internacional/conversor-tallas.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Estad%C3%ADstica/calculadora-estadistica.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Matem%C3%A1tica%20Avanzada/calculadora-matematica.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Conversor%20de%20Unidades/conversor-unidades.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Evaluador%20de%20Salud/evaluador-salud.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Herramientas de Productividad -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Cuaderno%20Digital/cuaderno-digital.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Lista%20de%20Tareas/lista-tareas.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Temporizador%20Pomodoro/temporizador-pomodoro.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Informaci%C3%B3n%20del%20Tiempo/informacion-tiempo.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Generador%20de%20Contrase%C3%B1as/generador-contraseñas.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Generador%20Lorem%20Ipsum/lorem-ipsum.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Creador%20de%20Paletas/creador-paletas.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Juegos y Entretenimiento -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Wordle%20en%20Espa%C3%B1ol/wordle-espanol.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Sudoku%20Cl%C3%A1sico/sudoku-clasico.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Tres%20en%20Raya/tres-en-raya.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Juego%20de%20Memoria/juego-de-memoria.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Piedra%20Papel%20Tijera/piedra-papel-tijera.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/2048/juego-2048.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

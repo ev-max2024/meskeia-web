@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://meskeia.com/sitemap.xml
+
+# Páginas específicas
+Allow: /index.html
+Allow: /Aplicaciones/
+Allow: /assets/
+
+# Archivos que no necesitan indexar
+Disallow: /offline.html
+Disallow: /claude-proxy.php
