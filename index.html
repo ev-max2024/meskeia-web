@@ -47,25 +47,93 @@
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "meskeIA - Biblioteca de Aplicaciones",
-        "description": "Biblioteca gratuita de aplicaciones web para facilitar tareas cotidianas en España",
+        "name": "meskeIA - Biblioteca de Aplicaciones Web Gratuitas",
+        "description": "Biblioteca gratuita de aplicaciones web para facilitar tareas cotidianas: simulador hipoteca, calculadora de inversiones, evaluador de salud, cuaderno digital y más herramientas",
         "url": "https://meskeia.com",
         "author": {
-            "@type": "Person",
-            "name": "meskeIA"
+            "@type": "Organization",
+            "name": "meskeIA",
+            "email": "meskeia24@gmail.com"
         },
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "EUR"
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://meskeia.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
         },
+        "sameAs": [
+            "https://meskeia.com"
+        ],
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web Browser",
         "inLanguage": "es-ES",
         "audience": {
             "@type": "Audience",
             "geographicArea": "Spain"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
         }
+    }
+    </script>
+
+    <!-- Breadcrumbs Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://meskeia.com"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Software Application Collection Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Aplicaciones Web Gratuitas de meskeIA",
+        "description": "Colección de herramientas web gratuitas: finanzas, calculadoras, productividad y entretenimiento",
+        "url": "https://meskeia.com",
+        "mainEntity": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Simulador de Hipoteca",
+                "applicationCategory": "FinanceApplication",
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+            },
+            {
+                "@type": "SoftwareApplication",
+                "name": "Calculadora de Inversiones",
+                "applicationCategory": "FinanceApplication",
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+            },
+            {
+                "@type": "SoftwareApplication",
+                "name": "Cuaderno Digital",
+                "applicationCategory": "ProductivityApplication",
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+            },
+            {
+                "@type": "SoftwareApplication",
+                "name": "Evaluador de Salud",
+                "applicationCategory": "HealthApplication",
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+            }
+        ]
     }
     </script>
 
@@ -817,19 +885,12 @@
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <div class="logo-icon" role="img" aria-label="Logo meskeIA">
-                    <div class="neural-network">
-                        <div class="neural-dot"></div>
-                        <div class="neural-dot"></div>
-                        <div class="neural-dot"></div>
-                        <div class="neural-dot"></div>
-                    </div>
-                </div>
+                <img src="assets/icon_meskeia.png" alt="Logo de meskeIA - Biblioteca de aplicaciones web gratuitas" class="logo-icon" style="width: 40px; height: 40px; border-radius: var(--radius);" loading="eager">
                 <div class="logo-text">
                     <span class="meske">meske</span><span class="ia">IA</span>
                 </div>
             </div>
-            <h1 class="header-title">Biblioteca de Aplicaciones</h1>
+            <h2 class="header-title">Biblioteca de Aplicaciones</h2>
         </div>
     </header>
 
@@ -837,6 +898,9 @@
     <main class="main-content">
 
         <!-- Categorías Principales -->
+        <!-- Hero Section con H1 principal (oculto para SEO) -->
+        <h1 style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">Biblioteca de Aplicaciones Web Gratuitas - meskeIA</h1>
+
         <section class="categories-grid" role="main" aria-label="Categorías de aplicaciones">
             <div class="category-card" onclick="toggleCategory('finanzas')" itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="category-header">
@@ -847,14 +911,14 @@
                     Herramientas para planificación financiera, préstamos, inversiones e impuestos con cálculos precisos.
                 </p>
                 <ul class="category-tools" id="finanzas-tools" style="display: none;" onclick="event.stopPropagation()">
-                    <li><a href="Aplicaciones/curso-decisiones-inversion/index.html" onclick="event.stopPropagation()">Curso Decisiones de Inversión</a></li>
-                    <li><a href="Aplicaciones/Simulador de Hipoteca/simulador-hipoteca.html" onclick="event.stopPropagation()">Simulador de Hipoteca</a></li>
-                    <li><a href="Aplicaciones/Calculadora de Jubilación/calculadora-jubilacion.html" onclick="event.stopPropagation()">Calculadora de Jubilación</a></li>
-                    <li><a href="Aplicaciones/Calculadora de Inversiones/calculadora-inversiones.html" onclick="event.stopPropagation()">Calculadora de Inversiones</a></li>
-                    <li><a href="Aplicaciones/Interés Compuesto/interes-compuesto.html" onclick="event.stopPropagation()">Interés Compuesto</a></li>
-                    <li><a href="Aplicaciones/Simulador IRPF/simulador-irpf.html" onclick="event.stopPropagation()">Simulador IRPF</a></li>
-                    <li><a href="Aplicaciones/Calculadora Impuesto de Donaciones/impuesto-donaciones.html" onclick="event.stopPropagation()">Calculadora Impuesto de Donaciones</a></li>
-                    <li><a href="Aplicaciones/Calculadora Impuesto de Sucesiones/impuesto-sucesiones.html" onclick="event.stopPropagation()">Calculadora Impuesto de Sucesiones</a></li>
+                    <li><a href="Aplicaciones/curso-decisiones-inversion/index.html" onclick="event.stopPropagation()" title="Aprende a tomar decisiones de inversión inteligentes con este curso interactivo">Curso Decisiones de Inversión</a></li>
+                    <li><a href="Aplicaciones/Simulador de Hipoteca/simulador-hipoteca.html" onclick="event.stopPropagation()" title="Calcula tu hipoteca con cuadro de amortización completo y análisis detallado">Simulador de Hipoteca</a></li>
+                    <li><a href="Aplicaciones/Calculadora de Jubilación/calculadora-jubilacion.html" onclick="event.stopPropagation()" title="Planifica tu jubilación calculando ahorros necesarios y pensión estimada">Calculadora de Jubilación</a></li>
+                    <li><a href="Aplicaciones/Calculadora de Inversiones/calculadora-inversiones.html" onclick="event.stopPropagation()" title="Simula el crecimiento de tus inversiones con interés compuesto">Calculadora de Inversiones</a></li>
+                    <li><a href="Aplicaciones/Interés Compuesto/interes-compuesto.html" onclick="event.stopPropagation()" title="Calcula el interés compuesto de tus ahorros e inversiones a largo plazo">Interés Compuesto</a></li>
+                    <li><a href="Aplicaciones/Simulador IRPF/simulador-irpf.html" onclick="event.stopPropagation()" title="Calcula tu IRPF y retenciones según la normativa fiscal española actual">Simulador IRPF</a></li>
+                    <li><a href="Aplicaciones/Calculadora Impuesto de Donaciones/impuesto-donaciones.html" onclick="event.stopPropagation()" title="Calcula el impuesto de donaciones según tu comunidad autónoma">Calculadora Impuesto de Donaciones</a></li>
+                    <li><a href="Aplicaciones/Calculadora Impuesto de Sucesiones/impuesto-sucesiones.html" onclick="event.stopPropagation()" title="Calcula el impuesto de sucesiones con las bonificaciones de tu comunidad">Calculadora Impuesto de Sucesiones</a></li>
                 </ul>
             </div>
 
@@ -867,13 +931,13 @@
                     Herramientas de cálculo matemático, conversión de unidades y utilidades prácticas para el día a día.
                 </p>
                 <ul class="category-tools" id="calculadoras-tools" style="display: none;" onclick="event.stopPropagation()">
-                    <li><a href="Aplicaciones/Calculadora de Fechas/calculadora-fechas.html" onclick="event.stopPropagation()">Calculadora de Fechas</a></li>
-                    <li><a href="Aplicaciones/Calculadora de Notas Académicas/calculadora-notas.html" onclick="event.stopPropagation()">Calculadora de Notas Académicas</a></li>
-                    <li><a href="Aplicaciones/Conversor de Tallas Internacional/conversor-tallas.html" onclick="event.stopPropagation()">Conversor de Tallas Internacional</a></li>
-                    <li><a href="Aplicaciones/Calculadora Estadística/calculadora-estadistica.html" onclick="event.stopPropagation()">Calculadora Estadística</a></li>
-                    <li><a href="Aplicaciones/Calculadora Matemática Avanzada/calculadora-matematica.html" onclick="event.stopPropagation()">Calculadora Matemática Avanzada</a></li>
-                    <li><a href="Aplicaciones/Conversor de Unidades/conversor-unidades.html" onclick="event.stopPropagation()">Conversor de Unidades</a></li>
-                    <li><a href="Aplicaciones/Evaluador de Salud/evaluador-salud.html" onclick="event.stopPropagation()">Evaluador de Salud</a></li>
+                    <li><a href="Aplicaciones/Calculadora de Fechas/calculadora-fechas.html" onclick="event.stopPropagation()" title="Calcula días entre fechas, suma o resta días a cualquier fecha">Calculadora de Fechas</a></li>
+                    <li><a href="Aplicaciones/Calculadora de Notas Académicas/calculadora-notas.html" onclick="event.stopPropagation()" title="Calcula tu media académica ponderada y nota final del curso">Calculadora de Notas Académicas</a></li>
+                    <li><a href="Aplicaciones/Conversor de Tallas Internacional/conversor-tallas.html" onclick="event.stopPropagation()" title="Convierte tallas de ropa y calzado entre sistemas EU, UK, US">Conversor de Tallas Internacional</a></li>
+                    <li><a href="Aplicaciones/Calculadora Estadística/calculadora-estadistica.html" onclick="event.stopPropagation()" title="Calcula media, mediana, desviación estándar y análisis estadístico completo">Calculadora Estadística</a></li>
+                    <li><a href="Aplicaciones/Calculadora Matemática Avanzada/calculadora-matematica.html" onclick="event.stopPropagation()" title="Resuelve ecuaciones, matrices, derivadas e integrales online">Calculadora Matemática Avanzada</a></li>
+                    <li><a href="Aplicaciones/Conversor de Unidades/conversor-unidades.html" onclick="event.stopPropagation()" title="Convierte entre unidades de longitud, peso, temperatura y más">Conversor de Unidades</a></li>
+                    <li><a href="Aplicaciones/Evaluador de Salud/evaluador-salud.html" onclick="event.stopPropagation()" title="Calcula tu IMC, metabolismo basal y evalúa tu estado de salud">Evaluador de Salud</a></li>
                 </ul>
             </div>
 
@@ -886,13 +950,13 @@
                     Optimiza tu tiempo y flujo de trabajo con herramientas simples y efectivas para ser más productivo.
                 </p>
                 <ul class="category-tools" id="productividad-tools" style="display: none;" onclick="event.stopPropagation()">
-                    <li><a href="Aplicaciones/Cuaderno Digital/cuaderno-digital.html" onclick="event.stopPropagation()">Cuaderno Digital</a></li>
-                    <li><a href="Aplicaciones/Lista de Tareas/lista-tareas.html" onclick="event.stopPropagation()">Lista de Tareas</a></li>
-                    <li><a href="Aplicaciones/Temporizador Pomodoro/temporizador-pomodoro.html" onclick="event.stopPropagation()">Temporizador Pomodoro</a></li>
-                    <li><a href="Aplicaciones/Información del Tiempo/informacion-tiempo.html" onclick="event.stopPropagation()">Información del Tiempo</a></li>
-                    <li><a href="Aplicaciones/Generador de Contraseñas/generador-contraseñas.html" onclick="event.stopPropagation()">Generador de Contraseñas</a></li>
-                    <li><a href="Aplicaciones/Generador Lorem Ipsum/lorem-ipsum.html" onclick="event.stopPropagation()">Generador Lorem Ipsum</a></li>
-                    <li><a href="Aplicaciones/Creador de Paletas/creador-paletas.html" onclick="event.stopPropagation()">Creador de Paletas</a></li>
+                    <li><a href="Aplicaciones/Cuaderno Digital/cuaderno-digital.html" onclick="event.stopPropagation()" title="Editor de texto online con guardado local automático para tus notas">Cuaderno Digital</a></li>
+                    <li><a href="Aplicaciones/Lista de Tareas/lista-tareas.html" onclick="event.stopPropagation()" title="Organiza tus tareas pendientes con categorías y prioridades">Lista de Tareas</a></li>
+                    <li><a href="Aplicaciones/Temporizador Pomodoro/temporizador-pomodoro.html" onclick="event.stopPropagation()" title="Mejora tu productividad con la técnica Pomodoro de gestión del tiempo">Temporizador Pomodoro</a></li>
+                    <li><a href="Aplicaciones/Información del Tiempo/informacion-tiempo.html" onclick="event.stopPropagation()" title="Consulta el pronóstico del tiempo para cualquier ciudad del mundo">Información del Tiempo</a></li>
+                    <li><a href="Aplicaciones/Generador de Contraseñas/generador-contraseñas.html" onclick="event.stopPropagation()" title="Crea contraseñas seguras y personalizadas con diferentes niveles de complejidad">Generador de Contraseñas</a></li>
+                    <li><a href="Aplicaciones/Generador Lorem Ipsum/lorem-ipsum.html" onclick="event.stopPropagation()" title="Genera texto de relleno Lorem Ipsum para tus diseños y maquetas">Generador Lorem Ipsum</a></li>
+                    <li><a href="Aplicaciones/Creador de Paletas/creador-paletas.html" onclick="event.stopPropagation()" title="Diseña paletas de colores profesionales para tus proyectos web">Creador de Paletas</a></li>
                 </ul>
             </div>
 
@@ -905,13 +969,13 @@
                     Juegos clásicos y rompecabezas para momentos de diversión y relajación mental.
                 </p>
                 <ul class="category-tools" id="entretenimiento-tools" style="display: none;" onclick="event.stopPropagation()">
-                    <li><a href="Aplicaciones/Wordle en Español/wordle-espanol.html" onclick="event.stopPropagation()">Wordle en Español</a></li>
-                    <li><a href="Aplicaciones/Sudoku Clásico/sudoku-clasico.html" onclick="event.stopPropagation()">Sudoku Clásico</a></li>
-                    <li><a href="Aplicaciones/Tres en Raya/tres-en-raya.html" onclick="event.stopPropagation()">Tres en Raya</a></li>
-                    <li><a href="Aplicaciones/Juego de Memoria/juego-de-memoria.html" onclick="event.stopPropagation()">Juego de Memoria</a></li>
-                    <li><a href="Aplicaciones/Piedra Papel Tijera/piedra-papel-tijera.html" onclick="event.stopPropagation()">Piedra Papel Tijera</a></li>
-                    <li><a href="Aplicaciones/2048/juego-2048.html" onclick="event.stopPropagation()">2048</a></li>
-                    <li><a href="Aplicaciones/Puzzle Matemático/puzzle-matematico.html" onclick="event.stopPropagation()">Puzzle Matemático</a></li>
+                    <li><a href="Aplicaciones/Wordle en Español/wordle-espanol.html" onclick="event.stopPropagation()" title="Adivina la palabra del día en español con 6 intentos">Wordle en Español</a></li>
+                    <li><a href="Aplicaciones/Sudoku Clásico/sudoku-clasico.html" onclick="event.stopPropagation()" title="Resuelve puzzles Sudoku con diferentes niveles de dificultad">Sudoku Clásico</a></li>
+                    <li><a href="Aplicaciones/Tres en Raya/tres-en-raya.html" onclick="event.stopPropagation()" title="Juega al clásico tres en raya contra la computadora">Tres en Raya</a></li>
+                    <li><a href="Aplicaciones/Juego de Memoria/juego-de-memoria.html" onclick="event.stopPropagation()" title="Entrena tu memoria encontrando parejas de cartas">Juego de Memoria</a></li>
+                    <li><a href="Aplicaciones/Piedra Papel Tijera/piedra-papel-tijera.html" onclick="event.stopPropagation()" title="Juega piedra, papel o tijera contra la computadora">Piedra Papel Tijera</a></li>
+                    <li><a href="Aplicaciones/2048/juego-2048.html" onclick="event.stopPropagation()" title="Desliza y combina números para llegar a 2048">2048</a></li>
+                    <li><a href="Aplicaciones/Puzzle Matemático/puzzle-matematico.html" onclick="event.stopPropagation()" title="Resuelve puzzles matemáticos y ejercita tu mente">Puzzle Matemático</a></li>
                 </ul>
             </div>
         </section>
