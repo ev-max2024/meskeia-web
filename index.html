@@ -10,8 +10,8 @@
     
     <!-- SEO Principal -->
     <title>meskeIA - Biblioteca de Aplicaciones Web Gratuitas | Herramientas Online Minimalistas</title>
-    <meta name="description" content="Biblioteca gratuita de aplicaciones web: cuaderno digital, simulador de hipoteca, calculadora de fechas, generador lorem ipsum, herramientas de salud, NutriSalud y más utilidades online sin registro. Diseño minimalista para España.">
-    <meta name="keywords" content="cuaderno digital, simulador hipoteca, calculadora fechas, lorem ipsum, generador contraseñas, calculadora irpf, evaluador salud, nutrisalud, información nutricional, herramientas web gratuitas, aplicaciones online España, meskeIA">
+    <meta name="description" content="Biblioteca gratuita de aplicaciones web y cursos educativos: cuaderno digital, simulador de hipoteca, curso de emprendimiento, curso decisiones de inversión, calculadora de fechas, herramientas de salud, NutriSalud y más utilidades online sin registro. Diseño minimalista para España.">
+    <meta name="keywords" content="curso emprendimiento, curso inversiones, cuaderno digital, simulador hipoteca, calculadora fechas, lorem ipsum, generador contraseñas, calculadora irpf, evaluador salud, nutrisalud, formación empresarial, herramientas web gratuitas, aplicaciones online España, meskeIA">
     
     <link rel="canonical" href="https://meskeia.com/">
     <link rel="manifest" href="manifest.json">
@@ -69,11 +69,6 @@
         "audience": {
             "@type": "Audience",
             "geographicArea": "Spain"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "127"
         },
         "offers": {
             "@type": "Offer",
@@ -911,7 +906,6 @@
                     Herramientas para planificación financiera, préstamos, inversiones e impuestos con cálculos precisos.
                 </p>
                 <ul class="category-tools" id="finanzas-tools" style="display: none;" onclick="event.stopPropagation()">
-                    <li><a href="Aplicaciones/curso-decisiones-inversion/index.html" onclick="event.stopPropagation()" title="Aprende a tomar decisiones de inversión inteligentes con este curso interactivo">Curso Decisiones de Inversión</a></li>
                     <li><a href="Aplicaciones/Simulador de Hipoteca/simulador-hipoteca.html" onclick="event.stopPropagation()" title="Calcula tu hipoteca con cuadro de amortización completo y análisis detallado">Simulador de Hipoteca</a></li>
                     <li><a href="Aplicaciones/Calculadora de Jubilación/calculadora-jubilacion.html" onclick="event.stopPropagation()" title="Planifica tu jubilación calculando ahorros necesarios y pensión estimada">Calculadora de Jubilación</a></li>
                     <li><a href="Aplicaciones/Calculadora de Inversiones/calculadora-inversiones.html" onclick="event.stopPropagation()" title="Simula el crecimiento de tus inversiones con interés compuesto">Calculadora de Inversiones</a></li>
@@ -989,6 +983,21 @@
                     <li><a href="Aplicaciones/Piedra Papel Tijera/piedra-papel-tijera.html" onclick="event.stopPropagation()" title="Juega piedra, papel o tijera contra la computadora">Piedra Papel Tijera</a></li>
                     <li><a href="Aplicaciones/2048/juego-2048.html" onclick="event.stopPropagation()" title="Desliza y combina números para llegar a 2048">2048</a></li>
                     <li><a href="Aplicaciones/Puzzle Matemático/puzzle-matematico.html" onclick="event.stopPropagation()" title="Resuelve puzzles matemáticos y ejercita tu mente">Puzzle Matemático</a></li>
+                </ul>
+            </div>
+
+            <!-- Nueva categoría: Cursos Educativos -->
+            <div class="category-card" onclick="toggleCategory('educacion')" itemscope itemtype="https://schema.org/SoftwareApplication">
+                <div class="category-header">
+                    <div class="category-icon">📚</div>
+                    <h2 class="category-title">Cursos Educativos</h2>
+                </div>
+                <p class="category-description">
+                    Cursos prácticos e interactivos para aprender emprendimiento, finanzas y tomar mejores decisiones empresariales.
+                </p>
+                <ul class="category-tools" id="educacion-tools" style="display: none;" onclick="event.stopPropagation()">
+                    <li><a href="Aplicaciones/curso-decisiones-inversion/index.html" onclick="event.stopPropagation()" title="Aprende a tomar decisiones de inversión inteligentes con este curso interactivo">Curso Decisiones de Inversión</a></li>
+                    <li><a href="Aplicaciones/curso-emprendimiento/curso-emprendimiento.html" onclick="event.stopPropagation()" title="Guía práctica de emprendimiento: de la idea al primer cliente con ejemplos españoles">Curso de Emprendimiento Práctico</a></li>
                 </ul>
             </div>
         </section>
@@ -1247,8 +1256,10 @@
 Nuestras aplicaciones incluyen:
 - 💰 Finanzas y Fiscalidad: Simulador de Hipoteca, Calculadora de Inversiones, Interés Compuesto, Simulador IRPF, Calculadora Impuesto de Donaciones, Calculadora Impuesto de Sucesiones
 - 🧮 Calculadoras y Utilidades: Calculadora de Fechas, Calculadora Estadística, Calculadora Matemática Avanzada, Conversor de Unidades, Evaluador de Salud
-- ⚡ Herramientas de Productividad: Cuaderno Digital, Temporizador Pomodoro, Información del Tiempo, Generador de Contraseñas, Generador Lorem Ipsum, Creador de Paletas
-- 🎮 Juegos y Entretenimiento: Sudoku Clásico, Tres en Raya, Juego de Memoria
+- 🏥 Salud & Bienestar: Evaluador de Salud, NutriSalud - Nutrición Avanzada
+- ⚡ Herramientas de Productividad: Cuaderno Digital, Lista de Tareas, Temporizador Pomodoro, Información del Tiempo, Generador de Contraseñas, Generador Lorem Ipsum, Creador de Paletas
+- 🎮 Juegos y Entretenimiento: Wordle en Español, Sudoku Clásico, Tres en Raya, Juego de Memoria, Piedra Papel Tijera, 2048, Puzzle Matemático
+- 📚 Cursos Educativos: Curso Decisiones de Inversión, Curso de Emprendimiento Práctico
 
 Tu rol es ayudar a los usuarios a:
 1. Entender cómo usar nuestras aplicaciones minimalistas
