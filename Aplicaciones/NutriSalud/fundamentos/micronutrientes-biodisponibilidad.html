@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micronutrientes y Biodisponibilidad - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../assets/icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Colores específicos para micronutrientes */
+            --vitamins-color: #9B59B6;
+            --vitamins-light: rgba(155, 89, 182, 0.1);
+            --minerals-color: #E67E22;
+            --minerals-light: rgba(230, 126, 34, 0.1);
+            --antioxidants-color: #27AE60;
+            --antioxidants-light: rgba(39, 174, 96, 0.1);
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ia {
+            color: #F18F01;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-neural-network {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-neural-dot {
+                width: 9px;
+                height: 9px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navegación breadcrumb */
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 20px 0;
+            margin-top: 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        /* Header del artículo */
+        .article-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* Cards de categorías de micronutrientes */
+        .micro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .micro-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .micro-card.vitamins::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--vitamins-color);
+        }
+
+        .micro-card.minerals::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--minerals-color);
+        }
+
+        .micro-card.antioxidants::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--antioxidants-color);
+        }
+
+        .micro-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .micro-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .micro-card.vitamins .micro-title {
+            color: var(--vitamins-color);
+        }
+
+        .micro-card.minerals .micro-title {
+            color: var(--minerals-color);
+        }
+
+        .micro-card.antioxidants .micro-title {
+            color: var(--antioxidants-color);
+        }
+
+        .micro-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .micro-details {
+            text-align: left;
+        }
+
+        .micro-list {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .micro-list ul {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        .micro-list li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .micro-card.vitamins .micro-list li::before {
+            content: '💊';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        .micro-card.minerals .micro-list li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        .micro-card.antioxidants .micro-list li::before {
+            content: '🛡️';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Tabla de biodisponibilidad */
+        .bioavailability-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .bioavailability-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bioavailability-table th,
+        .bioavailability-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bioavailability-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .bioavailability-table td {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .bio-high { color: var(--antioxidants-color); font-weight: 600; }
+        .bio-medium { color: var(--minerals-color); font-weight: 600; }
+        .bio-low { color: var(--vitamins-color); font-weight: 600; }
+
+        /* Factores que afectan biodisponibilidad */
+        .factors-section {
+            margin: 50px 0;
+        }
+
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .factor-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .factor-card.enhancers {
+            border-left: 4px solid var(--antioxidants-color);
+            background: var(--antioxidants-light);
+        }
+
+        .factor-card.inhibitors {
+            border-left: 4px solid var(--vitamins-color);
+            background: var(--vitamins-light);
+        }
+
+        .factor-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .factor-card.enhancers .factor-title {
+            color: var(--antioxidants-color);
+        }
+
+        .factor-card.inhibitors .factor-title {
+            color: var(--vitamins-color);
+        }
+
+        .factor-content {
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .factor-content ul {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        .factor-content li {
+            padding: 4px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .factor-card.enhancers .factor-content li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        .factor-card.inhibitors .factor-content li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Signos de deficiencias */
+        .deficiency-section {
+            background: var(--minerals-light);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border-left: 4px solid var(--minerals-color);
+        }
+
+        .deficiency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .deficiency-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .deficiency-nutrient {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--minerals-color);
+            margin-bottom: 10px;
+        }
+
+        .deficiency-symptoms {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Evaluador de riesgo */
+        .evaluator-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .evaluator-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .evaluator-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .input-field {
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-primary);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+
+        .evaluate-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .evaluate-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .evaluation-result {
+            background: var(--focus);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid var(--primary);
+        }
+
+        .risk-assessment {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .risk-item {
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+
+        .risk-level {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .risk-low { color: var(--antioxidants-color); }
+        .risk-medium { color: var(--minerals-color); }
+        .risk-high { color: var(--vitamins-color); }
+
+        .risk-nutrient {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .recommendations {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .rec-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .rec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+
+        .rec-icon {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .rec-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Tips destacados */
+        .tip-box {
+            background: var(--focus);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Enlaces a páginas relacionadas */
+        .related-links {
+            background: linear-gradient(135deg, var(--focus) 0%, rgba(72, 169, 166, 0.1) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .related-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .related-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .related-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Navegación inferior */
+        .bottom-nav {
+            background: var(--bg-card);
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.2rem;
+            }
+
+            .micro-grid,
+            .factors-grid,
+            .deficiency-grid,
+            .risk-assessment {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .evaluator-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .bioavailability-table {
+                font-size: 0.8rem;
+            }
+
+            .bioavailability-table th,
+            .bioavailability-table td {
+                padding: 8px 10px;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .related-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Fundamentos Esenciales</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Micronutrientes y Biodisponibilidad</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header del artículo -->
+    <header class="article-header">
+        <div class="container">
+            <h1 class="article-title">Micronutrientes y Biodisponibilidad</h1>
+            <p class="article-subtitle">
+                Los cofactores esenciales de la vida: por qué puedes tener deficiencias incluso consumiendo las cantidades "correctas"
+            </p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Introducción -->
+            <section class="content-section">
+                <h2 class="section-title">La Diferencia entre Consumir y Absorber</h2>
+                <div class="section-content">
+                    <p>Los micronutrientes son los <strong>catalizadores moleculares</strong> que permiten que tu cuerpo funcione: vitaminas que activan enzimas, minerales que transmiten señales nerviosas, antioxidantes que protegen del daño celular. Sin ellos, incluso con macronutrientes perfectos, tu metabolismo se ralentiza, tu inmunidad se compromete, y tu energía declina.</p>
+                    
+                    <p>Pero aquí está el desafío: <strong>la cantidad en el alimento no garantiza la cantidad que absorbes</strong>. La biodisponibilidad de micronutrientes puede variar desde 5% hasta 95% dependiendo de factores como la forma química del nutriente, qué otros alimentos consumes simultáneamente, tu estado de salud intestinal, e incluso tu genética individual.</p>
+                    
+                    <p>Esta variabilidad explica por qué dos personas pueden seguir la misma dieta "nutritiva" y tener resultados completamente diferentes. Una puede prosperar mientras la otra desarrolla deficiencias subclínicas que se manifiestan como fatiga crónica, problemas de concentración, inmunidad débil, o envejecimiento acelerado.</p>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🔬 Paradoja de la abundancia
+                    </div>
+                    <div class="tip-content">
+                        En países desarrollados, donde hay acceso abundante a alimentos, las deficiencias de vitamina D, B12, magnesio, zinc y omega-3 son epidémicas. El problema no es disponibilidad, sino biodisponibilidad: consumimos formas de nutrientes que nuestro cuerpo no puede utilizar eficientemente.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categorías de micronutrientes -->
+            <section class="content-section">
+                <h2 class="section-title">Las Tres Categorías Funcionales de Micronutrientes</h2>
+                
+                <div class="micro-grid">
+                    
+                    <!-- VITAMINAS -->
+                    <div class="micro-card vitamins">
+                        <span class="micro-icon">💊</span>
+                        <h3 class="micro-title">VITAMINAS</h3>
+                        <p class="micro-description">
+                            Cofactores enzimáticos esenciales que no pueden ser sintetizados por tu cuerpo. Cada una tiene funciones específicas e irreemplazables en el metabolismo celular.
+                        </p>
+                        <div class="micro-details">
+                            <div class="micro-list">
+                                <strong>Liposolubles (A, D, E, K):</strong>
+                                <ul>
+                                    <li><strong>Vitamina A:</strong> Visión, inmunidad, diferenciación celular</li>
+                                    <li><strong>Vitamina D:</strong> Metabolismo calcio, función inmune, modulación genética</li>
+                                    <li><strong>Vitamina E:</strong> Antioxidante de membranas, protección cardiovascular</li>
+                                    <li><strong>Vitamina K:</strong> Coagulación, salud ósea, regulación calcio</li>
+                                </ul>
+                                <br>
+                                <strong>Hidrosolubles (Complejo B, C):</strong>
+                                <ul>
+                                    <li><strong>B12:</strong> Síntesis ADN, función neurológica, formación glóbulos rojos</li>
+                                    <li><strong>Folato:</strong> División celular, prevención defectos neurales</li>
+                                    <li><strong>B6:</strong> Metabolismo aminoácidos, neurotransmisores</li>
+                                    <li><strong>Vitamina C:</strong> Síntesis colágeno, absorción hierro, antioxidante</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MINERALES -->
+                    <div class="micro-card minerals">
+                        <span class="micro-icon">⚡</span>
+                        <h3 class="micro-title">MINERALES</h3>
+                        <p class="micro-description">
+                            Elementos inorgánicos que participan en conducción nerviosa, contracción muscular, estructura ósea y activación de más de 300 enzimas diferentes.
+                        </p>
+                        <div class="micro-details">
+                            <div class="micro-list">
+                                <strong>Macrominerales (>100mg/día):</strong>
+                                <ul>
+                                    <li><strong>Calcio:</strong> Estructura ósea, contracción muscular, señalización</li>
+                                    <li><strong>Magnesio:</strong> 300+ reacciones enzimáticas, relajación muscular</li>
+                                    <li><strong>Fósforo:</strong> ATP, estructura celular, función renal</li>
+                                    <li><strong>Sodio/Potasio:</strong> Equilibrio hídrico, potencial membrana</li>
+                                </ul>
+                                <br>
+                                <strong>Oligoelementos (<100mg/día):</strong>
+                                <ul>
+                                    <li><strong>Hierro:</strong> Transporte oxígeno, metabolismo energético</li>
+                                    <li><strong>Zinc:</strong> Inmunidad, cicatrización, función cognitiva</li>
+                                    <li><strong>Selenio:</strong> Antioxidante, función tiroidea</li>
+                                    <li><strong>Yodo:</strong> Hormonas tiroideas, metabolismo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ANTIOXIDANTES Y FITONUTRIENTES -->
+                    <div class="micro-card antioxidants">
+                        <span class="micro-icon">🛡️</span>
+                        <h3 class="micro-title">ANTIOXIDANTES</h3>
+                        <p class="micro-description">
+                            Compuestos que neutralizan radicales libres y modulan la expresión genética. No son "esenciales" técnicamente, pero determinan la calidad del envejecimiento.
+                        </p>
+                        <div class="micro-details">
+                            <div class="micro-list">
+                                <strong>Carotenoides:</strong>
+                                <ul>
+                                    <li><strong>Betacaroteno:</strong> Precursor vitamina A, protección ocular</li>
+                                    <li><strong>Licopeno:</strong> Salud prostática, protección cardiovascular</li>
+                                    <li><strong>Luteína/Zeaxantina:</strong> Protección retina, prevención cataratas</li>
+                                    <li><strong>Astaxantina:</strong> Antiinflamatorio potente, protección UV</li>
+                                </ul>
+                                <br>
+                                <strong>Polifenoles:</strong>
+                                <ul>
+                                    <li><strong>Resveratrol:</strong> Longevidad, protección cardiovascular</li>
+                                    <li><strong>Curcumina:</strong> Antiinflamatorio sistémico</li>
+                                    <li><strong>EGCG (té verde):</strong> Neuroprotección, metabolismo grasa</li>
+                                    <li><strong>Quercetina:</strong> Antihistamínico natural, función inmune</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Tabla de biodisponibilidad -->
+            <section class="bioavailability-section">
+                <h2 class="section-title">Biodisponibilidad Real: Los Números que Debes Conocer</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                    Estas cifras muestran qué porcentaje del nutriente consumido realmente llega a tus células. La diferencia entre formas puede ser dramática.
+                </p>
+                
+                <table class="bioavailability-table">
+                    <thead>
+                        <tr>
+                            <th>Nutriente</th>
+                            <th>Forma de Baja Biodisponibilidad</th>
+                            <th>% Absorción</th>
+                            <th>Forma de Alta Biodisponibilidad</th>
+                            <th>% Absorción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hierro</strong></td>
+                            <td>Sulfato férrico (suplementos)</td>
+                            <td class="bio-low">5-10%</td>
+                            <td>Hemo (carne roja)</td>
+                            <td class="bio-high">15-35%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Calcio</strong></td>
+                            <td>Carbonato cálcico</td>
+                            <td class="bio-low">20-30%</td>
+                            <td>Citrato cálcico + Vitamina D</td>
+                            <td class="bio-high">40-50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Magnesio</strong></td>
+                            <td>Óxido de magnesio</td>
+                            <td class="bio-low">4%</td>
+                            <td>Glicinato de magnesio</td>
+                            <td class="bio-high">25-30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zinc</strong></td>
+                            <td>Óxido de zinc</td>
+                            <td class="bio-low">15%</td>
+                            <td>Picolinato de zinc</td>
+                            <td class="bio-high">40-50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vitamina D</strong></td>
+                            <td>D2 (ergocalciferol)</td>
+                            <td class="bio-medium">60%</td>
+                            <td>D3 (colecalciferol) + grasa</td>
+                            <td class="bio-high">85-90%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B12</strong></td>
+                            <td>Cianocobalamina oral</td>
+                            <td class="bio-low">1-5%</td>
+                            <td>Metilcobalamina sublingual</td>
+                            <td class="bio-high">50-60%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Curcumina</strong></td>
+                            <td>Cúrcuma en polvo</td>
+                            <td class="bio-low">1%</td>
+                            <td>Curcumina + piperina + grasa</td>
+                            <td class="bio-high">20-30%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Factores que afectan biodisponibilidad -->
+            <section class="factors-section">
+                <h2 class="section-title">Factores que Potencian o Bloquean la Absorción</h2>
+                
+                <div class="factors-grid">
+                    
+                    <div class="factor-card enhancers">
+                        <h3 class="factor-title">✅ Potenciadores de Absorción</h3>
+                        <div class="factor-content">
+                            <strong>Cofactores enzimáticos:</strong>
+                            <ul>
+                                <li>Vitamina C + hierro no hemo (multiplica x6)</li>
+                                <li>Vitamina D + calcio (mejora 300%)</li>
+                                <li>Grasas + vitaminas liposolubles</li>
+                                <li>Vitamina K2 + calcio + magnesio</li>
+                            </ul>
+                            <br>
+                            <strong>Optimización digestiva:</strong>
+                            <ul>
+                                <li>Acidez estomacal adecuada (HCl)</li>
+                                <li>Microbiota intestinal saludable</li>
+                                <li>Ayuno intermitente (autophagia)</li>
+                                <li>Ejercicio (aumenta flujo sanguíneo)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="factor-card inhibitors">
+                        <h3 class="factor-title">❌ Inhibidores de Absorción</h3>
+                        <div class="factor-content">
+                            <strong>Antinutrientes:</strong>
+                            <ul>
+                                <li>Fitatos (cereales) vs minerales</li>
+                                <li>Oxalatos (espinacas) vs calcio</li>
+                                <li>Taninos (té/café) vs hierro</li>
+                                <li>Fibra excesiva vs micronutrientes</li>
+                            </ul>
+                            <br>
+                            <strong>Interferencias medicamentosas:</strong>
+                            <ul>
+                                <li>Inhibidores bomba protones vs B12</li>
+                                <li>Antibióticos vs vitaminas K y B</li>
+                                <li>Metformina vs B12 y folato</li>
+                                <li>Estatinas vs CoQ10</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Signos de deficiencias subclínicas -->
+            <section class="deficiency-section">
+                <h2 class="section-title">Signos Tempranos de Deficiencias Subclínicas</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                    Estas señales aparecen mucho antes de que los análisis de sangre muestren deficiencias clínicas. Tu cuerpo te está alertando.
+                </p>
+                
+                <div class="deficiency-grid">
+                    <div class="deficiency-card">
+                        <div class="deficiency-nutrient">Vitamina D</div>
+                        <div class="deficiency-symptoms">
+                            Fatiga crónica, dolores musculares difusos, resfriados frecuentes, depresión estacional, cicatrización lenta
+                        </div>
+                    </div>
+                    
+                    <div class="deficiency-card">
+                        <div class="deficiency-nutrient">B12</div>
+                        <div class="deficiency-symptoms">
+                            Niebla mental, hormigueo en extremidades, fatiga inexplicable, pérdida de memoria, cambios de humor
+                        </div>
+                    </div>
+                    
+                    <div class="deficiency-card">
+                        <div class="deficiency-nutrient">Magnesio</div>
+                        <div class="deficiency-symptoms">
+                            Calambres nocturnos, insomnio, ansiedad, párpados temblorosos, antojos de chocolate
+                        </div>
+                    </div>
+                    
+                    <div class="deficiency-card">
+                        <div class="deficiency-nutrient">Hierro</div>
+                        <div class="deficiency-symptoms">
+                            Cansancio matutino, uñas quebradizas, antojos de hielo, piernas inquietas, palidez
+                        </div>
+                    </div>
+                    
+                    <div class="deficiency-card">
+                        <div class="deficiency-nutrient">Zinc</div>
+                        <div class="deficiency-symptoms">
+                            Pérdida de gusto/olfato, cicatrización lenta, cabello quebradizo, inmunidad baja, acné adulto
+                        </div>
+                    </div>
+                    
+                    <div class="deficiency-card">
+                        <div class="deficiency-nutrient">Omega-3</div>
+                        <div class="deficiency-symptoms">
+                            Piel seca, articulaciones rígidas, problemas concentración, ojos secos, inflamación crónica
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Evaluador de riesgo de deficiencias -->
+            <section class="evaluator-section">
+                <h3 class="evaluator-title">🔍 Evaluador de Riesgo de Deficiencias</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                    Identifica qué micronutrientes podrían estar comprometidos según tu estilo de vida y síntomas
+                </p>
+                
+                <div class="evaluator-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Tipo de dieta principal:</label>
+                        <select class="input-field" id="dietType">
+                            <option value="omnivora">Omnívora equilibrada</option>
+                            <option value="vegetariana">Vegetariana</option>
+                            <option value="vegana">Vegana</option>
+                            <option value="cetogenica">Cetogénica</option>
+                            <option value="procesada">Rica en procesados</option>
+                            <option value="restrictiva">Muy restrictiva/dietas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Exposición solar:</label>
+                        <select class="input-field" id="sunExposure">
+                            <option value="alta">Trabajo al aire libre / >30 min diarios</option>
+                            <option value="media">Salidas regulares / 15-30 min diarios</option>
+                            <option value="baja">Principalmente interior / <15 min</option>
+                            <option value="muy_baja">Oficina/casa / prácticamente nula</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Edad:</label>
+                        <select class="input-field" id="ageGroup">
+                            <option value="joven">18-30 años</option>
+                            <option value="adulto">31-50 años</option>
+                            <option value="maduro">51-65 años</option>
+                            <option value="mayor">65+ años</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Medicamentos actuales:</label>
+                        <select class="input-field" id="medications">
+                            <option value="ninguno">Ninguno</option>
+                            <option value="ppi">Inhibidores bomba protones (omeprazol)</option>
+                            <option value="metformina">Metformina (diabetes)</option>
+                            <option value="estatinas">Estatinas (colesterol)</option>
+                            <option value="antibioticos">Antibióticos frecuentes</option>
+                            <option value="multiples">Múltiples medicamentos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Síntomas que has experimentado recientemente:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fatigue">
+                            <label for="fatigue">Fatiga crónica</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="brain_fog">
+                            <label for="brain_fog">Niebla mental</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="frequent_illness">
+                            <label for="frequent_illness">Resfriados frecuentes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="muscle_cramps">
+                            <label for="muscle_cramps">Calambres musculares</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sleep_issues">
+                            <label for="sleep_issues">Problemas de sueño</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dry_skin">
+                            <label for="dry_skin">Piel/ojos secos</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mood_changes">
+                            <label for="mood_changes">Cambios de humor</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hair_nail_issues">
+                            <label for="hair_nail_issues">Cabello/uñas frágiles</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="evaluate-btn" onclick="evaluateDeficiencyRisk()">Evaluar Mi Riesgo de Deficiencias</button>
+                
+                <div class="evaluation-result" id="evaluationResult">
+                    <h4 style="text-align: center; margin-bottom: 20px; color: var(--primary);">Tu Perfil de Riesgo Nutricional</h4>
+                    
+                    <div class="risk-assessment" id="riskAssessment"></div>
+                    
+                    <div class="recommendations" id="recommendations">
+                        <div class="rec-title">Recomendaciones personalizadas:</div>
+                        <div id="personalizedRecs"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tips prácticos -->
+            <section class="content-section">
+                <h2 class="section-title">Estrategias Avanzadas para Optimizar Micronutrientes</h2>
+                
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🧬 Formas activas vs precursores
+                    </div>
+                    <div class="tip-content">
+                        Prioriza formas ya activadas: metilfolato vs ácido fólico, metilcobalamina vs cianocobalamina, vitamina D3 vs D2. Tu genética puede limitar la conversión de precursores a formas activas, especialmente polimorfismos MTHFR.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        ⏰ Timing inteligente
+                    </div>
+                    <div class="tip-content">
+                        Vitaminas liposolubles con grasas en comidas, B-complex por la mañana (energía), magnesio por la noche (relajación), hierro alejado de calcio y café. El timing puede duplicar la absorción.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🔄 Rotación estratégica
+                    </div>
+                    <div class="tip-content">
+                        No todos los micronutrientes deben tomarse diariamente. Vitaminas liposolubles se almacenan, algunos minerales compiten entre sí. Rota suplementos según vida media y almacenamiento corporal.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        📊 Monitorización objetiva
+                    </div>
+                    <div class="tip-content">
+                        Analíticas específicas: 25(OH)D para vitamina D, RBC magnesio (no sérico), ferritina + transferrina para hierro, homocisteína para B12/folato. Los valores "normales" no son siempre "óptimos".
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="bottom-nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="macronutrientes-profundidad.html" class="nav-btn secondary">← Macronutrientes en Profundidad</a>
+                <a href="sistema-digestivo-laboratorio.html" class="nav-btn">Siguiente: Sistema Digestivo →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function evaluateDeficiencyRisk() {
+            const dietType = document.getElementById('dietType').value;
+            const sunExposure = document.getElementById('sunExposure').value;
+            const ageGroup = document.getElementById('ageGroup').value;
+            const medications = document.getElementById('medications').value;
+            
+            // Obtener síntomas seleccionados
+            const symptoms = {
+                fatigue: document.getElementById('fatigue').checked,
+                brain_fog: document.getElementById('brain_fog').checked,
+                frequent_illness: document.getElementById('frequent_illness').checked,
+                muscle_cramps: document.getElementById('muscle_cramps').checked,
+                sleep_issues: document.getElementById('sleep_issues').checked,
+                dry_skin: document.getElementById('dry_skin').checked,
+                mood_changes: document.getElementById('mood_changes').checked,
+                hair_nail_issues: document.getElementById('hair_nail_issues').checked
+            };
+            
+            // Sistema de puntuación de riesgo
+            let risks = {
+                vitaminD: 0,
+                b12: 0,
+                iron: 0,
+                magnesium: 0,
+                zinc: 0,
+                omega3: 0
+            };
+            
+            // Evaluar según dieta
+            switch(dietType) {
+                case 'vegana':
+                    risks.b12 += 3; risks.iron += 2; risks.zinc += 2; risks.omega3 += 3;
+                    break;
+                case 'vegetariana':
+                    risks.b12 += 2; risks.iron += 1; risks.zinc += 1; risks.omega3 += 2;
+                    break;
+                case 'cetogenica':
+                    risks.magnesium += 2; risks.vitaminD += 1;
+                    break;
+                case 'procesada':
+                    risks.magnesium += 2; risks.zinc += 2; risks.omega3 += 2;
+                    break;
+                case 'restrictiva':
+                    risks.vitaminD += 2; risks.b12 += 1; risks.iron += 1; risks.magnesium += 1;
+                    break;
+            }
+            
+            // Evaluar exposición solar
+            switch(sunExposure) {
+                case 'muy_baja':
+                    risks.vitaminD += 3;
+                    break;
+                case 'baja':
+                    risks.vitaminD += 2;
+                    break;
+                case 'media':
+                    risks.vitaminD += 1;
+                    break;
+            }
+            
+            // Evaluar edad
+            if (ageGroup === 'maduro' || ageGroup === 'mayor') {
+                risks.b12 += 2; risks.vitaminD += 1; risks.magnesium += 1;
+            }
+            
+            // Evaluar medicamentos
+            switch(medications) {
+                case 'ppi':
+                    risks.b12 += 3; risks.magnesium += 2; risks.iron += 2;
+                    break;
+                case 'metformina':
+                    risks.b12 += 2;
+                    break;
+                case 'estatinas':
+                    risks.magnesium += 1;
+                    break;
+                case 'antibioticos':
+                    risks.magnesium += 1; risks.zinc += 1;
+                    break;
+                case 'multiples':
+                    risks.b12 += 1; risks.magnesium += 1; risks.vitaminD += 1;
+                    break;
+            }
+            
+            // Evaluar síntomas
+            if (symptoms.fatigue) { risks.vitaminD += 1; risks.b12 += 1; risks.iron += 2; }
+            if (symptoms.brain_fog) { risks.b12 += 2; risks.vitaminD += 1; }
+            if (symptoms.frequent_illness) { risks.vitaminD += 2; risks.zinc += 2; }
+            if (symptoms.muscle_cramps) { risks.magnesium += 3; }
+            if (symptoms.sleep_issues) { risks.magnesium += 2; }
+            if (symptoms.dry_skin) { risks.omega3 += 2; risks.zinc += 1; }
+            if (symptoms.mood_changes) { risks.vitaminD += 1; risks.b12 += 1; risks.magnesium += 1; }
+            if (symptoms.hair_nail_issues) { risks.zinc += 2; risks.iron += 1; risks.omega3 += 1; }
+            
+            // Generar resultados
+            const riskLevels = {};
+            Object.keys(risks).forEach(nutrient => {
+                if (risks[nutrient] >= 5) riskLevels[nutrient] = 'Alto';
+                else if (risks[nutrient] >= 3) riskLevels[nutrient] = 'Moderado';
+                else if (risks[nutrient] >= 1) riskLevels[nutrient] = 'Bajo';
+            });
+            
+            // Mostrar evaluación de riesgo
+            const riskDiv = document.getElementById('riskAssessment');
+            riskDiv.innerHTML = Object.entries(riskLevels).map(([nutrient, level]) => {
+                const names = {
+                    vitaminD: 'Vitamina D',
+                    b12: 'Vitamina B12',
+                    iron: 'Hierro',
+                    magnesium: 'Magnesio',
+                    zinc: 'Zinc',
+                    omega3: 'Omega-3'
+                };
+                
+                const riskClass = level === 'Alto' ? 'risk-high' : 
+                                 level === 'Moderado' ? 'risk-medium' : 'risk-low';
+                
+                return `
+                    <div class="risk-item">
+                        <div class="risk-level ${riskClass}">${level}</div>
+                        <div class="risk-nutrient">${names[nutrient]}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Generar recomendaciones personalizadas
+            let recommendations = [];
+            
+            if (riskLevels.vitaminD) {
+                recommendations.push('☀️ Considera suplemento de vitamina D3 (1000-4000 UI) con grasa');
+                recommendations.push('📊 Solicita análisis de 25(OH)D para determinar tu nivel actual');
+            }
+            
+            if (riskLevels.b12) {
+                recommendations.push('💊 Metilcobalamina sublingual 500-1000mcg, especialmente si eres vegetariano/vegano');
+                recommendations.push('🔍 Análisis de B12 sérica + homocisteína para evaluación completa');
+            }
+            
+            if (riskLevels.magnesio) {
+                recommendations.push('🌙 Glicinato de magnesio 200-400mg antes de dormir para mejor absorción');
+                recommendations.push('🥑 Incluye aguacate, frutos secos, cacao y vegetales verdes diariamente');
+            }
+            
+            if (riskLevels.iron) {
+                recommendations.push('🥩 Prioriza hierro hemo (carne, pescado) sobre hierro no hemo');
+                recommendations.push('🍊 Combina hierro vegetal con vitamina C, evita café/té en comidas');
+            }
+            
+            if (riskLevels.zinc) {
+                recommendations.push('🦪 Fuentes biodisponibles: ostras, carne roja, semillas de calabaza');
+                recommendations.push('⚠️ Separa zinc de calcio y hierro para evitar competencia');
+            }
+            
+            if (riskLevels.omega3) {
+                recommendations.push('🐟 Pescado graso 2-3x/semana o suplemento EPA/DHA 1000mg');
+                recommendations.push('🥜 Nueces, semillas de chía, pero priorizando fuentes marinas');
+            }
+            
+            // Recomendaciones generales según medicamentos
+            if (medications === 'ppi') {
+                recommendations.push('⚕️ Considera probióticos y enzimas digestivas por medicación PPI');
+            }
+            
+            // Mostrar recomendaciones
+            const recsDiv = document.getElementById('personalizedRecs');
+            recsDiv.innerHTML = recommendations.map(rec => `
+                <div class="rec-item">
+                    <span class="rec-icon">→</span>
+                    <span class="rec-text">${rec}</span>
+                </div>
+            `).join('');
+            
+            // Mostrar resultado
+            const resultDiv = document.getElementById('evaluationResult');
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.micro-card, .factor-card, .deficiency-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

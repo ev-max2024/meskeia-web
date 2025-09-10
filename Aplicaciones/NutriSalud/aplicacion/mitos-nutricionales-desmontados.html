@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitos Nutricionales Desmontados - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../assets/icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            
+            /* Colores específicos para mitos */
+            --myth-false: #E74C3C;
+            --reality-true: #27AE60;
+            --evidence-color: #3498DB;
+            --controversial: #F39C12;
+            --debunked: #8E44AD;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #F18F01;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-nav {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--myth-false) 0%, var(--debunked) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .myths-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .myth-busting-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .busting-tool {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .tool-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Content sections */
+        .content-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: var(--focus);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Myth cards */
+        .myths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .myth-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .myth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .myth-header {
+            background: var(--myth-false);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .myth-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .myth-statement {
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .myth-body {
+            padding: 30px;
+        }
+
+        .reality-section {
+            background: linear-gradient(135deg, var(--reality-true), #2ECC71);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .reality-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reality-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .evidence-section {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--evidence-color);
+        }
+
+        .evidence-title {
+            color: var(--evidence-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .evidence-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .evidence-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .evidence-list li::before {
+            content: "📊";
+            position: absolute;
+            left: 0;
+        }
+
+        .practical-section {
+            background: var(--focus);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .practical-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .practical-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Myth categories */
+        .myth-categories {
+            background: linear-gradient(135deg, var(--evidence-color) 0%, #5DADE2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .categories-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .category-header h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #F8C471;
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .category-examples {
+            background: rgba(52, 152, 219, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--evidence-color);
+        }
+
+        .category-examples strong {
+            color: #85C1E9;
+        }
+
+        /* Myth busting tool */
+        .myth-busting-tool {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--hover) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid var(--primary);
+        }
+
+        .tool-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .tool-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .tool-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .analyze-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 134, 171, 0.3);
+        }
+
+        .analysis-results {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .myth-verdict {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .myth-analysis {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .myth-analysis h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .myth-analysis ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .myth-analysis li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .myth-analysis li::before {
+            content: "🔍";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Navigation */
+        .navigation-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+            }
+
+            .myths-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .myth-busting-tools {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a> > 
+                <span>Aplicación Práctica</span> > 
+                Mitos Nutricionales Desmontados
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Mitos Nutricionales Desmontados</h1>
+                <p class="hero-subtitle">
+                    La verdad científica detrás de los mitos más persistentes que 
+                    pueden estar saboteando tu salud y objetivos nutricionales
+                </p>
+                
+                <div class="myths-visual">
+                    <h3>Herramientas de Verificación Científica</h3>
+                    <div class="myth-busting-tools">
+                        <div class="busting-tool">
+                            <div class="tool-icon">📊</div>
+                            <div class="tool-name">Meta-análisis</div>
+                        </div>
+                        <div class="busting-tool">
+                            <div class="tool-icon">🔬</div>
+                            <div class="tool-name">Estudios RCT</div>
+                        </div>
+                        <div class="busting-tool">
+                            <div class="tool-icon">🧬</div>
+                            <div class="tool-name">Bioquímica</div>
+                        </div>
+                        <div class="busting-tool">
+                            <div class="tool-icon">📈</div>
+                            <div class="tool-name">Datos Poblacionales</div>
+                        </div>
+                        <div class="busting-tool">
+                            <div class="tool-icon">⚖️</div>
+                            <div class="tool-name">Análisis Crítico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Introducción conceptual -->
+        <section class="content-section">
+            <h2 class="section-title">🎭 La Industria de los Mitos Nutricionales</h2>
+            <div class="section-content">
+                <p>
+                    Los mitos nutricionales no surgen por casualidad. Son el resultado de marketing corporativo, 
+                    estudios mal interpretados, simplificaciones mediáticas y la transmisión cultural de información 
+                    obsoleta. Algunos mitos persisten décadas después de ser científicamente refutados.
+                </p>
+                
+                <div class="highlight-box">
+                    <h4>🔍 Por Qué Importa Desmontar Mitos</h4>
+                    <p>
+                        Los mitos nutricionales pueden hacerte evitar alimentos saludables, consumir productos dañinos, 
+                        desperdiciar dinero en suplementos innecesarios, o desarrollar relaciones poco saludables con 
+                        la comida. La ciencia nutricional avanza, pero los mitos permanecen estáticos.
+                    </p>
+                </div>
+
+                <p>
+                    Cada mito que desmontamos te libera para tomar decisiones basadas en evidencia real, no en 
+                    marketing o tradiciones obsoletas. Esto significa mejor salud, mejores resultados y menos 
+                    confusión en tu relación con la alimentación.
+                </p>
+
+                <p>
+                    Usaremos meta-análisis, estudios controlados aleatorizados y bioquímica básica para analizar 
+                    cada mito. No opiniones: solo ciencia verificable y replicable.
+                </p>
+            </div>
+        </section>
+
+        <!-- Categorías de mitos -->
+        <section class="myth-categories">
+            <h2 class="categories-title">🎯 Categorías de Mitos Nutricionales</h2>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <h4>Mitos Corporativos</h4>
+                        <div class="category-description">
+                            Creados para vender productos específicos o proteger industrias.
+                        </div>
+                        <div class="category-examples">
+                            <strong>Ejemplos:</strong> "Los cereales son la base de una dieta saludable", "Necesitas lácteos para el calcio", "Las grasas saturadas causan infartos"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <h4>Mitos de Simplificación</h4>
+                        <div class="category-description">
+                            Verdades complejas reducidas a frases simples que pierden contexto.
+                        </div>
+                        <div class="category-examples">
+                            <strong>Ejemplos:</strong> "Una caloría es una caloría", "No comas después de las 6 PM", "8 vasos de agua al día"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <h4>Mitos Generacionales</h4>
+                        <div class="category-description">
+                            Tradiciones familiares basadas en ciencia obsoleta de décadas pasadas.
+                        </div>
+                        <div class="category-examples">
+                            <strong>Ejemplos:</strong> "El desayuno es la comida más importante", "Los huevos suben el colesterol", "Los carbohidratos engordan"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <h4>Mitos de Internet</h4>
+                        <div class="category-description">
+                            Información viral sin base científica amplificada por redes sociales.
+                        </div>
+                        <div class="category-examples">
+                            <strong>Ejemplos:</strong> "Detox de 7 días", "Alkalinizar el cuerpo", "Superalimentos milagrosos"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mitos principales -->
+        <div class="myths-grid">
+            <!-- Mito 1: Grasas Saturadas -->
+            <div class="myth-card">
+                <div class="myth-header">
+                    <div class="myth-number">MITO #1</div>
+                    <div class="myth-statement">"Las grasas saturadas causan enfermedad cardiovascular"</div>
+                </div>
+                <div class="myth-body">
+                    <div class="reality-section">
+                        <div class="reality-title">
+                            ✅ REALIDAD CIENTÍFICA
+                        </div>
+                        <div class="reality-text">
+                            Los meta-análisis más recientes no encuentran asociación entre grasas saturadas naturales 
+                            y enfermedad cardiovascular. El problema son las grasas trans artificiales y el contexto 
+                            inflamatorio, no las saturadas de alimentos naturales.
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-section">
+                        <div class="evidence-title">
+                            📊 EVIDENCIA CIENTÍFICA
+                        </div>
+                        <ul class="evidence-list">
+                            <li>Meta-análisis Siri-Tarino (2010): 347,747 sujetos, sin asociación significativa</li>
+                            <li>Revisión Cochrane (2020): Reducir saturadas no mejora mortalidad cardiovascular</li>
+                            <li>Estudio PURE (2017): Mayor consumo de grasas saturadas = menor mortalidad</li>
+                            <li>Los inuit consumen 50% grasas saturadas con excelente salud cardiovascular</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practical-section">
+                        <div class="practical-title">
+                            🎯 APLICACIÓN PRÁCTICA
+                        </div>
+                        <div class="practical-text">
+                            Incluye grasas saturadas naturales (coco, mantequilla grass-fed, carnes de calidad) 
+                            sin miedo. Evita las trans industriales. El problema no son las saturadas, sino 
+                            el perfil inflamatorio general de la dieta.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mito 2: Colesterol Dietético -->
+            <div class="myth-card">
+                <div class="myth-header">
+                    <div class="myth-number">MITO #2</div>
+                    <div class="myth-statement">"El colesterol de los alimentos sube el colesterol en sangre"</div>
+                </div>
+                <div class="myth-body">
+                    <div class="reality-section">
+                        <div class="reality-title">
+                            ✅ REALIDAD CIENTÍFICA
+                        </div>
+                        <div class="reality-text">
+                            El 75% del colesterol sanguíneo lo produce tu hígado. El colesterol dietético tiene 
+                            impacto mínimo en personas sanas porque el cuerpo regula su producción. Los huevos 
+                            incluso pueden mejorar el perfil lipídico.
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-section">
+                        <div class="evidence-title">
+                            📊 EVIDENCIA CIENTÍFICA
+                        </div>
+                        <ul class="evidence-list">
+                            <li>Estudio Framingham: Sin correlación entre colesterol dietético y sanguíneo</li>
+                            <li>Meta-análisis 2015: 3+ huevos/día no aumentan riesgo cardiovascular</li>
+                            <li>Las guías dietary guidelines 2015 eliminaron límite de colesterol dietético</li>
+                            <li>Mecanismo: Feedback negativo hepático regula producción endógena</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practical-section">
+                        <div class="practical-title">
+                            🎯 APLICACIÓN PRÁCTICA
+                        </div>
+                        <div class="practical-text">
+                            Come huevos, mariscos y otros alimentos ricos en colesterol sin limitaciones. 
+                            Enfócate en reducir azúcar y carbohidratos refinados, que sí afectan 
+                            negativamente el perfil lipídico.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mito 3: Carbohidratos por la Noche -->
+            <div class="myth-card">
+                <div class="myth-header">
+                    <div class="myth-number">MITO #3</div>
+                    <div class="myth-statement">"No debes comer carbohidratos después de las 6 PM"</div>
+                </div>
+                <div class="myth-body">
+                    <div class="reality-section">
+                        <div class="reality-title">
+                            ✅ REALIDAD CIENTÍFICA
+                        </div>
+                        <div class="reality-text">
+                            El timing de carbohidratos es irrelevante para pérdida de peso si el balance 
+                            calórico es adecuado. Los carbohidratos nocturnos pueden incluso mejorar el 
+                            sueño al aumentar serotonina y facilitar la entrada de triptófano al cerebro.
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-section">
+                        <div class="evidence-title">
+                            📊 EVIDENCIA CIENTÍFICA
+                        </div>
+                        <ul class="evidence-list">
+                            <li>Estudio israelí (2011): Carbohidratos nocturnos mejoraron pérdida de peso</li>
+                            <li>Revisión 2020: No diferencia en pérdida de peso por timing de carbohidratos</li>
+                            <li>Los carbohidratos aumentan triptófano cerebral → serotonina → melatonina</li>
+                            <li>Atletas comen carbohidratos nocturnos para recuperación sin engordar</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practical-section">
+                        <div class="practical-title">
+                            🎯 APLICACIÓN PRÁCTICA
+                        </div>
+                        <div class="practical-text">
+                            El timing importa menos que la calidad y cantidad total. Los carbohidratos 
+                            complejos nocturnos pueden mejorar tu sueño. Enfócate en el balance calórico 
+                            diario total, no en horarios arbitrarios.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mito 4: Detox -->
+            <div class="myth-card">
+                <div class="myth-header">
+                    <div class="myth-number">MITO #4</div>
+                    <div class="myth-statement">"Necesitas dietas detox para limpiar tu cuerpo"</div>
+                </div>
+                <div class="myth-body">
+                    <div class="reality-section">
+                        <div class="reality-title">
+                            ✅ REALIDAD CIENTÍFICA
+                        </div>
+                        <div class="reality-text">
+                            Tu hígado, riñones, pulmones e intestino son sistemas de detoxificación 24/7 
+                            increíblemente eficientes. No existe evidencia científica de que las "dietas detox" 
+                            mejoren estos procesos naturales. Son marketing puro.
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-section">
+                        <div class="evidence-title">
+                            📊 EVIDENCIA CIENTÍFICA
+                        </div>
+                        <ul class="evidence-list">
+                            <li>Revisión sistemática 2015: Cero evidencia de eficacia de dietas detox</li>
+                            <li>Tu hígado procesa y neutraliza toxinas continuamente sin "ayuda"</li>
+                            <li>Los riñones filtran 180 litros de sangre diarios automáticamente</li>
+                            <li>Ningún zumo o suplemento puede "acelerar" estos procesos naturales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practical-section">
+                        <div class="practical-title">
+                            🎯 APLICACIÓN PRÁCTICA
+                        </div>
+                        <div class="practical-text">
+                            Apoya tu detoxificación natural con: sueño adecuado, hidratación, fibra, 
+                            crucíferas (sulforafano), y evitando alcohol excesivo. Ahorra dinero: 
+                            los productos "detox" son innecesarios.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mito 5: Desayuno -->
+            <div class="myth-card">
+                <div class="myth-header">
+                    <div class="myth-number">MITO #5</div>
+                    <div class="myth-statement">"El desayuno es la comida más importante del día"</div>
+                </div>
+                <div class="myth-body">
+                    <div class="reality-section">
+                        <div class="reality-title">
+                            ✅ REALIDAD CIENTÍFICA
+                        </div>
+                        <div class="reality-text">
+                            Este mito fue creado por la industria de cereales (Kellogg's) en el siglo XX. 
+                            El ayuno intermitente es natural para humanos y puede tener beneficios metabólicos. 
+                            No hay evidencia de que saltarse el desayuno sea dañino.
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-section">
+                        <div class="evidence-title">
+                            📊 EVIDENCIA CIENTÍFICA
+                        </div>
+                        <ul class="evidence-list">
+                            <li>Meta-análisis 2019: Saltarse el desayuno no causa aumento de peso</li>
+                            <li>Ayuno intermitente mejora sensibilidad a insulina y autofagia</li>
+                            <li>Estudios observacionales confunden correlación con causación</li>
+                            <li>Muchas culturas tradicionalmente ayunan por la mañana sin problemas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practical-section">
+                        <div class="practical-title">
+                            🎯 APLICACIÓN PRÁCTICA
+                        </div>
+                        <div class="practical-text">
+                            Come cuando tengas hambre real. Si no tienes hambre por la mañana, no te fuerces. 
+                            Un café puede ser suficiente. El timing importa menos que la calidad total 
+                            de tu alimentación diaria.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mito 6: Frecuencia de Comidas -->
+            <div class="myth-card">
+                <div class="myth-header">
+                    <div class="myth-number">MITO #6</div>
+                    <div class="myth-statement">"Debes comer cada 3 horas para acelerar el metabolismo"</div>
+                </div>
+                <div class="myth-body">
+                    <div class="reality-section">
+                        <div class="reality-title">
+                            ✅ REALIDAD CIENTÍFICA
+                        </div>
+                        <div class="reality-text">
+                            La frecuencia de comidas no afecta el metabolismo total si las calorías son iguales. 
+                            El "efecto térmico" es el mismo con 3 comidas grandes que con 6 pequeñas. 
+                            Comer constantemente puede dificultar la pérdida de peso.
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-section">
+                        <div class="evidence-title">
+                            📊 EVIDENCIA CIENTÍFICA
+                        </div>
+                        <ul class="evidence-list">
+                            <li>Meta-análisis Ohkawara (2013): Frecuencia no afecta gasto energético</li>
+                            <li>Estudio controlado: 3 vs 6 comidas, cero diferencia en pérdida de peso</li>
+                            <li>Comer constantemente mantiene insulina elevada → dificulta lipólisis</li>
+                            <li>El ayuno intermitente puede ser más eficaz que comidas frecuentes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practical-section">
+                        <div class="practical-title">
+                            🎯 APLICACIÓN PRÁCTICA
+                        </div>
+                        <div class="practical-text">
+                            Come cuando tengas hambre, no por el reloj. 2-3 comidas saciantes pueden 
+                            ser más efectivas que 6 mini-comidas. Permite períodos de ayuno entre 
+                            comidas para optimizar sensibilidad a insulina.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Herramienta de análisis de mitos -->
+        <section class="myth-busting-tool">
+            <h2 class="tool-title">🔍 Analizador de Mitos Nutricionales</h2>
+            <p class="tool-subtitle">
+                Introduce cualquier afirmación nutricional y obtén un análisis científico crítico
+            </p>
+
+            <div class="tool-form">
+                <div class="form-group">
+                    <label class="form-label">Afirmación nutricional a analizar:</label>
+                    <textarea 
+                        class="form-textarea" 
+                        id="mythStatement" 
+                        placeholder="Ejemplo: 'Los lácteos son esenciales para tener huesos fuertes', 'El azúcar moreno es más saludable que el blanco', 'Hay que tomar 8 vasos de agua al día'..."
+                    ></textarea>
+                </div>
+
+                <button class="analyze-btn" onclick="analyzeMyth()">
+                    🔬 Analizar Científicamente
+                </button>
+
+                <div class="analysis-results" id="analysisResults">
+                    <div class="myth-verdict" id="mythVerdict"></div>
+                    <div class="myth-analysis" id="mythAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación -->
+        <section class="navigation-section">
+            <h3 class="nav-title">Continúa con Aplicación Práctica</h3>
+            <p>Ya has liberado tu mente de los mitos nutricionales. Ahora aprende a planificar tu alimentación de manera personalizada y científica.</p>
+            
+            <div class="nav-buttons">
+                <a href="lectura-critica-etiquetas.html" class="nav-btn secondary">← Lectura de Etiquetas</a>
+                <a href="planificacion-personalizada.html" class="nav-btn">Siguiente: Planificación →</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function analyzeMyth() {
+            const statement = document.getElementById('mythStatement').value.trim();
+            
+            if (!statement) {
+                alert('Por favor, introduce una afirmación nutricional para analizar.');
+                return;
+            }
+
+            const statementLower = statement.toLowerCase();
+
+            // Base de datos de análisis de mitos comunes
+            let verdict = '';
+            let analysis = '';
+            let verdictColor = '';
+
+            // Análisis basado en palabras clave
+            if (statementLower.includes('desayuno') && (statementLower.includes('importante') || statementLower.includes('esencial'))) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>Este mito fue creado por la industria de cereales en el siglo XX</li>
+                        <li>No hay evidencia de que saltarse el desayuno sea dañino</li>
+                        <li>El ayuno intermitente puede tener beneficios metabólicos</li>
+                        <li>La calidad total de la dieta importa más que el timing</li>
+                        <li>Come cuando tengas hambre real, no por imposición cultural</li>
+                    </ul>
+                `;
+            } else if (statementLower.includes('grasa') && (statementLower.includes('saturada') || statementLower.includes('corazón') || statementLower.includes('cardiovascular'))) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>Meta-análisis recientes no encuentran asociación entre grasas saturadas naturales y enfermedad cardiovascular</li>
+                        <li>El problema son las grasas trans artificiales, no las saturadas</li>
+                        <li>Poblaciones con alta ingesta de saturadas (inuit) tienen excelente salud cardiovascular</li>
+                        <li>La inflamación sistémica es un factor más importante que las grasas saturadas</li>
+                        <li>Incluye grasas saturadas naturales sin miedo</li>
+                    </ul>
+                `;
+            } else if (statementLower.includes('colesterol') && (statementLower.includes('huevo') || statementLower.includes('alimento') || statementLower.includes('sube'))) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>El 75% del colesterol sanguíneo lo produce tu hígado</li>
+                        <li>El colesterol dietético tiene impacto mínimo en personas sanas</li>
+                        <li>Las guías dietéticas eliminaron el límite de colesterol en 2015</li>
+                        <li>Los huevos pueden incluso mejorar el perfil lipídico</li>
+                        <li>Enfócate en reducir azúcar y carbohidratos refinados</li>
+                    </ul>
+                `;
+            } else if (statementLower.includes('detox') || statementLower.includes('limpiar') || statementLower.includes('depurar')) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>Tu hígado, riñones y pulmones son sistemas de detoxificación 24/7</li>
+                        <li>No existe evidencia científica de que las "dietas detox" funcionen</li>
+                        <li>Son estrategias de marketing sin base científica</li>
+                        <li>Tu cuerpo se "desintoxica" constantemente sin ayuda externa</li>
+                        <li>Apoya la detoxificación natural con sueño, fibra e hidratación</li>
+                    </ul>
+                `;
+            } else if ((statementLower.includes('carbohidrato') || statementLower.includes('carbs')) && (statementLower.includes('noche') || statementLower.includes('tarde') || statementLower.includes('6'))) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>El timing de carbohidratos es irrelevante para pérdida de peso</li>
+                        <li>Los carbohidratos nocturnos pueden mejorar el sueño</li>
+                        <li>Aumentan triptófano cerebral → serotonina → melatonina</li>
+                        <li>El balance calórico total importa más que horarios arbitrarios</li>
+                        <li>Come según tus preferencias y estilo de vida</li>
+                    </ul>
+                `;
+            } else if (statementLower.includes('agua') && statementLower.includes('8')) {
+                verdict = '⚠️ PARCIALMENTE CIERTO';
+                verdictColor = '#F39C12';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>No hay evidencia científica específica para "8 vasos"</li>
+                        <li>Las necesidades de agua varían según peso, actividad y clima</li>
+                        <li>La sed es un indicador confiable de hidratación</li>
+                        <li>Otros líquidos y alimentos también aportan agua</li>
+                        <li>La orina clara indica hidratación adecuada</li>
+                    </ul>
+                `;
+            } else if (statementLower.includes('lácteo') && (statementLower.includes('hueso') || statementLower.includes('calcio') || statementLower.includes('esencial'))) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>Muchas poblaciones tienen huesos fuertes sin consumir lácteos</li>
+                        <li>El calcio se puede obtener de verduras, frutos secos, sardinas</li>
+                        <li>La vitamina D y K2 son más importantes para huesos que el calcio</li>
+                        <li>El ejercicio con peso es fundamental para densidad ósea</li>
+                        <li>Los lácteos pueden ser parte de una dieta saludable, pero no son esenciales</li>
+                    </ul>
+                `;
+            } else if (statementLower.includes('metabolismo') && statementLower.includes('3 horas')) {
+                verdict = '❌ MITO CONFIRMADO';
+                verdictColor = '#E74C3C';
+                analysis = `
+                    <h4>Análisis Científico:</h4>
+                    <ul>
+                        <li>La frecuencia de comidas no afecta el metabolismo total</li>
+                        <li>El efecto térmico es igual con 3 comidas que con 6</li>
+                        <li>Comer constantemente mantiene insulina elevada</li>
+                        <li>El ayuno intermitente puede ser más eficaz</li>
+                        <li>Come cuando tengas hambre, no por el reloj</li>
+                    </ul>
+                `;
+            } else {
+                verdict = '🔍 REQUIERE ANÁLISIS ESPECÍFICO';
+                verdictColor = '#3498DB';
+                analysis = `
+                    <h4>Análisis General:</h4>
+                    <ul>
+                        <li>Esta afirmación requiere investigación específica</li>
+                        <li>Busca estudios en PubMed, Cochrane Library o meta-análisis</li>
+                        <li>Desconfía de afirmaciones absolutas sin matices</li>
+                        <li>Considera la fuente: ¿quién se beneficia de esta información?</li>
+                        <li>La nutrición es compleja: pocas cosas son blanco o negro</li>
+                    </ul>
+                `;
+            }
+
+            // Mostrar resultados
+            document.getElementById('mythVerdict').style.color = verdictColor;
+            document.getElementById('mythVerdict').textContent = verdict;
+            document.getElementById('mythAnalysis').innerHTML = analysis;
+            document.getElementById('analysisResults').style.display = 'block';
+
+            // Scroll to results
+            document.getElementById('analysisResults').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

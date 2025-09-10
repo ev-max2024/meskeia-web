@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinaciones que Inhiben la Absorción - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../assets/icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Colores específicos para inhibición - Variaciones de la paleta meskeIA */
+            --warning: #1F5F7A;  /* Versión más oscura del primary */
+            --warning-light: rgba(47, 102, 140, 0.12);  /* Background más intenso */
+            --warning-secondary: #2F668C;  /* Tonalidad intermedia */
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ia {
+            color: #F18F01;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navegación breadcrumb */
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 20px 0;
+            margin-top: 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        /* Header del artículo */
+        .article-header {
+            background: linear-gradient(135deg, var(--warning) 0%, var(--warning-secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid var(--warning);
+            padding-left: 20px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* Cards de inhibiciones */
+        .inhibitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .inhibition-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inhibition-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--warning), var(--warning-secondary));
+        }
+
+        .inhibition-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inhibition-icon {
+            font-size: 1.5rem;
+        }
+
+        .inhibition-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .inhibition-example {
+            background: var(--warning-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--warning);
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .example-foods {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .food-item {
+            background: var(--warning);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .block-sign {
+            color: var(--warning);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .result-text {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Calculadora interactiva */
+        .calculator-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .calculator-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .input-field {
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-primary);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .calculate-btn {
+            background: var(--warning);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .calculate-btn:hover {
+            background: var(--warning-secondary);
+            transform: translateY(-2px);
+        }
+
+        .result-display {
+            background: var(--warning-light);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            border: 1px solid var(--warning);
+        }
+
+        .result-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+
+        /* Tips destacados */
+        .tip-box {
+            background: var(--warning-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--warning);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Sección de comparación */
+        .comparison-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .comparison-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+        }
+
+        .comparison-card.good {
+            border-color: var(--secondary);
+            background: rgba(72, 169, 166, 0.05);
+        }
+
+        .comparison-card.bad {
+            border-color: var(--warning);
+            background: var(--warning-light);
+        }
+
+        .comparison-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .comparison-card.good .comparison-title {
+            color: var(--secondary);
+        }
+
+        .comparison-card.bad .comparison-title {
+            color: var(--warning);
+        }
+
+        /* Enlaces a páginas relacionadas */
+        .related-links {
+            background: linear-gradient(135deg, var(--focus) 0%, rgba(72, 169, 166, 0.1) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .related-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .related-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .related-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Navegación inferior */
+        .bottom-nav {
+            background: var(--bg-card);
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.2rem;
+            }
+
+            .inhibitions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .calculator-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .example-foods {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Interacciones y Sinergias</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Combinaciones que Inhiben</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header del artículo -->
+    <header class="article-header">
+        <div class="container">
+            <h1 class="article-title">Combinaciones que Inhiben la Absorción</h1>
+            <p class="article-subtitle">
+                Descubre cómo algunas combinaciones aparentemente saludables pueden reducir hasta un 95% la absorción de nutrientes esenciales
+            </p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Introducción -->
+            <section class="content-section">
+                <h2 class="section-title">Los Antagonistas Nutricionales Ocultos</h2>
+                <div class="section-content">
+                    <p>Mientras algunos alimentos trabajan en sinergia para potenciar la absorción de nutrientes, otros compiten directamente por los mismos transportadores intestinales o forman complejos insolubles que <strong>bloquean la biodisponibilidad</strong>. Estas interacciones antagónicas pueden convertir una comida aparentemente nutritiva en una oportunidad perdida.</p>
+                    
+                    <p>El problema es que muchas de estas combinaciones inhibidoras son consideradas "saludables" o forman parte de platos tradicionales. Conocer estos antagonismos te permite <strong>reorganizar el timing de tus comidas</strong> para maximizar la absorción de cada nutriente sin eliminar alimentos de tu dieta.</p>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        ⚠️ Realidad nutricional
+                    </div>
+                    <div class="tip-content">
+                        Un simple café después de una comida rica en hierro puede reducir su absorción hasta un 95%. Los taninos del café forman complejos insolubles con el hierro que pasan directamente por tu sistema digestivo sin ser aprovechados.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inhibiciones principales -->
+            <section class="content-section">
+                <h2 class="section-title">Los 6 Antagonismos Nutricionales Más Significativos</h2>
+                
+                <div class="inhibitions-grid">
+                    
+                    <!-- Calcio + Hierro -->
+                    <div class="inhibition-card">
+                        <h3 class="inhibition-title">
+                            <span class="inhibition-icon">🥛</span>
+                            Calcio vs Hierro
+                        </h3>
+                        <p class="inhibition-description">
+                            El calcio y el hierro compiten por el mismo transportador DMT1 en el intestino delgado. Cantidades superiores a 40mg de calcio pueden inhibir significativamente la absorción de hierro no hemo.
+                        </p>
+                        <div class="inhibition-example">
+                            <div class="example-title">Ejemplo problemático:</div>
+                            <div class="example-foods">
+                                <span class="food-item">Espinacas</span>
+                                <span class="block-sign">🚫</span>
+                                <span class="food-item">Yogur</span>
+                            </div>
+                            <div class="result-text">
+                                Resultado: Absorción de hierro se reduce del 10% al 2-3%
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Taninos + Hierro -->
+                    <div class="inhibition-card">
+                        <h3 class="inhibition-title">
+                            <span class="inhibition-icon">☕</span>
+                            Taninos vs Hierro
+                        </h3>
+                        <p class="inhibition-description">
+                            Los taninos presentes en té, café y vino forman complejos polifenólicos insolubles con el hierro, impidiendo su absorción. Un solo café puede anular el efecto de la vitamina C en una comida.
+                        </p>
+                        <div class="inhibition-example">
+                            <div class="example-title">Ejemplo problemático:</div>
+                            <div class="example-foods">
+                                <span class="food-item">Lentejas</span>
+                                <span class="block-sign">🚫</span>
+                                <span class="food-item">Té negro</span>
+                            </div>
+                            <div class="result-text">
+                                Resultado: Inhibición del 95% de la absorción de hierro
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fibra + Zinc -->
+                    <div class="inhibition-card">
+                        <h3 class="inhibition-title">
+                            <span class="inhibition-icon">🌾</span>
+                            Fitatos vs Zinc/Hierro
+                        </h3>
+                        <p class="inhibition-description">
+                            Los fitatos en cereales integrales, legumbres y frutos secos quelatan fuertemente el zinc, hierro, calcio y magnesio, formando sales insolubles que no pueden ser absorbidas.
+                        </p>
+                        <div class="inhibition-example">
+                            <div class="example-title">Ejemplo problemático:</div>
+                            <div class="example-foods">
+                                <span class="food-item">Avena integral</span>
+                                <span class="block-sign">🚫</span>
+                                <span class="food-item">Nueces</span>
+                            </div>
+                            <div class="result-text">
+                                Resultado: Absorción de zinc reducida hasta un 50%
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oxalatos + Calcio -->
+                    <div class="inhibition-card">
+                        <h3 class="inhibition-title">
+                            <span class="inhibition-icon">🥬</span>
+                            Oxalatos vs Calcio
+                        </h3>
+                        <p class="inhibition-description">
+                            Los oxalatos en espinacas, remolacha, chocolate y ruibarbo se unen irreversiblemente al calcio formando oxalato cálcico insoluble, reduciendo drásticamente su biodisponibilidad.
+                        </p>
+                        <div class="inhibition-example">
+                            <div class="example-title">Ejemplo problemático:</div>
+                            <div class="example-foods">
+                                <span class="food-item">Espinacas</span>
+                                <span class="block-sign">🚫</span>
+                                <span class="food-item">Queso</span>
+                            </div>
+                            <div class="result-text">
+                                Resultado: Absorción de calcio reducida en un 70%
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zinc + Cobre -->
+                    <div class="inhibition-card">
+                        <h3 class="inhibition-title">
+                            <span class="inhibition-icon">⚖️</span>
+                            Zinc vs Cobre
+                        </h3>
+                        <p class="inhibition-description">
+                            Altas dosis de zinc (>40mg) inducen la síntesis de metalotioneína, que se une preferentemente al zinc, bloqueando la absorción de cobre y potencialmente causando deficiencia de cobre.
+                        </p>
+                        <div class="inhibition-example">
+                            <div class="example-title">Ejemplo problemático:</div>
+                            <div class="example-foods">
+                                <span class="food-item">Suplemento zinc</span>
+                                <span class="block-sign">🚫</span>
+                                <span class="food-item">Hígado</span>
+                            </div>
+                            <div class="result-text">
+                                Resultado: Absorción de cobre inhibida hasta 85%
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proteínas + Calcio -->
+                    <div class="inhibition-card">
+                        <h3 class="inhibition-title">
+                            <span class="inhibition-icon">🥩</span>
+                            Proteína excesiva vs Calcio
+                        </h3>
+                        <p class="inhibition-description">
+                            El exceso de proteínas (>2g/kg peso) acidifica la orina y aumenta la excreción renal de calcio. Por cada gramo extra de proteína, se pierden 1-1.5mg adicionales de calcio.
+                        </p>
+                        <div class="inhibition-example">
+                            <div class="example-title">Ejemplo problemático:</div>
+                            <div class="example-foods">
+                                <span class="food-item">Carne (200g)</span>
+                                <span class="block-sign">🚫</span>
+                                <span class="food-item">Lácteos</span>
+                            </div>
+                            <div class="result-text">
+                                Resultado: Pérdida neta de calcio a pesar del consumo
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Calculadora de inhibición -->
+            <section class="calculator-section">
+                <h3 class="calculator-title">🚫 Calculadora de Inhibición por Taninos</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                    Calcula cómo las bebidas con taninos afectan la absorción de hierro de tu comida
+                </p>
+                
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Alimento fuente de hierro:</label>
+                        <select class="input-field" id="ironSource">
+                            <option value="2.5">Lentejas (2.5mg por 100g)</option>
+                            <option value="3.2">Espinacas (3.2mg por 100g)</option>
+                            <option value="1.8">Quinoa (1.8mg por 100g)</option>
+                            <option value="2.1">Tofu (2.1mg por 100g)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Cantidad (gramos):</label>
+                        <input type="number" class="input-field" id="quantity" value="100" min="1" max="500">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Bebida con taninos:</label>
+                        <select class="input-field" id="tanninSource">
+                            <option value="1">Sin taninos</option>
+                            <option value="0.4">Té verde (60% inhibición)</option>
+                            <option value="0.2">Té negro (80% inhibición)</option>
+                            <option value="0.1">Café (90% inhibición)</option>
+                            <option value="0.05">Té muy fuerte (95% inhibición)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateTanninInhibition()">Calcular Inhibición</button>
+                
+                <div class="result-display" id="calculatorResult">
+                    <div class="result-highlight" id="resultText"></div>
+                    <div id="resultExplanation"></div>
+                </div>
+            </section>
+
+            <!-- Sección de comparación -->
+            <section class="comparison-section">
+                <h2 class="section-title">Antes vs Después: Reorganiza tu Timing</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card bad">
+                        <h3 class="comparison-title">❌ Timing Problemático</h3>
+                        <p><strong>Desayuno:</strong> Café con leche + tostada integral con mermelada</p>
+                        <p><strong>Almuerzo:</strong> Lentejas con espinacas + yogur de postre</p>
+                        <p><strong>Merienda:</strong> Té con galletas integrales</p>
+                        <hr style="margin: 15px 0; border: 1px solid var(--border);">
+                        <p style="color: var(--warning); font-weight: 600;">Múltiples inhibiciones activas</p>
+                    </div>
+
+                    <div class="comparison-card good">
+                        <h3 class="comparison-title">✅ Timing Optimizado</h3>
+                        <p><strong>Desayuno:</strong> Café solo (alejado de comidas)</p>
+                        <p><strong>Almuerzo:</strong> Lentejas con pimiento + naranja de postre</p>
+                        <p><strong>Merienda:</strong> Yogur con frutos secos (sin té)</p>
+                        <hr style="margin: 15px 0; border: 1px solid var(--border);">
+                        <p style="color: var(--secondary); font-weight: 600;">Máxima absorción nutricional</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tips prácticos -->
+            <section class="content-section">
+                <h2 class="section-title">Estrategias para Minimizar Inhibiciones</h2>
+                
+                <div class="tip-box">
+                    <div class="tip-title">
+                        ⏰ Separación temporal
+                    </div>
+                    <div class="tip-content">
+                        Espera al menos 1-2 horas entre alimentos ricos en hierro y bebidas con taninos. El café de la mañana puede tomarse 30 minutos antes del desayuno o 2 horas después sin afectar la absorción.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🥣 Remojo y fermentación
+                    </div>
+                    <div class="tip-content">
+                        Remojar legumbres y cereales durante 8-12 horas, o consumir versiones fermentadas (como pan de masa madre), reduce significativamente el contenido de fitatos y mejora la biodisponibilidad mineral.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🔄 Rotación inteligente
+                    </div>
+                    <div class="tip-content">
+                        Alterna fuentes de calcio y hierro en diferentes comidas. Si desayunas lácteos, que el almuerzo sea rico en hierro. Si cenas legumbres, evita los lácteos como postre esa noche.
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="bottom-nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="combinaciones-potencian.html" class="nav-btn secondary">← Combinaciones que Potencian</a>
+                <a href="timing-nutricional.html" class="nav-btn">Siguiente: Timing Nutricional →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function calculateTanninInhibition() {
+            const ironContent = parseFloat(document.getElementById('ironSource').value);
+            const quantity = parseFloat(document.getElementById('quantity').value);
+            const inhibitionFactor = parseFloat(document.getElementById('tanninSource').value);
+            
+            // Cálculos base
+            const totalIron = (ironContent * quantity) / 100;
+            const baseAbsorption = totalIron * 0.05; // 5% absorción base sin inhibidores
+            const inhibitedAbsorption = totalIron * 0.05 * inhibitionFactor; // Con inhibición
+            
+            // Mostrar resultados
+            const resultDiv = document.getElementById('calculatorResult');
+            const resultText = document.getElementById('resultText');
+            const resultExplanation = document.getElementById('resultExplanation');
+            
+            if (inhibitionFactor === 1) {
+                resultText.textContent = `Hierro absorbido: ${baseAbsorption.toFixed(2)}mg`;
+                resultExplanation.textContent = 'Sin taninos, se absorbe el 5% del hierro no hemo disponible.';
+            } else {
+                const inhibitionPercent = Math.round((1 - inhibitionFactor) * 100);
+                const lostIron = baseAbsorption - inhibitedAbsorption;
+                
+                resultText.textContent = `Hierro absorbido: ${inhibitedAbsorption.toFixed(2)}mg (vs ${baseAbsorption.toFixed(2)}mg sin taninos)`;
+                resultExplanation.textContent = `Los taninos han inhibido ${inhibitionPercent}% de la absorción. Has perdido ${lostIron.toFixed(2)}mg de hierro utilizable.`;
+            }
+            
+            resultDiv.style.display = 'block';
+            
+            // Scroll suave al resultado
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.inhibition-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

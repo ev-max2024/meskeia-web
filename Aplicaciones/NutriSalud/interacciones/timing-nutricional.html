@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timing Nutricional Óptimo - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../assets/icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Colores específicos para timing - Gradientes de la paleta meskeIA */
+            --timing-morning: #48A9A6;  /* Secondary para mañana */
+            --timing-afternoon: #2E86AB;  /* Primary para tarde */
+            --timing-evening: #1F5F7A;  /* Oscuro para noche */
+            --timing-light: rgba(72, 169, 166, 0.08);  /* Background sutil */
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ia {
+            color: #F18F01;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navegación breadcrumb */
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 20px 0;
+            margin-top: 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        /* Header del artículo */
+        .article-header {
+            background: linear-gradient(135deg, var(--timing-morning) 0%, var(--timing-afternoon) 50%, var(--timing-evening) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* Timeline visual */
+        .timeline-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .timeline-container {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--timing-morning), var(--timing-afternoon), var(--timing-evening));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 25px;
+            background: var(--timing-light);
+            border-radius: 12px;
+            margin: 0 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            border-left: none;
+            border-right: 4px solid var(--secondary);
+        }
+
+        .timeline-time {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-time {
+            color: var(--secondary);
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--bg-card);
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            background: var(--secondary);
+        }
+
+        /* Cards de timing específico */
+        .timing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .timing-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timing-card.morning::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--timing-morning);
+        }
+
+        .timing-card.afternoon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--timing-afternoon);
+        }
+
+        .timing-card.evening::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--timing-evening);
+        }
+
+        .timing-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timing-icon {
+            font-size: 1.5rem;
+        }
+
+        .timing-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .timing-examples {
+            background: var(--timing-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .timing-card.morning .timing-examples {
+            border-left-color: var(--timing-morning);
+        }
+
+        .timing-card.afternoon .timing-examples {
+            border-left-color: var(--timing-afternoon);
+        }
+
+        .timing-card.evening .timing-examples {
+            border-left-color: var(--timing-evening);
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .nutrient-list {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .nutrient-list ul {
+            list-style: none;
+            margin: 5px 0;
+        }
+
+        .nutrient-list li {
+            padding: 2px 0;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .nutrient-list li::before {
+            content: '⏰';
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        /* Planificador interactivo */
+        .planner-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .planner-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .planner-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .input-field {
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-primary);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .plan-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .plan-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .plan-result {
+            background: var(--timing-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid var(--primary);
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 80px;
+        }
+
+        .schedule-activity {
+            flex: 1;
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .schedule-reason {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Tips destacados */
+        .tip-box {
+            background: var(--timing-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Enlaces a páginas relacionadas */
+        .related-links {
+            background: linear-gradient(135deg, var(--focus) 0%, rgba(72, 169, 166, 0.1) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .related-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .related-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .related-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Navegación inferior */
+        .bottom-nav {
+            background: var(--bg-card);
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.2rem;
+            }
+
+            .timing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .planner-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .timeline-line {
+                left: 20px;
+                transform: none;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+                margin-left: 40px;
+            }
+
+            .timeline-content {
+                margin: 0 0 0 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .schedule-activity {
+                margin-left: 0;
+            }
+
+            .related-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Interacciones y Sinergias</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Timing Nutricional Óptimo</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header del artículo -->
+    <header class="article-header">
+        <div class="container">
+            <h1 class="article-title">Timing Nutricional Óptimo</h1>
+            <p class="article-subtitle">
+                Descubre cuándo tu cuerpo está más preparado para absorber cada nutriente y cómo sincronizar tu alimentación con tu ritmo circadiano
+            </p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Introducción -->
+            <section class="content-section">
+                <h2 class="section-title">La Cronobiología de la Nutrición</h2>
+                <div class="section-content">
+                    <p>Tu cuerpo no procesa los nutrientes igual a las 8:00 AM que a las 8:00 PM. La <strong>cronobiología nutricional</strong> estudia cómo nuestros ritmos circadianos afectan la digestión, absorción y metabolismo de diferentes nutrientes. Conocer estos patrones te permite sincronizar tu alimentación con los momentos de máxima eficiencia biológica.</p>
+                    
+                    <p>Los transportadores intestinales, las enzimas digestivas y las hormonas que regulan el metabolismo siguen ritmos específicos. El cortisol, la insulina, la melatonina y otras hormonas crean <strong>ventanas temporales óptimas</strong> para diferentes tipos de nutrientes, maximizando su aprovechamiento y minimizando el almacenamiento como grasa.</p>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🕐 Dato fascinante
+                    </div>
+                    <div class="tip-content">
+                        La absorción de hierro puede ser hasta 3 veces mayor por la mañana (6-10 AM) que por la noche, debido a los niveles de hepsidina, la hormona que regula el hierro. Esto explica por qué muchas culturas tradicionalmente consumen alimentos ricos en hierro en el desayuno.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline visual del día -->
+            <section class="timeline-section">
+                <h2 class="section-title">El Reloj Nutricional: 24 Horas de Oportunidades</h2>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">06:00 - 10:00</div>
+                            <div class="timeline-title">Ventana de Hierro y Vitaminas B</div>
+                            <div class="timeline-description">
+                                Niveles bajos de hepsidina y alta actividad metabólica. Ideal para hierro, vitaminas B y proteínas que necesitan energía para procesarse.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">10:00 - 14:00</div>
+                            <div class="timeline-title">Pico de Digestión</div>
+                            <div class="timeline-description">
+                                Máxima producción de enzimas digestivas y ácido gástrico. Momento ideal para comidas complejas y absorción de minerales como zinc y magnesio.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">14:00 - 18:00</div>
+                            <div class="timeline-title">Sensibilidad a Carbohidratos</div>
+                            <div class="timeline-description">
+                                Alta sensibilidad a la insulina. Los carbohidratos se procesan eficientemente sin provocar picos glucémicos extremos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">18:00 - 22:00</div>
+                            <div class="timeline-title">Ventana de Grasas Saludables</div>
+                            <div class="timeline-description">
+                                Metabolismo de lípidos optimizado. Ideal para omega-3, vitaminas liposolubles y antioxidantes que se procesan mejor con grasas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">22:00 - 06:00</div>
+                            <div class="timeline-title">Reparación y Descanso Digestivo</div>
+                            <div class="timeline-description">
+                                Ayuno nocturno. El sistema digestivo se regenera. Solo magnesio, triptófano y otros nutrientes que favorecen el sueño.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards por períodos del día -->
+            <section class="content-section">
+                <h2 class="section-title">Estrategias por Período del Día</h2>
+                
+                <div class="timing-grid">
+                    
+                    <!-- Mañana -->
+                    <div class="timing-card morning">
+                        <h3 class="timing-card-title">
+                            <span class="timing-icon">🌅</span>
+                            Mañana (6:00 - 12:00)
+                        </h3>
+                        <p class="timing-description">
+                            Tu cortisol está en su pico, el metabolismo se acelera y la absorción de hierro está optimizada. Es el momento para "cargar las baterías" nutricionales del día.
+                        </p>
+                        <div class="timing-examples">
+                            <div class="example-title">Nutrientes prioritarios:</div>
+                            <div class="nutrient-list">
+                                <ul>
+                                    <li>Hierro (absorción máxima)</li>
+                                    <li>Vitaminas del complejo B</li>
+                                    <li>Proteínas completas</li>
+                                    <li>Vitamina C (potencia el hierro)</li>
+                                    <li>Cafeína (si se consume)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarde -->
+                    <div class="timing-card afternoon">
+                        <h3 class="timing-card-title">
+                            <span class="timing-icon">☀️</span>
+                            Tarde (12:00 - 18:00)
+                        </h3>
+                        <p class="timing-description">
+                            Pico de actividad digestiva y alta sensibilidad a la insulina. Tu cuerpo procesa eficientemente carbohidratos complejos y minerales que requieren ácido gástrico.
+                        </p>
+                        <div class="timing-examples">
+                            <div class="example-title">Nutrientes prioritarios:</div>
+                            <div class="nutrient-list">
+                                <ul>
+                                    <li>Carbohidratos complejos</li>
+                                    <li>Zinc y magnesio</li>
+                                    <li>Calcio (con vitamina D)</li>
+                                    <li>Fibra soluble</li>
+                                    <li>Probióticos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Noche -->
+                    <div class="timing-card evening">
+                        <h3 class="timing-card-title">
+                            <span class="timing-icon">🌙</span>
+                            Noche (18:00 - 22:00)
+                        </h3>
+                        <p class="timing-description">
+                            El metabolismo se ralentiza, pero la absorción de grasas está optimizada. Momento ideal para nutrientes que favorecen la reparación nocturna y el sueño reparador.
+                        </p>
+                        <div class="timing-examples">
+                            <div class="example-title">Nutrientes prioritarios:</div>
+                            <div class="nutrient-list">
+                                <ul>
+                                    <li>Omega-3 y grasas saludables</li>
+                                    <li>Vitaminas liposolubles (A, D, E, K)</li>
+                                    <li>Magnesio (relajación muscular)</li>
+                                    <li>Triptófano (precursor serotonina)</li>
+                                    <li>Antioxidantes liposolubles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Planificador interactivo -->
+            <section class="planner-section">
+                <h3 class="planner-title">🗓️ Planificador Personal de Timing Nutricional</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                    Introduce tus objetivos nutricionales y obtén un horario personalizado optimizado
+                </p>
+                
+                <div class="planner-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Objetivo principal:</label>
+                        <select class="input-field" id="objetivo">
+                            <option value="energia">Maximizar energía</option>
+                            <option value="hierro">Combatir anemia/fatiga</option>
+                            <option value="digestivo">Mejorar digestión</option>
+                            <option value="sueno">Optimizar sueño</option>
+                            <option value="rendimiento">Rendimiento deportivo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Hora de despertar:</label>
+                        <input type="time" class="input-field" id="despertar" value="07:00">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Hora de dormir:</label>
+                        <input type="time" class="input-field" id="dormir" value="23:00">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">¿Haces ejercicio?</label>
+                        <select class="input-field" id="ejercicio">
+                            <option value="no">No regularmente</option>
+                            <option value="manana">Sí, por la mañana</option>
+                            <option value="tarde">Sí, por la tarde</option>
+                            <option value="noche">Sí, por la noche</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="plan-btn" onclick="generateSchedule()">Generar Mi Plan de Timing</button>
+                
+                <div class="plan-result" id="planResult">
+                    <h4 style="text-align: center; margin-bottom: 20px; color: var(--primary);">Tu Plan Personalizado</h4>
+                    <div id="scheduleContent"></div>
+                </div>
+            </section>
+
+            <!-- Tips prácticos -->
+            <section class="content-section">
+                <h2 class="section-title">Principios Clave del Timing Nutricional</h2>
+                
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🎯 Regla de las 2 horas
+                    </div>
+                    <div class="tip-content">
+                        Separa al menos 2 horas entre nutrientes competidores (hierro vs calcio, zinc vs hierro). Esto permite que cada nutriente tenga su ventana de absorción sin interferencias.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🏃‍♂️ Ejercicio y timing
+                    </div>
+                    <div class="tip-content">
+                        Consume hierro 3-4 horas antes del ejercicio intenso. El ejercicio aumenta la hepsidina, bloqueando la absorción de hierro durante 3-6 horas post-entrenamiento.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🌙 Ventana nocturna
+                    </div>
+                    <div class="tip-content">
+                        Evita hierro, cafeína y grandes cantidades de vitaminas B después de las 18:00. Pueden interferir con la producción de melatonina y la calidad del sueño.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🔄 Consistencia circadiana
+                    </div>
+                    <div class="tip-content">
+                        Mantén horarios regulares de comida. Tu sistema digestivo se "programa" y optimiza la producción de enzimas según patrones consistentes.
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="bottom-nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="combinaciones-inhiben.html" class="nav-btn secondary">← Combinaciones que Inhiben</a>
+                <a href="matriz-alimentaria.html" class="nav-btn">Siguiente: Matriz Alimentaria →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function generateSchedule() {
+            const objetivo = document.getElementById('objetivo').value;
+            const despertar = document.getElementById('despertar').value;
+            const dormir = document.getElementById('dormir').value;
+            const ejercicio = document.getElementById('ejercicio').value;
+            
+            // Conversión de horarios
+            const [horaDespertar, minDespertar] = despertar.split(':').map(Number);
+            const [horaDormir, minDormir] = dormir.split(':').map(Number);
+            
+            // Cálculo de horarios base
+            const desayuno = addHours(despertar, 0.5);
+            const almuerzo = addHours(despertar, 5);
+            const cena = addHours(dormir, -3);
+            const snack = addHours(dormir, -1.5);
+            
+            // Generación del plan según objetivo
+            let schedule = [];
+            
+            switch(objetivo) {
+                case 'energia':
+                    schedule = [
+                        { time: desayuno, activity: 'Desayuno rico en hierro + vitamina C', reason: 'Máxima absorción de hierro para energía' },
+                        { time: addHours(desayuno, 2), activity: 'Vitaminas del complejo B', reason: 'Metabolismo energético optimizado' },
+                        { time: almuerzo, activity: 'Proteínas completas + carbohidratos', reason: 'Pico de actividad digestiva' },
+                        { time: cena, activity: 'Cena ligera con omega-3', reason: 'Evitar interferencia con sueño reparador' }
+                    ];
+                    break;
+                    
+                case 'hierro':
+                    schedule = [
+                        { time: despertar, activity: 'Agua con limón en ayunas', reason: 'Preparar ambiente ácido para hierro' },
+                        { time: desayuno, activity: 'Lentejas + pimiento rojo + naranja', reason: 'Ventana óptima de absorción de hierro' },
+                        { time: addHours(desayuno, 4), activity: 'Evitar té, café, lácteos', reason: 'Prevenir inhibición por taninos/calcio' },
+                        { time: cena, activity: 'Carne roja + brócoli (sin lácteos)', reason: 'Segunda ventana de hierro del día' }
+                    ];
+                    break;
+                    
+                case 'digestivo':
+                    schedule = [
+                        { time: desayuno, activity: 'Probióticos + fibra soluble', reason: 'Optimizar microbiota matutina' },
+                        { time: almuerzo, activity: 'Comida principal con enzimas', reason: 'Máxima capacidad digestiva' },
+                        { time: addHours(almuerzo, 2), activity: 'Zinc + magnesio', reason: 'Soporte enzimático digestivo' },
+                        { time: cena, activity: 'Cena ligera 3h antes de dormir', reason: 'Permitir digestión completa' }
+                    ];
+                    break;
+                    
+                case 'sueno':
+                    schedule = [
+                        { time: desayuno, activity: 'Evitar cafeína después 14:00', reason: 'No interferir con melatonina' },
+                        { time: almuerzo, activity: 'Carbohidratos complejos', reason: 'Estabilizar glucosa para la noche' },
+                        { time: cena, activity: 'Magnesio + triptófano', reason: 'Relajación muscular y serotonina' },
+                        { time: snack, activity: 'Infusión de manzanilla (opcional)', reason: 'Promover relajación pre-sueño' }
+                    ];
+                    break;
+                    
+                case 'rendimiento':
+                    schedule = [
+                        { time: addHours(despertar, -0.5), activity: 'Pre-entreno: carbohidratos simples', reason: 'Energía inmediata disponible' },
+                        { time: addHours(ejercicio === 'manana' ? desayuno : almuerzo, 1), activity: 'Post-entreno: proteína + carbohidratos', reason: 'Ventana anabólica de recuperación' },
+                        { time: almuerzo, activity: 'Hierro alejado del entrenamiento', reason: 'Evitar bloqueo por hepsidina post-ejercicio' },
+                        { time: cena, activity: 'Omega-3 + antioxidantes', reason: 'Reducir inflamación y reparación tisular' }
+                    ];
+                    break;
+            }
+            
+            // Mostrar resultados
+            const resultDiv = document.getElementById('planResult');
+            const scheduleContent = document.getElementById('scheduleContent');
+            
+            scheduleContent.innerHTML = schedule.map(item => `
+                <div class="schedule-item">
+                    <div class="schedule-time">${item.time}</div>
+                    <div class="schedule-activity">
+                        ${item.activity}
+                        <div class="schedule-reason">${item.reason}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        function addHours(timeString, hours) {
+            const [hour, minute] = timeString.split(':').map(Number);
+            let newHour = hour + Math.floor(hours);
+            let newMinute = minute + Math.floor((hours % 1) * 60);
+            
+            if (newMinute >= 60) {
+                newHour += 1;
+                newMinute -= 60;
+            }
+            if (newHour >= 24) newHour -= 24;
+            if (newHour < 0) newHour += 24;
+            
+            return `${newHour.toString().padStart(2, '0')}:${newMinute.toString().padStart(2, '0')}`;
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.timing-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
