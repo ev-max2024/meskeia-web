@@ -116,11 +116,135 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Salud y Bienestar -->
   <url>
     <loc>https://meskeia.com/Aplicaciones/Evaluador%20de%20Salud/evaluador-salud.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/nutrisalud.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- NutriSalud - Fundamentos -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/diferencia-comer-nutrirse.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/macronutrientes-profundidad.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/micronutrientes-biodisponibilidad.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/sistema-digestivo-laboratorio.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- NutriSalud - Órganos y Sistemas -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/cerebro-neurotransmisores.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/higado-metabolismo.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/intestino-microbiota.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/sistema-cardiovascular.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- NutriSalud - Interacciones -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/combinaciones-potencian.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/combinaciones-inhiben.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/matriz-alimentaria.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/timing-nutricional.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- NutriSalud - Aplicación Práctica -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/calculadora-nutricional-inteligente.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/lectura-critica-etiquetas.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/mitos-nutricionales-desmontados.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/planificacion-personalizada.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <!-- Herramientas de Productividad -->
@@ -215,4 +339,27 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/Puzzle%20Matem%C3%A1tico/puzzle-matematico.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Cursos y Formación -->
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/curso-decisiones-inversion/index.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://meskeia.com/Aplicaciones/curso-emprendimiento/curso-emprendimiento.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
 </urlset>
