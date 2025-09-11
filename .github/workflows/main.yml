@@ -23,7 +23,7 @@ jobs:
         lftp -c "
         set ssl:verify-certificate no
         set ftp:ssl-allow no
-        open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER
-        mirror --reverse --delete --verbose --exclude-glob .git* --exclude-glob .github/ --exclude-glob node_modules/ --exclude-glob .env --exclude-glob *.md --exclude-glob test_ftp.py --exclude-glob deploy-test.txt --exclude-glob test-deploy.txt ./ ./
+        open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER
+        mirror --reverse --delete --verbose --exclude-glob .git* --exclude-glob .github/ --exclude-glob node_modules/ --exclude-glob .env --exclude-glob *.md --exclude-glob test_ftp.py --exclude-glob deploy-test.txt --exclude-glob test-deploy.txt --exclude-glob README_DEPLOY.md ./ ./
         quit
         "
