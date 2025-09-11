@@ -20,13 +20,14 @@ jobs:
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
       run: |
-        # El username tiene @ que necesita escaparse como %40 en la URL
-        ESCAPED_USERNAME=$(echo "$FTP_USERNAME" | sed 's/@/%40/g')
-        
-        lftp -c "
+        # Crear archivo temporal con credenciales
+        cat > ~/.lftprc << EOF
         set ssl:verify-certificate no
         set ftp:ssl-allow no
-        open ftp://$ESCAPED_USERNAME:$FTP_PASSWORD@$FTP_SERVER
+        EOF
+        
+        # Usar lftp con credenciales en línea de comandos
+        lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" << 'FTPEOF'
         mirror --reverse --delete --verbose --exclude-glob .git* --exclude-glob .github/ --exclude-glob node_modules/ --exclude-glob .env --exclude-glob *.md --exclude-glob test_ftp.py --exclude-glob deploy-test.txt --exclude-glob test-deploy.txt --exclude-glob README_DEPLOY.md --exclude-glob deploy-trigger.txt ./ ./
         quit
-        "
+        FTPEOF
