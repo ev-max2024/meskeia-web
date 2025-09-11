@@ -11,23 +11,26 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install lftp
-      run: sudo apt-get update && sudo apt-get install -y lftp
-
-    - name: Deploy to FTP
+    - name: Deploy to FTP with curl
       env:
         FTP_SERVER: ${{ secrets.FTP_SERVER }}
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
       run: |
-        # Crear archivo temporal con credenciales
-        cat > ~/.lftprc << EOF
-        set ssl:verify-certificate no
-        set ftp:ssl-allow no
-        EOF
+        # Crear función para subir archivos recursivamente
+        upload_files() {
+          for file in $(find . -type f -not -path "./.git/*" -not -path "./.github/*" -not -name "*.md" -not -name "test_ftp.py" -not -name "*deploy*.txt"); do
+            # Crear directorio en servidor si no existe
+            dir=$(dirname "$file")
+            if [ "$dir" != "." ]; then
+              curl --ftp-create-dirs -T /dev/null "ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER/$dir/" || true
+            fi
+            
+            # Subir archivo
+            echo "Subiendo: $file"
+            curl --ftp-create-dirs -T "$file" "ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER/$file"
+          done
+        }
         
-        # Usar lftp con credenciales en línea de comandos
-        lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" << 'FTPEOF'
-        mirror --reverse --delete --verbose --exclude-glob .git* --exclude-glob .github/ --exclude-glob node_modules/ --exclude-glob .env --exclude-glob *.md --exclude-glob test_ftp.py --exclude-glob deploy-test.txt --exclude-glob test-deploy.txt --exclude-glob README_DEPLOY.md --exclude-glob deploy-trigger.txt ./ ./
-        quit
-        FTPEOF
+        # Ejecutar upload
+        upload_files
