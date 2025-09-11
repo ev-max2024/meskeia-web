@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
         port: 21
-        server-dir: /public_html/meskeia.com/
+        server-dir: ./
         security: loose
         exclude: |
           **/.git*
