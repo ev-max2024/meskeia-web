@@ -4,6 +4,7 @@ Este archivo es una prueba para verificar que el workflow de GitHub Actions
 puede conectarse correctamente al servidor FTP de Webempresa.
 
 Fecha: 2025-01-12
+Intento: 3 - Sintaxis YAML corregida
 Hora: Generado automáticamente
 Propósito: Validar conexión FTP con encoding de usuario
 
