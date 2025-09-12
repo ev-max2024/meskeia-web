@@ -35,16 +35,7 @@ jobs:
         echo "Target: /public_html/meskeia.com/"
         echo ""
         
-        lftp -c "
-        set ftp:ssl-allow no;
-        set ftp:passive-mode on;
-        open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
-        lcd ./;
-        cd /public_html/meskeia.com/;
-        put test-ftp-deployment.txt;
-        ls -la test-ftp-deployment.txt;
-        quit
-        "
+        lftp -c "set ftp:ssl-allow no; set ftp:passive-mode on; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; lcd ./; cd /public_html/meskeia.com/; put test-ftp-deployment.txt; ls -la test-ftp-deployment.txt; quit"
         
     - name: Fallback SFTP if FTP failed
       if: failure()
