@@ -46,23 +46,11 @@ jobs:
         quit
         "
         
-    - name: 🔄 Fallback: Try SFTP if FTP failed
+    - name: Fallback SFTP if FTP failed
       if: failure()
       run: |
-        echo "=== FTP failed, trying SFTP ==="
-        echo "Attempting SFTP connection..."
-        sshpass -p '${{ secrets.FTP_PASSWORD }}' sftp -o StrictHostKeyChecking=no ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} << 'EOF'
-        cd /public_html/meskeia.com/
-        put test-ftp-deployment.txt
-        ls -la test-ftp-deployment.txt
-        quit
-        EOF
-        
-    - name: 🔧 Install sshpass for SFTP (if needed)
-      if: failure()
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y sshpass
+        echo "=== FTP failed, trying alternative methods ==="
+        echo "This step runs only if the previous FTP step failed"
         
     - name: ✅ Success notification
       run: |
