@@ -1,0 +1,14 @@
+🚀 TEST FTP DEPLOYMENT - meskeIA
+
+Este archivo es una prueba para verificar que el workflow de GitHub Actions
+puede conectarse correctamente al servidor FTP de Webempresa.
+
+Fecha: 2025-01-12
+Hora: Generado automáticamente
+Propósito: Validar conexión FTP con encoding de usuario
+
+Si ves este archivo en el hosting, ¡la conexión FTP funciona! ✅
+
+---
+meskeIA - Aplicaciones Web Gratuitas
+https://meskeia.com

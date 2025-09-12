@@ -1,0 +1,47 @@
+name: 🧪 Test FTP Deployment
+
+on:
+  push:
+    paths:
+      - 'test-ftp-deployment.txt'
+  workflow_dispatch:
+
+jobs:
+  test-ftp:
+    runs-on: ubuntu-latest
+    name: Test FTP Connection
+    
+    steps:
+    - name: 🛎️ Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: 📝 Show test file content
+      run: |
+        echo "=== Contenido del archivo de prueba ==="
+        cat test-ftp-deployment.txt
+        echo "=== Fin del archivo ==="
+        
+    - name: 🚀 Test FTP Upload with URL encoding
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ftp.meskeia.com%40meskeia.com
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: /public_html/meskeia.com/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.github/**
+          **/.claude/**
+          **/desktop.ini
+        include: |
+          test-ftp-deployment.txt
+        dry-run: false
+        log-level: verbose
+        
+    - name: ✅ Success notification
+      run: |
+        echo "🎉 Test FTP deployment completed!"
+        echo "Check https://meskeia.com/test-ftp-deployment.txt to verify upload"
