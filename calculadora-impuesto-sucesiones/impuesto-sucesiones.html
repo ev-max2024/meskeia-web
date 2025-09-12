@@ -1259,13 +1259,14 @@
                     tipo: 'Reducción Grupo I',
                     importe: 100000
                 });
-            } else if (datos.grupoParentesco.startsWith('II')) {
+            } else if (datos.grupoParentesco === 'II' || datos.grupoParentesco === 'II-ascendiente') {
                 reducciones += 50000;
                 detallesReducciones.push({
                     tipo: 'Reducción Grupo II',
                     importe: 50000
                 });
             }
+            // Los Grupos III y IV no tienen reducción personal por parentesco
             
             // Reducción adicional por edad (menores de 21 años, Grupo I)
             if (datos.grupoParentesco === 'I-descendiente' && datos.edadHeredero < 21) {
