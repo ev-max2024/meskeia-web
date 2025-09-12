@@ -1342,39 +1342,8 @@
                 }
             }
             
-            // Verificar empresa
-            if (empresa > 0) {
-                const limiteReduccion = discapacidad >= 33 ? 400000 : 200000;
-                let cumpleRequisitos = true;
-                let requisitosNo = [];
-                
-                if (!escritura) {
-                    cumpleRequisitos = false;
-                    requisitosNo.push('Debe formalizarse en escritura pública');
-                }
-                
-                if (patrimonio > 2 && discapacidad < 33) {
-                    requisitosNo.push('Patrimonio máximo recomendado: 500.000€');
-                }
-                
-                if (cumpleRequisitos && requisitosNo.length === 0) {
-                    html += `<div class="success-box">
-                        <strong>✓ Empresa/Negocio:</strong> Cumple requisitos. 
-                        Reducción 95% sobre ${formatearMoneda(empresa)}, 
-                        máximo ${formatearMoneda(limiteReduccion)}
-                    </div>`;
-                } else if (!cumpleRequisitos) {
-                    html += `<div class="error-box">
-                        <strong>✗ Empresa/Negocio:</strong> NO cumple requisitos:<br>
-                        ${requisitosNo.map(r => `• ${r}`).join('<br>')}
-                    </div>`;
-                } else {
-                    html += `<div class="warning-box">
-                        <strong>⚠ Empresa/Negocio:</strong> Revisar:<br>
-                        ${requisitosNo.map(r => `• ${r}`).join('<br>')}
-                    </div>`;
-                }
-            }
+            // Nota: Las donaciones de empresas/negocios no se evalúan en esta calculadora
+            // Se recomienda consultar con un asesor fiscal especializado para estos casos
             
             // Mostrar aviso de ingresos
             const avisoIngresos = document.getElementById('avisoIngresos');
