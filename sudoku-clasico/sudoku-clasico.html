@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Clásico Online Gratis | Juego de Lógica y Números - meskeIA</title>
+    <meta name="description" content="Juega Sudoku clásico online gratis. 5 niveles de dificultad, desde principiante hasta experto. Entrena tu mente con el puzzle de números más popular del mundo. Sin registro requerido.">
+    <meta name="keywords" content="sudoku online, sudoku gratis, sudoku clásico, puzzle números, juego lógica, sudoku principiante, sudoku experto, entrenamiento mental, sudoku español">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/sudoku-clasico/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sudoku Clásico Online | Juego Gratis">
+    <meta property="og:description" content="Juega Sudoku online con 5 niveles de dificultad. Entrena tu mente con el puzzle de números más popular. Completamente gratis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/sudoku-clasico/">
+    <meta property="og:image" content="../icon_meskeia.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sudoku Clásico Online Gratis">
+    <meta name="twitter:description" content="Juego de Sudoku con múltiples niveles de dificultad">
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Sudoku Clásico",
+      "description": "Juego de Sudoku online gratuito con 5 niveles de dificultad, desde principiante hasta experto",
+      "url": "https://meskeia.com/aplicaciones/sudoku-clasico/",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "meskeIA",
+        "url": "https://meskeia.com"
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --primary-hover: #1e5f7a;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            
+            /* Spacing system */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            
+            /* Shadows */
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: var(--spacing-md);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        .container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-medium);
+            padding: var(--spacing-xl);
+            max-width: 640px;
+            width: 100%;
+            border: 1px solid var(--border);
+            margin: 0 auto 2rem;
+        }
+        
+        /* Sección informativa - Cards */
+        .info-section {
+            margin-bottom: 2rem;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e5e5;
+            position: relative;
+        }
+        
+        .info-card::before {
+            content: "💡";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+        
+        .info-card.benefits::before {
+            content: "🧠";
+        }
+        
+        .info-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2E86AB;
+            padding-right: 2rem;
+        }
+        
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: #48A9A6;
+        }
+        
+        .info-card p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .info-card ul {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .faq-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #2E86AB;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+        
+        .faq-icon {
+            font-size: 0.8rem;
+            color: #2E86AB;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: white;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 1rem;
+        }
+        
+        .faq-answer p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        h1 {
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Game Controls */
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: var(--spacing-xl);
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .control-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .control-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .difficulty-select {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 140px;
+        }
+
+        .difficulty-select:hover {
+            border-color: var(--primary);
+        }
+
+        .difficulty-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        /* Buttons */
+        .game-buttons {
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #3a8e8b;
+            border-color: #3a8e8b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--hover);
+            color: var(--text-primary);
+            border-color: var(--text-muted);
+        }
+
+        /* Sudoku Grid */
+        .sudoku-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .sudoku-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 1px;
+            background: var(--text-primary);
+            border: 2px solid var(--text-primary);
+            border-radius: 12px;
+            padding: 2px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .sudoku-cell {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .sudoku-cell input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: transparent;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .sudoku-cell input:focus {
+            background: var(--focus);
+        }
+
+        /* Bordes para separar cuadrantes 3x3 */
+        .sudoku-cell:nth-child(3n) {
+            border-right: 2px solid var(--text-primary);
+        }
+
+        .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+        .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid var(--text-primary);
+        }
+
+        /* Estados de las celdas */
+        .sudoku-cell.predefined {
+            background: var(--hover);
+        }
+
+        .sudoku-cell.predefined input {
+            color: var(--text-primary);
+            font-weight: 700;
+            cursor: not-allowed;
+        }
+
+        .sudoku-cell.error {
+            background: #ffebee;
+        }
+
+        .sudoku-cell.error input {
+            color: #d32f2f;
+            background: transparent;
+        }
+
+        .sudoku-cell.correct {
+            background: #e8f5e8;
+        }
+
+        .sudoku-cell.correct input {
+            color: #2e7d32;
+        }
+
+        /* Message Area */
+        .message-area {
+            text-align: center;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-message {
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            max-width: 100%;
+        }
+
+        .message-success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .message-error {
+            background: #ffebee;
+            color: #d32f2f;
+            border: 1px solid #ffcdd2;
+        }
+
+        .message-info {
+            background: var(--focus);
+            color: var(--primary);
+            border: 1px solid rgba(46,134,171,0.2);
+        }
+
+        /* Footer Copyright */
+        .footer-copyright {
+            position: fixed;
+            bottom: var(--spacing-sm);
+            right: var(--spacing-md);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Logo meskeIA */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: var(--spacing-sm);
+            }
+            
+            .container {
+                padding: var(--spacing-md);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .game-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-sm);
+            }
+            
+            .game-buttons {
+                justify-content: center;
+            }
+            
+            .sudoku-cell {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .sudoku-cell input {
+                font-size: 1rem;
+            }
+            
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+            
+            .footer-copyright {
+                bottom: var(--spacing-xs);
+                right: var(--spacing-sm);
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <nav class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;" role="navigation" aria-label="Volver al inicio">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <header>
+            <h1>Sudoku Clásico Online</h1>
+            <p class="subtitle">El juego de lógica más popular del mundo</p>
+        </header>
+
+        <main class="container" role="main">
+            <div class="game-controls">
+                <div class="control-section">
+                    <label for="difficulty" class="control-label">Nivel de dificultad</label>
+                    <select id="difficulty" class="difficulty-select" aria-label="Seleccionar nivel de dificultad">
+                        <option value="1">Principiante</option>
+                        <option value="2">Fácil</option>
+                        <option value="3" selected>Intermedio</option>
+                        <option value="4">Avanzado</option>
+                        <option value="5">Experto</option>
+                    </select>
+                </div>
+                
+                <div class="game-buttons">
+                    <button id="new-game" class="btn btn-primary" aria-label="Generar nuevo juego">Nuevo Juego</button>
+                    <button id="verify" class="btn btn-secondary" aria-label="Verificar solución actual">Verificar</button>
+                    <button id="solve" class="btn btn-outline" aria-label="Mostrar solución completa">Resolver</button>
+                    <button id="reset" class="btn btn-outline" aria-label="Reiniciar juego actual">Reiniciar</button>
+                </div>
+            </div>
+            
+            <section class="sudoku-container" aria-label="Tablero de Sudoku">
+                <div id="sudoku-grid" class="sudoku-grid" role="grid" aria-label="Cuadrícula de Sudoku 9x9">
+                    <!-- Grid will be generated by JavaScript -->
+                </div>
+            </section>
+            
+            <div class="message-area" aria-live="polite">
+                <p id="message" class="game-message"></p>
+            </div>
+        </main>
+        
+        <!-- Sección informativa SEO -->
+        <section class="info-section">
+            <div class="info-card">
+                <h2>¿Qué es el Sudoku?</h2>
+                <p>
+                    El Sudoku es un puzzle de lógica y números que se originó en Japón, aunque sus raíces se remontan a los 
+                    "Cuadrados latinos" del matemático suizo Leonhard Euler del siglo XVIII. El objetivo es rellenar una 
+                    cuadrícula de 9×9 celdas dividida en subcuadrículas de 3×3 con números del 1 al 9, siguiendo tres reglas básicas.
+                </p>
+                <p>
+                    Este juego mental ha ganado popularidad mundial por ser un excelente ejercicio para el cerebro que mejora 
+                    la concentración, la memoria de trabajo y las habilidades de resolución de problemas. No requiere 
+                    conocimientos matemáticos avanzados, solo lógica pura y paciencia.
+                </p>
+            </div>
+            
+            <div class="info-card benefits">
+                <h3>Beneficios del Sudoku</h3>
+                <ul>
+                    <li><strong>Mejora cognitiva:</strong> Fortalece la memoria, concentración y agilidad mental</li>
+                    <li><strong>Reducción de estrés:</strong> La concentración requerida actúa como meditación activa</li>
+                    <li><strong>Prevención del deterioro:</strong> Estudios sugieren que retrasa el envejecimiento cerebral</li>
+                    <li><strong>Desarrollo lógico:</strong> Perfecciona las habilidades de razonamiento deductivo</li>
+                    <li><strong>Entretenimiento intelectual:</strong> Diversión educativa sin límite de edad</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Sección FAQ -->
+        <section class="faq-section">
+            <h2>Preguntas Frecuentes sobre Sudoku</h2>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    ¿Cómo se juega al Sudoku?
+                    <span class="faq-icon">▼</span>
+                </h3>
+                <div class="faq-answer">
+                    <p>El objetivo es llenar la cuadrícula 9×9 con números del 1 al 9, de manera que cada número aparezca exactamente una vez en cada fila, columna y subcuadrícula de 3×3. Solo hay una solución correcta para cada puzzle.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    ¿Cuál es la diferencia entre los niveles de dificultad?
+                    <span class="faq-icon">▼</span>
+                </h3>
+                <div class="faq-answer">
+                    <p>Los niveles varían según la cantidad de números iniciales proporcionados: Principiante (45-50 números), Fácil (36-44), Intermedio (32-35), Avanzado (28-31) y Experto (22-27). Menos números iniciales significa mayor dificultad.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    ¿Necesito ser bueno en matemáticas para jugar?
+                    <span class="faq-icon">▼</span>
+                </h3>
+                <div class="faq-answer">
+                    <p>No. El Sudoku es un juego de lógica pura, no de matemáticas. Los números se usan simplemente como símbolos únicos. Podrías usar letras o colores y el juego funcionaría igual.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    ¿Qué estrategias básicas puedo usar?
+                    <span class="faq-icon">▼</span>
+                </h3>
+                <div class="faq-answer">
+                    <p>Comienza buscando celdas con pocas opciones posibles. Usa la técnica de "candidatos únicos" y "eliminación". Observa patrones en filas, columnas y subcuadrículas para descartar números imposibles.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    ¿El juego guarda mi progreso automáticamente?
+                    <span class="faq-icon">▼</span>
+                </h3>
+                <div class="faq-answer">
+                    <p>Este Sudoku funciona completamente en tu navegador. El progreso se mantiene mientras tengas la pestaña abierta, pero se reinicia si cierras o recargas la página.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Schema Markup FAQ -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cómo se juega al Sudoku?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El objetivo es llenar la cuadrícula 9×9 con números del 1 al 9, de manera que cada número aparezca exactamente una vez en cada fila, columna y subcuadrícula de 3×3."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuál es la diferencia entre los niveles de dificultad?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Los niveles varían según la cantidad de números iniciales: Principiante (45-50), Fácil (36-44), Intermedio (32-35), Avanzado (28-31) y Experto (22-27)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Necesito ser bueno en matemáticas para jugar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. El Sudoku es un juego de lógica pura, no de matemáticas. Los números se usan simplemente como símbolos únicos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué estrategias básicas puedo usar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Comienza buscando celdas con pocas opciones posibles. Usa la técnica de 'candidatos únicos' y 'eliminación'."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿El juego guarda mi progreso automáticamente?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El progreso se mantiene mientras tengas la pestaña abierta, pero se reinicia si cierras o recargas la página."
+              }
+            }
+          ]
+        }
+        </script>
+    </div>
+
+    <script src="js/sudoku.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/ui.js"></script>
+    
+    <!-- FAQ JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Cerrar todas las preguntas
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Abrir la pregunta clickeada si no estaba activa
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Footer meskeIA -->
+    <footer class="footer-copyright">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

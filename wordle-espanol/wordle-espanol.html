@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Tags SEO Ampliados -->
+    <title>Wordle en Español - Juego Diario de Palabras Gratis | meskeIA</title>
+    <meta name="description" content="Juega Wordle en español gratis cada día. Adivina la palabra de 5 letras en 6 intentos. Desafía tu vocabulario con el juego de palabras más popular. Nueva palabra diaria a las 00:00.">
+    <meta name="keywords" content="wordle español, juego palabras, wordle gratis, adivinar palabra, vocabulario español, juego diario, wordle castellano, puzzle palabras, entretenimiento mental">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Wordle en Español - Juego Diario de Palabras">
+    <meta property="og:description" content="Desafía tu vocabulario con Wordle en español. Una nueva palabra de 5 letras cada día para adivinar en máximo 6 intentos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/wordle-espanol">
+    <meta property="og:image" content="https://meskeia.com/assets/og-wordle-espanol.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wordle Español - Juego de Palabras Diario">
+    <meta name="twitter:description" content="Adivina la palabra española de 5 letras. Nueva palabra cada día a las 00:00.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-wordle-espanol.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/wordle-espanol">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "Wordle en Español",
+        "description": "Juego diario de palabras en español donde debes adivinar una palabra de 5 letras en máximo 6 intentos. Perfecto para entrenar el vocabulario y la mente con desafíos diarios.",
+        "url": "https://meskeia.com/aplicaciones/wordle-espanol",
+        "gameLocation": "Online",
+        "numberOfPlayers": "1",
+        "playMode": "SinglePlayer",
+        "genre": "Puzzle",
+        "gamePlatform": "Web Browser",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        }
+    }
+    </script>
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            /* Colores Wordle */
+            --correct: #6AAA64;
+            --present: #C9B458;
+            --absent: #787C7E;
+            --empty: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 80px auto 100px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px 20px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            gap: 5px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+        }
+
+        .word-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .letter-cell {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            background: var(--empty);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .letter-cell.filled {
+            border-color: var(--text-secondary);
+            transform: scale(1.05);
+        }
+
+        .letter-cell.correct {
+            background: var(--correct);
+            border-color: var(--correct);
+            color: white;
+        }
+
+        .letter-cell.present {
+            background: var(--present);
+            border-color: var(--present);
+            color: white;
+        }
+
+        .letter-cell.absent {
+            background: var(--absent);
+            border-color: var(--absent);
+            color: white;
+        }
+
+        .keyboard {
+            display: grid;
+            gap: 6px;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .key {
+            min-width: 35px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--border);
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .key:hover {
+            background: var(--hover);
+            transform: scale(1.05);
+        }
+
+        .key.wide {
+            min-width: 55px;
+            font-size: 0.8rem;
+        }
+
+        .key.correct {
+            background: var(--correct);
+            color: white;
+        }
+
+        .key.present {
+            background: var(--present);
+            color: white;
+        }
+
+        .key.absent {
+            background: var(--absent);
+            color: white;
+        }
+
+        .message {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3000;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+
+        .stats-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stats-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .stats-content {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .stats-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .stats-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .next-word {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        .share-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .share-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .rules-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rules-button:hover {
+            background: var(--hover);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 60px auto 80px;
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .letter-cell {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .keyboard {
+                gap: 4px;
+            }
+
+            .keyboard-row {
+                gap: 3px;
+            }
+
+            .key {
+                min-width: 25px;
+                height: 45px;
+                font-size: 0.75rem;
+            }
+
+            .key.wide {
+                min-width: 38px;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* CSS Responsive para contenido educativo SEO */
+        @media (max-width: 768px) {
+            div[style*="max-width: 900px"] {
+                max-width: calc(100vw - 20px) !important;
+                padding: 0 10px !important;
+                margin: 1rem auto !important;
+            }
+            
+            div[style*="display: grid"][style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            div[style*="padding: 1.5rem"] {
+                padding: 1rem !important;
+            }
+            
+            h2[style*="font-size: 1.5rem"] {
+                font-size: 1.2rem !important;
+                text-align: left !important;
+            }
+            
+            h3[style*="font-size: 1.2rem"] {
+                font-size: 1.1rem !important;
+            }
+            
+            details[style*="border: 1px solid var(--border)"] {
+                padding: 0.75rem !important;
+                margin: 0.75rem 0 !important;
+            }
+            
+            summary {
+                font-size: 14px !important;
+                line-height: 1.4 !important;
+            }
+            
+            ul[style*="padding-left: 1.5rem"] {
+                padding-left: 1rem !important;
+                font-size: 14px !important;
+            }
+            
+            p[style*="line-height: 1.6"] {
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <button class="rules-button" onclick="showRules()" title="Cómo jugar">?</button>
+
+    <div class="container">
+        <div class="header">
+            <h1>WORDLE</h1>
+            <p>Adivina la palabra de 5 letras en 6 intentos</p>
+        </div>
+
+        <div class="game-info">
+            <div class="info-item">
+                <div class="info-value" id="current-try">1</div>
+                <div class="info-label">Intento</div>
+            </div>
+            <div class="info-item">
+                <div class="info-value" id="games-won">0</div>
+                <div class="info-label">Ganadas</div>
+            </div>
+            <div class="info-item">
+                <div class="info-value" id="streak">0</div>
+                <div class="info-label">Racha</div>
+            </div>
+            <div class="info-item" onclick="showStats()" style="cursor: pointer;">
+                <div class="info-value">📊</div>
+                <div class="info-label">Resultado</div>
+            </div>
+        </div>
+
+        <div class="game-board" id="game-board">
+            <!-- Las filas se generan dinámicamente -->
+        </div>
+
+        <div class="keyboard">
+            <div class="keyboard-row">
+                <button class="key" onclick="handleKeyPress('Q')">Q</button>
+                <button class="key" onclick="handleKeyPress('W')">W</button>
+                <button class="key" onclick="handleKeyPress('E')">E</button>
+                <button class="key" onclick="handleKeyPress('R')">R</button>
+                <button class="key" onclick="handleKeyPress('T')">T</button>
+                <button class="key" onclick="handleKeyPress('Y')">Y</button>
+                <button class="key" onclick="handleKeyPress('U')">U</button>
+                <button class="key" onclick="handleKeyPress('I')">I</button>
+                <button class="key" onclick="handleKeyPress('O')">O</button>
+                <button class="key" onclick="handleKeyPress('P')">P</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key" onclick="handleKeyPress('A')">A</button>
+                <button class="key" onclick="handleKeyPress('S')">S</button>
+                <button class="key" onclick="handleKeyPress('D')">D</button>
+                <button class="key" onclick="handleKeyPress('F')">F</button>
+                <button class="key" onclick="handleKeyPress('G')">G</button>
+                <button class="key" onclick="handleKeyPress('H')">H</button>
+                <button class="key" onclick="handleKeyPress('J')">J</button>
+                <button class="key" onclick="handleKeyPress('K')">K</button>
+                <button class="key" onclick="handleKeyPress('L')">L</button>
+                <button class="key" onclick="handleKeyPress('Ñ')">Ñ</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key wide" onclick="handleKeyPress('ENTER')">ENVIAR</button>
+                <button class="key" onclick="handleKeyPress('Z')">Z</button>
+                <button class="key" onclick="handleKeyPress('X')">X</button>
+                <button class="key" onclick="handleKeyPress('C')">C</button>
+                <button class="key" onclick="handleKeyPress('V')">V</button>
+                <button class="key" onclick="handleKeyPress('B')">B</button>
+                <button class="key" onclick="handleKeyPress('N')">N</button>
+                <button class="key" onclick="handleKeyPress('M')">M</button>
+                <button class="key wide" onclick="handleKeyPress('BACKSPACE')">⌫</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de estadísticas -->
+    <div class="stats-modal" id="stats-modal">
+        <div class="stats-content">
+            <button class="stats-close" onclick="hideStats()">&times;</button>
+            <div class="stats-title">Estadísticas</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-played">0</div>
+                    <div class="stat-label">Jugadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-winrate">0</div>
+                    <div class="stat-label">% Victorias</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-current-streak">0</div>
+                    <div class="stat-label">Racha</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-max-streak">0</div>
+                    <div class="stat-label">Mejor Racha</div>
+                </div>
+            </div>
+            <div id="result-text"></div>
+            <button class="share-button" onclick="shareResult()">Compartir Resultado</button>
+            <div class="next-word">La próxima palabra será a las 00:00</div>
+        </div>
+    </div>
+
+    <!-- Mensaje temporal -->
+    <div class="message" id="message"></div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Contenido educativo sobre Wordle -->
+    <div style="max-width: 900px; margin: 2rem auto; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">🎯 Guía Completa de Wordle en Español</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎮 Cómo Jugar Wordle</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Wordle es un juego de palabras donde tienes 6 intentos para adivinar una palabra española de 5 letras. Cada día hay una nueva palabra secreta esperándote.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Verde:</strong> Letra correcta en posición correcta</li>
+                        <li><strong>Amarillo:</strong> Letra correcta en posición incorrecta</li>
+                        <li><strong>Gris:</strong> La letra no está en la palabra</li>
+                        <li><strong>Objetivo:</strong> Descifrar la palabra con las pistas</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--secondary);">
+                    <h3 style="color: var(--secondary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">💡 Estrategias Ganadoras</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Desarrolla tu técnica con estas estrategias probadas que utilizan los jugadores expertos para resolver Wordle más eficientemente.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Primera palabra:</strong> Usa vocales comunes (A, E, I, O)</li>
+                        <li><strong>Consonantes útiles:</strong> R, S, T, N, L son frecuentes</li>
+                        <li><strong>Elimina letras:</strong> Descarta las marcadas en gris</li>
+                        <li><strong>Posicionamiento:</strong> Ubica las amarillas correctamente</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--correct);">
+                    <h3 style="color: var(--correct); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🧠 Beneficios Mentales</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Jugar Wordle regularmente aporta múltiples beneficios cognitivos y de aprendizaje del idioma español.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Vocabulario:</strong> Amplía conocimiento de palabras</li>
+                        <li><strong>Ortografía:</strong> Mejora escritura en español</li>
+                        <li><strong>Lógica:</strong> Desarrolla pensamiento deductivo</li>
+                        <li><strong>Concentración:</strong> Entrena atención sostenida</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--present);">
+                    <h3 style="color: var(--present); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Consejos de Expertos</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Técnicas avanzadas utilizadas por jugadores experimentados para maximizar las probabilidades de éxito en cada partida.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Palabras iniciales:</strong> AUDIO, AROSE, ADIEU</li>
+                        <li><strong>Frecuencia de letras:</strong> Conoce las más comunes</li>
+                        <li><strong>Patrones:</strong> Identifica terminaciones típicas</li>
+                        <li><strong>Paciencia:</strong> Analiza antes de cada intento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 900px; margin: 0 auto 2rem; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border);">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes sobre Wordle</h2>
+            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "@name": "¿Cómo se juega Wordle en español?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "En Wordle tienes 6 intentos para adivinar una palabra española de 5 letras. Después de cada intento, las letras se colorean: verde si está en la posición correcta, amarillo si está en la palabra pero posición incorrecta, y gris si no está en la palabra."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "@name": "¿Cuándo sale una nueva palabra en Wordle?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Una nueva palabra de Wordle está disponible cada día a las 00:00 (medianoche). Solo puedes jugar una partida por día, lo que hace que cada intento sea más especial y desafiante."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "@name": "¿Cuáles son las mejores palabras iniciales para Wordle?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Las mejores palabras iniciales contienen vocales comunes (A, E, I, O) y consonantes frecuentes (R, S, T, N, L). Palabras como AUDIO, AROSE, ADIEU o en español ARENA, ANTES, TALES son excelentes opciones para empezar."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "@name": "¿Wordle ayuda a mejorar el vocabulario?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí, Wordle es excelente para ampliar vocabulario en español. Al jugar diariamente, descubres nuevas palabras, mejoras la ortografía, desarrollas el pensamiento lógico y entrenas la concentración de forma divertida."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "@name": "¿Puedo compartir mis resultados de Wordle?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "¡Por supuesto! Wordle incluye una función para compartir tus resultados usando emojis que muestran el patrón de colores sin revelar la palabra. Puedes compartir en redes sociales o copiar al portapapeles para enviar por mensaje."
+                        }
+                    }
+                ]
+            }
+            </script>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo se juega Wordle en español?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">En Wordle tienes 6 intentos para adivinar una palabra española de 5 letras. Después de cada intento, las letras se colorean: verde si está en la posición correcta, amarillo si está en la palabra pero en posición incorrecta, y gris si no está en la palabra. Utiliza estas pistas para descifrar la palabra secreta.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cuándo sale una nueva palabra en Wordle?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Una nueva palabra de Wordle está disponible cada día a las 00:00 (medianoche). Solo puedes jugar una partida por día, lo que hace que cada intento sea más especial y desafiante. Esta limitación diaria es parte del encanto de Wordle y crea expectativa para el próximo desafío.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cuáles son las mejores palabras iniciales para Wordle?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Las mejores palabras iniciales contienen vocales comunes (A, E, I, O) y consonantes frecuentes (R, S, T, N, L). En español, palabras como ARENA, ANTES, TALES, SOLAR, ROSAL son excelentes opciones para empezar, ya que te dan información valiosa sobre letras comunes.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Wordle ayuda a mejorar el vocabulario?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">¡Absolutamente! Wordle es excelente para ampliar tu vocabulario en español. Al jugar diariamente, descubres nuevas palabras, mejoras la ortografía, desarrollas el pensamiento lógico y deductivo, y entrenas la concentración de forma divertida y estimulante.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Puedo compartir mis resultados de Wordle?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">¡Por supuesto! Wordle incluye una función para compartir tus resultados usando emojis que muestran el patrón de colores sin revelar la palabra secreta. Puedes compartir en redes sociales o copiar al portapapeles para enviar por WhatsApp, Telegram o cualquier mensajería.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Diccionario LIMPIO de palabras españolas de exactamente 5 letras
+        // Total: 722 palabras válidas
+        const WORD_LIST = [
+            'ABAJO', 'ABEJA', 'ABETO', 'ABONO', 'ABRIL', 'ABRIR', 'ACABO', 'ACERA',
+            'ACERO', 'ACOSO', 'ACTOR', 'ACTÚA', 'ADIOS', 'ADIÓS', 'AGAVE', 'AGITA',
+            'AGUDA', 'AGUDO', 'AHORA', 'AIREA', 'AJENO', 'ALBUM', 'ALDEA', 'ALIAS',
+            'ALIEN', 'ALMAS', 'ALTAR', 'ALZAR', 'AMABA', 'AMADO', 'AMBOS', 'AMENA',
+            'AMENO', 'AMIGA', 'AMIGO', 'ANCHO', 'ANDAR', 'ANEXO', 'ANGEL', 'ANIMA',
+            'ANIMO', 'ANTES', 'ANUAL', 'APAGA', 'APODO', 'APOYO', 'ARABE', 'ARENA',
+            'AROMA', 'ARROZ', 'ASADO', 'ASTRO', 'ASUME', 'ATADO', 'ATLAS', 'ATOMO',
+            'ATRAS', 'AUDIO', 'AUTOR', 'AVENA', 'AVION', 'AVISO', 'AYUDA', 'AYUNO',
+            'AZOTE', 'BACHE', 'BAILA', 'BAILE', 'BAJAR', 'BANAL', 'BANCO', 'BANDA',
+            'BARBA', 'BARCO', 'BARRO', 'BASES', 'BASTA', 'BASTO', 'BAZAR', 'BEBER',
+            'BEBES', 'BEBIÓ', 'BELLA', 'BESAR', 'BESOS', 'BICHO', 'BLUSA', 'BOCAS',
+            'BORDE', 'BOTAS', 'BRAVO', 'BRAZO', 'BREVE', 'BRISA', 'BROMA', 'BROTA',
+            'BRUJA', 'BUENA', 'BUENO', 'BURLA', 'BURRO', 'BUSCA', 'BUSCO', 'CABAL',
+            'CABOS', 'CABRA', 'CACAO', 'CACHO', 'CAJAS', 'CALDO', 'CALLE', 'CALMA',
+            'CALOR', 'CAMAS', 'CAMPO', 'CANAL', 'CANAS', 'CANES', 'CANTA', 'CANTO',
+            'CAPAS', 'CAPAZ', 'CARAS', 'CARGA', 'CARGO', 'CARNE', 'CARPA', 'CARRO',
+            'CARTA', 'CASAS', 'CASCO', 'CASOS', 'CASTA', 'CATRE', 'CAUSA', 'CAZAR',
+            'CEBRA', 'CEDER', 'CENAR', 'CENAS', 'CERCA', 'CERDO', 'CEROS', 'CERRO',
+            'CESAR', 'CHATO', 'CHICA', 'CHICO', 'CHINA', 'CHINO', 'CHOZA', 'CICLO',
+            'CIEGA', 'CIEGO', 'CIELO', 'CIFRA', 'CIMAS', 'CINCO', 'CINTA', 'CIRCO',
+            'CISNE', 'CITAS', 'CLARA', 'CLASE', 'CLAVO', 'CLIMA', 'CLORO', 'COBRA',
+            'COBRE', 'COCHE', 'COCOA', 'COGER', 'COLAR', 'COLAS', 'COLMO', 'COLOR',
+            'COLÓN', 'COMAS', 'COMBO', 'COMEN', 'COMER', 'COMÚN', 'CONDE', 'CONOS',
+            'COPAS', 'CORAL', 'CORRE', 'CORTE', 'CORTO', 'COSAS', 'COSER', 'COSTA',
+            'CREAN', 'CREAR', 'CREER', 'CREES', 'CREMA', 'CRIAR', 'CRUCE', 'CUIDA',
+            'CULPA', 'CUOTA', 'CURAR', 'CURVA', 'DADOS', 'DANZA', 'DATOS', 'DAÑAR',
+            'DEBER', 'DECIR', 'DEJAR', 'DELTA', 'DENSA', 'DENSO', 'DESDE', 'DESEO',
+            'DICES', 'DICHA', 'DICHO', 'DIETA', 'DIGNO', 'DIOSA', 'DISCO', 'DOBLA',
+            'DOBLE', 'DOLOR', 'DONAR', 'DONDE', 'DRAMA', 'DROGA', 'DUCHA', 'DUELE',
+            'DUELO', 'DULCE', 'DUROS', 'EBANO', 'ECHAR', 'EDITA', 'ELIGE', 'ELITE',
+            'ELLOS', 'ELUDE', 'EMANA', 'EMITE', 'ENANO', 'ENERO', 'ENOJO', 'ENTRA',
+            'ENVÍA', 'EPOCA', 'ERROR', 'ESTAR', 'ETAPA', 'EVITA', 'EXIGE', 'EXITO',
+            'EXTRA', 'FACIL', 'FALDA', 'FALSO', 'FALTA', 'FANGO', 'FASES', 'FAVOR',
+            'FECHA', 'FELIZ', 'FERIA', 'FIBRA', 'FICHA', 'FIDEO', 'FINAL', 'FINCA',
+            'FIRME', 'FLACO', 'FONDO', 'FORJA', 'FORMA', 'FOTOS', 'FRASE', 'FRENO',
+            'FRESA', 'FRUTA', 'FUEGO', 'FUERA', 'GAFAS', 'GALAS', 'GALLO', 'GANAN',
+            'GANAR', 'GANAS', 'GANGA', 'GARRA', 'GASTO', 'GATOS', 'GENIO', 'GENTE',
+            'GIRAR', 'GLOBO', 'GOLPE', 'GOMAS', 'GORRA', 'GOTAS', 'GOZAR', 'GRABA',
+            'GRADO', 'GRAMA', 'GRANO', 'GRASA', 'GRAVE', 'GRIPA', 'GRITA', 'GRITO',
+            'GRUPO', 'GUAPO', 'GUIAR', 'GUSTA', 'GUSTO', 'HABER', 'HABLA', 'HACER',
+            'HACIA', 'HARTO', 'HASTA', 'HAZLO', 'HELAR', 'HERIR', 'HIELO', 'HIJOS',
+            'HILOS', 'HOGAR', 'HOJAS', 'HONOR', 'HONRA', 'HORAS', 'HORNO', 'HOTEL',
+            'HOYOS', 'HUESO', 'HUEVO', 'HUMOR', 'ICONO', 'IDEAL', 'IGUAL', 'IMITA',
+            'IMPAR', 'INDEX', 'INDIO', 'IRNOS', 'ISLAS', 'JABON', 'JAMON', 'JAMÁS',
+            'JARRA', 'JOVEN', 'JUEGO', 'JUGAR', 'JULIO', 'JUNIO', 'JUNTO', 'JUSTO',
+            'LABOR', 'LADOS', 'LAMER', 'LARGO', 'LASER', 'LAVAR', 'LECHE', 'LEJOS',
+            'LENTE', 'LENTO', 'LETRA', 'LIBRA', 'LIBRE', 'LIBRO', 'LIDER', 'LIMBO',
+            'LIMÓN', 'LINDO', 'LINEA', 'LISTA', 'LISTO', 'LLAMA', 'LLANO', 'LLAVE',
+            'LLEGA', 'LLENO', 'LLORA', 'LLORO', 'LOCAL', 'LOGRO', 'LUCHA', 'LUEGO',
+            'LUGAR', 'LUJOS', 'LUNES', 'LUZCO', 'MACHO', 'MADRE', 'MAGIA', 'MALOS',
+            'MAMBO', 'MANDO', 'MANGA', 'MANGO', 'MANOS', 'MANTA', 'MARCA', 'MARCO',
+            'MAREA', 'MARZO', 'MATAR', 'MAYOR', 'MECER', 'MEDIA', 'MEDIO', 'MEJOR',
+            'MELON', 'MENOR', 'MENOS', 'MENTE', 'MESAS', 'METAL', 'METER', 'METRO',
+            'MIEDO', 'MILLA', 'MIMAR', 'MIRAR', 'MIRES', 'MISMO', 'MITAD', 'MODOS',
+            'MOJAR', 'MOLDE', 'MONTE', 'MONTO', 'MORAL', 'MORIR', 'MOSCA', 'MOTOR',
+            'MOVER', 'MUCHO', 'MUELA', 'MUERE', 'MUEVE', 'MUJER', 'MUNDO', 'MUROS',
+            'NACER', 'NADAR', 'NAIPE', 'NARIZ', 'NEGRO', 'NERDS', 'NIETO', 'NIEVE',
+            'NIVEL', 'NIÑAS', 'NIÑOS', 'NOBLE', 'NOCHE', 'NORIA', 'NORTE', 'NOVIA',
+            'NUBES', 'NUEVA', 'NUEVO', 'NUNCA', 'OBRAS', 'OBVIO', 'OCEAN', 'OCUPA',
+            'ODIAR', 'OESTE', 'OJEAR', 'OLIVA', 'ONDAS', 'OPERA', 'ORDEN', 'OREJA',
+            'OSITO', 'OTROS', 'OVEJA', 'OÍRSE', 'PADRE', 'PAGAR', 'PALMA', 'PALTA',
+            'PANES', 'PAPEL', 'PARAR', 'PARED', 'PARTE', 'PASAR', 'PASTA', 'PASTO',
+            'PATIO', 'PAUSA', 'PEACE', 'PECES', 'PECHO', 'PEDAL', 'PEDIR', 'PEGAR',
+            'PEINE', 'PELEA', 'PELOS', 'PENSÉ', 'PERLA', 'PERRO', 'PESAR', 'PIEZA',
+            'PINOS', 'PINTA', 'PINTO', 'PISTA', 'PIZZA', 'PLACA', 'PLANA', 'PLATA',
+            'PLATO', 'PLAYA', 'PLAZA', 'PLOMA', 'PLOMO', 'PLUMA', 'POBRE', 'PODER',
+            'POEMA', 'POETA', 'POLAR', 'POLLO', 'POLVO', 'PONEN', 'PONER', 'POROS',
+            'PORTA', 'POSEE', 'PRESA', 'PRIMA', 'PRIMO', 'PRISA', 'PRIVA', 'PUEDO',
+            'PUNTO', 'PUROS', 'QUEDA', 'QUEMA', 'QUESO', 'QUIEN', 'QUIET', 'QUITA',
+            'RADIO', 'RAMAS', 'RAMOS', 'RANGO', 'RAPTO', 'RATON', 'RATÓN', 'RAZÓN',
+            'REBEL', 'RECIO', 'RECTA', 'REGLA', 'REINA', 'REINO', 'RELOJ', 'RESTO',
+            'REZAR', 'RIEGA', 'RIEGO', 'RITMO', 'ROBAR', 'ROBOT', 'RODAR', 'ROJOS',
+            'ROMBO', 'ROMPE', 'RUEDA', 'RUEGO', 'RUIDO', 'RUMBA', 'RUMOR', 'RURAL',
+            'SABER', 'SABES', 'SABIO', 'SABOR', 'SACAR', 'SAGAZ', 'SALAS', 'SALIR',
+            'SALON', 'SALSA', 'SALTA', 'SALTO', 'SALUD', 'SANTO', 'SAPOS', 'SAZON',
+            'SECAR', 'SELVA', 'SEMAN', 'SENTÍ', 'SERES', 'SERIE', 'SERIO', 'SEXTO',
+            'SIGLO', 'SIGNO', 'SILLA', 'SIRVE', 'SITIO', 'SOBRE', 'SOBRO', 'SOLAR',
+            'SOLES', 'SONAR', 'SOPAS', 'SOPLA', 'SOÑAR', 'SPORT', 'SUAVE', 'SUBIR',
+            'SUCIA', 'SUELO', 'SUEÑA', 'SUEÑO', 'SUFRE', 'SUGAR', 'SUMAR', 'SUPER',
+            'SUSTO', 'TABLA', 'TACTO', 'TALLO', 'TALON', 'TARDE', 'TAREA', 'TARJE',
+            'TARTA', 'TECHO', 'TEMAS', 'TEMER', 'TEMOR', 'TEMPO', 'TENAZ', 'TENED',
+            'TENER', 'TERCO', 'TEXTO', 'TIGRE', 'TINTA', 'TIRAR', 'TITLE', 'TOCAR',
+            'TOLDO', 'TOMAN', 'TOMAR', 'TONTO', 'TORRE', 'TORTA', 'TOTAL', 'TRAER',
+            'TRAJE', 'TRAMA', 'TRAMO', 'TRIBU', 'TRIGO', 'TRIPA', 'TROPA', 'TRUCO',
+            'TUMBA', 'TUMOR', 'TURNO', 'UNICO', 'UNIDO', 'UNION', 'UNTAR', 'URGIR',
+            'USARÉ', 'USTED', 'VACIO', 'VALLE', 'VALOR', 'VAMOS', 'VAPOR', 'VARIO',
+            'VASOS', 'VASTO', 'VAYAN', 'VECES', 'VEMOS', 'VENCE', 'VENIR', 'VERBO',
+            'VERDE', 'VERSE', 'VERSO', 'VIAJE', 'VICIO', 'VIDAS', 'VIDEO', 'VIEJO',
+            'VIGOR', 'VILLA', 'VIRUS', 'VISTA', 'VIVES', 'VIVIR', 'VOCAL', 'VOLAR',
+            'VOLTA', 'VOTAR', 'VUELA', 'VUELO', 'YERNO', 'YOGUR', 'ZANJA', 'ZARPA',
+            'ZORRO', 'ÁCIDO'
+        ];
+
+        // Estado del juego
+        let currentRow = 0;
+        let currentCol = 0;
+        let gameBoard = [];
+        let todaysWord = '';
+        let gameFinished = false;
+        let keyStates = {};
+
+        // Estadísticas
+        let stats = {
+            played: 0,
+            won: 0,
+            currentStreak: 0,
+            maxStreak: 0,
+            lastPlayed: null,
+            todayCompleted: false
+        };
+
+        // Inicialización del juego
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            initializeGame();
+            setupKeyboardListener();
+        });
+
+        function getTodaysWord() {
+            const startDate = new Date('2025-01-01');
+            const today = new Date();
+            const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            return WORD_LIST[daysDiff % WORD_LIST.length].toUpperCase();
+        }
+
+        function initializeGame() {
+            todaysWord = getTodaysWord();
+            
+            const today = new Date().toDateString();
+            if (stats.lastPlayed === today && stats.todayCompleted) {
+                showCompletedGame();
+                return;
+            }
+
+            gameBoard = Array(6).fill().map(() => Array(5).fill(''));
+            currentRow = 0;
+            currentCol = 0;
+            gameFinished = false;
+            keyStates = {};
+
+            generateBoard();
+            updateDisplay();
+        }
+
+        function generateBoard() {
+            const board = document.getElementById('game-board');
+            board.innerHTML = '';
+
+            for (let i = 0; i < 6; i++) {
+                const row = document.createElement('div');
+                row.className = 'word-row';
+                row.id = `row-${i}`;
+
+                for (let j = 0; j < 5; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'letter-cell';
+                    cell.id = `cell-${i}-${j}`;
+                    row.appendChild(cell);
+                }
+
+                board.appendChild(row);
+            }
+        }
+
+        function setupKeyboardListener() {
+            document.addEventListener('keydown', function(event) {
+                if (gameFinished) return;
+
+                const key = event.key.toUpperCase();
+                
+                if (key === 'ENTER') {
+                    handleKeyPress('ENTER');
+                } else if (key === 'BACKSPACE') {
+                    handleKeyPress('BACKSPACE');
+                } else if (/^[A-ZÑ]$/.test(key)) {
+                    handleKeyPress(key);
+                }
+            });
+        }
+
+        function handleKeyPress(key) {
+            if (gameFinished) return;
+
+            if (key === 'BACKSPACE') {
+                if (currentCol > 0) {
+                    currentCol--;
+                    gameBoard[currentRow][currentCol] = '';
+                    updateCell(currentRow, currentCol, '');
+                }
+            } else if (key === 'ENTER') {
+                if (currentCol === 5) {
+                    checkWord();
+                } else {
+                    showMessage('Palabra incompleta');
+                }
+            } else if (/^[A-ZÑ]$/.test(key) && currentCol < 5) {
+                gameBoard[currentRow][currentCol] = key;
+                updateCell(currentRow, currentCol, key);
+                currentCol++;
+            }
+
+            updateDisplay();
+        }
+
+        function updateCell(row, col, letter) {
+            const cell = document.getElementById(`cell-${row}-${col}`);
+            cell.textContent = letter;
+            cell.classList.toggle('filled', letter !== '');
+        }
+
+        function checkWord() {
+            const word = gameBoard[currentRow].join('');
+            
+            if (!WORD_LIST.includes(word)) {
+                showMessage('Palabra no válida');
+                
+                // Limpiar la fila actual para permitir reintento
+                for (let i = 0; i < 5; i++) {
+                    gameBoard[currentRow][i] = '';
+                    updateCell(currentRow, i, '');
+                }
+                currentCol = 0;
+                updateDisplay();
+                return;
+            }
+
+            evaluateWord(word, currentRow);
+
+            if (word === todaysWord) {
+                gameFinished = true;
+                stats.won++;
+                stats.currentStreak++;
+                stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
+                stats.played++;
+                stats.lastPlayed = new Date().toDateString();
+                stats.todayCompleted = true;
+                
+                saveTodayResult();
+                saveStats();
+                
+                setTimeout(() => {
+                    showMessage('¡Excelente!', 2000);
+                    setTimeout(() => showStats(true), 2500);
+                }, 1000);
+            } else if (currentRow === 5) {
+                gameFinished = true;
+                stats.currentStreak = 0;
+                stats.played++;
+                stats.lastPlayed = new Date().toDateString();
+                stats.todayCompleted = true;
+                
+                saveTodayResult();
+                saveStats();
+                
+                setTimeout(() => {
+                    showMessage(`La palabra era: ${todaysWord}`, 3000);
+                    setTimeout(() => showStats(true), 3500);
+                }, 1000);
+            } else {
+                currentRow++;
+                currentCol = 0;
+            }
+
+            updateDisplay();
+        }
+
+        function evaluateWord(word, row) {
+            const result = Array(5).fill('absent');
+            const wordArray = todaysWord.split('');
+            const guessArray = word.split('');
+
+            // Primero marcar letras correctas en posición correcta
+            for (let i = 0; i < 5; i++) {
+                if (guessArray[i] === wordArray[i]) {
+                    result[i] = 'correct';
+                    wordArray[i] = null;
+                }
+            }
+
+            // Luego marcar letras correctas en posición incorrecta
+            for (let i = 0; i < 5; i++) {
+                if (result[i] === 'absent' && wordArray.includes(guessArray[i])) {
+                    result[i] = 'present';
+                    wordArray[wordArray.indexOf(guessArray[i])] = null;
+                }
+            }
+
+            // Aplicar colores con animación
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const cell = document.getElementById(`cell-${row}-${i}`);
+                    cell.classList.add(result[i]);
+                    
+                    const letter = guessArray[i];
+                    if (!keyStates[letter] || 
+                        (keyStates[letter] === 'absent' && result[i] !== 'absent') ||
+                        (keyStates[letter] === 'present' && result[i] === 'correct')) {
+                        keyStates[letter] = result[i];
+                        updateKeyboard(letter, result[i]);
+                    }
+                }, i * 100);
+            }
+        }
+
+        function updateKeyboard(letter, state) {
+            const keys = document.querySelectorAll('.key');
+            keys.forEach(key => {
+                if (key.textContent === letter) {
+                    key.classList.remove('correct', 'present', 'absent');
+                    key.classList.add(state);
+                }
+            });
+        }
+
+        function showMessage(text, duration = 1500) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.classList.add('show');
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, duration);
+        }
+
+        function updateDisplay() {
+            document.getElementById('current-try').textContent = Math.min(currentRow + 1, 6);
+            document.getElementById('games-won').textContent = stats.won;
+            document.getElementById('streak').textContent = stats.currentStreak;
+        }
+
+        function showStats(gameEnded = false) {
+            const modal = document.getElementById('stats-modal');
+            
+            document.getElementById('stat-played').textContent = stats.played;
+            document.getElementById('stat-winrate').textContent = 
+                stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0;
+            document.getElementById('stat-current-streak').textContent = stats.currentStreak;
+            document.getElementById('stat-max-streak').textContent = stats.maxStreak;
+
+            if (gameEnded) {
+                const resultText = document.getElementById('result-text');
+                if (gameBoard[currentRow] && gameBoard[currentRow].join('') === todaysWord) {
+                    resultText.innerHTML = `<h3 style="color: var(--correct); margin: 20px 0;">¡Felicitaciones!</h3>
+                                          <p>Resolviste el Wordle de hoy en ${currentRow + 1} ${currentRow === 0 ? 'intento' : 'intentos'}.</p>`;
+                } else {
+                    resultText.innerHTML = `<h3 style="color: var(--absent); margin: 20px 0;">¡Casi lo logras!</h3>
+                                          <p>La palabra era: <strong>${todaysWord}</strong></p>`;
+                }
+            } else {
+                document.getElementById('result-text').innerHTML = '';
+            }
+
+            modal.classList.add('show');
+        }
+
+        function hideStats() {
+            document.getElementById('stats-modal').classList.remove('show');
+        }
+
+        function shareResult() {
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('es-ES');
+            
+            let resultText = `Wordle meskeIA - ${dateStr}\n${currentRow + 1}/6\n\n`;
+            
+            // Generar cuadrícula con emojis
+            for (let i = 0; i <= currentRow; i++) {
+                let rowText = '';
+                for (let j = 0; j < 5; j++) {
+                    const cell = document.getElementById(`cell-${i}-${j}`);
+                    if (cell.classList.contains('correct')) {
+                        rowText += '🟩';
+                    } else if (cell.classList.contains('present')) {
+                        rowText += '🟨';
+                    } else {
+                        rowText += '⬜';
+                    }
+                }
+                resultText += rowText + '\n';
+            }
+            
+            resultText += '\nmeskeia.com';
+            
+            // Intentar compartir nativo (móvil) o copiar (PC)
+            if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                navigator.share({
+                    title: 'Mi resultado Wordle meskeIA',
+                    text: resultText
+                }).catch(() => {
+                    copyToClipboard(resultText);
+                });
+            } else {
+                copyToClipboard(resultText);
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showMessage('¡Resultado copiado al portapapeles!', 2000);
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showMessage('¡Resultado copiado al portapapeles!', 2000);
+            } catch (err) {
+                showMessage('Error al copiar. Intenta manualmente.', 2000);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showRules() {
+            alert(`CÓMO JUGAR WORDLE
+
+OBJETIVO:
+Adivina la palabra de 5 letras en máximo 6 intentos.
+
+REGLAS:
+• Cada intento debe ser una palabra válida en español
+• Después de cada intento, las letras cambiarán de color:
+
+VERDE = Letra correcta en posición correcta
+AMARILLO = Letra correcta pero en posición incorrecta  
+GRIS = La letra no está en la palabra
+
+CONSEJOS:
+• Empieza con palabras que tengan vocales comunes
+• Usa las pistas de colores para tu siguiente intento
+• Una nueva palabra cada día a las 00:00!
+
+¡Buena suerte!`);
+        }
+
+        function showCompletedGame() {
+    gameFinished = true;
+    
+    // Recuperar y mostrar el resultado del día desde localStorage
+    const todayResult = localStorage.getItem('todayResult');
+    if (todayResult) {
+        const result = JSON.parse(todayResult);
+        currentRow = result.attempts - 1; // Ajustar índice correctamente
+        gameBoard = result.board;
+        
+        // IMPORTANTE: Regenerar el tablero primero
+        generateBoard();
+        
+        // Recrear la visualización del resultado
+        for (let i = 0; i < result.attempts; i++) {
+            for (let j = 0; j < 5; j++) {
+                const cell = document.getElementById(`cell-${i}-${j}`);
+                if (cell && result.board[i] && result.board[i][j]) {
+                    cell.textContent = result.board[i][j];
+                    cell.classList.add('filled');
+                    if (result.colors[i] && result.colors[i][j]) {
+                        cell.classList.add(result.colors[i][j]);
+                    }
+                }
+            }
+        }
+        
+        // Actualizar display
+        updateDisplay();
+        
+        showMessage(`Completaste el Wordle en ${result.attempts} intentos. Nueva palabra a las 00:00`, 3000);
+        
+    } else {
+        showMessage('¡Juego completado! Nueva palabra a las 00:00', 2000);
+        
+    }
+}
+
+        function loadStats() {
+            const saved = localStorage.getItem('wordleStats');
+            if (saved) {
+                stats = { ...stats, ...JSON.parse(saved) };
+            }
+        }
+
+        function saveStats() {
+            localStorage.setItem('wordleStats', JSON.stringify(stats));
+        }
+
+        function saveTodayResult() {
+            // Recopilar colores de cada celda
+            const colors = [];
+            for (let i = 0; i <= currentRow; i++) {
+                const rowColors = [];
+                for (let j = 0; j < 5; j++) {
+                    const cell = document.getElementById(`cell-${i}-${j}`);
+                    if (cell.classList.contains('correct')) {
+                        rowColors.push('correct');
+                    } else if (cell.classList.contains('present')) {
+                        rowColors.push('present');
+                    } else if (cell.classList.contains('absent')) {
+                        rowColors.push('absent');
+                    } else {
+                        rowColors.push('');
+                    }
+                }
+                colors.push(rowColors);
+            }
+            
+            // Guardar resultado completo
+            const todayResult = {
+                date: new Date().toDateString(),
+                word: todaysWord,
+                attempts: currentRow + 1,
+                board: gameBoard.slice(0, currentRow + 1),
+                colors: colors,
+                won: gameBoard[currentRow].join('') === todaysWord
+            };
+            
+            localStorage.setItem('todayResult', JSON.stringify(todayResult));
+        }
+
+        document.getElementById('stats-modal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                hideStats();
+            }
+        });
+    </script>
+</body>
+</html>

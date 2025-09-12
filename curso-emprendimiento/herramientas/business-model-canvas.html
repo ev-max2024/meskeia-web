@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Model Canvas Interactivo | Curso Emprendimiento meskeIA</title>
+    <meta name="description" content="Herramienta interactiva para crear tu Business Model Canvas. Diseña el modelo de negocio de tu startup con esta plantilla práctica y guarda tu progreso.">
+    <meta name="keywords" content="business model canvas, modelo de negocio, startup, emprendimiento, plantilla, herramienta interactiva">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/curso-emprendimiento/herramientas/business-model-canvas">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Business Model Canvas Interactivo - meskeIA">
+    <meta property="og:description" content="Crea tu modelo de negocio con nuestra herramienta interactiva del Business Model Canvas">
+    <meta property="og:url" content="https://meskeia.com/curso-emprendimiento/herramientas/business-model-canvas">
+    
+    <link rel="icon" type="image/png" href="../../icon_meskeia.png">
+
+    <style>
+        :root {
+            /* Paleta meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --primary: #2E86AB;
+            --secondary: #A23B72;
+            --success: #38A169;
+            --border: #E2E8F0;
+            --focus: #EBF8FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #9333ea;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
+
+        /* Canvas Grid */
+        .canvas-container {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .canvas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            min-height: 600px;
+        }
+
+        .canvas-block {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        .canvas-block:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.1);
+        }
+
+        .canvas-block.focus {
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .canvas-block h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .canvas-block p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .canvas-input {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            resize: vertical;
+            background: white;
+            color: var(--text-primary);
+        }
+
+        .canvas-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        .canvas-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Grid specific layouts */
+        .socios-clave { grid-column: 1; grid-row: 1; }
+        .actividades-clave { grid-column: 2; grid-row: 1; }
+        .propuesta-valor { grid-column: 3; grid-row: 1/3; }
+        .relaciones-clientes { grid-column: 4; grid-row: 1; }
+        .segmentos-clientes { grid-column: 5; grid-row: 1; }
+        .recursos-clave { grid-column: 2; grid-row: 2; }
+        .canales { grid-column: 4; grid-row: 2; }
+
+        .estructura-costes { 
+            grid-column: 1/3; 
+            grid-row: 3; 
+            background: linear-gradient(135deg, #fee2e2, #fef2f2);
+        }
+        
+        .fuentes-ingresos { 
+            grid-column: 4/6; 
+            grid-row: 3;
+            background: linear-gradient(135deg, #dcfce7, #f0fdf4);
+        }
+
+        /* Expandir grid para incluir fila de finanzas */
+        .canvas-grid {
+            grid-template-rows: 1fr 1fr auto;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .canvas-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: auto;
+                gap: 12px;
+            }
+            
+            .socios-clave { grid-column: 1; grid-row: 1; }
+            .actividades-clave { grid-column: 2; grid-row: 1; }
+            .recursos-clave { grid-column: 3; grid-row: 1; }
+            .propuesta-valor { grid-column: 1/4; grid-row: 2; }
+            .relaciones-clientes { grid-column: 1; grid-row: 3; }
+            .canales { grid-column: 2; grid-row: 3; }
+            .segmentos-clientes { grid-column: 3; grid-row: 3; }
+            .estructura-costes { grid-column: 1/3; grid-row: 4; }
+            .fuentes-ingresos { grid-column: 3; grid-row: 4; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                padding-top: 80px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .canvas-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .canvas-grid > div {
+                grid-column: 1 !important;
+            }
+            
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Ejemplo */
+        .ejemplo-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .ejemplo-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../curso-emprendimiento.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Business Model Canvas Interactivo</h1>
+            <p>Diseña el modelo de negocio de tu startup de forma visual e intuitiva. Completa cada bloque y guarda tu progreso.</p>
+        </div>
+
+        <!-- Progress indicator -->
+        <div class="progress-indicator">
+            <p><strong id="progress-text">0 de 9 bloques completados</strong></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn" onclick="loadExample()">📖 Ver Ejemplo (Glovo)</button>
+            <button class="btn btn-success" onclick="saveCanvas()">💾 Guardar Canvas</button>
+            <button class="btn btn-secondary" onclick="exportCanvas()">📄 Exportar PDF</button>
+            <button class="btn btn-secondary" onclick="clearCanvas()">🗑️ Limpiar Todo</button>
+            <button class="btn" onclick="window.location.href='../curso-emprendimiento.html'">← Volver al Curso</button>
+        </div>
+
+        <!-- Canvas -->
+        <div class="canvas-container">
+            <div class="canvas-grid">
+                <!-- Socios Clave -->
+                <div class="canvas-block socios-clave">
+                    <h3>👥 Socios Clave</h3>
+                    <p>¿Quiénes son tus partners estratégicos?</p>
+                    <textarea class="canvas-input" id="socios-clave" placeholder="Ej: Proveedores principales, alianzas estratégicas, inversores clave..."></textarea>
+                </div>
+
+                <!-- Actividades Clave -->
+                <div class="canvas-block actividades-clave">
+                    <h3>⚡ Actividades Clave</h3>
+                    <p>¿Qué acciones son esenciales para tu negocio?</p>
+                    <textarea class="canvas-input" id="actividades-clave" placeholder="Ej: Desarrollo de producto, marketing, logística, servicio al cliente..."></textarea>
+                </div>
+
+                <!-- Recursos Clave -->
+                <div class="canvas-block recursos-clave">
+                    <h3>🎯 Recursos Clave</h3>
+                    <p>¿Qué recursos necesitas para funcionar?</p>
+                    <textarea class="canvas-input" id="recursos-clave" placeholder="Ej: Tecnología, equipo humano, capital, marca, conocimiento..."></textarea>
+                </div>
+
+                <!-- Propuesta de Valor (Centro) -->
+                <div class="canvas-block propuesta-valor">
+                    <h3>💎 Propuesta de Valor</h3>
+                    <p>¿Qué problema resuelves y por qué te elegirán?</p>
+                    <textarea class="canvas-input" id="propuesta-valor" placeholder="Ej: Entrega ultra-rápida de comida a domicilio con seguimiento en tiempo real y variedad infinita de opciones..."></textarea>
+                </div>
+
+                <!-- Relaciones con Clientes -->
+                <div class="canvas-block relaciones-clientes">
+                    <h3>🤝 Relación con Clientes</h3>
+                    <p>¿Cómo interactúas con tus clientes?</p>
+                    <textarea class="canvas-input" id="relaciones-clientes" placeholder="Ej: Autoservicio, comunidad online, soporte personalizado, co-creación..."></textarea>
+                </div>
+
+                <!-- Canales -->
+                <div class="canvas-block canales">
+                    <h3>📱 Canales</h3>
+                    <p>¿Cómo llegas a tus clientes?</p>
+                    <textarea class="canvas-input" id="canales" placeholder="Ej: App móvil, web, redes sociales, tienda física, partnerships..."></textarea>
+                </div>
+
+                <!-- Segmentos de Clientes -->
+                <div class="canvas-block segmentos-clientes">
+                    <h3>🎪 Segmentos de Clientes</h3>
+                    <p>¿Para quién creas valor?</p>
+                    <textarea class="canvas-input" id="segmentos-clientes" placeholder="Ej: Profesionales urbanos 25-40 años, familias ocupadas, estudiantes universitarios..."></textarea>
+                </div>
+
+                <!-- Estructura de Costes -->
+                <div class="canvas-block estructura-costes">
+                    <h3>💸 Estructura de Costes</h3>
+                    <p>¿Cuáles son tus principales gastos?</p>
+                    <textarea class="canvas-input" id="estructura-costes" placeholder="Ej: Personal (40%), marketing (25%), tecnología (20%), logística (15%)..."></textarea>
+                </div>
+
+                <!-- Fuentes de Ingresos -->
+                <div class="canvas-block fuentes-ingresos">
+                    <h3>💰 Fuentes de Ingresos</h3>
+                    <p>¿Cómo generas dinero?</p>
+                    <textarea class="canvas-input" id="fuentes-ingresos" placeholder="Ej: Comisión por pedido (80%), suscripciones premium (15%), publicidad (5%)..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplo -->
+        <div class="ejemplo-card" id="ejemplo-glovo" style="display: none;">
+            <h4>📖 Ejemplo: Modelo de Negocio de Glovo</h4>
+            <p><strong>Propuesta de Valor:</strong> "Tu comprador personal que te trae cualquier cosa de tu ciudad en menos de 30 minutos"</p>
+            <p><strong>Segmentos:</strong> Usuarios urbanos ocupados + Restaurantes/comercios + Riders</p>
+            <p><strong>Ingresos:</strong> Comisiones por pedido + tarifas de entrega + servicios premium</p>
+            <p><em>Haz clic en "Ver Ejemplo" para cargar este modelo completo en el canvas</em></p>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Estado del canvas
+        let canvasData = {};
+        const fieldIds = ['socios-clave', 'actividades-clave', 'recursos-clave', 'propuesta-valor', 
+                         'relaciones-clientes', 'canales', 'segmentos-clientes', 'estructura-costes', 'fuentes-ingresos'];
+
+        // Cargar datos guardados al inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCanvas();
+            updateProgress();
+            setupEventListeners();
+        });
+
+        // Setup event listeners para todas las áreas de texto
+        function setupEventListeners() {
+            fieldIds.forEach(id => {
+                const field = document.getElementById(id);
+                if (field) {
+                    field.addEventListener('input', function() {
+                        updateProgress();
+                        autoSave();
+                    });
+                    
+                    field.addEventListener('focus', function() {
+                        field.parentElement.classList.add('focus');
+                    });
+                    
+                    field.addEventListener('blur', function() {
+                        field.parentElement.classList.remove('focus');
+                    });
+                }
+            });
+        }
+
+        // Actualizar barra de progreso
+        function updateProgress() {
+            let completed = 0;
+            fieldIds.forEach(id => {
+                const field = document.getElementById(id);
+                if (field && field.value.trim().length > 10) {
+                    completed++;
+                }
+            });
+            
+            const percentage = (completed / fieldIds.length) * 100;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `${completed} de ${fieldIds.length} bloques completados`;
+        }
+
+        // Auto-guardado cada 5 segundos
+        function autoSave() {
+            fieldIds.forEach(id => {
+                const field = document.getElementById(id);
+                if (field) {
+                    canvasData[id] = field.value;
+                }
+            });
+            localStorage.setItem('meskeia_canvas_data', JSON.stringify(canvasData));
+        }
+
+        // Guardar canvas
+        function saveCanvas() {
+            autoSave();
+            showToast('💾 Canvas guardado correctamente');
+        }
+
+        // Cargar canvas
+        function loadCanvas() {
+            const savedData = localStorage.getItem('meskeia_canvas_data');
+            if (savedData) {
+                canvasData = JSON.parse(savedData);
+                fieldIds.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field && canvasData[id]) {
+                        field.value = canvasData[id];
+                    }
+                });
+            }
+        }
+
+        // Limpiar canvas
+        function clearCanvas() {
+            if (confirm('¿Estás seguro de que quieres borrar todo el canvas?')) {
+                fieldIds.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field) {
+                        field.value = '';
+                    }
+                });
+                localStorage.removeItem('meskeia_canvas_data');
+                updateProgress();
+                showToast('🗑️ Canvas limpiado');
+            }
+        }
+
+        // Cargar ejemplo de Glovo
+        function loadExample() {
+            const glovoExample = {
+                'socios-clave': 'Restaurantes y comercios locales\nRiders independientes\nSistemas de pago (Stripe, PayPal)\nMapas y geolocalización\nInversores y aceleradoras',
+                'actividades-clave': 'Desarrollo y mantenimiento de la app\nGestión de la red de riders\nAdquisición de comercios\nMarketing y branding\nOperaciones logísticas\nSoporte al cliente',
+                'recursos-clave': 'Tecnología y algoritmos de matching\nBase de datos de usuarios\nRed de riders\nMarca reconocida\nEquipo de ingeniería\nCapital para expansión',
+                'propuesta-valor': 'Tu comprador personal que te trae cualquier cosa de tu ciudad en menos de 30 minutos.\n\nConveniencia máxima: desde comida hasta medicinas, flores, supermercado.\nSeguimiento en tiempo real.\nVariedad infinita de opciones.\nDisponibilidad 24/7 en muchas ciudades.',
+                'relaciones-clientes': 'Autoservicio a través de la app\nSoporte por chat en tiempo real\nPrograma de fidelización\nNotificaciones push personalizadas\nComunidad en redes sociales',
+                'canales': 'App móvil (principal)\nSitio web\nRedes sociales\nMarketing digital\nReferidos de usuarios\nPartnerships con comercios',
+                'segmentos-clientes': 'Usuarios finales: Profesionales urbanos 25-45 años, familias ocupadas, estudiantes\nComercios: Restaurantes, supermercados, farmacias, floristerías\nRiders: Personas buscando ingresos flexibles',
+                'estructura-costes': 'Personal y tecnología (40%)\nMarketing y adquisición (25%)\nOperaciones y logística (20%)\nComisiones de pago (10%)\nInfraestructura y oficinas (5%)',
+                'fuentes-ingresos': 'Comisión por pedido a comercios (60%)\nTarifas de entrega a usuarios (30%)\nServicios premium para comercios (8%)\nPublicidad en la app (2%)'
+            };
+
+            fieldIds.forEach(id => {
+                const field = document.getElementById(id);
+                if (field && glovoExample[id]) {
+                    field.value = glovoExample[id];
+                }
+            });
+
+            updateProgress();
+            showToast('📖 Ejemplo de Glovo cargado');
+            document.getElementById('ejemplo-glovo').style.display = 'block';
+        }
+
+        // Exportar a PDF (usando print)
+        function exportCanvas() {
+            // Crear una vista optimizada para impresión
+            const printWindow = window.open('', '_blank');
+            const canvasHtml = generatePrintableCanvas();
+            
+            printWindow.document.write(canvasHtml);
+            printWindow.document.close();
+            
+            setTimeout(() => {
+                printWindow.print();
+            }, 500);
+            
+            showToast('📄 Abriendo vista para imprimir/exportar');
+        }
+
+        // Generar HTML para impresión
+        function generatePrintableCanvas() {
+            const data = {};
+            fieldIds.forEach(id => {
+                const field = document.getElementById(id);
+                data[id] = field ? field.value : '';
+            });
+
+            return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Mi Business Model Canvas - meskeIA</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; }
+                    .canvas-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; grid-template-rows: 1fr 1fr auto; gap: 10px; }
+                    .canvas-block { border: 1px solid #ccc; padding: 10px; min-height: 150px; }
+                    .canvas-block h3 { margin: 0 0 10px 0; font-size: 14px; color: #2E86AB; }
+                    .canvas-block p { margin: 0 0 8px 0; font-size: 11px; color: #666; }
+                    .content { font-size: 12px; white-space: pre-wrap; }
+                    .socios-clave { grid-column: 1; grid-row: 1; }
+                    .actividades-clave { grid-column: 2; grid-row: 1; }
+                    .propuesta-valor { grid-column: 3; grid-row: 1/3; background: #f0f9ff; }
+                    .relaciones-clientes { grid-column: 4; grid-row: 1; }
+                    .segmentos-clientes { grid-column: 5; grid-row: 1; }
+                    .recursos-clave { grid-column: 2; grid-row: 2; }
+                    .canales { grid-column: 4; grid-row: 2; }
+                    .estructura-costes { grid-column: 1/3; grid-row: 3; background: #fef2f2; }
+                    .fuentes-ingresos { grid-column: 4/6; grid-row: 3; background: #f0fdf4; }
+                    .header { text-align: center; margin-bottom: 20px; }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>Mi Business Model Canvas</h1>
+                    <p>Creado con meskeIA - ${new Date().toLocaleDateString()}</p>
+                </div>
+                <div class="canvas-grid">
+                    <div class="canvas-block socios-clave">
+                        <h3>👥 Socios Clave</h3>
+                        <p>¿Quiénes son tus partners estratégicos?</p>
+                        <div class="content">${data['socios-clave']}</div>
+                    </div>
+                    <div class="canvas-block actividades-clave">
+                        <h3>⚡ Actividades Clave</h3>
+                        <p>¿Qué acciones son esenciales para tu negocio?</p>
+                        <div class="content">${data['actividades-clave']}</div>
+                    </div>
+                    <div class="canvas-block recursos-clave">
+                        <h3>🎯 Recursos Clave</h3>
+                        <p>¿Qué recursos necesitas para funcionar?</p>
+                        <div class="content">${data['recursos-clave']}</div>
+                    </div>
+                    <div class="canvas-block propuesta-valor">
+                        <h3>💎 Propuesta de Valor</h3>
+                        <p>¿Qué problema resuelves y por qué te elegirán?</p>
+                        <div class="content">${data['propuesta-valor']}</div>
+                    </div>
+                    <div class="canvas-block relaciones-clientes">
+                        <h3>🤝 Relación con Clientes</h3>
+                        <p>¿Cómo interactúas con tus clientes?</p>
+                        <div class="content">${data['relaciones-clientes']}</div>
+                    </div>
+                    <div class="canvas-block canales">
+                        <h3>📱 Canales</h3>
+                        <p>¿Cómo llegas a tus clientes?</p>
+                        <div class="content">${data['canales']}</div>
+                    </div>
+                    <div class="canvas-block segmentos-clientes">
+                        <h3>🎪 Segmentos de Clientes</h3>
+                        <p>¿Para quién creas valor?</p>
+                        <div class="content">${data['segmentos-clientes']}</div>
+                    </div>
+                    <div class="canvas-block estructura-costes">
+                        <h3>💸 Estructura de Costes</h3>
+                        <p>¿Cuáles son tus principales gastos?</p>
+                        <div class="content">${data['estructura-costes']}</div>
+                    </div>
+                    <div class="canvas-block fuentes-ingresos">
+                        <h3>💰 Fuentes de Ingresos</h3>
+                        <p>¿Cómo generas dinero?</p>
+                        <div class="content">${data['fuentes-ingresos']}</div>
+                    </div>
+                </div>
+            </body>
+            </html>`;
+        }
+
+        // Mostrar toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

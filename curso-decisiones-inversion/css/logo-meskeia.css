@@ -1,0 +1,123 @@
+/* Estilos del Logo meskeIA para páginas internas */
+
+.nav-logo-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 15px;
+    left: 15px;
+}
+
+.logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+}
+
+.neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.neural-dot:nth-child(1) { top: 6px; left: 10px; }
+.neural-dot:nth-child(2) { top: 12px; right: 8px; }
+.neural-dot:nth-child(3) { bottom: 10px; left: 6px; }
+.neural-dot:nth-child(4) { bottom: 6px; right: 12px; }
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #2C3E50;
+}
+
+.logo-text .meske {
+    color: #2E86AB;
+    font-weight: 600;
+}
+
+.logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+.main-title-inline {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #2C3E50;
+    margin: 0;
+    margin-left: 1rem;
+}
+
+/* Responsive para páginas internas */
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 1.1rem;
+    }
+    
+    .main-title-inline {
+        font-size: 1rem;
+    }
+    
+    .nav-logo-enhanced {
+        gap: 10px;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+}

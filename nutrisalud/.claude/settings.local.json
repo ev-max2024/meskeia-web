@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Read(//c/Users/jaceb/meskeIA/Aplicaciones/Evaluador de Salud/**)",
+      "Read(//c/Users/jaceb/meskeIA/Web meskeIA/**)",
+      "Bash(start index.html)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión del Riesgo - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+    <link rel="stylesheet" href="../css/estrategias.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="estrategias-inversion.html" class="active">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="../herramientas/herramientas.html">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="../herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="../herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="../herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>⚖️ Gestión del Riesgo en Inversiones</h1>
+            <p>Aprende a proteger tu capital y optimizar la relación riesgo-rentabilidad de tu cartera</p>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="asset-allocation.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Asset Allocation</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">6 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="psicologia-inversor.html" class="course-nav-btn next">
+                <span>Psicología</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- Conexiones conceptuales -->
+        <div class="alert alert-warning">
+            <h4>⚡ Antes de Continuar</h4>
+            <p>La gestión de riesgo es <strong>transversal</strong> a todo el proceso de inversión:</p>
+            <ul>
+                <li>📊 <a href="asset-allocation.html">Asset Allocation</a> - La diversificación es tu primera línea de defensa</li>
+                <li>🧠 <a href="psicologia-inversor.html">Psicología</a> - Los sesgos emocionales amplifican los riesgos</li>
+                <li>💼 <a href="casos-practicos.html">Casos Prácticos</a> - Ve ejemplos reales de gestión de crisis</li>
+            </ul>
+        </div>
+
+        <!-- Breadcrumb de progreso -->
+        <div class="progress-breadcrumb">
+            <div class="progress-container">
+                <div class="progress-step completed">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Fundamentos</span>
+                </div>
+                <div class="progress-line completed"></div>
+                <div class="progress-step completed">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Técnicas</span>
+                </div>
+                <div class="progress-line completed"></div>
+                <div class="progress-step active">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Gestión Riesgo</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Psicología</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <span class="step-number">5</span>
+                    <span class="step-label">Implementación</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introducción -->
+        <section id="introduccion">
+            <div class="card">
+                <h2>🎯 ¿Qué Aprenderás en Esta Sección?</h2>
+                <p>El riesgo no es tu enemigo; la ignorancia sobre el riesgo sí lo es. Aquí aprenderás a medir, gestionar y utilizar el riesgo a tu favor para construir una cartera robusta y resiliente.</p>
+                
+                <div class="learning-objectives">
+                    <h3>🎓 Objetivos de Aprendizaje</h3>
+                    <ul class="objectives-list">
+                        <li>✅ Entender los diferentes tipos de riesgo</li>
+                        <li>✅ Medir el riesgo de tu cartera</li>
+                        <li>✅ Implementar diversificación efectiva</li>
+                        <li>✅ Estrategias de protección de capital</li>
+                    </ul>
+                </div>
+
+                <div class="reading-time">
+                    <span class="time-icon">⏱️</span>
+                    <span>Tiempo estimado de lectura: 10-12 minutos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipos de Riesgo -->
+        <section id="tipos-riesgo">
+            <div class="card">
+                <h2>🎭 Los Múltiples Rostros del Riesgo</h2>
+                <p>El riesgo en inversiones tiene muchas caras. Conocer al enemigo es el primer paso para vencerlo.</p>
+
+                <div class="risk-types-container">
+                    <!-- Riesgo de Mercado -->
+                    <div class="risk-type-card market-risk">
+                        <div class="risk-header">
+                            <span class="risk-icon">📉</span>
+                            <h3>Riesgo de Mercado</h3>
+                            <p class="risk-subtitle">El riesgo de que todo baje</p>
+                        </div>
+                        <div class="risk-content">
+                            <div class="risk-definition">
+                                <h4>¿Qué es?</h4>
+                                <p>La posibilidad de que toda la cartera pierda valor debido a factores macroeconómicos que afectan a todos los activos.</p>
+                            </div>
+                            <div class="risk-examples">
+                                <h4>📋 Ejemplos</h4>
+                                <ul>
+                                    <li>Crisis financiera 2008: -50% mercados globales</li>
+                                    <li>COVID-19 Marzo 2020: -30% en 3 semanas</li>
+                                    <li>Burbuja puntocom 2000: -78% NASDAQ</li>
+                                </ul>
+                            </div>
+                            <div class="risk-management">
+                                <h4>🛡️ Cómo Gestionarlo</h4>
+                                <ul>
+                                    <li><strong>No se puede eliminar</strong> (riesgo sistemático)</li>
+                                    <li>Diversificación temporal (DCA)</li>
+                                    <li>Mantener horizonte largo plazo</li>
+                                    <li>Hedging con bonos o cash</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Riesgo Específico -->
+                    <div class="risk-type-card specific-risk">
+                        <div class="risk-header">
+                            <span class="risk-icon">🏢</span>
+                            <h3>Riesgo Específico</h3>
+                            <p class="risk-subtitle">Cuando una empresa/sector falla</p>
+                        </div>
+                        <div class="risk-content">
+                            <div class="risk-definition">
+                                <h4>¿Qué es?</h4>
+                                <p>El riesgo asociado a una empresa, sector o región específica. También llamado riesgo idiosincrático o no sistemático.</p>
+                            </div>
+                            <div class="risk-examples">
+                                <h4>📋 Ejemplos</h4>
+                                <ul>
+                                    <li>Wirecard 2020: -99% en días</li>
+                                    <li>Enron 2001: De $90 a $0</li>
+                                    <li>Sector energético 2014-2016: -70%</li>
+                                </ul>
+                            </div>
+                            <div class="risk-management">
+                                <h4>🛡️ Cómo Gestionarlo</h4>
+                                <ul>
+                                    <li><strong>Diversificación</strong> (el santo grial)</li>
+                                    <li>Máximo 5% en una sola empresa</li>
+                                    <li>ETFs vs acciones individuales</li>
+                                    <li>Diversificación geográfica y sectorial</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Riesgo de Liquidez -->
+                    <div class="risk-type-card liquidity-risk">
+                        <div class="risk-header">
+                            <span class="risk-icon">💧</span>
+                            <h3>Riesgo de Liquidez</h3>
+                            <p class="risk-subtitle">Cuando no puedes vender</p>
+                        </div>
+                        <div class="risk-content">
+                            <div class="risk-definition">
+                                <h4>¿Qué es?</h4>
+                                <p>La dificultad para convertir una inversión en efectivo rápidamente sin afectar significativamente su precio.</p>
+                            </div>
+                            <div class="risk-examples">
+                                <h4>📋 Ejemplos</h4>
+                                <ul>
+                                    <li>Inmuebles: Meses para vender</li>
+                                    <li>Private equity: Años sin acceso</li>
+                                    <li>ETFs exóticos: Spreads amplios</li>
+                                </ul>
+                            </div>
+                            <div class="risk-management">
+                                <h4>🛡️ Cómo Gestionarlo</h4>
+                                <ul>
+                                    <li>Fondo de emergencia líquido</li>
+                                    <li>ETFs grandes y establecidos</li>
+                                    <li>Evitar productos complejos</li>
+                                    <li>Planificación temporal de necesidades</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Riesgo de Inflación -->
+                    <div class="risk-type-card inflation-risk">
+                        <div class="risk-header">
+                            <span class="risk-icon">💸</span>
+                            <h3>Riesgo de Inflación</h3>
+                            <p class="risk-subtitle">El ladrón silencioso</p>
+                        </div>
+                        <div class="risk-content">
+                            <div class="risk-definition">
+                                <h4>¿Qué es?</h4>
+                                <p>La pérdida de poder adquisitivo del dinero a lo largo del tiempo. Tu dinero vale menos aunque el número sea el mismo.</p>
+                            </div>
+                            <div class="risk-examples">
+                                <h4>📋 Ejemplos</h4>
+                                <ul>
+                                    <li>€1000 en 2000 = €1.500 en 2023</li>
+                                    <li>Inflación promedio España: 2-3% anual</li>
+                                    <li>Cuentas de ahorro: Rentabilidad real negativa</li>
+                                </ul>
+                            </div>
+                            <div class="risk-management">
+                                <h4>🛡️ Cómo Gestionarlo</h4>
+                                <ul>
+                                    <li>Invertir en activos reales (acciones, REITs)</li>
+                                    <li>Bonos indexados a inflación</li>
+                                    <li>Commodities como cobertura</li>
+                                    <li>Evitar exceso de cash largo plazo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medición del Riesgo -->
+        <section id="medicion-riesgo">
+            <div class="card">
+                <h2>📊 Midiendo el Riesgo: Herramientas del Profesional</h2>
+                <p>Lo que no se puede medir, no se puede gestionar. Aprende las métricas clave que usan los profesionales.</p>
+
+                <div class="risk-metrics-container">
+                    <!-- Volatilidad -->
+                    <div class="metric-card volatility">
+                        <div class="metric-header">
+                            <h3>📈 Volatilidad (Desviación Estándar)</h3>
+                            <p class="metric-subtitle">La métrica más básica pero fundamental</p>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-explanation">
+                                <h4>💡 ¿Qué Mide?</h4>
+                                <p>La dispersión de los retornos alrededor de la media. Mayor volatilidad = mayor incertidumbre.</p>
+                            </div>
+                            
+                            <div class="metric-examples">
+                                <h4>📋 Ejemplos Prácticos</h4>
+                                <div class="volatility-comparison">
+                                    <div class="volatility-item low">
+                                        <h5>🛡️ Baja Volatilidad (5-10%)</h5>
+                                        <ul>
+                                            <li>Bonos del Estado desarrollado</li>
+                                            <li>Cuentas de ahorro</li>
+                                            <li>ETFs de bonos</li>
+                                        </ul>
+                                    </div>
+                                    <div class="volatility-item medium">
+                                        <h5>⚖️ Media Volatilidad (10-20%)</h5>
+                                        <ul>
+                                            <li>ETFs diversificados globales</li>
+                                            <li>Índices de mercados desarrollados</li>
+                                            <li>REITs</li>
+                                        </ul>
+                                    </div>
+                                    <div class="volatility-item high">
+                                        <h5>⚡ Alta Volatilidad (20%+)</h5>
+                                        <ul>
+                                            <li>Acciones individuales</li>
+                                            <li>Mercados emergentes</li>
+                                            <li>Criptomonedas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="volatility-calculator">
+                                <h4>🧮 Calculadora de Impacto</h4>
+                                <p>Con volatilidad del 15% y rentabilidad del 7%:</p>
+                                <div class="impact-scenarios">
+                                    <div class="scenario-item">
+                                        <span class="scenario-label">Año normal (68% probabilidad):</span>
+                                        <span class="scenario-range">-8% a +22%</span>
+                                    </div>
+                                    <div class="scenario-item">
+                                        <span class="scenario-label">Año atípico (95% probabilidad):</span>
+                                        <span class="scenario-range">-23% a +37%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drawdown -->
+                    <div class="metric-card drawdown">
+                        <div class="metric-header">
+                            <h3>📉 Maximum Drawdown</h3>
+                            <p class="metric-subtitle">La prueba de fuego emocional</p>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-explanation">
+                                <h4>💡 ¿Qué Mide?</h4>
+                                <p>La mayor caída desde un máximo histórico hasta el mínimo subsiguiente. Tu resistencia emocional.</p>
+                            </div>
+                            
+                            <div class="drawdown-examples">
+                                <h4>📋 Drawdowns Históricos</h4>
+                                <table class="drawdown-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Crisis</th>
+                                            <th>Índice</th>
+                                            <th>Max Drawdown</th>
+                                            <th>Recuperación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2008 Financial</td>
+                                            <td>S&P 500</td>
+                                            <td>-57%</td>
+                                            <td>6 años</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000 Dotcom</td>
+                                            <td>NASDAQ</td>
+                                            <td>-78%</td>
+                                            <td>15 años</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2020 COVID</td>
+                                            <td>S&P 500</td>
+                                            <td>-34%</td>
+                                            <td>5 meses</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="drawdown-preparation">
+                                <h4>🧠 Preparación Mental</h4>
+                                <div class="mental-prep">
+                                    <p><strong>Pregunta clave:</strong> Si tu cartera de €100,000 baja a €50,000, ¿puedes:</p>
+                                    <ul>
+                                        <li>✅ Mantener la calma y no vender</li>
+                                        <li>✅ Seguir invirtiendo mensualmente</li>
+                                        <li>✅ Dormir por las noches</li>
+                                        <li>✅ Esperar varios años para recuperación</li>
+                                    </ul>
+                                    <p><strong>Si la respuesta es NO</strong> → Reduce tu exposición a renta variable</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sharpe Ratio -->
+                    <div class="metric-card sharpe">
+                        <div class="metric-header">
+                            <h3>⚖️ Ratio de Sharpe</h3>
+                            <p class="metric-subtitle">Rentabilidad ajustada por riesgo</p>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-explanation">
+                                <h4>💡 ¿Qué Mide?</h4>
+                                <p>Rentabilidad por encima del activo libre de riesgo, dividida por la volatilidad. Eficiencia riesgo-rentabilidad.</p>
+                            </div>
+
+                            <div class="sharpe-formula">
+                                <h4>🧮 Fórmula</h4>
+                                <div class="formula-box">
+                                    <p><strong>Sharpe = (Rentabilidad - Tipo sin riesgo) / Volatilidad</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="sharpe-interpretation">
+                                <h4>📊 Interpretación</h4>
+                                <div class="sharpe-levels">
+                                    <div class="sharpe-level excellent">
+                                        <h5>🏆 > 1.0 = Excelente</h5>
+                                        <p>Muy buena relación riesgo-rentabilidad</p>
+                                    </div>
+                                    <div class="sharpe-level good">
+                                        <h5>👍 0.5-1.0 = Bueno</h5>
+                                        <p>Relación aceptable</p>
+                                    </div>
+                                    <div class="sharpe-level poor">
+                                        <h5>👎 < 0.5 = Malo</h5>
+                                        <p>Demasiado riesgo para la rentabilidad</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sharpe-example">
+                                <h4>💡 Ejemplo Práctico</h4>
+                                <div class="example-calculation">
+                                    <p><strong>ETF Global:</strong></p>
+                                    <ul>
+                                        <li>Rentabilidad anual: 8%</li>
+                                        <li>Bono alemán 10Y: 2%</li>
+                                        <li>Volatilidad: 15%</li>
+                                        <li><strong>Sharpe = (8% - 2%) / 15% = 0.40</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diversificación Efectiva -->
+        <section id="diversificacion">
+            <div class="card">
+                <h2>🌐 Diversificación Efectiva: Más Allá de "No Poner Huevos en Una Cesta"</h2>
+                <p>La diversificación es la única comida gratis en finanzas, pero hay que saber cocinarla correctamente.</p>
+
+                <div class="diversification-layers">
+                    <!-- Diversificación por Clases de Activos -->
+                    <div class="diversification-layer asset-classes">
+                        <h3>🎯 Nivel 1: Clases de Activos</h3>
+                        <p>La base de toda diversificación: combinar activos que reaccionen diferente a los mismos eventos.</p>
+                        
+                        <div class="asset-allocation-wheel">
+                            <div class="allocation-example">
+                                <h4>📊 Ejemplo de Asignación Balanceada</h4>
+                                <div class="allocation-grid">
+                                    <div class="allocation-item equities">
+                                        <div class="allocation-percentage">60%</div>
+                                        <div class="allocation-label">Renta Variable</div>
+                                        <div class="allocation-description">Crecimiento a largo plazo</div>
+                                    </div>
+                                    <div class="allocation-item bonds">
+                                        <div class="allocation-percentage">30%</div>
+                                        <div class="allocation-label">Bonos</div>
+                                        <div class="allocation-description">Estabilidad y flujo</div>
+                                    </div>
+                                    <div class="allocation-item reits">
+                                        <div class="allocation-percentage">7%</div>
+                                        <div class="allocation-label">REITs</div>
+                                        <div class="allocation-description">Inmobiliario líquido</div>
+                                    </div>
+                                    <div class="allocation-item cash">
+                                        <div class="allocation-percentage">3%</div>
+                                        <div class="allocation-label">Efectivo</div>
+                                        <div class="allocation-description">Liquidez y oportunidades</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="correlation-matrix">
+                            <h4>🔗 Matriz de Correlaciones</h4>
+                            <p>Entender cómo se mueven los activos entre sí:</p>
+                            <table class="correlation-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Acciones</th>
+                                        <th>Bonos</th>
+                                        <th>REITs</th>
+                                        <th>Oro</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Acciones</strong></td>
+                                        <td>1.00</td>
+                                        <td>-0.10</td>
+                                        <td>0.65</td>
+                                        <td>0.05</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bonos</strong></td>
+                                        <td>-0.10</td>
+                                        <td>1.00</td>
+                                        <td>0.15</td>
+                                        <td>0.20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>REITs</strong></td>
+                                        <td>0.65</td>
+                                        <td>0.15</td>
+                                        <td>1.00</td>
+                                        <td>0.10</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Oro</strong></td>
+                                        <td>0.05</td>
+                                        <td>0.20</td>
+                                        <td>0.10</td>
+                                        <td>1.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="correlation-note"><strong>Ideal:</strong> Correlaciones bajas (cercanas a 0) o negativas</p>
+                        </div>
+                    </div>
+
+                    <!-- Diversificación Geográfica -->
+                    <div class="diversification-layer geographic">
+                        <h3>🗺️ Nivel 2: Diversificación Geográfica</h3>
+                        <p>No todos los países crecen al mismo tiempo. Aprovecha los ciclos económicos globales.</p>
+                        
+                        <div class="geographic-allocation">
+                            <h4>🌍 Distribución Geográfica Óptima</h4>
+                            <div class="geo-distribution">
+                                <div class="geo-region developed">
+                                    <h5>🏛️ Mercados Desarrollados (70%)</h5>
+                                    <ul>
+                                        <li>Estados Unidos: 40%</li>
+                                        <li>Europa: 20%</li>
+                                        <li>Japón: 7%</li>
+                                        <li>Otros desarrollados: 3%</li>
+                                    </ul>
+                                </div>
+                                <div class="geo-region emerging">
+                                    <h5>🌱 Mercados Emergentes (20%)</h5>
+                                    <ul>
+                                        <li>China: 8%</li>
+                                        <li>India: 4%</li>
+                                        <li>Brasil: 3%</li>
+                                        <li>Otros emergentes: 5%</li>
+                                    </ul>
+                                </div>
+                                <div class="geo-region domestic">
+                                    <h5>🏠 Mercado Doméstico (10%)</h5>
+                                    <ul>
+                                        <li>España: 10%</li>
+                                        <li>Home bias controlado</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="geographic-benefits">
+                            <h4>✅ Beneficios de la Diversificación Geográfica</h4>
+                            <ul>
+                                <li><strong>Ciclos económicos:</strong> Diferentes países en fases distintas</li>
+                                <li><strong>Divisas:</strong> Protección contra devaluación del euro</li>
+                                <li><strong>Políticas:</strong> Diversidad de marcos regulatorios</li>
+                                <li><strong>Oportunidades:</strong> Acceso a empresas globales líderes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Diversificación Sectorial -->
+                    <div class="diversification-layer sectoral">
+                        <h3>🏭 Nivel 3: Diversificación Sectorial</h3>
+                        <p>Los sectores rotan: lo que está mal hoy puede estar bien mañana.</p>
+                        
+                        <div class="sector-rotation">
+                            <h4>🔄 Ciclo de Rotación Sectorial</h4>
+                            <div class="cycle-phases">
+                                <div class="cycle-phase recovery">
+                                    <h5>🌱 Recuperación</h5>
+                                    <p><strong>Líderes:</strong> Consumo discrecional, Financieros</p>
+                                    <p><strong>Rezagados:</strong> Utilities, Bienes de consumo básico</p>
+                                </div>
+                                <div class="cycle-phase expansion">
+                                    <h5>📈 Expansión</h5>
+                                    <p><strong>Líderes:</strong> Tecnología, Industriales</p>
+                                    <p><strong>Rezagados:</strong> Energía, Materiales</p>
+                                </div>
+                                <div class="cycle-phase slowdown">
+                                    <h5>⚖️ Desaceleración</h5>
+                                    <p><strong>Líderes:</strong> Bienes básicos, Salud</p>
+                                    <p><strong>Rezagados:</strong> Inmobiliario, Financieros</p>
+                                </div>
+                                <div class="cycle-phase recession">
+                                    <h5>📉 Recesión</h5>
+                                    <p><strong>Líderes:</strong> Utilities, Bonos</p>
+                                    <p><strong>Rezagados:</strong> Consumo discrecional, Industriales</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sector-allocation">
+                            <h4>⚖️ Asignación Sectorial Equilibrada</h4>
+                            <div class="sector-grid">
+                                <div class="sector-item tech">
+                                    <span class="sector-name">Tecnología</span>
+                                    <span class="sector-weight">20%</span>
+                                </div>
+                                <div class="sector-item finance">
+                                    <span class="sector-name">Financieros</span>
+                                    <span class="sector-weight">15%</span>
+                                </div>
+                                <div class="sector-item healthcare">
+                                    <span class="sector-name">Salud</span>
+                                    <span class="sector-weight">13%</span>
+                                </div>
+                                <div class="sector-item consumer">
+                                    <span class="sector-name">Consumo</span>
+                                    <span class="sector-weight">12%</span>
+                                </div>
+                                <div class="sector-item industrial">
+                                    <span class="sector-name">Industriales</span>
+                                    <span class="sector-weight">10%</span>
+                                </div>
+                                <div class="sector-item energy">
+                                    <span class="sector-name">Energía</span>
+                                    <span class="sector-weight">8%</span>
+                                </div>
+                                <div class="sector-item materials">
+                                    <span class="sector-name">Materiales</span>
+                                    <span class="sector-weight">7%</span>
+                                </div>
+                                <div class="sector-item utilities">
+                                    <span class="sector-name">Utilities</span>
+                                    <span class="sector-weight">6%</span>
+                                </div>
+                                <div class="sector-item realestate">
+                                    <span class="sector-name">Inmobiliario</span>
+                                    <span class="sector-weight">5%</span>
+                                </div>
+                                <div class="sector-item telecom">
+                                    <span class="sector-name">Telecom</span>
+                                    <span class="sector-weight">4%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diversificación Temporal -->
+                    <div class="diversification-layer temporal">
+                        <h3>⏰ Nivel 4: Diversificación Temporal</h3>
+                        <p>No solo qué compras importa, sino cuándo lo compras. El tiempo es diversificación.</p>
+                        
+                        <div class="temporal-strategies">
+                            <div class="temporal-strategy dca">
+                                <h4>💰 Dollar Cost Averaging</h4>
+                                <p>Distribuir compras en el tiempo para reducir el impacto de la volatilidad.</p>
+                                <div class="dca-benefits">
+                                    <ul>
+                                        <li>✅ Elimina el market timing</li>
+                                        <li>✅ Reduce precio promedio de compra</li>
+                                        <li>✅ Disciplina automática</li>
+                                        <li>✅ Reduce ansiedad emocional</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="temporal-strategy rebalancing">
+                                <h4>⚖️ Rebalanceo Periódico</h4>
+                                <p>Vender lo que ha subido, comprar lo que ha bajado. Contraintuitivo pero efectivo.</p>
+                                <div class="rebalancing-schedule">
+                                    <ul>
+                                        <li><strong>Calendario:</strong> Cada 6-12 meses</li>
+                                        <li><strong>Umbral:</strong> Cuando desviación > 5%</li>
+                                        <li><strong>Objetivo:</strong> Volver a asignación objetivo</li>
+                                        <li><strong>Beneficio:</strong> Comprar barato, vender caro automáticamente</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diversificación Práctica -->
+                <div class="practical-diversification">
+                    <h3>🛠️ Diversificación en la Práctica</h3>
+                    
+                    <div class="diversification-examples">
+                        <div class="portfolio-example simple">
+                            <h4>🌱 Cartera Simple (Principiante)</h4>
+                            <div class="portfolio-composition">
+                                <ul>
+                                    <li>60% VWCE (Vanguard All-World) - Diversificación global</li>
+                                    <li>30% VAGF (Vanguard Global Aggregate Bond) - Estabilidad</li>
+                                    <li>10% Efectivo - Liquidez y oportunidades</li>
+                                </ul>
+                            </div>
+                            <div class="portfolio-pros">
+                                <p><strong>✅ Pros:</strong> Máxima simplicidad, costes bajos, diversificación global</p>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-example intermediate">
+                            <h4>⚖️ Cartera Intermedia</h4>
+                            <div class="portfolio-composition">
+                                <ul>
+                                    <li>40% IWDA (MSCI World Desarrollados)</li>
+                                    <li>15% IEMA (Mercados Emergentes)</li>
+                                    <li>25% IGLO (Bonos Globales)</li>
+                                    <li>10% IPRP (REITs Globales)</li>
+                                    <li>5% IAU (Oro)</li>
+                                    <li>5% Efectivo</li>
+                                </ul>
+                            </div>
+                            <div class="portfolio-pros">
+                                <p><strong>✅ Pros:</strong> Mayor diversificación, protección inflación, múltiples clases activos</p>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-example advanced">
+                            <h4>🏆 Cartera Avanzada (Core-Satellite)</h4>
+                            <div class="portfolio-composition">
+                                <div class="core-section">
+                                    <h5>🎯 Core (80%)</h5>
+                                    <ul>
+                                        <li>35% IWDA (MSCI World)</li>
+                                        <li>15% IEMA (Emergentes)</li>
+                                        <li>20% IGLO (Bonos)</li>
+                                        <li>10% IPRP (REITs)</li>
+                                    </ul>
+                                </div>
+                                <div class="satellite-section">
+                                    <h5>🛰️ Satellite (20%)</h5>
+                                    <ul>
+                                        <li>5% Small Caps</li>
+                                        <li>5% Sectores específicos</li>
+                                        <li>5% Commodities</li>
+                                        <li>5% Cash oportunidades</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estrategias de Protección -->
+        <section id="estrategias-proteccion">
+            <div class="card">
+                <h2>🛡️ Estrategias de Protección de Capital</h2>
+                <p>A veces la mejor defensa es una buena defensa. Aprende a proteger tu patrimonio en tiempos turbulentos.</p>
+
+                <div class="protection-strategies">
+                    <!-- Hedging con Bonos -->
+                    <div class="protection-strategy bonds-hedge">
+                        <div class="strategy-header">
+                            <h3>🏛️ Hedging con Bonos</h3>
+                            <p class="strategy-subtitle">El colchón tradicional</p>
+                        </div>
+                        <div class="strategy-content">
+                            <div class="strategy-explanation">
+                                <h4>🎯 Cómo Funciona</h4>
+                                <p>Los bonos de alta calidad tienden a subir cuando las acciones bajan, proporcionando un cushion durante las crisis.</p>
+                            </div>
+
+                            <div class="bonds-types">
+                                <h4>📊 Tipos de Bonos para Protección</h4>
+                                <div class="bond-types-grid">
+                                    <div class="bond-type government">
+                                        <h5>🏛️ Bonos del Estado</h5>
+                                        <ul>
+                                            <li><strong>Alemanes/US:</strong> Máxima seguridad</li>
+                                            <li><strong>Duración:</strong> 7-10 años óptima</li>
+                                            <li><strong>Ventaja:</strong> Correlación negativa con acciones</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bond-type tips">
+                                        <h5>📈 TIPS (Inflation-Protected)</h5>
+                                        <ul>
+                                            <li><strong>Protección:</strong> Ajustados por inflación</li>
+                                            <li><strong>Ideal:</strong> Entornos inflacionarios</li>
+                                            <li><strong>ETF:</strong> VTIP, SCHP</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bond-type corporate">
+                                        <h5>🏢 Bonos Corporativos</h5>
+                                        <ul>
+                                            <li><strong>Mayor yield:</strong> Pero más riesgo</li>
+                                            <li><strong>Investment grade:</strong> BBB+ o superior</li>
+                                            <li><strong>Diversificación:</strong> Múltiples emisores</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bonds-allocation">
+                                <h4>⚖️ Asignación de Bonos por Edad</h4>
+                                <div class="age-bond-allocation">
+                                    <div class="age-allocation-item">
+                                        <span class="age-range">20-30 años:</span>
+                                        <span class="bond-percentage">10-20%</span>
+                                    </div>
+                                    <div class="age-allocation-item">
+                                        <span class="age-range">30-45 años:</span>
+                                        <span class="bond-percentage">20-35%</span>
+                                    </div>
+                                    <div class="age-allocation-item">
+                                        <span class="age-range">45-60 años:</span>
+                                        <span class="bond-percentage">35-50%</span>
+                                    </div>
+                                    <div class="age-allocation-item">
+                                        <span class="age-range">60+ años:</span>
+                                        <span class="bond-percentage">50-70%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cash como Protección -->
+                    <div class="protection-strategy cash-protection">
+                        <div class="strategy-header">
+                            <h3>💵 Cash como Arma Estratégica</h3>
+                            <p class="strategy-subtitle">Liquidez = oportunidades</p>
+                        </div>
+                        <div class="strategy-content">
+                            <div class="cash-purposes">
+                                <h4>🎯 Propósitos del Cash</h4>
+                                <div class="cash-uses">
+                                    <div class="cash-use emergency">
+                                        <h5>🚨 Fondo de Emergencia</h5>
+                                        <ul>
+                                            <li><strong>Cantidad:</strong> 6-12 meses de gastos</li>
+                                            <li><strong>Ubicación:</strong> Cuenta de ahorro líquida</li>
+                                            <li><strong>Propósito:</strong> Supervivencia en crisis</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cash-use opportunity">
+                                        <h5>🎯 Cash de Oportunidades</h5>
+                                        <ul>
+                                            <li><strong>Cantidad:</strong> 5-10% de la cartera</li>
+                                            <li><strong>Propósito:</strong> Comprar en caídas significativas</li>
+                                            <li><strong>Activación:</strong> Caídas > 20%</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cash-use tactical">
+                                        <h5>⚡ Cash Táctico</h5>
+                                        <ul>
+                                            <li><strong>Cantidad:</strong> Variable según mercado</li>
+                                            <li><strong>Uso:</strong> Rebalanceo y ajustes</li>
+                                            <li><strong>Flexibilidad:</strong> Responder a cambios</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cash-yield">
+                                <h4>💰 Maximizar Rendimiento del Cash</h4>
+                                <div class="cash-options">
+                                    <ul>
+                                        <li><strong>Cuentas de alto rendimiento:</strong> 2-4% APY</li>
+                                        <li><strong>Treasury Bills:</strong> Rendimiento gubernamental</li>
+                                        <li><strong>Money Market ETFs:</strong> VMOT, SHY</li>
+                                        <li><strong>CDs escalonados:</strong> Para plazos específicos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stop-Loss y Protección Dinámica -->
+                    <div class="protection-strategy dynamic-protection">
+                        <div class="strategy-header">
+                            <h3>🎛️ Protección Dinámica</h3>
+                            <p class="strategy-subtitle">Estrategias activas de gestión de riesgo</p>
+                        </div>
+                        <div class="strategy-content">
+                            <div class="dynamic-strategies">
+                                <div class="dynamic-strategy stop-loss">
+                                    <h4>🛑 Stop-Loss Estratégico</h4>
+                                    <div class="stop-loss-details">
+                                        <p><strong>Concepto:</strong> Vender automáticamente si la pérdida excede un umbral predefinido.</p>
+                                        <div class="stop-loss-types">
+                                            <div class="stop-type fixed">
+                                                <h5>📉 Stop-Loss Fijo</h5>
+                                                <ul>
+                                                    <li><strong>Umbral:</strong> -20% desde compra</li>
+                                                    <li><strong>Ventaja:</strong> Limita pérdidas</li>
+                                                    <li><strong>Desventaja:</strong> Puede venderte en fondo</li>
+                                                </ul>
+                                            </div>
+                                            <div class="stop-type trailing">
+                                                <h5>📈 Trailing Stop</h5>
+                                                <ul>
+                                                    <li><strong>Umbral:</strong> -15% desde máximo</li>
+                                                    <li><strong>Ventaja:</strong> Se ajusta con subidas</li>
+                                                    <li><strong>Ideal:</strong> Proteger ganancias</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="stop-loss-warning">
+                                            <p>⚠️ <strong>Advertencia:</strong> Los stop-loss pueden ser contraproducentes en estrategias buy-and-hold. Úsalos solo si tienes una estrategia clara de reentrada.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dynamic-strategy volatility-timing">
+                                    <h4>📊 Volatility Timing</h4>
+                                    <div class="volatility-strategy">
+                                        <p><strong>Concepto:</strong> Ajustar exposición al riesgo según niveles de volatilidad del mercado.</p>
+                                        <div class="volatility-levels">
+                                            <div class="vol-level low">
+                                                <h5>🟢 Baja Volatilidad (VIX < 20)</h5>
+                                                <p><strong>Acción:</strong> Mayor exposición a renta variable</p>
+                                            </div>
+                                            <div class="vol-level medium">
+                                                <h5>🟡 Media Volatilidad (VIX 20-30)</h5>
+                                                <p><strong>Acción:</strong> Asignación normal</p>
+                                            </div>
+                                            <div class="vol-level high">
+                                                <h5>🔴 Alta Volatilidad (VIX > 30)</h5>
+                                                <p><strong>Acción:</strong> Reducir exposición, aumentar cash</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestión de Crisis -->
+                <div class="crisis-management">
+                    <h3>🌪️ Gestión de Crisis: Tu Plan de Batalla</h3>
+                    
+                    <div class="crisis-playbook">
+                        <div class="crisis-phase market-decline">
+                            <h4>📉 Fase 1: Declive del Mercado (-10% a -20%)</h4>
+                            <div class="crisis-actions">
+                                <div class="action-do">
+                                    <h5>✅ QUÉ HACER</h5>
+                                    <ul>
+                                        <li>Mantener calma y perspectiva histórica</li>
+                                        <li>Continuar DCA normal</li>
+                                        <li>Revisar noticias menos frecuentemente</li>
+                                        <li>Recordar que las correcciones son normales</li>
+                                    </ul>
+                                </div>
+                                <div class="action-dont">
+                                    <h5>❌ QUÉ NO HACER</h5>
+                                    <ul>
+                                        <li>Vender por pánico</li>
+                                        <li>Cambiar estrategia bruscamente</li>
+                                        <li>Intentar hacer market timing</li>
+                                        <li>Obsesionarse con noticias</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="crisis-phase bear-market">
+                            <h4>🐻 Fase 2: Mercado Bajista (-20% o más)</h4>
+                            <div class="crisis-actions">
+                                <div class="action-do">
+                                    <h5>✅ QUÉ HACER</h5>
+                                    <ul>
+                                        <li>Incrementar DCA si tienes cash extra</li>
+                                        <li>Rebalancear comprando más acciones</li>
+                                        <li>Estudiar crisis históricas para perspectiva</li>
+                                        <li>Considerar tax-loss harvesting</li>
+                                    </ul>
+                                </div>
+                                <div class="action-dont">
+                                    <h5>❌ QUÉ NO HACER</h5>
+                                    <ul>
+                                        <li>Vender acciones por debajo del costo</li>
+                                        <li>Pausar contribuciones regulares</li>
+                                        <li>Cambiar a estrategia conservadora</li>
+                                        <li>Tomar dinero de jubilación</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="crisis-phase recovery">
+                            <h4>🌱 Fase 3: Recuperación</h4>
+                            <div class="crisis-actions">
+                                <div class="action-do">
+                                    <h5>✅ QUÉ HACER</h5>
+                                    <ul>
+                                        <li>Mantener disciplina de DCA</li>
+                                        <li>Rebalancear vendiendo parte de ganancias</li>
+                                        <li>Prepararse para próxima corrección</li>
+                                        <li>Revisar y actualizar estrategia</li>
+                                    </ul>
+                                </div>
+                                <div class="action-dont">
+                                    <h5>❌ QUÉ NO HACER</h5>
+                                    <ul>
+                                        <li>Volverse demasiado agresivo</li>
+                                        <li>Olvidar las lecciones aprendidas</li>
+                                        <li>Reducir posición en bonos completamente</li>
+                                        <li>Asumir que ya pasó lo peor</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusiones -->
+        <section id="conclusiones">
+            <div class="card">
+                <h2>🎯 Conclusiones Clave sobre Gestión del Riesgo</h2>
+                
+                <div class="key-takeaways">
+                    <div class="takeaway-item">
+                        <span class="takeaway-icon">📊</span>
+                        <div class="takeaway-content">
+                            <h4>El riesgo no es tu enemigo</h4>
+                            <p>El riesgo bien gestionado es el precio que pagas por obtener rentabilidades superiores a largo plazo.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <span class="takeaway-icon">🌐</span>
+                        <div class="takeaway-content">
+                            <h4>Diversificación en múltiples dimensiones</h4>
+                            <p>No solo activos: diversifica geográficamente, sectorialmente y temporalmente.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <span class="takeaway-icon">📉</span>
+                        <div class="takeaway-content">
+                            <h4>Prepárate para el drawdown</h4>
+                            <p>Las caídas del 30-50% son normales. Tu estrategia debe sobrevivir a ellas.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <span class="takeaway-icon">🛡️</span>
+                        <div class="takeaway-content">
+                            <h4>La protección cuesta rentabilidad</h4>
+                            <p>Encuentra el equilibrio correcto entre protección y crecimiento para tu situación.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-management-checklist">
+                    <h3>✅ Tu Checklist de Gestión de Riesgo</h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-section">
+                            <h4>📊 Medición</h4>
+                            <ul>
+                                <li>☐ Calcula la volatilidad de tu cartera</li>
+                                <li>☐ Estima el máximo drawdown esperado</li>
+                                <li>☐ Mide el Sharpe ratio anual</li>
+                                <li>☐ Revisa correlaciones entre activos</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="checklist-section">
+                            <h4>🌐 Diversificación</h4>
+                            <ul>
+                                <li>☐ Múltiples clases de activos</li>
+                                <li>☐ Exposición geográfica global</li>
+                                <li>☐ Diversificación sectorial</li>
+                                <li>☐ DCA para diversificación temporal</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="checklist-section">
+                            <h4>🛡️ Protección</h4>
+                            <ul>
+                                <li>☐ Fondo de emergencia adecuado</li>
+                                <li>☐ Asignación de bonos según edad</li>
+                                <li>☐ Plan de acción para crisis</li>
+                                <li>☐ Rebalanceo periódico programado</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="checklist-section">
+                            <h4>🧠 Preparación Mental</h4>
+                            <ul>
+                                <li>☐ Toleras caídas del 30-50%</li>
+                                <li>☐ Tienes perspectiva histórica</li>
+                                <li>☐ Planificación para diferentes escenarios</li>
+                                <li>☐ Disciplina para mantener estrategia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación al siguiente tema -->
+        <div class="next-section-navigation">
+            <div class="next-section-card">
+                <div class="next-section-content">
+                    <h3>🚀 ¿Preparado para el Mayor Desafío?</h3>
+                    <p>Ya sabes gestionar el riesgo técnico. Ahora enfrenta el mayor enemigo del inversor: tu propia mente. Aprende psicología del inversor.</p>
+                    <a href="psicologia-inversor.html" class="next-section-button">
+                        <span>Continuar con Psicología del Inversor</span>
+                        <span class="button-icon">→</span>
+                    </a>
+                </div>
+                <div class="next-section-preview">
+                    <h4>📋 En la siguiente sección:</h4>
+                    <ul>
+                        <li>✅ Sesgos psicológicos en inversión</li>
+                        <li>✅ Errores emocionales comunes</li>
+                        <li>✅ Disciplina mental y autocontrol</li>
+                        <li>✅ Hábitos del inversor exitoso</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="asset-allocation.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Asset Allocation</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">6 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="psicologia-inversor.html" class="course-nav-btn next">
+                <span>Psicología</span>
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Smooth scrolling para navegación interna
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animaciones para las métricas de riesgo
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas las tarjetas de métricas
+        document.querySelectorAll('.metric-card, .risk-type-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Tooltip interactivo para correlaciones
+        const correlationCells = document.querySelectorAll('.correlation-table td');
+        correlationCells.forEach(cell => {
+            if (!isNaN(parseFloat(cell.textContent))) {
+                const value = parseFloat(cell.textContent);
+                if (value > 0.7) {
+                    cell.style.backgroundColor = '#ffebee';
+                    cell.title = 'Correlación alta - Mueven juntos';
+                } else if (value < -0.3) {
+                    cell.style.backgroundColor = '#e8f5e8';
+                    cell.title = 'Correlación negativa - Buenos para diversificar';
+                } else {
+                    cell.style.backgroundColor = '#fff3e0';
+                    cell.title = 'Correlación baja/neutra - Ideales para diversificar';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluador de Salud - meskeIA</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <!-- jsPDF para exportación PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="results.js"></script>
+    
+    <style>
+        /* ===== VARIABLES CSS MINIMALISTAS ===== */
+        :root {
+            /* Paleta Minimalista meskeIA */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+            
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --secondary: #48A9A6;       /* Teal secundario */
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --focus: rgba(46,134,171,0.1); /* Focus con azul meskeIA */
+            
+            /* Estados */
+            --success: #27AE60;
+            --warning: #E67E22;
+            --danger: #E74C3C;
+            
+            /* Sombras minimalistas */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            
+            /* Espaciado consistente */
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        /* ===== RESET Y BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+
+        /* ===== LOGO FLOTANTE MESKEIA ===== */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* ===== MODAL DE CONSENTIMIENTO ===== */
+        .health-notice {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .health-notice.active {
+            display: flex;
+        }
+
+        .consent-modal {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .consent-header {
+            background: var(--primary);
+            color: var(--bg-card);
+            padding: var(--spacing-md);
+            text-align: center;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .consent-header h2 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+        }
+
+        .consent-body {
+            padding: var(--spacing-md);
+        }
+
+        .age-input-group {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .age-input {
+            width: 80px;
+            padding: var(--spacing-xs);
+            font-size: 1.2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-weight: 600;
+        }
+
+        .consent-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+            padding: var(--spacing-xs);
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+        }
+
+        .consent-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--primary);
+        }
+
+        .consent-btn {
+            flex: 1;
+            padding: var(--spacing-sm);
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .consent-btn-accept {
+            background: var(--primary);
+            color: var(--bg-card);
+        }
+
+        .consent-btn-accept:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .consent-btn-reject {
+            background: var(--danger);
+            color: var(--bg-card);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--bg-card);
+            box-shadow: var(--shadow-light);
+            padding: var(--spacing-md) var(--spacing-lg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            max-width: 1400px;
+            margin: var(--spacing-lg) auto;
+            padding: 0 var(--spacing-lg);
+            opacity: 0.3;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .main-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ===== SECCIONES ===== */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+
+        .medical-notice {
+            background: rgba(46, 134, 171, 0.05);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            text-align: center;
+        }
+
+        .medical-notice h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .medical-notice p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* ===== FORMULARIO ===== */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.9rem;
+        }
+
+        .form-input, .form-select {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: var(--bg-card);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--focus);
+        }
+
+        .input-unit {
+            position: relative;
+        }
+
+        .input-unit::after {
+            content: attr(data-unit);
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-xs);
+        }
+
+        .checkbox-input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+
+        /* ===== BOTÓN CALCULAR ===== */
+        .calculate-btn {
+            background: var(--primary);
+            color: var(--bg-card);
+            border: none;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: block;
+            margin: var(--spacing-lg) auto;
+        }
+
+        .calculate-btn:hover {
+            background: #246b8a;
+            transform: translateY(-1px);
+        }
+
+        /* ===== RESULTADOS ===== */
+        .results-container {
+            display: none;
+        }
+
+        .results-container.visible {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .result-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .result-card h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== DISCLAIMER ===== */
+        .disclaimer {
+            background: rgba(46, 134, 171, 0.03);
+            border-left: 3px solid var(--primary);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            margin-top: var(--spacing-lg);
+        }
+
+        .disclaimer p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .disclaimer strong {
+            color: var(--primary);
+        }
+
+        /* ===== VALIDATION ===== */
+        .form-input.error, .form-select.error {
+            border-color: var(--danger);
+            background-color: rgba(231, 76, 60, 0.02);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.75rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .consent-modal {
+                width: 95%;
+            }
+            /* Prevenir scroll horizontal */
+    body { overflow-x: hidden; }
+    
+    /* Contenedores principales */
+    .main-container { 
+        padding: 0 var(--spacing-sm);
+        max-width: 100vw;
+    }
+    
+    /* Resultados responsive */
+    .results-container {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+    
+    /* Charts responsive */
+    .chart-container canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Grillas a una columna */
+    .analysis-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-sm);
+    }
+    
+    .vitality-grid {
+        grid-template-columns: 1fr !important;
+    }
+    /* Corregir cards cortadas */
+    .totals-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem;
+    }
+    
+    .total-item {
+        padding: 1rem 0.5rem !important;
+        min-width: 0;
+    }
+    /* Corregir vitality cards específicas */
+    .vitality-card {
+        margin: 0 !important;
+        padding: 1rem !important;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    /* Asegurar que todos los contenedores respeten el ancho */
+    .chart-container, .vitality-card, .result-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+    
+    /* Corregir gráficos específicos que se salen */
+    #biologicalAgeChart, #vo2Chart, #heartRateZonesChart {
+        max-width: 100% !important;
+    }
+    
+    /* Asegurar padding interno consistente */
+    .main-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+        }
+        
+        /* Botón Guía SEO en header */
+        .header {
+            position: relative;
+        }
+        
+        .seo-guide-button {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(46, 134, 171, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .seo-guide-button:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 15px rgba(46, 134, 171, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding-top: 80px !important;
+            }
+            
+            .seo-guide-button {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                transform: none;
+                z-index: 1000;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .seo-guide-button:hover {
+                transform: scale(1.05);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA flotante -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONSENTIMIENTO -->
+    <div class="health-notice" id="healthNotice">
+        <div class="consent-modal">
+            <div id="normalConsent">
+                <div class="consent-header">
+                    <h2>📋 Información Médica</h2>
+                    <p>Esta herramienta proporciona estimaciones orientativas</p>
+                </div>
+                
+                <div class="consent-body">
+                    <div class="age-input-group">
+                        <label>Confirme su edad para continuar:</label>
+                        <div style="margin-top: 1rem;">
+                            <span>Tengo</span>
+                            <input type="number" id="ageConsent" class="age-input" min="1" max="120" required>
+                            <span>años</span>
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <h3 style="margin-bottom: 1rem;">Al continuar, confirma que:</h3>
+                        
+                        <div class="consent-checkbox">
+                            <input type="checkbox" id="consent1">
+                            <label>Entiende que es una herramienta informativa</label>
+                        </div>
+                        
+                        <div class="consent-checkbox">
+                            <input type="checkbox" id="consent2">
+                            <label>Consultará con profesionales para decisiones médicas</label>
+                        </div>
+                        
+                        <div class="consent-checkbox">
+                            <input type="checkbox" id="consent3">
+                            <label>No utilizará estos resultados como diagnóstico</label>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <button class="consent-btn consent-btn-reject" onclick="rejectConsent()">
+                            No Acepto
+                        </button>
+                        <button class="consent-btn consent-btn-accept" id="acceptBtn" onclick="acceptConsent()" disabled>
+                            Acepto y Continúo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mensaje para menores -->
+            <div id="minorWarning" style="display: none;">
+                <div style="background: var(--danger); color: var(--bg-card); padding: 2rem; text-align: center; border-radius: var(--radius);">
+                    <h3>⚠️ Acceso Restringido</h3>
+                    <p>Esta herramienta está diseñada para adultos.</p>
+                    <button class="consent-btn" style="background: white; color: var(--danger); margin-top: 1rem;" onclick="closeMinorWarning()">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1 class="header-title">EVALUADOR DE SALUD</h1>
+        <a href="seo-health-landing.html" class="seo-guide-button" title="Más información sobre el evaluador">
+            📚 Guía Completa
+        </a>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container" id="mainContainer">
+        <!-- AVISO MÉDICO -->
+        <section class="section medical-notice">
+            <h3>📋 Información Orientativa</h3>
+            <p>Esta herramienta proporciona estimaciones basadas en fórmulas científicas validadas. Los resultados no sustituyen el consejo médico profesional.</p>
+        </section>
+
+        <!-- INTRO -->
+        <section class="section">
+            <h1 class="section-title">Análisis Integral de Salud</h1>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Evaluación orientativa de tu estado de salud mediante parámetros científicos validados. Obtén estimaciones informativas personalizadas.</p>
+        </section>
+
+        <!-- PROGRESS BAR -->
+        <div class="section">
+            <h3 style="text-align: center; margin-bottom: 1rem;">Progreso del Formulario</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% completado</div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="section">
+            <form id="healthForm">
+                <!-- DATOS BÁSICOS -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">📋 Datos Básicos</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Nombre (opcional)</label>
+                            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Edad *</label>
+                            <div class="input-unit" data-unit="años">
+                                <input type="number" id="edad" name="edad" class="form-input" required min="18" max="100" placeholder="35">
+                            </div>
+                            <div class="error-message" id="edadError">La edad debe estar entre 18 y 100 años</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sexo *</label>
+                            <select id="sexo" name="sexo" class="form-select" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="hombre">Hombre</option>
+                                <option value="mujer">Mujer</option>
+                            </select>
+                            <div class="error-message" id="sexoError">Selecciona tu sexo</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Altura *</label>
+                            <div class="input-unit" data-unit="cm">
+                                <input type="number" id="altura" name="altura" class="form-input" required min="140" max="220" step="0.1" placeholder="175">
+                            </div>
+                            <div class="error-message" id="alturaError">La altura debe estar entre 140 y 220 cm</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Peso *</label>
+                            <div class="input-unit" data-unit="kg">
+                                <input type="number" id="peso" name="peso" class="form-input" required min="40" max="200" step="0.1" placeholder="70">
+                            </div>
+                            <div class="error-message" id="pesoError">El peso debe estar entre 40 y 200 kg</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MEDIDAS CORPORALES -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">📏 Medidas Corporales</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Circunferencia de Cintura *</label>
+                            <div class="input-unit" data-unit="cm">
+                                <input type="number" id="cintura" name="cintura" class="form-input" required min="50" max="150" step="0.1" placeholder="85">
+                            </div>
+                            <div class="error-message" id="cinturaError">Debe estar entre 50 y 150 cm</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Circunferencia de Cadera *</label>
+                            <div class="input-unit" data-unit="cm">
+                                <input type="number" id="cadera" name="cadera" class="form-input" required min="70" max="150" step="0.1" placeholder="95">
+                            </div>
+                            <div class="error-message" id="caderaError">Debe estar entre 70 y 150 cm</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Circunferencia del Cuello *</label>
+                            <div class="input-unit" data-unit="cm">
+                                <input type="number" id="cuello" name="cuello" class="form-input" required min="25" max="50" step="0.1" placeholder="37">
+                            </div>
+                            <div class="error-message" id="cuelloError">Debe estar entre 25 y 50 cm</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Circunferencia de Muñeca</label>
+                            <div class="input-unit" data-unit="cm">
+                                <input type="number" id="muneca" name="muneca" class="form-input" min="12" max="25" step="0.1" placeholder="16">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PARÁMETROS CARDIOVASCULARES -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">❤️ Parámetros Cardiovasculares</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Presión Arterial Sistólica *</label>
+                            <div class="input-unit" data-unit="mmHg">
+                                <input type="number" id="presionSistolica" name="presionSistolica" class="form-input" required min="80" max="200" placeholder="120">
+                            </div>
+                            <div class="error-message" id="presionSistolicaError">Debe estar entre 80 y 200 mmHg</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Presión Arterial Diastólica *</label>
+                            <div class="input-unit" data-unit="mmHg">
+                                <input type="number" id="presionDiastolica" name="presionDiastolica" class="form-input" required min="50" max="120" placeholder="80">
+                            </div>
+                            <div class="error-message" id="presionDiastolicaError">Debe estar entre 50 y 120 mmHg</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Frecuencia Cardíaca en Reposo</label>
+                            <div class="input-unit" data-unit="bpm">
+                                <input type="number" id="frecuenciaCardiaca" name="frecuenciaCardiaca" class="form-input" min="40" max="120" placeholder="70">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Colesterol Total *</label>
+                            <div class="input-unit" data-unit="mg/dL">
+                                <input type="number" id="colesterolTotal" name="colesterolTotal" class="form-input" required min="100" max="400" placeholder="200">
+                            </div>
+                            <div class="error-message" id="colesterolTotalError">Debe estar entre 100 y 400 mg/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Colesterol HDL (Bueno) *</label>
+                            <div class="input-unit" data-unit="mg/dL">
+                                <input type="number" id="colesterolHDL" name="colesterolHDL" class="form-input" required min="20" max="100" placeholder="50">
+                            </div>
+                            <div class="error-message" id="colesterolHDLError">Debe estar entre 20 y 100 mg/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Glucosa en Ayunas</label>
+                            <div class="input-unit" data-unit="mg/dL">
+                                <input type="number" id="glucosa" name="glucosa" class="form-input" min="60" max="300" placeholder="90">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkbox-group" style="margin-top: 1rem;">
+                        <input type="checkbox" id="medicacionHipertension" name="medicacionHipertension" class="checkbox-input">
+                        <label class="form-label">Tomo medicación para la hipertensión</label>
+                    </div>
+                </div>
+
+                <!-- ESTILO DE VIDA -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">🏃 Estilo de Vida</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Nivel de Actividad Física *</label>
+                            <select id="actividadFisica" name="actividadFisica" class="form-select" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="sedentario">Sedentario (sin ejercicio)</option>
+                                <option value="ligero">Ligero (1-3 días/semana)</option>
+                                <option value="moderado">Moderado (3-5 días/semana)</option>
+                                <option value="activo">Activo (6-7 días/semana)</option>
+                                <option value="muy_activo">Muy Activo (2 veces/día o intenso)</option>
+                            </select>
+                            <div class="error-message" id="actividadFisicaError">Selecciona tu nivel de actividad</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hábito Tabáquico *</label>
+                            <select id="tabaquismo" name="tabaquismo" class="form-select" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="no_fumador">No fumador</option>
+                                <option value="ex_fumador">Ex-fumador (>1 año)</option>
+                                <option value="fumador">Fumador actual</option>
+                            </select>
+                            <div class="error-message" id="tabaquismoError">Selecciona tu hábito tabáquico</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Consumo de Alcohol</label>
+                            <select id="alcohol" name="alcohol" class="form-select">
+                                <option value="no">No consumo</option>
+                                <option value="ocasional">Ocasional (1-2 veces/semana)</option>
+                                <option value="moderado">Moderado (3-5 veces/semana)</option>
+                                <option value="diario">Diario</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Horas de Sueño Nocturno</label>
+                            <div class="input-unit" data-unit="horas">
+                                <input type="number" id="sueno" name="sueno" class="form-input" min="4" max="12" step="0.5" placeholder="7.5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nivel de Estrés Percibido</label>
+                            <select id="estres" name="estres" class="form-select">
+                                <option value="bajo">Bajo</option>
+                                <option value="moderado">Moderado</option>
+                                <option value="alto">Alto</option>
+                                <option value="muy_alto">Muy Alto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Dieta</label>
+                            <select id="dieta" name="dieta" class="form-select">
+                                <option value="mediterranea">Mediterránea</option>
+                                <option value="occidental">Occidental estándar</option>
+                                <option value="vegetariana">Vegetariana</option>
+                                <option value="vegana">Vegana</option>
+                                <option value="keto">Cetogénica</option>
+                                <option value="otra">Otra</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONDICIONES MÉDICAS -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">🏥 Condiciones Médicas</h2>
+                    <div class="form-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="diabetes" name="diabetes" class="checkbox-input">
+                            <label class="form-label">Diabetes tipo 2</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="hipertension" name="hipertension" class="checkbox-input">
+                            <label class="form-label">Hipertensión arterial</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="problemasCardiacos" name="problemasCardiacos" class="checkbox-input">
+                            <label class="form-label">Problemas cardíacos previos</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="problemasTimoideos" name="problemasTimoideos" class="checkbox-input">
+                            <label class="form-label">Problemas tiroideos</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="otrasCondiciones" name="otrasCondiciones" class="checkbox-input">
+                            <label class="form-label">Otras condiciones médicas relevantes</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- BOTÓN CALCULAR -->
+            <button type="button" id="calculateBtn" class="calculate-btn">
+                📊 REALIZAR EVALUACIÓN
+            </button>
+        </div>
+
+        <!-- RESULTADOS -->
+        <div id="resultsContainer" class="results-container">
+            <!-- Los resultados se generarán aquí -->
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="disclaimer">
+            <p><strong>Aviso Médico:</strong> Esta herramienta proporciona estimaciones orientativas basadas en fórmulas científicas validadas. Los resultados no sustituyen el consejo médico profesional. Consulte siempre con profesionales de la salud para evaluaciones personalizadas.</p>
+            
+            <div style="margin-top: 15px; padding: 15px; background: linear-gradient(135deg, #E8F5E8, #F1F8E9); border-radius: 8px; border-left: 4px solid #27AE60;">
+                <h4 style="color: #2E86AB; margin: 0 0 8px 0; font-size: 1.1rem;">💡 ¿Te interesa la nutrición?</h4>
+                <p style="margin: 0 0 10px 0; color: #333; font-size: 0.95rem;">Descubre <strong>NutriSalud</strong>, nuestra nueva plataforma de información nutricional educativa basada en evidencia científica.</p>
+                <a href="../NutriSalud/nutrisalud.html" 
+                   style="display: inline-block; background: #2E86AB; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.3s ease;"
+                   onmouseover="this.style.background='#246b8a'" 
+                   onmouseout="this.style.background='#2E86AB'">
+                   Explorar NutriSalud →
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Variables globales
+        let calculationResults = {};
+        let consentGiven = false;
+
+        // CONSENT MANAGEMENT
+        window.addEventListener('DOMContentLoaded', function() {
+            if (sessionStorage.getItem('healthConsentAccepted') === 'true') {
+                consentGiven = true;
+                document.getElementById('mainContainer').classList.add('active');
+            } else {
+                document.getElementById('healthNotice').classList.add('active');
+            }
+
+            // Listeners para checkboxes
+            const checkboxes = document.querySelectorAll('.consent-checkbox input');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', checkAllConsents);
+            });
+
+            document.getElementById('ageConsent').addEventListener('input', function() {
+                checkAge();
+                checkAllConsents();
+            });
+        });
+
+        function checkAge() {
+            const ageInput = document.getElementById('ageConsent');
+            const age = parseInt(ageInput.value);
+            
+            if (ageInput.value.length < 2) {
+                document.getElementById('normalConsent').style.display = 'block';
+                document.getElementById('minorWarning').style.display = 'none';
+                return true;
+            }
+            
+            if (age && age < 18) {
+                document.getElementById('normalConsent').style.display = 'none';
+                document.getElementById('minorWarning').style.display = 'block';
+                return false;
+            } else {
+                document.getElementById('normalConsent').style.display = 'block';
+                document.getElementById('minorWarning').style.display = 'none';
+                return true;
+            }
+        }
+
+        function checkAllConsents() {
+            const age = parseInt(document.getElementById('ageConsent').value);
+            const consent1 = document.getElementById('consent1').checked;
+            const consent2 = document.getElementById('consent2').checked;
+            const consent3 = document.getElementById('consent3').checked;
+            
+            const allChecked = age >= 18 && consent1 && consent2 && consent3;
+            document.getElementById('acceptBtn').disabled = !allChecked;
+        }
+
+        function acceptConsent() {
+            const age = parseInt(document.getElementById('ageConsent').value);
+            if (age >= 18) {
+                consentGiven = true;
+                sessionStorage.setItem('healthConsentAccepted', 'true');
+                document.getElementById('healthNotice').classList.remove('active');
+                document.getElementById('mainContainer').classList.add('active');
+            }
+        }
+
+        function rejectConsent() {
+            alert('Es necesario aceptar las condiciones para usar la herramienta.');
+        }
+
+        function closeMinorWarning() {
+            window.location.href = 'index.html';
+        }
+
+        // PROGRESS BAR
+        function updateProgress() {
+            const form = document.getElementById('healthForm');
+            const requiredInputs = form.querySelectorAll('input[required], select[required]');
+            const filledInputs = Array.from(requiredInputs).filter(input => input.value.trim() !== '');
+            const progress = Math.round((filledInputs.length / requiredInputs.length) * 100);
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = progress + '% completado';
+        }
+
+        // VALIDATION
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldName = field.name;
+            const errorElement = document.getElementById(fieldName + 'Error');
+            let isValid = true;
+
+            field.classList.remove('error');
+            if (errorElement) errorElement.classList.remove('visible');
+
+            if (field.required && !value) {
+                isValid = false;
+                field.classList.add('error');
+                if (errorElement) {
+                    errorElement.textContent = 'Este campo es obligatorio';
+                    errorElement.classList.add('visible');
+                }
+                return isValid;
+            }
+
+            // Validaciones específicas
+            switch (fieldName) {
+                case 'edad':
+                    if (value && (value < 18 || value > 100)) {
+                        isValid = false;
+                        field.classList.add('error');
+                        if (errorElement) errorElement.classList.add('visible');
+                    }
+                    break;
+                case 'altura':
+                    if (value && (value < 140 || value > 220)) {
+                        isValid = false;
+                        field.classList.add('error');
+                        if (errorElement) errorElement.classList.add('visible');
+                    }
+                    break;
+                case 'peso':
+                    if (value && (value < 40 || value > 200)) {
+                        isValid = false;
+                        field.classList.add('error');
+                        if (errorElement) errorElement.classList.add('visible');
+                    }
+                    break;
+                case 'presionSistolica':
+                    if (value && (value < 80 || value > 200)) {
+                        isValid = false;
+                        field.classList.add('error');
+                        if (errorElement) errorElement.classList.add('visible');
+                    }
+                    break;
+                case 'presionDiastolica':
+                    if (value && (value < 50 || value > 120)) {
+                        isValid = false;
+                        field.classList.add('error');
+                        if (errorElement) errorElement.classList.add('visible');
+                    }
+                    const sistolica = document.getElementById('presionSistolica').value;
+                    if (value && sistolica && parseInt(value) >= parseInt(sistolica)) {
+                        isValid = false;
+                        field.classList.add('error');
+                        if (errorElement) {
+                            errorElement.textContent = 'Debe ser menor que la presión sistólica';
+                            errorElement.classList.add('visible');
+                        }
+                    }
+                    break;
+            }
+            return isValid;
+        }
+
+        function validateForm() {
+            const form = document.getElementById('healthForm');
+            const requiredFields = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+            return isValid;
+        }
+
+        // CÁLCULOS MÉDICOS
+        function calculateIMC(peso, altura) {
+            const alturaM = altura / 100;
+            return peso / (alturaM * alturaM);
+        }
+
+        function getIMCCategory(imc) {
+            if (imc < 18.5) return { category: 'Bajo peso', color: '#48A9A6', status: 'attention' };
+            if (imc < 25) return { category: 'Normal', color: '#27AE60', status: 'good' };
+            if (imc < 30) return { category: 'Sobrepeso', color: '#E67E22', status: 'warning' };
+            if (imc < 35) return { category: 'Obesidad Grado I', color: '#E67E22', status: 'warning' };
+            if (imc < 40) return { category: 'Obesidad Grado II', color: '#E74C3C', status: 'danger' };
+            return { category: 'Obesidad Grado III', color: '#C0392B', status: 'danger' };
+        }
+
+        function calculateBodyFat(sexo, edad, imc, cuello, cintura, cadera, altura) {
+            let bodyFat;
+            if (sexo === 'hombre') {
+                bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(cintura - cuello) + 0.15456 * Math.log10(altura)) - 450;
+            } else {
+                bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(cintura + cadera - cuello) + 0.22100 * Math.log10(altura)) - 450;
+            }
+            return Math.max(0, Math.min(50, bodyFat));
+        }
+
+        function calculateTMB(sexo, edad, peso, altura) {
+            let tmb;
+            if (sexo === 'hombre') {
+                tmb = (10 * peso) + (6.25 * altura) - (5 * edad) + 5;
+            } else {
+                tmb = (10 * peso) + (6.25 * altura) - (5 * edad) - 161;
+            }
+            return tmb * 1.03; // Ajuste mediterráneo
+        }
+
+        function calculateTDEE(tmb, actividadFisica) {
+            const factores = {
+                'sedentario': 1.2,
+                'ligero': 1.375,
+                'moderado': 1.55,
+                'activo': 1.725,
+                'muy_activo': 1.9
+            };
+            return tmb * (factores[actividadFisica] || 1.2);
+        }
+
+        function calculateSCORE2(edad, sexo, tabaquismo, presionSistolica, colesterolTotal, colesterolHDL) {
+            let score = 0;
+            
+            if (edad >= 70) score += 4;
+            else if (edad >= 60) score += 3;
+            else if (edad >= 50) score += 2;
+            else if (edad >= 40) score += 1;
+            
+            if (sexo === 'hombre') score += 1;
+            
+            if (tabaquismo === 'fumador') score += 2;
+            else if (tabaquismo === 'ex_fumador') score += 0.5;
+            
+            if (presionSistolica >= 180) score += 3;
+            else if (presionSistolica >= 160) score += 2;
+            else if (presionSistolica >= 140) score += 1;
+            else if (presionSistolica >= 120) score += 0.5;
+            
+            const ratioColesterol = colesterolTotal / colesterolHDL;
+            if (ratioColesterol >= 8) score += 3;
+            else if (ratioColesterol >= 6) score += 2;
+            else if (ratioColesterol >= 5) score += 1;
+            else if (ratioColesterol >= 4) score += 0.5;
+            
+            return Math.min(30, Math.max(0, score * 1.2));
+        }
+
+        function getSCORE2Category(score) {
+            if (score < 2.5) return { category: 'Muy Bajo', color: '#27AE60', status: 'good' };
+            if (score < 5) return { category: 'Bajo', color: '#48A9A6', status: 'good' };
+            if (score < 7.5) return { category: 'Moderado', color: '#E67E22', status: 'warning' };
+            if (score < 10) return { category: 'Alto', color: '#E74C3C', status: 'danger' };
+            return { category: 'Muy Alto', color: '#C0392B', status: 'danger' };
+        }
+
+        function calculateMacronutrients(tdee, dieta = 'mediterranea') {
+            let proteinas, carbohidratos, grasas;
+            
+            switch (dieta) {
+                case 'mediterranea':
+                    proteinas = 0.20; carbohidratos = 0.50; grasas = 0.30;
+                    break;
+                case 'keto':
+                    proteinas = 0.25; carbohidratos = 0.05; grasas = 0.70;
+                    break;
+                default:
+                    proteinas = 0.20; carbohidratos = 0.50; grasas = 0.30;
+            }
+            
+            return {
+                proteinas: { grams: (tdee * proteinas) / 4, percentage: proteinas * 100 },
+                carbohidratos: { grams: (tdee * carbohidratos) / 4, percentage: carbohidratos * 100 },
+                grasas: { grams: (tdee * grasas) / 9, percentage: grasas * 100 }
+            };
+        }
+
+        function calculateBiologicalAge(edad, sexo, imc, bodyFat, presionSistolica, presionDiastolica, frecuenciaCardiaca, tabaquismo, actividadFisica, sueno, estres, alcohol) {
+            let bioAge = edad;
+            
+            // Factor IMC
+            if (imc >= 18.5 && imc <= 24.9) bioAge -= 2;
+            else if (imc < 18.5 || (imc >= 25 && imc < 30)) bioAge += 1;
+            else if (imc >= 30 && imc < 35) bioAge += 3;
+            else if (imc >= 35) bioAge += 5;
+            
+            // Factor grasa corporal
+            const idealBodyFat = sexo === 'hombre' ? 15 : 22;
+            const fatDiff = Math.abs(bodyFat - idealBodyFat);
+            if (fatDiff <= 3) bioAge -= 2;
+            else if (fatDiff <= 7) bioAge -= 0.5;
+            else if (fatDiff > 10) bioAge += (fatDiff - 10) * 0.3;
+            
+            // Factor presión arterial
+            if (presionSistolica < 120 && presionDiastolica < 80) bioAge -= 3;
+            else if (presionSistolica < 130 && presionDiastolica < 85) bioAge -= 1;
+            else if (presionSistolica >= 140 || presionDiastolica >= 90) bioAge += 4;
+            else if (presionSistolica >= 160 || presionDiastolica >= 100) bioAge += 7;
+            
+            // Factor frecuencia cardíaca en reposo
+            if (frecuenciaCardiaca) {
+                if (frecuenciaCardiaca < 60) bioAge -= 3;
+                else if (frecuenciaCardiaca <= 70) bioAge -= 1;
+                else if (frecuenciaCardiaca > 80) bioAge += 2;
+                else if (frecuenciaCardiaca > 90) bioAge += 4;
+            }
+            
+            // Factor tabaquismo
+            if (tabaquismo === 'fumador') bioAge += 8;
+            else if (tabaquismo === 'ex_fumador') bioAge += 2;
+            else bioAge -= 2;
+            
+            // Factor actividad física
+            switch(actividadFisica) {
+                case 'muy_activo': bioAge -= 5; break;
+                case 'activo': bioAge -= 3; break;
+                case 'moderado': bioAge -= 1; break;
+                case 'ligero': bioAge += 1; break;
+                case 'sedentario': bioAge += 4; break;
+            }
+            
+            // Factor sueño
+            const suenoNum = parseFloat(sueno) || 7.5;
+            if (suenoNum >= 7 && suenoNum <= 9) bioAge -= 2;
+            else if (suenoNum < 6 || suenoNum > 10) bioAge += 3;
+            
+            // Factor estrés
+            if (estres === 'bajo') bioAge -= 2;
+            else if (estres === 'moderado') bioAge += 0;
+            else if (estres === 'alto') bioAge += 3;
+            else if (estres === 'muy_alto') bioAge += 5;
+            
+            // Factor alcohol
+            if (alcohol === 'no') bioAge -= 1;
+            else if (alcohol === 'ocasional') bioAge += 0;
+            else if (alcohol === 'moderado') bioAge += 2;
+            else if (alcohol === 'diario') bioAge += 4;
+            
+            // Limitar el rango de edad biológica
+            bioAge = Math.max(18, Math.min(100, bioAge));
+            
+            return {
+                value: Math.round(bioAge),
+                difference: Math.round(bioAge - edad),
+                category: getBiologicalAgeCategory(bioAge - edad)
+            };
+        }
+
+        function getBiologicalAgeCategory(difference) {
+            if (difference <= -5) return { text: 'Excelente', color: '#27AE60' };
+            if (difference <= -2) return { text: 'Muy Bueno', color: '#48A9A6' };
+            if (difference <= 2) return { text: 'Normal', color: '#7FB3D3' };
+            if (difference <= 5) return { text: 'Atención', color: '#E67E22' };
+            return { text: 'Requiere Mejora', color: '#E74C3C' };
+        }
+
+        // Calcular VO2 Máximo
+        function calculateVO2Max(edad, sexo, frecuenciaCardiaca, actividadFisica) {
+            let vo2max;
+            const fcReposo = frecuenciaCardiaca || 70;
+            
+            // Fórmula de Uth-Sørensen-Overgaard-Pedersen
+            const fcMaxima = 220 - edad;
+            vo2max = 15.3 * (fcMaxima / fcReposo);
+            
+            // Ajustes por sexo
+            if (sexo === 'mujer') vo2max *= 0.85;
+            
+            // Ajustes por nivel de actividad
+            const activityMultipliers = {
+                'sedentario': 0.75,
+                'ligero': 0.85,
+                'moderado': 1.0,
+                'activo': 1.15,
+                'muy_activo': 1.3
+            };
+            
+            vo2max *= activityMultipliers[actividadFisica] || 1.0;
+            
+            // Limitar valores
+            vo2max = Math.max(15, Math.min(80, vo2max));
+            
+            return {
+                value: vo2max.toFixed(1),
+                category: getVO2MaxCategory(vo2max, edad, sexo)
+            };
+        }
+
+        function getVO2MaxCategory(vo2max, edad, sexo) {
+            let category;
+            
+            if (sexo === 'hombre') {
+                if (edad < 30) {
+                    if (vo2max >= 55) category = 'Superior';
+                    else if (vo2max >= 45) category = 'Excelente';
+                    else if (vo2max >= 38) category = 'Bueno';
+                    else if (vo2max >= 30) category = 'Regular';
+                    else category = 'Pobre';
+                } else if (edad < 50) {
+                    if (vo2max >= 50) category = 'Superior';
+                    else if (vo2max >= 40) category = 'Excelente';
+                    else if (vo2max >= 33) category = 'Bueno';
+                    else if (vo2max >= 26) category = 'Regular';
+                    else category = 'Pobre';
+                } else {
+                    if (vo2max >= 45) category = 'Superior';
+                    else if (vo2max >= 35) category = 'Excelente';
+                    else if (vo2max >= 28) category = 'Bueno';
+                    else if (vo2max >= 22) category = 'Regular';
+                    else category = 'Pobre';
+                }
+            } else {
+                if (edad < 30) {
+                    if (vo2max >= 49) category = 'Superior';
+                    else if (vo2max >= 40) category = 'Excelente';
+                    else if (vo2max >= 33) category = 'Bueno';
+                    else if (vo2max >= 26) category = 'Regular';
+                    else category = 'Pobre';
+                } else if (edad < 50) {
+                    if (vo2max >= 45) category = 'Superior';
+                    else if (vo2max >= 36) category = 'Excelente';
+                    else if (vo2max >= 29) category = 'Bueno';
+                    else if (vo2max >= 23) category = 'Regular';
+                    else category = 'Pobre';
+                } else {
+                    if (vo2max >= 40) category = 'Superior';
+                    else if (vo2max >= 31) category = 'Excelente';
+                    else if (vo2max >= 25) category = 'Bueno';
+                    else if (vo2max >= 20) category = 'Regular';
+                    else category = 'Pobre';
+                }
+            }
+            
+            const colors = {
+                'Superior': '#27AE60',
+                'Excelente': '#48A9A6',
+                'Bueno': '#7FB3D3',
+                'Regular': '#E67E22',
+                'Pobre': '#E74C3C'
+            };
+            
+            return { text: category, color: colors[category] };
+        }
+
+        // Calcular Fitness Score
+        function calculateFitnessScore(imc, bodyFat, vo2max, actividadFisica, presionSistolica, presionDiastolica, frecuenciaCardiaca, edad, sexo) {
+            let score = 50; // Base score
+            
+            // Factor IMC (máx 20 puntos)
+            if (imc >= 18.5 && imc <= 24.9) score += 20;
+            else if (imc < 18.5) score += 10;
+            else if (imc < 30) score += 10 - ((imc - 25) * 2);
+            else if (imc < 35) score -= 5;
+            else score -= 10;
+            
+            // Factor grasa corporal (máx 15 puntos)
+            const idealBodyFat = sexo === 'hombre' ? 15 : 22;
+            const fatDiff = Math.abs(bodyFat - idealBodyFat);
+            if (fatDiff <= 3) score += 15;
+            else if (fatDiff <= 7) score += 10;
+            else if (fatDiff <= 12) score += 5;
+            else score -= 5;
+            
+            // Factor VO2 Max (máx 20 puntos)
+            const vo2Value = parseFloat(vo2max.value);
+            if (vo2Value >= 50) score += 20;
+            else if (vo2Value >= 40) score += 15;
+            else if (vo2Value >= 30) score += 10;
+            else if (vo2Value >= 25) score += 5;
+            else score += 0;
+            
+            // Factor actividad física (máx 15 puntos)
+            const activityScores = {
+                'muy_activo': 15,
+                'activo': 12,
+                'moderado': 8,
+                'ligero': 4,
+                'sedentario': -5
+            };
+            score += activityScores[actividadFisica] || 0;
+            
+            // Factor cardiovascular (máx 15 puntos)
+            let cardioScore = 15;
+            if (presionSistolica >= 140 || presionDiastolica >= 90) cardioScore -= 10;
+            else if (presionSistolica >= 130 || presionDiastolica >= 85) cardioScore -= 5;
+            
+            if (frecuenciaCardiaca) {
+                if (frecuenciaCardiaca > 80) cardioScore -= 3;
+                else if (frecuenciaCardiaca < 60) cardioScore += 2;
+            }
+            score += cardioScore;
+            
+            // Factor edad (ajuste)
+            if (edad < 30) score += 5;
+            else if (edad > 60) score -= 5;
+            
+            // Normalizar a escala 0-100
+            score = Math.max(0, Math.min(100, score));
+            
+            return {
+                value: Math.round(score),
+                category: getFitnessCategory(score)
+            };
+        }
+
+        function getFitnessCategory(score) {
+            if (score >= 80) return { text: 'Atlético', color: '#27AE60' };
+            if (score >= 65) return { text: 'Muy Bueno', color: '#48A9A6' };
+            if (score >= 50) return { text: 'Bueno', color: '#7FB3D3' };
+            if (score >= 35) return { text: 'Regular', color: '#E67E22' };
+            return { text: 'Necesita Mejora', color: '#E74C3C' };
+        }
+
+        // Calcular zonas de frecuencia cardíaca
+        function calculateHeartRateZones(edad) {
+            const fcMaxima = 220 - edad;
+            
+            return {
+                maxima: fcMaxima,
+                zones: [
+                    {
+                        name: 'Zona de Recuperación',
+                        min: Math.round(fcMaxima * 0.50),
+                        max: Math.round(fcMaxima * 0.60),
+                        description: 'Calentamiento y enfriamiento',
+                        color: '#7FB3D3'
+                    },
+                    {
+                        name: 'Zona de Quema de Grasa',
+                        min: Math.round(fcMaxima * 0.60),
+                        max: Math.round(fcMaxima * 0.70),
+                        description: 'Ejercicio aeróbico suave',
+                        color: '#27AE60'
+                    },
+                    {
+                        name: 'Zona Aeróbica',
+                        min: Math.round(fcMaxima * 0.70),
+                        max: Math.round(fcMaxima * 0.80),
+                        description: 'Mejora cardiovascular',
+                        color: '#48A9A6'
+                    },
+                    {
+                        name: 'Zona Anaeróbica',
+                        min: Math.round(fcMaxima * 0.80),
+                        max: Math.round(fcMaxima * 0.90),
+                        description: 'Rendimiento y velocidad',
+                        color: '#E67E22'
+                    },
+                    {
+                        name: 'Zona Máxima',
+                        min: Math.round(fcMaxima * 0.90),
+                        max: fcMaxima,
+                        description: 'Esfuerzo máximo',
+                        color: '#E74C3C'
+                    }
+                ]
+            };
+        }
+
+        // FUNCIÓN PRINCIPAL DE CÁLCULOS COMPLETA
+        function performCalculations() {
+            const formData = new FormData(document.getElementById('healthForm'));
+            const data = Object.fromEntries(formData.entries());
+            
+            // Convertir a números
+            const edad = parseInt(data.edad);
+            const peso = parseFloat(data.peso);
+            const altura = parseFloat(data.altura);
+            const cintura = parseFloat(data.cintura);
+            const cadera = parseFloat(data.cadera);
+            const cuello = parseFloat(data.cuello);
+            const presionSistolica = parseInt(data.presionSistolica);
+            const presionDiastolica = parseInt(data.presionDiastolica);
+            const colesterolTotal = parseInt(data.colesterolTotal);
+            const colesterolHDL = parseInt(data.colesterolHDL);
+            const frecuenciaCardiaca = data.frecuenciaCardiaca ? parseInt(data.frecuenciaCardiaca) : null;
+            
+            // Realizar cálculos principales
+            const imc = calculateIMC(peso, altura);
+            const imcCategory = getIMCCategory(imc);
+            const bodyFat = calculateBodyFat(data.sexo, edad, imc, cuello, cintura, cadera, altura);
+            const tmb = calculateTMB(data.sexo, edad, peso, altura);
+            const tdee = calculateTDEE(tmb, data.actividadFisica);
+            const score2 = calculateSCORE2(edad, data.sexo, data.tabaquismo, presionSistolica, colesterolTotal, colesterolHDL);
+            const score2Category = getSCORE2Category(score2);
+            const macros = calculateMacronutrients(tdee, data.dieta);
+            
+            // Cálculos adicionales
+            const ratioColesterol = colesterolTotal / colesterolHDL;
+            const ratioCinturaCadera = cintura / cadera;
+            
+            // NUEVOS CÁLCULOS AVANZADOS
+            const biologicalAge = calculateBiologicalAge(
+                edad, data.sexo, imc, bodyFat, presionSistolica, presionDiastolica,
+                frecuenciaCardiaca, data.tabaquismo, data.actividadFisica, 
+                data.sueno, data.estres, data.alcohol
+            );
+            
+            const vo2max = calculateVO2Max(edad, data.sexo, frecuenciaCardiaca, data.actividadFisica);
+            
+            const fitnessScore = calculateFitnessScore(
+                imc, bodyFat, vo2max, data.actividadFisica, presionSistolica,
+                presionDiastolica, frecuenciaCardiaca, edad, data.sexo
+            );
+            
+            const heartRateZones = calculateHeartRateZones(edad);
+            
+            // Guardar todos los resultados
+            calculationResults = {
+                personalData: data,
+                imc: { value: imc, ...imcCategory },
+                bodyFat: bodyFat,
+                tmb: tmb,
+                tdee: tdee,
+                score2: { value: score2, ...score2Category },
+                macros: macros,
+                ratioColesterol: ratioColesterol,
+                ratioCinturaCadera: ratioCinturaCadera,
+                // Nuevos resultados avanzados
+                biologicalAge: biologicalAge,
+                vo2max: vo2max,
+                fitnessScore: fitnessScore,
+                heartRateZones: heartRateZones,
+                timestamp: new Date()
+            };
+            
+            return calculationResults;
+        }
+
+        // EVENT LISTENERS
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('healthForm');
+            const calculateBtn = document.getElementById('calculateBtn');
+            
+            form.addEventListener('input', updateProgress);
+            form.addEventListener('change', updateProgress);
+            
+            form.addEventListener('blur', function(e) {
+                if (e.target.matches('input, select')) {
+                    validateField(e.target);
+                    updateProgress();
+                }
+            }, true);
+            
+            calculateBtn.addEventListener('click', function() {
+                if (!consentGiven) {
+                    alert('Debe aceptar las condiciones de uso antes de utilizar el evaluador.');
+                    document.getElementById('healthNotice').classList.add('active');
+                    return;
+                }
+                
+                if (validateForm()) {
+                    const results = performCalculations();
+                    // ✅ ARREGLO 1: Llamar a displayResults (de results.js) en lugar de displayHealthResults
+                    displayResults(results);
+                    
+                    // Scroll to results
+                    document.getElementById('resultsContainer').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    alert('Por favor, completa todos los campos obligatorios correctamente.');
+                }
+            });
+            
+            // Initial progress update
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

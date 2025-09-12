@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="es">   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Creador de Paletas de Colores - Generador de Esquemas Cromáticos | meskeIA</title>
+    <meta name="description" content="Creador de paletas de colores profesional. Genera esquemas cromáticos perfectos para diseño web, gráfico y branding. Exporta en CSS, JSON o texto. 7 tipos de paletas disponibles.">
+    <meta name="keywords" content="paleta colores, creador colores, esquemas cromáticos, diseño web, colores hex, combinaciones colores, generador paleta, color picker, branding, diseño gráfico, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/creador-paletas/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Creador de Paletas de Colores - Generador de Esquemas Cromáticos | meskeIA">
+    <meta property="og:description" content="Herramienta para crear paletas de colores profesionales. Genera esquemas cromáticos perfectos con 7 tipos diferentes. Ideal para diseñadores web y gráficos.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/creador-paletas/">
+    <meta property="og:image" content="https://meskeia.com/assets/og-color-palette.png">
+    <meta property="og:image:alt" content="Creador de Paletas de Colores - Generador de esquemas cromáticos">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Creador de Paletas de Colores | meskeIA">
+    <meta name="twitter:description" content="Crea paletas de colores profesionales. 7 esquemas cromáticos diferentes para diseño web y gráfico.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-color-palette.png">
+    <meta name="twitter:image:alt" content="Creador de Paletas de Colores profesional">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+    
+    <!-- Structured Data - WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Creador de Paletas de Colores",
+        "description": "Herramienta web gratuita para crear paletas de colores profesionales. Genera esquemas cromáticos con 7 tipos diferentes: complementario, análogo, triádico, tetrádico, split complementario, monocromático y compuesto. Exporta en múltiples formatos.",
+        "url": "https://meskeia.com/aplicaciones/creador-paletas/",
+        "image": "https://meskeia.com/assets/og-color-palette.png",
+        "applicationCategory": "Design",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Qué tipos de esquemas cromáticos puedo generar?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puedes generar 7 tipos de esquemas cromáticos: complementario (colores opuestos), análogo (colores adyacentes), triádico (3 colores equidistantes), tetrádico (4 colores), split complementario, monocromático (variaciones de un color) y compuesto."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "¿En qué formatos puedo exportar las paletas?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puedes exportar las paletas en varios formatos: CSS (variables CSS personalizadas), JSON (para uso programático), texto plano (con códigos HEX, RGB y HSL) y guardar en el navegador para uso posterior."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Es gratuito el creador de paletas?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, nuestro creador de paletas de colores es completamente gratuito. No requiere registro, descargas ni pagos. Funciona directamente en tu navegador web."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cómo copio los códigos de color?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simplemente haz clic en cualquier código de color (HEX, RGB o HSL) o en la muestra de color y se copiará automáticamente al portapapeles. Recibirás una notificación de confirmación."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+            
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            
+            /* Estados */
+            --success: #28a745;
+            --success-hover: #218838;
+            --export: #17a2b8;
+            --export-hover: #138496;
+            
+            /* Espaciado consistente */
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            padding: var(--spacing-lg);
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            padding: var(--spacing-xl);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Controles */
+        .controls {
+            padding: var(--spacing-xl);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            align-items: center;
+            justify-content: center;
+            background: var(--hover);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .color-input {
+            width: 80px;
+            height: 50px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .color-input:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-medium);
+        }
+
+        select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        /* Botones */
+        button {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+            min-width: 140px;
+        }
+
+        .btn-generate {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-generate:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-random {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .btn-random:hover {
+            background: var(--success-hover);
+            border-color: var(--success-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Contenedor de paletas */
+        .palette-container {
+            padding: var(--spacing-xl);
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .color-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
+        }
+
+        .color-display {
+            height: 100px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .color-display:hover {
+            filter: brightness(1.05);
+        }
+
+        .color-info {
+            padding: var(--spacing-sm);
+            text-align: center;
+        }
+
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 2px 0;
+            cursor: pointer;
+            padding: 2px var(--spacing-xs);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .color-code:hover {
+            background: var(--hover);
+            color: var(--text-primary);
+        }
+
+        /* Notificación de copia */
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-medium);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .copy-notification.show {
+            transform: translateX(0);
+        }
+
+        /* Sección de exportación */
+        .export-section {
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background: var(--hover);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .export-section h3 {
+            text-align: center;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-export {
+            background: var(--export);
+            color: white;
+            border-color: var(--export);
+        }
+
+        .btn-export:hover {
+            background: var(--export-hover);
+            border-color: var(--export-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            body {
+                padding: var(--spacing-sm);
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .palette-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: var(--spacing-md);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .export-buttons {
+                flex-direction: column;
+            }
+
+            button {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .footer {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .palette-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: var(--spacing-lg);
+            }
+
+            .controls {
+                padding: var(--spacing-lg);
+            }
+
+            .palette-container {
+                padding: var(--spacing-lg);
+            }
+        }
+
+        /* Accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* SEO Content Styles */
+        .main-app-wrapper {
+            padding: var(--spacing-lg);
+        }
+
+        .seo-content {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .seo-content section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .seo-content h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .seo-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), #48A9A6);
+            border-radius: 2px;
+        }
+
+        .seo-content h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .seo-content h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .guide-section, .scheme-item, .color-psychology, .application-category, .tech-item, .faq-item, .trend-item {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .guide-section:last-child, .scheme-item:last-child, .color-psychology:last-child, .application-category:last-child, .tech-item:last-child, .faq-item:last-child, .trend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .seo-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .seo-content strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .seo-content ul {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-left: 1.5rem;
+        }
+
+        .seo-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grid Layouts for SEO Content */
+        .schemes-grid, .psychology-grid, .applications-grid, .technical-grid, .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .scheme-item, .color-psychology, .application-category, .tech-item, .trend-item {
+            background: var(--hover);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .scheme-item:hover, .color-psychology:hover, .application-category:hover, .tech-item:hover, .trend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
+        }
+
+        /* FAQ Specific Styles */
+        .faq-item {
+            background: var(--hover);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-item h3 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Color Psychology Special Grid */
+        .psychology-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .color-psychology h4 {
+            font-size: 1rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Responsive for SEO Content */
+        @media (max-width: 768px) {
+            .main-app-wrapper {
+                padding: var(--spacing-md);
+            }
+
+            .seo-content {
+                margin-top: var(--spacing-xl);
+                padding: 0 var(--spacing-sm);
+            }
+
+            .seo-content section {
+                padding: var(--spacing-lg);
+                margin-bottom: var(--spacing-lg);
+                border-radius: 12px;
+            }
+
+            .seo-content h2 {
+                font-size: 1.6rem;
+                margin-bottom: var(--spacing-md);
+            }
+
+            .seo-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .seo-content h4 {
+                font-size: 1rem;
+            }
+
+            .schemes-grid, .psychology-grid, .applications-grid, .technical-grid, .trends-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            .scheme-item, .color-psychology, .application-category, .tech-item, .faq-item, .trend-item {
+                padding: var(--spacing-sm);
+            }
+
+            .color-psychology h4 {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .seo-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .seo-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .seo-content h4 {
+                font-size: 0.95rem;
+            }
+
+            .seo-content section {
+                padding: var(--spacing-md);
+            }
+
+            .color-psychology h4 {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="main-app-wrapper">
+        <div class="container">
+        <div class="header">
+            <h1>🎨 Creador de Paletas de Colores</h1>
+            <p>Crea hermosas combinaciones de colores para tus proyectos de diseño</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="baseColor">Color Base</label>
+                <input type="color" id="baseColor" class="color-input" value="#2E86AB">
+            </div>
+
+            <div class="control-group">
+                <label for="schemeType">Esquema de Color</label>
+                <select id="schemeType">
+                    <option value="complementary">Complementario</option>
+                    <option value="analogous">Análogo</option>
+                    <option value="triadic">Triádico</option>
+                    <option value="tetradic">Tetrádico</option>
+                    <option value="splitComplementary">Split Complementario</option>
+                    <option value="monochromatic">Monocromático</option>
+                    <option value="compound">Compuesto</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <button class="btn-generate" onclick="generatePalette()">Generar Paleta</button>
+            </div>
+
+            <div class="control-group">
+                <button class="btn-random" onclick="randomColor()">Color Aleatorio</button>
+            </div>
+        </div>
+
+        <div class="palette-container">
+            <div class="palette-grid" id="paletteGrid">
+                <!-- Aquí se generarán las tarjetas de colores -->
+            </div>
+
+            <div class="export-section">
+                <h3>Exportar Paleta</h3>
+                <div class="export-buttons">
+                    <button class="btn-export" onclick="exportAsCSS()">Exportar CSS</button>
+                    <button class="btn-export" onclick="exportAsJSON()">Exportar JSON</button>
+                    <button class="btn-export" onclick="exportAsText()">Exportar Texto</button>
+                    <button class="btn-export" onclick="savePalette()">Guardar Paleta</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <section class="color-theory-guide">
+                <h2>Guía Completa de Teoría del Color</h2>
+                
+                <div class="guide-section">
+                    <h3>¿Qué es la Teoría del Color?</h3>
+                    <p>La <strong>teoría del color</strong> es la ciencia y el arte que estudia cómo los colores interactúan entre sí y cómo afectan la percepción visual. Nuestra herramienta utiliza principios científicos del color para generar paletas armónicas y profesionales.</p>
+                </div>
+                
+                <div class="guide-section">
+                    <h3>Tipos de Esquemas Cromáticos</h3>
+                    <div class="schemes-grid">
+                        <div class="scheme-item">
+                            <h4>🎨 Complementario</h4>
+                            <p>Utiliza <strong>colores opuestos</strong> en el círculo cromático (separados 180°). Crea alto contraste y vibración visual. Ideal para llamar la atención y crear impacto.</p>
+                        </div>
+                        
+                        <div class="scheme-item">
+                            <h4>🌈 Análogo</h4>
+                            <p>Emplea <strong>colores adyacentes</strong> en el círculo cromático (separados 30°). Genera armonía suave y tranquila. Perfecto para diseños relajantes y naturales.</p>
+                        </div>
+                        
+                        <div class="scheme-item">
+                            <h4>🔺 Triádico</h4>
+                            <p>Combina <strong>tres colores equidistantes</strong> (separados 120°). Ofrece contraste vibrante manteniendo armonía. Excelente para diseños dinámicos y equilibrados.</p>
+                        </div>
+                        
+                        <div class="scheme-item">
+                            <h4>🔳 Tetrádico</h4>
+                            <p>Usa <strong>cuatro colores</strong> formando un rectángulo en el círculo cromático. Proporciona rica variedad cromática. Ideal para diseños complejos con múltiples elementos.</p>
+                        </div>
+                        
+                        <div class="scheme-item">
+                            <h4>🎯 Split Complementario</h4>
+                            <p>Combina un color base con <strong>dos colores adyacentes</strong> a su complementario. Ofrece contraste suave sin tensión visual. Perfecto para principiantes.</p>
+                        </div>
+                        
+                        <div class="scheme-item">
+                            <h4>🎭 Monocromático</h4>
+                            <p>Utiliza <strong>variaciones de un solo color</strong> cambiando saturación y luminosidad. Crea elegancia minimalista y sofisticada. Ideal para branding profesional.</p>
+                        </div>
+                        
+                        <div class="scheme-item">
+                            <h4>🎪 Compuesto</h4>
+                            <p>Mezcla elementos de diferentes esquemas para crear <strong>paletas únicas</strong>. Combina armonía y contraste estratégicamente.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guide-section">
+                    <h3>Psicología del Color en el Diseño</h3>
+                    <div class="psychology-grid">
+                        <div class="color-psychology">
+                            <h4>🔴 Rojos - Energía y Pasión</h4>
+                            <p><strong>Emociones:</strong> Poder, urgencia, amor, peligro<br>
+                            <strong>Uso:</strong> Call-to-action, marcas enérgicas, alertas<br>
+                            <strong>Industrias:</strong> Fast food, deportes, entretenimiento</p>
+                        </div>
+                        
+                        <div class="color-psychology">
+                            <h4>🔵 Azules - Confianza y Profesionalismo</h4>
+                            <p><strong>Emociones:</strong> Calma, confianza, estabilidad, tecnología<br>
+                            <strong>Uso:</strong> Corporativo, salud, tecnología, finanzas<br>
+                            <strong>Industrias:</strong> Bancos, tech, medicina, redes sociales</p>
+                        </div>
+                        
+                        <div class="color-psychology">
+                            <h4>🟢 Verdes - Naturaleza y Crecimiento</h4>
+                            <p><strong>Emociones:</strong> Frescura, crecimiento, salud, dinero<br>
+                            <strong>Uso:</strong> Eco-friendly, salud, finanzas, alimentación<br>
+                            <strong>Industrias:</strong> Agricultura, medio ambiente, spa, finanzas</p>
+                        </div>
+                        
+                        <div class="color-psychology">
+                            <h4>🟡 Amarillos - Optimismo y Creatividad</h4>
+                            <p><strong>Emociones:</strong> Alegría, creatividad, atención, calidez<br>
+                            <strong>Uso:</strong> Destacar información, juventud, innovación<br>
+                            <strong>Industrias:</strong> Educación, infantil, creatividad, energía</p>
+                        </div>
+                        
+                        <div class="color-psychology">
+                            <h4>🟣 Violetas - Lujo y Espiritualidad</h4>
+                            <p><strong>Emociones:</strong> Lujo, misterio, creatividad, realeza<br>
+                            <strong>Uso:</strong> Productos premium, arte, belleza, espiritualidad<br>
+                            <strong>Industrias:</strong> Cosméticos, joyería, arte, bienestar</p>
+                        </div>
+                        
+                        <div class="color-psychology">
+                            <h4>🟠 Naranjas - Energía y Diversión</h4>
+                            <p><strong>Emociones:</strong> Entusiasmo, diversión, accesibilidad, calidez<br>
+                            <strong>Uso:</strong> Call-to-action secundario, juventud, deportes<br>
+                            <strong>Industrias:</strong> Entretenimiento, deportes, comida, tecnología</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="design-applications">
+                <h2>Aplicaciones del Color en Diseño</h2>
+                
+                <div class="applications-grid">
+                    <div class="application-category">
+                        <h3>🌐 Diseño Web</h3>
+                        <ul>
+                            <li><strong>Colores primarios:</strong> Para elementos principales (header, CTA)</li>
+                            <li><strong>Colores secundarios:</strong> Para elementos de apoyo (botones secundarios)</li>
+                            <li><strong>Colores de acento:</strong> Para destacar información importante</li>
+                            <li><strong>Neutrales:</strong> Para texto y backgrounds</li>
+                            <li><strong>Estados:</strong> Success, error, warning, info</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="application-category">
+                        <h3>🏢 Branding Corporativo</h3>
+                        <ul>
+                            <li><strong>Color principal:</strong> Identidad de marca (logo, elementos clave)</li>
+                            <li><strong>Paleta secundaria:</strong> Flexibilidad en aplicaciones</li>
+                            <li><strong>Variaciones tonales:</strong> Para diferentes medios y usos</li>
+                            <li><strong>Combinaciones aprobadas:</strong> Guías de uso correcto</li>
+                            <li><strong>Restricciones:</strong> Qué evitar en la marca</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="application-category">
+                        <h3>📱 Diseño UI/UX</h3>
+                        <ul>
+                            <li><strong>Jerarquía visual:</strong> Guiar la atención del usuario</li>
+                            <li><strong>Estados interactivos:</strong> Hover, activo, deshabilitado</li>
+                            <li><strong>Accesibilidad:</strong> Contraste adecuado para legibilidad</li>
+                            <li><strong>Consistencia:</strong> Mismo significado en toda la interfaz</li>
+                            <li><strong>Emocional:</strong> Transmitir el mood de la aplicación</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="application-category">
+                        <h3>🎨 Diseño Gráfico</h3>
+                        <ul>
+                            <li><strong>Composición:</strong> Equilibrio y punto focal</li>
+                            <li><strong>Contraste:</strong> Separación entre elementos</li>
+                            <li><strong>Armonía:</strong> Cohesión visual del conjunto</li>
+                            <li><strong>Legibilidad:</strong> Texto sobre fondos coloreados</li>
+                            <li><strong>Impresión:</strong> Consideraciones CMYK vs RGB</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="technical-guide">
+                <h2>Aspectos Técnicos del Color</h2>
+                
+                <div class="technical-grid">
+                    <div class="tech-item">
+                        <h3>🔢 Sistemas de Color</h3>
+                        <p><strong>HEX:</strong> Representación hexadecimal para web (#FF0000)<br>
+                        <strong>RGB:</strong> Red, Green, Blue para pantallas (255, 0, 0)<br>
+                        <strong>HSL:</strong> Hue, Saturation, Lightness más intuitivo (0°, 100%, 50%)<br>
+                        <strong>CMYK:</strong> Cyan, Magenta, Yellow, Black para impresión</p>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <h3>♿ Accesibilidad</h3>
+                        <p><strong>Contraste WCAG:</strong> Mínimo 4.5:1 para texto normal<br>
+                        <strong>Contraste AA:</strong> 7:1 para cumplimiento estricto<br>
+                        <strong>Daltonismo:</strong> Evitar solo color para transmitir información<br>
+                        <strong>Herramientas:</strong> Verificar con simuladores de daltonismo</p>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <h3>💻 Implementación Web</h3>
+                        <p><strong>CSS Variables:</strong> --primary-color para mantener consistencia<br>
+                        <strong>Sass/SCSS:</strong> Variables y mixins para gestión avanzada<br>
+                        <strong>Design Tokens:</strong> Sistema escalable para equipos grandes<br>
+                        <strong>Modo oscuro:</strong> Adaptación automática de paletas</p>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <h3>📐 Herramientas Profesionales</h3>
+                        <p><strong>Adobe Color:</strong> Generación y exploración avanzada<br>
+                        <strong>Coolors:</strong> Paletas colaborativas y exportación<br>
+                        <strong>Paletton:</strong> Simulación de diferentes visiones<br>
+                        <strong>Contrast Checker:</strong> Verificación de accesibilidad</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="faq-section">
+                <h2>Preguntas Frecuentes sobre Paletas de Colores</h2>
+                
+                <!-- Estilos para elementos desplegables -->
+                <style>
+                    details {
+                        border: 1px solid var(--border);
+                        border-radius: 8px;
+                        padding: 1rem;
+                        margin-bottom: 1rem;
+                        background: var(--hover);
+                        transition: all 0.3s ease;
+                    }
+                    
+                    details:hover {
+                        border-color: var(--primary);
+                        box-shadow: 0 2px 8px rgba(46, 134, 171, 0.1);
+                    }
+                    
+                    details[open] {
+                        background: var(--bg-card);
+                        border-color: var(--primary);
+                    }
+                    
+                    summary {
+                        font-weight: 600;
+                        color: var(--text-primary);
+                        cursor: pointer;
+                        margin-bottom: 0.5rem;
+                        padding: 0.25rem 0;
+                        user-select: none;
+                        outline: none;
+                        position: relative;
+                    }
+                    
+                    summary {
+                        list-style: none;
+                    }
+                    
+                    summary::-webkit-details-marker {
+                        display: none;
+                    }
+                    
+                    summary::-moz-list-bullet {
+                        list-style-type: none;
+                    }
+                    
+                    summary::before {
+                        content: '▶';
+                        margin-right: 0.5rem;
+                        transition: transform 0.2s ease;
+                        display: inline-block;
+                        font-size: 0.8rem;
+                        color: var(--primary);
+                    }
+                    
+                    details[open] summary::before {
+                        transform: rotate(90deg);
+                    }
+                    
+                    details p {
+                        margin-bottom: 0;
+                        padding-top: 0.5rem;
+                    }
+                </style>
+                
+                <details>
+                    <summary>¿Cuántos colores debe tener una buena paleta?</summary>
+                    <p>Una paleta efectiva típicamente incluye 3-5 colores principales: un color primario dominante, 1-2 colores secundarios de apoyo, y 1-2 colores de acento. Para proyectos complejos, pueden incluirse variaciones tonales y neutrales adicionales.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Cómo elijo el color base para mi paleta?</summary>
+                    <p>El color base debe reflejar la personalidad de tu marca o proyecto. Considera la psicología del color, tu audiencia objetivo, la competencia, y el contexto de uso. Un azul transmite confianza, un verde naturaleza, un rojo energía y pasión.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Qué esquema cromático es mejor para principiantes?</summary>
+                    <p>Los esquemas monocromáticos y análogos son ideales para principiantes porque garantizan armonía natural. El split complementario también ofrece buen contraste sin ser agresivo visualmente, siendo más seguro que el complementario puro.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Cómo aseguro que mi paleta sea accesible?</summary>
+                    <p>Verifica que el contraste entre texto y fondo cumpla las guías WCAG (mínimo 4.5:1). Usa herramientas de verificación de contraste, prueba con simuladores de daltonismo, y no dependas solo del color para transmitir información importante.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Por qué mis colores se ven diferentes en pantalla vs impreso?</summary>
+                    <p>Las pantallas usan RGB (luz) mientras la impresión usa CMYK (pigmentos). RGB tiene un gamut más amplio que CMYK, por lo que algunos colores vibrantes no se pueden reproducir en impresión. Siempre haz pruebas de impresión para proyectos físicos.</p>
+                </details>
+            </section>
+            
+            <section class="trends-inspiration">
+                <h2>Tendencias e Inspiración</h2>
+                
+                <div class="trends-grid">
+                    <div class="trend-item">
+                        <h3>🎨 Tendencias 2025</h3>
+                        <ul>
+                            <li><strong>Colores tierra:</strong> Ocres, terracota, marrones cálidos</li>
+                            <li><strong>Azules digitales:</strong> Tonos tech y futuristas</li>
+                            <li><strong>Verdes vibrantes:</strong> Consciencia ambiental</li>
+                            <li><strong>Neutrales cálidos:</strong> Beiges y cremas sofisticados</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trend-item">
+                        <h3>🌟 Fuentes de Inspiración</h3>
+                        <ul>
+                            <li><strong>Naturaleza:</strong> Paisajes, flores, océanos, cielos</li>
+                            <li><strong>Arte:</strong> Pinturas, fotografías, ilustraciones</li>
+                            <li><strong>Moda:</strong> Tendencias textiles y de temporada</li>
+                            <li><strong>Arquitectura:</strong> Espacios urbanos y rurales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trend-item">
+                        <h3>💼 Por Industrias</h3>
+                        <ul>
+                            <li><strong>Tech:</strong> Azules, grises, blancos minimalistas</li>
+                            <li><strong>Salud:</strong> Verdes suaves, azules tranquilos</li>
+                            <li><strong>Finanzas:</strong> Azules conservadores, grises elegantes</li>
+                            <li><strong>Creatividad:</strong> Paletas vibrantes y experimentales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trend-item">
+                        <h3>🔧 Herramientas de Inspiración</h3>
+                        <ul>
+                            <li><strong>Pinterest:</strong> Boards de paletas y mood boards</li>
+                            <li><strong>Instagram:</strong> Cuentas especializadas en color</li>
+                            <li><strong>Behance:</strong> Proyectos profesionales de diseño</li>
+                            <li><strong>Dribbble:</strong> Inspiración de UI y branding</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copyNotification">
+        ¡Color copiado al portapapeles!
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer class="footer">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        let currentPalette = [];
+
+        // Función para convertir HSL a HEX (corregida)
+        function hslToHex(h, s, l) {
+            // Normalizar valores
+            h = ((h % 360) + 360) % 360; // Asegurar que h esté entre 0-360
+            s = Math.max(0, Math.min(100, s)); // Limitar s entre 0-100
+            l = Math.max(0, Math.min(100, l)); // Limitar l entre 0-100
+            
+            const hNorm = h / 360;
+            const sNorm = s / 100;
+            const lNorm = l / 100;
+
+            const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
+            const x = c * (1 - Math.abs((hNorm * 6) % 2 - 1));
+            const m = lNorm - c / 2;
+
+            let r, g, b;
+
+            if (hNorm >= 0 && hNorm < 1/6) {
+                r = c; g = x; b = 0;
+            } else if (hNorm >= 1/6 && hNorm < 2/6) {
+                r = x; g = c; b = 0;
+            } else if (hNorm >= 2/6 && hNorm < 3/6) {
+                r = 0; g = c; b = x;
+            } else if (hNorm >= 3/6 && hNorm < 4/6) {
+                r = 0; g = x; b = c;
+            } else if (hNorm >= 4/6 && hNorm < 5/6) {
+                r = x; g = 0; b = c;
+            } else {
+                r = c; g = 0; b = x;
+            }
+
+            r = Math.round((r + m) * 255);
+            g = Math.round((g + m) * 255);
+            b = Math.round((b + m) * 255);
+
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        // Función para convertir HEX a HSL (corregida)
+        function hexToHsl(hex) {
+            // Validar formato hex
+            if (!hex || hex.length !== 7 || hex[0] !== '#') {
+                console.error('Formato hex inválido:', hex);
+                return [0, 50, 50]; // Valores por defecto
+            }
+
+            const r = parseInt(hex.slice(1, 3), 16) / 255;
+            const g = parseInt(hex.slice(3, 5), 16) / 255;
+            const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0; // Acromático
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                    default: h = 0;
+                }
+                h /= 6;
+            }
+
+            return [
+                Math.round(h * 360), 
+                Math.round(s * 100), 
+                Math.round(l * 100)
+            ];
+        }
+
+        // Función para convertir HEX a RGB
+        function hexToRgb(hex) {
+            if (!hex || hex.length !== 7 || hex[0] !== '#') {
+                return { r: 0, g: 0, b: 0 };
+            }
+            
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return { r, g, b };
+        }
+
+        // Función para obtener el color del texto basado en el brillo del fondo
+        function getTextColor(hexColor) {
+            const { r, g, b } = hexToRgb(hexColor);
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            return brightness > 128 ? '#000000' : '#ffffff';
+        }
+
+        // Generar esquemas de colores (simplificado y más robusto)
+        function generateColorScheme(baseColor, schemeType) {
+            console.log('Generando esquema:', schemeType, 'con color base:', baseColor);
+            
+            const [h, s, l] = hexToHsl(baseColor);
+            let colors = [baseColor];
+
+            try {
+                switch (schemeType) {
+                    case 'complementary':
+                        colors.push(hslToHex((h + 180) % 360, s, l));
+                        colors.push(hslToHex(h, Math.max(20, s - 30), Math.min(80, l + 20)));
+                        colors.push(hslToHex((h + 180) % 360, Math.max(20, s - 30), Math.min(80, l + 20)));
+                        colors.push(hslToHex(h, s, Math.max(20, l - 30)));
+                        break;
+
+                    case 'analogous':
+                        colors.push(hslToHex((h + 30) % 360, s, l));
+                        colors.push(hslToHex((h - 30 + 360) % 360, s, l));
+                        colors.push(hslToHex((h + 60) % 360, Math.max(20, s - 20), l));
+                        colors.push(hslToHex((h - 60 + 360) % 360, Math.max(20, s - 20), l));
+                        break;
+
+                    case 'triadic':
+                        colors.push(hslToHex((h + 120) % 360, s, l));
+                        colors.push(hslToHex((h + 240) % 360, s, l));
+                        colors.push(hslToHex(h, Math.max(20, s - 30), Math.min(80, l + 20)));
+                        colors.push(hslToHex((h + 120) % 360, Math.max(20, s - 30), Math.min(80, l + 20)));
+                        break;
+
+                    case 'tetradic':
+                        colors.push(hslToHex((h + 90) % 360, s, l));
+                        colors.push(hslToHex((h + 180) % 360, s, l));
+                        colors.push(hslToHex((h + 270) % 360, s, l));
+                        colors.push(hslToHex(h, Math.max(20, s - 20), Math.min(80, l + 15)));
+                        break;
+
+                    case 'splitComplementary':
+                        colors.push(hslToHex((h + 150) % 360, s, l));
+                        colors.push(hslToHex((h + 210) % 360, s, l));
+                        colors.push(hslToHex(h, Math.max(20, s - 25), Math.min(80, l + 25)));
+                        colors.push(hslToHex((h + 180) % 360, Math.max(20, s - 40), l));
+                        break;
+
+                    case 'monochromatic':
+                        colors.push(hslToHex(h, s, Math.min(90, l + 30)));
+                        colors.push(hslToHex(h, s, Math.max(10, l - 30)));
+                        colors.push(hslToHex(h, Math.max(20, s - 30), l));
+                        colors.push(hslToHex(h, Math.min(100, s + 20), Math.max(15, l - 15)));
+                        break;
+
+                    case 'compound':
+                        colors.push(hslToHex((h + 180) % 360, s, l));
+                        colors.push(hslToHex((h + 30) % 360, s, l));
+                        colors.push(hslToHex((h + 210) % 360, s, l));
+                        colors.push(hslToHex(h, Math.max(20, s - 20), Math.min(80, l + 20)));
+                        break;
+
+                    default:
+                        // Esquema por defecto si algo falla
+                        colors = [baseColor, '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
+                }
+            } catch (error) {
+                console.error('Error generando esquema:', error);
+                // Esquema de emergencia
+                colors = [baseColor, '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
+            }
+
+            console.log('Colores generados:', colors);
+            return colors;
+        }
+
+        // Generar paleta
+        function generatePalette() {
+            console.log('Iniciando generación de paleta...');
+            
+            try {
+                const baseColor = document.getElementById('baseColor').value;
+                const schemeType = document.getElementById('schemeType').value;
+                
+                console.log('Color base:', baseColor, 'Esquema:', schemeType);
+                
+                currentPalette = generateColorScheme(baseColor, schemeType);
+                displayPalette();
+            } catch (error) {
+                console.error('Error en generatePalette:', error);
+                // Mostrar paleta de emergencia
+                currentPalette = ['#2E86AB', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'];
+                displayPalette();
+            }
+        }
+
+        // Mostrar paleta
+        function displayPalette() {
+            console.log('Mostrando paleta:', currentPalette);
+            
+            const grid = document.getElementById('paletteGrid');
+            if (!grid) {
+                console.error('No se encontró el elemento paletteGrid');
+                return;
+            }
+            
+            grid.innerHTML = '';
+
+            currentPalette.forEach((color, index) => {
+                try {
+                    const rgb = hexToRgb(color);
+                    const [h, s, l] = hexToHsl(color);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'color-card';
+                    
+                    card.innerHTML = `
+                        <div class="color-display" style="background-color: ${color};" onclick="copyToClipboard('${color}')">
+                        </div>
+                        <div class="color-info">
+                            <div class="color-code" onclick="copyToClipboard('${color}')">${color.toUpperCase()}</div>
+                            <div class="color-code" onclick="copyToClipboard('rgb(${rgb.r}, ${rgb.g}, ${rgb.b})')">RGB(${rgb.r}, ${rgb.g}, ${rgb.b})</div>
+                            <div class="color-code" onclick="copyToClipboard('hsl(${h}, ${s}%, ${l}%)')">HSL(${h}, ${s}%, ${l}%)</div>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(card);
+                    console.log(`Tarjeta ${index + 1} agregada para color ${color}`);
+                } catch (error) {
+                    console.error(`Error creando tarjeta para color ${color}:`, error);
+                }
+            });
+        }
+
+        // Copiar al portapapeles
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopyNotification();
+                }).catch(err => {
+                    console.error('Error copiando:', err);
+                    // Método alternativo
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        // Método alternativo para copiar
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyNotification();
+            } catch (err) {
+                console.error('Error copiando texto:', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Mostrar notificación de copiado
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            if (notification) {
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        // Color aleatorio
+        function randomColor() {
+            const randomHex = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            document.getElementById('baseColor').value = randomHex;
+            generatePalette();
+        }
+
+        // Exportar como CSS
+        function exportAsCSS() {
+            if (!currentPalette || currentPalette.length === 0) {
+                alert('Primero genera una paleta');
+                return;
+            }
+            
+            let css = ':root {\n';
+            currentPalette.forEach((color, index) => {
+                css += `  --color-${index + 1}: ${color};\n`;
+            });
+            css += '}';
+            
+            downloadFile('palette.css', css, 'text/css');
+        }
+
+        // Exportar como JSON
+        function exportAsJSON() {
+            if (!currentPalette || currentPalette.length === 0) {
+                alert('Primero genera una paleta');
+                return;
+            }
+            
+            const json = JSON.stringify({
+                palette: currentPalette,
+                generated: new Date().toISOString()
+            }, null, 2);
+            
+            downloadFile('palette.json', json, 'application/json');
+        }
+
+        // Exportar como texto
+        function exportAsText() {
+            if (!currentPalette || currentPalette.length === 0) {
+                alert('Primero genera una paleta');
+                return;
+            }
+            
+            let text = 'Paleta de Colores\n';
+            text += '==================\n\n';
+            currentPalette.forEach((color, index) => {
+                const rgb = hexToRgb(color);
+                const [h, s, l] = hexToHsl(color);
+                text += `Color ${index + 1}:\n`;
+                text += `  HEX: ${color}\n`;
+                text += `  RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})\n`;
+                text += `  HSL: hsl(${h}, ${s}%, ${l}%)\n\n`;
+            });
+            
+            downloadFile('palette.txt', text, 'text/plain');
+        }
+
+        // Guardar paleta en localStorage
+        function savePalette() {
+            if (!currentPalette || currentPalette.length === 0) {
+                alert('Primero genera una paleta');
+                return;
+            }
+            
+            try {
+                const savedPalettes = JSON.parse(localStorage.getItem('colorPalettes') || '[]');
+                const newPalette = {
+                    id: Date.now(),
+                    colors: currentPalette,
+                    date: new Date().toLocaleDateString()
+                };
+                
+                savedPalettes.push(newPalette);
+                localStorage.setItem('colorPalettes', JSON.stringify(savedPalettes));
+                
+                alert('¡Paleta guardada exitosamente!');
+            } catch (error) {
+                console.error('Error guardando paleta:', error);
+                alert('Error guardando la paleta');
+            }
+        }
+
+        // Función auxiliar para descargar archivos
+        function downloadFile(filename, content, contentType) {
+            try {
+                const blob = new Blob([content], { type: contentType });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('Error descargando archivo:', error);
+                alert('Error descargando el archivo');
+            }
+        }
+
+        // Generar paleta inicial al cargar la página
+        window.onload = function() {
+            console.log('Página cargada, generando paleta inicial...');
+            generatePalette();
+        };
+
+        // Debug: Agregar event listeners para verificar que los elementos funcionen
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM cargado completamente');
+            
+            // Verificar que los elementos existen
+            const baseColor = document.getElementById('baseColor');
+            const schemeType = document.getElementById('schemeType');
+            const paletteGrid = document.getElementById('paletteGrid');
+            
+            console.log('Elementos encontrados:', {
+                baseColor: !!baseColor,
+                schemeType: !!schemeType,
+                paletteGrid: !!paletteGrid
+            });
+        });
+    </script>
+</body>
+</html>

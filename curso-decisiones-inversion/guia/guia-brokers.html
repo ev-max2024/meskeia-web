@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Práctica de Brokers - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+    <style>
+        .broker-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .broker-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .broker-card.recommended {
+            border-color: #28a745;
+            background: linear-gradient(145deg, #f8fff9 0%, #ffffff 100%);
+        }
+        
+        .broker-card.beginner-friendly {
+            border-color: #007bff;
+            background: linear-gradient(145deg, #f8fbff 0%, #ffffff 100%);
+        }
+        
+        .broker-card.advanced {
+            border-color: #6c757d;
+            background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        .broker-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .broker-badge.recommended {
+            background: #28a745;
+        }
+        
+        .broker-badge.beginner {
+            background: #007bff;
+        }
+        
+        .broker-badge.advanced {
+            background: #6c757d;
+        }
+        
+        .broker-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .broker-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2E86AB, #48A9A6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .broker-name {
+            flex: 1;
+        }
+        
+        .broker-name h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+        
+        .broker-name p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .broker-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .detail-section h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .pros {
+            background: #d4edda;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .cons {
+            background: #f8d7da;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .broker-rating {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .rating-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .rating-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2E86AB;
+        }
+        
+        .rating-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #2E86AB;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .feature-check {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .feature-cross {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .step-by-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .cost-calculator {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .calculator-results {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #2E86AB;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="guia-brokers.html" class="active">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="../herramientas/herramientas.html">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="../herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="../herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="../herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏦 Guía Práctica de Brokers</h1>
+            <p>Todo lo que necesitas saber para elegir, abrir y usar tu cuenta de inversión</p>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="psicologia-inversor.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Psicología</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">8 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="casos-practicos.html" class="course-nav-btn next">
+                <span>Casos Prácticos</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- Índice de contenido -->
+        <div class="card">
+            <h3>📋 Contenido de esta guía</h3>
+            <div class="grid-2">
+                <div>
+                    <a href="#criterios-seleccion" class="custom-list-item">🎯 Criterios de Selección</a>
+                    <a href="#brokers-recomendados" class="custom-list-item">⭐ Brokers Recomendados</a>
+                    <a href="#comparativa-detallada" class="custom-list-item">📊 Comparativa Detallada</a>
+                    <a href="#calculadora-costes" class="custom-list-item">💰 Calculadora de Costes</a>
+                </div>
+                <div>
+                    <a href="#proceso-apertura" class="custom-list-item">📝 Proceso de Apertura</a>
+                    <a href="#primeros-pasos" class="custom-list-item">🚀 Primeros Pasos</a>
+                    <a href="#errores-evitar" class="custom-list-item">⚠️ Errores a Evitar</a>
+                    <a href="#faq-brokers" class="custom-list-item">❓ FAQ Frecuentes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conexión con aspectos fiscales -->
+        <div class="alert alert-info">
+            <h4>🔗 Conexión Importante</h4>
+            <p>Esta guía complementa la información de <a href="aspectos-fiscales.html"><strong>Aspectos Fiscales</strong></a>. Te recomendamos leer ambas secciones para tomar una decisión informada sobre brokers españoles vs extranjeros.</p>
+        </div>
+
+        <!-- Criterios de Selección -->
+        <section id="criterios-seleccion">
+            <div class="card">
+                <h2>🎯 Criterios para Elegir tu Broker</h2>
+                <p>No todos los brokers son iguales. Estos son los factores clave que debes evaluar:</p>
+
+                <div class="grid-3">
+                    <div class="criteria-card">
+                        <h3>💰 Costes</h3>
+                        <ul>
+                            <li>Comisiones por operación</li>
+                            <li>Custodia anual</li>
+                            <li>Cambio de divisa</li>
+                            <li>Inactividad</li>
+                            <li>Traspasos/retiradas</li>
+                        </ul>
+                        <div class="criteria-weight">
+                            <strong>Peso: 35%</strong> - Factor más importante a largo plazo
+                        </div>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h3>📊 Productos Disponibles</h3>
+                        <ul>
+                            <li>ETFs europeos/americanos</li>
+                            <li>Acciones globales</li>
+                            <li>Fondos de inversión</li>
+                            <li>Bonos gubernamentales</li>
+                            <li>Opciones y derivados</li>
+                        </ul>
+                        <div class="criteria-weight">
+                            <strong>Peso: 25%</strong> - Determina tu estrategia posible
+                        </div>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h3>🛡️ Seguridad y Regulación</h3>
+                        <ul>
+                            <li>Regulación europea (MiFID II)</li>
+                            <li>Fondo de garantía</li>
+                            <li>Segregación de fondos</li>
+                            <li>Historial y reputación</li>
+                            <li>Auditorías externas</li>
+                        </ul>
+                        <div class="criteria-weight">
+                            <strong>Peso: 20%</strong> - Tu dinero debe estar seguro
+                        </div>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h3>🖥️ Plataforma y Usabilidad</h3>
+                        <ul>
+                            <li>Interfaz intuitiva</li>
+                            <li>App móvil funcional</li>
+                            <li>Herramientas de análisis</li>
+                            <li>Velocidad de ejecución</li>
+                            <li>Estabilidad técnica</li>
+                        </ul>
+                        <div class="criteria-weight">
+                            <strong>Peso: 15%</strong> - Facilita la gestión diaria
+                        </div>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h3>📞 Soporte y Servicio</h3>
+                        <ul>
+                            <li>Atención en español</li>
+                            <li>Horarios disponibles</li>
+                            <li>Canales de contacto</li>
+                            <li>Tiempo de respuesta</li>
+                            <li>Calidad del soporte</li>
+                        </ul>
+                        <div class="criteria-weight">
+                            <strong>Peso: 5%</strong> - Importante cuando hay problemas
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brokers Recomendados -->
+        <section id="brokers-recomendados">
+            <div class="card">
+                <h2>⭐ Brokers Recomendados por Perfil</h2>
+
+                <!-- Interactive Brokers -->
+                <div class="broker-card recommended">
+                    <span class="broker-badge recommended">🏆 Mejor Overall</span>
+                    <div class="broker-header">
+                        <div class="broker-logo">IB</div>
+                        <div class="broker-name">
+                            <h3>Interactive Brokers</h3>
+                            <p>El broker profesional más completo del mundo</p>
+                        </div>
+                    </div>
+
+                    <div class="broker-details">
+                        <div class="detail-section">
+                            <h4>💰 Costes</h4>
+                            <ul>
+                                <li>Comisión acciones USA: $0.005/acción (mín. $1)</li>
+                                <li>Comisión ETFs: $2-5 por operación</li>
+                                <li>Sin custodia hasta €100K</li>
+                                <li>Cambio divisa: 0.002% (muy competitivo)</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📊 Productos</h4>
+                            <ul>
+                                <li>135 mercados en 33 países</li>
+                                <li>Acciones, ETFs, bonos, opciones, futuros</li>
+                                <li>ETFs americanos con tratado fiscal</li>
+                                <li>Fractional shares disponibles</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Ventajas</h4>
+                            <ul>
+                                <li>Costes bajísimos a partir de €10K</li>
+                                <li>Acceso a mercados globales</li>
+                                <li>Herramientas profesionales</li>
+                                <li>Préstamo de valores (ingresos extra)</li>
+                                <li>Regulación múltiple</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Desventajas</h4>
+                            <ul>
+                                <li>Interfaz compleja para principiantes</li>
+                                <li>Mínimo de actividad €10/mes</li>
+                                <li>Documentación en inglés</li>
+                                <li>Curva de aprendizaje empinada</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="broker-rating">
+                        <div class="rating-item">
+                            <div class="rating-score">9.5</div>
+                            <div class="rating-label">Costes</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">10</div>
+                            <div class="rating-label">Productos</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">8.0</div>
+                            <div class="rating-label">Usabilidad</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">9.5</div>
+                            <div class="rating-label">Seguridad</div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Ideal para:</strong> Inversores con más de €10K que buscan máxima eficiencia de costes y acceso global
+                    </div>
+                </div>
+
+                <!-- DeGiro -->
+                <div class="broker-card beginner-friendly">
+                    <span class="broker-badge beginner">👶 Mejor Principiantes</span>
+                    <div class="broker-header">
+                        <div class="broker-logo">DG</div>
+                        <div class="broker-name">
+                            <h3>DeGiro</h3>
+                            <p>Broker holandés líder en Europa</p>
+                        </div>
+                    </div>
+
+                    <div class="broker-details">
+                        <div class="detail-section">
+                            <h4>💰 Costes</h4>
+                            <ul>
+                                <li>ETFs selectos: €0 comisión</li>
+                                <li>Acciones europeas: €2 + 0.026%</li>
+                                <li>Acciones USA: €0.50 + $0.004/acción</li>
+                                <li>Sin custodia hasta €2.5K por ETF</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📊 Productos</h4>
+                            <ul>
+                                <li>50+ mercados mundiales</li>
+                                <li>200+ ETFs gratuitos</li>
+                                <li>Acciones globales</li>
+                                <li>Sin opciones ni futuros</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Ventajas</h4>
+                            <ul>
+                                <li>Interfaz muy sencilla</li>
+                                <li>ETFs gratuitos excelentes</li>
+                                <li>Soporte en español</li>
+                                <li>Sin mínimos de capital</li>
+                                <li>App móvil funcional</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Desventajas</h4>
+                            <ul>
+                                <li>Gama de productos limitada</li>
+                                <li>Sin reinversión automática dividendos</li>
+                                <li>Cambio divisa caro (0.25%)</li>
+                                <li>Informes fiscales básicos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="broker-rating">
+                        <div class="rating-item">
+                            <div class="rating-score">8.5</div>
+                            <div class="rating-label">Costes</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">7.5</div>
+                            <div class="rating-label">Productos</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">9.0</div>
+                            <div class="rating-label">Usabilidad</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">8.5</div>
+                            <div class="rating-label">Seguridad</div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Ideal para:</strong> Principiantes que quieren empezar con ETFs gratuitos y interfaz sencilla
+                    </div>
+                </div>
+
+                <!-- MyInvestor -->
+                <div class="broker-card beginner-friendly">
+                    <span class="broker-badge beginner">🇪🇸 Mejor Español</span>
+                    <div class="broker-header">
+                        <div class="broker-logo">MI</div>
+                        <div class="broker-name">
+                            <h3>MyInvestor (Andbank)</h3>
+                            <p>Broker español con ventajas fiscales</p>
+                        </div>
+                    </div>
+
+                    <div class="broker-details">
+                        <div class="detail-section">
+                            <h4>💰 Costes</h4>
+                            <ul>
+                                <li>ETFs: €0 hasta €30K anuales</li>
+                                <li>Acciones españolas: €0</li>
+                                <li>Acciones USA: 0.04% (mín. €1)</li>
+                                <li>Sin custodia</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📊 Productos</h4>
+                            <ul>
+                                <li>1000+ ETFs disponibles</li>
+                                <li>Acciones España, Europa, USA</li>
+                                <li>Fondos de inversión</li>
+                                <li>Sin derivados complejos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Ventajas</h4>
+                            <ul>
+                                <li>Broker español = simplicidad fiscal</li>
+                                <li>Soporte 100% en español</li>
+                                <li>ETFs gratuitos generosos</li>
+                                <li>Borrador renta automático</li>
+                                <li>Plataforma intuitiva</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Desventajas</h4>
+                            <ul>
+                                <li>Acceso limitado a mercados</li>
+                                <li>Sin acciones asiáticas</li>
+                                <li>Herramientas de análisis básicas</li>
+                                <li>Sin fractional shares</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="broker-rating">
+                        <div class="rating-item">
+                            <div class="rating-score">8.0</div>
+                            <div class="rating-label">Costes</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">6.5</div>
+                            <div class="rating-label">Productos</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">9.5</div>
+                            <div class="rating-label">Usabilidad</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-score">9.0</div>
+                            <div class="rating-label">Seguridad</div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Ideal para:</strong> Inversores que priorizan la simplicidad fiscal y soporte en español
+                    </div>
+                </div>
+
+                <!-- Scalable Capital -->
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">SC</div>
+                        <div class="broker-name">
+                            <h3>Scalable Capital</h3>
+                            <p>Broker alemán con enfoque en automatización</p>
+                        </div>
+                    </div>
+
+                    <div class="broker-details">
+                        <div class="detail-section">
+                            <h4>💰 Costes</h4>
+                            <ul>
+                                <li>Plan gratuito: €0.99 por orden</li>
+                                <li>Plan Prime: €2.99/mes todo ilimitado</li>
+                                <li>Plan de ahorro: €0 en ETFs selectos</li>
+                                <li>Sin custodia</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📊 Productos</h4>
+                            <ul>
+                                <li>1500+ ETFs disponibles</li>
+                                <li>7000+ acciones</li>
+                                <li>Planes de ahorro automáticos</li>
+                                <li>Crypto disponibles</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Ventajas</h4>
+                            <ul>
+                                <li>Planes de ahorro muy buenos</li>
+                                <li>Interfaz moderna</li>
+                                <li>Fractional shares automáticas</li>
+                                <li>Prime muy económico</li>
+                                <li>Regulación alemana sólida</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Desventajas</h4>
+                            <ul>
+                                <li>Sin soporte español</li>
+                                <li>Mercados limitados vs IB</li>
+                                <li>Relativamente nuevo</li>
+                                <li>Sin derivados avanzados</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Ideal para:</strong> Inversores que buscan automatización y planes de ahorro regulares
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparativa Detallada -->
+        <section id="comparativa-detallada">
+            <div class="card">
+                <h2>📊 Comparativa Detallada</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Interactive Brokers</th>
+                            <th>DeGiro</th>
+                            <th>MyInvestor</th>
+                            <th>Scalable Capital</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mínimo apertura</strong></td>
+                            <td>€0</td>
+                            <td>€0</td>
+                            <td>€0</td>
+                            <td>€1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Comisión ETFs Europa</strong></td>
+                            <td>€3-5</td>
+                            <td>€0 selectos</td>
+                            <td>€0 hasta 30K/año</td>
+                            <td>€0.99 o €0 Prime</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acciones USA</strong></td>
+                            <td>$0.005/acción</td>
+                            <td>€0.50 + $0.004</td>
+                            <td>0.04% mín €1</td>
+                            <td>€0.99 o €0 Prime</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Custodia anual</strong></td>
+                            <td>€0 hasta €100K</td>
+                            <td>€2.50/mercado</td>
+                            <td>€0</td>
+                            <td>€0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cambio divisa</strong></td>
+                            <td>0.002%</td>
+                            <td>0.25%</td>
+                            <td>0.25%</td>
+                            <td>0.50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mercados accesibles</strong></td>
+                            <td><span class="feature-check">135 mercados</span></td>
+                            <td>50+ mercados</td>
+                            <td>España, Europa, USA</td>
+                            <td>Europa + USA</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opciones y derivados</strong></td>
+                            <td><span class="feature-check">✓ Completo</span></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fractional shares</strong></td>
+                            <td><span class="feature-check">✓ Sí</span></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                            <td><span class="feature-check">✓ Automático</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Soporte español</strong></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                            <td><span class="feature-check">✓ Sí</span></td>
+                            <td><span class="feature-check">✓ Nativo</span></td>
+                            <td><span class="feature-cross">✗ No</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Declaración fiscal</strong></td>
+                            <td>Manual completa</td>
+                            <td>Manual básica</td>
+                            <td><span class="feature-check">Automática</span></td>
+                            <td>Manual completa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>App móvil</strong></td>
+                            <td>8/10</td>
+                            <td>9/10</td>
+                            <td>9/10</td>
+                            <td>9/10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Calculadora de Costes -->
+        <section id="calculadora-costes">
+            <div class="card">
+                <h2>💰 Calculadora de Costes por Broker</h2>
+                <p>Calcula cuánto te costarían tus operaciones anuales con diferentes brokers:</p>
+
+                <div class="cost-calculator">
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label for="annual-investment">Inversión anual (€)</label>
+                            <input type="number" id="annual-investment" value="6000" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="monthly-operations">Operaciones mensuales</label>
+                            <input type="number" id="monthly-operations" value="1" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="investment-style">Estilo de inversión</label>
+                            <select id="investment-style">
+                                <option value="etf-only">Solo ETFs</option>
+                                <option value="mixed">ETFs + Acciones</option>
+                                <option value="active">Trading activo</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="portfolio-size">Patrimonio actual (€)</label>
+                            <input type="number" id="portfolio-size" value="10000" min="0">
+                        </div>
+                    </div>
+
+                    <button onclick="calculateCosts()" class="btn primary">Calcular Costes</button>
+
+                    <div class="calculator-results" id="cost-results" style="display: none;">
+                        <h4>📊 Costes Anuales Estimados</h4>
+                        <div id="results-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proceso de Apertura -->
+        <section id="proceso-apertura">
+            <div class="card">
+                <h2>📝 Proceso de Apertura Paso a Paso</h2>
+
+                <div class="step-by-step">
+                    <h3>🚀 Cómo Abrir tu Cuenta de Inversión</h3>
+                    <p>El proceso es similar en todos los brokers, pero aquí tienes los pasos específicos:</p>
+
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Registro Online</h4>
+                            <p>Completa el formulario con tus datos personales. Necesitarás:</p>
+                            <ul>
+                                <li>DNI o pasaporte</li>
+                                <li>Justificante de ingresos (nómina o IRPF)</li>
+                                <li>Justificante de residencia (factura luz/agua)</li>
+                                <li>Cuestionario de idoneidad (MiFID II)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Verificación de Identidad</h4>
+                            <p>El broker verificará tu identidad mediante:</p>
+                            <ul>
+                                <li>Video-llamada con documento (más rápido)</li>
+                                <li>Envío de documentos escaneados</li>
+                                <li>Proceso automático con verificación digital</li>
+                            </ul>
+                            <div class="warning-box">
+                                <strong>⏱️ Tiempo estimado:</strong> 1-3 días laborables
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Configuración de Cuenta</h4>
+                            <p>Una vez aprobado, configura:</p>
+                            <ul>
+                                <li>Tipo de cuenta (individual, conjunta, empresa)</li>
+                                <li>Divisa base (EUR recomendado)</li>
+                                <li>Permisos de trading (acciones, ETFs, opciones)</li>
+                                <li>Instrucciones fiscales (importante para W-8BEN)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Primera Transferencia</h4>
+                            <p>Realiza tu primer ingreso:</p>
+                            <ul>
+                                <li><strong>Transferencia SEPA:</strong> Gratuita, 1-2 días</li>
+                                <li><strong>Transferencia Swift:</strong> €15-25, mismo día</li>
+                                <li><strong>Tarjeta débito:</strong> Inmediato, 0.7% comisión</li>
+                            </ul>
+                            <div class="info-box">
+                                <strong>💡 Recomendación:</strong> Empieza con €1000-2000 para familiarizarte con la plataforma
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Primera Operación</h4>
+                            <p>Cuando recibas los fondos:</p>
+                            <ul>
+                                <li>Familiarízate con la interfaz en modo demo</li>
+                                <li>Busca tu primer ETF (ej: IWDA, VWCE)</li>
+                                <li>Verifica ticker, divisa y mercado</li>
+                                <li>Realiza tu primera compra con orden de mercado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Primeros Pasos -->
+        <section id="primeros-pasos">
+            <div class="card">
+                <h2>🚀 Primeros Pasos en tu Broker</h2>
+
+                <div class="grid-2">
+                    <div>
+                        <h3>📱 Configuración Inicial</h3>
+                        <ul class="checklist">
+                            <li>✅ Descarga la app móvil</li>
+                            <li>✅ Activa autenticación de dos factores</li>
+                            <li>✅ Configura alertas de precios</li>
+                            <li>✅ Establece límites de operación</li>
+                            <li>✅ Programa transferencias automáticas</li>
+                        </ul>
+
+                        <h3>📊 Tu Primer Portfolio</h3>
+                        <div class="info-box">
+                            <p><strong>Sugerencia para principiantes:</strong></p>
+                            <ul>
+                                <li>80% ETF mundial (IWDA o VWCE)</li>
+                                <li>20% Bonos europeos (IEAG)</li>
+                                <li>Rebalancear cada 6 meses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>🎯 Órdenes Básicas</h3>
+                        <ul>
+                            <li><strong>Orden de Mercado:</strong> Compra al precio actual (usar para ETFs líquidos)</li>
+                            <li><strong>Orden Limitada:</strong> Compra solo si el precio baja a X (usar para acciones)</li>
+                            <li><strong>Stop Loss:</strong> Vende si el precio cae a X (protección)</li>
+                            <li><strong>Take Profit:</strong> Vende si el precio sube a X (realizar ganancias)</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>⚠️ Principiantes:</strong> Empieza solo con órdenes de mercado hasta familiarizarte
+                        </div>
+                    </div>
+                </div>
+
+                <h3>📅 Rutina de Gestión Recomendada</h3>
+                <div class="grid-3">
+                    <div class="routine-card">
+                        <h4>Diaria (5 min)</h4>
+                        <ul>
+                            <li>Revisar alertas</li>
+                            <li>Verificar ejecución órdenes</li>
+                            <li>Sin cambios impulsivos</li>
+                        </ul>
+                    </div>
+                    <div class="routine-card">
+                        <h4>Mensual (30 min)</h4>
+                        <ul>
+                            <li>Aportación regular</li>
+                            <li>Revisar allocation</li>
+                            <li>Evaluar performance</li>
+                        </ul>
+                    </div>
+                    <div class="routine-card">
+                        <h4>Trimestral (2 horas)</h4>
+                        <ul>
+                            <li>Rebalanceo si necesario</li>
+                            <li>Revisar objetivos</li>
+                            <li>Actualizar estrategia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Errores a Evitar -->
+        <section id="errores-evitar">
+            <div class="card">
+                <h2>⚠️ Los 10 Errores Más Comunes con Brokers</h2>
+
+                <div class="grid-2">
+                    <div class="error-card">
+                        <h3>1. Elegir por Comisiones Únicamente</h3>
+                        <p><strong>Error:</strong> "DeGiro es gratis, voy con ellos"</p>
+                        <p><strong>Realidad:</strong> ETFs gratis limitados, cambio divisa caro, funcionalidades limitadas</p>
+                        <p><strong>Solución:</strong> Evalúa coste total según tu estrategia</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>2. No Leer Condiciones de "Gratuito"</h3>
+                        <p><strong>Error:</strong> Asumir que "sin comisiones" es ilimitado</p>
+                        <p><strong>Realidad:</strong> Límites anuales, ETFs específicos, condiciones ocultas</p>
+                        <p><strong>Solución:</strong> Lee la letra pequeña siempre</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>3. Operar sin Conocer la Plataforma</h3>
+                        <p><strong>Error:</strong> Hacer primera operación sin práctica</p>
+                        <p><strong>Realidad:</strong> Interfaces complejas, tipos de órdenes confusos</p>
+                        <p><strong>Solución:</strong> Usa cuenta demo o simulador primero</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>4. No Verificar Ticker Correcto</h3>
+                        <p><strong>Error:</strong> Comprar IWDA en USD en lugar de EUR</p>
+                        <p><strong>Realidad:</strong> Mismo ETF, diferentes divisas y comisiones</p>
+                        <p><strong>Solución:</strong> Verifica ISIN y divisa siempre</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>5. Ignorar Horarios de Mercado</h3>
+                        <p><strong>Error:</strong> Operar fuera de horarios con spreads altos</p>
+                        <p><strong>Realidad:</strong> Costes ocultos por baja liquidez</p>
+                        <p><strong>Solución:</strong> Opera en horario de máxima liquidez</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>6. No Configurar Límites</h3>
+                        <p><strong>Error:</strong> Sin stop-loss ni límites de operación</p>
+                        <p><strong>Realidad:</strong> Pérdidas descontroladas en volatilidad</p>
+                        <p><strong>Solución:</strong> Define límites antes de operar</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>7. Multiplicar Cuentas de Broker</h3>
+                        <p><strong>Error:</strong> "Tengo DeGiro, IB y MyInvestor"</p>
+                        <p><strong>Realidad:</strong> Gestión compleja, comisiones multiplicadas</p>
+                        <p><strong>Solución:</strong> Un broker principal, máximo dos</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>8. No Entender Implicaciones Fiscales</h3>
+                        <p><strong>Error:</strong> Broker extranjero sin saber obligaciones</p>
+                        <p><strong>Realidad:</strong> D6, Modelo 720, cálculos manuales</p>
+                        <p><strong>Solución:</strong> Lee nuestra <a href="aspectos-fiscales.html">guía fiscal</a></p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>9. FOMO de Funcionalidades</h3>
+                        <p><strong>Error:</strong> "Necesito opciones, futuros, crypto, forex"</p>
+                        <p><strong>Realidad:</strong> 90% inversores solo necesitan acciones y ETFs</p>
+                        <p><strong>Solución:</strong> Empieza simple, evoluciona gradualmente</p>
+                    </div>
+
+                    <div class="error-card">
+                        <h3>10. No Hacer Backup de Datos</h3>
+                        <p><strong>Error:</strong> Confiar 100% en reportes del broker</p>
+                        <p><strong>Realidad:</strong> Errores de cálculo, fallos técnicos</p>
+                        <p><strong>Solución:</strong> Excel personal con todas las operaciones</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq-brokers">
+            <div class="card">
+                <h2>❓ Preguntas Frecuentes sobre Brokers</h2>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>¿Puedo cambiar de broker más adelante?</h3>
+                        <p><strong>Sí, pero es complejo.</strong> Puedes hacer un traspaso de valores (transferencia ACATS) que cuesta €50-100 y tarda 2-6 semanas. También puedes vender todo, retirar el dinero y recomprar en el nuevo broker (implicaciones fiscales).</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Qué pasa si mi broker quiebra?</h3>
+                        <p>Los brokers regulados tienen <strong>fondo de garantía</strong>: €20K en España, €100K en Países Bajos/Alemania. Tus valores están segregados (no son del broker) y se devuelven en caso de quiebra.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Mejor broker español o extranjero?</h3>
+                        <p><strong>Depende de tu perfil:</strong> Español = simplicidad fiscal, soporte local. Extranjero = costes menores, más productos. Para <€10K, español. Para >€50K, extranjero.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Necesito varios brokers?</h3>
+                        <p><strong>No para empezar.</strong> Un broker cubre 95% de necesidades. Considera segundo broker solo para: diversificar riesgo de contraparte (+€100K) o acceder a productos específicos.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Qué es el formulario W-8BEN?</h3>
+                        <p>Documento fiscal para <strong>reducir retenciones americanas</strong> del 30% al 15% en dividendos de ETFs/acciones USA. Imprescindible en cualquier broker. Válido 3 años.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Puedo operar desde mi móvil?</h3>
+                        <p><strong>Sí, todos los brokers tienen app.</strong> Perfect para: consultas, órdenes simples, alertas. Para análisis profundo mejor usar versión web de escritorio.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Cuánto dinero necesito para empezar?</h3>
+                        <p><strong>Técnicamente €100, prácticamente €1000.</strong> Con menos es difícil diversificar. Interactive Brokers recomienda €10K para rentabilizar sus ventajas.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>¿Hay diferencia entre ETF en EUR vs USD?</h3>
+                        <p><strong>Mismo ETF, diferentes costes.</strong> ETF en EUR evita comisión cambio divisa en cada operación. ETF en USD tiene spreads menores. Para compra-mantener: EUR. Para trading: USD.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="psicologia-inversor.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Psicología</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">8 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="casos-practicos.html" class="course-nav-btn next">
+                <span>Casos Prácticos</span>
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function calculateCosts() {
+            const annualInvestment = parseInt(document.getElementById('annual-investment').value) || 0;
+            const monthlyOps = parseInt(document.getElementById('monthly-operations').value) || 0;
+            const investmentStyle = document.getElementById('investment-style').value;
+            const portfolioSize = parseInt(document.getElementById('portfolio-size').value) || 0;
+            
+            const annualOps = monthlyOps * 12;
+            
+            let costs = {
+                'Interactive Brokers': 0,
+                'DeGiro': 0,
+                'MyInvestor': 0,
+                'Scalable Capital': 0
+            };
+            
+            if (investmentStyle === 'etf-only') {
+                // Solo ETFs
+                costs['Interactive Brokers'] = Math.max(annualOps * 3, portfolioSize > 100000 ? 0 : 120); // €3 por operación o €10/mes
+                costs['DeGiro'] = 0; // ETFs gratuitos selectos
+                costs['MyInvestor'] = annualInvestment > 30000 ? (annualInvestment - 30000) * 0.001 : 0;
+                costs['Scalable Capital'] = annualOps * 0.99; // €0.99 por operación
+            } else if (investmentStyle === 'mixed') {
+                // ETFs + Acciones
+                costs['Interactive Brokers'] = Math.max(annualOps * 4, portfolioSize > 100000 ? 0 : 120);
+                costs['DeGiro'] = annualOps * 2.5; // Mix de gratuitos y pagos
+                costs['MyInvestor'] = (annualInvestment > 30000 ? (annualInvestment - 30000) * 0.001 : 0) + annualOps * 1;
+                costs['Scalable Capital'] = 35.88; // Plan Prime
+            } else {
+                // Trading activo
+                costs['Interactive Brokers'] = Math.max(annualOps * 2, 120);
+                costs['DeGiro'] = annualOps * 3;
+                costs['MyInvestor'] = annualOps * 2;
+                costs['Scalable Capital'] = 35.88;
+            }
+            
+            // Añadir custodia
+            if (portfolioSize > 100000) {
+                costs['DeGiro'] += 25; // €2.50 por mercado estimado
+            }
+            
+            // Mostrar resultados
+            const resultsDiv = document.getElementById('cost-results');
+            const contentDiv = document.getElementById('results-content');
+            
+            let html = '<div class="results-grid">';
+            Object.entries(costs).forEach(([broker, cost]) => {
+                const percentage = ((cost / annualInvestment) * 100).toFixed(2);
+                html += `
+                    <div class="result-item">
+                        <h5>${broker}</h5>
+                        <div class="cost-amount">€${cost.toFixed(0)}</div>
+                        <div class="cost-percentage">${percentage}% del capital anual</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            // Encontrar el mejor
+            const bestBroker = Object.entries(costs).reduce((a, b) => costs[a[0]] < costs[b[0]] ? a : b);
+            html += `<div class="best-option">💡 <strong>Mejor opción para tu perfil:</strong> ${bestBroker[0]} (€${bestBroker[1].toFixed(0)}/año)</div>`;
+            
+            contentDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

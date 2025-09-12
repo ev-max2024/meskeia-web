@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Lorem Ipsum Online | Texto de Relleno - meskeIA</title>
+    <meta name="description" content="Crea texto Lorem Ipsum personalizable en párrafos, palabras o caracteres. Herramienta gratuita para diseñadores y desarrolladores. Incluye español simulado.">
+    <meta name="keywords" content="lorem ipsum, generador texto, texto relleno, dummy text, placeholder, diseño web, maquetación, español simulado">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/generador-lorem-ipsum/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Generador Lorem Ipsum Online - meskeIA">
+    <meta property="og:description" content="Genera texto Lorem Ipsum personalizado. Elige entre párrafos, palabras o caracteres. Incluye español simulado.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/generador-lorem-ipsum/">
+    <meta property="og:image" content="../icon_meskeia.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Generador Lorem Ipsum - meskeIA">
+    <meta name="twitter:description" content="Crea texto de relleno personalizable para diseño y desarrollo web">
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Generador Lorem Ipsum",
+      "description": "Generador de texto Lorem Ipsum personalizable en párrafos, palabras o caracteres",
+      "url": "https://meskeia.com/aplicaciones/generador-lorem-ipsum/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "meskeIA",
+        "url": "https://meskeia.com"
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 100px 20px 60px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        select, input[type="number"] {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #236a89;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .output-area {
+            position: relative;
+        }
+
+        .output {
+            width: 100%;
+            min-height: 300px;
+            max-height: 500px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            resize: vertical;
+            overflow-y: auto;
+            font-family: inherit;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.5rem 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .copy-success {
+            background: #4CAF50 !important;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem;
+            background: var(--hover);
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            font-size: 1.2rem;
+        }
+        
+        /* Sección informativa */
+        .info-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .info-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2E86AB;
+        }
+        
+        .info-section h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+            color: #48A9A6;
+        }
+        
+        .info-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .info-section ul {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        
+        .info-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .faq-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        details {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            background: var(--hover);
+            transition: all 0.2s ease;
+        }
+        
+        details:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        details summary {
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            list-style: none;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        details summary::after {
+            content: '▶';
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: transform 0.2s ease;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+        
+        details p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 15px 60px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <nav class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;" role="navigation" aria-label="Volver al inicio">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Generador Lorem Ipsum Online</h1>
+            <p class="subtitle">Herramienta gratuita para crear texto de relleno profesional</p>
+        </header>
+
+        <main class="card" role="main">
+            <section class="controls" aria-label="Controles del generador">
+                <div class="control-group">
+                    <label for="textType" id="textTypeLabel">Tipo de texto:</label>
+                    <select id="textType" aria-labelledby="textTypeLabel">
+                        <option value="lorem">Lorem Ipsum (Latín)</option>
+                        <option value="spanish">Español simulado</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="unitType" id="unitTypeLabel">Generar por:</label>
+                    <select id="unitType" aria-labelledby="unitTypeLabel">
+                        <option value="paragraphs">Párrafos</option>
+                        <option value="words">Palabras</option>
+                        <option value="characters">Caracteres</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="quantity" id="quantityLabel">Cantidad:</label>
+                    <input type="number" id="quantity" value="3" min="1" max="50" aria-labelledby="quantityLabel" aria-describedby="quantityHelp">
+                    <small id="quantityHelp" style="display:none;">Ingresa un número entre 1 y 50</small>
+                </div>
+            </section>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="generateText()">
+                    <span>✨</span> Generar Texto
+                </button>
+                <button class="btn btn-secondary" onclick="clearText()">
+                    <span>🗑️</span> Limpiar
+                </button>
+            </div>
+
+            <section class="output-area" aria-label="Área de resultados">
+                <textarea class="output" id="outputText" placeholder="El texto generado aparecerá aquí..." readonly aria-label="Texto Lorem Ipsum generado"></textarea>
+                <button class="copy-btn" id="copyBtn" onclick="copyText()" aria-label="Copiar texto al portapapeles" title="Copiar texto al portapapeles">📋 Copiar</button>
+            </section>
+
+            <div class="stats" id="stats" style="display: none;">
+                <div class="stat-item">
+                    <span class="stat-number" id="charCount">0</span>
+                    <span>Caracteres</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="wordCount">0</span>
+                    <span>Palabras</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="paragraphCount">0</span>
+                    <span>Párrafos</span>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Sección informativa SEO -->
+        <section class="info-section">
+            <h2>¿Qué es Lorem Ipsum?</h2>
+            <p>
+                Lorem Ipsum es el texto de relleno estándar de la industria del diseño y la tipografía desde el siglo XVI. 
+                Se utiliza como texto provisional para visualizar el diseño gráfico de documentos, páginas web y maquetas 
+                sin que el contenido real distraiga del aspecto visual.
+            </p>
+            <p>
+                Este texto simulado proviene de las secciones 1.10.32 y 1.10.33 de "De Finibus Bonorum et Malorum" 
+                (Los Extremos del Bien y del Mal) de Cicerón, escrito en el año 45 antes de Cristo. Nuestro generador 
+                te permite crear Lorem Ipsum personalizado en segundos, con control preciso sobre párrafos, palabras o caracteres.
+            </p>
+            
+            <h3>¿Para qué se utiliza?</h3>
+            <ul>
+                <li><strong>Diseño Web:</strong> Maquetar páginas web y aplicaciones antes de tener el contenido final</li>
+                <li><strong>Diseño Gráfico:</strong> Crear prototipos de folletos, revistas y material publicitario</li>
+                <li><strong>Desarrollo:</strong> Probar layouts y componentes con texto de diferentes longitudes</li>
+                <li><strong>Presentaciones:</strong> Mostrar mockups profesionales a clientes sin contenido definitivo</li>
+                <li><strong>Tipografía:</strong> Evaluar fuentes y estilos tipográficos con texto neutro</li>
+            </ul>
+        </section>
+        
+        <!-- Sección FAQ con Schema Markup -->
+        <section class="faq-section">
+            <h2>❓ Preguntas Frecuentes</h2>
+            
+            <div class="faq-container">
+                <details>
+                    <summary>¿Cuántos párrafos de Lorem Ipsum puedo generar?</summary>
+                    <p>Puedes generar hasta 50 párrafos, palabras o caracteres según tu necesidad. La herramienta es completamente gratuita y sin límites de uso diario.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Puedo generar texto en español?</summary>
+                    <p>Sí, además del Lorem Ipsum tradicional en latín, ofrecemos la opción de generar texto simulado en español con palabras comunes del idioma para una mejor visualización en proyectos hispanohablantes.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Es necesario registrarse para usar el generador?</summary>
+                    <p>No, el generador de Lorem Ipsum es completamente gratuito y no requiere registro. Puedes usarlo tantas veces como necesites sin crear una cuenta.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Cómo copio el texto generado?</summary>
+                    <p>Simplemente haz clic en el botón "Copiar" que aparece en la esquina superior derecha del área de texto. El texto se copiará automáticamente a tu portapapeles.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Puedo generar exactamente una cantidad específica de palabras?</summary>
+                    <p>Sí, puedes seleccionar "Palabras" en el tipo de generación e indicar el número exacto de palabras que necesitas, desde 1 hasta 50 palabras.</p>
+                </details>
+            </div>
+        </section>
+        
+        <!-- Schema Markup FAQ -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuántos párrafos de Lorem Ipsum puedo generar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Puedes generar hasta 50 párrafos, palabras o caracteres según tu necesidad. La herramienta es completamente gratuita y sin límites de uso diario."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo generar texto en español?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, además del Lorem Ipsum tradicional en latín, ofrecemos la opción de generar texto simulado en español con palabras comunes del idioma."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Es necesario registrarse para usar el generador?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No, el generador de Lorem Ipsum es completamente gratuito y no requiere registro."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo copio el texto generado?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Simplemente haz clic en el botón 'Copiar' que aparece en la esquina superior derecha del área de texto."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo generar exactamente una cantidad específica de palabras?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, puedes seleccionar 'Palabras' en el tipo de generación e indicar el número exacto de palabras que necesitas."
+              }
+            }
+          ]
+        }
+        </script>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Textos base para Lorem Ipsum tradicional
+        const loremWords = [
+            'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+            'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore',
+            'magna', 'aliqua', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud',
+            'exercitation', 'ullamco', 'laboris', 'nisi', 'aliquip', 'ex', 'ea', 'commodo',
+            'consequat', 'duis', 'aute', 'irure', 'in', 'reprehenderit', 'voluptate',
+            'velit', 'esse', 'cillum', 'fugiat', 'nulla', 'pariatur', 'excepteur', 'sint',
+            'occaecat', 'cupidatat', 'non', 'proident', 'sunt', 'culpa', 'qui', 'officia',
+            'deserunt', 'mollit', 'anim', 'id', 'est', 'laborum', 'at', 'vero', 'eos',
+            'accusamus', 'accusantium', 'doloremque', 'laudantium', 'totam', 'rem',
+            'aperiam', 'eaque', 'ipsa', 'quae', 'ab', 'illo', 'inventore', 'veritatis'
+        ];
+
+        // Palabras en español simulado
+        const spanishWords = [
+            'el', 'la', 'de', 'que', 'y', 'a', 'en', 'un', 'es', 'se', 'no', 'te', 'lo',
+            'le', 'da', 'su', 'por', 'son', 'con', 'para', 'al', 'una', 'ser', 'las',
+            'todo', 'como', 'más', 'pero', 'sus', 'me', 'ya', 'muy', 'mi', 'porque',
+            'qué', 'solo', 'sin', 'sobre', 'también', 'hasta', 'hay', 'donde', 'quien',
+            'desde', 'todos', 'durante', 'tiempo', 'trabajo', 'vida', 'manera', 'bien',
+            'cada', 'estado', 'día', 'tanto', 'tres', 'menos', 'días', 'parte', 'año',
+            'grupo', 'momento', 'primer', 'país', 'caso', 'importante', 'mundo', 'número',
+            'agua', 'punto', 'nuevo', 'forma', 'mayor', 'mismo', 'otro', 'cualquier',
+            'lugar', 'mano', 'último', 'cuerpo', 'sistema', 'proyecto', 'desarrollo',
+            'proceso', 'información', 'empresa', 'servicio', 'mercado', 'producto'
+        ];
+
+        function getRandomWord(wordArray) {
+            return wordArray[Math.floor(Math.random() * wordArray.length)];
+        }
+
+        function capitalizeFirst(word) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+
+        function generateSentence(wordArray, length = null) {
+            const sentenceLength = length || (Math.floor(Math.random() * 15) + 5);
+            let sentence = [];
+            
+            for (let i = 0; i < sentenceLength; i++) {
+                sentence.push(getRandomWord(wordArray));
+            }
+            
+            sentence[0] = capitalizeFirst(sentence[0]);
+            return sentence.join(' ') + '.';
+        }
+
+        function generateParagraph(wordArray, sentences = null) {
+            const numSentences = sentences || (Math.floor(Math.random() * 4) + 3);
+            let paragraph = [];
+            
+            for (let i = 0; i < numSentences; i++) {
+                paragraph.push(generateSentence(wordArray));
+            }
+            
+            return paragraph.join(' ');
+        }
+
+        function generateByWords(wordArray, count) {
+            let words = [];
+            for (let i = 0; i < count; i++) {
+                words.push(getRandomWord(wordArray));
+            }
+            
+            // Estructura el texto en oraciones
+            let result = '';
+            let currentSentence = [];
+            
+            for (let i = 0; i < words.length; i++) {
+                currentSentence.push(words[i]);
+                
+                // Nueva oración cada 8-12 palabras
+                if (currentSentence.length >= 8 && (Math.random() > 0.5 || currentSentence.length >= 12)) {
+                    currentSentence[0] = capitalizeFirst(currentSentence[0]);
+                    result += currentSentence.join(' ') + '. ';
+                    currentSentence = [];
+                }
+            }
+            
+            // Agregar palabras restantes
+            if (currentSentence.length > 0) {
+                currentSentence[0] = capitalizeFirst(currentSentence[0]);
+                result += currentSentence.join(' ') + '.';
+            }
+            
+            return result.trim();
+        }
+
+        function generateByCharacters(wordArray, count) {
+            let result = '';
+            let currentWord = '';
+            
+            while (result.length < count) {
+                currentWord = getRandomWord(wordArray);
+                
+                if (result.length === 0) {
+                    currentWord = capitalizeFirst(currentWord);
+                }
+                
+                if (result.length + currentWord.length + 1 <= count) {
+                    result += (result.length > 0 ? ' ' : '') + currentWord;
+                } else {
+                    break;
+                }
+                
+                // Agregar puntuación ocasionalmente
+                if (result.length > 0 && Math.random() > 0.85 && result.length + 2 <= count) {
+                    result += '. ';
+                    if (result.length < count) {
+                        const nextWord = getRandomWord(wordArray);
+                        if (result.length + nextWord.length <= count) {
+                            result += capitalizeFirst(nextWord);
+                        }
+                    }
+                }
+            }
+            
+            return result;
+        }
+
+        function generateText() {
+            const textType = document.getElementById('textType').value;
+            const unitType = document.getElementById('unitType').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const outputText = document.getElementById('outputText');
+            
+            if (quantity < 1 || quantity > 50) {
+                alert('La cantidad debe estar entre 1 y 50');
+                return;
+            }
+            
+            const wordArray = textType === 'lorem' ? loremWords : spanishWords;
+            let result = '';
+            
+            switch (unitType) {
+                case 'paragraphs':
+                    const paragraphs = [];
+                    for (let i = 0; i < quantity; i++) {
+                        paragraphs.push(generateParagraph(wordArray));
+                    }
+                    result = paragraphs.join('\n\n');
+                    break;
+                    
+                case 'words':
+                    result = generateByWords(wordArray, quantity);
+                    break;
+                    
+                case 'characters':
+                    result = generateByCharacters(wordArray, quantity);
+                    break;
+            }
+            
+            outputText.value = result;
+            updateStats(result);
+        }
+
+        function updateStats(text) {
+            const stats = document.getElementById('stats');
+            const charCount = document.getElementById('charCount');
+            const wordCount = document.getElementById('wordCount');
+            const paragraphCount = document.getElementById('paragraphCount');
+            
+            if (text.trim() === '') {
+                stats.style.display = 'none';
+                return;
+            }
+            
+            const characters = text.length;
+            const words = text.trim().split(/\s+/).length;
+            const paragraphs = text.split('\n\n').filter(p => p.trim() !== '').length;
+            
+            charCount.textContent = characters.toLocaleString();
+            wordCount.textContent = words.toLocaleString();
+            paragraphCount.textContent = paragraphs.toLocaleString();
+            
+            stats.style.display = 'flex';
+        }
+
+        function clearText() {
+            document.getElementById('outputText').value = '';
+            document.getElementById('stats').style.display = 'none';
+        }
+
+        function copyText() {
+            const outputText = document.getElementById('outputText');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            if (outputText.value.trim() === '') {
+                alert('No hay texto para copiar');
+                return;
+            }
+            
+            outputText.select();
+            document.execCommand('copy');
+            
+            // Feedback visual
+            copyBtn.textContent = '✅ ¡Copiado!';
+            copyBtn.classList.add('copy-success');
+            
+            setTimeout(() => {
+                copyBtn.textContent = '📋 Copiar';
+                copyBtn.classList.remove('copy-success');
+            }, 2000);
+        }
+
+        // Generar texto inicial
+        window.addEventListener('load', () => {
+            generateText();
+        });
+
+        // Validación de inputs
+        document.getElementById('quantity').addEventListener('input', function() {
+            const value = parseInt(this.value);
+            if (value > 50) this.value = 50;
+            if (value < 1) this.value = 1;
+        });
+    </script>
+</body>
+</html>

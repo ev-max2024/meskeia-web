@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Perfil de Riesgo - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="../guia/conceptos-basicos.html">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../guia/conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="../guia/productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="../guia/estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="../guia/aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="../guia/asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="../guia/gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="../guia/psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="../guia/guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="../guia/casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="../guia/mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="herramientas.html" class="active">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Calculadora de Perfil de Riesgo</h1>
+            <p>Descubre tu perfil de inversión ideal y recibe recomendaciones personalizadas</p>
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">
+            <span id="currentQuestion">1</span> de <span id="totalQuestions">10</span> preguntas
+        </div>
+
+        <!-- Contenedor del cuestionario -->
+        <div class="quiz-container" id="quizContainer">
+            <!-- Las preguntas se generarán dinámicamente aquí -->
+        </div>
+
+        <!-- Contenedor de resultados -->
+        <div class="result-container" id="resultContainer">
+            <!-- Los resultados se mostrarán aquí -->
+        </div>
+    </div>
+
+    <!-- Contenido para PDF (oculto) -->
+    <div id="pdfContent" class="pdf-content hidden">
+        <!-- El contenido del PDF se generará aquí -->
+    </div>
+
+    <!-- Scripts - ORDEN IMPORTANTE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/tools/risk-calculator.js"></script>
+</body>
+</html>

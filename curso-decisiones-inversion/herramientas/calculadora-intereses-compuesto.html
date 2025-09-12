@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Interés Compuesto - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        /* Estilos específicos para la calculadora de interés compuesto */
+        .compound-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .compound-hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .compound-hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .input-panel h3 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 0.25rem;
+            color: #718096;
+            font-size: 0.85em;
+        }
+
+        .quick-presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preset-btn {
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85em;
+            text-align: center;
+        }
+
+        .preset-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .results-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .result-card.highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .result-card h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .result-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .chart-container {
+            margin: 2rem 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .comparison-mode {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .comparison-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-scenarios {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .scenario {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .scenario h4 {
+            margin: 0 0 1rem 0;
+            color: #4a5568;
+        }
+
+        .table-container {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        .table-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        tbody tr:hover {
+            background: #f7fafc;
+        }
+
+        .insights-panel {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fef9e7 0%, #f6e6cc 100%);
+            border-radius: 15px;
+            border: 1px solid #ecc94b;
+        }
+
+        .insights-panel h3 {
+            color: #744210;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .insight-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ecc94b;
+        }
+
+        .mobile-responsive {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-layout {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .calculator-container {
+                padding: 1rem;
+            }
+
+            .compound-hero h1 {
+                font-size: 1.8em;
+            }
+
+            .results-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .control-buttons {
+                flex-direction: column;
+            }
+
+            .quick-presets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-scenarios {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-responsive {
+                display: block;
+            }
+
+            .desktop-only {
+                display: none;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="../guia/conceptos-basicos.html">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../guia/conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="../guia/productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="../guia/estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="../guia/aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="../guia/asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="../guia/gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="../guia/psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="../guia/guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="../guia/casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="../guia/mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="herramientas.html" class="active">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="calculator-container">
+        <!-- Hero Section -->
+        <div class="compound-hero">
+            <h1>🚀 Calculadora de Interés Compuesto</h1>
+            <p>Descubre el poder del "octavo milagro del mundo" y visualiza cómo el tiempo y la consistencia pueden multiplicar exponencialmente tus inversiones</p>
+        </div>
+
+        <!-- Layout Principal -->
+        <div class="calculator-layout">
+            <!-- Panel de Entrada -->
+            <div class="input-panel">
+                <h3>📊 Parámetros de Inversión</h3>
+                
+                <div class="form-group">
+                    <label for="initialCapital">💰 Capital Inicial (€)</label>
+                    <input type="number" id="initialCapital" value="10000" min="0" step="100">
+                    <small>Cantidad inicial que vas a invertir</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="monthlyContribution">📅 Aportación Mensual (€)</label>
+                    <input type="number" id="monthlyContribution" value="500" min="0" step="50">
+                    <small>Cantidad que aportarás cada mes</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="annualRate">📈 Rentabilidad Anual (%)</label>
+                    <input type="number" id="annualRate" value="7" min="0" max="30" step="0.1">
+                    <small>Rentabilidad anual esperada</small>
+                    
+                    <div class="quick-presets">
+                        <button class="preset-btn" onclick="setRate(3)">Conservador 3%</button>
+                        <button class="preset-btn" onclick="setRate(7)">Moderado 7%</button>
+                        <button class="preset-btn" onclick="setRate(10)">Agresivo 10%</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="investmentPeriod">⏰ Período (años)</label>
+                    <input type="number" id="investmentPeriod" value="20" min="1" max="50" step="1">
+                    <small>Tiempo que mantendrás la inversión</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="compoundFrequency">🔄 Frecuencia de Capitalización</label>
+                    <select id="compoundFrequency">
+                        <option value="1">Anual</option>
+                        <option value="4">Trimestral</option>
+                        <option value="12" selected>Mensual</option>
+                        <option value="365">Diaria</option>
+                    </select>
+                    <small>Frecuencia con la que se calculan los intereses</small>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="btn btn-primary" onclick="calculateCompoundInterest(true)">
+                        🧮 Calcular Proyección
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetCalculator()">
+                        🔄 Limpiar
+                    </button>
+                </div>
+
+                <div class="comparison-mode">
+                    <div class="comparison-toggle">
+                        <input type="checkbox" id="comparisonMode">
+                        <label for="comparisonMode">🔍 Modo Comparación</label>
+                    </div>
+                    <p><small>Activa para comparar diferentes escenarios de inversión</small></p>
+                </div>
+            </div>
+
+            <!-- Panel de Resultados -->
+            <div class="results-panel">
+                <h3>💡 Resumen de Resultados</h3>
+                
+                <div class="results-summary" id="resultsSummary">
+                    <div class="result-card highlight">
+                        <h4>💰 Capital Final</h4>
+                        <div class="result-value" id="finalAmount">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>📥 Total Aportado</h4>
+                        <div class="result-value" id="totalContributed">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>📊 Intereses Generados</h4>
+                        <div class="result-value" id="interestEarned">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>🎯 ROI Total</h4>
+                        <div class="result-value" id="totalROI">0%</div>
+                    </div>
+                </div>
+
+                <div class="insights-panel" id="insightsPanel" style="display: none;">
+                    <h3>💡 Insights Inteligentes</h3>
+                    <div id="insightsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Evolución -->
+        <div class="chart-container" id="chartContainer" style="display: none;">
+            <h3>📈 Evolución de tu Inversión a lo Largo del Tiempo</h3>
+            <div class="chart-wrapper">
+                <canvas id="compoundChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tabla Detallada -->
+        <div class="table-container" id="tableContainer" style="display: none;">
+            <div class="table-header">
+                <h3>📋 Desglose Año por Año</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Año</th>
+                        <th>Aportaciones</th>
+                        <th>Intereses Generados</th>
+                        <th>Balance Total</th>
+                        <th>% Crecimiento</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Los datos se generarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Acciones -->
+        <div class="control-buttons" id="actionButtons" style="display: none; justify-content: center; margin-top: 2rem;">
+            <button class="btn btn-primary" onclick="generatePDF()">
+                📄 Descargar Reporte PDF
+            </button>
+            <button class="btn btn-secondary" onclick="shareResults()">
+                📤 Compartir Resultados
+            </button>
+            <button class="btn btn-secondary" onclick="toggleComparison()">
+                🔍 Comparar Escenarios
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Variables globales
+        let calculationResults = null;
+        let compoundChart = null;
+        let comparisonMode = false;
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Calculadora de Interés Compuesto cargada');
+            
+            // Agregar listeners para cálculo automático
+            const inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', debounce(autoCalculate, 500));
+            });
+            
+            // Calcular con valores por defecto
+            calculateCompoundInterest();
+        });
+
+        // Función principal de cálculo
+        function calculateCompoundInterest(shouldScroll = false) {
+            try {
+                console.log('🧮 Iniciando cálculo de interés compuesto...');
+                
+                // Obtener valores del formulario
+                const initialCapital = parseFloat(document.getElementById('initialCapital').value) || 0;
+                const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+                const annualRate = parseFloat(document.getElementById('annualRate').value) || 0;
+                const investmentPeriod = parseInt(document.getElementById('investmentPeriod').value) || 1;
+                const compoundFrequency = parseInt(document.getElementById('compoundFrequency').value) || 12;
+                
+                // Validar entradas
+                if (initialCapital < 0 || monthlyContribution < 0 || annualRate < 0 || investmentPeriod <= 0) {
+                    alert('Por favor, ingresa valores válidos (no negativos).');
+                    return;
+                }
+                
+                // Realizar cálculos
+                const results = performCompoundCalculation(
+                    initialCapital,
+                    monthlyContribution,
+                    annualRate,
+                    investmentPeriod,
+                    compoundFrequency
+                );
+                
+                // Guardar resultados globalmente
+                calculationResults = results;
+                
+                // Mostrar resultados
+                displayResults(results, shouldScroll);
+                generateInsights(results);
+                
+                console.log('✅ Cálculo completado exitosamente');
+                
+            } catch (error) {
+                console.error('❌ Error en el cálculo:', error);
+                alert('Error al realizar el cálculo. Por favor, verifica los valores ingresados.');
+            }
+        }
+
+        // Función para realizar los cálculos matemáticos
+        function performCompoundCalculation(principal, monthlyPayment, annualRate, years, compoundingFrequency) {
+            const monthlyRate = annualRate / 100 / 12;
+            const totalMonths = years * 12;
+            
+            let yearlyData = [];
+            let currentBalance = principal;
+            let totalContributed = principal;
+            
+            // Cálculo año por año
+            for (let year = 1; year <= years; year++) {
+                let yearStartBalance = currentBalance;
+                let yearContributions = 0;
+                let yearInterest = 0;
+                
+                // Cálculo mes por mes para este año
+                for (let month = 1; month <= 12; month++) {
+                    // Agregar aportación mensual
+                    currentBalance += monthlyPayment;
+                    yearContributions += monthlyPayment;
+                    totalContributed += monthlyPayment;
+                    
+                    // Calcular interés compuesto según frecuencia
+                    if (compoundingFrequency === 12) {
+                        // Capitalización mensual
+                        const monthlyInterest = currentBalance * monthlyRate;
+                        currentBalance += monthlyInterest;
+                        yearInterest += monthlyInterest;
+                    } else {
+                        // Otras frecuencias de capitalización
+                        const periodsPerYear = compoundingFrequency;
+                        const ratePerPeriod = annualRate / 100 / periodsPerYear;
+                        const periodsThisMonth = periodsPerYear / 12;
+                        
+                        for (let period = 0; period < periodsThisMonth; period++) {
+                            currentBalance *= (1 + ratePerPeriod);
+                        }
+                        yearInterest = currentBalance - yearStartBalance - yearContributions;
+                    }
+                }
+                
+                const growthRate = year === 1 ? 0 : ((currentBalance - yearlyData[year-2].endBalance) / yearlyData[year-2].endBalance) * 100;
+                
+                yearlyData.push({
+                    year: year,
+                    startBalance: yearStartBalance,
+                    contributions: yearContributions,
+                    interest: yearInterest,
+                    endBalance: currentBalance,
+                    totalContributed: totalContributed,
+                    growthRate: growthRate
+                });
+            }
+            
+            const finalAmount = currentBalance;
+            const totalInterest = finalAmount - totalContributed;
+            const roi = ((finalAmount - totalContributed) / totalContributed) * 100;
+            
+            return {
+                finalAmount: finalAmount,
+                totalContributed: totalContributed,
+                totalInterest: totalInterest,
+                roi: roi,
+                yearlyData: yearlyData,
+                parameters: {
+                    initialCapital: principal,
+                    monthlyContribution: monthlyPayment,
+                    annualRate: annualRate,
+                    investmentPeriod: years,
+                    compoundFrequency: compoundingFrequency
+                }
+            };
+        }
+
+        // Mostrar resultados en la interfaz
+        function displayResults(results, shouldScroll = false) {
+            // Actualizar tarjetas de resumen
+            document.getElementById('finalAmount').textContent = formatCurrency(results.finalAmount);
+            document.getElementById('totalContributed').textContent = formatCurrency(results.totalContributed);
+            document.getElementById('interestEarned').textContent = formatCurrency(results.totalInterest);
+            document.getElementById('totalROI').textContent = formatPercentage(results.roi);
+            
+            // Mostrar contenedores
+            document.getElementById('chartContainer').style.display = 'block';
+            document.getElementById('tableContainer').style.display = 'block';
+            document.getElementById('actionButtons').style.display = 'flex';
+            
+            // Generar tabla detallada
+            generateDetailTable(results.yearlyData);
+            
+            // Generar gráfico
+            generateChart(results.yearlyData);
+            
+            // Scroll suave si se solicita
+            if (shouldScroll) {
+                setTimeout(() => {
+                    document.getElementById('chartContainer').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+        }
+
+        // Generar tabla detallada
+        function generateDetailTable(yearlyData) {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            
+            yearlyData.forEach(data => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>Año ${data.year}</strong></td>
+                    <td>${formatCurrency(data.contributions)}</td>
+                    <td>${formatCurrency(data.interest)}</td>
+                    <td><strong>${formatCurrency(data.endBalance)}</strong></td>
+                    <td><span style="color: ${data.growthRate > 0 ? '#48bb78' : '#f56565'}">${data.growthRate.toFixed(1)}%</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Generar gráfico
+        function generateChart(yearlyData) {
+            const ctx = document.getElementById('compoundChart').getContext('2d');
+            
+            if (compoundChart) {
+                compoundChart.destroy();
+            }
+            
+            const labels = yearlyData.map(data => `Año ${data.year}`);
+            const balanceData = yearlyData.map(data => data.endBalance);
+            const contributionsData = yearlyData.map(data => data.totalContributed);
+            const interestData = yearlyData.map(data => data.endBalance - data.totalContributed);
+            
+            compoundChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '💰 Balance Total',
+                            data: balanceData,
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '📥 Total Aportado',
+                            data: contributionsData,
+                            borderColor: '#48bb78',
+                            backgroundColor: 'rgba(72, 187, 120, 0.1)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: false
+                        },
+                        {
+                            label: '📊 Intereses Generados',
+                            data: interestData,
+                            borderColor: '#ed8936',
+                            backgroundColor: 'rgba(237, 137, 54, 0.1)',
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        // Generar insights inteligentes
+        function generateInsights(results) {
+            const insightsPanel = document.getElementById('insightsPanel');
+            const insightsList = document.getElementById('insightsList');
+            
+            insightsList.innerHTML = '';
+            
+            const insights = [];
+            
+            // Insight sobre el poder del interés compuesto
+            const compoundPower = ((results.totalInterest / results.totalContributed) * 100);
+            if (compoundPower > 50) {
+                insights.push({
+                    icon: '🚀',
+                    title: 'Poder del Interés Compuesto',
+                    text: `¡Increíble! Los intereses generados (${formatCurrency(results.totalInterest)}) representan el ${compoundPower.toFixed(1)}% de tus aportaciones. Esto demuestra el verdadero poder del interés compuesto.`
+                });
+            }
+            
+            // Insight sobre tiempo vs dinero
+            const monthlyTotal = results.parameters.monthlyContribution * 12 * results.parameters.investmentPeriod;
+            if (results.totalInterest > monthlyTotal) {
+                insights.push({
+                    icon: '⏰',
+                    title: 'El Tiempo es tu Mejor Aliado',
+                    text: `Los intereses generados (${formatCurrency(results.totalInterest)}) superan todas tus aportaciones mensuales de ${results.parameters.investmentPeriod} años. ¡El tiempo realmente multiplica tu dinero!`
+                });
+            }
+            
+            // Insight sobre frecuencia de capitalización
+            if (results.parameters.compoundFrequency >= 12) {
+                insights.push({
+                    icon: '🔄',
+                    title: 'Capitalización Frecuente',
+                    text: `Con capitalización ${results.parameters.compoundFrequency === 12 ? 'mensual' : 'diaria'}, tus intereses generan más intereses más rápidamente, maximizando tu crecimiento.`
+                });
+            }
+            
+            // Insight sobre rentabilidad
+            if (results.roi > 100) {
+                insights.push({
+                    icon: '📈',
+                    title: 'ROI Excepcional',
+                    text: `Tu ROI del ${formatPercentage(results.roi)} significa que tu dinero se ha multiplicado por ${(results.roi/100 + 1).toFixed(1)}. ¡Una inversión muy exitosa!`
+                });
+            }
+            
+            // Mostrar insights
+            if (insights.length > 0) {
+                insights.forEach(insight => {
+                    const insightElement = document.createElement('div');
+                    insightElement.className = 'insight-item';
+                    insightElement.innerHTML = `
+                        <strong>${insight.icon} ${insight.title}</strong><br>
+                        <span>${insight.text}</span>
+                    `;
+                    insightsList.appendChild(insightElement);
+                });
+                
+                insightsPanel.style.display = 'block';
+            } else {
+                insightsPanel.style.display = 'none';
+            }
+        }
+
+        // Funciones de utilidad
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatPercentage(percentage) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'percent',
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }).format(percentage / 100);
+        }
+
+        // Presets de rentabilidad
+        function setRate(rate) {
+            document.getElementById('annualRate').value = rate;
+            autoCalculate();
+        }
+
+        // Limpiar calculadora
+        function resetCalculator() {
+            document.getElementById('initialCapital').value = 10000;
+            document.getElementById('monthlyContribution').value = 500;
+            document.getElementById('annualRate').value = 7;
+            document.getElementById('investmentPeriod').value = 20;
+            document.getElementById('compoundFrequency').value = 12;
+            
+            document.getElementById('chartContainer').style.display = 'none';
+            document.getElementById('tableContainer').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            document.getElementById('insightsPanel').style.display = 'none';
+            
+            if (compoundChart) {
+                compoundChart.destroy();
+                compoundChart = null;
+            }
+            
+            calculationResults = null;
+            
+            // Recalcular con valores por defecto
+            calculateCompoundInterest();
+            
+            console.log('🔄 Calculadora reiniciada');
+        }
+
+        // Cálculo automático con debounce
+        function autoCalculate() {
+            const initialCapital = parseFloat(document.getElementById('initialCapital').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const annualRate = parseFloat(document.getElementById('annualRate').value) || 0;
+            const investmentPeriod = parseInt(document.getElementById('investmentPeriod').value) || 1;
+            
+            if (initialCapital >= 0 && monthlyContribution >= 0 && annualRate >= 0 && investmentPeriod > 0) {
+                calculateCompoundInterest(false);
+            }
+        }
+
+        // Función debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Generar PDF
+        function generatePDF() {
+            if (!calculationResults) {
+                alert('No hay resultados para generar el reporte.');
+                return;
+            }
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Configuración
+                const margin = 20;
+                let yPosition = margin;
+                
+                // Título
+                doc.setFontSize(20);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Reporte de Interés Compuesto', margin, yPosition);
+                yPosition += 15;
+                
+                // Fecha
+                const today = new Date().toLocaleDateString('es-ES');
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Fecha de generación: ${today}`, margin, yPosition);
+                yPosition += 20;
+                
+                // Parámetros
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Parámetros de Inversión:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Capital Inicial: ${formatCurrency(calculationResults.parameters.initialCapital)}`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Aportación Mensual: ${formatCurrency(calculationResults.parameters.monthlyContribution)}`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Rentabilidad Anual: ${calculationResults.parameters.annualRate}%`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Período de Inversión: ${calculationResults.parameters.investmentPeriod} años`, margin, yPosition);
+                yPosition += 15;
+                
+                // Resultados
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Resultados:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Capital Final: ${formatCurrency(calculationResults.finalAmount)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Total Aportado: ${formatCurrency(calculationResults.totalContributed)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Intereses Generados: ${formatCurrency(calculationResults.totalInterest)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`ROI Total: ${formatPercentage(calculationResults.roi)}`, margin, yPosition);
+                yPosition += 15;
+                
+                // Tabla de evolución (primeros 10 años)
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Evolución Anual (primeros 10 años):', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                
+                // Encabezados de tabla
+                doc.text('Año', margin, yPosition);
+                doc.text('Aportaciones', margin + 30, yPosition);
+                doc.text('Intereses', margin + 80, yPosition);
+                doc.text('Balance Total', margin + 130, yPosition);
+                yPosition += 8;
+                
+                // Datos de tabla
+                const maxYears = Math.min(10, calculationResults.yearlyData.length);
+                for (let i = 0; i < maxYears; i++) {
+                    const data = calculationResults.yearlyData[i];
+                    doc.text(`${data.year}`, margin, yPosition);
+                    doc.text(`${formatCurrency(data.contributions)}`, margin + 30, yPosition);
+                    doc.text(`${formatCurrency(data.interest)}`, margin + 80, yPosition);
+                    doc.text(`${formatCurrency(data.endBalance)}`, margin + 130, yPosition);
+                    yPosition += 6;
+                }
+                
+                // Pie de página
+                const footerY = doc.internal.pageSize.height - 20;
+                doc.setFontSize(8);
+                doc.setFont('helvetica', 'italic');
+                doc.text('Reporte generado por la Calculadora de Interés Compuesto', margin, footerY);
+                doc.text('Decisiones de Inversión - Herramientas Financieras', margin, footerY + 5);
+                
+                // Descargar
+                const fileName = `interes-compuesto-${today.replace(/\//g, '-')}.pdf`;
+                doc.save(fileName);
+                
+                console.log('✅ PDF generado exitosamente:', fileName);
+                
+            } catch (error) {
+                console.error('❌ Error al generar PDF:', error);
+                alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
+            }
+        }
+
+        // Compartir resultados
+        function shareResults() {
+            if (!calculationResults) {
+                alert('No hay resultados para compartir.');
+                return;
+            }
+            
+            const shareText = `🚀 Mi proyección de interés compuesto:
+💰 Capital final: ${formatCurrency(calculationResults.finalAmount)}
+📥 Total aportado: ${formatCurrency(calculationResults.totalContributed)}
+📊 Intereses generados: ${formatCurrency(calculationResults.totalInterest)}
+🎯 ROI: ${formatPercentage(calculationResults.roi)}
+
+¡El poder del interés compuesto en acción! 💪
+Calculado con la Calculadora de Interés Compuesto`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mi Proyección de Interés Compuesto',
+                    text: shareText,
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Resultados copiados al portapapeles 📋');
+                }).catch(() => {
+                    // Fallback para navegadores que no soportan clipboard
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('Resultados copiados al portapapeles 📋');
+                });
+            }
+        }
+
+        // Modo comparación (funcionalidad futura)
+        function toggleComparison() {
+            alert('🔍 Función de comparación próximamente disponible. Podrás comparar diferentes escenarios de inversión lado a lado.');
+        }
+
+        console.log('🎯 Calculadora de Interés Compuesto cargada completamente');
+    </script>
+</body>
+</html>

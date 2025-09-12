@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerebro y Neurotransmisores - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            
+            /* Colores específicos para cerebro */
+            --brain-primary: #8E44AD;
+            --brain-secondary: #9B59B6;
+            --brain-accent: #BB8FCE;
+            --serotonin: #E74C3C;
+            --dopamine: #F39C12;
+            --gaba: #27AE60;
+            --acetylcholine: #3498DB;
+            --norepinephrine: #E67E22;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #F18F01;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-nav {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--brain-primary) 0%, var(--brain-secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .brain-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .neurotransmitter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .neurotransmitter {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .neurotransmitter-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .neurotransmitter-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Content sections */
+        .content-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--brain-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--brain-primary);
+            padding-bottom: 10px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: var(--focus);
+            border-left: 4px solid var(--brain-primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h4 {
+            color: var(--brain-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Neurotransmitters grid */
+        .neurotransmitters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .neurotransmitter-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .neurotransmitter-card.serotonin {
+            border-color: var(--serotonin);
+        }
+
+        .neurotransmitter-card.dopamine {
+            border-color: var(--dopamine);
+        }
+
+        .neurotransmitter-card.gaba {
+            border-color: var(--gaba);
+        }
+
+        .neurotransmitter-card.acetylcholine {
+            border-color: var(--acetylcholine);
+        }
+
+        .neurotransmitter-card.norepinephrine {
+            border-color: var(--norepinephrine);
+        }
+
+        .neurotransmitter-card:hover {
+            box-shadow: 0 8px 25px rgba(142, 68, 173, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .neurotransmitter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .neurotransmitter-emoji {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .neurotransmitter-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .neurotransmitter-title.serotonin {
+            color: var(--serotonin);
+        }
+
+        .neurotransmitter-title.dopamine {
+            color: var(--dopamine);
+        }
+
+        .neurotransmitter-title.gaba {
+            color: var(--gaba);
+        }
+
+        .neurotransmitter-title.acetylcholine {
+            color: var(--acetylcholine);
+        }
+
+        .neurotransmitter-title.norepinephrine {
+            color: var(--norepinephrine);
+        }
+
+        .neurotransmitter-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .neurotransmitter-details {
+            background: var(--hover);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .neurotransmitter-details h5 {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .neurotransmitter-details.serotonin h5 {
+            color: var(--serotonin);
+        }
+
+        .neurotransmitter-details.dopamine h5 {
+            color: var(--dopamine);
+        }
+
+        .neurotransmitter-details.gaba h5 {
+            color: var(--gaba);
+        }
+
+        .neurotransmitter-details.acetylcholine h5 {
+            color: var(--acetylcholine);
+        }
+
+        .neurotransmitter-details.norepinephrine h5 {
+            color: var(--norepinephrine);
+        }
+
+        .neurotransmitter-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .neurotransmitter-details li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .neurotransmitter-details.serotonin li::before {
+            content: "😊";
+            position: absolute;
+            left: 0;
+        }
+
+        .neurotransmitter-details.dopamine li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+        }
+
+        .neurotransmitter-details.gaba li::before {
+            content: "😌";
+            position: absolute;
+            left: 0;
+        }
+
+        .neurotransmitter-details.acetylcholine li::before {
+            content: "🧠";
+            position: absolute;
+            left: 0;
+        }
+
+        .neurotransmitter-details.norepinephrine li::before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Brain-gut axis section */
+        .brain-gut-axis {
+            background: linear-gradient(135deg, var(--acetylcholine) 0%, #5DADE2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .axis-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .axis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .axis-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .axis-direction h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #F8C471;
+        }
+
+        .communication-pathway {
+            background: rgba(52, 152, 219, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--acetylcholine);
+        }
+
+        /* Cognitive enhancer analyzer */
+        .cognitive-analyzer {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--hover) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid var(--brain-primary);
+        }
+
+        .analyzer-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--brain-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .analyzer-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .analyzer-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: var(--brain-primary);
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .symptom-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .symptom-option:hover {
+            background: var(--hover);
+        }
+
+        .symptom-option input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .analyze-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--brain-primary) 0%, var(--brain-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(142, 68, 173, 0.3);
+        }
+
+        .results-container {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .cognitive-score {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cognitive-interpretation {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+        }
+
+        .recommendations {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--brain-primary);
+        }
+
+        .recommendations h4 {
+            color: var(--brain-primary);
+            margin-bottom: 15px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recommendations li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .recommendations li::before {
+            content: "🧠";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Navigation */
+        .navigation-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            color: var(--brain-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: 2px solid var(--brain-primary);
+            background: transparent;
+            color: var(--brain-primary);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--brain-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background: var(--brain-primary);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--brain-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+            }
+
+            .neurotransmitters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .neurotransmitter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .axis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a> > 
+                <span>Efectos en Órganos</span> > 
+                Cerebro y Neurotransmisores
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Cerebro y Neurotransmisores</h1>
+                <p class="hero-subtitle">
+                    Tu segundo estómago produce el 90% de la serotonina: descubre cómo cada alimento 
+                    modula tu estado de ánimo, memoria y función cognitiva
+                </p>
+                
+                <div class="brain-visual">
+                    <h3>Red de Neurotransmisores Alimentarios</h3>
+                    <div class="neurotransmitter-grid">
+                        <div class="neurotransmitter">
+                            <div class="neurotransmitter-icon">😊</div>
+                            <div class="neurotransmitter-name">Serotonina</div>
+                        </div>
+                        <div class="neurotransmitter">
+                            <div class="neurotransmitter-icon">⚡</div>
+                            <div class="neurotransmitter-name">Dopamina</div>
+                        </div>
+                        <div class="neurotransmitter">
+                            <div class="neurotransmitter-icon">😌</div>
+                            <div class="neurotransmitter-name">GABA</div>
+                        </div>
+                        <div class="neurotransmitter">
+                            <div class="neurotransmitter-icon">🧠</div>
+                            <div class="neurotransmitter-name">Acetilcolina</div>
+                        </div>
+                        <div class="neurotransmitter">
+                            <div class="neurotransmitter-icon">🔥</div>
+                            <div class="neurotransmitter-name">Norepinefrina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Introducción conceptual -->
+        <section class="content-section">
+            <h2 class="section-title">🧠 Tu Segundo Cerebro: El Eje Intestino-Cerebro</h2>
+            <div class="section-content">
+                <p>
+                    El 90% de la serotonina de tu cuerpo se produce en el intestino, no en el cerebro. Tu sistema 
+                    digestivo contiene más de 500 millones de neuronas y se comunica constantemente con tu cerebro 
+                    a través del nervio vago, hormonas y metabolitos bacterianos.
+                </p>
+                
+                <div class="highlight-box">
+                    <h4>🔬 Conexión Directa Alimentación-Mente</h4>
+                    <p>
+                        Cada comida envía señales químicas directas a tu cerebro en 30 minutos. Una comida rica en 
+                        triptófano puede aumentar serotonina y mejorar el humor, mientras que exceso de azúcar puede 
+                        causar neuroinflamación y afectar memoria por horas.
+                    </p>
+                </div>
+
+                <p>
+                    Tu microbiota intestinal produce más de 30 neurotransmisores diferentes, incluyendo GABA, 
+                    dopamina, norepinefrina y acetilcolina. La composición de tus bacterias intestinales puede 
+                    determinar si eres más propenso a ansiedad, depresión o alta función cognitiva.
+                </p>
+
+                <p>
+                    La diferencia entre una alimentación que optimiza tu función cerebral y una que la deteriora 
+                    no radica solo en "comer pescado para el cerebro", sino en entender cómo aminoácidos específicos, 
+                    grasas cerebrales y cofactores enzimáticos modulan la neurotransmisión.
+                </p>
+            </div>
+        </section>
+
+        <!-- Neurotransmisores principales -->
+        <section class="content-section">
+            <h2 class="section-title">🧪 Los Cinco Neurotransmisores Que Controlan Tu Experiencia</h2>
+            
+            <div class="neurotransmitters-grid">
+                <!-- Serotonina -->
+                <div class="neurotransmitter-card serotonin">
+                    <div class="neurotransmitter-header">
+                        <div class="neurotransmitter-emoji">😊</div>
+                        <div class="neurotransmitter-title serotonin">Serotonina</div>
+                    </div>
+                    <div class="neurotransmitter-description">
+                        El "neurotransmisor de la felicidad" que regula humor, sueño, apetito y función intestinal. 
+                        Su producción depende directamente del triptófano dietético y la salud de tu microbiota.
+                    </div>
+                    <div class="neurotransmitter-details serotonin">
+                        <h5>Precursores y cofactores:</h5>
+                        <ul>
+                            <li>Triptófano: pavo, huevos, queso, salmón, semillas calabaza</li>
+                            <li>Vitamina B6: necesaria para conversión triptófano → serotonina</li>
+                            <li>Magnesio: cofactor enzimas serotoninérgicas</li>
+                            <li>Zinc: síntesis y liberación de serotonina</li>
+                            <li>Carbohidratos complejos: facilitan entrada triptófano al cerebro</li>
+                            <li>Microbiota sana: algunas bacterias producen serotonina directamente</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Dopamina -->
+                <div class="neurotransmitter-card dopamine">
+                    <div class="neurotransmitter-header">
+                        <div class="neurotransmitter-emoji">⚡</div>
+                        <div class="neurotransmitter-title dopamine">Dopamina</div>
+                    </div>
+                    <div class="neurotransmitter-description">
+                        El neurotransmisor de la motivación, recompensa y enfoque. Controla tu impulso para conseguir 
+                        objetivos, la sensación de placer y la función ejecutiva del cerebro.
+                    </div>
+                    <div class="neurotransmitter-details dopamine">
+                        <h5>Nutrientes optimizadores:</h5>
+                        <ul>
+                            <li>Tirosina: almendras, aguacate, plátanos, carne magra</li>
+                            <li>Fenilalanina: precursor de tirosina (proteínas animales)</li>
+                            <li>Hierro: cofactor tirosina hidroxilasa</li>
+                            <li>Folato (B9): síntesis de dopamina</li>
+                            <li>Vitamina C: convierte dopamina en norepinefrina</li>
+                            <li>Antioxidantes: protegen neuronas dopaminérgicas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- GABA -->
+                <div class="neurotransmitter-card gaba">
+                    <div class="neurotransmitter-header">
+                        <div class="neurotransmitter-emoji">😌</div>
+                        <div class="neurotransmitter-title gaba">GABA</div>
+                    </div>
+                    <div class="neurotransmitter-description">
+                        El principal neurotransmisor inhibitorio que calma la actividad cerebral, reduce ansiedad 
+                        y promueve relajación. Esencial para sueño reparador y control del estrés.
+                    </div>
+                    <div class="neurotransmitter-details gaba">
+                        <h5>Potenciadores naturales:</h5>
+                        <ul>
+                            <li>Ácido glutámico: se convierte en GABA (carnes, pescado)</li>
+                            <li>Taurina: modula receptores GABA (mariscos)</li>
+                            <li>Teanina: aumenta GABA y ondas alfa (té verde)</li>
+                            <li>Magnesio: se une a receptores GABA (calmante)</li>
+                            <li>Probióticos específicos: Lactobacillus produce GABA</li>
+                            <li>Yoga/meditación: aumentan GABA naturalmente</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Acetilcolina -->
+                <div class="neurotransmitter-card acetylcholine">
+                    <div class="neurotransmitter-header">
+                        <div class="neurotransmitter-emoji">🧠</div>
+                        <div class="neurotransmitter-title acetylcholine">Acetilcolina</div>
+                    </div>
+                    <div class="neurotransmitter-description">
+                        El neurotransmisor del aprendizaje, memoria y atención. Controla la plasticidad sináptica 
+                        y la capacidad de formar nuevos recuerdos y conexiones neurales.
+                    </div>
+                    <div class="neurotransmitter-details acetylcholine">
+                        <h5>Precursores cognitivos:</h5>
+                        <ul>
+                            <li>Colina: huevos (lecitina), hígado, salmón</li>
+                            <li>Alfa-GPC: forma biodisponible de colina</li>
+                            <li>Vitaminas B complejas: síntesis acetilcolina</li>
+                            <li>Omega-3 DHA: estructura membranas neuronales</li>
+                            <li>Antioxidantes: protegen neuronas colinérgicas</li>
+                            <li>Ejercicio: estimula producción de acetilcolina</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Norepinefrina -->
+                <div class="neurotransmitter-card norepinephrine">
+                    <div class="neurotransmitter-header">
+                        <div class="neurotransmitter-emoji">🔥</div>
+                        <div class="neurotransmitter-title norepinephrine">Norepinefrina</div>
+                    </div>
+                    <div class="neurotransmitter-description">
+                        El neurotransmisor del alerta y la energía. Aumenta atención, vigilia y respuesta al estrés. 
+                        Esencial para función ejecutiva y respuesta a desafíos.
+                    </div>
+                    <div class="neurotransmitter-details norepinephrine">
+                        <h5>Moduladores naturales:</h5>
+                        <ul>
+                            <li>Tirosina: misma vía que dopamina</li>
+                            <li>Vitamina C: convierte dopamina → norepinefrina</li>
+                            <li>Vitamina B6: cofactor enzimas catecolaminas</li>
+                            <li>Cobre: cofactor dopamina β-hidroxilasa</li>
+                            <li>Ejercicio intenso: aumenta norepinefrina</li>
+                            <li>Frío controlado: estimula sistema noradrenérgico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eje intestino-cerebro -->
+        <section class="brain-gut-axis">
+            <h2 class="axis-title">🔗 El Eje Intestino-Cerebro: Comunicación Bidireccional</h2>
+            
+            <div class="axis-grid">
+                <div class="axis-card">
+                    <div class="axis-direction">
+                        <h4>INTESTINO → CEREBRO</h4>
+                        <div class="communication-pathway">
+                            <strong>Vía Vagal:</strong> El nervio vago transmite señales desde intestino a tronco cerebral en segundos. Bacterias beneficiosas estimulan el vago → mejora humor.
+                        </div>
+                        <div class="communication-pathway">
+                            <strong>Neurotransmisores Bacterianos:</strong> Lactobacillus produce GABA, Bifidobacterium produce ácido γ-aminobutírico, algunas cepas sintetizan serotonina.
+                        </div>
+                        <div class="communication-pathway">
+                            <strong>Metabolitos SCFAs:</strong> Butirato cruza barrera hematoencefálica → antiinflamatorio neuronal, mejora función cognitiva.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="axis-card">
+                    <div class="axis-direction">
+                        <h4>CEREBRO → INTESTINO</h4>
+                        <div class="communication-pathway">
+                            <strong>Estrés Neural:</strong> Cortisol altera microbiota, reduce diversidad bacteriana, aumenta permeabilidad intestinal.
+                        </div>
+                        <div class="communication-pathway">
+                            <strong>Neurotransmisores Centrales:</strong> Serotonina cerebral afecta motilidad intestinal, dolor visceral y función digestiva.
+                        </div>
+                        <div class="communication-pathway">
+                            <strong>Sistema Inmune:</strong> Citoquinas pro-inflamatorias desde intestino → neuroinflamación → depresión, ansiedad.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="axis-card">
+                    <div class="axis-direction">
+                        <h4>INTERVENCIÓN NUTRICIONAL</h4>
+                        <div class="communication-pathway">
+                            <strong>Probióticos Psicoactivos:</strong> Lactobacillus helveticus R0052 reduce ansiedad 25% en 30 días.
+                        </div>
+                        <div class="communication-pathway">
+                            <strong>Prebióticos Cognitivos:</strong> Inulina aumenta Bifidobacterium → más BDNF (factor neurotrófico) → neuroplasticidad.
+                        </div>
+                        <div class="communication-pathway">
+                            <strong>Polifenoles Neuroprotectores:</strong> Curcumina, resveratrol, EGCG cruzan barrera hematoencefálica → antiinflamatorio neural.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alimentos cognitivos -->
+        <section class="content-section">
+            <h2 class="section-title">🍯 Alimentos Cognitivos: Nutrir la Inteligencia</h2>
+            <div class="section-content">
+                <p>
+                    Ciertos alimentos han demostrado mejorar función cognitiva, memoria y estado de ánimo a través 
+                    de mecanismos específicos: optimización de neurotransmisores, protección neuronal, mejora del 
+                    flujo sanguíneo cerebral y reducción de neuroinflamación.
+                </p>
+
+                <div class="neurotransmitters-grid">
+                    <div class="neurotransmitter-card acetylcholine">
+                        <div class="neurotransmitter-header">
+                            <div class="neurotransmitter-emoji">🥚</div>
+                            <div class="neurotransmitter-title acetylcholine">Huevos (Colina)</div>
+                        </div>
+                        <div class="neurotransmitter-description">
+                            La fuente más rica de colina dietética, precursor directo de acetilcolina.
+                        </div>
+                        <div class="neurotransmitter-details acetylcholine">
+                            <h5>Beneficios cognitivos:</h5>
+                            <ul>
+                                <li>2 huevos = 250mg colina (50% necesidades diarias)</li>
+                                <li>Mejora memoria de trabajo en 30 días</li>
+                                <li>Desarrollo cerebral en embarazo</li>
+                                <li>Protección contra declive cognitivo</li>
+                                <li>Mejor: yemas orgánicas pastoreo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neurotransmitter-card dopamine">
+                        <div class="neurotransmitter-header">
+                            <div class="neurotransmitter-emoji">🐟</div>
+                            <div class="neurotransmitter-title dopamine">Pescado Graso (DHA)</div>
+                        </div>
+                        <div class="neurotransmitter-description">
+                            DHA constituye 40% de las grasas cerebrales y es esencial para neurotransmisión.
+                        </div>
+                        <div class="neurotransmitter-details dopamine">
+                            <h5>Efectos neurológicos:</h5>
+                            <ul>
+                                <li>Mejora fluidez membranas neuronales</li>
+                                <li>Aumenta BDNF (neuroplasticidad)</li>
+                                <li>Reduce neuroinflamación</li>
+                                <li>Protege contra depresión</li>
+                                <li>Dosis: 1-2g DHA/día</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neurotransmitter-card gaba">
+                        <div class="neurotransmitter-header">
+                            <div class="neurotransmitter-emoji">🍵</div>
+                            <div class="neurotransmitter-title gaba">Té Verde (L-Teanina)</div>
+                        </div>
+                        <div class="neurotransmitter-description">
+                            L-teanina aumenta ondas alfa cerebrales y GABA sin sedación.
+                        </div>
+                        <div class="neurotransmitter-details gaba">
+                            <h5>Efectos únicos:</h5>
+                            <ul>
+                                <li>Calma sin somnolencia</li>
+                                <li>Mejora atención sostenida</li>
+                                <li>Reduce ansiedad 40% en 1 hora</li>
+                                <li>Sinergiza con cafeína → alerta calmado</li>
+                                <li>Dosis: 100-200mg L-teanina</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neurotransmitter-card serotonin">
+                        <div class="neurotransmitter-header">
+                            <div class="neurotransmitter-emoji">🥜</div>
+                            <div class="neurotransmitter-title serotonin">Nueces (Triptófano + Omega-3)</div>
+                        </div>
+                        <div class="neurotransmitter-description">
+                            Combinación única de triptófano precursor de serotonina con omega-3 ALA.
+                        </div>
+                        <div class="neurotransmitter-details serotonin">
+                            <h5>Sinergia neurológica:</h5>
+                            <ul>
+                                <li>Triptófano → serotonina → mejor humor</li>
+                                <li>ALA se convierte parcialmente en DHA</li>
+                                <li>Vitamina E protege grasas cerebrales</li>
+                                <li>Mejora conexiones sinápticas</li>
+                                <li>Dosis: 30g nueces/día</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neurotransmitter-card norepinephrine">
+                        <div class="neurotransmitter-header">
+                            <div class="neurotransmitter-emoji">🫐</div>
+                            <div class="neurotransmitter-title norepinephrine">Arándanos (Antocianinas)</div>
+                        </div>
+                        <div class="neurotransmitter-description">
+                            Las antocianinas cruzan la barrera hematoencefálica y mejoran memoria.
+                        </div>
+                        <div class="neurotransmitter-details norepinephrine">
+                            <h5>Neuroprotección:</h5>
+                            <ul>
+                                <li>Mejora memoria episódica en 12 semanas</li>
+                                <li>Aumenta flujo sanguíneo cerebral</li>
+                                <li>Protege contra declive cognitivo</li>
+                                <li>Estimula neurogénesis hipocampal</li>
+                                <li>Dosis: 1 taza arándanos/día</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neurotransmitter-card acetylcholine">
+                        <div class="neurotransmitter-header">
+                            <div class="neurotransmitter-emoji">🍫</div>
+                            <div class="neurotransmitter-title acetylcholine">Cacao Puro (Flavanoles)</div>
+                        </div>
+                        <div class="neurotransmitter-description">
+                            Los flavanoles del cacao mejoran función cognitiva y flujo sanguíneo cerebral.
+                        </div>
+                        <div class="neurotransmitter-details acetylcholine">
+                            <h5>Efectos cognitivos agudos:</h5>
+                            <ul>
+                                <li>Mejora atención en 2 horas</li>
+                                <li>Aumenta BDNF (factor neurotrófico)</li>
+                                <li>Vasodilatación cerebral</li>
+                                <li>Protección neuronal antioxidante</li>
+                                <li>Dosis: 20g chocolate >85% cacao</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analizador cognitivo -->
+        <section class="cognitive-analyzer">
+            <h2 class="analyzer-title">🔬 Evaluador de Optimización Cognitiva</h2>
+            <p class="analyzer-subtitle">
+                Analiza cómo tu alimentación actual está afectando tu función cerebral y neurotransmisores
+            </p>
+
+            <div class="analyzer-form">
+                <div class="form-group">
+                    <label class="form-label">¿Cuántas porciones de pescado graso consumes semanalmente?</label>
+                    <select class="form-select" id="brainFishIntake">
+                        <option value="3">3+ porciones (salmón, sardinas, caballa)</option>
+                        <option value="2">2 porciones por semana</option>
+                        <option value="1">1 porción por semana</option>
+                        <option value="0">Rara vez o nunca</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Con qué frecuencia consumes huevos completos?</label>
+                    <select class="form-select" id="cholineIntake">
+                        <option value="3">Diariamente (2+ huevos)</option>
+                        <option value="2">4-6 veces por semana</option>
+                        <option value="1">1-3 veces por semana</option>
+                        <option value="0">Rara vez o nunca</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Qué alimentos cognitivos incluyes regularmente?</label>
+                    <select class="form-select" id="cognitiveIntake">
+                        <option value="3">Frutos del bosque + nueces + té verde + cacao</option>
+                        <option value="2">2-3 de los anteriores regularmente</option>
+                        <option value="1">1-2 ocasionalmente</option>
+                        <option value="0">Ninguno regularmente</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Cómo calificarías tu manejo del estrés?</label>
+                    <select class="form-select" id="stressManagement">
+                        <option value="3">Excelente (meditación, ejercicio, sueño)</option>
+                        <option value="2">Bueno (algunas técnicas de manejo)</option>
+                        <option value="1">Regular (estrés ocasional no gestionado)</option>
+                        <option value="0">Malo (estrés crónico sin gestión)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Marca los síntomas cognitivos que experimentas:</label>
+                    <div class="symptoms-grid">
+                        <label class="symptom-option">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Dificultad concentración
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Olvidos frecuentes
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="3" class="symptom-check">
+                            Fatiga mental constante
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Ansiedad frecuente
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="3" class="symptom-check">
+                            Estado de ánimo bajo
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="1" class="symptom-check">
+                            Irritabilidad sin causa
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Problemas de sueño
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Falta de motivación
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="1" class="symptom-check">
+                            Procesamiento lento
+                        </label>
+                        <label class="symptom-option">
+                            <input type="checkbox" value="3" class="symptom-check">
+                            Niebla mental frecuente
+                        </label>
+                    </div>
+                </div>
+
+                <button class="analyze-btn" onclick="analyzeCognitiveFunction()">
+                    🧠 Evaluar mi Función Cognitiva
+                </button>
+
+                <div class="results-container" id="resultsContainer">
+                    <div class="cognitive-score" id="cognitiveScore"></div>
+                    <div class="cognitive-interpretation" id="cognitiveInterpretation"></div>
+                    <div class="recommendations" id="recommendations"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación -->
+        <section class="navigation-section">
+            <h3 class="nav-title">Has Completado "Efectos en Órganos"</h3>
+            <p>Has explorado cómo los alimentos afectan específicamente hígado, intestino, corazón y cerebro. Ahora accede a la categoría final: Aplicación Práctica.</p>
+            
+            <div class="nav-buttons">
+                <a href="sistema-cardiovascular.html" class="nav-btn secondary">← Sistema Cardiovascular</a>
+                <a href="../nutrisalud.html" class="nav-btn">Volver al inicio →</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function analyzeCognitiveFunction() {
+            // Obtener valores protectores
+            const brainFishIntake = parseInt(document.getElementById('brainFishIntake').value);
+            const cholineIntake = parseInt(document.getElementById('cholineIntake').value);
+            const cognitiveIntake = parseInt(document.getElementById('cognitiveIntake').value);
+            const stressManagement = parseInt(document.getElementById('stressManagement').value);
+
+            // Calcular puntuación protectora (máximo 12 puntos)
+            const protectiveScore = brainFishIntake + cholineIntake + cognitiveIntake + stressManagement;
+
+            // Obtener síntomas cognitivos
+            const symptoms = document.querySelectorAll('.symptom-check:checked');
+            let symptomsScore = 0;
+            symptoms.forEach(symptom => {
+                symptomsScore += parseInt(symptom.value);
+            });
+
+            // Puntuación final (protectiva - síntomas)
+            const finalScore = protectiveScore - symptomsScore;
+
+            // Determinar interpretación
+            let interpretation, recommendations, scoreColor;
+
+            if (finalScore >= 8) {
+                interpretation = "🧠 Mente Optimizada - Excelente función cognitiva y neurotransmisores";
+                scoreColor = "#8E44AD";
+                recommendations = `
+                    <h4>Mantén tu optimización cerebral:</h4>
+                    <ul>
+                        <li>Continúa con tu protocolo neuroprotector actual</li>
+                        <li>Considera análisis de omega-3 en sangre (objetivo: >8%)</li>
+                        <li>Experimenta con ayuno intermitente (neuroplasticidad)</li>
+                        <li>Añade técnicas avanzadas: meditación, saunas</li>
+                        <li>Evaluaciones cognitivas anuales preventivas</li>
+                    </ul>
+                `;
+            } else if (finalScore >= 4) {
+                interpretation = "🧩 Cerebro Funcional - Buenos fundamentos con margen de mejora";
+                scoreColor = "#3498DB";
+                recommendations = `
+                    <h4>Potencia tu función cognitiva:</h4>
+                    <ul>
+                        <li>Aumenta DHA a 1g/día (pescado graso o suplemento)</li>
+                        <li>Incluye 2 huevos diarios para colina</li>
+                        <li>Añade arándanos y nueces como snacks cerebrales</li>
+                        <li>Implementa técnicas de gestión del estrés</li>
+                        <li>Considera probióticos psicoactivos</li>
+                    </ul>
+                `;
+            } else if (finalScore >= 0) {
+                interpretation = "⚠️ Cerebro en Riesgo - Función cognitiva comprometida";
+                scoreColor = "#F39C12";
+                recommendations = `
+                    <h4>Protocolo de recuperación neurológica:</h4>
+                    <ul>
+                        <li>Elimina azúcares simples y alimentos procesados</li>
+                        <li>Suplementa omega-3 (2g EPA/DHA) bajo supervisión</li>
+                        <li>Protocolo antiinflamatorio estricto</li>
+                        <li>Gestión profesional del estrés y sueño</li>
+                        <li>Considera análisis de neurotransmisores</li>
+                        <li>Evaluación de deficiencias B12, D3, magnesio</li>
+                    </ul>
+                `;
+            } else {
+                interpretation = "🚨 Cerebro en Crisis - Deterioro cognitivo significativo";
+                scoreColor = "#E74C3C";
+                recommendations = `
+                    <h4>Intervención neurológica urgente:</h4>
+                    <ul>
+                        <li>Evaluación neurológica completa inmediata</li>
+                        <li>Análisis de marcadores inflamatorios (PCR, IL-6)</li>
+                        <li>Protocolo neuroprotector intensivo supervisado</li>
+                        <li>Eliminación total de neurotoxinas ambientales</li>
+                        <li>Terapia cognitiva conductual para síntomas</li>
+                        <li>Considera medicina funcional especializada</li>
+                        <li>Evaluación de trastornos del estado de ánimo</li>
+                    </ul>
+                `;
+            }
+
+            // Mostrar resultados
+            document.getElementById('cognitiveScore').style.color = scoreColor;
+            document.getElementById('cognitiveScore').textContent = `Índice Cognitivo: ${Math.max(0, finalScore)}/12`;
+            document.getElementById('cognitiveInterpretation').textContent = interpretation;
+            document.getElementById('recommendations').innerHTML = recommendations;
+            document.getElementById('resultsContainer').style.display = 'block';
+
+            // Scroll to results
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

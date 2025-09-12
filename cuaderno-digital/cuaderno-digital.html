@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags SEO Ampliados -->
+    <title>Cuaderno Digital - Editor de Notas con Markdown | meskeIA</title>
+    <meta name="description" content="Editor de notas privado con Markdown, categorías personalizables y backup local. Organiza tus notas de forma segura sin conexión a internet.">
+    <meta name="keywords" content="cuaderno digital, editor markdown, notas privadas, organizador personal, backup local, categorías">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cuaderno Digital - meskeIA">
+    <meta property="og:description" content="Organiza tus notas con editor Markdown, categorías y backup local. Todo en tu navegador.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/cuaderno-digital">
+    <meta property="og:image" content="https://meskeia.com/assets/og-cuaderno-digital.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cuaderno Digital - meskeIA">
+    <meta name="twitter:description" content="Editor de notas con Markdown, categorías y backup local. Todo en tu navegador.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-cuaderno-digital.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/cuaderno-digital">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Cuaderno Digital",
+        "description": "Editor de notas con Markdown, categorías personalizables y backup local. Organiza tus notas de forma segura.",
+        "url": "https://meskeia.com/aplicaciones/cuaderno-digital",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "HTML5, JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "featureList": [
+            "Editor Markdown integrado",
+            "Categorías personalizables",
+            "Backup y exportación local",
+            "Privacidad total (sin conexión)",
+            "Búsqueda de notas",
+            "Organización por colores",
+            "Modo impresión"
+        ]
+    }
+    </script>
+    
+    <style>
+        /* Reset y Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+            
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            
+            /* Paleta Cards - 4 Colores */
+            --card-primary: #2E86AB;    /* Azul meskeIA */
+            --card-secondary: #48A9A6;  /* Verde azulado meskeIA */
+            --card-neutral: #666666;    /* Gris medio */
+            --card-accent: #f39c12;     /* Naranja contraste */
+            
+            /* Espaciado consistente */
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+
+        /* Header Minimalista - Solo título centrado */
+        .header {
+            background: var(--bg-card);
+            padding: var(--spacing-lg) var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg) 0;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .toolbar-left, .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--hover);
+        }
+
+        .btn-create {
+            background: var(--card-secondary);
+            color: white;
+        }
+
+        .btn-create:hover {
+            background: #3d8f8d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Búsqueda */
+        .search-container {
+            position: relative;
+            min-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        /* Filtros */
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            font-size: 0.9rem;
+            min-width: 180px;
+            color: var(--text-primary);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Grid de Documentos */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-md);
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Tarjetas de Documento */
+        .document-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        .document-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
+        }
+
+        .document-card-header {
+            padding: var(--spacing-md);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-card-header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .document-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            line-height: 1.3;
+        }
+
+        .document-category {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .document-card-body {
+            padding: var(--spacing-md);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .document-preview {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: var(--spacing-sm);
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .document-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: var(--spacing-sm);
+        }
+
+        .document-actions {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .document-card:hover .document-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            margin-left: 0.25rem;
+            transition: background 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Colores de tarjetas - 4 opciones */
+        .card-color-1 .document-card-header { background: var(--card-primary); }
+        .card-color-2 .document-card-header { background: var(--card-secondary); }
+        .card-color-3 .document-card-header { background: var(--card-neutral); }
+        .card-color-4 .document-card-header { background: var(--card-accent); }
+
+        /* Modales */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            display: none;
+        }
+
+        .modal-content, .reader-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Modal del editor - más grande */
+        .editor-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+            width: 95%;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header, .reader-header, .editor-header {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2, .reader-header h2, .editor-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-close, .reader-close, .editor-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover, .reader-close:hover, .editor-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body, .reader-body {
+            padding: var(--spacing-lg);
+            overflow-y: auto;
+            flex-grow: 1;
+            background: var(--bg-card);
+        }
+
+        /* Editor body - layout especial */
+        .editor-body {
+            display: flex;
+            flex-grow: 1;
+            min-height: 400px;
+            height: 400px;
+        }
+
+        .editor-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .editor-panel h3 {
+            padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-xs);
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+
+        .markdown-editor {
+            flex-grow: 1;
+            border: none;
+            padding: var(--spacing-lg);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .markdown-preview {
+            flex-grow: 1;
+            padding: var(--spacing-lg);
+            overflow-y: auto;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        /* Estilos para el preview de markdown */
+        .markdown-preview h1 { color: var(--primary); margin-bottom: 1rem; font-size: 1.8rem; }
+        .markdown-preview h2 { color: var(--card-secondary); margin-bottom: 0.8rem; font-size: 1.4rem; }
+        .markdown-preview h3 { color: var(--text-primary); margin-bottom: 0.6rem; font-size: 1.2rem; }
+        .markdown-preview p { margin-bottom: 1rem; }
+        .markdown-preview ul, .markdown-preview ol { margin-bottom: 1rem; padding-left: 2rem; }
+        .markdown-preview li { margin-bottom: 0.5rem; }
+        .markdown-preview code {
+            background: var(--bg-primary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: var(--primary);
+        }
+        .markdown-preview pre {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+        .markdown-preview pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        .markdown-preview blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .modal-footer, .editor-footer {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--spacing-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Modal de Lectura */
+        .reader-content {
+            max-width: 900px;
+            width: 95%;
+            max-height: 95vh;
+        }
+
+        .reader-controls {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        /* Estados */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+            grid-column: 1 / -1;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Modal de ayuda */
+        .help-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* GuÃ­a link */
+        .guia-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 8px 12px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .guia-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            color: var(--card-secondary);
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            .guia-link {
+                top: 10px;
+                right: 10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .header-title {
+                font-size: 1.8rem;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+                padding: 0 1rem 1rem;
+            }
+
+            .toolbar-left,
+            .toolbar-right {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .search-container {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem 2rem;
+            }
+
+            .modal-content, 
+            .reader-content,
+            .help-content {
+                width: 98%;
+                max-width: 98%;
+                margin: 0.5rem;
+                max-height: 95vh;
+            }
+
+            /* CORRECCIÓN MOBILE PARA EDITOR - Pantalla completa */
+            .editor-content {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                transform: none !important;
+                width: 100% !important;
+                height: 100vh !important;
+                max-height: 100vh !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+            }
+
+            .modal-header,
+            .reader-header,
+            .editor-header {
+                padding: 1rem 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .modal-header h2,
+            .reader-header h2,
+            .editor-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .modal-body,
+            .reader-body {
+                padding: 1rem;
+            }
+
+            .modal-footer {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            /* Editor body con scroll funcional en mobile */
+            .editor-body {
+                flex-direction: column;
+                overflow-y: auto !important;
+                max-height: calc(100vh - 200px) !important;
+                min-height: auto;
+                height: auto;
+            }
+
+            .editor-panel {
+                min-height: 250px;
+                height: auto;
+            }
+
+            .editor-panel h3 {
+                padding: 0.75rem 1rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .markdown-editor,
+            .markdown-preview {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .markdown-preview {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .reader-header {
+                text-align: center;
+            }
+
+            .reader-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.25rem;
+            }
+
+            .reader-controls .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            /* FOOTER SIEMPRE VISIBLE EN MOBILE */
+            .editor-footer {
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: var(--bg-primary) !important;
+                border-top: 2px solid var(--primary) !important;
+                z-index: 100 !important;
+                padding: 1rem !important;
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+
+            .editor-footer > div:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .editor-footer input,
+            .editor-footer select {
+                width: 100% !important;
+                padding: 0.75rem !important;
+                font-size: 0.9rem !important;
+                border: 1px solid var(--border) !important;
+                border-radius: var(--radius) !important;
+                background: var(--bg-card) !important;
+            }
+
+            .category-selector {
+                width: 100%;
+            }
+
+            /* Botones del footer en mobile */
+            .editor-footer .btn {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.9rem !important;
+                justify-content: center !important;
+                width: 100% !important;
+                margin: 0.25rem 0 !important;
+            }
+
+            /* Asegurar que los botones del footer sean visibles */
+            .editor-footer button {
+                min-height: 48px !important;
+                touch-action: manipulation !important;
+            }
+        }
+
+        /* Responsive para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .meskeia-logo-container {
+                padding: 4px 8px;
+                gap: 6px;
+            }
+
+            .meskeia-logo-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 0.9rem;
+            }
+
+            .guia-link {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .toolbar {
+                padding: 0 0.5rem 1rem;
+            }
+
+            .documents-grid {
+                padding: 0 0.5rem 1rem;
+                gap: 1rem;
+            }
+
+            .editor-content,
+            .modal-content,
+            .reader-content,
+            .help-content {
+                width: 99%;
+                margin: 0.25rem;
+            }
+
+            .modal-header,
+            .reader-header,
+            .editor-header {
+                padding: 0.75rem 1rem;
+            }
+
+            .modal-body,
+            .reader-body {
+                padding: 0.75rem;
+            }
+
+            .editor-panel {
+                min-height: 200px;
+            }
+
+            .markdown-editor,
+            .markdown-preview {
+                padding: 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .document-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Estilos de impresión */
+        @media print {
+            .reader-header,
+            .reader-controls {
+                display: none !important;
+            }
+
+            .reader-body {
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+        /* Responsive para contenido educativo - Corregido */
+        @media (max-width: 768px) {
+            /* Containers principales educativos */
+            div[style*="max-width: 1400px"] {
+                max-width: calc(100vw - 30px) !important;
+                margin: 1rem auto !important;
+                padding: 0 10px !important;
+                overflow-x: hidden !important;
+            }
+            
+            /* Contenedores de secciones */
+            div[style*="max-width: 1400px"] > div[style*="background: var(--bg-card)"] {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 1rem !important;
+                border-radius: 8px !important;
+                box-sizing: border-box !important;
+            }
+            
+            /* Grids responsive */
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                width: 100% !important;
+            }
+            
+            /* Cards educativas */
+            div[style*="padding: 1.5rem"][style*="background: var(--hover)"] {
+                padding: 0.75rem !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                overflow-wrap: break-word !important;
+            }
+            
+            /* Títulos responsive */
+            h2[style*="font-size: 1.5rem"] {
+                font-size: 1.2rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            h3[style*="font-size: 1.2rem"] {
+                font-size: 1rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            /* Listas ajustadas */
+            ul[style*="padding-left: 1.5rem"] {
+                padding-left: 1rem !important;
+                margin: 0.5rem 0 !important;
+            }
+            
+            ul li {
+                word-wrap: break-word !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
+            /* FAQ Details responsive */
+            details[style*="padding: 1rem"] {
+                padding: 0.75rem !important;
+                margin: 0 0 0.75rem 0 !important;
+                box-sizing: border-box !important;
+            }
+            
+            details summary {
+                font-size: 0.9rem !important;
+                word-wrap: break-word !important;
+            }
+            
+            details p {
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+                margin-top: 0.5rem !important;
+            }
+            
+            /* Prevenir desbordamiento */
+            body, * {
+                overflow-x: hidden !important;
+                word-wrap: break-word !important;
+                box-sizing: border-box !important;
+            }
+        }\n    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Enlace a la guía -->
+    <a href="cuaderno-guia.html" target="_blank" class="guia-link">
+        📖 Guía
+    </a>
+
+    <!-- Header con Logo -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="header-title">Cuaderno Digital</h1>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+
+        <!-- Barra de herramientas -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <button id="createDocBtn" class="btn btn-create">
+                    <span class="icon">✏️</span>
+                    Nuevo Documento
+                </button>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar documentos..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">Todas las categorías</option>
+                </select>
+                <button id="exportAllBtn" class="btn btn-secondary">
+                    <span class="icon">💾</span>
+                    Exportar Todo
+                </button>
+                <button id="importBackupBtn" class="btn btn-secondary">
+                    <span class="icon">📂</span>
+                    Importar Backup
+                </button>
+                <input type="file" id="importFileInput" accept=".json" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Grid de documentos -->
+        <div class="documents-grid" id="documentsGrid">
+            <!-- Las tarjetas se generarán dinámicamente aquí -->
+        </div>
+
+    </main>
+
+    <!-- Modal para crear/editar documento con Markdown -->
+    <div id="editorModal" class="modal">
+        <div class="editor-content">
+            <div class="editor-header">
+                <h2 id="editorTitle">Nuevo Documento</h2>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button id="editorHelp" class="btn btn-secondary" style="padding: 0.5rem 1rem;">
+                        <span>📖</span> Ayuda Markdown
+                    </button>
+                    <button class="editor-close" id="editorClose">&times;</button>
+                </div>
+            </div>
+            <div class="editor-body">
+                <div class="editor-panel">
+                    <h3>✏️ Editor Markdown</h3>
+                    <textarea id="markdownEditor" class="markdown-editor" placeholder="# Mi Nuevo Documento
+
+Escribe aquí usando **Markdown**:
+
+## Características principales
+- **Negrita** con **texto**
+- *Cursiva* con *texto*
+- `Código inline` con backticks
+- [Enlaces](https://ejemplo.com)
+
+### Código de programación
+```javascript
+function ejemplo() {
+    console.log('¡Hola mundo!');
+}
+```
+
+### Lista de tareas
+- [x] Tarea completada
+- [ ] Tarea pendiente
+
+> Cita importante o nota
+
+---
+
+¡Empieza a escribir y ve el resultado en tiempo real! →"></textarea>
+                </div>
+                <div class="editor-panel">
+                    <h3>👀 Vista Previa</h3>
+                    <div id="markdownPreview" class="markdown-preview">
+                        <p style="color: #888; font-style: italic;">La vista previa aparecerá aquí mientras escribes...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="editor-footer">
+                <div style="flex-grow: 1; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <input type="text" id="editorDocTitle" placeholder="Título del documento" style="flex: 2; min-width: 200px; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-card);">
+                    
+                    <div class="category-selector" style="flex: 1; min-width: 150px; position: relative;">
+                        <div class="category-input-container">
+                            <input type="text" id="editorDocCategory" placeholder="Categoría" style="width: 100%; padding: 0.5rem 2rem 0.5rem 0.5rem; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-card);">
+                            <button type="button" class="category-toggle" id="editorCategoryToggle" style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">▼</button>
+                        </div>
+                        <div class="category-dropdown" id="editorCategoryDropdown" style="position: absolute; bottom: 100%; left: 0; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-bottom: none; border-radius: 6px 6px 0 0; max-height: 150px; overflow-y: auto; z-index: 20; display: none; box-shadow: var(--shadow-light);"></div>
+                    </div>
+                    
+                    <select id="editorDocColor" style="padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border); min-width: 120px; background: var(--bg-card);">
+                        <option value="#2E86AB">🔵 Azul</option>
+                        <option value="#48A9A6">🟢 Verde Azulado</option>
+                        <option value="#666666">⚫ Gris</option>
+                        <option value="#f39c12">🟠 Naranja</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-secondary" id="editorCancel">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="editorSave">Guardar Documento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para leer documento -->
+    <div id="readerModal" class="modal">
+        <div class="reader-content">
+            <div class="reader-header">
+                <h2 id="readerTitle"></h2>
+                <div class="reader-controls">
+                    <button id="readerPrint" class="btn btn-secondary">
+                        <span class="icon">🖨️</span>
+                        Imprimir
+                    </button>
+                    <button id="readerExport" class="btn btn-secondary">
+                        <span class="icon">💾</span>
+                        Exportar
+                    </button>
+                    <button id="readerClose" class="modal-close">&times;</button>
+                </div>
+            </div>
+            <div class="reader-body" id="readerBody">
+                <!-- Contenido del documento se cargará aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de ayuda para Markdown -->
+    <div id="helpModal" class="modal">
+        <div class="help-content">
+            <div class="modal-header">
+                <h2>📖 Guía Rápida de Markdown</h2>
+                <button class="modal-close" id="helpClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>✏️ Formato de Texto</h3>
+                <table style="width: 100%; margin-bottom: 1.5rem; border-collapse: collapse;">
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>**negrita**</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);"><strong>negrita</strong></td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>*cursiva*</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);"><em>cursiva</em></td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>`código`</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>código</code></td></tr>
+                </table>
+
+                <h3>📋 Títulos y Estructura</h3>
+                <table style="width: 100%; margin-bottom: 1.5rem; border-collapse: collapse;">
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code># Título 1</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Título principal</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>## Título 2</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Subtítulo</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>### Título 3</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Sub-subtítulo</td></tr>
+                </table>
+
+                <h3>📝 Listas</h3>
+                <table style="width: 100%; margin-bottom: 1.5rem; border-collapse: collapse;">
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>- Elemento</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Lista con viñetas</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>1. Elemento</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Lista numerada</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>- [x] Hecho</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">☑️ Tarea completada</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>- [ ] Pendiente</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">☐ Tarea pendiente</td></tr>
+                </table>
+
+                <h3>💻 Código</h3>
+                <table style="width: 100%; margin-bottom: 1.5rem; border-collapse: collapse;">
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>```javascript<br>código aquí<br>```</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Bloque de código</td></tr>
+                </table>
+
+                <h3>🔗 Enlaces y Otros</h3>
+                <table style="width: 100%; margin-bottom: 1.5rem; border-collapse: collapse;">
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>[texto](URL)</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Enlace</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>> Cita</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Bloque de cita</td></tr>
+                    <tr><td style="padding: 0.5rem; border: 1px solid var(--border);"><code>---</code></td><td style="padding: 0.5rem; border: 1px solid var(--border);">Línea horizontal</td></tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="helpOk">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay para modales -->
+    <div id="modalOverlay" class="modal-overlay"></div>
+
+    <script>
+        // Cuaderno Digital meskeIA - Versión Completa
+        class CuadernoDigital {
+            constructor() {
+                this.documents = [];
+                this.currentFilter = '';
+                this.currentCategory = '';
+                this.editingDocument = null;
+                this.currentReadingDoc = null;
+                this.isEditing = false;
+                
+                this.init();
+            }
+
+            async init() {
+                console.log('Inicializando Cuaderno Digital...');
+                
+                this.verifyElements();
+                await this.loadDocuments();
+                this.migrateOldDocuments();
+                this.setupEventListeners();
+                this.updateCategoryFilter();
+                this.renderDocuments();
+                
+                console.log('Aplicación inicializada correctamente');
+            }
+
+            verifyElements() {
+                const elements = [
+                    'createDocBtn', 'searchInput', 'categoryFilter', 'exportAllBtn',
+                    'documentsGrid', 'editorModal', 'readerModal', 'modalOverlay'
+                ];
+
+                let allFound = true;
+                elements.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (!el) {
+                        console.error(`Elemento no encontrado: ${id}`);
+                        allFound = false;
+                    }
+                });
+
+                if (allFound) {
+                    console.log('Todos los elementos principales encontrados');
+                }
+                return allFound;
+            }
+
+            async loadDocuments() {
+                try {
+                    const savedDocs = localStorage.getItem('cuaderno-documents');
+                    if (savedDocs) {
+                        this.documents = JSON.parse(savedDocs);
+                        console.log(`Cargados ${this.documents.length} documentos del almacenamiento local`);
+                    }
+                } catch (error) {
+                    console.error('Error al cargar documentos:', error);
+                    this.documents = [];
+                }
+            }
+
+            migrateOldDocuments() {
+                let migrated = 0;
+                this.documents = this.documents.map(doc => {
+                    if (!doc.markdownContent && doc.content) {
+                        console.log(`Migrando documento antiguo: ${doc.title}`);
+                        doc.markdownContent = this.htmlToMarkdown(doc.content);
+                        migrated++;
+                    }
+                    
+                    // Migrar colores a nueva paleta (actualizada)
+                    const colorMap = {
+                        '#7FB3D3': '#f39c12',   // Azul claro -> Naranja
+                        '#17a2b8': '#f39c12',   // Azul info -> Naranja  
+                        '#16A085': '#48A9A6',   // Verde anterior -> Verde azulado
+                        '#8E44AD': '#666666'    // Púrpura -> Gris neutral
+                    };
+                    if (colorMap[doc.color]) {
+                        doc.color = colorMap[doc.color];
+                        migrated++;
+                    }
+                    
+                    doc.color = doc.color || '#2E86AB';
+                    doc.category = doc.category || 'Sin categoría';
+                    doc.preview = doc.preview || this.generatePreviewFromContent(doc.content || doc.markdownContent || '');
+                    
+                    return doc;
+                });
+                
+                if (migrated > 0) {
+                    console.log(`Se migraron ${migrated} documentos antiguos`);
+                    this.saveDocuments();
+                }
+            }
+
+            htmlToMarkdown(html) {
+                if (!html) return '';
+                
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                
+                let markdown = '';
+                
+                const processNode = (node) => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        return node.textContent;
+                    }
+                    
+                    if (node.nodeType !== Node.ELEMENT_NODE) {
+                        return '';
+                    }
+                    
+                    let result = '';
+                    const tagName = node.tagName.toLowerCase();
+                    
+                    switch (tagName) {
+                        case 'h1':
+                            result = `# ${node.textContent}\n\n`;
+                            break;
+                        case 'h2':
+                            result = `## ${node.textContent}\n\n`;
+                            break;
+                        case 'h3':
+                            result = `### ${node.textContent}\n\n`;
+                            break;
+                        case 'p':
+                            result = `${node.textContent}\n\n`;
+                            break;
+                        case 'strong':
+                        case 'b':
+                            result = `**${node.textContent}**`;
+                            break;
+                        case 'em':
+                        case 'i':
+                            result = `*${node.textContent}*`;
+                            break;
+                        case 'code':
+                            result = `\`${node.textContent}\``;
+                            break;
+                        case 'pre':
+                            result = `\`\`\`\n${node.textContent}\n\`\`\`\n\n`;
+                            break;
+                        case 'ul':
+                        case 'ol':
+                            const items = Array.from(node.children).map((li, index) => {
+                                const prefix = tagName === 'ol' ? `${index + 1}. ` : '- ';
+                                return prefix + li.textContent;
+                            }).join('\n');
+                            result = items + '\n\n';
+                            break;
+                        case 'blockquote':
+                            result = `> ${node.textContent}\n\n`;
+                            break;
+                        case 'a':
+                            const href = node.getAttribute('href');
+                            result = `[${node.textContent}](${href || '#'})`;
+                            break;
+                        case 'br':
+                            result = '\n';
+                            break;
+                        case 'hr':
+                            result = '\n---\n\n';
+                            break;
+                        default:
+                            Array.from(node.childNodes).forEach(child => {
+                                result += processNode(child);
+                            });
+                    }
+                    
+                    return result;
+                };
+                
+                Array.from(temp.childNodes).forEach(node => {
+                    markdown += processNode(node);
+                });
+                
+                markdown = markdown.replace(/\n{3,}/g, '\n\n').trim();
+                
+                return markdown;
+            }
+
+            saveDocuments() {
+                try {
+                    localStorage.setItem('cuaderno-documents', JSON.stringify(this.documents));
+                    console.log('Documentos guardados correctamente');
+                } catch (error) {
+                    console.error('Error al guardar documentos:', error);
+                    alert('Error al guardar. El documento puede ser demasiado grande para el almacenamiento local.');
+                }
+            }
+
+            setupEventListeners() {
+                console.log('Configurando event listeners...');
+                
+                const createDocBtn = document.getElementById('createDocBtn');
+                if (createDocBtn) {
+                    createDocBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        console.log('Click en crear nuevo documento');
+                        this.openEditorModal();
+                    });
+                }
+
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        this.currentFilter = e.target.value.toLowerCase();
+                        this.renderDocuments();
+                    });
+                }
+
+                const categoryFilter = document.getElementById('categoryFilter');
+                if (categoryFilter) {
+                    categoryFilter.addEventListener('change', (e) => {
+                        this.currentCategory = e.target.value;
+                        this.renderDocuments();
+                    });
+                }
+
+                const exportAllBtn = document.getElementById('exportAllBtn');
+                if (exportAllBtn) {
+                    exportAllBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.exportAllDocuments();
+                    });
+                }
+
+                const importBackupBtn = document.getElementById('importBackupBtn');
+                const importFileInput = document.getElementById('importFileInput');
+                
+                if (importBackupBtn) {
+                    importBackupBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        importFileInput.click();
+                    });
+                }
+                
+                if (importFileInput) {
+                    importFileInput.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                            this.importBackup(file);
+                        }
+                    });
+                }
+
+                this.setupEditorEventListeners();
+                this.setupReaderEventListeners();
+
+                const modalOverlay = document.getElementById('modalOverlay');
+                if (modalOverlay) {
+                    modalOverlay.addEventListener('click', () => {
+                        this.closeAllModals();
+                    });
+                }
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeAllModals();
+                    }
+                });
+                
+                console.log('Event listeners configurados correctamente');
+            }
+
+            setupEditorEventListeners() {
+                const editorClose = document.getElementById('editorClose');
+                const editorCancel = document.getElementById('editorCancel');
+                const editorSave = document.getElementById('editorSave');
+                const editorHelp = document.getElementById('editorHelp');
+                const markdownEditor = document.getElementById('markdownEditor');
+                
+                if (editorClose) {
+                    editorClose.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.closeEditorModal();
+                    });
+                }
+
+                if (editorCancel) {
+                    editorCancel.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.closeEditorModal();
+                    });
+                }
+
+                if (editorSave) {
+                    editorSave.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.saveMarkdownDocument();
+                    });
+                }
+
+                if (editorHelp) {
+                    editorHelp.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.showModal('helpModal');
+                    });
+                }
+
+                if (markdownEditor) {
+                    markdownEditor.addEventListener('input', (e) => {
+                        this.updateMarkdownPreview(e.target.value);
+                    });
+                }
+
+                this.setupEditorCategorySelector();
+
+                const helpClose = document.getElementById('helpClose');
+                const helpOk = document.getElementById('helpOk');
+                
+                if (helpClose) {
+                    helpClose.addEventListener('click', () => this.hideModal('helpModal'));
+                }
+
+                if (helpOk) {
+                    helpOk.addEventListener('click', () => this.hideModal('helpModal'));
+                }
+            }
+
+            setupReaderEventListeners() {
+                const readerClose = document.getElementById('readerClose');
+                const readerPrint = document.getElementById('readerPrint');
+                const readerExport = document.getElementById('readerExport');
+                
+                if (readerClose) {
+                    readerClose.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.closeReaderModal();
+                    });
+                }
+
+                if (readerPrint) {
+                    readerPrint.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.printDocument();
+                    });
+                }
+
+                if (readerExport) {
+                    readerExport.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.exportDocument();
+                    });
+                }
+            }
+
+            setupEditorCategorySelector() {
+                const categoryInput = document.getElementById('editorDocCategory');
+                const categoryToggle = document.getElementById('editorCategoryToggle');
+                const categoryDropdown = document.getElementById('editorCategoryDropdown');
+
+                if (!categoryInput || !categoryToggle || !categoryDropdown) return;
+
+                categoryToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.toggleEditorCategoryDropdown();
+                });
+
+                categoryInput.addEventListener('input', (e) => {
+                    this.filterEditorCategoryOptions(e.target.value);
+                });
+
+                categoryInput.addEventListener('focus', () => {
+                    this.updateEditorCategoryDropdown();
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('#editorCategoryDropdown') && 
+                        !e.target.closest('#editorCategoryToggle') && 
+                        !e.target.closest('#editorDocCategory')) {
+                        this.hideEditorCategoryDropdown();
+                    }
+                });
+            }
+
+            toggleEditorCategoryDropdown() {
+                const dropdown = document.getElementById('editorCategoryDropdown');
+                if (!dropdown) return;
+
+                if (dropdown.style.display === 'block') {
+                    this.hideEditorCategoryDropdown();
+                } else {
+                    this.showEditorCategoryDropdown();
+                }
+            }
+
+            showEditorCategoryDropdown() {
+                this.updateEditorCategoryDropdown();
+                const dropdown = document.getElementById('editorCategoryDropdown');
+                if (dropdown) {
+                    dropdown.style.display = 'block';
+                }
+            }
+
+            hideEditorCategoryDropdown() {
+                const dropdown = document.getElementById('editorCategoryDropdown');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
+            }
+
+            updateEditorCategoryDropdown() {
+                const dropdown = document.getElementById('editorCategoryDropdown');
+                const input = document.getElementById('editorDocCategory');
+                if (!dropdown || !input) return;
+
+                const currentValue = input.value.trim();
+                const existingCategories = this.getExistingCategories();
+                
+                dropdown.innerHTML = '';
+
+                existingCategories.forEach(category => {
+                    const option = document.createElement('div');
+                    option.style.padding = '0.5rem';
+                    option.style.cursor = 'pointer';
+                    option.style.borderBottom = '1px solid var(--border)';
+                    option.textContent = category;
+                    option.addEventListener('click', () => {
+                        input.value = category;
+                        this.hideEditorCategoryDropdown();
+                    });
+                    option.addEventListener('mouseenter', () => {
+                        option.style.backgroundColor = 'var(--hover)';
+                    });
+                    option.addEventListener('mouseleave', () => {
+                        option.style.backgroundColor = 'var(--bg-card)';
+                    });
+                    dropdown.appendChild(option);
+                });
+
+                if (currentValue && !existingCategories.includes(currentValue)) {
+                    const newOption = document.createElement('div');
+                    newOption.style.padding = '0.5rem';
+                    newOption.style.cursor = 'pointer';
+                    newOption.style.backgroundColor = 'var(--card-secondary)';
+                    newOption.style.color = 'white';
+                    newOption.style.fontWeight = '500';
+                    newOption.innerHTML = `<strong>+ Crear "${currentValue}"</strong>`;
+                    newOption.addEventListener('click', () => {
+                        input.value = currentValue;
+                        this.hideEditorCategoryDropdown();
+                    });
+                    newOption.addEventListener('mouseenter', () => {
+                        newOption.style.backgroundColor = 'var(--primary)';
+                    });
+                    newOption.addEventListener('mouseleave', () => {
+                        newOption.style.backgroundColor = 'var(--card-secondary)';
+                    });
+                    dropdown.appendChild(newOption);
+                }
+
+                if (dropdown.children.length === 0) {
+                    const emptyOption = document.createElement('div');
+                    emptyOption.style.padding = '0.5rem';
+                    emptyOption.style.opacity = '0.6';
+                    emptyOption.style.fontStyle = 'italic';
+                    emptyOption.textContent = 'No hay categorías creadas';
+                    dropdown.appendChild(emptyOption);
+                }
+            }
+
+            filterEditorCategoryOptions(filterText) {
+                const dropdown = document.getElementById('editorCategoryDropdown');
+                if (!dropdown) return;
+
+                filterText = filterText.toLowerCase().trim();
+                const existingCategories = this.getExistingCategories();
+                const filteredCategories = existingCategories.filter(cat => 
+                    cat.toLowerCase().includes(filterText)
+                );
+
+                dropdown.innerHTML = '';
+
+                filteredCategories.forEach(category => {
+                    const option = document.createElement('div');
+                    option.style.padding = '0.5rem';
+                    option.style.cursor = 'pointer';
+                    option.style.borderBottom = '1px solid var(--border)';
+                    option.textContent = category;
+                    option.addEventListener('click', () => {
+                        document.getElementById('editorDocCategory').value = category;
+                        this.hideEditorCategoryDropdown();
+                    });
+                    option.addEventListener('mouseenter', () => {
+                        option.style.backgroundColor = 'var(--hover)';
+                    });
+                    option.addEventListener('mouseleave', () => {
+                        option.style.backgroundColor = 'var(--bg-card)';
+                    });
+                    dropdown.appendChild(option);
+                });
+
+                if (filterText && !existingCategories.some(cat => cat.toLowerCase() === filterText)) {
+                    const newOption = document.createElement('div');
+                    newOption.style.padding = '0.5rem';
+                    newOption.style.cursor = 'pointer';
+                    newOption.style.backgroundColor = 'var(--card-secondary)';
+                    newOption.style.color = 'white';
+                    newOption.style.fontWeight = '500';
+                    newOption.innerHTML = `<strong>+ Crear "${filterText}"</strong>`;
+                    newOption.addEventListener('click', () => {
+                        document.getElementById('editorDocCategory').value = filterText;
+                        this.hideEditorCategoryDropdown();
+                    });
+                    newOption.addEventListener('mouseenter', () => {
+                        newOption.style.backgroundColor = 'var(--primary)';
+                    });
+                    newOption.addEventListener('mouseleave', () => {
+                        newOption.style.backgroundColor = 'var(--card-secondary)';
+                    });
+                    dropdown.appendChild(newOption);
+                }
+
+                if (dropdown.children.length > 0) {
+                    dropdown.style.display = 'block';
+                } else {
+                    dropdown.style.display = 'none';
+                }
+            }
+
+            getExistingCategories() {
+                const categories = [...new Set(this.documents.map(doc => doc.category))];
+                return categories.filter(cat => cat && cat.trim() !== '').sort();
+            }
+
+            parseMarkdown(markdown) {
+                if (!markdown) return '';
+
+                let html = markdown;
+
+                html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+                html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+                html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+                html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+                html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+                html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+                html = html.replace(/^---$/gim, '<hr>');
+
+                html = html.replace(/^> (.*)$/gim, '<blockquote>$1</blockquote>');
+
+                html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+
+                html = html.replace(/^- \[x\] (.*)$/gim, '<li style="list-style: none;">☑️ $1</li>');
+                html = html.replace(/^- \[ \] (.*)$/gim, '<li style="list-style: none;">☐ $1</li>');
+                html = html.replace(/^- (.*)$/gim, '<li>$1</li>');
+                html = html.replace(/^\d+\. (.*)$/gim, '<li>$1</li>');
+
+                html = html.replace(/(<li>.*<\/li>)/gims, function(match) {
+                    if (match.includes('☑️') || match.includes('☐')) {
+                        return `<ul style="list-style: none; padding-left: 0;">${match}</ul>`;
+                    } else if (match.match(/^\d+\./)) {
+                        return `<ol>${match}</ol>`;
+                    } else {
+                        return `<ul>${match}</ul>`;
+                    }
+                });
+
+                html = html.replace(/\n\n/g, '</p><p>');
+                html = '<p>' + html + '</p>';
+
+                html = html.replace(/<p><\/p>/g, '');
+                html = html.replace(/<p>(<h[1-6]>.*?<\/h[1-6]>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<ul>.*?<\/ul>)<\/p>/gims, '$1');
+                html = html.replace(/<p>(<ol>.*?<\/ol>)<\/p>/gims, '$1');
+                html = html.replace(/<p>(<blockquote>.*?<\/blockquote>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<hr>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<pre>.*?<\/pre>)<\/p>/gims, '$1');
+
+                html = html.replace(/\n/g, '<br>');
+
+                return html;
+            }
+
+            updateMarkdownPreview(markdown) {
+                const preview = document.getElementById('markdownPreview');
+                if (!preview) return;
+
+                if (!markdown.trim()) {
+                    preview.innerHTML = '<p style="color: #888; font-style: italic;">La vista previa aparecerá aquí mientras escribes...</p>';
+                    return;
+                }
+
+                const html = this.parseMarkdown(markdown);
+                preview.innerHTML = html;
+            }
+
+            openEditorModal(docToEdit = null) {
+                console.log('Abriendo editor markdown...', docToEdit ? `Editando: ${docToEdit.title}` : 'Nuevo documento');
+                
+                this.editingDocument = docToEdit;
+                this.isEditing = !!docToEdit;
+                
+                const editorTitle = document.getElementById('editorTitle');
+                const markdownEditor = document.getElementById('markdownEditor');
+                const editorDocTitle = document.getElementById('editorDocTitle');
+                const editorDocCategory = document.getElementById('editorDocCategory');
+                const editorDocColor = document.getElementById('editorDocColor');
+                
+                if (docToEdit) {
+                    if (editorTitle) editorTitle.textContent = 'Editar Documento';
+                    if (editorDocTitle) editorDocTitle.value = docToEdit.title || '';
+                    if (editorDocCategory) editorDocCategory.value = docToEdit.category || 'Sin categoría';
+                    if (editorDocColor) editorDocColor.value = docToEdit.color || '#2E86AB';
+                    
+                    if (markdownEditor) {
+                        const markdownContent = docToEdit.markdownContent || this.htmlToMarkdown(docToEdit.content || '');
+                        markdownEditor.value = markdownContent;
+                        this.updateMarkdownPreview(markdownContent);
+                    }
+                } else {
+                    if (editorTitle) editorTitle.textContent = 'Nuevo Documento';
+                    if (editorDocTitle) editorDocTitle.value = '';
+                    if (editorDocCategory) editorDocCategory.value = '';
+                    if (editorDocColor) editorDocColor.value = '#2E86AB';
+                    
+                    if (markdownEditor) {
+                        markdownEditor.value = '';
+                        this.updateMarkdownPreview('');
+                    }
+                }
+                
+                this.showModal('editorModal');
+                
+                setTimeout(() => {
+                    if (markdownEditor) markdownEditor.focus();
+                }, 100);
+            }
+
+            closeEditorModal() {
+                this.hideModal('editorModal');
+                this.hideEditorCategoryDropdown();
+                this.editingDocument = null;
+                this.isEditing = false;
+            }
+
+            saveMarkdownDocument() {
+                const markdownContent = document.getElementById('markdownEditor').value.trim();
+                const title = document.getElementById('editorDocTitle').value.trim();
+                const category = document.getElementById('editorDocCategory').value.trim();
+                const color = document.getElementById('editorDocColor').value;
+
+                if (!title) {
+                    alert('El título es obligatorio');
+                    document.getElementById('editorDocTitle').focus();
+                    return;
+                }
+
+                if (!markdownContent) {
+                    alert('El contenido no puede estar vacío');
+                    document.getElementById('markdownEditor').focus();
+                    return;
+                }
+
+                try {
+                    const htmlContent = this.parseMarkdown(markdownContent);
+                    const preview = this.generatePreviewFromMarkdown(markdownContent);
+
+                    const documentData = {
+                        id: this.editingDocument ? this.editingDocument.id : Date.now(),
+                        title,
+                        category: category || 'Sin categoría',
+                        color,
+                        content: htmlContent,
+                        markdownContent,
+                        preview,
+                        dateAdded: this.editingDocument ? this.editingDocument.dateAdded : new Date().toISOString(),
+                        dateModified: new Date().toISOString()
+                    };
+
+                    if (this.editingDocument) {
+                        const index = this.documents.findIndex(doc => doc.id === this.editingDocument.id);
+                        if (index !== -1) {
+                            this.documents[index] = documentData;
+                            console.log('Documento actualizado:', title);
+                        }
+                    } else {
+                        this.documents.push(documentData);
+                        console.log('Nuevo documento creado:', title);
+                    }
+
+                    this.saveDocuments();
+                    this.updateCategoryFilter();
+                    this.renderDocuments();
+                    this.closeEditorModal();
+
+                } catch (error) {
+                    console.error('Error al guardar documento:', error);
+                    alert('Error al guardar el documento. Inténtalo de nuevo.');
+                }
+            }
+
+            generatePreviewFromMarkdown(markdown) {
+                if (!markdown) return '';
+                
+                const lines = markdown.split('\n');
+                let textContent = '';
+                
+                for (const line of lines) {
+                    const cleanLine = line
+                        .replace(/^#+\s*/, '')
+                        .replace(/\*\*(.*?)\*\*/g, '$1')
+                        .replace(/\*(.*?)\*/g, '$1')
+                        .replace(/`([^`]+)`/g, '$1')
+                        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                        .replace(/^[-*]\s*/, '')
+                        .replace(/^\d+\.\s*/, '')
+                        .replace(/^>\s*/, '')
+                        .trim();
+                    
+                    if (cleanLine && !cleanLine.startsWith('```')) {
+                        textContent += cleanLine + ' ';
+                        if (textContent.length > 180) break;
+                    }
+                }
+                
+                return textContent.trim().substring(0, 200) + (textContent.length > 200 ? '...' : '');
+            }
+
+            generatePreviewFromContent(content) {
+                if (!content) return 'Sin descripción';
+                
+                const temp = document.createElement('div');
+                temp.innerHTML = content;
+                const textContent = temp.textContent || temp.innerText || '';
+                
+                return textContent.trim().substring(0, 200) + (textContent.length > 200 ? '...' : '');
+            }
+
+            renderDocuments() {
+                const grid = document.getElementById('documentsGrid');
+                let filteredDocs = [...this.documents];
+
+                if (this.currentFilter) {
+                    filteredDocs = filteredDocs.filter(doc =>
+                        doc.title.toLowerCase().includes(this.currentFilter) ||
+                        doc.category.toLowerCase().includes(this.currentFilter) ||
+                        (doc.preview && doc.preview.toLowerCase().includes(this.currentFilter))
+                    );
+                }
+
+                if (this.currentCategory) {
+                    filteredDocs = filteredDocs.filter(doc => doc.category === this.currentCategory);
+                }
+
+                filteredDocs.sort((a, b) => new Date(b.dateModified) - new Date(a.dateModified));
+
+                if (filteredDocs.length === 0) {
+                    grid.innerHTML = this.getEmptyStateHTML();
+                    return;
+                }
+
+                grid.innerHTML = filteredDocs.map(doc => this.createDocumentCard(doc)).join('');
+
+                this.setupCardEventListeners();
+            }
+
+            createDocumentCard(doc) {
+                const colorIndex = this.getColorIndex(doc.color);
+                const dateFormatted = new Date(doc.dateModified).toLocaleDateString('es-ES');
+                
+                return `
+                    <div class="document-card card-color-${colorIndex}" data-id="${doc.id}">
+                        <div class="document-card-header">
+                            <div class="document-title">${this.escapeHtml(doc.title)}</div>
+                            <div class="document-category">${this.escapeHtml(doc.category)}</div>
+                            <div class="document-actions">
+                                <button class="action-btn edit-btn" title="Editar">✏️</button>
+                                <button class="action-btn delete-btn" title="Eliminar">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="document-card-body">
+                            <div class="document-preview">
+                                ${this.escapeHtml(doc.preview || 'Sin descripción')}
+                            </div>
+                            <div class="document-meta">
+                                <span>Modificado: ${dateFormatted}</span>
+                                <span>${doc.content && doc.content.length > 1000 ? '📄' : '📃'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            setupCardEventListeners() {
+                document.querySelectorAll('.document-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        if (!e.target.closest('.document-actions')) {
+                            const docId = parseInt(card.dataset.id);
+                            console.log('Abriendo documento con ID:', docId);
+                            this.openDocument(docId);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const docId = parseInt(btn.closest('.document-card').dataset.id);
+                        const doc = this.documents.find(d => d.id === docId);
+                        if (doc) {
+                            console.log('Editando documento:', doc.title);
+                            this.openEditorModal(doc);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const docId = parseInt(btn.closest('.document-card').dataset.id);
+                        this.deleteDocument(docId);
+                    });
+                });
+            }
+
+            openDocument(docId) {
+                console.log('Función openDocument llamada con ID:', docId);
+                const doc = this.documents.find(d => d.id === docId);
+                if (!doc) {
+                    console.error('Documento no encontrado con ID:', docId);
+                    return;
+                }
+
+                console.log('Abriendo documento:', doc.title);
+                
+                const readerTitle = document.getElementById('readerTitle');
+                const readerBody = document.getElementById('readerBody');
+                
+                if (readerTitle) readerTitle.textContent = doc.title;
+                if (readerBody) {
+                    readerBody.innerHTML = doc.content || '<p>No hay contenido disponible</p>';
+                }
+                
+                this.currentReadingDoc = doc;
+                this.showModal('readerModal');
+            }
+
+            closeReaderModal() {
+                this.hideModal('readerModal');
+                this.currentReadingDoc = null;
+            }
+
+            printDocument() {
+                if (!this.currentReadingDoc) return;
+                
+                const printWindow = window.open('', '_blank');
+                if (!printWindow) {
+                    alert('Por favor, permita las ventanas emergentes para imprimir');
+                    return;
+                }
+                
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>${this.escapeHtml(this.currentReadingDoc.title)}</title>
+                        <style>
+                            body { 
+                                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                                line-height: 1.6; 
+                                max-width: 800px; 
+                                margin: 0 auto; 
+                                padding: 2rem;
+                            }
+                            h1, h2, h3 { color: #2C3E50; }
+                            @media print {
+                                body { margin: 0; padding: 1rem; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>${this.escapeHtml(this.currentReadingDoc.title)}</h1>
+                        ${this.currentReadingDoc.content}
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                setTimeout(() => printWindow.print(), 250);
+            }
+
+            exportDocument() {
+                if (!this.currentReadingDoc) return;
+                
+                const content = `
+                    <!DOCTYPE html>
+                    <html lang="es">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>${this.escapeHtml(this.currentReadingDoc.title)}</title>
+                        <style>
+                            body { 
+                                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                                line-height: 1.6; 
+                                max-width: 800px; 
+                                margin: 0 auto; 
+                                padding: 2rem;
+                                color: #2C3E50;
+                            }
+                            h1, h2, h3 { color: #2E86AB; }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>${this.escapeHtml(this.currentReadingDoc.title)}</h1>
+                        <p><em>Categoría: ${this.escapeHtml(this.currentReadingDoc.category)}</em></p>
+                        <hr>
+                        ${this.currentReadingDoc.content}
+                    </body>
+                    </html>
+                `;
+                
+                const blob = new Blob([content], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${this.currentReadingDoc.title.replace(/[^a-z0-9]/gi, '_')}.html`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+
+            exportAllDocuments() {
+                if (this.documents.length === 0) {
+                    alert('No hay documentos para exportar');
+                    return;
+                }
+
+                const backup = {
+                    version: '1.0',
+                    exportDate: new Date().toISOString(),
+                    documents: this.documents
+                };
+
+                const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `cuaderno_backup_${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+
+                alert(`Se han exportado ${this.documents.length} documentos`);
+            }
+
+            async importBackup(file) {
+                try {
+                    const text = await file.text();
+                    const backup = JSON.parse(text);
+                    
+                    if (!backup.documents || !Array.isArray(backup.documents)) {
+                        alert('El archivo no es un backup válido');
+                        return;
+                    }
+
+                    let mergeDocuments = false;
+                    if (this.documents.length > 0) {
+                        mergeDocuments = confirm(
+                            `Ya tienes ${this.documents.length} documentos.\n\n` +
+                            `¿Quieres COMBINAR el backup con los documentos existentes?\n\n` +
+                            `Aceptar = Combinar (mantener todo)\n` +
+                            `Cancelar = Reemplazar (borrar actuales)`
+                        );
+                    }
+
+                    if (mergeDocuments) {
+                        const existingIds = new Set(this.documents.map(d => d.id));
+                        const newDocs = backup.documents.filter(d => !existingIds.has(d.id));
+                        this.documents = [...this.documents, ...newDocs];
+                        alert(`Se han importado ${newDocs.length} documentos nuevos`);
+                    } else {
+                        this.documents = backup.documents;
+                        alert(`Se han importado ${backup.documents.length} documentos`);
+                    }
+
+                    this.migrateOldDocuments();
+
+                    this.saveDocuments();
+                    this.updateCategoryFilter();
+                    this.renderDocuments();
+
+                    document.getElementById('importFileInput').value = '';
+
+                } catch (error) {
+                    console.error('Error al importar backup:', error);
+                    alert('Error al importar el backup. Verifica que el archivo sea válido.');
+                }
+            }
+
+            deleteDocument(docId) {
+                const doc = this.documents.find(d => d.id === docId);
+                if (!doc) return;
+
+                if (confirm(`¿Estás seguro de que quieres eliminar "${doc.title}"?`)) {
+                    this.documents = this.documents.filter(d => d.id !== docId);
+                    this.saveDocuments();
+                    this.updateCategoryFilter();
+                    this.renderDocuments();
+                    console.log('Documento eliminado:', doc.title);
+                }
+            }
+
+            updateCategoryFilter() {
+                const select = document.getElementById('categoryFilter');
+                const categories = [...new Set(this.documents.map(doc => doc.category))].sort();
+                
+                const currentValue = select.value;
+                select.innerHTML = '<option value="">Todas las categorías</option>';
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    select.appendChild(option);
+                });
+                
+                if (categories.includes(currentValue)) {
+                    select.value = currentValue;
+                }
+            }
+
+            showModal(modalId) {
+                console.log('Mostrando modal:', modalId);
+                const overlay = document.getElementById('modalOverlay');
+                const modal = document.getElementById(modalId);
+                
+                if (!overlay || !modal) {
+                    console.error('No se encontró el modal o overlay:', modalId);
+                    return;
+                }
+                
+                overlay.style.display = 'block';
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            hideModal(modalId) {
+                console.log('Ocultando modal:', modalId);
+                const overlay = document.getElementById('modalOverlay');
+                const modal = document.getElementById(modalId);
+                
+                if (overlay) overlay.style.display = 'none';
+                if (modal) modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            closeAllModals() {
+                this.closeEditorModal();
+                this.closeReaderModal();
+                this.hideModal('helpModal');
+                this.hideEditorCategoryDropdown();
+            }
+
+            getColorIndex(color) {
+                const colors = ['#2E86AB', '#48A9A6', '#666666', '#f39c12'];
+                const index = colors.indexOf(color) + 1;
+                return index || 1;
+            }
+
+            escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            getEmptyStateHTML() {
+                return `
+                    <div class="empty-state">
+                        <h3>No hay documentos</h3>
+                        <p>${this.currentFilter || this.currentCategory ? 'No se encontraron documentos con los filtros actuales' : 'Comienza creando tu primer documento'}</p>
+                        <button class="btn btn-create" onclick="cuadernoApp.openEditorModal()">
+                            <span class="icon">✏️</span>
+                            Nuevo Documento
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Inicializar aplicación cuando el DOM esté listo
+        let cuadernoApp;
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('Inicializando Cuaderno Digital...');
+                cuadernoApp = new CuadernoDigital();
+            });
+        } else {
+            console.log('DOM ya cargado, inicializando Cuaderno Digital...');
+            cuadernoApp = new CuadernoDigital();
+        }
+    </script>
+
+    <!-- Contenido educativo sobre organización de notas -->
+    <div style="max-width: 1400px; margin: 3rem auto 2rem; padding: 0 1.5rem;">
+        <div style="background: var(--bg-card); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-medium); border: 1px solid var(--border);">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">📝 Guía de Organización de Notas Digitales</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 10px; border-left: 4px solid var(--primary);">
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">✍️ Escritura con Markdown</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Markdown permite formatear texto de forma rápida y sencilla. Usa # para títulos, **texto** para negrita, *texto* para cursiva y - para listas.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong># Título 1</strong> - Título principal</li>
+                        <li><strong>## Título 2</strong> - Subtítulo</li>
+                        <li><strong>**negrita**</strong> - Texto en negrita</li>
+                        <li><strong>*cursiva*</strong> - Texto en cursiva</li>
+                        <li><strong>- elemento</strong> - Lista con viñetas</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 10px; border-left: 4px solid var(--card-secondary);">
+                    <h3 style="color: var(--card-secondary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📁 Sistema de Categorías</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Organiza tus notas con categorías temáticas y colores. Un sistema de categorización eficiente te ayuda a encontrar información rápidamente.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Trabajo:</strong> Reuniones, proyectos, tareas</li>
+                        <li><strong>Personal:</strong> Ideas, recordatorios, planes</li>
+                        <li><strong>Estudio:</strong> Apuntes, resúmenes, investigación</li>
+                        <li><strong>Creativo:</strong> Bocetos, inspiración, borradores</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 10px; border-left: 4px solid var(--card-neutral);">
+                    <h3 style="color: var(--card-neutral); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🔒 Privacidad y Seguridad</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Tus notas se almacenan únicamente en tu navegador. No se envían a ningún servidor externo, garantizando privacidad total y acceso sin conexión a internet.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Almacenamiento local:</strong> Solo en tu dispositivo</li>
+                        <li><strong>Sin servidores:</strong> No se envían datos</li>
+                        <li><strong>Offline:</strong> Funciona sin internet</li>
+                        <li><strong>Backup manual:</strong> Exporta cuando quieras</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 10px; border-left: 4px solid var(--card-accent);">
+                    <h3 style="color: var(--card-accent); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📤 Backup y Exportación</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Mantén tus notas seguras con backups regulares. Puedes exportar todo tu contenido en formato JSON o individual en Markdown para usar en otras aplicaciones.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Exportación completa:</strong> Todas las notas en JSON</li>
+                        <li><strong>Exportación individual:</strong> Nota en Markdown</li>
+                        <li><strong>Importación:</strong> Restaura desde backup</li>
+                        <li><strong>Compatibilidad:</strong> Funciona con otros editores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 1400px; margin: 0 auto 3rem; padding: 0 1.5rem;">
+        <div style="background: var(--bg-card); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-medium); border: 1px solid var(--border);">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes</h2>
+            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Mis notas están seguras y privadas?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí, todas tus notas se almacenan únicamente en tu navegador local. No se envían a ningún servidor externo, garantizando privacidad total. Puedes usar la aplicación sin conexión a internet."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo funciona el editor Markdown?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Markdown es un lenguaje de marcado ligero que permite formatear texto de forma sencilla. Usa # para títulos, **texto** para negrita, *texto* para cursiva, - para listas y más. El editor muestra una vista previa en tiempo real."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Puedo hacer backup de mis notas?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí, puedes exportar todas tus notas en formato JSON para hacer backup completo, o exportar notas individuales en Markdown. También puedes importar backups para restaurar tus datos."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo organizar las notas con categorías?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Puedes crear categorías personalizadas con diferentes colores para organizar tus notas por temas (trabajo, personal, estudio, etc.). Usa el filtro por categorías para encontrar rápidamente lo que buscas."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Funciona sin conexión a internet?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí, el Cuaderno Digital funciona completamente offline una vez cargado. Puedes crear, editar y organizar tus notas sin necesidad de conexión a internet, ya que todo se almacena localmente en tu navegador."
+                        }
+                    }
+                ]
+            }
+            </script>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Mis notas están seguras y privadas?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Sí, todas tus notas se almacenan únicamente en tu navegador local usando localStorage. No se envían a ningún servidor externo, garantizando privacidad total. Puedes usar la aplicación sin conexión a internet y tus datos permanecen bajo tu control completo.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo funciona el editor Markdown?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Markdown es un lenguaje de marcado ligero que permite formatear texto de forma sencilla. Usa # para títulos, **texto** para negrita, *texto* para cursiva, - para listas y más. El editor incluye una vista previa en tiempo real para que veas cómo se verá el resultado final.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Puedo hacer backup de mis notas?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Sí, puedes exportar todas tus notas en formato JSON para hacer un backup completo, o exportar notas individuales en formato Markdown. También puedes importar backups previos para restaurar tus datos. Te recomendamos hacer backups regulares para mayor seguridad.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo organizar las notas con categorías?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Puedes crear categorías personalizadas con diferentes colores para organizar tus notas por temas (trabajo, personal, estudio, etc.). Usa el filtro por categorías en la barra de herramientas para encontrar rápidamente las notas que buscas. Cada categoría tiene un color distintivo para facilitar la identificación visual.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Funciona sin conexión a internet?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Sí, el Cuaderno Digital funciona completamente offline una vez cargado en tu navegador. Puedes crear, editar y organizar tus notas sin necesidad de conexión a internet, ya que todo se almacena localmente. Esto te permite trabajar en cualquier lugar sin depender de la conectividad.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

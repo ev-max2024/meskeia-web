@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Matemático - Juego de Lógica y Matemáticas | meskeIA</title>
+    
+    <!-- Meta descripción y keywords -->
+    <meta name="description" content="Puzzle Matemático interactivo de meskeIA. Resuelve desafiantes cuadrículas matemáticas con operaciones aritméticas. Mejora tu agilidad mental con diferentes niveles de dificultad.">
+    <meta name="keywords" content="puzzle matemático, juego matemáticas, operaciones aritméticas, lógica matemática, agilidad mental, juego educativo, meskeIA, puzzle cuadrícula, desafío mental">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="es">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/puzzle-matematico">
+    <meta property="og:title" content="Puzzle Matemático - Juego de Lógica y Matemáticas | meskeIA">
+    <meta property="og:description" content="Resuelve desafiantes puzzles matemáticos con operaciones aritméticas. Mejora tu agilidad mental con diferentes niveles de dificultad.">
+    <meta property="og:image" content="https://meskeia.com/assets/puzzle-matematico-preview.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://meskeia.com/aplicaciones/puzzle-matematico">
+    <meta name="twitter:title" content="Puzzle Matemático - Juego de Lógica | meskeIA">
+    <meta name="twitter:description" content="Desafiante juego de puzzles matemáticos con operaciones aritméticas. Mejora tu agilidad mental.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/puzzle-matematico-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/puzzle-matematico">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+    
+    <!-- Datos estructurados JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Puzzle Matemático",
+        "description": "Juego interactivo de puzzles matemáticos con operaciones aritméticas para mejorar la agilidad mental",
+        "url": "https://meskeia.com/aplicaciones/puzzle-matematico",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "gamePlatform": "Web Browser",
+        "genre": ["Puzzle", "Educational", "Mathematics"],
+        "numberOfPlayers": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 1
+        },
+        "inLanguage": "es",
+        "isAccessibleForFree": true
+    }
+    </script>
+    <style>
+        :root {
+            /* Paleta meskeIA Minimalista */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            margin: 0;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        
+        /* Contenedor principal del juego centrado */
+        .main-game-wrapper {
+            min-height: 100vh;
+            padding: 100px 20px 60px;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(46, 134, 171, 0.1);
+            max-width: 550px;
+            width: 100%;
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            background: var(--bg-card);
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn:hover {
+            background: var(--hover);
+            transform: translateY(-1px);
+        }
+
+        .difficulty-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .info-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .grid-container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto 25px;
+            aspect-ratio: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .cell-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cell {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .cell.input-cell {
+            cursor: pointer;
+            background: var(--bg-card);
+            border-color: var(--primary);
+        }
+
+        .cell.input-cell:hover {
+            background: var(--hover);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(46, 134, 171, 0.2);
+        }
+
+        .cell.input-cell.selected {
+            background: var(--focus);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(46, 134, 171, 0.3);
+        }
+
+        .cell.fixed {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-color: var(--secondary);
+        }
+
+        .cell.result {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: var(--primary);
+            font-weight: 700;
+        }
+
+        input.cell-input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .operator {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            z-index: 5;
+            background: var(--bg-card);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .operator.horizontal {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .operator.vertical {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .operator.right {
+            right: -20px;
+        }
+
+        .operator.left {
+            left: -20px;
+        }
+
+        .operator.top {
+            top: -20px;
+        }
+
+        .operator.bottom {
+            bottom: -20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        button:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 134, 171, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        button.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .message.success {
+            background: rgba(72, 169, 166, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(72, 169, 166, 0.3);
+        }
+
+        .message.error {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .message.hint {
+            background: rgba(46, 134, 171, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(46, 134, 171, 0.3);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .win-animation {
+            animation: pulse 0.6s ease-in-out 3;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .main-game-wrapper {
+                padding: 80px 10px 40px;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 0;
+            }
+
+            .cell {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+
+            .operator {
+                font-size: 16px;
+                padding: 2px 6px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .difficulty-selector {
+                gap: 5px;
+            }
+
+            .difficulty-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .controls {
+                gap: 8px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA - Componente de navegación principal con enlace a la página de inicio -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Wrapper del juego centrado -->
+    <div class="main-game-wrapper">
+        <!-- Contenedor principal del juego de Puzzle Matemático -->
+        <div class="container">
+        <!-- Título y descripción del juego -->
+        <h1>🧮 Puzzle Matemático</h1>
+        <p class="subtitle">Completa la cuadrícula con las operaciones correctas</p>
+        
+        <!-- Selector de niveles de dificultad: Fácil, Medio, Difícil, Experto -->
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" data-level="facil">Fácil</button>
+            <button class="difficulty-btn" data-level="medio">Medio</button>
+            <button class="difficulty-btn" data-level="dificil">Difícil</button>
+            <button class="difficulty-btn" data-level="experto">Experto</button>
+        </div>
+
+        <!-- Panel de información del juego: nivel actual, puntuación acumulada y tiempo transcurrido -->
+        <div class="game-info">
+            <div class="info-item">
+                <div class="info-label">Nivel</div>
+                <div class="info-value" id="level">1</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Puntuación</div>
+                <div class="info-value" id="score">0</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Tiempo</div>
+                <div class="info-value" id="timer">00:00</div>
+            </div>
+        </div>
+
+        <!-- Área principal del juego: cuadrícula 3x3 con operaciones matemáticas -->
+        <div class="grid-container">
+            <div class="grid" id="gameGrid"></div>
+        </div>
+
+        <!-- Controles del juego: verificar solución, obtener pista, generar nuevo puzzle -->
+        <div class="controls">
+            <button onclick="checkSolution()">✓ Verificar</button>
+            <button class="secondary" onclick="showHint()">💡 Pista</button>
+            <button class="secondary" onclick="newPuzzle()">🔄 Nuevo</button>
+        </div>
+
+        <div id="message"></div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: var(--text-secondary); font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid var(--border);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Variables globales del estado del juego
+        let currentDifficulty = 'facil';  // Dificultad actual: facil, medio, dificil, experto
+        let currentLevel = 1;              // Nivel actual del jugador
+        let score = 0;                     // Puntuación acumulada total
+        let startTime = Date.now();
+        let timerInterval;
+        let solution = [];
+        let playerGrid = [];
+        let hintsUsed = 0;
+        let currentOperators = [];
+
+        // Configuración de niveles de dificultad
+        // range: rango de números a usar, operations: operaciones permitidas, empty: celdas vacías
+        const difficulties = {
+            facil: { range: [1, 10], operations: ['+', '-'], empty: 3 },
+            medio: { range: [1, 20], operations: ['+', '-', '×'], empty: 4 },
+            dificil: { range: [1, 30], operations: ['+', '-', '×', '÷'], empty: 5 },
+            experto: { range: [1, 50], operations: ['+', '-', '×', '÷'], empty: 6 }
+        };
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            startTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        }
+
+        // Función principal para generar un nuevo puzzle matemático
+        // Genera una cuadrícula 3x3 con operaciones consistentes y válidas
+        function generatePuzzle() {
+            const config = difficulties[currentDifficulty];
+            const allowNegative = currentDifficulty !== 'facil'; // No permitir negativos en fácil
+            let grid = [];
+            let operators = [];
+            let validPuzzle = false;
+            let attempts = 0;
+            
+            // Intentar generar un puzzle válido con consistencia matemática
+            while (!validPuzzle && attempts < 200) {
+                attempts++;
+                grid = [];
+                operators = [];
+                let allResultsValid = true;
+                
+                // Generar solo las primeras 4 celdas (2x2 superior izquierda)
+                grid[0] = [];
+                grid[1] = [];
+                grid[2] = [];
+                
+                // Generar números base con consideraciones especiales para divisiones
+                for (let i = 0; i < 2; i++) {
+                    for (let j = 0; j < 2; j++) {
+                        grid[i][j] = Math.floor(Math.random() * (config.range[1] - config.range[0] + 1)) + config.range[0];
+                    }
+                }
+
+                // Generar operadores aleatorios
+                const getRandomOperator = () => config.operations[Math.floor(Math.random() * config.operations.length)];
+                
+                // Operadores horizontales (filas 0 y 1)
+                const hOp1 = getRandomOperator();
+                const hOp2 = getRandomOperator();
+                const hOp3 = getRandomOperator();
+                
+                // Operadores verticales (columnas 0 y 1)
+                const vOp1 = getRandomOperator();
+                const vOp2 = getRandomOperator();
+                const vOp3 = getRandomOperator();
+
+                operators = [hOp1, hOp2, hOp3, vOp1, vOp2, vOp3];
+                
+                // Ajustar números para operaciones de división si es necesario
+                if (hOp1 === '÷' && grid[0][0] % grid[0][1] !== 0) {
+                    grid[0][0] = generateDivisiblePair(config.range, grid[0][1]);
+                }
+                if (hOp2 === '÷' && grid[1][0] % grid[1][1] !== 0) {
+                    grid[1][0] = generateDivisiblePair(config.range, grid[1][1]);
+                }
+                if (vOp1 === '÷' && grid[0][0] % grid[1][0] !== 0) {
+                    grid[0][0] = generateDivisiblePair(config.range, grid[1][0]);
+                }
+                if (vOp2 === '÷' && grid[0][1] % grid[1][1] !== 0) {
+                    grid[0][1] = generateDivisiblePair(config.range, grid[1][1]);
+                }
+
+                // Calcular resultados horizontales (fila 0 y 1) con validación
+                grid[0][2] = calculateResult(grid[0][0], grid[0][1], hOp1, allowNegative);
+                grid[1][2] = calculateResult(grid[1][0], grid[1][1], hOp2, allowNegative);
+                
+                // Verificar que los resultados horizontales sean válidos
+                if (grid[0][2] === null || grid[1][2] === null) {
+                    allResultsValid = false;
+                    continue;
+                }
+                
+                // Calcular resultados verticales (columna 0 y 1) con validación
+                grid[2][0] = calculateResult(grid[0][0], grid[1][0], vOp1, allowNegative);
+                grid[2][1] = calculateResult(grid[0][1], grid[1][1], vOp2, allowNegative);
+                
+                // Verificar que los resultados verticales sean válidos
+                if (grid[2][0] === null || grid[2][1] === null) {
+                    allResultsValid = false;
+                    continue;
+                }
+                
+                // Ajustar números para la operación final si es división
+                if (hOp3 === '÷' && grid[2][0] % grid[2][1] !== 0) {
+                    // Intentar ajustar para que sea divisible
+                    if (grid[2][1] !== 0) {
+                        const factor = Math.floor(grid[2][0] / grid[2][1]);
+                        if (factor > 0) {
+                            grid[2][0] = grid[2][1] * factor;
+                        } else {
+                            allResultsValid = false;
+                            continue;
+                        }
+                    }
+                }
+                
+                if (vOp3 === '÷' && grid[0][2] % grid[1][2] !== 0) {
+                    // Intentar ajustar para que sea divisible
+                    if (grid[1][2] !== 0) {
+                        const factor = Math.floor(grid[0][2] / grid[1][2]);
+                        if (factor > 0) {
+                            grid[0][2] = grid[1][2] * factor;
+                        } else {
+                            allResultsValid = false;
+                            continue;
+                        }
+                    }
+                }
+                
+                // Calcular el resultado final de dos maneras y verificar consistencia
+                const horizontalResult = calculateResult(grid[2][0], grid[2][1], hOp3, allowNegative);
+                const verticalResult = calculateResult(grid[0][2], grid[1][2], vOp3, allowNegative);
+                
+                // El puzzle es válido solo si ambos cálculos son válidos y dan el mismo resultado
+                if (horizontalResult !== null && verticalResult !== null && 
+                    horizontalResult === verticalResult && allResultsValid) {
+                    grid[2][2] = horizontalResult;
+                    validPuzzle = true;
+                }
+            }
+            
+            // Si no se pudo generar un puzzle válido, usar enfoque de fallback mejorado
+            if (!validPuzzle) {
+                grid = [];
+                operators = [];
+                
+                // Generar números más pequeños para el fallback
+                const fallbackRange = currentDifficulty === 'facil' ? [1, 8] : [1, 12];
+                for (let i = 0; i < 2; i++) {
+                    grid[i] = [];
+                    for (let j = 0; j < 2; j++) {
+                        grid[i][j] = Math.floor(Math.random() * (fallbackRange[1] - fallbackRange[0] + 1)) + fallbackRange[0];
+                    }
+                }
+                grid[2] = [];
+                
+                // Usar operaciones seguras según el nivel
+                if (currentDifficulty === 'facil') {
+                    operators = ['+', '+', '+', '+', '+', '+'];
+                } else if (currentDifficulty === 'medio') {
+                    operators = ['+', '×', '+', '+', '×', '+'];
+                } else {
+                    // Generar un puzzle más variado pero seguro para niveles difíciles
+                    operators = ['+', '×', '+', '×', '+', '×'];
+                }
+                
+                // Calcular todos los resultados con operaciones seguras
+                grid[0][2] = calculateResult(grid[0][0], grid[0][1], operators[0], allowNegative);
+                grid[1][2] = calculateResult(grid[1][0], grid[1][1], operators[1], allowNegative);
+                grid[2][0] = calculateResult(grid[0][0], grid[1][0], operators[3], allowNegative);
+                grid[2][1] = calculateResult(grid[0][1], grid[1][1], operators[4], allowNegative);
+                grid[2][2] = calculateResult(grid[2][0], grid[2][1], operators[2], allowNegative);
+            }
+
+            solution = JSON.parse(JSON.stringify(grid));
+            currentOperators = operators;
+            
+            // Crear cuadrícula del jugador con celdas vacías
+            playerGrid = JSON.parse(JSON.stringify(grid));
+            const positions = [];
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (!((i === 0 && j === 2) || (i === 1 && j === 2) || (i === 2 && j === 0) || 
+                          (i === 2 && j === 1) || (i === 2 && j === 2))) {
+                        positions.push([i, j]);
+                    }
+                }
+            }
+            
+            // Vaciar algunas celdas aleatoriamente
+            const toEmpty = positions.sort(() => Math.random() - 0.5).slice(0, config.empty);
+            toEmpty.forEach(([i, j]) => {
+                playerGrid[i][j] = null;
+            });
+
+            return { grid: playerGrid, operators: operators };
+        }
+
+        // Función mejorada para calcular resultados con validaciones
+        function calculateResult(a, b, op, allowNegative = true) {
+            switch(op) {
+                case '+': 
+                    return a + b;
+                case '-': 
+                    const subtractResult = a - b;
+                    // En nivel fácil, evitar números negativos
+                    if (!allowNegative && subtractResult < 0) {
+                        return null; // Indicar que esta operación no es válida
+                    }
+                    return subtractResult;
+                case '×': 
+                    return a * b;
+                case '÷': 
+                    // Validar división exacta para evitar decimales
+                    if (b === 0 || a % b !== 0) {
+                        return null; // División no válida
+                    }
+                    return a / b;
+                default: 
+                    return a + b;
+            }
+        }
+        
+        // Función auxiliar para generar números que permitan divisiones exactas
+        function generateDivisiblePair(range, divisor) {
+            const quotient = Math.floor(Math.random() * Math.floor(range[1] / divisor)) + 1;
+            return quotient * divisor;
+        }
+
+        // Renderizar la cuadrícula del puzzle en el DOM
+        // Crea celdas fijas, de entrada y de resultado con operadores
+        function renderGrid(puzzle) {
+            const gridElement = document.getElementById('gameGrid');
+            gridElement.innerHTML = '';
+            
+            // Generar cada celda de la cuadrícula 3x3
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const cellWrapper = document.createElement('div');
+                    cellWrapper.className = 'cell-wrapper';
+                    
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    
+                    // Determinar tipo de celda
+                    if ((i === 0 && j === 2) || (i === 1 && j === 2) || (i === 2 && j === 0) || 
+                        (i === 2 && j === 1) || (i === 2 && j === 2)) {
+                        // Celdas de resultado
+                        cell.classList.add('result');
+                        cell.textContent = puzzle.grid[i][j] || '?';
+                    } else if (puzzle.grid[i][j] !== null) {
+                        // Celdas fijas
+                        cell.classList.add('fixed');
+                        cell.textContent = puzzle.grid[i][j];
+                    } else {
+                        // Celdas de entrada
+                        cell.classList.add('input-cell');
+                        const input = document.createElement('input');
+                        input.type = 'number';
+                        input.className = 'cell-input';
+                        
+                        // Configurar rangos según dificultad y permitir negativos según nivel
+                        const config = difficulties[currentDifficulty];
+                        const allowNegatives = currentDifficulty !== 'facil';
+                        
+                        input.min = allowNegatives ? '-99' : '1';
+                        input.max = config.range[1].toString();
+                        input.step = '1';
+                        
+                        // Validación mejorada de entrada
+                        input.addEventListener('input', (e) => {
+                            let value = parseInt(e.target.value);
+                            
+                            // Validar rango según dificultad
+                            if (isNaN(value)) {
+                                playerGrid[i][j] = null;
+                                return;
+                            }
+                            
+                            // Aplicar restricciones según nivel
+                            if (!allowNegatives && value < 1) {
+                                value = 1;
+                                e.target.value = '1';
+                            } else if (allowNegatives && value < -99) {
+                                value = -99;
+                                e.target.value = '-99';
+                            } else if (value > config.range[1]) {
+                                value = config.range[1];
+                                e.target.value = config.range[1].toString();
+                            }
+                            
+                            playerGrid[i][j] = value;
+                        });
+                        
+                        // Validación adicional al perder el foco
+                        input.addEventListener('blur', (e) => {
+                            cell.classList.remove('selected');
+                            
+                            // Asegurar que el valor esté en rango válido
+                            let value = parseInt(e.target.value);
+                            if (isNaN(value)) {
+                                e.target.value = '';
+                                playerGrid[i][j] = null;
+                            } else {
+                                // Re-validar y corregir si es necesario
+                                if (!allowNegatives && value < 1) {
+                                    value = 1;
+                                    e.target.value = '1';
+                                } else if (value > config.range[1]) {
+                                    value = config.range[1];
+                                    e.target.value = config.range[1].toString();
+                                }
+                                playerGrid[i][j] = value;
+                            }
+                        });
+                        
+                        input.addEventListener('focus', () => {
+                            cell.classList.add('selected');
+                        });
+                        cell.appendChild(input);
+                    }
+                    
+                    cellWrapper.appendChild(cell);
+                    
+                    // Agregar operadores horizontales (entre celdas de la misma fila)
+                    if (j === 0 && i < 3) {
+                        // Operador entre columna 0 y 1
+                        const op = document.createElement('div');
+                        op.className = 'operator horizontal right';
+                        if (i === 0) op.textContent = currentOperators[0];      // Fila 0: op[0]
+                        else if (i === 1) op.textContent = currentOperators[1]; // Fila 1: op[1]  
+                        else op.textContent = currentOperators[2];              // Fila 2: op[2]
+                        cellWrapper.appendChild(op);
+                    }
+                    
+                    if (j === 1 && i < 2) {
+                        // Signo igual entre columna 1 y 2 (solo en filas 0 y 1)
+                        const eq = document.createElement('div');
+                        eq.className = 'operator horizontal right';
+                        eq.textContent = '=';
+                        cellWrapper.appendChild(eq);
+                    }
+                    
+                    // Agregar operadores verticales (entre celdas de la misma columna)
+                    if (i === 0 && j < 3) {
+                        // Operador entre fila 0 y 1
+                        const op = document.createElement('div');
+                        op.className = 'operator vertical bottom';
+                        if (j === 0) op.textContent = currentOperators[3];      // Columna 0: op[3]
+                        else if (j === 1) op.textContent = currentOperators[4]; // Columna 1: op[4]
+                        else op.textContent = currentOperators[5];              // Columna 2: op[5]
+                        cellWrapper.appendChild(op);
+                    }
+                    
+                    if (i === 1 && j < 2) {
+                        // Signo igual entre fila 1 y 2 (solo en columnas 0 y 1)
+                        const eq = document.createElement('div');
+                        eq.className = 'operator vertical bottom';
+                        eq.textContent = '=';
+                        cellWrapper.appendChild(eq);
+                    }
+                    
+                    gridElement.appendChild(cellWrapper);
+                }
+            }
+        }
+
+        // Verificar si la solución del jugador es correcta
+        // Compara cada celda con la solución y calcula puntos
+        function checkSolution() {
+            let correct = true;
+            let incorrectCells = [];
+            
+            // Revisar cada celda de la cuadrícula
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (playerGrid[i][j] !== solution[i][j]) {
+                        correct = false;
+                        incorrectCells.push([i, j]);
+                    }
+                }
+            }
+            
+            const messageDiv = document.getElementById('message');
+            
+            if (correct) {
+                const timeBonus = Math.max(0, 300 - Math.floor((Date.now() - startTime) / 1000));
+                const levelBonus = currentLevel * 50;
+                const hintPenalty = hintsUsed * 20;
+                const points = Math.max(0, 100 + timeBonus + levelBonus - hintPenalty);
+                
+                score += points;
+                currentLevel++;
+                
+                document.getElementById('score').textContent = score;
+                document.getElementById('level').textContent = currentLevel;
+                
+                messageDiv.className = 'message success';
+                messageDiv.textContent = `¡Excelente! +${points} puntos. Nivel ${currentLevel} desbloqueado.`;
+                
+                document.querySelectorAll('.cell').forEach(cell => {
+                    cell.classList.add('win-animation');
+                });
+                
+                setTimeout(() => {
+                    newPuzzle();
+                    messageDiv.className = '';
+                    messageDiv.textContent = '';
+                }, 2500);
+            } else {
+                messageDiv.className = 'message error';
+                const emptyCells = incorrectCells.filter(([i, j]) => playerGrid[i][j] === null).length;
+                if (emptyCells > 0) {
+                    messageDiv.textContent = `Faltan ${emptyCells} números por completar.`;
+                } else {
+                    messageDiv.textContent = 'Algunos números son incorrectos. Revisa tus cálculos.';
+                }
+                
+                setTimeout(() => {
+                    messageDiv.className = '';
+                    messageDiv.textContent = '';
+                }, 3000);
+            }
+        }
+
+        function showHint() {
+            hintsUsed++;
+            const emptyCells = [];
+            
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (playerGrid[i][j] === null) {
+                        emptyCells.push([i, j]);
+                    }
+                }
+            }
+            
+            if (emptyCells.length > 0) {
+                const [row, col] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                playerGrid[row][col] = solution[row][col];
+                
+                const input = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"] input`);
+                if (input) {
+                    input.value = solution[row][col];
+                    input.style.color = 'var(--primary)';
+                    input.style.fontWeight = '700';
+                    setTimeout(() => {
+                        input.style.color = 'var(--text-primary)';
+                        input.style.fontWeight = '600';
+                    }, 2000);
+                }
+                
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'message hint';
+                messageDiv.textContent = `💡 Pista revelada: Se completó una celda (-20 puntos)`;
+                
+                setTimeout(() => {
+                    messageDiv.className = '';
+                    messageDiv.textContent = '';
+                }, 2000);
+            } else {
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'message hint';
+                messageDiv.textContent = '🎯 ¡Ya tienes todos los números! Solo verifica la solución.';
+                
+                setTimeout(() => {
+                    messageDiv.className = '';
+                    messageDiv.textContent = '';
+                }, 2000);
+            }
+        }
+
+        function newPuzzle() {
+            hintsUsed = 0;
+            const puzzle = generatePuzzle();
+            renderGrid(puzzle);
+            startTimer();
+            
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.remove('win-animation');
+            });
+        }
+
+        // Manejo de dificultad
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentDifficulty = e.target.dataset.level;
+                currentLevel = 1;
+                document.getElementById('level').textContent = currentLevel;
+                newPuzzle();
+            });
+        });
+
+        // Iniciar juego
+        newPuzzle();
+    </script>
+    
+    <!-- Contenido SEO educativo sobre Puzzle Matemático -->
+    <div class="seo-content">
+        <div style="max-width: 900px; margin: 2rem auto; padding: 0 20px;">
+            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5; margin-bottom: 2rem;">
+                <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">🧮 Guía Completa del Puzzle Matemático</h2>
+                
+                <!-- Primera fila de cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #2E86AB;">
+                        <h3 style="color: #2E86AB; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎮 Cómo Jugar</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">El Puzzle Matemático desafía tu capacidad de cálculo mental y lógica. Completa la cuadrícula 3x3 con números que cumplan todas las operaciones indicadas.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Objetivo:</strong> Completar todas las celdas vacías</li>
+                            <li><strong>Operaciones:</strong> Suma, resta, multiplicación y división</li>
+                            <li><strong>Verificación:</strong> Todas las ecuaciones deben ser correctas</li>
+                            <li><strong>Pistas:</strong> Usa el botón de pista si necesitas ayuda</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #48A9A6;">
+                        <h3 style="color: #48A9A6; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🧠 Estrategias de Resolución</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Domina técnicas efectivas para resolver los puzzles más complejos de manera sistemática y eficiente.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Inicio fácil:</strong> Busca filas/columnas con una sola incógnita</li>
+                            <li><strong>Eliminación:</strong> Descarta valores imposibles</li>
+                            <li><strong>Verificación cruzada:</strong> Comprueba horizontal y vertical</li>
+                            <li><strong>División exacta:</strong> En división, busca múltiplos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Segunda fila de cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #6AAA64;">
+                        <h3 style="color: #6AAA64; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📊 Niveles de Dificultad</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Cuatro niveles progresivos diseñados para desafiar desde principiantes hasta expertos en cálculo mental.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Fácil:</strong> Números 1-10, suma y resta (3 vacías)</li>
+                            <li><strong>Medio:</strong> Números 1-20, incluye multiplicación (4 vacías)</li>
+                            <li><strong>Difícil:</strong> Números 1-30, todas las operaciones (5 vacías)</li>
+                            <li><strong>Experto:</strong> Números 1-50, máximo desafío (6 vacías)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #C9B458;">
+                        <h3 style="color: #C9B458; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Sistema de Puntuación</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Maximiza tu puntuación con velocidad y precisión. El sistema premia la resolución rápida y penaliza el uso de pistas.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Base:</strong> 100 puntos por puzzle resuelto</li>
+                            <li><strong>Bonus tiempo:</strong> Hasta 300 puntos extra por rapidez</li>
+                            <li><strong>Bonus nivel:</strong> Nivel × 50 puntos adicionales</li>
+                            <li><strong>Penalización:</strong> -20 puntos por cada pista usada</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Tercera fila de cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #E74C3C;">
+                        <h3 style="color: #E74C3C; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">💡 Beneficios Cognitivos</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Jugar puzzles matemáticos regularmente mejora múltiples habilidades mentales esenciales.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Cálculo mental:</strong> Agiliza operaciones aritméticas</li>
+                            <li><strong>Lógica:</strong> Desarrolla pensamiento deductivo</li>
+                            <li><strong>Memoria:</strong> Ejercita la memoria de trabajo</li>
+                            <li><strong>Concentración:</strong> Mejora el enfoque sostenido</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #9B59B6;">
+                        <h3 style="color: #9B59B6; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📚 Historia y Variantes</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Los puzzles matemáticos tienen una rica historia y múltiples variaciones alrededor del mundo.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Origen:</strong> Cuadrados mágicos en China (650 a.C.)</li>
+                            <li><strong>KenKen:</strong> Variante japonesa moderna (2004)</li>
+                            <li><strong>Mathdoku:</strong> Fusión de sudoku y aritmética</li>
+                            <li><strong>Educación:</strong> Usado en escuelas mundialmente</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de preguntas frecuentes -->
+            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5;">
+                <h2 style="color: #1A1A1A; font-size: 1.3rem; margin-bottom: 1.5rem;">❓ Preguntas Frecuentes</h2>
+                
+                <details style="margin-bottom: 1rem; padding: 1rem; background: #F5F5F5; border-radius: 8px; cursor: pointer;">
+                    <summary style="font-weight: 600; color: #2E86AB;">¿Cómo se calculan los resultados en las casillas grises?</summary>
+                    <p style="margin-top: 1rem; color: #666666; line-height: 1.6;">Las casillas grises muestran el resultado de aplicar la operación indicada entre las dos casillas anteriores de esa fila o columna. Por ejemplo, si tienes 3 + 5, el resultado será 8 en la casilla gris.</p>
+                </details>
+                
+                <details style="margin-bottom: 1rem; padding: 1rem; background: #F5F5F5; border-radius: 8px; cursor: pointer;">
+                    <summary style="font-weight: 600; color: #2E86AB;">¿Qué significa la casilla gris de la esquina inferior derecha?</summary>
+                    <p style="margin-top: 1rem; color: #666666; line-height: 1.6;">Esta casilla especial debe cumplir dos condiciones: ser el resultado de la operación horizontal de su fila Y también el resultado de la operación vertical de su columna. Esta doble verificación es lo que hace único al puzzle.</p>
+                </details>
+                
+                <details style="margin-bottom: 1rem; padding: 1rem; background: #F5F5F5; border-radius: 8px; cursor: pointer;">
+                    <summary style="font-weight: 600; color: #2E86AB;">¿Puedo cambiar de nivel durante una partida?</summary>
+                    <p style="margin-top: 1rem; color: #666666; line-height: 1.6;">Sí, al cambiar de nivel se generará un nuevo puzzle con la dificultad seleccionada. Tu progreso del nivel actual se mantendrá en el contador de puntuación total.</p>
+                </details>
+                
+                <details style="margin-bottom: 1rem; padding: 1rem; background: #F5F5F5; border-radius: 8px; cursor: pointer;">
+                    <summary style="font-weight: 600; color: #2E86AB;">¿Cómo funciona el sistema de pistas?</summary>
+                    <p style="margin-top: 1rem; color: #666666; line-height: 1.6;">Cada pista revela automáticamente el valor correcto de una celda vacía aleatoria. Puedes usar múltiples pistas, pero cada una resta 20 puntos de tu puntuación final del puzzle.</p>
+                </details>
+                
+                <details style="margin-bottom: 1rem; padding: 1rem; background: #F5F5F5; border-radius: 8px; cursor: pointer;">
+                    <summary style="font-weight: 600; color: #2E86AB;">¿Los puzzles tienen solución única?</summary>
+                    <p style="margin-top: 1rem; color: #666666; line-height: 1.6;">Sí, cada puzzle generado tiene una única solución válida. El algoritmo verifica que todas las operaciones sean consistentes antes de presentar el puzzle.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Estilos responsivos para el contenido SEO -->
+    <style>
+        /* Contenido SEO que aparece después del juego */
+        .seo-content {
+            padding: 40px 20px;
+            background: var(--bg-primary);
+            padding-bottom: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .seo-content {
+                padding: 16px !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+                box-sizing: border-box !important;
+            }
+            
+            .seo-content * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                word-wrap: break-word !important;
+            }
+            
+            .seo-content > div {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .seo-content div[style*="grid"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            .seo-content div[style*="padding"] {
+                padding: 16px !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .seo-content h2 {
+                font-size: 1.3rem !important;
+            }
+            
+            .seo-content h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .seo-content p {
+                font-size: 0.9rem !important;
+            }
+            
+            .seo-content ul {
+                padding-left: 20px !important;
+            }
+            
+            .seo-content details {
+                margin-bottom: 12px !important;
+            }
+        }
+    </style>
+</body>
+</html>

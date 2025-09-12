@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Principal -->
+    <title>Curso Completo de Decisiones de Inversión Gratis | Educación Financiera - meskeIA</title>
+    <meta name="description" content="Curso gratuito de inversión con 10 capítulos, herramientas interactivas y casos prácticos reales. Aprende asset allocation, gestión de riesgo y estrategias de inversión. Educación financiera profesional por meskeIA.">
+    <meta name="keywords" content="curso inversión gratis, educación financiera, asset allocation, gestión riesgo, ETFs, cartera inversión, perfil inversor, meskeIA, finanzas personales, estrategias inversión">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Curso Completo de Decisiones de Inversión Gratis | meskeIA">
+    <meta property="og:description" content="Aprende a invertir desde cero con nuestro curso gratuito. 10 capítulos, herramientas interactivas y casos prácticos. Educación financiera profesional.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/curso-decisiones-inversion">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Curso Completo de Decisiones de Inversión Gratis | meskeIA">
+    <meta name="twitter:description" content="Curso gratuito de inversión con herramientas interactivas. Aprende asset allocation, gestión de riesgo y estrategias profesionales.">
+    <meta name="twitter:creator" content="@meskeIA">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Curso Decisiones de Inversión",
+        "description": "Curso completo gratuito de educación financiera e inversión. 10 capítulos con herramientas interactivas, casos prácticos y estrategias profesionales.",
+        "provider": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "educationalLevel": "Beginner to Intermediate",
+        "teaches": ["Asset Allocation", "Gestión de Riesgo", "Estrategias de Inversión", "ETFs", "Psicología del Inversor", "Análisis Fundamental"],
+        "courseMode": "online",
+        "isAccessibleForFree": true,
+        "inLanguage": "es",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Inversores principiantes y intermedios"
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "instructor": {
+                "@type": "Organization",
+                "name": "meskeIA"
+            }
+        }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="../css/estrategias.css">
+    
+    <!-- Estilos específicos para el logo meskeIA -->
+    <style>
+        /* Overlay para dispositivos móviles */
+        .mobile-warning-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .mobile-warning-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .mobile-warning-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-warning-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-warning-text {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-warning-recommendation {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-warning-recommendation strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-warning-recommendation p {
+            color: #7f8c8d;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .mobile-warning-button {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-warning-button:hover {
+            background: #2980b9;
+        }
+
+        /* Mostrar solo en dispositivos móviles */
+        @media only screen and (max-width: 768px) and (pointer: coarse) {
+            .mobile-warning-overlay {
+                display: flex !important;
+            }
+        }
+
+        /* También detectar por ancho de pantalla muy pequeño */
+        @media only screen and (max-width: 600px) {
+            .mobile-warning-overlay {
+                display: flex !important;
+            }
+        }
+
+        .nav-logo-enhanced {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+        }
+
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .neural-dot:nth-child(1) { top: 6px; left: 10px; }
+        .neural-dot:nth-child(2) { top: 12px; right: 8px; }
+        .neural-dot:nth-child(3) { bottom: 10px; left: 6px; }
+        .neural-dot:nth-child(4) { bottom: 6px; right: 12px; }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #2C3E50;
+        }
+
+        .logo-text .meske {
+            color: #2E86AB;
+            font-weight: 600;
+        }
+
+        .logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .main-title {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #2C3E50;
+            margin: 0;
+        }
+
+        /* Footer específico */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            color: #bdc3c7;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #48A9A6;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            text-align: center;
+            padding: 1rem 2rem;
+            color: #bdc3c7;
+        }
+
+        /* Hero section específico */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+            border-radius: 15px;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn.large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+        }
+
+        /* Cards específicas para el index */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature {
+            color: #27ae60;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-actions {
+            margin-top: auto;
+        }
+
+        /* Responsive específico */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .main-title {
+                font-size: 1.5rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay de advertencia para móviles -->
+    <div class="mobile-warning-overlay" id="mobileWarning">
+        <div class="mobile-warning-content">
+            <div class="mobile-warning-icon">💻</div>
+            <h2 class="mobile-warning-title">Aplicación de Escritorio</h2>
+            <p class="mobile-warning-text">
+                Este curso de Decisiones de Inversión está optimizado para ordenadores de escritorio.
+            </p>
+            <div class="mobile-warning-recommendation">
+                <strong>¿Por qué necesito un ordenador?</strong>
+                <p>• Contenido extenso con 10 capítulos completos</p>
+                <p>• Herramientas interactivas de cálculo</p>
+                <p>• Tablas y gráficos detallados</p>
+                <p>• Mejor experiencia de aprendizaje</p>
+            </div>
+            <button class="mobile-warning-button" onclick="window.location.href='https://meskeia.com'">
+                Volver a meskeIA
+            </button>
+        </div>
+    </div>
+
+    <!-- Navegación con Logo meskeIA -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced" style="cursor: pointer;">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+            </a>
+            <h1 class="main-title">Decisiones de Inversión</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="guia/conceptos-basicos.html">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="guia/conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="guia/productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="guia/estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="guia/aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="guia/asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="guia/gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="guia/psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia/guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="guia/casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="guia/mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="herramientas/herramientas.html">Herramientas</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+                        <li><a href="herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+                        <li><a href="herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="recursos/glosario.html">Glosario</a></li>
+                        <li><a href="recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>🚀 ¿Listo para tomar el control de tus finanzas?</h1>
+            <p>Comienza tu viaje hacia la independencia financiera con conocimientos sólidos y herramientas profesionales.</p>
+            <div class="cta-buttons">
+                <a href="guia/conceptos-basicos.html" class="btn primary large">Empezar Ahora</a>
+                <a href="herramientas/herramientas.html" class="btn secondary large">Ver Herramientas</a>
+            </div>
+        </section>
+
+        <!-- Características principales -->
+        <div class="features-grid">
+            <!-- Guía de Inversión -->
+            <div class="feature-card">
+                <h3>📚 Guía de Inversión</h3>
+                <p>Aprende los fundamentos de la inversión, desde conceptos básicos hasta estrategias avanzadas.</p>
+                <div class="card-features">
+                    <span class="feature">✓ Conceptos básicos explicados</span>
+                    <span class="feature">✓ Estrategias de inversión</span>
+                    <span class="feature">✓ Casos prácticos</span>
+                </div>
+                <div class="card-actions">
+                    <a href="guia/conceptos-basicos.html" class="btn primary">Comenzar Guía</a>
+                </div>
+            </div>
+
+            <!-- Herramientas de Cálculo -->
+            <div class="feature-card">
+                <h3>🛠️ Herramientas de Cálculo</h3>
+                <p>Calculadoras especializadas para optimizar tus decisiones de inversión y evaluar tu perfil.</p>
+                <div class="card-features">
+                    <span class="feature">✓ Calculadora de perfil de riesgo</span>
+                    <span class="feature">✓ Rentabilidad compuesta</span>
+                    <span class="feature">✓ Simulador de carteras</span>
+                </div>
+                <div class="card-actions">
+                    <a href="herramientas/herramientas.html" class="btn primary">Ver Herramientas</a>
+                </div>
+            </div>
+
+            <!-- Recursos -->
+            <div class="feature-card">
+                <h3>📖 Recursos</h3>
+                <p>Glosario financiero, bibliografía recomendada y recursos adicionales para profundizar.</p>
+                <div class="card-features">
+                    <span class="feature">✓ Glosario de términos especializados</span>
+                    <span class="feature">✓ Bibliografía especializada</span>
+                    <span class="feature">✓ Enlaces de interés</span>
+                </div>
+                <div class="card-actions">
+                    <a href="recursos/glosario.html" class="btn secondary">Explorar Recursos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ruta de Aprendizaje -->
+        <div class="card">
+            <h3>🎓 Ruta de Aprendizaje Recomendada</h3>
+            <p>Sigue este camino estructurado para dominar las inversiones paso a paso</p>
+            
+            <div class="grid-3" style="margin-top: 2rem;">
+                <div class="card-white">
+                    <div class="text-center">
+                        <h4 style="color: #27ae60; margin-bottom: 1rem;">1. Fundamentos</h4>
+                        <p>Aprende los conceptos básicos de inversión y productos financieros</p>
+                        <a href="guia/conceptos-basicos.html" class="btn success">Comenzar →</a>
+                    </div>
+                </div>
+                
+                <div class="card-white">
+                    <div class="text-center">
+                        <h4 style="color: #f39c12; margin-bottom: 1rem;">2. Tu Perfil</h4>
+                        <p>Descubre tu tolerancia al riesgo y objetivos de inversión</p>
+                        <a href="herramientas/calculadora-perfil-riesgo.html" class="btn warning">Evaluar →</a>
+                    </div>
+                </div>
+                
+                <div class="card-white">
+                    <div class="text-center">
+                        <h4 style="color: #3498db; margin-bottom: 1rem;">3. Estrategias</h4>
+                        <p>Domina las técnicas profesionales de inversión</p>
+                        <a href="guia/estrategias-inversion.html" class="btn primary">Dominar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Herramientas Destacadas -->
+        <div class="card">
+            <h3>⭐ Herramientas Destacadas</h3>
+            <div class="grid-2" style="margin-top: 2rem;">
+                <div class="card-white">
+                    <h4 style="color: #2c3e50;">🎯 Calculadora de Perfil de Riesgo</h4>
+                    <p>Descubre tu tolerancia al riesgo con 10 preguntas especializadas y recibe recomendaciones personalizadas.</p>
+                    <a href="herramientas/calculadora-perfil-riesgo.html" class="btn primary">Evaluar Perfil</a>
+                </div>
+                
+                <div class="card-white">
+                    <h4 style="color: #2c3e50;">📊 Calculadora de Rentabilidad</h4>
+                    <p>Simula el crecimiento de tus inversiones con interés compuesto y planifica tu futuro financiero.</p>
+                    <a href="herramientas/calculadora-intereses-compuesto.html" class="btn primary">Calcular Rentabilidad</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principios Clave -->
+        <div class="card">
+            <h3>💡 Principios Fundamentales para el Éxito</h3>
+            <div class="grid-2" style="margin-top: 2rem;">
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #27ae60;">
+                    <h4 style="color: #27ae60; margin-bottom: 0.5rem;">🕰️ Tiempo en el Mercado</h4>
+                    <p style="margin: 0; color: #495057;">Más importante que timing del mercado. La paciencia y consistencia son claves del éxito.</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <h4 style="color: #3498db; margin-bottom: 0.5rem;">🌐 Diversificación</h4>
+                    <p style="margin: 0; color: #495057;">No pongas todos los huevos en la misma canasta. Distribuye el riesgo inteligentemente.</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #f39c12;">
+                    <h4 style="color: #f39c12; margin-bottom: 0.5rem;">📈 Invierte Regularmente</h4>
+                    <p style="margin: 0; color: #495057;">Dollar Cost Averaging: invierte cantidades fijas periódicamente sin importar el precio.</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                    <h4 style="color: #e74c3c; margin-bottom: 0.5rem;">🧠 Controla las Emociones</h4>
+                    <p style="margin: 0; color: #495057;">El miedo y la codicia son los enemigos del inversor. Mantén la disciplina.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>meskeIA - Decisiones de Inversión</h4>
+                <p>Tu guía completa para dominar el mundo de las inversiones con conocimientos profesionales y herramientas avanzadas.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="guia/conceptos-basicos.html">Guía de Inversión</a></li>
+                    <li class="dropdown">
+                    <a href="herramientas/herramientas.html">Herramientas</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+                        <li><a href="herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+                        <li><a href="herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+                    </ul>
+                </li>
+                    <li><a href="recursos/glosario.html">Glosario</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Herramientas</h4>
+                <ul>
+                    <li><a href="herramientas/calculadora-perfil-riesgo.html">Perfil de Riesgo</a></li>
+                    <li><a href="herramientas/calculadora-intereses-compuesto.html">Rentabilidad</a></li>
+                    <li><a href="herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 meskeIA. Decisiones de Inversión. | Última actualización: <span id="lastUpdate"></span></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Actualizar fecha de última modificación automáticamente
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // Animación del logo
+        const logoIcon = document.querySelector('.logo-icon');
+        if (logoIcon) {
+            logoIcon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            logoIcon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        }
+
+        // Detección adicional de dispositivos móviles
+        function isMobileDevice() {
+            // Detectar por user agent
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+            
+            // Detectar por características del dispositivo
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth <= 768;
+            
+            return (mobileRegex.test(userAgent.toLowerCase()) || (isTouchDevice && isSmallScreen));
+        }
+
+        // Mostrar overlay si es móvil
+        if (isMobileDevice()) {
+            const overlay = document.getElementById('mobileWarning');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>

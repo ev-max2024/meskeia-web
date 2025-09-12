@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Allocation - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="asset-allocation.html" class="active">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="asset-allocation.html" class="active">Asset Allocation</a></li>
+                        <li><a href="gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="../herramientas/herramientas.html">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="../herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="../herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="../herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>⚖️ Asset Allocation</h1>
+            <p>Cómo distribuir tu dinero entre diferentes tipos de inversiones</p>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="aspectos-fiscales.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Aspectos Fiscales</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">5 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="gestion-riesgo.html" class="course-nav-btn next">
+                <span>Gestión de Riesgo</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- ¿Qué es Asset Allocation? -->
+        <section id="que-es">
+            <div class="card">
+                <h2>🎯 ¿Qué es Asset Allocation?</h2>
+                
+                <div class="highlight-box info">
+                    <h4>💡 Concepto Clave</h4>
+                    <p><strong>Asset Allocation</strong> es decidir qué porcentaje de tu dinero pones en cada tipo de inversión: acciones, bonos, inmuebles, etc.</p>
+                </div>
+                
+                <h3>🧩 Los Bloques Principales</h3>
+                <div class="grid-2">
+                    <div class="strategy-card passive">
+                        <div class="strategy-icon">📈</div>
+                        <h4>Acciones (Stocks)</h4>
+                        <p><strong>Objetivo:</strong> Crecimiento a largo plazo</p>
+                        <ul>
+                            <li><strong>Rentabilidad:</strong> Alta (~10% histórico)</li>
+                            <li><strong>Riesgo:</strong> Alto (volatilidad)</li>
+                            <li><strong>Horizonte:</strong> +5 años</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card active">
+                        <div class="strategy-icon">🏛️</div>
+                        <h4>Bonos (Bonds)</h4>
+                        <p><strong>Objetivo:</strong> Estabilidad y renta</p>
+                        <ul>
+                            <li><strong>Rentabilidad:</strong> Moderada (~4%)</li>
+                            <li><strong>Riesgo:</strong> Bajo</li>
+                            <li><strong>Horizonte:</strong> Cualquiera</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight-box warning">
+                    <h4>⚖️ El Equilibrio Es Clave</h4>
+                    <p>No es "acciones vs bonos", sino <strong>cuánto de cada uno</strong> según tu edad, objetivos y tolerancia al riesgo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estrategias Simples -->
+        <section id="estrategias-simples">
+            <div class="card">
+                <h2>📊 3 Estrategias Simples</h2>
+                
+                <div class="age-timeline">
+                    <div class="age-stage young">
+                        <div class="age-range">Joven (20-35 años)</div>
+                        <div class="stage-title">🚀 Crecimiento Agresivo</div>
+                        
+                        <div class="risk-allocation">
+                            <div class="allocation-bar">
+                                <div class="allocation-segment stocks" style="flex: 9">
+                                    90% Acciones
+                                </div>
+                                <div class="allocation-segment bonds" style="flex: 1">
+                                    10% Bonos
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-strategy">
+                            <p><strong>Lógica:</strong> Tienes tiempo para recuperarte de caídas del mercado</p>
+                            <p><strong>Ejemplo:</strong> ETF mundial (90%) + Bonos gobierno (10%)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="age-stage middle">
+                        <div class="age-range">Adulto (35-55 años)</div>
+                        <div class="stage-title">⚖️ Equilibrio</div>
+                        
+                        <div class="risk-allocation">
+                            <div class="allocation-bar">
+                                <div class="allocation-segment stocks" style="flex: 7">
+                                    70% Acciones
+                                </div>
+                                <div class="allocation-segment bonds" style="flex: 3">
+                                    30% Bonos
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-strategy">
+                            <p><strong>Lógica:</strong> Buscas crecimiento pero con menos volatilidad</p>
+                            <p><strong>Ejemplo:</strong> ETF mundial (70%) + Bonos mixtos (30%)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="age-stage retirement">
+                        <div class="age-range">Pre-jubilación (55+ años)</div>
+                        <div class="stage-title">🛡️ Conservador</div>
+                        
+                        <div class="risk-allocation">
+                            <div class="allocation-bar">
+                                <div class="allocation-segment stocks" style="flex: 4">
+                                    40% Acciones
+                                </div>
+                                <div class="allocation-segment bonds" style="flex: 6">
+                                    60% Bonos
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-strategy">
+                            <p><strong>Lógica:</strong> Preservar capital y generar renta</p>
+                            <p><strong>Ejemplo:</strong> ETF dividendos (40%) + Bonos calidad (60%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reglas Prácticas -->
+        <section id="reglas-practicas">
+            <div class="card">
+                <h2>🎯 Reglas Prácticas</h2>
+                
+                <div class="rules-cards">
+                    <div class="rule-card">
+                        <h4>📏 Regla del 100</h4>
+                        <p><strong>Fórmula:</strong> % Acciones = 100 - Tu Edad</p>
+                        <div class="rule-example">
+                            <strong>Ejemplo:</strong> Si tienes 30 años → 70% acciones, 30% bonos
+                        </div>
+                    </div>
+                    
+                    <div class="rule-card">
+                        <h4>🔄 Regla del Rebalanceo</h4>
+                        <p><strong>Cuándo:</strong> Cada 12 meses o desviación >5%</p>
+                        <div class="rule-example">
+                            <strong>Ejemplo:</strong> Si tu objetivo es 70/30 y estás 76/24 → Rebalancea
+                        </div>
+                    </div>
+                    
+                    <div class="rule-card">
+                        <h4>💰 Regla de Simplicidad</h4>
+                        <p><strong>Para principiantes:</strong> Solo 2-3 productos</p>
+                        <div class="rule-example">
+                            <strong>Ejemplo:</strong> ETF Mundial + ETF Bonos. ¡Ya está!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplo Práctico -->
+        <section id="ejemplo-practico">
+            <div class="card">
+                <h2>💼 Ejemplo: Cartera de 10.000€</h2>
+                
+                <div class="case-study conservative">
+                    <div class="case-header">
+                        <div class="case-icon">👤</div>
+                        <div class="case-info">
+                            <h3>María, 35 años</h3>
+                            <p class="case-subtitle">Primera vez invirtiendo, horizonte 20 años</p>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="profile-overview">
+                            <h4>📊 Asset Allocation Recomendado: 70/30</h4>
+                            
+                            <div class="allocation-example">
+                                <div class="allocation-item">
+                                    <div class="allocation-bar">
+                                        <div class="allocation-segment stocks" style="flex: 7">
+                                            7.000€ Acciones
+                                        </div>
+                                    </div>
+                                    <p><strong>Producto:</strong> ETF IWDA (iShares Core MSCI World)</p>
+                                    <p><strong>Justificación:</strong> Diversificación mundial, bajas comisiones</p>
+                                </div>
+                                
+                                <div class="allocation-item">
+                                    <div class="allocation-bar">
+                                        <div class="allocation-segment bonds" style="flex: 3">
+                                            3.000€ Bonos
+                                        </div>
+                                    </div>
+                                    <p><strong>Producto:</strong> ETF IEAG (iShares Core Euro Government Bond)</p>
+                                    <p><strong>Justificación:</strong> Estabilidad, cobertura de volatilidad</p>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-box">
+                                <h4>🔄 Plan de Mantenimiento</h4>
+                                <ul>
+                                    <li><strong>Aportaciones:</strong> 300€/mes con DCA</li>
+                                    <li><strong>Rebalanceo:</strong> Anual en enero</li>
+                                    <li><strong>Revisión:</strong> A los 45 años (cambiar a 60/40)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Errores Comunes -->
+        <section id="errores-comunes">
+            <div class="card">
+                <h2>⚠️ Errores Comunes</h2>
+                
+                <div class="emotions-grid">
+                    <div class="emotion-card fear">
+                        <div class="emotion-icon">😰</div>
+                        <h4>"Solo Bonos es Más Seguro"</h4>
+                        <div class="emotion-antidote">
+                            <strong>Realidad:</strong>
+                            <p>Con inflación del 3% y bonos al 2%, pierdes poder adquisitivo. Las acciones protegen mejor contra inflación a largo plazo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="emotion-card greed">
+                        <div class="emotion-icon">🎰</div>
+                        <h4>"100% Acciones Siempre"</h4>
+                        <div class="emotion-antidote">
+                            <strong>Realidad:</strong>
+                            <p>En crisis como 2008, las acciones cayeron 50%. Los bonos proporcionan estabilidad y liquidez para oportunidades.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="emotion-card overconfidence">
+                        <div class="emotion-icon">🔄</div>
+                        <h4>"Cambiar Constantemente"</h4>
+                        <div class="emotion-antidote">
+                            <strong>Realidad:</strong>
+                            <p>Cada cambio genera costos y riesgo de timing. Una buena asignación se mantiene años con ajustes menores.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Herramientas -->
+        <section id="herramientas">
+            <div class="card">
+                <h2>🛠️ Herramientas Útiles</h2>
+                
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h4>📊 Calculadora de Perfil</h4>
+                        <p>Determina tu asignación óptima según tu situación</p>
+                        <a href="../herramientas/calculadora-perfil-riesgo.html" class="btn primary">Usar Calculadora</a>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>💼 Simulador de Cartera</h4>
+                        <p>Simula diferentes asignaciones y ve resultados históricos</p>
+                        <a href="../herramientas/simulador-cartera.html" class="btn primary">Simular</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="aspectos-fiscales.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Aspectos Fiscales</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">5 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="gestion-riesgo.html" class="course-nav-btn next">
+                <span>Gestión de Riesgo</span>
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

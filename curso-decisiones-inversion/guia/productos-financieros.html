@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Financieros - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+    <style>
+        /* Estilos específicos para productos financieros */
+        .product-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card.stocks { border-color: #3498db; }
+        .product-card.bonds { border-color: #27ae60; }
+        .product-card.etfs { border-color: #e74c3c; }
+        .product-card.mutual-funds { border-color: #f39c12; }
+        .product-card.reits { border-color: #9b59b6; }
+        .product-card.commodities { border-color: #e67e22; }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-icon {
+            font-size: 2.5rem;
+        }
+        
+        .product-title h3 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+        }
+        
+        .product-subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .risk-low { background: #d4edda; color: #155724; }
+        .risk-medium { background: #fff3cd; color: #856404; }
+        .risk-high { background: #f8d7da; color: #721c24; }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .pros, .cons {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .pros { border-left: 4px solid #27ae60; }
+        .cons { border-left: 4px solid #e74c3c; }
+        
+        .pros h5, .cons h5 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+        }
+        
+        .pros ul, .cons ul {
+            margin: 0;
+            padding-left: 1rem;
+        }
+        
+        .pros li, .cons li {
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .comparison-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .rating {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .rating.low { background: #d4edda; color: #155724; }
+        .rating.medium { background: #fff3cd; color: #856404; }
+        .rating.high { background: #f8d7da; color: #721c24; }
+        
+        .investment-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .process-step {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 4px solid #3498db;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: "→";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .product-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .investment-process {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step::after {
+                content: "↓";
+                right: 50%;
+                transform: translateX(50%);
+                bottom: -15px;
+                top: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="productos-financieros.html" class="active">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="../herramientas/herramientas.html">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="../herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="../herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="../herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📈 Productos Financieros</h1>
+            <p>Conoce los instrumentos de inversión disponibles y cómo funcionan</p>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="conceptos-basicos.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Conceptos Básicos</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">2 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="estrategias-inversion.html" class="course-nav-btn next">
+                <span>Estrategias</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- Índice de contenido -->
+        <div class="card">
+            <h3>📋 En esta sección aprenderás</h3>
+            <div class="grid-2">
+                <div>
+                    <a href="#acciones" class="custom-list-item">📈 Acciones</a>
+                    <a href="#bonos" class="custom-list-item">📊 Bonos</a>
+                    <a href="#fondos-etfs" class="custom-list-item">📦 Fondos y ETFs</a>
+                </div>
+                <div>
+                    <a href="#otros-productos" class="custom-list-item">🎯 Otros Productos</a>
+                    <a href="#comparacion" class="custom-list-item">⚖️ Comparación</a>
+                    <a href="#como-elegir" class="custom-list-item">🎲 Cómo Elegir</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introducción -->
+        <section id="introduccion">
+            <div class="card">
+                <h2>🌟 Panorama de Productos de Inversión</h2>
+                <p>Los <strong>productos financieros</strong> son instrumentos que nos permiten invertir nuestro dinero con diferentes niveles de riesgo y rentabilidad esperada. Cada producto tiene características únicas que lo hacen más apropiado para ciertos objetivos y perfiles de inversor.</p>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Principio clave:</strong> No existe el producto "perfecto". La clave está en construir una cartera diversificada que combine diferentes productos según tus objetivos, horizonte temporal y tolerancia al riesgo.
+                </div>
+            </div>
+        </section>
+
+        <!-- Acciones -->
+        <section id="acciones">
+            <div class="card">
+                <h2>📈 Acciones: Conviértete en Propietario</h2>
+                <p>Las <strong>acciones</strong> representan participaciones en la propiedad de una empresa. Al comprar acciones, te conviertes en accionista y tienes derecho a una parte de los beneficios y activos de la empresa.</p>
+
+                <div class="product-showcase">
+                    <div class="product-card stocks">
+                        <div class="product-header">
+                            <div class="product-icon">📈</div>
+                            <div class="product-title">
+                                <h3>Acciones de Crecimiento (Growth)</h3>
+                                <p class="product-subtitle">Empresas con alto potencial de crecimiento</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-high">Riesgo: Alto</div>
+                        
+                        <p><strong>¿Qué son?</strong> Acciones de empresas que se espera crezcan más rápido que el mercado en general.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Alto potencial de revalorización</li>
+                                    <li>Participación en el crecimiento</li>
+                                    <li>Liquidez alta</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Alta volatilidad</li>
+                                    <li>Pocos o ningún dividendo</li>
+                                    <li>Riesgo de sobrevaloración</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>💼 Ejemplos:</strong> Tesla, Amazon, empresas tecnológicas emergentes</p>
+                        <p><strong>🎯 Ideal para:</strong> Inversores jóvenes con horizonte largo y alta tolerancia al riesgo</p>
+                    </div>
+
+                    <div class="product-card stocks">
+                        <div class="product-header">
+                            <div class="product-icon">💎</div>
+                            <div class="product-title">
+                                <h3>Acciones de Valor (Value)</h3>
+                                <p class="product-subtitle">Empresas consolidadas infravaloradas</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Medio</div>
+                        
+                        <p><strong>¿Qué son?</strong> Acciones de empresas sólidas que cotizan por debajo de su valor intrínseco.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Dividendos estables</li>
+                                    <li>Menor volatilidad</li>
+                                    <li>Empresas consolidadas</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Crecimiento más lento</li>
+                                    <li>Pueden ser "trampas de valor"</li>
+                                    <li>Menos emocionante</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>💼 Ejemplos:</strong> Coca-Cola, Johnson & Johnson, bancos tradicionales</p>
+                        <p><strong>🎯 Ideal para:</strong> Inversores que buscan ingresos regulares y estabilidad</p>
+                    </div>
+
+                    <div class="product-card stocks">
+                        <div class="product-header">
+                            <div class="product-icon">💰</div>
+                            <div class="product-title">
+                                <h3>Acciones de Dividendos</h3>
+                                <p class="product-subtitle">Empresas que reparten beneficios regularmente</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Medio</div>
+                        
+                        <p><strong>¿Qué son?</strong> Acciones de empresas con historial sólido de reparto de dividendos.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Ingresos pasivos regulares</li>
+                                    <li>Empresas maduras y estables</li>
+                                    <li>Menor volatilidad</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Crecimiento limitado</li>
+                                    <li>Dividendos pueden reducirse</li>
+                                    <li>Implicaciones fiscales</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>💼 Ejemplos:</strong> Utilities, REITs, empresas de consumo básico</p>
+                        <p><strong>🎯 Ideal para:</strong> Inversores que buscan ingresos complementarios</p>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Recuerda:</strong> Las acciones individuales concentran el riesgo en una sola empresa. La diversificación es fundamental.
+                </div>
+            </div>
+        </section>
+
+        <!-- Bonos -->
+        <section id="bonos">
+            <div class="card">
+                <h2>📊 Bonos: Presta tu Dinero</h2>
+                <p>Los <strong>bonos</strong> son instrumentos de deuda donde prestas dinero a una entidad (empresa o gobierno) a cambio de pagos de intereses regulares y la devolución del capital al vencimiento.</p>
+
+                <div class="investment-process">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Emisión</h4>
+                        <p>La entidad emite bonos para obtener financiación</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Compra</h4>
+                        <p>Compras el bono, prestando dinero al emisor</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Cupones</h4>
+                        <p>Recibes pagos de intereses periódicos</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Vencimiento</h4>
+                        <p>Recuperas el capital invertido</p>
+                    </div>
+                </div>
+
+                <div class="product-showcase">
+                    <div class="product-card bonds">
+                        <div class="product-header">
+                            <div class="product-icon">🏛️</div>
+                            <div class="product-title">
+                                <h3>Bonos del Estado</h3>
+                                <p class="product-subtitle">Deuda gubernamental</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-low">Riesgo: Bajo</div>
+                        
+                        <p><strong>¿Qué son?</strong> Deuda emitida por gobiernos para financiar sus actividades.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Muy bajo riesgo de impago</li>
+                                    <li>Ingresos predecibles</li>
+                                    <li>Alta liquidez</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Rentabilidad baja</li>
+                                    <li>Riesgo de inflación</li>
+                                    <li>Riesgo de tipos de interés</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>🎯 Ideal para:</strong> Preservación de capital y estabilidad</p>
+                    </div>
+
+                    <div class="product-card bonds">
+                        <div class="product-header">
+                            <div class="product-icon">🏢</div>
+                            <div class="product-title">
+                                <h3>Bonos Corporativos</h3>
+                                <p class="product-subtitle">Deuda empresarial</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Medio</div>
+                        
+                        <p><strong>¿Qué son?</strong> Deuda emitida por empresas para financiar sus operaciones.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Mayor rentabilidad que bonos del Estado</li>
+                                    <li>Diversidad de emisores</li>
+                                    <li>Diferentes grados de riesgo</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Riesgo de crédito</li>
+                                    <li>Menor liquidez</li>
+                                    <li>Análisis más complejo</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>🎯 Ideal para:</strong> Balance entre riesgo y rentabilidad</p>
+                    </div>
+
+                    <div class="product-card bonds">
+                        <div class="product-header">
+                            <div class="product-icon">🌍</div>
+                            <div class="product-title">
+                                <h3>Bonos Internacionales</h3>
+                                <p class="product-subtitle">Diversificación geográfica</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Medio-Alto</div>
+                        
+                        <p><strong>¿Qué son?</strong> Bonos emitidos en diferentes países y monedas.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Diversificación geográfica</li>
+                                    <li>Exposición a diferentes monedas</li>
+                                    <li>Oportunidades en mercados emergentes</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Riesgo de divisa</li>
+                                    <li>Riesgo político</li>
+                                    <li>Mayor complejidad</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>🎯 Ideal para:</strong> Diversificación avanzada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fondos y ETFs -->
+        <section id="fondos-etfs">
+            <div class="card">
+                <h2>📦 Fondos y ETFs: Diversificación Instantánea</h2>
+                <p>Los fondos de inversión y ETFs te permiten invertir en una cesta diversificada de activos con una sola compra.</p>
+
+                <div class="product-showcase">
+                    <div class="product-card etfs">
+                        <div class="product-header">
+                            <div class="product-icon">📦</div>
+                            <div class="product-title">
+                                <h3>ETFs (Exchange Traded Funds)</h3>
+                                <p class="product-subtitle">Fondos cotizados en bolsa</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Variable</div>
+                        
+                        <p><strong>¿Qué son?</strong> Fondos que replican índices y se negocian como acciones en bolsa.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Diversificación instantánea</li>
+                                    <li>Comisiones muy bajas</li>
+                                    <li>Alta liquidez</li>
+                                    <li>Transparencia total</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>No superan al mercado</li>
+                                    <li>Sin gestión activa</li>
+                                    <li>Comisiones de corretaje</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>💼 Ejemplos:</strong> SPDR S&P 500, Vanguard Total Stock Market</p>
+                        <p><strong>🎯 Ideal para:</strong> Inversores que buscan diversificación eficiente</p>
+                    </div>
+
+                    <div class="product-card mutual-funds">
+                        <div class="product-header">
+                            <div class="product-icon">🏦</div>
+                            <div class="product-title">
+                                <h3>Fondos de Inversión</h3>
+                                <p class="product-subtitle">Gestión profesional</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Variable</div>
+                        
+                        <p><strong>¿Qué son?</strong> Vehículos de inversión colectiva gestionados por profesionales.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Gestión profesional</li>
+                                    <li>Diversificación automática</li>
+                                    <li>Acceso a mercados especializados</li>
+                                    <li>Reinversión de dividendos</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Comisiones más altas</li>
+                                    <li>Menos liquidez</li>
+                                    <li>Dependencia del gestor</li>
+                                    <li>Posible underperformance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>🎯 Ideal para:</strong> Inversores que prefieren delegar la gestión</p>
+                    </div>
+
+                    <div class="product-card etfs">
+                        <div class="product-header">
+                            <div class="product-icon">🎯</div>
+                            <div class="product-title">
+                                <h3>Fondos Indexados</h3>
+                                <p class="product-subtitle">Replicación de índices</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Variable</div>
+                        
+                        <p><strong>¿Qué son?</strong> Fondos que replican la composición de un índice de mercado.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Comisiones muy bajas</li>
+                                    <li>Diversificación amplia</li>
+                                    <li>Rendimiento del mercado</li>
+                                    <li>Sin riesgo de gestor</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Rendimiento promedio</li>
+                                    <li>Sin protección en bajadas</li>
+                                    <li>Exposición a sectores sobrevalorados</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>🎯 Ideal para:</strong> Estrategias de inversión pasiva a largo plazo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Otros Productos -->
+        <section id="otros-productos">
+            <div class="card">
+                <h2>🎯 Otros Productos de Inversión</h2>
+                <p>Existen otros productos que pueden complementar tu cartera y ofrecer exposición a diferentes sectores o estrategias.</p>
+
+                <div class="product-showcase">
+                    <div class="product-card reits">
+                        <div class="product-header">
+                            <div class="product-icon">🏠</div>
+                            <div class="product-title">
+                                <h3>REITs</h3>
+                                <p class="product-subtitle">Real Estate Investment Trusts</p>
+                            </div>
+                        </div>
+                        <div class="risk-level risk-medium">Riesgo: Medio</div>
+                        
+                        <p><strong>¿Qué son?</strong> Empresas que poseen y gestionan propiedades inmobiliarias generadoras de renta.</p>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h5>✅ Ventajas</h5>
+                                <ul>
+                                    <li>Exposición inmobiliaria sin comprar propiedades</li>
+                                    <li>Dividendos atractivos</li>
+                                    <li>Liquidez alta</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h5>❌ Desventajas</h5>
+                                <ul>
+                                    <li>Sensibles a tipos de interés</li>
+                                    <li>Concentración sectorial</li>
+                                    <li>Volatilidad</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>🎯 Ideal para:</strong> Diversificar hacia sector inmobiliario y obtener ingresos</p>
+                   </div>
+
+                   <div class="product-card commodities">
+                       <div class="product-header">
+                           <div class="product-icon">🥇</div>
+                           <div class="product-title">
+                               <h3>Materias Primas</h3>
+                               <p class="product-subtitle">Commodities y metales preciosos</p>
+                           </div>
+                       </div>
+                       <div class="risk-level risk-high">Riesgo: Alto</div>
+                       
+                       <p><strong>¿Qué son?</strong> Inversiones en oro, petróleo, productos agrícolas, metales industriales.</p>
+                       
+                       <div class="pros-cons">
+                           <div class="pros">
+                               <h5>✅ Ventajas</h5>
+                               <ul>
+                                   <li>Protección contra inflación</li>
+                                   <li>Diversificación de activos</li>
+                                   <li>Baja correlación con acciones</li>
+                                   <li>Activos tangibles</li>
+                               </ul>
+                           </div>
+                           <div class="cons">
+                               <h5>❌ Desventajas</h5>
+                               <ul>
+                                   <li>Alta volatilidad</li>
+                                   <li>No generan ingresos</li>
+                                   <li>Costes de almacenamiento</li>
+                                   <li>Ciclos impredecibles</li>
+                               </ul>
+                           </div>
+                       </div>
+                       
+                       <p><strong>🎯 Ideal para:</strong> Cobertura contra inflación y diversificación avanzada</p>
+                   </div>
+
+                   <div class="product-card mutual-funds">
+                       <div class="product-header">
+                           <div class="product-icon">🌍</div>
+                           <div class="product-title">
+                               <h3>Fondos Temáticos</h3>
+                               <p class="product-subtitle">Sectores y tendencias específicas</p>
+                           </div>
+                       </div>
+                       <div class="risk-level risk-high">Riesgo: Alto</div>
+                       
+                       <p><strong>¿Qué son?</strong> Fondos que invierten en sectores específicos o tendencias globales.</p>
+                       
+                       <div class="pros-cons">
+                           <div class="pros">
+                               <h5>✅ Ventajas</h5>
+                               <ul>
+                                   <li>Exposición a tendencias emergentes</li>
+                                   <li>Potencial de crecimiento alto</li>
+                                   <li>Diversificación dentro del sector</li>
+                               </ul>
+                           </div>
+                           <div class="cons">
+                               <h5>❌ Desventajas</h5>
+                               <ul>
+                                   <li>Alta concentración sectorial</li>
+                                   <li>Riesgo de burbuja</li>
+                                   <li>Comisiones altas</li>
+                                   <li>Alta volatilidad</li>
+                               </ul>
+                           </div>
+                       </div>
+                       
+                       <p><strong>💼 Ejemplos:</strong> Tecnología, energías renovables, inteligencia artificial</p>
+                       <p><strong>🎯 Ideal para:</strong> Inversores especializados con alta tolerancia al riesgo</p>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <!-- Comparación de Productos -->
+       <section id="comparacion">
+           <div class="card">
+               <h2>⚖️ Tabla Comparativa de Productos</h2>
+               <p>Compara las características principales de cada tipo de producto de inversión:</p>
+
+               <div style="overflow-x: auto;">
+                   <table class="comparison-table">
+                       <thead>
+                           <tr>
+                               <th>Producto</th>
+                               <th>Riesgo</th>
+                               <th>Rentabilidad Esperada</th>
+                               <th>Liquidez</th>
+                               <th>Diversificación</th>
+                               <th>Comisiones</th>
+                               <th>Complejidad</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td><strong>Acciones Growth</strong></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>Acciones Value</strong></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>Bonos del Estado</strong></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>Bonos Corporativos</strong></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>ETFs</strong></td>
+                               <td><span class="rating medium">Variable</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating low">Muy Baja</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>Fondos de Inversión</strong></td>
+                               <td><span class="rating medium">Variable</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>REITs</strong></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                           </tr>
+                           <tr>
+                               <td><strong>Materias Primas</strong></td>
+                               <td><span class="rating high">Alta</span></td>
+                               <td><span class="rating medium">Variable</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating low">Baja</span></td>
+                               <td><span class="rating medium">Media</span></td>
+                               <td><span class="rating high">Alta</span></td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </section>
+
+       <!-- Cómo Elegir -->
+       <section id="como-elegir">
+           <div class="card">
+               <h2>🎲 Cómo Elegir el Producto Adecuado</h2>
+               <p>La elección del producto financiero adecuado depende de varios factores personales y objetivos de inversión.</p>
+
+               <div class="decision-framework">
+                   <h3>🎯 Marco de Decisión</h3>
+                   
+                   <div class="decision-factors">
+                       <div class="factor-card">
+                           <h4>👤 Perfil de Riesgo</h4>
+                           <div class="factor-content">
+                               <p><strong>Conservador:</strong> Bonos del Estado, fondos de renta fija</p>
+                               <p><strong>Moderado:</strong> ETFs diversificados, acciones de dividendos</p>
+                               <p><strong>Agresivo:</strong> Acciones de crecimiento, sectores emergentes</p>
+                           </div>
+                       </div>
+
+                       <div class="factor-card">
+                           <h4>⏰ Horizonte Temporal</h4>
+                           <div class="factor-content">
+                               <p><strong>Corto plazo (&lt;3 años):</strong> Bonos, fondos monetarios</p>
+                               <p><strong>Medio plazo (3-10 años):</strong> ETFs mixtos, acciones estables</p>
+                               <p><strong>Largo plazo (&gt;10 años):</strong> Acciones de crecimiento, fondos de renta variable</p>
+                           </div>
+                       </div>
+
+                       <div class="factor-card">
+                           <h4>🎯 Objetivos</h4>
+                           <div class="factor-content">
+                               <p><strong>Preservar Capital:</strong> Bonos del Estado, fondos conservadores</p>
+                               <p><strong>Generar Ingresos:</strong> Acciones de dividendos, REITs</p>
+                               <p><strong>Crecimiento:</strong> Acciones growth, ETFs de mercados emergentes</p>
+                           </div>
+                       </div>
+
+                       <div class="factor-card">
+                           <h4>💰 Capital Disponible</h4>
+                           <div class="factor-content">
+                               <p><strong>Pequeño (&lt;€10k):</strong> ETFs, fondos indexados</p>
+                               <p><strong>Medio (€10k-€100k):</strong> Cartera mixta diversificada</p>
+                               <p><strong>Grande (&gt;€100k):</strong> Acciones individuales, productos sofisticados</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="recommendation-engine">
+                   <h3>🔍 Recomendaciones por Situación</h3>
+                   
+                   <div class="situation-cards">
+                       <div class="situation-card">
+                           <h4>👨‍🎓 Joven Inversor (20-30 años)</h4>
+                           <p><strong>Perfil:</strong> Alto horizonte temporal, puede permitirse riesgo</p>
+                           <p><strong>Recomendación:</strong></p>
+                           <ul>
+                               <li>70% ETFs de acciones globales</li>
+                               <li>20% ETFs de mercados emergentes</li>
+                               <li>10% Bonos o efectivo</li>
+                           </ul>
+                       </div>
+
+                       <div class="situation-card">
+                           <h4>👨‍💼 Inversor Maduro (40-50 años)</h4>
+                           <p><strong>Perfil:</strong> Equilibrio entre crecimiento y estabilidad</p>
+                           <p><strong>Recomendación:</strong></p>
+                           <ul>
+                               <li>50% ETFs de acciones</li>
+                               <li>30% Bonos corporativos</li>
+                               <li>10% REITs</li>
+                               <li>10% Efectivo/bonos del Estado</li>
+                           </ul>
+                       </div>
+
+                       <div class="situation-card">
+                           <h4>👴 Pre-jubilación (55+ años)</h4>
+                           <p><strong>Perfil:</strong> Preservación de capital e ingresos</p>
+                           <p><strong>Recomendación:</strong></p>
+                           <ul>
+                               <li>30% Acciones de dividendos</li>
+                               <li>50% Bonos de calidad</li>
+                               <li>10% REITs</li>
+                               <li>10% Efectivo</li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="alert alert-success">
+                   <strong>💡 Consejo Clave:</strong> No pongas todos los huevos en la misma cesta. La diversificación es tu mejor amigo para reducir el riesgo sin sacrificar demasiado rendimiento.
+               </div>
+           </div>
+       </section>
+
+       <!-- Siguientes Pasos -->
+       <section id="siguientes-pasos">
+           <div class="card">
+               <h2>➡️ Siguientes Pasos</h2>
+               <p>Ahora que conoces los principales productos financieros, es hora de aprender cómo combinarlos en una estrategia coherente.</p>
+
+               <div class="next-steps">
+                   <div class="next-step-card">
+                       <h4>🎯 Estrategias de Inversión</h4>
+                       <p>Aprende cómo combinar diferentes productos en estrategias efectivas</p>
+                       <a href="estrategias-inversion.html" class="btn primary">Continuar Aprendiendo</a>
+                   </div>
+
+                   <div class="next-step-card">
+                       <h4>🧮 Evalúa tu Perfil</h4>
+                       <p>Descubre qué productos se adaptan mejor a tu situación personal</p>
+                       <a href="../herramientas/calculadora-perfil-riesgo.html" class="btn secondary">Hacer Test</a>
+                   </div>
+               </div>
+
+               <div class="key-takeaways">
+                   <h3>🔑 Puntos Clave para Recordar</h3>
+                   <div class="takeaway-grid">
+                       <div class="takeaway-item">
+                           <div class="takeaway-icon">🎯</div>
+                           <div class="takeaway-text">
+                               <h5>No existe el producto perfecto</h5>
+                               <p>Cada producto tiene ventajas y desventajas específicas</p>
+                           </div>
+                       </div>
+                       
+                       <div class="takeaway-item">
+                           <div class="takeaway-icon">🔄</div>
+                           <div class="takeaway-text">
+                               <h5>La diversificación es clave</h5>
+                               <p>Combina diferentes productos para reducir el riesgo</p>
+                           </div>
+                       </div>
+                       
+                       <div class="takeaway-item">
+                           <div class="takeaway-icon">💰</div>
+                           <div class="takeaway-text">
+                               <h5>Considera los costes</h5>
+                               <p>Las comisiones altas pueden erosionar tus rendimientos</p>
+                           </div>
+                       </div>
+                       
+                       <div class="takeaway-item">
+                           <div class="takeaway-icon">⏰</div>
+                           <div class="takeaway-text">
+                               <h5>Piensa a largo plazo</h5>
+                               <p>Los mejores resultados se obtienen con paciencia y disciplina</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <!-- Navegación Universal del Curso -->
+       <div class="course-navigation">
+           <a href="conceptos-basicos.html" class="course-nav-btn prev">
+               <span>←</span>
+               <span>Conceptos Básicos</span>
+           </a>
+           <div class="course-nav-center">
+               <div class="course-progress">2 de 10</div>
+               <div>Progreso del Curso</div>
+           </div>
+           <a href="estrategias-inversion.html" class="course-nav-btn next">
+               <span>Estrategias</span>
+               <span>→</span>
+           </a>
+       </div>
+   </div>
+
+   <script src="../js/main.js"></script>
+   <style>
+       /* Estilos adicionales para la sección de decisiones */
+       .decision-factors {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+           gap: 1.5rem;
+           margin: 2rem 0;
+       }
+       
+       .factor-card {
+           background: #f8f9fa;
+           padding: 1.5rem;
+           border-radius: 10px;
+           border-left: 4px solid #3498db;
+       }
+       
+       .factor-card h4 {
+           color: #2c3e50;
+           margin-bottom: 1rem;
+       }
+       
+       .factor-content p {
+           margin-bottom: 0.5rem;
+           font-size: 0.9rem;
+       }
+       
+       .situation-cards {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+           gap: 2rem;
+           margin: 2rem 0;
+       }
+       
+       .situation-card {
+           background: white;
+           padding: 2rem;
+           border-radius: 12px;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           border-top: 4px solid #27ae60;
+       }
+       
+       .situation-card h4 {
+           color: #2c3e50;
+           margin-bottom: 0.5rem;
+       }
+       
+       .situation-card ul {
+           margin-top: 1rem;
+           padding-left: 1rem;
+       }
+       
+       .situation-card li {
+           margin-bottom: 0.25rem;
+           font-size: 0.9rem;
+       }
+       
+       .next-steps {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+           gap: 2rem;
+           margin: 2rem 0;
+       }
+       
+       .next-step-card {
+           background: #f8f9fa;
+           padding: 2rem;
+           border-radius: 12px;
+           text-align: center;
+           border-top: 4px solid #3498db;
+       }
+       
+       .next-step-card h4 {
+           color: #2c3e50;
+           margin-bottom: 1rem;
+       }
+       
+       .takeaway-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+           gap: 1.5rem;
+           margin: 2rem 0;
+       }
+       
+       .takeaway-item {
+           display: flex;
+           align-items: center;
+           gap: 1rem;
+           background: #e8f5e8;
+           padding: 1.5rem;
+           border-radius: 10px;
+           border-left: 4px solid #27ae60;
+       }
+       
+       .takeaway-icon {
+           font-size: 2rem;
+           flex-shrink: 0;
+       }
+       
+       .takeaway-text h5 {
+           margin: 0 0 0.5rem 0;
+           color: #2c3e50;
+       }
+       
+       .takeaway-text p {
+           margin: 0;
+           font-size: 0.9rem;
+           color: #495057;
+       }
+       
+       @media (max-width: 768px) {
+           .decision-factors {
+               grid-template-columns: 1fr;
+           }
+           
+           .situation-cards {
+               grid-template-columns: 1fr;
+           }
+           
+           .next-steps {
+               grid-template-columns: 1fr;
+           }
+           
+           .takeaway-grid {
+               grid-template-columns: 1fr;
+           }
+       }
+   </style>
+</body>
+</html>

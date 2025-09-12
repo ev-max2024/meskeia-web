@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(sed:*)",
+      "Bash(python:*)",
+      "Read(//c/Users/jaceb/meskeIA/Web meskeIA/**)",
+      "Read(//c/Users/jaceb/meskeIA/Aplicaciones/Calculadora de Inversiones/**)",
+      "Read(//c/Users/jaceb/meskeIA/Aplicaciones/Interés Compuesto/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

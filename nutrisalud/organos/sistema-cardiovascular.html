@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Cardiovascular - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            
+            /* Colores específicos para cardiovascular */
+            --cardio-primary: #E74C3C;
+            --cardio-secondary: #C0392B;
+            --cardio-accent: #EC7063;
+            --healthy-heart: #27AE60;
+            --arterial-health: #3498DB;
+            --warning-cholesterol: #F39C12;
+            --dangerous-pressure: #8E44AD;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #F18F01;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-nav {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--cardio-primary) 0%, var(--cardio-secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .cardio-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cardio-system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cardio-component {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .cardio-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .cardio-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Content sections */
+        .content-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--cardio-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--cardio-primary);
+            padding-bottom: 10px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: var(--focus);
+            border-left: 4px solid var(--cardio-primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h4 {
+            color: var(--cardio-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Cardiovascular factors grid */
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .factor-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .factor-card.protective {
+            border-color: var(--healthy-heart);
+        }
+
+        .factor-card.neutral {
+            border-color: var(--warning-cholesterol);
+        }
+
+        .factor-card.harmful {
+            border-color: var(--cardio-primary);
+        }
+
+        .factor-card:hover {
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .factor-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .factor-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .factor-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .factor-title.protective {
+            color: var(--healthy-heart);
+        }
+
+        .factor-title.neutral {
+            color: var(--warning-cholesterol);
+        }
+
+        .factor-title.harmful {
+            color: var(--cardio-primary);
+        }
+
+        .factor-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .factor-details {
+            background: var(--hover);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .factor-details h5 {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .factor-details.protective h5 {
+            color: var(--healthy-heart);
+        }
+
+        .factor-details.neutral h5 {
+            color: var(--warning-cholesterol);
+        }
+
+        .factor-details.harmful h5 {
+            color: var(--cardio-primary);
+        }
+
+        .factor-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .factor-details li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .factor-details.protective li::before {
+            content: "💚";
+            position: absolute;
+            left: 0;
+        }
+
+        .factor-details.neutral li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        .factor-details.harmful li::before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Cholesterol myth section */
+        .cholesterol-myth {
+            background: linear-gradient(135deg, var(--arterial-health) 0%, #5DADE2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .myth-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .myth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .myth-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .myth-vs-reality h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #F8C471;
+        }
+
+        .myth-text {
+            background: rgba(231, 76, 60, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--cardio-primary);
+        }
+
+        .reality-text {
+            background: rgba(39, 174, 96, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--healthy-heart);
+        }
+
+        /* Cardiovascular risk analyzer */
+        .risk-analyzer {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--hover) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid var(--cardio-primary);
+        }
+
+        .analyzer-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--cardio-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .analyzer-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .analyzer-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: var(--cardio-primary);
+        }
+
+        .risk-factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .risk-factor-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .risk-factor-option:hover {
+            background: var(--hover);
+        }
+
+        .risk-factor-option input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .analyze-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--cardio-primary) 0%, var(--cardio-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+        }
+
+        .results-container {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .risk-score {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .risk-interpretation {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+        }
+
+        .recommendations {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--cardio-primary);
+        }
+
+        .recommendations h4 {
+            color: var(--cardio-primary);
+            margin-bottom: 15px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recommendations li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .recommendations li::before {
+            content: "❤️";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Navigation */
+        .navigation-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            color: var(--cardio-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: 2px solid var(--cardio-primary);
+            background: transparent;
+            color: var(--cardio-primary);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--cardio-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background: var(--cardio-primary);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--cardio-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+            }
+
+            .factors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .cardio-system-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .myth-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a> > 
+                <span>Efectos en Órganos</span> > 
+                Sistema Cardiovascular
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Sistema Cardiovascular</h1>
+                <p class="hero-subtitle">
+                    Más allá del colesterol: cómo los alimentos afectan realmente tu corazón, 
+                    arterias y flujo sanguíneo a nivel molecular
+                </p>
+                
+                <div class="cardio-visual">
+                    <h3>Tu Sistema de Transporte Vital</h3>
+                    <div class="cardio-system-grid">
+                        <div class="cardio-component">
+                            <div class="cardio-icon">❤️</div>
+                            <div class="cardio-name">Corazón</div>
+                        </div>
+                        <div class="cardio-component">
+                            <div class="cardio-icon">🩸</div>
+                            <div class="cardio-name">Arterias</div>
+                        </div>
+                        <div class="cardio-component">
+                            <div class="cardio-icon">🌊</div>
+                            <div class="cardio-name">Flujo Sanguíneo</div>
+                        </div>
+                        <div class="cardio-component">
+                            <div class="cardio-icon">📊</div>
+                            <div class="cardio-name">Presión Arterial</div>
+                        </div>
+                        <div class="cardio-component">
+                            <div class="cardio-icon">🔥</div>
+                            <div class="cardio-name">Inflamación</div>
+                        </div>
+                        <div class="cardio-component">
+                            <div class="cardio-icon">⚡</div>
+                            <div class="cardio-name">Función Endotelial</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Introducción conceptual -->
+        <section class="content-section">
+            <h2 class="section-title">💓 Más Allá del Colesterol: La Verdadera Salud Cardiovascular</h2>
+            <div class="section-content">
+                <p>
+                    Durante décadas, la narrativa de salud cardiovascular se ha centrado obsesivamente en el colesterol. 
+                    Sin embargo, el 50% de infartos ocurren en personas con colesterol "normal", mientras que muchas 
+                    personas con colesterol "alto" nunca desarrollan enfermedad cardiovascular.
+                </p>
+                
+                <div class="highlight-box">
+                    <h4>🔬 La Realidad Científica Actual</h4>
+                    <p>
+                        La enfermedad cardiovascular es un proceso inflamatorio crónico donde las partículas de LDL 
+                        oxidadas y pequeñas se depositan en arterias inflamadas. El tamaño, densidad y oxidación de 
+                        las partículas importa más que el número total de colesterol.
+                    </p>
+                </div>
+
+                <p>
+                    Tu sistema cardiovascular responde a cada comida que consumes. Los omega-3 pueden reducir 
+                    arritmias en horas, los antioxidantes mejoran la función endotelial en 30 minutos, mientras 
+                    que una comida rica en grasas trans puede causar disfunción arterial por 4-6 horas.
+                </p>
+
+                <p>
+                    La diferencia entre una alimentación que protege tu corazón y una que lo daña no radica en 
+                    "comer menos grasa", sino en entender qué tipos específicos de alimentos modulan inflamación, 
+                    función endotelial, presión arterial y perfil lipídico.
+                </p>
+            </div>
+        </section>
+
+        <!-- Factores cardiovasculares -->
+        <section class="content-section">
+            <h2 class="section-title">🎯 Los Seis Factores Cardiovasculares Reales</h2>
+            
+            <div class="factors-grid">
+                <!-- Factor 1: Inflamación -->
+                <div class="factor-card harmful">
+                    <div class="factor-header">
+                        <div class="factor-icon">🔥</div>
+                        <div class="factor-title harmful">Inflamación Crónica</div>
+                    </div>
+                    <div class="factor-description">
+                        La inflamación sistémica de bajo grado es el verdadero motor de la aterosclerosis. 
+                        Los marcadores como PCR-us predicen riesgo cardiovascular mejor que el colesterol total.
+                    </div>
+                    <div class="factor-details harmful">
+                        <h5>Alimentos pro-inflamatorios:</h5>
+                        <ul>
+                            <li>Aceites refinados (omega-6 en exceso)</li>
+                            <li>Azúcares añadidos y jarabe de maíz</li>
+                            <li>Grasas trans artificiales</li>
+                            <li>Carnes procesadas con nitratos</li>
+                            <li>Alimentos ultra-procesados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Factor 2: Función Endotelial -->
+                <div class="factor-card protective">
+                    <div class="factor-header">
+                        <div class="factor-icon">🌿</div>
+                        <div class="factor-title protective">Función Endotelial</div>
+                    </div>
+                    <div class="factor-description">
+                        El endotelio arterial produce óxido nítrico que mantiene arterias flexibles y flujo 
+                        sanguíneo óptimo. Su disfunción es el primer paso hacia la aterosclerosis.
+                    </div>
+                    <div class="factor-details protective">
+                        <h5>Nutrientes vasoprotectores:</h5>
+                        <ul>
+                            <li>Arginina: precursor de óxido nítrico (sandía, nueces)</li>
+                            <li>Polifenoles: mejoran elasticidad arterial (té verde, cacao)</li>
+                            <li>Omega-3: EPA/DHA antiinflamatorio (pescado graso)</li>
+                            <li>Magnesio: relajación vascular (almendras, espinacas)</li>
+                            <li>Vitamina C: protege endotelio (cítricos, kiwi)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Factor 3: Perfil Lipídico -->
+                <div class="factor-card neutral">
+                    <div class="factor-header">
+                        <div class="factor-icon">⚖️</div>
+                        <div class="factor-title neutral">Perfil Lipídico Funcional</div>
+                    </div>
+                    <div class="factor-description">
+                        No es solo colesterol total, sino el tamaño de partículas, ratio HDL/triglicéridos, 
+                        y nivel de oxidación. LDL grandes y fluffy son protectoras, LDL pequeñas y densas son aterogénicas.
+                    </div>
+                    <div class="factor-details neutral">
+                        <h5>Optimización del perfil:</h5>
+                        <ul>
+                            <li>Aumentar HDL: ejercicio, omega-3, aguacate</li>
+                            <li>Reducir triglicéridos: limitar fructosa, carbohidratos refinados</li>
+                            <li>Partículas LDL grandes: grasas monoinsaturadas</li>
+                            <li>Reducir oxidación: antioxidantes, vitamina E</li>
+                            <li>Ratio TG/HDL < 2: predictor de partículas pequeñas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Factor 4: Presión Arterial -->
+                <div class="factor-card harmful">
+                    <div class="factor-header">
+                        <div class="factor-icon">📈</div>
+                        <div class="factor-title harmful">Presión Arterial</div>
+                    </div>
+                    <div class="factor-description">
+                        La hipertensión daña arterias creando microlesiones donde se deposita colesterol. 
+                        Cada aumento de 10mmHg aumenta riesgo cardiovascular en 15-20%.
+                    </div>
+                    <div class="factor-details harmful">
+                        <h5>Factores nutricionales:</h5>
+                        <ul>
+                            <li>Exceso sodio + deficiencia potasio</li>
+                            <li>Deficiencia de magnesio (relajación arterial)</li>
+                            <li>Resistencia a la insulina (vasoconstricción)</li>
+                            <li>Alcohol en exceso (>2 copas/día)</li>
+                            <li>Cafeína en sensibles (>400mg/día)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Factor 5: Metabolismo Glucosa -->
+                <div class="factor-card harmful">
+                    <div class="factor-header">
+                        <div class="factor-icon">🍯</div>
+                        <div class="factor-title harmful">Metabolismo de Glucosa</div>
+                    </div>
+                    <div class="factor-description">
+                        La resistencia a la insulina y glucosa elevada dañan arterias mediante glicación 
+                        de proteínas y estrés oxidativo. Diabetes duplica el riesgo cardiovascular.
+                    </div>
+                    <div class="factor-details harmful">
+                        <h5>Impacto metabólico:</h5>
+                        <ul>
+                            <li>HbA1c >5.7%: aumenta riesgo 40%</li>
+                            <li>Picos glucémicos: inflamación aguda</li>
+                            <li>AGEs: productos de glicación dañan arterias</li>
+                            <li>Síndrome metabólico: múltiples factores</li>
+                            <li>Resistencia insulina: disfunción endotelial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Factor 6: Estrés Oxidativo -->
+                <div class="factor-card protective">
+                    <div class="factor-header">
+                        <div class="factor-icon">🛡️</div>
+                        <div class="factor-title protective">Defensa Antioxidante</div>
+                    </div>
+                    <div class="factor-description">
+                        El equilibrio entre radicales libres y antioxidantes determina la oxidación del LDL. 
+                        LDL oxidada es aterogénica, LDL no oxidada es neutra o protectora.
+                    </div>
+                    <div class="factor-details protective">
+                        <h5>Sistema antioxidante:</h5>
+                        <ul>
+                            <li>Vitamina E: protege LDL de oxidación</li>
+                            <li>Vitamina C: regenera vitamina E</li>
+                            <li>Glutatión: antioxidante maestro</li>
+                            <li>Polifenoles: múltiples mecanismos protectores</li>
+                            <li>Selenio: cofactor de enzimas antioxidantes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección mitos del colesterol -->
+        <section class="cholesterol-myth">
+            <h2 class="myth-title">🔍 Desmontando Mitos del Colesterol</h2>
+            
+            <div class="myth-grid">
+                <div class="myth-card">
+                    <div class="myth-vs-reality">
+                        <h4>MITO: El colesterol dietético eleva el colesterol sanguíneo</h4>
+                        <div class="myth-text">
+                            "Los huevos y mariscos son peligrosos por su colesterol"
+                        </div>
+                        <div class="reality-text">
+                            <strong>REALIDAD:</strong> El 75% del colesterol lo produce tu hígado. El colesterol dietético tiene impacto mínimo en personas sanas. Los huevos incluso pueden mejorar el perfil lipídico aumentando HDL.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="myth-card">
+                    <div class="myth-vs-reality">
+                        <h4>MITO: Las grasas saturadas causan enfermedad cardiovascular</h4>
+                        <div class="myth-text">
+                            "Toda grasa saturada es mala para el corazón"
+                        </div>
+                        <div class="reality-text">
+                            <strong>REALIDAD:</strong> Meta-análisis recientes no encuentran asociación entre grasas saturadas naturales y enfermedad cardiovascular. El problema son las trans artificiales y el contexto inflamatorio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="myth-card">
+                    <div class="myth-vs-reality">
+                        <h4>MITO: Colesterol total bajo = corazón sano</h4>
+                        <div class="myth-text">
+                            "Cuanto más bajo el colesterol, mejor"
+                        </div>
+                        <div class="reality-text">
+                            <strong>REALIDAD:</strong> Colesterol muy bajo (<160mg/dl) se asocia con mayor mortalidad por otras causas. Lo importante es el ratio HDL/triglicéridos y el tamaño de partículas LDL.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="myth-card">
+                    <div class="myth-vs-reality">
+                        <h4>MITO: Las estatinas previenen infartos en todos</h4>
+                        <div class="myth-text">
+                            "Toda persona con colesterol alto necesita estatinas"
+                        </div>
+                        <div class="reality-text">
+                            <strong>REALIDAD:</strong> En prevención primaria (sin enfermedad previa), las estatinas reducen riesgo relativo 20-30%, pero riesgo absoluto solo 0.5-1%. Nutrición puede ser igual de efectiva sin efectos secundarios.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alimentos cardioprotectores -->
+        <section class="content-section">
+            <h2 class="section-title">❤️ Los Alimentos Más Cardioprotectores del Planeta</h2>
+            <div class="section-content">
+                <p>
+                    Ciertos alimentos han demostrado consistentemente reducir riesgo cardiovascular en estudios 
+                    poblacionales y ensayos clínicos. Su poder radica en la sinergia de múltiples compuestos 
+                    bioactivos que actúan sobre diferentes vías cardiovasculares.
+                </p>
+
+                <div class="factors-grid">
+                    <div class="factor-card protective">
+                        <div class="factor-header">
+                            <div class="factor-icon">🐟</div>
+                            <div class="factor-title protective">Pescado Graso (Omega-3)</div>
+                        </div>
+                        <div class="factor-description">
+                            EPA y DHA reducen arritmias, triglicéridos, inflamación y mejoran función endotelial.
+                        </div>
+                        <div class="factor-details protective">
+                            <h5>Beneficios documentados:</h5>
+                            <ul>
+                                <li>Reducción 19% muerte súbita cardíaca</li>
+                                <li>Mejora ratio HDL/triglicéridos</li>
+                                <li>Efecto antiinflamatorio potente</li>
+                                <li>Estabilización de placas arteriales</li>
+                                <li>Mejor: salmón, sardinas, caballa</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="factor-card protective">
+                        <div class="factor-header">
+                            <div class="factor-icon">🥜</div>
+                            <div class="factor-title protective">Frutos Secos</div>
+                        </div>
+                        <div class="factor-description">
+                            Grasas monoinsaturadas, magnesio, arginina y vitamin E protegen arterias.
+                        </div>
+                        <div class="factor-details protective">
+                            <h5>Evidencia científica:</h5>
+                            <ul>
+                                <li>30g/día reducen riesgo cardiovascular 30%</li>
+                                <li>Mejoran función endotelial en 4 semanas</li>
+                                <li>Reducen LDL sin afectar HDL</li>
+                                <li>Almendras: más efectivas para colesterol</li>
+                                <li>Nueces: más omega-3 vegetal (ALA)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="factor-card protective">
+                        <div class="factor-header">
+                            <div class="factor-icon">🫒</div>
+                            <div class="factor-title protective">Aceite Oliva Extra Virgen</div>
+                        </div>
+                        <div class="factor-description">
+                            Ácido oleico, polifenoles y vitamina E protegen LDL de oxidación.
+                        </div>
+                        <div class="factor-details protective">
+                            <h5>Mecanismos protectores:</h5>
+                            <ul>
+                                <li>Previene oxidación de LDL</li>
+                                <li>Mejora función endotelial</li>
+                                <li>Reduce presión arterial</li>
+                                <li>Efecto antiinflamatorio (oleocantal)</li>
+                                <li>Solo extra virgen conserva polifenoles</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="factor-card protective">
+                        <div class="factor-header">
+                            <div class="factor-icon">🍫</div>
+                            <div class="factor-title protective">Cacao Puro (>70%)</div>
+                        </div>
+                        <div class="factor-description">
+                            Flavanoles mejoran función endotelial y reducen presión arterial.
+                        </div>
+                        <div class="factor-details protective">
+                            <h5>Beneficios del cacao:</h5>
+                            <ul>
+                                <li>Reduce presión sistólica 2-3 mmHg</li>
+                                <li>Mejora flujo sanguíneo coronario</li>
+                                <li>Aumenta HDL, reduce LDL oxidada</li>
+                                <li>Efecto similar a aspirina (antiagregante)</li>
+                                <li>Dosis: 20-40g chocolate >70% cacao</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="factor-card protective">
+                        <div class="factor-header">
+                            <div class="factor-icon">🍇</div>
+                            <div class="factor-title protective">Frutas del Bosque</div>
+                        </div>
+                        <div class="factor-description">
+                            Antocianinas y resveratrol mejoran flexibilidad arterial y reducen inflamación.
+                        </div>
+                        <div class="factor-details protective">
+                            <h5>Poder antioxidante:</h5>
+                            <ul>
+                                <li>Antocianinas: protegen endotelio</li>
+                                <li>Reducen PCR (marcador inflamatorio)</li>
+                                <li>Mejoran memoria y función cognitiva</li>
+                                <li>Arándanos: mayor concentración antioxidante</li>
+                                <li>1 taza/día: beneficio cardiovascular</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="factor-card protective">
+                        <div class="factor-header">
+                            <div class="factor-icon">🥑</div>
+                            <div class="factor-title protective">Aguacate</div>
+                        </div>
+                        <div class="factor-description">
+                            Grasas monoinsaturadas, potasio y fibra mejoran perfil lipídico.
+                        </div>
+                        <div class="factor-details protective">
+                            <h5>Efectos metabólicos:</h5>
+                            <ul>
+                                <li>Reduce LDL pequeñas y densas</li>
+                                <li>Aumenta HDL protector</li>
+                                <li>Potasio: reduce presión arterial</li>
+                                <li>Mejora absorción de carotenoides</li>
+                                <li>1 aguacate/día: óptimo cardiovascular</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analizador de riesgo cardiovascular -->
+        <section class="risk-analyzer">
+            <h2 class="analyzer-title">🔬 Evaluador de Riesgo Cardiovascular Nutricional</h2>
+            <p class="analyzer-subtitle">
+                Analiza cómo tu alimentación actual está influyendo en tu salud cardiovascular
+            </p>
+
+            <div class="analyzer-form">
+                <div class="form-group">
+                    <label class="form-label">¿Cuántas porciones de pescado graso consumes semanalmente?</label>
+                    <select class="form-select" id="fishIntake">
+                        <option value="3">3+ porciones (salmón, sardinas, caballa)</option>
+                        <option value="2">2 porciones por semana</option>
+                        <option value="1">1 porción por semana</option>
+                        <option value="0">Rara vez o nunca</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Con qué frecuencia consumes frutos secos sin procesar?</label>
+                    <select class="form-select" id="nutsIntake">
+                        <option value="3">Diariamente (30g aproximadamente)</option>
+                        <option value="2">4-6 veces por semana</option>
+                        <option value="1">1-3 veces por semana</option>
+                        <option value="0">Ocasionalmente o nunca</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Qué tipo de grasa cocinas principalmente?</label>
+                    <select class="form-select" id="cookingFat">
+                        <option value="3">Aceite oliva extra virgen</option>
+                        <option value="2">Aceite oliva refinado o aguacate</option>
+                        <option value="1">Mantequilla o grasa animal</option>
+                        <option value="0">Aceites vegetales refinados (girasol, maíz)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Cuántas porciones de frutas y verduras consumes diariamente?</label>
+                    <select class="form-select" id="plantsIntake">
+                        <option value="3">8+ porciones variadas</option>
+                        <option value="2">5-7 porciones</option>
+                        <option value="1">3-4 porciones</option>
+                        <option value="0">Menos de 3 porciones</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Marca los factores de riesgo que tienes:</label>
+                    <div class="risk-factors-grid">
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="2" class="risk-check">
+                            Bebidas azucaradas regulares
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="3" class="risk-check">
+                            Comida rápida >2 veces/semana
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="2" class="risk-check">
+                            Carnes procesadas frecuentes
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="1" class="risk-check">
+                            Alcohol >2 copas/día
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="2" class="risk-check">
+                            Exceso de sal (>2300mg/día)
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="3" class="risk-check">
+                            Tabaquismo activo
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="2" class="risk-check">
+                            Sedentarismo (<150min/semana)
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="1" class="risk-check">
+                            Estrés crónico elevado
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="1" class="risk-check">
+                            Historial familiar cardiovascular
+                        </label>
+                        <label class="risk-factor-option">
+                            <input type="checkbox" value="2" class="risk-check">
+                            Diabetes o prediabetes
+                        </label>
+                    </div>
+                </div>
+
+                <button class="analyze-btn" onclick="analyzeCardiovascularRisk()">
+                    ❤️ Evaluar mi Riesgo Cardiovascular
+                </button>
+
+                <div class="results-container" id="resultsContainer">
+                    <div class="risk-score" id="riskScore"></div>
+                    <div class="risk-interpretation" id="riskInterpretation"></div>
+                    <div class="recommendations" id="recommendations"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación -->
+        <section class="navigation-section">
+            <h3 class="nav-title">Continúa Explorando los Efectos en Órganos</h3>
+            <p>Has comprendido cómo proteger tu sistema cardiovascular. Ahora descubre cómo los alimentos afectan tu cerebro y neurotransmisores.</p>
+            
+            <div class="nav-buttons">
+                <a href="intestino-microbiota.html" class="nav-btn secondary">← Intestino y Microbiota</a>
+                <a href="cerebro-neurotransmisores.html" class="nav-btn">Siguiente: Cerebro y Neurotransmisores →</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function analyzeCardiovascularRisk() {
+            // Obtener valores protectores
+            const fishIntake = parseInt(document.getElementById('fishIntake').value);
+            const nutsIntake = parseInt(document.getElementById('nutsIntake').value);
+            const cookingFat = parseInt(document.getElementById('cookingFat').value);
+            const plantsIntake = parseInt(document.getElementById('plantsIntake').value);
+
+            // Calcular puntuación protectora (máximo 12 puntos)
+            const protectiveScore = fishIntake + nutsIntake + cookingFat + plantsIntake;
+
+            // Obtener factores de riesgo
+            const riskFactors = document.querySelectorAll('.risk-check:checked');
+            let riskScore = 0;
+            riskFactors.forEach(factor => {
+                riskScore += parseInt(factor.value);
+            });
+
+            // Puntuación final (protectiva - riesgo)
+            const finalScore = protectiveScore - riskScore;
+
+            // Determinar interpretación
+            let interpretation, recommendations, scoreColor;
+
+            if (finalScore >= 8) {
+                interpretation = "💚 Corazón Protegido - Excelente perfil cardiovascular nutricional";
+                scoreColor = "#27AE60";
+                recommendations = `
+                    <h4>Mantén tu protección cardiovascular óptima:</h4>
+                    <ul>
+                        <li>Continúa con tu patrón alimentario cardioprotector</li>
+                        <li>Considera análisis de perfil lipídico avanzado (partículas LDL)</li>
+                        <li>Añade cacao puro >70% ocasionalmente</li>
+                        <li>Mantén omega-3 de pescado graso 2-3 veces/semana</li>
+                        <li>Evaluaciones cardiovasculares preventivas anuales</li>
+                    </ul>
+                `;
+            } else if (finalScore >= 4) {
+                interpretation = "💛 Corazón en Riesgo Moderado - Mejoras necesarias";
+                scoreColor = "#F39C12";
+                recommendations = `
+                    <h4>Optimizaciones cardiovasculares recomendadas:</h4>
+                    <ul>
+                        <li>Incrementa pescado graso a 2-3 porciones/semana</li>
+                        <li>Incluye 30g frutos secos diarios</li>
+                        <li>Cambia a aceite oliva extra virgen exclusivamente</li>
+                        <li>Aumenta verduras/frutas a mínimo 7 porciones/día</li>
+                        <li>Elimina gradualmente factores de riesgo identificados</li>
+                    </ul>
+                `;
+            } else if (finalScore >= 0) {
+                interpretation = "🧡 Corazón en Riesgo Alto - Cambios urgentes necesarios";
+                scoreColor = "#E67E22";
+                recommendations = `
+                    <h4>Plan de protección cardiovascular intensivo:</h4>
+                    <ul>
+                        <li>Elimina inmediatamente grasas trans y aceites refinados</li>
+                        <li>Implementa dieta mediterránea estricta</li>
+                        <li>Suplementa omega-3 (1-2g EPA/DHA diario) bajo supervisión</li>
+                        <li>Reduce carbohidratos refinados a mínimo</li>
+                        <li>Evaluación médica cardiovascular urgente</li>
+                        <li>Considera suplementos: magnesio, CoQ10, vitamina D</li>
+                    </ul>
+                `;
+            } else {
+                interpretation = "❤️‍🔥 Corazón en Crisis - Intervención médica inmediata";
+                scoreColor = "#E74C3C";
+                recommendations = `
+                    <h4>Protocolo de emergencia cardiovascular:</h4>
+                    <ul>
+                        <li>Consulta cardiológica inmediata con perfil lipídico completo</li>
+                        <li>Evaluación de calcio coronario y función endotelial</li>
+                        <li>Dieta antiinflamatoria estricta supervisada</li>
+                        <li>Eliminación total de alimentos procesados</li>
+                        <li>Programa de ejercicio cardiovascular supervisado</li>
+                        <li>Gestión agresiva de factores de riesgo modificables</li>
+                        <li>Considera evaluación de resistencia a la insulina</li>
+                    </ul>
+                `;
+            }
+
+            // Mostrar resultados
+            document.getElementById('riskScore').style.color = scoreColor;
+            document.getElementById('riskScore').textContent = `Índice Protector: ${Math.max(0, finalScore)}/12`;
+            document.getElementById('riskInterpretation').textContent = interpretation;
+            document.getElementById('recommendations').innerHTML = recommendations;
+            document.getElementById('resultsContainer').style.display = 'block';
+
+            // Scroll to results
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

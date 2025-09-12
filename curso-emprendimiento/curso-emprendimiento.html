@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Emprendimiento Práctico - De la Idea al Primer Cliente | meskeIA</title>
+    <meta name="description" content="Guía práctica de emprendimiento: desde encontrar tu idea hasta conseguir los primeros clientes. Incluye herramientas, ejemplos españoles y casos reales.">
+    <meta name="keywords" content="emprendimiento, startup, negocio, emprender, idea de negocio, primer cliente, financiación, business model canvas, elevator pitch, españa">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/curso-emprendimiento">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/curso-emprendimiento">
+    <meta property="og:title" content="Curso de Emprendimiento Práctico - De la Idea al Primer Cliente">
+    <meta property="og:description" content="Guía práctica de emprendimiento con herramientas, ejemplos españoles y casos reales. Aprende a emprender paso a paso.">
+    <meta property="og:image" content="https://meskeia.com/assets/curso-emprendimiento-og.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://meskeia.com/curso-emprendimiento">
+    <meta property="twitter:title" content="Curso de Emprendimiento Práctico - De la Idea al Primer Cliente">
+    <meta property="twitter:description" content="Guía práctica de emprendimiento con herramientas, ejemplos españoles y casos reales.">
+    <meta property="twitter:image" content="https://meskeia.com/assets/curso-emprendimiento-twitter.jpg">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Curso de Emprendimiento Práctico",
+        "description": "Guía completa para emprendedores: desde la idea hasta el primer cliente, con herramientas prácticas y ejemplos reales.",
+        "provider": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "courseMode": "online",
+        "educationalLevel": "Beginner to Intermediate",
+        "inLanguage": "es",
+        "url": "https://meskeia.com/curso-emprendimiento",
+        "coursePrerequisites": "Ninguno - curso introductorio",
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "PT6H"
+        }
+    }
+    </script>
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <style>
+        :root {
+            /* Paleta meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #4CAF50;
+            --warning: #FF9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        /* Página específica */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(46,134,171,0.15);
+            border-color: var(--primary);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .card-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .card-features {
+            list-style: none;
+        }
+
+        .card-features li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: #1a5f7a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Content sections */
+        .content-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .content-section h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .key-concepts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .concept-item {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .concept-item h5 {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Cycle diagram */
+        .cycle-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cycle-step {
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cycle-step:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+
+        /* Herramientas interactivas */
+        .tool-container {
+            background: var(--bg-card);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tool-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 5px 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .tool-result {
+            background: var(--focus);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 80px 15px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+
+            .cycle-step {
+                width: 100px;
+                height: 100px;
+                font-size: 0.9rem;
+            }
+            
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Advertencia móvil */
+        .mobile-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .mobile-warning .laptop-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .mobile-warning h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .mobile-warning p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            line-height: 1.5;
+            max-width: 400px;
+        }
+
+        .mobile-warning .highlight-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0 30px;
+            max-width: 450px;
+        }
+
+        .mobile-warning .highlight-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .mobile-warning .highlight-box ul {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-warning .highlight-box li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .mobile-warning .highlight-box li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #48A9A6;
+            font-weight: bold;
+        }
+
+        .mobile-warning .back-button {
+            background: #48A9A6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .mobile-warning .back-button:hover {
+            background: #2E86AB;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-warning {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Advertencia para móviles -->
+    <div class="mobile-warning">
+        <div class="laptop-icon">💻</div>
+        <h1>Aplicación de Escritorio</h1>
+        <p>Este curso de Emprendimiento está optimizado para ordenadores de escritorio.</p>
+        
+        <div class="highlight-box">
+            <h3>¿Por qué necesito un ordenador?</h3>
+            <ul>
+                <li>Contenido extenso con 10 módulos completos</li>
+                <li>Herramientas interactivas de análisis</li>
+                <li>Business Model Canvas interactivo</li>
+                <li>Análisis DAFO personalizado</li>
+                <li>Mejor experiencia de aprendizaje</li>
+            </ul>
+        </div>
+        
+        <a href="../index.html" class="back-button">Volver a meskeIA</a>
+    </div>
+
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="goToHome()" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <!-- PÁGINA PRINCIPAL -->
+        <div class="page active" id="home">
+            <div class="hero">
+                <h1>Tu Guía Práctica para Emprender en España</h1>
+                <p class="subtitle">De la Idea a tu Primer Cliente: El Camino Real del Emprendedor</p>
+                <p class="description">
+                    Aprende el proceso que siguen los emprendedores españoles y europeos que triunfan de verdad. 
+                    Desde encontrar tu idea de negocio hasta conseguir tus primeros clientes, 
+                    te vamos a acompañar en cada paso del emprendimiento, sin teoría innecesaria.
+                    Con ejemplos de Zara, Mercadona, Glovo, Wallapop y más casos éxito españoles.
+                </p>
+            </div>
+
+            <!-- Diagrama del Ciclo -->
+            <div class="cycle-diagram">
+                <div class="cycle-step" onclick="showPage('pensar')">
+                    <div>1</div>
+                    <div>PENSAR</div>
+                </div>
+                <div class="cycle-step" onclick="showPage('escuchar')">
+                    <div>2</div>
+                    <div>ESCUCHAR</div>
+                </div>
+                <div class="cycle-step" onclick="showPage('planear')">
+                    <div>3</div>
+                    <div>PLANEAR</div>
+                </div>
+                <div class="cycle-step" onclick="showPage('clarificar')">
+                    <div>4</div>
+                    <div>CLARIFICAR</div>
+                </div>
+                <div class="cycle-step" onclick="showPage('respaldar')">
+                    <div>5</div>
+                    <div>RESPALDAR</div>
+                </div>
+                <div class="cycle-step" onclick="showPage('iterar')">
+                    <div>6</div>
+                    <div>ITERAR</div>
+                </div>
+            </div>
+
+            <!-- Cards de navegación -->
+            <div class="cards-grid">
+                <div class="card" onclick="showPage('pensar')">
+                    <div class="card-header">
+                        <div class="card-number">1</div>
+                        <h3>Pensar - ¿Dónde Está Tu Oportunidad?</h3>
+                    </div>
+                    <p>Aprende 7 formas probadas de encontrar ideas que realmente funcionan, empezando por lo que ya conoces.</p>
+                    <ul class="card-features">
+                        <li>7 lugares donde nacen las buenas ideas</li>
+                        <li>Lo inesperado e incongruencias</li>
+                        <li>Necesidades de proceso</li>
+                        <li>Cambios demográficos y de percepción</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showPage('escuchar')">
+                    <div class="card-header">
+                        <div class="card-number">2</div>
+                        <h3>Escuchar - ¿Qué Quieren Realmente?</h3>
+                    </div>
+                    <p>Descubre si tu idea realmente soluciona un problema que la gente está dispuesta a pagar por resolver.</p>
+                    <ul class="card-features">
+                        <li>Quien usa vs. quien paga (crucial)</li>
+                        <li>Cómo preguntar sin que te mientan</li>
+                        <li>Lo que realmente vendes</li>
+                        <li>Cómo elegir a tus proveedores</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showPage('planear')">
+                    <div class="card-header">
+                        <div class="card-number">3</div>
+                        <h3>Planear - Tu Ventaja Competitiva</h3>
+                    </div>
+                    <p>Cómo proteger tu negocio de la competencia y posicionarte para ganar en tu mercado.</p>
+                    <ul class="card-features">
+                        <li>Las 5 amenazas que pueden hundirte</li>
+                        <li>Conoce tus fortalezas y debilidades</li>
+                        <li>Cómo diferenciarte de la competencia</li>
+                        <li>Casos: IKEA, Zara, Mercadona</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showPage('clarificar')">
+                    <div class="card-header">
+                        <div class="card-number">4</div>
+                        <h3>Clarificar - ¿Cómo Vas a Ganar Dinero?</h3>
+                    </div>
+                    <p>Define exactamente cómo va a funcionar tu negocio y cómo vas a generar ingresos.</p>
+                    <ul class="card-features">
+                        <li>El mapa de tu negocio en una página</li>
+                        <li>¿Por qué te van a elegir a ti?</li>
+                        <li>Cuánto cuesta y cuánto ganas</li>
+                        <li>Tu presentación de 30 segundos</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showPage('respaldar')">
+                    <div class="card-header">
+                        <div class="card-number">5</div>
+                        <h3>Respaldar - Equipo y Dinero</h3>
+                    </div>
+                    <p>Cómo formar el equipo que necesitas y conseguir el dinero para empezar, paso a paso.</p>
+                    <ul class="card-features">
+                        <li>Quién necesitas en tu equipo</li>
+                        <li>Tu red de apoyo imprescindible</li>
+                        <li>Dónde conseguir dinero en cada etapa</li>
+                        <li>Cuánto dinero necesitas realmente</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showPage('iterar')">
+                    <div class="card-header">
+                        <div class="card-number">6</div>
+                        <h3>Iterar - Empieza Pequeño, Aprende Rápido</h3>
+                    </div>
+                    <p>Cómo empezar con poco, fallar rápido y barato, y crecer sobre bases sólidas.</p>
+                    <ul class="card-features">
+                        <li>La filosofía de empezar simple</li>
+                        <li>Tu primera versión básica</li>
+                        <li>Cuándo y cómo cambiar de rumbo</li>
+                        <li>Cómo crecer sin quebrar</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showPage('anexos')">
+                    <div class="card-header">
+                        <div class="card-icon">📚</div>
+                        <h3>Anexos y Herramientas</h3>
+                    </div>
+                    <p>Accede a plantillas, checklists, casos de estudio y recursos adicionales para tu viaje emprendedor.</p>
+                    <ul class="card-features">
+                        <li>Plantillas descargables</li>
+                        <li>Checklists por fase</li>
+                        <li>Casos de estudio actualizados</li>
+                        <li>Directorio de recursos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 1: PENSAR -->
+        <div class="page" id="pensar">
+            <div class="hero">
+                <h1>Capítulo 1: Pensar</h1>
+                <p class="subtitle">Identificando Oportunidades de Innovación</p>
+            </div>
+
+            <div class="content-section">
+                <h4>La Mentalidad Emprendedora</h4>
+                <p>El emprendimiento requiere dos características esenciales: <strong>pasión por el cambio</strong> y <strong>capacidad de actuar</strong>. Los emprendedores no crean el cambio, lo explotan. Siempre que hay cambios rápidos, hay oportunidades.</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Pasión por el Cambio</h5>
+                        <p>Los emprendedores se sienten atraídos por el cambio como las polillas por la luz. Es lo que los impulsa.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Capacidad de Actuar</h5>
+                        <p>Actuar en ambientes inciertos, tomando riesgos calculados y aprendiendo del fracaso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Las 7 Fuentes de Innovación según Drucker</h4>
+                <p>Peter Drucker identificó siete fuentes sistemáticas de oportunidades innovadoras, ordenadas por confiabilidad:</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>1. Lo Inesperado</h5>
+                        <p><strong>Éxitos inesperados:</strong> Como Mercado Libre que empezó vendiendo solo libros y terminó siendo el Amazon de Latinoamérica</p>
+                        <p><strong>Fracasos inesperados:</strong> La crisis del 2008 creó oportunidades como N26 y Revolut en banca digital</p>
+                        <p><strong>Eventos externos:</strong> La pandemia disparó el teletrabajo y plataformas como Zoom o Teams</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>2. Incongruencias</h5>
+                        <p><strong>Realidad económica:</strong> España tiene uno de los mejores sistemas sanitarios pero largas listas de espera (oportunidad para DocPlanner)</p>
+                        <p><strong>Realidad vs. suposiciones:</strong> Todo el mundo dice usar transporte público pero las ciudades siguen colapsadas (oportunidad para BlaBlaCar)</p>
+                        <p><strong>Percepción vs. realidad:</strong> "No tengo tiempo" pero pasamos 3h en redes sociales (oportunidades en productividad)</p>
+                        <p><strong>Proceso deficiente:</strong> Partes del proceso que todos odian pero nadie arregla</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>3. Necesidades de Proceso</h5>
+                        <p>Mejorar procesos existentes identificando eslabones débiles o faltantes. Ejemplo: digitalización de historiales médicos.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>4. Cambios en Estructura Industrial</h5>
+                        <p><strong>Crecimiento rápido:</strong> El boom del delivery con Glovo, Just Eat, Uber Eats tras la pandemia</p>
+                        <p><strong>Maduración:</strong> Los bancos tradicionales vs. neobancos como N26, Revolut</p>
+                        <p><strong>Convergencia tecnológica:</strong> Móvil + pagos = Bizum, Apple Pay, Google Pay</p>
+                        <p><strong>Cambio de modelo:</strong> ElDiario.es vs. periódicos tradicionales como El País</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>5. Cambios Demográficos</h5>
+                        <p>Envejecimiento de la población europea → boom de servicios para mayores (como Cuideo en España). Cambios predecibles pero más lentos.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>6. Cambios de Percepción</h5>
+                        <p>Los videojuegos pasaron de "cosa de niños" a industria que factura más que el cine en Europa. Las criptomonedas de "estafa" a reserva de valor. Cuidado con las modas vs. tendencias reales.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>7. Nuevo Conocimiento</h5>
+                        <p>La fuente más arriesgada. Toma décadas, requiere mucho capital y hay mucha competencia. Ejemplo: la inteligencia artificial o las energías renovables en Europa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Los 6 Principios para la Búsqueda Sistemática</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>1. Analizar Oportunidades</h5>
+                        <p>Busca ideas que abarquen múltiples fuentes de innovación.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>2. Sal y Escucha</h5>
+                        <p>Habla con clientes y proveedores. Si no tienes conexiones, recluta a alguien que las tenga.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>3. Simple y Enfocado</h5>
+                        <p>No cambies demasiado al mismo tiempo. Los clientes resisten grandes disrupciones.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>4. Inicia Pequeño</h5>
+                        <p>Proyectos grandes requieren más tiempo y dinero para ajustes necesarios.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>5. Innova para Hoy</h5>
+                        <p>Debe tener aplicación inmediata, no depender de adopción masiva futura.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>6. Implementable Estratégicamente</h5>
+                        <p>Asegúrate de poder visualizar un segmento donde tu idea pueda liderar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🚀 Empezar Hoy</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Próximas 24 horas</h5>
+                        <p>• Haz una lista de 10 cosas que te molestan en tu día a día</p>
+                        <p>• Pregunta a 3 amigos: "¿Qué te molesta más en tu trabajo?"</p>
+                        <p>• Apunta 5 cosas que cambiarías de tu ciudad/barrio</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Esta semana</h5>
+                        <p>• Lee las noticias buscando "problemas no resueltos"</p>
+                        <p>• Observa cómo la gente hace colas, espera, se frustra</p>
+                        <p>• Busca 3 empresas que hayan pivotado (cambiado completamente)</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Este mes</h5>
+                        <p>• Elige 2-3 ideas y pregunta a 10 personas si las pagarían</p>
+                        <p>• Investiga quién ya está intentando resolver estos problemas</p>
+                        <p>• Decide cuál es tu "área de expertise" donde puedes encontrar oportunidades</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('home')">← Inicio</button>
+                <button class="btn" onclick="showPage('escuchar')">Siguiente: Escuchar →</button>
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 2: ESCUCHAR -->
+        <div class="page" id="escuchar">
+            <div class="hero">
+                <h1>Capítulo 2: Escuchar</h1>
+                <p class="subtitle">La Fase Crítica de Validación con Clientes</p>
+            </div>
+
+            <div class="content-section">
+                <h4>El Propósito Real de un Negocio</h4>
+                <p>Según Theodore Levitt: <strong>"El propósito de un negocio es crear y mantener un cliente."</strong> Hacer dinero es necesario, pero el propósito se centra en el cliente. Los clientes no compran productos, compran soluciones a problemas.</p>
+            </div>
+
+            <div class="content-section">
+                <h4>Usuarios vs. Clientes</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Usuarios</h5>
+                        <p>Personas que realmente usan tu producto. Ejemplo: estudiantes en Teach for America.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Clientes</h5>
+                        <p>Personas que pagan por tu producto. Ejemplo: donantes, gobierno, sistema educativo para TFA.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Caso Wallapop</h5>
+                        <p>Usuarios: personas que compran y venden. Clientes: empresas que pagan por visibilidad y servicios premium.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Metodología de Descubrimiento del Cliente</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>1. Lista de 50+ Clientes Potenciales</h5>
+                        <p>Usa tu red social: contactos, cofundadores, empleados, redes sociales, eventos.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>2. Desarrolla tu Pitch de 20 Segundos</h5>
+                        <p>Problema que resuelves + por qué es importante + tu solución. Pide consejo, no vendas.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>3. Estructura de la Reunión</h5>
+                        <p><strong>Inicio:</strong> Explica tu idea brevemente</p>
+                        <p><strong>Escucha:</strong> "¿Qué problemas cree que son importantes?"</p>
+                        <p><strong>Profundiza:</strong> "¿Cuánto cuesta este problema?" "¿Cómo lo resuelven ahora?"</p>
+                        <p><strong>Cierra:</strong> "¿Con quién más debería hablar?" "¿Qué debería haber preguntado?"</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>4. Objetivo: 3+ Datos Nuevos</h5>
+                        <p>Información logística, problemas reales, propuesta de valor validada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>El Concepto de Producto Total</h4>
+                <p>Tu producto no es solo lo que produces, sino el valor total que ofreces al cliente.</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Producto Genérico</h5>
+                        <p>Lo básico que necesitas para ser considerado en el mercado.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Producto Esperado</h5>
+                        <p>Producto genérico + expectativas mínimas del cliente (precio justo, entrega a tiempo).</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Producto Aumentado</h5>
+                        <p>Producto esperado + diferenciación intencional que te hace preferible.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Producto Potencial</h5>
+                        <p>Todo lo que puedes hacer por el cliente en el futuro.</p>
+                    </div>
+                </div>
+                
+                <p><strong>Ejemplo Spotify:</strong> No es solo música, sino playlists personalizadas, descubrimiento, experiencia sin interrupciones, disponibilidad offline.</p>
+            </div>
+
+            <div class="content-section">
+                <h4>Escuchando a Proveedores y Socios</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Proveedores</h5>
+                        <p><strong>Evalúa:</strong> Capacidad, precios, condiciones de entrega, servicios adicionales</p>
+                        <p><strong>Enfócate en problemas:</strong> No solo productos y precios</p>
+                        <p><strong>Busca soluciones:</strong> Entrenamiento, procesos estandarizados</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Socios de Canal</h5>
+                        <p><strong>Distribuidores, minoristas, vendedores</strong></p>
+                        <p><strong>Preguntas clave:</strong> ¿Cómo acceden los clientes? ¿Venderán proactivamente? ¿Necesitan incentivos?</p>
+                        <p><strong>Son parte de tu producto total</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Puntos Clave para Recordar</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Nunca Dejes de Escuchar</h5>
+                        <p>Continúa durante toda la vida de la empresa. Necesidades cambian, nuevos proveedores aparecen.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>No Todos los Clientes Son Iguales</h5>
+                        <p>Algunos no están dispuestos a pagar lo que cuesta. Otros pueden complicar servir a clientes más valiosos.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Registra Todo</h5>
+                        <p>Apunta interacciones, desarrolla scorecards, obtén información de ferias comerciales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🚀 Empezar Hoy</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Próximas 24 horas</h5>
+                        <p>• Haz una lista de 20 personas que podrían ser tus primeros clientes</p>
+                        <p>• Escribe tu pitch de 20 segundos y prácticalo</p>
+                        <p>• Contacta a 3 personas para pedirles una reunión de "consejo"</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Esta semana</h5>
+                        <p>• Programa 5 conversaciones de 20 minutos con clientes potenciales</p>
+                        <p>• Prepara 5 preguntas clave sobre el problema que resuelves</p>
+                        <p>• Crea un documento para registrar todas las respuestas</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Este mes</h5>
+                        <p>• Completa 15-20 entrevistas con clientes potenciales</p>
+                        <p>• Identifica patrones: ¿qué problemas se repiten?</p>
+                        <p>• Define tu "producto total": qué experiencia completa ofrecerás</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('pensar')">← Anterior</button>
+                <button class="btn" onclick="showPage('planear')">Siguiente: Planear →</button>
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 3: PLANEAR -->
+        <div class="page" id="planear">
+            <div class="hero">
+                <h1>Capítulo 3: Planear</h1>
+                <p class="subtitle">Desarrollando Ventaja Competitiva Sostenible</p>
+            </div>
+
+            <div class="content-section">
+                <h4>¿Qué es Estrategia?</h4>
+                <p><strong>Estrategia es ser diferente de manera defendible.</strong> Como en el tai chi, es la pausa antes de la acción para ganar energía, concentrar recursos y avanzar efectivamente. No es correr más rápido que la competencia.</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Ser Diferente</h5>
+                        <p>Esculpir una posición identificando actividades que permitan ventaja competitiva sostenible.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Lo Más Difícil: Decidir Qué NO Hacer</h5>
+                        <p>Crecimiento no es estrategia. Cada nueva actividad debe encajar en el conjunto de actividades que te hacen diferente.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Ejemplo Mercadona</h5>
+                        <p>Estrategia de calidad-precio. Si se enfocara en lujo premium como El Corte Inglés, tendría que subir precios y perdería su ventaja competitiva.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Las 5 Fuerzas de Porter</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>1. Amenaza de Entrada (Barreras)</h5>
+                        <p><strong>Economías de escala:</strong> Amazon con centros automatizados</p>
+                        <p><strong>Diferenciación de producto:</strong> IKEA con proceso patentado + diseño + ubicaciones</p>
+                        <p><strong>Requisitos de capital:</strong> Forzar grandes inversiones para competir</p>
+                        <p><strong>Costos de cambio:</strong> Hacer difícil cambiar a competencia</p>
+                        <p><strong>Canales exclusivos:</strong> Distribución no accesible a otros</p>
+                        <p><strong>Ventajas legales:</strong> Patentes, regulaciones</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>2. Poder de Negociación de Compradores</h5>
+                        <p><strong>Riesgo:</strong> Uno o dos clientes grandes pueden dictar términos</p>
+                        <p><strong>Factores:</strong> Clientes con alto costo estructural, producto como commodity, sustitutos fáciles, bajo costo de cambio</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>3. Poder de Negociación de Proveedores</h5>
+                        <p><strong>Riesgo:</strong> Proveedores pueden subir precios y limitar opciones estratégicas</p>
+                        <p><strong>Factores:</strong> Pocas alternativas, no eres cliente importante, producto crucial, altos costos de cambio</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>4. Amenaza de Sustitutos</h5>
+                        <p><strong>Ejemplo:</strong> Bebidas no carbonatadas vs. refrescos (misma función: saben bien y quitan sed)</p>
+                        <p><strong>Clave:</strong> Entender el negocio real en el que estás</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>5. Rivalidad entre Competidores</h5>
+                        <p><strong>Evitar:</strong> Numerosos competidores de tamaño similar, producto como commodity, poco crecimiento industrial</p>
+                        <p><strong>Resultado:</strong> Competencia de precios intensa</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Análisis DAFO para Emprendedores</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Fortalezas (Internas)</h5>
+                        <p><strong>Ejemplo Zara:</strong> Reconocimiento global, rapidez al mercado, diseño propio, red de tiendas mundial</p>
+                        <p>Barreras de entrada que impones a competidores</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Debilidades (Internas)</h5>
+                        <p><strong>Técnica:</strong> Escritura anónima para honestidad</p>
+                        <p><strong>Ejemplo Zara:</strong> Competencia de fast fashion asiática, sostenibilidad cuestionada, dependencia de tiendas físicas</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Oportunidades (Externas)</h5>
+                        <p><strong>Cuidado:</strong> No todas las oportunidades encajan en tu modelo de negocio</p>
+                        <p><strong>Ejemplo Zara:</strong> E-commerce y personalización con IA, sostenibilidad como diferenciador</p>
+                        <p>Requiere liderazgo para decir "no" a buenas ideas que no encajan</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Amenazas (Externas)</h5>
+                        <p><strong>Ejemplo Zara:</strong> Más competidores online → menos poder con proveedores y clientes</p>
+                        <p><strong>Commoditización:</strong> Shein y marcas asiáticas copian diseños instantáneamente</p>
+                        <p><strong>Sustitutos:</strong> Ropa de segunda mano (Vinted) vs. fast fashion</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Posicionamiento Estratégico</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Usar Fortalezas</h5>
+                        <p>Tu estrategia debe utilizar las fortalezas competitivas que ya tienes.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Evitar Debilidades</h5>
+                        <p>Incorpora actividades que apuntalen tus debilidades o evita revelarlas.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Explotar Oportunidades</h5>
+                        <p>Enfócate en oportunidades que puedes aprovechar con tus fortalezas actuales.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Mitigar Amenazas</h5>
+                        <p>Planifica movimientos que reduzcan el riesgo de amenazas estratégicas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Caso de Estudio: IKEA</h4>
+                <p><strong>Estrategia:</strong> Muebles con estilo a precios razonables para jóvenes profesionales</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Elementos Integrados</h5>
+                        <p><strong>Pocos empleados:</strong> Clientes se pasean solos → precios bajos</p>
+                        <p><strong>Diseño propio:</strong> Satisface tendencias de moda</p>
+                        <p><strong>Muebles modulares:</strong> Diferentes gustos, fácil transporte</p>
+                        <p><strong>Tiendas grandes:</strong> Acomodan variedad</p>
+                        <p><strong>Circulación forzada:</strong> Ven todas las opciones</p>
+                        <p><strong>Cafeterías/guarderías:</strong> Experiencia total</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Protección Competitiva</h5>
+                        <p><strong>Vs. bajo precio:</strong> Competidores tendrían que invertir en diseño/marketing → debilita estrategia</p>
+                        <p><strong>Vs. tiendas grandes:</strong> Tendrían que sacrificar calidad/experiencia → pierden clientes</p>
+                        <p><strong>Vs. imitadores:</strong> Reconocimiento de marca requiere volumen para economías de escala</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🚀 Empezar Hoy</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Próximas 24 horas</h5>
+                        <p>• Haz una lista honestísima: 3 fortalezas y 3 debilidades tuyas</p>
+                        <p>• Investiga a tus 3 competidores principales en 30 minutos cada uno</p>
+                        <p>• Describe en 1 frase qué te hace diferente</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Esta semana</h5>
+                        <p>• Aplica las 5 fuerzas: ¿quién puede hundirte y cómo?</p>
+                        <p>• Identifica 2-3 barreras que puedes crear para competidores</p>
+                        <p>• Decide: ¿en qué NO vas a competir? (¡igual de importante!)</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Este mes</h5>
+                        <p>• Define tu estrategia en 1 página: qué haces diferente y por qué es defendible</p>
+                        <p>• Valídala con 3 personas que conozcan tu sector</p>
+                        <p>• Ajusta según feedback y prepárate para el siguiente paso</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('escuchar')">← Anterior</button>
+                <button class="btn" onclick="showPage('clarificar')">Siguiente: Clarificar →</button>
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 4: CLARIFICAR -->
+        <div class="page" id="clarificar">
+            <div class="hero">
+                <h1>Capítulo 4: Clarificar</h1>
+                <p class="subtitle">Del Concepto al Modelo de Negocio Viable</p>
+            </div>
+
+            <div class="content-section">
+                <h4>El Concepto de "Fit" Estratégico</h4>
+                <p>Una estrategia es solo un eslogan bonito. Una estrategia que impulse actividades clave específicas crea una empresa sostenible y exitosa. El <strong>"fit"</strong> es la visión integral donde todo lo que tu empresa hace tiene un propósito y se refuerza mutuamente.</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Ejemplo IKEA</h5>
+                        <p>Salas de exposición → enfoque de moda → muebles modulares → marca global. Cada eslabón es necesario para el éxito total.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Business Model Canvas - Lado Cliente y Oferta</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Propuesta de Valor</h5>
+                        <p><strong>Definición:</strong> Lote de productos/servicios que crean valor para segmentos específicos</p>
+                        <p><strong>Incluye:</strong> Producto total + aumentos (servicio, diseño, marca, precio)</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Vuelos baratos + tarifas claras + puntualidad + rutas directas + proceso rápido</p>
+                        <p><strong>Excluye estratégicamente:</strong> Comidas gratis, asientos premium, flexibilidad de cambios, entretenimiento a bordo</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Segmentos de Clientes</h5>
+                        <p><strong>Criterio:</strong> Grupos diferentes si necesitan producto distinto, poder de negociación diferente, o canales diferentes</p>
+                        <p><strong>Ejemplo IKEA:</strong> Jóvenes profesionales conscientes de moda, pocos/ningún hijo, espacio limitado</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Viajeros sensibles al precio que priorizan llegar de A a B sin lujos</p>
+                        <p><strong>Estratégico:</strong> Elegir quiénes NO son tus clientes</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Canales</h5>
+                        <p><strong>Funciones:</strong> Publicidad, evaluación, adquisición, soporte post-venta</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Web propia (principal), app móvil, agentes en aeropuerto</p>
+                        <p><strong>Excluye:</strong> Agencias tradicionales para mantener costos bajos y controlar toda la experiencia</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Relaciones con Clientes</h5>
+                        <p><strong>Tipos:</strong> Asistencia personal, autoservicio, servicios automatizados, comunidades</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Autoservicio digital + check-in online obligatorio + atención eficiente y directa</p>
+                        <p><strong>Coherencia:</strong> Clientes sensibles al precio → menos canales, relación menos personal</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Business Model Canvas - Infraestructura y Finanzas</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Recursos Clave</h5>
+                        <p><strong>Tipos:</strong> Físicos, financieros, intelectuales, humanos</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Flota estandarizada Boeing 737, acceso a aeropuertos secundarios, personal productivo, contratos combustible, marca reconocida</p>
+                        <p><strong>Pregunta clave:</strong> ¿Qué recursos necesito para mi propuesta de valor, relaciones y canales?</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Actividades Clave</h5>
+                        <p><strong>Definición:</strong> Las cosas más importantes que tu empresa debe HACER</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Mantener web y app, negociar con aeropuertos, optimizar rutas, mantenimiento preventivo, pricing dinámico</p>
+                        <p><strong>Excluye:</strong> Programa viajeros complejos, asientos asignados (impactarían negativamente otras actividades)</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Socios Clave</h5>
+                        <p><strong>Tipos:</strong> Proveedores, alianzas estratégicas, joint ventures</p>
+                        <p><strong>Razones:</strong> Lo hacen mejor/más barato, reducen riesgo, tienen recursos que necesitas</p>
+                        <p><strong>Ejemplo Ryanair:</strong> Boeing, aeropuertos secundarios, compañías combustible, empresas de mantenimiento</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Estructura de Costes</h5>
+                        <p><strong>Ejemplo Ryanair:</strong> Personal, combustible, mantenimiento aviones, tasas aeropuerto, marketing digital</p>
+                        <p><strong>Coherencia:</strong> Alineados con elementos de infraestructura y estrategia global</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Fuentes de Ingresos</h5>
+                        <p><strong>Considera:</strong> ¿Qué están dispuestos a pagar los clientes y cuánto?</p>
+                        <p><strong>Si no es pago directo:</strong> Enfócate en quién es realmente el cliente (no el usuario)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Desarrollando tu Elevator Pitch</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Ejemplo BioNTech (cofundadores de la vacuna Pfizer)</h5>
+                        <p><strong>Antes:</strong> "Desarrollamos inmunoterapias personalizadas contra el cáncer"</p>
+                        <p><strong>Después:</strong> "Usamos la tecnología que cura el cáncer para crear vacunas rápidas contra pandemias"</p>
+                        <p><strong>Resultado:</strong> Una de las primeras vacunas COVID aprobadas mundialmente</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Ejemplo Spotify</h5>
+                        <p>"Glovo es tu comprador personal que te trae cualquier cosa de tu ciudad en menos de 30 minutos, desde comida hasta medicinas, cuando quieras y donde estés."</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Elementos Clave</h5>
+                        <p><strong>Historia corta:</strong> Aspectos fundamentales de quién eres</p>
+                        <p><strong>Comprensible:</strong> Para casi cualquiera</p>
+                        <p><strong>Identidad estratégica:</strong> Consistencia interna fuerte</p>
+                        <p><strong>Patrón del modelo:</strong> Freemium, marketplace, suscripción</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Preparación Esencial</h5>
+                        <p><strong>Nunca digas:</strong> "No tenemos competencia" (Error fatal)</p>
+                        <p><strong>Entiende:</strong> Tu entorno competitivo y ventaja sostenible</p>
+                        <p><strong>Practica:</strong> Conferencias, amigos, familia</p>
+                        <p><strong>Equipo:</strong> Si no eres cómodo, incluye a alguien con experiencia</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🎤 Generador de Elevator Pitch</h4>
+                <div class="tool-container">
+                    <p>Completa estos campos para crear tu pitch de 30 segundos:</p>
+                    
+                    <label>¿Qué problema resuelves?</label>
+                    <input type="text" class="tool-input" id="problema" placeholder="Las empresas pierden tiempo buscando proveedores confiables">
+                    
+                    <label>¿Para quién?</label>
+                    <input type="text" class="tool-input" id="cliente" placeholder="Pequeñas empresas con menos de 50 empleados">
+                    
+                    <label>¿Cómo lo resuelves?</label>
+                    <input type="text" class="tool-input" id="solucion" placeholder="Una plataforma que conecta empresas con proveedores verificados">
+                    
+                    <label>¿Qué te hace diferente?</label>
+                    <input type="text" class="tool-input" id="diferencia" placeholder="Todos nuestros proveedores están certificados y tienen reseñas reales">
+                    
+                    <button class="btn" onclick="generarPitch()">Generar Mi Pitch</button>
+                    
+                    <div class="tool-result" id="pitchGenerado" style="display:none;">
+                        <p><strong>🎤 Tu Elevator Pitch:</strong></p>
+                        <p id="pitchTexto"></p>
+                        <p><em>Practica esto hasta que lo digas naturalmente en 30 segundos</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Caso de Estudio: Glovo Model Canvas</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Segmentos de Clientes</h5>
+                        <p><strong>Usuarios finales:</strong> Comida y productos entregados rápidamente</p>
+                        <p><strong>Restaurantes/tiendas:</strong> Acceso a más clientes sin inversión en delivery</p>
+                        <p><strong>Riders:</strong> Ingresos flexibles como autónomos</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Infraestructura</h5>
+                        <p><strong>Recursos:</strong> App y tecnología, red de riders, datos de consumo</p>
+                        <p><strong>Actividades:</strong> Desarrollo de app, gestión logística, marketing local</p>
+                        <p><strong>Socios:</strong> Restaurantes, tiendas, riders, empresas de pago, compañías de seguros</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Modelo Marketplace</h5>
+                        <p><strong>Patrón claro:</strong> Comisión por transacción + servicios premium para comercios</p>
+                        <p><strong>Alto fit:</strong> Cada elemento (riders, comercios, usuarios) refuerza el ecosistema</p>
+                        <p><strong>Sin superfluos:</strong> Enfoque láser en velocidad y conveniencia</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🚀 Empezar Hoy</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Próximas 24 horas</h5>
+                        <p>• Dibuja tu modelo de negocio en 1 página (usa el Canvas o hazlo simple)</p>
+                        <p>• Escribe tu elevator pitch y crónometralo: ¿30 segundos?</p>
+                        <p>• Calcula: ¿cuánto cobrarás por cliente? ¿Cuántos necesitas para vivir?</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Esta semana</h5>
+                        <p>• Presenta tu pitch a 5 personas y apunta sus preguntas</p>
+                        <p>• Refina el modelo: ¿qué no entienden? ¿Qué falta?</p>
+                        <p>• Define tus métricas clave: ¿cómo medirás el éxito?</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Este mes</h5>
+                        <p>• Crea una versión "presentable" de tu idea (slides, canvas, mockup)</p>
+                        <p>• Testea el pitch con 10 personas diferentes</p>
+                        <p>• Documenta todo: tienes las bases para buscar equipo y dinero</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('planear')">← Anterior</button>
+                <button class="btn" onclick="showPage('respaldar')">Siguiente: Respaldar →</button>
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 5: RESPALDAR -->
+        <div class="page" id="respaldar">
+            <div class="hero">
+                <h1>Capítulo 5: Respaldar</h1>
+                <p class="subtitle">Construyendo el Ecosistema de Apoyo</p>
+            </div>
+
+            <div class="content-section">
+                <h4>El Equipo: Tu Recurso Más Importante</h4>
+                <p><strong>La clave del éxito no es el dinero, es el equipo.</strong> Ideas grandiosas han sido destruidas por equipos malos, mientras ideas mediocres han tenido éxito brutal con equipos excelentes.</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Autoevaluación Honesta</h5>
+                        <p>Mírate al espejo y reconoce que no puedes hacerlo todo. Todos tenemos fortalezas y debilidades.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Complementar Habilidades</h5>
+                        <p>Como con la estrategia: refuerza fortalezas, apuntala debilidades del equipo.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Control vs. Ejecución</h5>
+                        <p>Sin ayuda nunca podrás ponerla en práctica. Es mejor 50% de algo real que 100% de nada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Habilidades Esenciales en Fase Inicial</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>1. Interacción con Clientes</h5>
+                        <p><strong>Capacidades:</strong> Sentirse cómodo hablando con clientes, organizando reuniones, entendiendo necesidades</p>
+                        <p><strong>Si no es tu fuerte:</strong> Alguien del equipo puede organizar reuniones mientras tú te enfocas en escuchar</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>2. Promoción de la Idea</h5>
+                        <p><strong>Necesidades:</strong> Buscar dinero, saber a quién pedirlo, cómo pedirlo</p>
+                        <p><strong>Si no te gusta pedir:</strong> Tendrás obstáculos rápidamente</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>3. Experiencia Emprendedora</h5>
+                        <p><strong>Valor:</strong> Conoce peligros, entiende cultura emprendedora, tiene contactos</p>
+                        <p><strong>Primer criterio de VCs:</strong> ¿Alguien del equipo ha emprendido antes?</p>
+                        <p><strong>Alternativas:</strong> Asesores, incubadores, paneles de asesoría</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Estructura del Equipo Fundador</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Opción 1: Socios Fundadores</h5>
+                        <p><strong>Ventajas:</strong> Mismos incentivos, todos participan en el éxito</p>
+                        <p><strong>Desventajas:</strong> Sacrificas monopolio, poder de decisión, puede ser caro</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Opción 2: Empleados</h5>
+                        <p><strong>Ventajas:</strong> Control total sobre la idea</p>
+                        <p><strong>Desventajas:</strong> Necesitas recursos para pagar salarios</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Realidad Común</h5>
+                        <p><strong>Modelo híbrido:</strong> Equipo fundador con propiedad parcial + consenso informal inicial</p>
+                        <p><strong>Evolución:</strong> Formalizar con acuerdos legales conforme crezca</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Servicios Profesionales</h5>
+                        <p><strong>No fundadores:</strong> Abogados, contables</p>
+                        <p><strong>Estrategias:</strong> Pagos diferidos, servicios intercambiados, pequeñas cantidades de acciones</p>
+                        <p><strong>Ejemplo extremo:</strong> David Cho (grafitero) eligió acciones Facebook en lugar de $60K → $200M en 2012</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Sistemas de Apoyo Esenciales</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Apoyo Emocional</h5>
+                        <p><strong>Necesidad:</strong> 18 horas diarias, estrés emocional/físico/intelectual</p>
+                        <p><strong>Red de apoyo:</strong> Familia, amigos que entiendan el proceso</p>
+                        <p><strong>Importancia:</strong> Escucha cuando te dicen que necesitas descansar</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Apoyo Intelectual</h5>
+                        <p><strong>Equipo base:</strong> Abogado, contable, 1-2 emprendedores experimentados</p>
+                        <p><strong>Acceso:</strong> Dispuestos a contestar llamadas, reunirse para consejos</p>
+                        <p><strong>Función crítica:</strong> Persona de confianza que te diga cuándo parar</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Espacio Físico</h5>
+                        <p><strong>Principio:</strong> Centra recursos en hacer funcionar el negocio, no en oficinas elegantes</p>
+                        <p><strong>Opciones:</strong> Casa, espacios prestados, oficinas baratas</p>
+                        <p><strong>Casos especiales:</strong> Salas de conferencias prestadas/alquiladas para reuniones importantes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Estrategia de Financiación por Etapas</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Fase 1: Autofinanciación</h5>
+                        <p><strong>Fuentes:</strong> Ahorros, tarjetas de crédito, segunda hipoteca</p>
+                        <p><strong>Ventajas:</strong> Capital más barato en etapas iniciales, mantienes control total</p>
+                        <p><strong>Estrategia:</strong> Cuanto más tiempo sin financiación externa, mejores condiciones después</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Fase 2: Familia y Amigos</h5>
+                        <p><strong>Función:</strong> Validación externa de tu idea</p>
+                        <p><strong>Señal de alerta:</strong> Si no consigues que inviertan algo, revisa tu modelo y pitch</p>
+                        <p><strong>Perspectiva inversora:</strong> Si quienes te conocen mejor no invierten, ¿qué significa?</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Fase 3: Crowdfunding</h5>
+                        <p><strong>Plataformas:</strong> Kickstarter, Indiegogo</p>
+                        <p><strong>Ventajas:</strong> No renuncias a control, no devuelves dinero, democratiza emprendimiento</p>
+                        <p><strong>Alternativa:</strong> Donaciones si tiene sentido para tu modelo</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Fase 4: Clientes</h5>
+                        <p><strong>Pagos adelantados:</strong> Financiación + validación del modelo</p>
+                        <p><strong>Beneficio doble:</strong> Flujo de efectivo + prueba de concepto</p>
+                        <p><strong>Atractivo para inversores:</strong> Menor riesgo al tener clientes pagando</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Financiación Profesional</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Consideraciones Clave</h5>
+                        <p><strong>Motivaciones diferentes:</strong> Inversores necesitan retorno, estrategia de salida</p>
+                        <p><strong>Derecho a opinar:</strong> Su dinero les da influencia en decisiones</p>
+                        <p><strong>Invierten en el equipo:</strong> Tus habilidades son el factor determinante</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Para Empresas Con Fines de Lucro</h5>
+                        <p><strong>Bancos:</strong> Préstamos + intereses (si buscas negocio familiar de largo plazo)</p>
+                        <p><strong>Inversores ángeles:</strong> Capital + experiencia + red de contactos</p>
+                        <p><strong>VCs:</strong> Grandes cantidades + expertise + estrategia de salida obligatoria</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Para Empresas Sociales</h5>
+                        <p><strong>Fundaciones:</strong> Becas con objetivos específicos</p>
+                        <p><strong>Gobierno:</strong> Programas de apoyo nacionales/locales</p>
+                        <p><strong>Corporativo:</strong> Responsabilidad social empresarial</p>
+                        <p><strong>Misma regla:</strong> Pueden tener motivaciones diferentes a las tuyas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🧮 Calculadora de Necesidades Financieras</h4>
+                <div class="tool-container">
+                    <p>Calcula cuánto dinero necesitas para los primeros 6 meses:</p>
+                    
+                    <div class="tool-grid">
+                        <div>
+                            <label>Salario mensual que necesitas (€):</label>
+                            <input type="number" class="tool-input" id="salario" placeholder="2000">
+                            
+                            <label>Gastos de oficina/herramientas (€/mes):</label>
+                            <input type="number" class="tool-input" id="gastos" placeholder="500">
+                            
+                            <label>Marketing inicial (€):</label>
+                            <input type="number" class="tool-input" id="marketing" placeholder="1000">
+                        </div>
+                        <div>
+                            <label>Desarrollo/producto (€):</label>
+                            <input type="number" class="tool-input" id="desarrollo" placeholder="3000">
+                            
+                            <label>Gastos legales/administrativos (€):</label>
+                            <input type="number" class="tool-input" id="legal" placeholder="800">
+                            
+                            <label>Colchón de emergencia (meses):</label>
+                            <input type="number" class="tool-input" id="emergencia" placeholder="2" min="1" max="6">
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="calcularFinanciacion()">Calcular Necesidades</button>
+                    
+                    <div class="tool-result" id="resultadoFinanciero" style="display:none;">
+                        <p id="totalNecesario"></p>
+                        <p id="desglose"></p>
+                        <p id="consejo"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Calculando Necesidades Financieras (Teoría)</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Análisis de Mercado</h5>
+                        <p><strong>Mercado Total Direccionable:</strong> Tamaño completo del universo</p>
+                        <p><strong>Mercado Disponible Servido:</strong> Clientes que realisticamente puedes servir</p>
+                        <p><strong>Debe ser grande:</strong> Pequeño % de mercado grande = negocio atractivo</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Proyección Financiera Trimestral</h5>
+                        <p><strong>Ingresos:</strong> Ventas directas + canales de distribución</p>
+                        <p><strong>Costos:</strong> Adquisición de clientes + operaciones</p>
+                        <p><strong>Flujo de caja:</strong> Ingresos - Costos por trimestre</p>
+                        <p><strong>Efectivo acumulado:</strong> Cuándo te quedas sin dinero</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Escenarios Múltiples</h5>
+                        <p><strong>Mejor caso, caso base, peor caso</strong></p>
+                        <p><strong>Expectativas realistas:</strong> Probablemente demasiado optimista</p>
+                        <p><strong>Regla empírica:</strong> Al menos el doble de tiempo y dinero esperado</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🚀 Empezar Hoy</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Próximas 24 horas</h5>
+                        <p>• Haz una autoevaluación honesta: ¿qué necesitas que no tienes?</p>
+                        <p>• Lista 10 personas que podrían ayudarte (amigos, familia, excompañeros)</p>
+                        <p>• Calcula cuánto dinero necesitas para los próximos 6 meses</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Esta semana</h5>
+                        <p>• Contacta a 5 personas de tu lista para explicar tu idea</p>
+                        <p>• Pregunta qué les parece y si conocen a alguien que pueda ayudar</p>
+                        <p>• Investiga 3 fuentes de financiación para tu etapa (familia, crowdfunding, etc.)</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Este mes</h5>
+                        <p>• Forma tu "grupo de apoyo": 2-3 personas que creen en ti</p>
+                        <p>• Define cuánto dinero necesitas y cómo lo conseguirás</p>
+                        <p>• Si es posible, consigue tus primeros €1.000 (de clientes, familia, ahorros)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('clarificar')">← Anterior</button>
+                <button class="btn" onclick="showPage('iterar')">Siguiente: Iterar →</button>
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 6: ITERAR -->
+        <div class="page" id="iterar">
+            <div class="hero">
+                <h1>Capítulo 6: Iterar</h1>
+                <p class="subtitle">Lean Startup y el Arte del Crecimiento</p>
+            </div>
+
+            <div class="content-section">
+                <h4>La Metáfora de la Carrera de Obstáculos</h4>
+                <p>Emprendimiento no es un maratón (donde puedes planificar todo), sino una carrera de obstáculos llena de sorpresas. Imagina dos competidores:</p>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Competidor 1: El Planificador</h5>
+                        <p>55 minutos planeando estrategia, 5 minutos ejecutando. Cuando las condiciones no son las esperadas, su plan se va por la ventana.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Competidor 2: El Emprendedor</h5>
+                        <p>Idea básica, empieza y ve qué funciona. Descubre el lodo, se adapta, aprende de caerse de la barra, calcula timing de obstáculos.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Realidad Emprendedora</h5>
+                        <p>Nunca termina como esperabas. Dos pasos adelante, uno atrás. Tropezar no es fracasar, es aprender.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>El Ciclo de Vida Emprendedor Real</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Primera Estrategia: Equivocada</h5>
+                        <p>Tu primera estrategia será incorrecta. Tu primer modelo de negocio también.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Problema del Plan Perfecto</h5>
+                        <p>Si nadie tomó ese camino antes, ¿es posible planificar perfectamente? La historia dice que no.</p>
+                        <p><strong>Error común:</strong> Meses/años planificando, agotar financiamiento, plan fracasa con primer cliente real</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Lean Startup vs. Secreto</h5>
+                        <p><strong>Miedo común:</strong> "Si hablo con gente, robarán mi idea"</p>
+                        <p><strong>Dogma Lean:</strong> Retroalimentación y conocimiento > secreto</p>
+                        <p><strong>Realidad:</strong> Mantener secreto = perder oportunidad de aprender</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Producto Mínimo Viable (MVP)</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Definición</h5>
+                        <p><strong>MVP:</strong> Producto más simple que puedes producir para probar rápida, frecuente y económicamente hasta tener algo que funciona</p>
+                        <p><strong>Revolución:</strong> No esperes a tener producto perfecto para hablar con clientes</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Estrategias de Desarrollo</h5>
+                        <p><strong>No empezar de cero:</strong> Usa algo que ya existe</p>
+                        <p><strong>Plataformas existentes:</strong> Facebook, Twitter, WordPress como base inicial</p>
+                        <p><strong>Automatización después:</strong> Procesos manuales inicialmente, automatizar conforme creces</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Caso Wallapop</h5>
+                        <p><strong>Inicio:</strong> App simple para vender cosas del garaje entre vecinos</p>
+                        <p><strong>Proceso:</strong> Geolocalización básica, fotos desde el móvil, chat simple</p>
+                        <p><strong>Descubrimiento:</strong> Empezó solo para particulares, evolucionó incluyendo profesionales y coches</p>
+                        <p><strong>Resultado:</strong> Más de 15 millones usuarios en España</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>El Proceso de Lean Startup</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Ciclo Construir-Medir-Aprender</h5>
+                        <p><strong>1. Construir:</strong> MVP basado en hipótesis</p>
+                        <p><strong>2. Medir:</strong> Reacción de clientes, métricas clave</p>
+                        <p><strong>3. Aprender:</strong> ¿Valida o invalida hipótesis?</p>
+                        <p><strong>4. Decidir:</strong> Persistir o pivotar</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Preguntas Fundamentales</h5>
+                        <p>¿Hemos resuelto un problema importante del cliente?</p>
+                        <p>¿Podemos repetir lo que hemos hecho?</p>
+                        <p>¿Podemos ampliar nuestro producto?</p>
+                        <p>¿Nuestra estrategia nos da ventaja competitiva?</p>
+                        <p>¿Funciona nuestra infraestructura?</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>El Arte del Pivot</h5>
+                        <p><strong>Proceso doloroso:</strong> Enfrentar rechazo, admitir errores, mantener entusiasmo</p>
+                        <p><strong>Mentalidad clave:</strong> Fallar rápido y barato no es fracaso, es camino al éxito</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Operaciones vs. Innovación</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Diferencia Temporal</h5>
+                        <p><strong>Fase inicial:</strong> Iteración y pivotamiento constante</p>
+                        <p><strong>Fase crecimiento:</strong> Moderar cambios, equilibrar innovación con operaciones</p>
+                        <p><strong>Funcionamiento:</strong> Tan importante como innovación en etapas posteriores</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Equilibrio Necesario</h5>
+                        <p>No puedes tener excelente funcionamiento cambiando modelo/estrategia diariamente</p>
+                        <p>La cadencia se ralentiza: estar un paso adelante + satisfacer clientes actuales</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Caso Glovo</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Contraste Histórico</h5>
+                        <p><strong>Era pre-smartphone:</strong> Empresas de clasificados online invirtieron millones y fracasaron</p>
+                        <p><strong>Enfoque tradicional:</strong> Empezar con webs complejas y grandes inversiones en marketing</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Enfoque Amazon (Lean)</h5>
+                        <p><strong>2015:</strong> MVP solo en Barcelona para delivery de comida</p>
+                        <p><strong>4 años:</strong> Iteración constante, amplió a farmacia, supermercado, flores</p>
+                        <p><strong>Aprendizaje:</strong> Los usuarios querían "cualquier cosa en 30 minutos"</p>
+                        <p><strong>2019:</strong> Expansión a 25 países</p>
+                        <p><strong>Actualidad:</strong> Líder europeo en delivery on-demand</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Navegando el Crecimiento: Desafíos Comunes</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Expectativas Realistas</h5>
+                        <p><strong>Regla empírica:</strong> Al menos 2x tiempo y 2x dinero de lo esperado</p>
+                        <p><strong>Incluso con Lean Startup:</strong> Tu primer MVP tomará más tiempo</p>
+                        <p><strong>Equipo balanceado:</strong> Optimismo + pragmatismo</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Competencia Subestimada</h5>
+                        <p><strong>Principio:</strong> Solo la paranoia sobrevive</p>
+                        <p><strong>Realidad:</strong> Competidores siempre más fuertes, agresivos e inteligentes</p>
+                        <p><strong>Ejemplo:</strong> Las apps de delivery cambiaron el negocio de los restaurantes de la noche a la mañana</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Dinámicas de Equipo</h5>
+                        <p><strong>Evolución natural:</strong> De consenso grupal a liderazgo claro</p>
+                        <p><strong>Tensión inevitable:</strong> Decisiones vs. rapidez de ejecución</p>
+                        <p><strong>Comunicación:</strong> Trabajar activamente como iniciativa estratégica</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Cuándo Parar</h5>
+                        <p><strong>No por dinero:</strong> Problema temporal si te enfocase en clientes</p>
+                        <p><strong>Por pasión:</strong> Cuando pierdes la pasión por el cambio y la incertidumbre</p>
+                        <p><strong>Señales:</strong> Fallos más dolorosos, todo se vuelve sacrificio, evitas problemas en lugar de resolverlos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>Perspectiva de Carrera Emprendedora</h4>
+                
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Ciclo de Proyectos</h5>
+                        <p>Para la mayoría de emprendedores, no hay un único proyecto sino una carrera de emprendimiento</p>
+                        <p>Experimentar, aprender, mejorar gradualmente en convertir ideas en realidad</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h5>Aprendizaje Continuo</h5>
+                        <p>Incluso si tu primer proyecto no es exitoso, no dejes de innovar</p>
+                        <p>Aprende del proceso, encuentra tu próxima gran idea</p>
+                        <p>Muchas mejores ideas vienen de fallos anteriores (Drucker)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h4>🚀 Empezar Hoy</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>Próximas 24 horas</h5>
+                        <p>• Define tu MVP: ¿cuál es la versión más simple que puedes crear?</p>
+                        <p>• ¿Puedes hacerlo sin programar? ¿Con herramientas existentes?</p>
+                        <p>• Identifica a tu primer cliente potencial y llámalo</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Esta semana</h5>
+                        <p>• Crea tu MVP (aunque sea con PowerPoint, WhatsApp o email)</p>
+                        <p>• Ofrece tu servicio/producto a 3 personas</p>
+                        <p>• Registra qué funciona y qué no</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>Este mes</h5>
+                        <p>• Consigue tu primer cliente que pague (aunque sea 10€)</p>
+                        <p>• Itera: mejora según el feedback real</p>
+                        <p>• Decide: ¿sigues por este camino o necesitas pivotar?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('respaldar')">← Anterior</button>
+                <button class="btn" onclick="showPage('anexos')">Siguiente: Anexos →</button>
+            </div>
+        </div>
+
+        <!-- PÁGINA ANEXOS -->
+        <div class="page" id="anexos">
+            <div class="hero">
+                <h1>Anexos y Herramientas</h1>
+                <p class="subtitle">Recursos Prácticos para tu Viaje Emprendedor</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card" onclick="window.open('herramientas/dafo.html', '_blank')">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <h3>Análisis DAFO Interactivo</h3>
+                    </div>
+                    <p>Identifica las fortalezas, oportunidades, debilidades y amenazas de tu proyecto. Una herramienta fundamental antes de empezar.</p>
+                </div>
+                
+                <div class="card" onclick="window.open('herramientas/business-model-canvas.html', '_blank')">
+                    <div class="card-header">
+                        <div class="card-icon">📋</div>
+                        <h3>Business Model Canvas Interactivo</h3>
+                    </div>
+                    <p>Diseña tu modelo de negocio de forma visual con nuestra herramienta interactiva. Guarda tu progreso y exporta a PDF.</p>
+                    <ul class="card-features">
+                        <li>✅ Canvas interactivo con 9 bloques</li>
+                        <li>✅ Ejemplo completo de Glovo</li>
+                        <li>✅ Guardado automático local</li>
+                        <li>✅ Exportación a PDF</li>
+                        <li>✅ Barra de progreso</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="showChecklist()">
+                    <div class="card-header">
+                        <div class="card-icon">✅</div>
+                        <h3>Mi Plan de Acción 30 Días</h3>
+                    </div>
+                    <p>Tu checklist personal para empezar a emprender en los próximos 30 días.</p>
+                    <ul class="card-features">
+                        <li>Plan día a día personalizado</li>
+                        <li>Tareas de cada capítulo organizadas</li>
+                        <li>Seguimiento de progreso real</li>
+                        <li>Recordatorios y motivación</li>
+                        <li>Exportar a calendario</li>
+                        <li>Compartir progreso</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="window.open('herramientas/metricas-clave.html', '_blank')">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <h3>Dashboard de Métricas Clave</h3>
+                    </div>
+                    <p>Dashboard interactivo con KPIs esenciales para cada etapa de tu emprendimiento.</p>
+                    <ul class="card-features">
+                        <li>✅ 4 fases: Validación, MVP, Crecimiento, Escala</li>
+                        <li>✅ Calculadora automática de ratios clave</li>
+                        <li>✅ Puntuación de salud de startup</li>
+                        <li>✅ Recomendaciones personalizadas</li>
+                        <li>✅ Guardado automático de datos</li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="window.open('herramientas/errores-comunes.html', '_blank')">
+                    <div class="card-header">
+                        <div class="card-icon">⚠️</div>
+                        <h3>Errores Comunes y Cómo Evitarlos</h3>
+                    </div>
+                    <p>Aprende de los errores más costosos del emprendimiento con casos reales y estrategias de prevención.</p>
+                    <ul class="card-features">
+                        <li>✅ 8 errores críticos documentados</li>
+                        <li>✅ Casos reales de fracasos famosos</li>
+                        <li>✅ Estrategias específicas de prevención</li>
+                        <li>✅ Checklist anti-errores interactivo</li>
+                        <li>✅ Filtros por categoría de error</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="content-section">
+                <h4>Próximos Pasos Recomendados</h4>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <h5>1. Elige tu Punto de Inicio</h5>
+                        <p>Si ya tienes una idea, empieza con "Escuchar". Si necesitas una idea, comienza con "Pensar".</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>2. Usa el Plan de 30 Días</h5>
+                        <p>Ve a la sección "Mi Plan de Acción 30 Días" para tener una guía día a día personalizada.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>3. Forma tu Equipo de Apoyo</h5>
+                        <p>Identifica mentores, asesores y tu red de apoyo emocional antes de necesitarlos.</p>
+                    </div>
+                    <div class="concept-item">
+                        <h5>4. Implementa el Proceso</h5>
+                        <p>Sigue el ciclo completo: no saltes pasos. Cada fase es crucial para el éxito.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('iterar')">← Anterior</button>
+                <button class="btn" onclick="showPage('home')">← Volver al Inicio</button>
+            </div>
+        </div>
+
+        <!-- PÁGINA CHECKLIST -->
+        <div class="page" id="checklist">
+            <div class="hero">
+                <h1>Mi Plan de Acción 30 Días</h1>
+                <p class="subtitle">Tu hoja de ruta personal para emprender</p>
+            </div>
+
+            <div class="content-section">
+                <h4>🏁 ¿En qué etapa estás?</h4>
+                <div class="tool-container">
+                    <p>Elige tu situación actual para generar tu plan personalizado:</p>
+                    
+                    <div class="key-concepts">
+                        <div class="concept-item" onclick="generatePlan('idea')" style="cursor: pointer; border: 2px solid transparent;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='transparent'">
+                            <h5>💡 Tengo una idea</h5>
+                            <p>Ya tienes una idea de negocio pero no sabes cómo validarla</p>
+                        </div>
+                        <div class="concept-item" onclick="generatePlan('buscando')" style="cursor: pointer; border: 2px solid transparent;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='transparent'">
+                            <h5>🔍 Buscando ideas</h5>
+                            <p>Quieres emprender pero aún no sabes en qué</p>
+                        </div>
+                        <div class="concept-item" onclick="generatePlan('validando')" style="cursor: pointer; border: 2px solid transparent;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='transparent'">
+                            <h5>✅ Ya validé mi idea</h5>
+                            <p>Tienes una idea validada y quieres crear el modelo de negocio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" id="planGenerado" style="display: none;">
+                <h4>📊 Tu Plan Personalizado</h4>
+                <div class="tool-container">
+                    <div id="planContent"></div>
+                    <div class="tool-result" style="margin-top: 20px; display: block;">
+                        <p><strong>🎆 ¡Importante!</strong> Marca cada tarea como completada cuando la termines. El éxito está en la acción, no en la planificación.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showPage('anexos')">← Volver a Herramientas</button>
+                <button class="btn" onclick="exportPlan()" id="exportBtn" style="display:none;">Exportar Plan 📎</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Función para manejar la navegación del logo
+        function goToHome() {
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage && currentPage.id !== 'home') {
+                // Si estamos en una página interna del curso, volver al inicio del curso
+                showPage('home');
+            } else {
+                // Si estamos en la página principal del curso, ir al sitio meskeIA
+                window.location.href = '../index.html';
+            }
+        }
+        
+        function showPage(pageId) {
+            // Ocultar todas las páginas
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Mostrar página seleccionada
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        
+        
+        // Calculadora de necesidades financieras
+        function calcularFinanciacion() {
+            const salario = parseInt(document.getElementById('salario').value) || 0;
+            const gastos = parseInt(document.getElementById('gastos').value) || 0;
+            const marketing = parseInt(document.getElementById('marketing').value) || 0;
+            const desarrollo = parseInt(document.getElementById('desarrollo').value) || 0;
+            const legal = parseInt(document.getElementById('legal').value) || 0;
+            const emergencia = parseInt(document.getElementById('emergencia').value) || 2;
+            
+            const gastosMensuales = salario + gastos;
+            const gastosUnicos = marketing + desarrollo + legal;
+            const total6Meses = (gastosMensuales * 6) + gastosUnicos;
+            const totalConEmergencia = total6Meses + (gastosMensuales * emergencia);
+            
+            document.getElementById('totalNecesario').innerHTML = `<strong>💰 Total necesario: ${totalConEmergencia.toLocaleString()}€</strong>`;
+            
+            document.getElementById('desglose').innerHTML = `
+                📊 Desglose:<br>
+                • 6 meses operativos: ${(gastosMensuales * 6).toLocaleString()}€<br>
+                • Gastos únicos: ${gastosUnicos.toLocaleString()}€<br>
+                • Colchón emergencia: ${(gastosMensuales * emergencia).toLocaleString()}€
+            `;
+            
+            let consejo = "";
+            if (totalConEmergencia < 10000) {
+                consejo = "💡 Perfecto para autofinanciación o familia/amigos";
+            } else if (totalConEmergencia < 50000) {
+                consejo = "💡 Considera crowdfunding o inversores ángeles";
+            } else {
+                consejo = "💡 Necesitarás inversores profesionales o reducir gastos iniciales";
+            }
+            
+            document.getElementById('consejo').innerHTML = consejo;
+            document.getElementById('resultadoFinanciero').style.display = 'block';
+        }
+        
+        // Generador de elevator pitch
+        function generarPitch() {
+            const problema = document.getElementById('problema').value;
+            const cliente = document.getElementById('cliente').value;
+            const solucion = document.getElementById('solucion').value;
+            const diferencia = document.getElementById('diferencia').value;
+            
+            if (!problema || !cliente || !solucion) {
+                alert('Por favor completa al menos los primeros 3 campos');
+                return;
+            }
+            
+            let pitch = `Ayudo a ${cliente} a resolver ${problema}. Lo hago mediante ${solucion}.`;
+            
+            if (diferencia) {
+                pitch += ` Lo que nos diferencia es que ${diferencia}.`;
+            }
+            
+            pitch += ` ¿Te interesa saber más?`;
+            
+            document.getElementById('pitchTexto').innerHTML = `"${pitch}"`;
+            document.getElementById('pitchGenerado').style.display = 'block';
+        }
+        
+        // Sistema de checklist personalizado
+        function showChecklist() {
+            showPage('checklist');
+        }
+        
+        function generatePlan(tipo) {
+            const planes = {
+                'buscando': {
+                    titulo: 'Plan: Encontrar tu Idea de Negocio',
+                    tareas: [
+                        { dia: 1, tarea: 'Lista 10 problemas que te molestan en tu día a día', capitulo: 'Pensar' },
+                        { dia: 2, tarea: 'Pregunta a 5 amigos qué les molesta en su trabajo', capitulo: 'Pensar' },
+                        { dia: 3, tarea: 'Observa las colas y frustraciones en tu ciudad durante 2 horas', capitulo: 'Pensar' },
+                        { dia: 5, tarea: 'Lee noticias buscando "problemas no resueltos"', capitulo: 'Pensar' },
+                        { dia: 7, tarea: 'Elige 3 ideas que más te motiven', capitulo: 'Pensar' },
+                        { dia: 10, tarea: 'Investiga quién ya intenta resolver estos problemas', capitulo: 'Pensar' },
+                        { dia: 14, tarea: 'Pregunta a 10 personas si pagarían por solucionar cada problema', capitulo: 'Escuchar' },
+                        { dia: 18, tarea: 'Elige 1 idea final basada en el feedback', capitulo: 'Escuchar' },
+                        { dia: 21, tarea: 'Define tu estrategia: cómo serás diferente', capitulo: 'Planear' },
+                        { dia: 25, tarea: 'Crea tu elevator pitch de 30 segundos', capitulo: 'Clarificar' },
+                        { dia: 30, tarea: 'Presenta tu idea a 5 personas y registra feedback', capitulo: 'Clarificar' }
+                    ]
+                },
+                'idea': {
+                    titulo: 'Plan: Validar tu Idea Existente',
+                    tareas: [
+                        { dia: 1, tarea: 'Define exactamente qué problema resuelves y para quién', capitulo: 'Escuchar' },
+                        { dia: 2, tarea: 'Crea lista de 20 clientes potenciales', capitulo: 'Escuchar' },
+                        { dia: 3, tarea: 'Escribe tu pitch de 20 segundos', capitulo: 'Escuchar' },
+                        { dia: 5, tarea: 'Programa 5 conversaciones con clientes potenciales', capitulo: 'Escuchar' },
+                        { dia: 10, tarea: 'Completa las 5 entrevistas y documenta respuestas', capitulo: 'Escuchar' },
+                        { dia: 12, tarea: 'Analiza competencia: las 5 fuerzas que pueden hundirte', capitulo: 'Planear' },
+                        { dia: 15, tarea: 'Define qué te hace diferente (estrategia)', capitulo: 'Planear' },
+                        { dia: 18, tarea: 'Crea tu modelo de negocio en 1 página', capitulo: 'Clarificar' },
+                        { dia: 22, tarea: 'Calcula cuánto dinero necesitas para 6 meses', capitulo: 'Respaldar' },
+                        { dia: 25, tarea: 'Identifica quién puede ayudarte (equipo/mentores)', capitulo: 'Respaldar' },
+                        { dia: 30, tarea: 'Define tu MVP: versión más simple posible', capitulo: 'Iterar' }
+                    ]
+                },
+                'validando': {
+                    titulo: 'Plan: De la Idea Validada al Primer Cliente',
+                    tareas: [
+                        { dia: 1, tarea: 'Documenta tu modelo de negocio completo', capitulo: 'Clarificar' },
+                        { dia: 3, tarea: 'Crea presentación de tu idea (10 slides)', capitulo: 'Clarificar' },
+                        { dia: 5, tarea: 'Calcula necesidades financieras exactas', capitulo: 'Respaldar' },
+                        { dia: 7, tarea: 'Identifica y contacta posibles socios/cofundadores', capitulo: 'Respaldar' },
+                        { dia: 10, tarea: 'Investiga 3 fuentes de financiación viables', capitulo: 'Respaldar' },
+                        { dia: 14, tarea: 'Diseña tu MVP (sin programar aún)', capitulo: 'Iterar' },
+                        { dia: 17, tarea: 'Crea MVP básico (PowerPoint, WhatsApp, email)', capitulo: 'Iterar' },
+                        { dia: 20, tarea: 'Testea MVP con 3 clientes potenciales', capitulo: 'Iterar' },
+                        { dia: 24, tarea: 'Mejora MVP según feedback', capitulo: 'Iterar' },
+                        { dia: 27, tarea: 'Busca activamente tu primer cliente que pague', capitulo: 'Iterar' },
+                        { dia: 30, tarea: '¡Consigue tu primer cliente! (aunque sea 10€)', capitulo: 'Iterar' }
+                    ]
+                }
+            };
+            
+            const plan = planes[tipo];
+            let html = `<h5>${plan.titulo}</h5>`;
+            html += '<div class="key-concepts">';
+            
+            plan.tareas.forEach((item, index) => {
+                html += `
+                    <div class="concept-item" style="display: flex; align-items: center; gap: 15px;">
+                        <input type="checkbox" id="tarea${index}">
+                        <div>
+                            <strong>Día ${item.dia}</strong> - ${item.tarea}
+                            <br><small style="color: var(--text-muted);">Capítulo: ${item.capitulo}</small>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            
+            document.getElementById('planContent').innerHTML = html;
+            document.getElementById('planGenerado').style.display = 'block';
+            document.getElementById('exportBtn').style.display = 'inline-block';
+        }
+        
+        function exportPlan() {
+            alert('🚀 Próximamente: Exportar a Google Calendar, Notion, o PDF. Por ahora, haz captura de pantalla de tu plan.');
+        }
+    </script>
+</body>
+</html>

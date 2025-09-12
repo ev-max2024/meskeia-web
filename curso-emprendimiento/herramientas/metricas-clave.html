@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas Clave para Emprendedores | Curso Emprendimiento meskeIA</title>
+    <meta name="description" content="Dashboard de métricas esenciales para emprendedores. KPIs simples y visuales para medir el progreso de tu startup en cada etapa.">
+    <meta name="keywords" content="métricas startup, KPIs emprendimiento, dashboard métricas, indicadores clave, análisis startup">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/curso-emprendimiento/herramientas/metricas-clave">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Métricas Clave para Emprendedores - meskeIA">
+    <meta property="og:description" content="Dashboard interactivo con las métricas más importantes para medir tu progreso emprendedor.">
+    <meta property="og:url" content="https://meskeia.com/curso-emprendimiento/herramientas/metricas-clave">
+    
+    <link rel="icon" type="image/png" href="../../icon_meskeia.png">
+
+    <style>
+        :root {
+            /* Paleta meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --primary: #2E86AB;
+            --secondary: #A23B72;
+            --success: #38A169;
+            --warning: #ED8936;
+            --danger: #E53E3E;
+            --info: #3182CE;
+            --border: #E2E8F0;
+            --focus: #EBF8FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Phase selector */
+        .phase-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .phase-tab {
+            padding: 12px 24px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .phase-tab:hover {
+            border-color: var(--primary);
+        }
+
+        .phase-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .metric-card.success::before {
+            background: var(--success);
+        }
+
+        .metric-card.warning::before {
+            background: var(--warning);
+        }
+
+        .metric-card.danger::before {
+            background: var(--danger);
+        }
+
+        .metric-card.info::before {
+            background: var(--info);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .metric-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            background: var(--primary);
+        }
+
+        .metric-icon.success {
+            background: var(--success);
+        }
+
+        .metric-icon.warning {
+            background: var(--warning);
+        }
+
+        .metric-icon.danger {
+            background: var(--danger);
+        }
+
+        .metric-icon.info {
+            background: var(--info);
+        }
+
+        .metric-title h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .metric-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            margin-bottom: 15px;
+        }
+
+        .metric-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .metric-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .metric-result {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .metric-result.good {
+            background: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+        }
+
+        .metric-result.warning {
+            background: rgba(237, 137, 54, 0.1);
+            color: var(--warning);
+        }
+
+        .metric-result.bad {
+            background: rgba(229, 62, 62, 0.1);
+            color: var(--danger);
+        }
+
+        .metric-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .metric-benchmark {
+            background: rgba(46, 134, 171, 0.05);
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .metric-benchmark strong {
+            color: var(--primary);
+        }
+
+        /* Summary dashboard */
+        .summary-dashboard {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .summary-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-title h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .health-score {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .score-good {
+            background: var(--success);
+        }
+
+        .score-warning {
+            background: var(--warning);
+        }
+
+        .score-bad {
+            background: var(--danger);
+        }
+
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .recommendation {
+            background: rgba(46, 134, 171, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .recommendation h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .recommendation p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2571a3;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Back link */
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 80px 15px 40px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .phase-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .phase-tab {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Print styles */
+        @media print {
+            .meskeia-logo-container,
+            .action-buttons,
+            .phase-selector,
+            .back-link {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../curso-emprendimiento.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Dashboard de Métricas Clave</h1>
+            <p>Mide lo que importa en cada etapa de tu emprendimiento. <strong>Métricas simples, decisiones inteligentes.</strong> Introduce tus datos y obtén insights inmediatos sobre la salud de tu startup.</p>
+        </div>
+
+        <!-- Phase selector -->
+        <div class="phase-selector">
+            <div class="phase-tab active" onclick="showPhase('validacion')">🔍 Validación de Idea</div>
+            <div class="phase-tab" onclick="showPhase('mvp')">🚀 MVP y Primeros Clientes</div>
+            <div class="phase-tab" onclick="showPhase('crecimiento')">📈 Crecimiento</div>
+            <div class="phase-tab" onclick="showPhase('escala')">⚡ Escala</div>
+        </div>
+
+        <!-- Summary dashboard -->
+        <div class="summary-dashboard" id="summary-dashboard">
+            <div class="summary-title">
+                <h3>Salud General de tu Startup</h3>
+                <p>Puntuación basada en tus métricas clave</p>
+            </div>
+            <div class="health-score">
+                <div class="score-circle score-warning" id="health-score">-</div>
+                <div>
+                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;" id="health-text">Completa las métricas para ver tu puntuación</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);" id="health-description">Introduce datos en las métricas de abajo</div>
+                </div>
+            </div>
+            <div class="recommendations" id="recommendations">
+                <!-- Recommendations will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- VALIDACIÓN DE IDEA -->
+        <div class="metrics-section" id="validacion" style="display: block;">
+            <div class="metrics-grid">
+                
+                <div class="metric-card info">
+                    <div class="metric-header">
+                        <div class="metric-icon info">🎯</div>
+                        <div class="metric-title">
+                            <h3>Entrevistas Completadas</h3>
+                            <div class="metric-subtitle">Personas que has entrevistado sobre tu idea</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="entrevistas" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="entrevistas-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Necesitas feedback real antes de construir. Sin validación, 35% de startups fracasan por falta de demanda.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> 50+ entrevistas mínimo, 100+ ideal para validar tu hipótesis
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card success">
+                    <div class="metric-header">
+                        <div class="metric-icon success">💰</div>
+                        <div class="metric-title">
+                            <h3>Disposición a Pagar (%)</h3>
+                            <div class="metric-subtitle">% de entrevistados que pagarían por tu solución</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="pagar" placeholder="0" min="0" max="100" oninput="updateMetrics()">
+                        <div class="metric-result" id="pagar-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Una cosa es que les guste tu idea, otra que paguen por ella. Mide intención de compra real.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> >40% excelente, 20-40% bueno, <20% replantear
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-header">
+                        <div class="metric-icon warning">🏆</div>
+                        <div class="metric-title">
+                            <h3>Competidores Identificados</h3>
+                            <div class="metric-subtitle">Directos + indirectos + sustitutos</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="competidores" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="competidores-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> "No tengo competencia" es una red flag. La competencia valida que existe mercado.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> 5+ competidores es saludable. 0 competidores = problema
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MVP Y PRIMEROS CLIENTES -->
+        <div class="metrics-section" id="mvp" style="display: none;">
+            <div class="metrics-grid">
+
+                <div class="metric-card success">
+                    <div class="metric-header">
+                        <div class="metric-icon success">👥</div>
+                        <div class="metric-title">
+                            <h3>Usuarios Activos</h3>
+                            <div class="metric-subtitle">Usuarios que usan tu MVP regularmente</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="usuarios" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="usuarios-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Engagement real vs registros vanity. Los usuarios activos indican product-market fit.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> 100+ para B2C, 10+ para B2B en fase temprana
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card info">
+                    <div class="metric-header">
+                        <div class="metric-icon info">🔄</div>
+                        <div class="metric-title">
+                            <h3>Retención 7 días (%)</h3>
+                            <div class="metric-subtitle">% usuarios que vuelven después de 7 días</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="retencion" placeholder="0" min="0" max="100" oninput="updateMetrics()">
+                        <div class="metric-result" id="retencion-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Si no vuelven, tu producto no resuelve un problema real o la experiencia es mala.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> >25% excelente, 15-25% bueno, <15% mejorar urgente
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card danger">
+                    <div class="metric-header">
+                        <div class="metric-icon danger">💸</div>
+                        <div class="metric-title">
+                            <h3>Ingresos Mensuales (€)</h3>
+                            <div class="metric-subtitle">MRR - Monthly Recurring Revenue</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="mrr" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="mrr-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Revenue es la validación definitiva. Los usuarios pueden mentir, pero el dinero no.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> €1000+ para siguiente fase, €500 para MVP validado
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-header">
+                        <div class="metric-icon warning">📊</div>
+                        <div class="metric-title">
+                            <h3>NPS (Net Promoter Score)</h3>
+                            <div class="metric-subtitle">Puntuación 0-100 de recomendación</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="nps" placeholder="0" min="0" max="100" oninput="updateMetrics()">
+                        <div class="metric-result" id="nps-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Mide si tus usuarios recomendarían tu producto. Predice crecimiento orgánico.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> >50 excelente, 30-50 bueno, <30 mejorar producto
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CRECIMIENTO -->
+        <div class="metrics-section" id="crecimiento" style="display: none;">
+            <div class="metrics-grid">
+
+                <div class="metric-card success">
+                    <div class="metric-header">
+                        <div class="metric-icon success">💰</div>
+                        <div class="metric-title">
+                            <h3>CAC (€)</h3>
+                            <div class="metric-subtitle">Customer Acquisition Cost - Coste por cliente</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="cac" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="cac-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Si gastas más en conseguir un cliente que lo que te genera, tu negocio no es viable.
+                        <div class="metric-benchmark">
+                            <strong>Fórmula:</strong> Gasto Marketing ÷ Nuevos Clientes
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card info">
+                    <div class="metric-header">
+                        <div class="metric-icon info">💎</div>
+                        <div class="metric-title">
+                            <h3>LTV (€)</h3>
+                            <div class="metric-subtitle">Lifetime Value - Valor del cliente</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="ltv" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="ltv-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Cuánto dinero generará un cliente durante su relación contigo. Clave para sustainability.
+                        <div class="metric-benchmark">
+                            <strong>Fórmula:</strong> ARPU × Tiempo de Vida Cliente
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card danger">
+                    <div class="metric-header">
+                        <div class="metric-icon danger">⚖️</div>
+                        <div class="metric-title">
+                            <h3>Ratio LTV/CAC</h3>
+                            <div class="metric-subtitle">¿Es sostenible tu adquisición?</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <div class="metric-result" id="ltv-cac-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> El indicador más importante de viabilidad financiera de tu startup.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> >3:1 excelente, 2-3:1 aceptable, <2:1 peligro
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-header">
+                        <div class="metric-icon warning">📈</div>
+                        <div class="metric-title">
+                            <h3>Crecimiento Mensual (%)</h3>
+                            <div class="metric-subtitle">Growth rate mes a mes</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="crecimiento-mes" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="crecimiento-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Mide la velocidad de tu crecimiento. Sin crecimiento constante, es difícil levantar inversión.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> >20% excelente, 10-20% bueno, <10% lento
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ESCALA -->
+        <div class="metrics-section" id="escala" style="display: none;">
+            <div class="metrics-grid">
+
+                <div class="metric-card success">
+                    <div class="metric-header">
+                        <div class="metric-icon success">💰</div>
+                        <div class="metric-title">
+                            <h3>ARR (€)</h3>
+                            <div class="metric-subtitle">Annual Recurring Revenue</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="arr" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="arr-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> La métrica rey para SaaS y modelos de suscripción. Muestra la predictibilidad de ingresos.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> €1M+ para Serie A, €10M+ para Serie B
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card info">
+                    <div class="metric-header">
+                        <div class="metric-icon info">🔄</div>
+                        <div class="metric-title">
+                            <h3>Churn Rate (%)</h3>
+                            <div class="metric-subtitle">% clientes que cancelan mensualmente</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="churn" placeholder="0" min="0" max="100" oninput="updateMetrics()">
+                        <div class="metric-result" id="churn-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Si pierdes clientes más rápido de lo que los adquieres, no puedes escalar.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> <5% excelente, 5-10% aceptable, >10% problema serio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card danger">
+                    <div class="metric-header">
+                        <div class="metric-icon danger">🏦</div>
+                        <div class="metric-title">
+                            <h3>Burn Rate (€/mes)</h3>
+                            <div class="metric-subtitle">Dinero que gastas mensualmente</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="burn" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="burn-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Determina cuánto tiempo te queda antes de quedarte sin dinero.
+                        <div class="metric-benchmark">
+                            <strong>Runway:</strong> Tu dinero ÷ burn rate = meses restantes
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-header">
+                        <div class="metric-icon warning">⏱️</div>
+                        <div class="metric-title">
+                            <h3>Runway (meses)</h3>
+                            <div class="metric-subtitle">Tiempo antes de quedarte sin dinero</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">
+                        <input type="number" class="metric-input" id="runway-cash" placeholder="0" min="0" oninput="updateMetrics()">
+                        <div class="metric-result" id="runway-result">-</div>
+                    </div>
+                    <div class="metric-description">
+                        <strong>¿Por qué importa?</strong> Necesitas tiempo suficiente para levantar la siguiente ronda o llegar a profitabilidad.
+                        <div class="metric-benchmark">
+                            <strong>Benchmark:</strong> >18 meses bien, 12-18 ok, <12 riesgo alto
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="saveMetrics()">💾 Guardar Métricas</button>
+            <button class="btn btn-outline" onclick="exportReport()">📊 Exportar Reporte</button>
+            <button class="btn btn-outline" onclick="clearAllMetrics()">🗑️ Limpiar Todo</button>
+        </div>
+
+        <!-- Back link -->
+        <div class="back-link">
+            <a href="../curso-emprendimiento.html">← Volver al Curso</a>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Metrics App Class
+        class MetricsApp {
+            constructor() {
+                this.currentPhase = 'validacion';
+                this.metrics = {
+                    validacion: {},
+                    mvp: {},
+                    crecimiento: {},
+                    escala: {}
+                };
+                this.init();
+            }
+
+            init() {
+                this.loadFromStorage();
+                this.attachEventListeners();
+                this.updateMetrics();
+            }
+
+            loadFromStorage() {
+                try {
+                    const saved = localStorage.getItem('meskeia_metrics');
+                    if (saved) {
+                        this.metrics = JSON.parse(saved);
+                        this.populateInputs();
+                    }
+                } catch (error) {
+                    console.log('No hay métricas guardadas');
+                }
+            }
+
+            populateInputs() {
+                Object.keys(this.metrics).forEach(phase => {
+                    Object.keys(this.metrics[phase]).forEach(metric => {
+                        const input = document.getElementById(metric);
+                        if (input) {
+                            input.value = this.metrics[phase][metric];
+                        }
+                    });
+                });
+            }
+
+            attachEventListeners() {
+                // All inputs auto-save
+                const inputs = document.querySelectorAll('.metric-input');
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => {
+                        this.saveMetricValue(input.id, parseFloat(input.value) || 0);
+                        this.updateMetrics();
+                    });
+                });
+            }
+
+            saveMetricValue(metricId, value) {
+                this.metrics[this.currentPhase][metricId] = value;
+                this.autoSave();
+            }
+
+            updateMetrics() {
+                // Update results for current phase
+                if (this.currentPhase === 'validacion') {
+                    this.updateValidacionMetrics();
+                } else if (this.currentPhase === 'mvp') {
+                    this.updateMVPMetrics();
+                } else if (this.currentPhase === 'crecimiento') {
+                    this.updateCrecimientoMetrics();
+                } else if (this.currentPhase === 'escala') {
+                    this.updateEscalaMetrics();
+                }
+                
+                this.updateHealthScore();
+            }
+
+            updateValidacionMetrics() {
+                const entrevistas = parseFloat(document.getElementById('entrevistas').value) || 0;
+                const pagar = parseFloat(document.getElementById('pagar').value) || 0;
+                const competidores = parseFloat(document.getElementById('competidores').value) || 0;
+
+                // Entrevistas
+                const entrevistasResult = document.getElementById('entrevistas-result');
+                if (entrevistas >= 100) {
+                    entrevistasResult.textContent = 'Excelente';
+                    entrevistasResult.className = 'metric-result good';
+                } else if (entrevistas >= 50) {
+                    entrevistasResult.textContent = 'Bueno';
+                    entrevistasResult.className = 'metric-result good';
+                } else if (entrevistas >= 20) {
+                    entrevistasResult.textContent = 'Progreso';
+                    entrevistasResult.className = 'metric-result warning';
+                } else {
+                    entrevistasResult.textContent = 'Insuficiente';
+                    entrevistasResult.className = 'metric-result bad';
+                }
+
+                // Disposición a pagar
+                const pagarResult = document.getElementById('pagar-result');
+                if (pagar >= 40) {
+                    pagarResult.textContent = 'Excelente';
+                    pagarResult.className = 'metric-result good';
+                } else if (pagar >= 20) {
+                    pagarResult.textContent = 'Bueno';
+                    pagarResult.className = 'metric-result good';
+                } else if (pagar > 0) {
+                    pagarResult.textContent = 'Mejorable';
+                    pagarResult.className = 'metric-result warning';
+                } else {
+                    pagarResult.textContent = 'Sin datos';
+                    pagarResult.className = 'metric-result bad';
+                }
+
+                // Competidores
+                const competidoresResult = document.getElementById('competidores-result');
+                if (competidores >= 5) {
+                    competidoresResult.textContent = 'Saludable';
+                    competidoresResult.className = 'metric-result good';
+                } else if (competidores >= 3) {
+                    competidoresResult.textContent = 'Aceptable';
+                    competidoresResult.className = 'metric-result warning';
+                } else {
+                    competidoresResult.textContent = 'Investigar más';
+                    competidoresResult.className = 'metric-result bad';
+                }
+            }
+
+            updateMVPMetrics() {
+                const usuarios = parseFloat(document.getElementById('usuarios').value) || 0;
+                const retencion = parseFloat(document.getElementById('retencion').value) || 0;
+                const mrr = parseFloat(document.getElementById('mrr').value) || 0;
+                const nps = parseFloat(document.getElementById('nps').value) || 0;
+
+                // Usuarios activos
+                const usuariosResult = document.getElementById('usuarios-result');
+                if (usuarios >= 100) {
+                    usuariosResult.textContent = 'Excelente';
+                    usuariosResult.className = 'metric-result good';
+                } else if (usuarios >= 50) {
+                    usuariosResult.textContent = 'Bueno';
+                    usuariosResult.className = 'metric-result good';
+                } else if (usuarios >= 10) {
+                    usuariosResult.textContent = 'Progreso';
+                    usuariosResult.className = 'metric-result warning';
+                } else {
+                    usuariosResult.textContent = 'Muy bajo';
+                    usuariosResult.className = 'metric-result bad';
+                }
+
+                // Retención
+                const retencionResult = document.getElementById('retencion-result');
+                if (retencion >= 25) {
+                    retencionResult.textContent = 'Excelente';
+                    retencionResult.className = 'metric-result good';
+                } else if (retencion >= 15) {
+                    retencionResult.textContent = 'Bueno';
+                    retencionResult.className = 'metric-result good';
+                } else if (retencion > 0) {
+                    retencionResult.textContent = 'Mejorar UX';
+                    retencionResult.className = 'metric-result warning';
+                } else {
+                    retencionResult.textContent = 'Sin datos';
+                    retencionResult.className = 'metric-result bad';
+                }
+
+                // MRR
+                const mrrResult = document.getElementById('mrr-result');
+                if (mrr >= 1000) {
+                    mrrResult.textContent = '€' + mrr.toLocaleString();
+                    mrrResult.className = 'metric-result good';
+                } else if (mrr >= 500) {
+                    mrrResult.textContent = '€' + mrr.toLocaleString();
+                    mrrResult.className = 'metric-result warning';
+                } else if (mrr > 0) {
+                    mrrResult.textContent = '€' + mrr.toLocaleString();
+                    mrrResult.className = 'metric-result bad';
+                } else {
+                    mrrResult.textContent = 'Sin ingresos';
+                    mrrResult.className = 'metric-result bad';
+                }
+
+                // NPS
+                const npsResult = document.getElementById('nps-result');
+                if (nps >= 50) {
+                    npsResult.textContent = nps + ' - Excelente';
+                    npsResult.className = 'metric-result good';
+                } else if (nps >= 30) {
+                    npsResult.textContent = nps + ' - Bueno';
+                    npsResult.className = 'metric-result good';
+                } else if (nps > 0) {
+                    npsResult.textContent = nps + ' - Mejorar';
+                    npsResult.className = 'metric-result warning';
+                } else {
+                    npsResult.textContent = 'Sin datos';
+                    npsResult.className = 'metric-result bad';
+                }
+            }
+
+            updateCrecimientoMetrics() {
+                const cac = parseFloat(document.getElementById('cac').value) || 0;
+                const ltv = parseFloat(document.getElementById('ltv').value) || 0;
+                const crecimientoMes = parseFloat(document.getElementById('crecimiento-mes').value) || 0;
+
+                // CAC
+                const cacResult = document.getElementById('cac-result');
+                cacResult.textContent = cac > 0 ? '€' + cac.toLocaleString() : 'Sin datos';
+                cacResult.className = 'metric-result warning';
+
+                // LTV
+                const ltvResult = document.getElementById('ltv-result');
+                ltvResult.textContent = ltv > 0 ? '€' + ltv.toLocaleString() : 'Sin datos';
+                ltvResult.className = 'metric-result warning';
+
+                // LTV/CAC Ratio
+                const ratioResult = document.getElementById('ltv-cac-result');
+                if (ltv > 0 && cac > 0) {
+                    const ratio = ltv / cac;
+                    if (ratio >= 3) {
+                        ratioResult.textContent = ratio.toFixed(1) + ':1 - Excelente';
+                        ratioResult.className = 'metric-result good';
+                    } else if (ratio >= 2) {
+                        ratioResult.textContent = ratio.toFixed(1) + ':1 - Aceptable';
+                        ratioResult.className = 'metric-result warning';
+                    } else {
+                        ratioResult.textContent = ratio.toFixed(1) + ':1 - Peligro';
+                        ratioResult.className = 'metric-result bad';
+                    }
+                } else {
+                    ratioResult.textContent = 'Falta CAC o LTV';
+                    ratioResult.className = 'metric-result bad';
+                }
+
+                // Crecimiento
+                const crecimientoResult = document.getElementById('crecimiento-result');
+                if (crecimientoMes >= 20) {
+                    crecimientoResult.textContent = crecimientoMes + '% - Excelente';
+                    crecimientoResult.className = 'metric-result good';
+                } else if (crecimientoMes >= 10) {
+                    crecimientoResult.textContent = crecimientoMes + '% - Bueno';
+                    crecimientoResult.className = 'metric-result good';
+                } else if (crecimientoMes > 0) {
+                    crecimientoResult.textContent = crecimientoMes + '% - Lento';
+                    crecimientoResult.className = 'metric-result warning';
+                } else {
+                    crecimientoResult.textContent = 'Sin datos';
+                    crecimientoResult.className = 'metric-result bad';
+                }
+            }
+
+            updateEscalaMetrics() {
+                const arr = parseFloat(document.getElementById('arr').value) || 0;
+                const churn = parseFloat(document.getElementById('churn').value) || 0;
+                const burn = parseFloat(document.getElementById('burn').value) || 0;
+                const runwayCash = parseFloat(document.getElementById('runway-cash').value) || 0;
+
+                // ARR
+                const arrResult = document.getElementById('arr-result');
+                if (arr >= 10000000) {
+                    arrResult.textContent = '€' + (arr/1000000).toFixed(1) + 'M';
+                    arrResult.className = 'metric-result good';
+                } else if (arr >= 1000000) {
+                    arrResult.textContent = '€' + (arr/1000000).toFixed(1) + 'M';
+                    arrResult.className = 'metric-result good';
+                } else if (arr > 0) {
+                    arrResult.textContent = '€' + arr.toLocaleString();
+                    arrResult.className = 'metric-result warning';
+                } else {
+                    arrResult.textContent = 'Sin datos';
+                    arrResult.className = 'metric-result bad';
+                }
+
+                // Churn
+                const churnResult = document.getElementById('churn-result');
+                if (churn < 5) {
+                    churnResult.textContent = churn + '% - Excelente';
+                    churnResult.className = 'metric-result good';
+                } else if (churn <= 10) {
+                    churnResult.textContent = churn + '% - Aceptable';
+                    churnResult.className = 'metric-result warning';
+                } else if (churn > 0) {
+                    churnResult.textContent = churn + '% - Problema';
+                    churnResult.className = 'metric-result bad';
+                } else {
+                    churnResult.textContent = 'Sin datos';
+                    churnResult.className = 'metric-result bad';
+                }
+
+                // Burn Rate
+                const burnResult = document.getElementById('burn-result');
+                burnResult.textContent = burn > 0 ? '€' + burn.toLocaleString() : 'Sin datos';
+                burnResult.className = 'metric-result warning';
+
+                // Runway
+                const runwayResult = document.getElementById('runway-result');
+                if (burn > 0 && runwayCash > 0) {
+                    const months = runwayCash / burn;
+                    if (months >= 18) {
+                        runwayResult.textContent = months.toFixed(0) + ' meses - Bien';
+                        runwayResult.className = 'metric-result good';
+                    } else if (months >= 12) {
+                        runwayResult.textContent = months.toFixed(0) + ' meses - OK';
+                        runwayResult.className = 'metric-result warning';
+                    } else {
+                        runwayResult.textContent = months.toFixed(0) + ' meses - Riesgo';
+                        runwayResult.className = 'metric-result bad';
+                    }
+                } else {
+                    runwayResult.textContent = 'Faltan datos';
+                    runwayResult.className = 'metric-result bad';
+                }
+            }
+
+            updateHealthScore() {
+                // Simple health score calculation based on current phase
+                let score = 0;
+                let total = 0;
+
+                const results = document.querySelectorAll('.metrics-section:not([style*="display: none"]) .metric-result');
+                results.forEach(result => {
+                    total++;
+                    if (result.classList.contains('good')) {
+                        score += 100;
+                    } else if (result.classList.contains('warning')) {
+                        score += 60;
+                    } else {
+                        score += 20;
+                    }
+                });
+
+                if (total > 0) {
+                    const avgScore = Math.round(score / total);
+                    const healthScore = document.getElementById('health-score');
+                    const healthText = document.getElementById('health-text');
+                    const healthDesc = document.getElementById('health-description');
+                    
+                    healthScore.textContent = avgScore;
+                    
+                    if (avgScore >= 80) {
+                        healthScore.className = 'score-circle score-good';
+                        healthText.textContent = 'Estado Excelente';
+                        healthDesc.textContent = 'Tu startup está en muy buen camino';
+                    } else if (avgScore >= 60) {
+                        healthScore.className = 'score-circle score-warning';
+                        healthText.textContent = 'Estado Bueno';
+                        healthDesc.textContent = 'Algunas áreas necesitan atención';
+                    } else {
+                        healthScore.className = 'score-circle score-bad';
+                        healthText.textContent = 'Necesita Mejoras';
+                        healthDesc.textContent = 'Varias métricas requieren trabajo';
+                    }
+                }
+
+                this.updateRecommendations();
+            }
+
+            updateRecommendations() {
+                const recommendations = document.getElementById('recommendations');
+                const phase = this.currentPhase;
+                
+                let recs = [];
+
+                if (phase === 'validacion') {
+                    const entrevistas = parseFloat(document.getElementById('entrevistas').value) || 0;
+                    const pagar = parseFloat(document.getElementById('pagar').value) || 0;
+                    
+                    if (entrevistas < 50) {
+                        recs.push({title: '🎯 Más Entrevistas', text: 'Necesitas al menos 50 entrevistas para validar tu hipótesis'});
+                    }
+                    if (pagar < 20) {
+                        recs.push({title: '💰 Validar Willingness to Pay', text: 'Pregunta precios específicos y mide intención de compra real'});
+                    }
+                } else if (phase === 'mvp') {
+                    const retencion = parseFloat(document.getElementById('retencion').value) || 0;
+                    const mrr = parseFloat(document.getElementById('mrr').value) || 0;
+                    
+                    if (retencion < 15) {
+                        recs.push({title: '🔄 Mejorar Retención', text: 'Optimiza onboarding y experiencia de usuario'});
+                    }
+                    if (mrr < 500) {
+                        recs.push({title: '💸 Generar Revenue', text: 'Enfócate en monetización antes que en crecimiento'});
+                    }
+                }
+
+                if (recs.length === 0) {
+                    recs.push({title: '✅ Bien encaminado', text: 'Continúa midiendo y optimizando estas métricas'});
+                }
+
+                recommendations.innerHTML = recs.map(rec => 
+                    `<div class="recommendation"><h4>${rec.title}</h4><p>${rec.text}</p></div>`
+                ).join('');
+            }
+
+            autoSave() {
+                try {
+                    localStorage.setItem('meskeia_metrics', JSON.stringify(this.metrics));
+                } catch (error) {
+                    console.error('Error al guardar automáticamente');
+                }
+            }
+
+            save() {
+                this.autoSave();
+                this.showToast('📊 Métricas guardadas correctamente');
+            }
+
+            exportReport() {
+                window.print();
+            }
+
+            clearAll() {
+                if (confirm('¿Estás seguro de que quieres limpiar todas las métricas?')) {
+                    this.metrics = {
+                        validacion: {},
+                        mvp: {},
+                        crecimiento: {},
+                        escala: {}
+                    };
+                    
+                    document.querySelectorAll('.metric-input').forEach(input => {
+                        input.value = '';
+                    });
+                    
+                    localStorage.removeItem('meskeia_metrics');
+                    this.updateMetrics();
+                    this.showToast('🗑️ Todas las métricas han sido limpiadas');
+                }
+            }
+
+            showToast(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.className = `toast show ${type}`;
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Global app instance
+        let metricsApp;
+
+        // Global functions
+        function showPhase(phase) {
+            // Update tabs
+            document.querySelectorAll('.phase-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Hide all sections
+            document.querySelectorAll('.metrics-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show selected section
+            document.getElementById(phase).style.display = 'block';
+            
+            metricsApp.currentPhase = phase;
+            metricsApp.updateMetrics();
+        }
+
+        function saveMetrics() {
+            metricsApp.save();
+        }
+
+        function exportReport() {
+            metricsApp.exportReport();
+        }
+
+        function clearAllMetrics() {
+            metricsApp.clearAll();
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            metricsApp = new MetricsApp();
+        });
+    </script>
+</body>
+</html>

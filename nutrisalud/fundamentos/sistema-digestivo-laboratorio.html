@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Sistema Digestivo como Laboratorio - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            
+            /* Colores específicos para sistema digestivo - Tonos verdes digestivos */
+            --digestive-primary: #27AE60;  /* Verde principal digestivo */
+            --digestive-secondary: #2ECC71;  /* Verde más claro */
+            --digestive-accent: #58D68D;  /* Verde suave para acentos */
+            --digestive-light: rgba(39, 174, 96, 0.1);  /* Background sutil */
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ia {
+            color: #F18F01;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-nav {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--digestive-primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .hero-section {
+            background: linear-gradient(135deg, var(--digestive-primary) 0%, var(--digestive-secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .laboratory-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .laboratory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .lab-station {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .lab-station-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .lab-station-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Content sections */
+        .content-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--digestive-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--digestive-primary);
+            padding-bottom: 10px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: var(--focus);
+            border-left: 4px solid var(--digestive-primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h4 {
+            color: var(--digestive-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Laboratory stations grid */
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .station-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .station-card:hover {
+            box-shadow: 0 8px 25px rgba(46, 134, 171, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .station-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .station-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .station-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--digestive-primary);
+        }
+
+        .station-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .station-functions {
+            background: var(--hover);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .station-functions h5 {
+            color: var(--digestive-primary);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .station-functions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .station-functions li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .station-functions li::before {
+            content: "▪";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Interactive Health Evaluator */
+        .evaluator-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--hover) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid var(--digestive-primary);
+        }
+
+        .evaluator-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--digestive-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .evaluator-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .evaluation-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .symptom-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .symptom-checkbox:hover {
+            background: var(--hover);
+        }
+
+        .symptom-checkbox input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .evaluate-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--digestive-primary) 0%, var(--digestive-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .evaluate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 134, 171, 0.3);
+        }
+
+        .results-container {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .result-score {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .result-interpretation {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+        }
+
+        .recommendations {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--digestive-primary);
+        }
+
+        .recommendations h4 {
+            color: var(--digestive-primary);
+            margin-bottom: 15px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recommendations li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .recommendations li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Navigation */
+        .navigation-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            color: var(--digestive-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: 2px solid var(--digestive-primary);
+            background: transparent;
+            color: var(--digestive-primary);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--digestive-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background: var(--digestive-primary);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+            }
+
+            .stations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .laboratory-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="../index.html">Inicio</a> > 
+                <a href="../fundamentos.html">Fundamentos Esenciales</a> > 
+                El Sistema Digestivo como Laboratorio
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Tu Sistema Digestivo como Laboratorio</h1>
+                <p class="hero-subtitle">
+                    Descubre cómo 100 billones de bacterias y complejas reacciones bioquímicas 
+                    procesan cada alimento que consumes para crear energía y salud
+                </p>
+                
+                <div class="laboratory-visual">
+                    <h3>Las Estaciones de tu Laboratorio Biológico</h3>
+                    <div class="laboratory-grid">
+                        <div class="lab-station">
+                            <div class="lab-station-icon">🧪</div>
+                            <div class="lab-station-name">Laboratorio Ácido</div>
+                        </div>
+                        <div class="lab-station">
+                            <div class="lab-station-icon">🦠</div>
+                            <div class="lab-station-name">Co-laboratorio Bacteriano</div>
+                        </div>
+                        <div class="lab-station">
+                            <div class="lab-station-icon">🛡️</div>
+                            <div class="lab-station-name">Barrera Selectiva</div>
+                        </div>
+                        <div class="lab-station">
+                            <div class="lab-station-icon">📡</div>
+                            <div class="lab-station-name">Centro de Comunicación</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Introducción conceptual -->
+        <section class="content-section">
+            <h2 class="section-title">🔬 Más que Digestión: Un Laboratorio Bioquímico</h2>
+            <div class="section-content">
+                <p>
+                    Tu sistema digestivo no es simplemente un "tubo" que procesa comida. Es el laboratorio 
+                    bioquímico más sofisticado que existe, donde se toman decisiones metabólicas que afectan 
+                    cada célula de tu organismo.
+                </p>
+                
+                <div class="highlight-box">
+                    <h4>🧬 Dato Clave</h4>
+                    <p>
+                        Tu intestino tiene más neuronas que tu médula espinal, produce el 90% de la serotonina 
+                        de tu cuerpo y alberga el 70% de tu sistema inmunitario. No es "solo digestión".
+                    </p>
+                </div>
+
+                <p>
+                    Cada alimento que consumes desencadena una cascada de reacciones que van mucho más allá 
+                    de "extraer nutrientes". Se generan señales hormonales, se modulan neurotransmisores, 
+                    se activan o desactivan genes, y se toman "decisiones" sobre qué hacer con cada molécula.
+                </p>
+
+                <p>
+                    En este laboratorio trabajan simultáneamente tus propias células y 100 billones de 
+                    bacterias especializadas. Cada "empleado" tiene funciones específicas, y el resultado 
+                    final determina tu energía, tu estado de ánimo, tu inmunidad y tu salud a largo plazo.
+                </p>
+            </div>
+        </section>
+
+        <!-- Estaciones del laboratorio -->
+        <section class="content-section">
+            <h2 class="section-title">🏭 Las Cuatro Estaciones Principales de tu Laboratorio</h2>
+            
+            <div class="stations-grid">
+                <!-- Estación 1: Laboratorio Ácido -->
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-icon">🧪</div>
+                        <div class="station-title">Laboratorio Ácido (Estómago)</div>
+                    </div>
+                    <div class="station-description">
+                        El estómago es tu primera "estación química" donde se inicia la desnaturalización 
+                        de proteínas y se activan enzimas digestivas. Su pH ácido (1.5-3.5) es crucial 
+                        para la absorción de minerales como hierro, calcio y B12.
+                    </div>
+                    <div class="station-functions">
+                        <h5>Funciones críticas:</h5>
+                        <ul>
+                            <li>Producción de ácido clorhídrico (HCl)</li>
+                            <li>Activación de pepsina para proteínas</li>
+                            <li>Liberación de factor intrínseco (B12)</li>
+                            <li>Ionización de minerales para absorción</li>
+                            <li>Barrera antimicrobiana contra patógenos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Estación 2: Co-laboratorio Bacteriano -->
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-icon">🦠</div>
+                        <div class="station-title">Co-laboratorio Bacteriano (Microbiota)</div>
+                    </div>
+                    <div class="station-description">
+                        100 billones de bacterias especializadas procesan fibras, sintetizan vitaminas, 
+                        modulan tu inmunidad y producen metabolitos que afectan tu cerebro. Son tus 
+                        "empleados externos" más valiosos.
+                    </div>
+                    <div class="station-functions">
+                        <h5>Procesos especializados:</h5>
+                        <ul>
+                            <li>Fermentación de fibras → ácidos grasos de cadena corta</li>
+                            <li>Síntesis de vitaminas K, B12, folato</li>
+                            <li>Modulación del sistema inmunitario</li>
+                            <li>Producción de neurotransmisores</li>
+                            <li>Metabolismo de fitoquímicos y polifenoles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Estación 3: Barrera Selectiva -->
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-icon">🛡️</div>
+                        <div class="station-title">Barrera Selectiva (Intestino)</div>
+                    </div>
+                    <div class="station-description">
+                        Las "tight junctions" del intestino actúan como un filtro molecular inteligente 
+                        que decide qué entra al torrente sanguíneo y qué se mantiene fuera. Su integridad 
+                        determina si tienes inflamación sistémica o no.
+                    </div>
+                    <div class="station-functions">
+                        <h5>Mecanismos de control:</h5>
+                        <ul>
+                            <li>Permeabilidad selectiva controlada</li>
+                            <li>Detección de antígenos alimentarios</li>
+                            <li>Tolerancia inmunológica vs. activación</li>
+                            <li>Transporte activo de nutrientes específicos</li>
+                            <li>Producción de IgA secretora</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Estación 4: Centro de Comunicación -->
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-icon">📡</div>
+                        <div class="station-title">Centro de Comunicación (Ejes)</div>
+                    </div>
+                    <div class="station-description">
+                        Tu intestino no trabaja aislado. Mantiene comunicación bidireccional constante 
+                        con cerebro, hígado, páncreas y sistema inmune a través de nervios, hormonas 
+                        y metabolitos.
+                    </div>
+                    <div class="station-functions">
+                        <h5>Redes de comunicación:</h5>
+                        <ul>
+                            <li>Eje intestino-cerebro (nervio vago)</li>
+                            <li>Eje intestino-hígado (vena porta)</li>
+                            <li>Liberación hormonal (GLP-1, CCK, grelina)</li>
+                            <li>Modulación del páncreas endocrino</li>
+                            <li>Señalización inmunitaria sistémica</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timing y coordinación -->
+        <section class="content-section">
+            <h2 class="section-title">⏰ El Timing del Laboratorio: Fase Cefálica, Gástrica e Intestinal</h2>
+            <div class="section-content">
+                <p>
+                    Tu laboratorio digestivo no espera a que llegue la comida para activarse. Comienza 
+                    su trabajo desde que ves, hueles o piensas en alimentos. Este proceso coordinado 
+                    en tres fases optimiza cada paso del procesamiento.
+                </p>
+
+                <div class="highlight-box">
+                    <h4>🧠 Fase Cefálica (antes de comer)</h4>
+                    <p>
+                        El cerebro prepara el laboratorio: aumenta la producción de saliva, HCl gástrico 
+                        y enzimas pancreáticas. La sola anticipación de comer puede aumentar la secreción 
+                        ácida hasta un 50%.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🍽️ Fase Gástrica (durante la comida)</h4>
+                    <p>
+                        La distensión gástrica y la presencia de proteínas activan la liberación de gastrina, 
+                        que intensifica la producción de HCl y coordina la motilidad digestiva.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🔄 Fase Intestinal (después de comer)</h4>
+                    <p>
+                        El intestino toma el control: libera hormonas como CCK y GLP-1 que modulan la 
+                        saciedad, ralentizan el vaciado gástrico y optimizan la absorción de nutrientes.
+                    </p>
+                </div>
+
+                <p>
+                    <strong>Implicación práctica:</strong> Comer con estrés, distraído o muy rápido 
+                    descoordina estas fases, reduciendo la eficiencia de todo el laboratorio y 
+                    aumentando el riesgo de digestiones pesadas y mala absorción.
+                </p>
+            </div>
+        </section>
+
+        <!-- Optimización del laboratorio -->
+        <section class="content-section">
+            <h2 class="section-title">⚡ Cómo Optimizar tu Laboratorio Digestivo</h2>
+            <div class="section-content">
+                <p>
+                    Conocer cómo funciona tu laboratorio te permite optimizar cada "estación de trabajo" 
+                    para maximizar la eficiencia digestiva y la absorción de nutrientes.
+                </p>
+
+                <div class="stations-grid">
+                    <div class="station-card">
+                        <div class="station-header">
+                            <div class="station-icon">🔧</div>
+                            <div class="station-title">Optimización del HCl</div>
+                        </div>
+                        <div class="station-description">
+                            Mantén la acidez gástrica adecuada para una digestión óptima.
+                        </div>
+                        <div class="station-functions">
+                            <h5>Estrategias:</h5>
+                            <ul>
+                                <li>Evita antiácidos innecesarios</li>
+                                <li>Mastica bien para estimular la fase cefálica</li>
+                                <li>Vinagre de manzana antes de comidas (si lo toleras)</li>
+                                <li>Reduce el estrés durante las comidas</li>
+                                <li>Evita beber grandes cantidades con las comidas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="station-card">
+                        <div class="station-header">
+                            <div class="station-icon">🌱</div>
+                            <div class="station-title">Nutrir la Microbiota</div>
+                        </div>
+                        <div class="station-description">
+                            Alimenta a tus "empleados bacterianos" con los sustratos adecuados.
+                        </div>
+                        <div class="station-functions">
+                            <h5>Alimentación bacteriana:</h5>
+                            <ul>
+                                <li>Fibras diversas (prebióticos)</li>
+                                <li>Polifenoles de frutas y verduras</li>
+                                <li>Fermentados con bacterias vivas</li>
+                                <li>Evita exceso de azúcares simples</li>
+                                <li>Minimiza antibióticos innecesarios</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="station-card">
+                        <div class="station-header">
+                            <div class="station-icon">🛠️</div>
+                            <div class="station-title">Fortalecer la Barrera</div>
+                        </div>
+                        <div class="station-description">
+                            Mantén la integridad de las tight junctions intestinales.
+                        </div>
+                        <div class="station-functions">
+                            <h5>Protectores de barrera:</h5>
+                            <ul>
+                                <li>Glutamina de caldos de hueso</li>
+                                <li>Zinc de carnes y semillas</li>
+                                <li>Ácidos grasos omega-3</li>
+                                <li>Evita alcohol excesivo</li>
+                                <li>Gestiona el estrés crónico</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="station-card">
+                        <div class="station-header">
+                            <div class="station-icon">📊</div>
+                            <div class="station-title">Mejorar la Comunicación</div>
+                        </div>
+                        <div class="station-description">
+                            Optimiza los ejes de comunicación entre órganos.
+                        </div>
+                        <div class="station-functions">
+                            <h5>Potenciadores:</h5>
+                            <ul>
+                                <li>Ejercicio regular (estimula el nervio vago)</li>
+                                <li>Técnicas de relajación</li>
+                                <li>Horarios regulares de comida</li>
+                                <li>Sueño de calidad</li>
+                                <li>Evita comer muy tarde</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evaluador de Salud Digestiva -->
+        <section class="evaluator-section">
+            <h2 class="evaluator-title">🔍 Evaluador de Salud de tu Laboratorio Digestivo</h2>
+            <p class="evaluator-subtitle">
+                Analiza qué estación de tu laboratorio digestivo necesita más atención
+            </p>
+
+            <div class="evaluation-form">
+                <div class="form-group">
+                    <label class="form-label">¿Con qué frecuencia tienes digestiones pesadas?</label>
+                    <select class="form-select" id="heavyDigestion">
+                        <option value="0">Nunca</option>
+                        <option value="1">Ocasionalmente (1-2 veces/mes)</option>
+                        <option value="2">Regularmente (1-2 veces/semana)</option>
+                        <option value="3">Frecuentemente (3+ veces/semana)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Cómo describirías tu nivel de estrés durante las comidas?</label>
+                    <select class="form-select" id="stressLevel">
+                        <option value="0">Muy relajado, como despacio</option>
+                        <option value="1">Generalmente tranquilo</option>
+                        <option value="2">Algo estresado o comiendo rápido</option>
+                        <option value="3">Muy estresado, comiendo muy rápido o distraído</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Cuántas porciones de verduras/frutas consumes al día?</label>
+                    <select class="form-select" id="fiberIntake">
+                        <option value="3">5+ porciones</option>
+                        <option value="2">3-4 porciones</option>
+                        <option value="1">1-2 porciones</option>
+                        <option value="0">Menos de 1 porción</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿Con qué frecuencia consumes alimentos fermentados?</label>
+                    <select class="form-select" id="fermentedFoods">
+                        <option value="3">Diariamente</option>
+                        <option value="2">Varias veces por semana</option>
+                        <option value="1">Ocasionalmente</option>
+                        <option value="0">Nunca o casi nunca</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Marca los síntomas que experimentas regularmente:</label>
+                    <div class="symptoms-grid">
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Hinchazón abdominal
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Gases excesivos
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="3" class="symptom-check">
+                            Estreñimiento frecuente
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Acidez o reflujo
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Antojos intensos de azúcar
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="1" class="symptom-check">
+                            Fatiga después de comer
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="3" class="symptom-check">
+                            Diarrea frecuente
+                        </label>
+                        <label class="symptom-checkbox">
+                            <input type="checkbox" value="2" class="symptom-check">
+                            Cambios de humor relacionados con comida
+                        </label>
+                    </div>
+                </div>
+
+                <button class="evaluate-btn" onclick="evaluateDigestiveHealth()">
+                    🔬 Analizar mi Laboratorio Digestivo
+                </button>
+
+                <div class="results-container" id="resultsContainer">
+                    <div class="result-score" id="resultScore"></div>
+                    <div class="result-interpretation" id="resultInterpretation"></div>
+                    <div class="recommendations" id="recommendations"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación -->
+        <section class="navigation-section">
+            <h3 class="nav-title">Continúa tu Aprendizaje</h3>
+            <p>Has completado los <strong>Fundamentos Esenciales</strong>. Ahora profundiza en las interacciones entre nutrientes.</p>
+            
+            <div class="nav-buttons">
+                <a href="micronutrientes-biodisponibilidad.html" class="nav-btn">← Micronutrientes</a>
+                <a href="../nutrisalud.html" class="nav-btn primary">Volver al inicio →</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function evaluateDigestiveHealth() {
+            // Obtener valores de los selects
+            const heavyDigestion = parseInt(document.getElementById('heavyDigestion').value);
+            const stressLevel = parseInt(document.getElementById('stressLevel').value);
+            const fiberIntake = parseInt(document.getElementById('fiberIntake').value);
+            const fermentedFoods = parseInt(document.getElementById('fermentedFoods').value);
+
+            // Obtener síntomas marcados
+            const symptoms = document.querySelectorAll('.symptom-check:checked');
+            let symptomsScore = 0;
+            symptoms.forEach(symptom => {
+                symptomsScore += parseInt(symptom.value);
+            });
+
+            // Calcular puntuación total
+            const totalScore = heavyDigestion + stressLevel + (3 - fiberIntake) + (3 - fermentedFoods) + symptomsScore;
+
+            // Determinar interpretación
+            let interpretation, recommendations, scoreColor;
+
+            if (totalScore <= 5) {
+                interpretation = "🟢 Laboratorio Óptimo - Tu sistema digestivo funciona eficientemente";
+                scoreColor = "#48A9A6";
+                recommendations = `
+                    <h4>Mantén tu excelente salud digestiva:</h4>
+                    <ul>
+                        <li>Continúa con tus hábitos alimentarios actuales</li>
+                        <li>Sigue incluyendo variedad de fibras y fermentados</li>
+                        <li>Mantén el ambiente relajado durante las comidas</li>
+                        <li>Considera hacer evaluaciones periódicas</li>
+                    </ul>
+                `;
+            } else if (totalScore <= 10) {
+                interpretation = "🟡 Laboratorio con Mejoras Menores - Algunas estaciones necesitan ajustes";
+                scoreColor = "#F39C12";
+                recommendations = `
+                    <h4>Optimizaciones recomendadas:</h4>
+                    <ul>
+                        <li>Aumenta gradualmente la ingesta de fibra diversa</li>
+                        <li>Incorpora técnicas de relajación antes de comer</li>
+                        <li>Prueba a incluir más fermentados en tu dieta</li>
+                        <li>Come más despacio y mastica bien</li>
+                        <li>Considera reducir el estrés general</li>
+                    </ul>
+                `;
+            } else if (totalScore <= 15) {
+                interpretation = "🟠 Laboratorio Comprometido - Múltiples estaciones necesitan atención";
+                scoreColor = "#E67E22";
+                recommendations = `
+                    <h4>Plan de optimización prioritario:</h4>
+                    <ul>
+                        <li>Enfócate en mejorar el ambiente de las comidas</li>
+                        <li>Incrementa significativamente verduras y frutas</li>
+                        <li>Incorpora fermentados diariamente</li>
+                        <li>Evalúa y gestiona el estrés crónico</li>
+                        <li>Considera evaluación con profesional de salud digestiva</li>
+                    </ul>
+                `;
+            } else {
+                interpretation = "🔴 Laboratorio en Crisis - Requiere intervención integral";
+                scoreColor = "#E74C3C";
+                recommendations = `
+                    <h4>Intervención urgente recomendada:</h4>
+                    <ul>
+                        <li>Consulta con un profesional de salud digestiva</li>
+                        <li>Implementa un plan alimentario antiinflamatorio</li>
+                        <li>Considera pruebas de permeabilidad intestinal</li>
+                        <li>Evalúa posibles intolerancias alimentarias</li>
+                        <li>Implementa técnicas de gestión del estrés</li>
+                        <li>Considera suplementación específica bajo supervisión</li>
+                    </ul>
+                `;
+            }
+
+            // Mostrar resultados
+            document.getElementById('resultScore').style.color = scoreColor;
+            document.getElementById('resultScore').textContent = `Puntuación: ${totalScore}/24`;
+            document.getElementById('resultInterpretation').textContent = interpretation;
+            document.getElementById('recommendations').innerHTML = recommendations;
+            document.getElementById('resultsContainer').style.display = 'block';
+
+            // Scroll to results
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

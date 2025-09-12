@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Estadística Online Gratis | Media, Mediana, Desviación Estándar - meskeIA</title>
+    <meta name="description" content="Calculadora estadística completa online gratis. Calcula media, mediana, moda, desviación estándar, varianza y correlación. Herramienta perfecta para estudiantes y profesionales.">
+    <meta name="keywords" content="calculadora estadística, media aritmética, mediana, moda, desviación estándar, varianza, correlación de Pearson, estadística descriptiva, análisis estadístico">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/calculadora-estadistica/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora Estadística Online | Herramienta Gratuita">
+    <meta property="og:description" content="Calculadora estadística completa para análisis de datos. Media, mediana, desviación estándar y más. Ideal para estudiantes y profesionales.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/calculadora-estadistica/">
+    <meta property="og:image" content="../icon_meskeia.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora Estadística Online Gratis">
+    <meta name="twitter:description" content="Herramienta completa para análisis estadístico de datos">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora Estadística",
+      "description": "Herramienta online gratuita para cálculos estadísticos: media, mediana, moda, desviación estándar, varianza y análisis de correlación",
+      "url": "https://meskeia.com/aplicaciones/calculadora-estadistica/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "meskeIA",
+        "url": "https://meskeia.com"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta minimalista meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #28a745;
+            --warning: #ffc107;
+            --error: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Sección informativa */
+        .info-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .info-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2E86AB;
+        }
+        
+        .info-section h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+            color: #48A9A6;
+        }
+        
+        .info-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .info-section ul {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        
+        .info-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .faq-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #2E86AB;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .faq-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: var(--secondary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+            margin-bottom: 100px;
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        /* Pestañas de modo */
+        .mode-selector {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .mode-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mode-tab {
+            flex: 1;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mode-tab:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .mode-tab.active {
+            border-color: var(--primary);
+            background: var(--focus);
+            color: var(--primary);
+        }
+
+        /* Sección de entrada de datos */
+        .data-input-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .input-method {
+            margin-bottom: 20px;
+        }
+
+        .input-method h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .manual-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: end;
+        }
+
+        .data-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .data-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .add-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .add-button:hover {
+            background: #236B87;
+        }
+
+        .csv-input {
+            margin-bottom: 20px;
+        }
+
+        .csv-upload {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .file-input {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .data-display {
+            margin-top: 20px;
+        }
+
+        .data-list {
+            background: var(--hover);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 100px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .data-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            margin: 2px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .remove-data {
+            margin-left: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .clear-button {
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Sección de resultados */
+        .results-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            background: var(--hover);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Gráfico simple */
+        .chart-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .histogram {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            gap: 5px;
+            height: 200px;
+            margin: 20px 0;
+        }
+
+        .bar {
+            background: var(--primary);
+            min-width: 20px;
+            border-radius: 3px 3px 0 0;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .bar:hover {
+            opacity: 1;
+        }
+
+        /* Sección de correlación */
+        .correlation-section {
+            display: none;
+        }
+
+        .correlation-section.active {
+            display: block;
+        }
+
+        .two-series-input {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .series-input {
+            flex: 1;
+            padding: 15px;
+            background: var(--hover);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .series-label {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        /* Footer meskeIA */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                padding-top: 60px;
+            }
+            
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 0;
+                margin-bottom: 60px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .mode-tabs {
+                flex-direction: column;
+            }
+            
+            .manual-input {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .two-series-input {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .series-input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .series-input textarea {
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+            
+            .file-input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            footer {
+                bottom: 5px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+
+            .faq-question {
+                padding: 15px;
+            }
+            
+            .faq-answer p {
+                padding: 0 15px 15px 15px;
+            }
+        }
+
+        /* FAQ desplegables */
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 10px rgba(46, 134, 171, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--hover);
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        .faq-question h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <nav class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;" role="navigation" aria-label="Volver al inicio">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <header>
+            <h1 style="text-align: center; margin-bottom: 1rem;">Calculadora Estadística Online</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Análisis estadístico completo para datos numéricos</p>
+        </header>
+
+        <main class="container" role="main">
+            <div class="header">
+                <h2>📊 Calculadora Estadística</h2>
+                <p>Análisis estadístico básico para estudiantes y profesionales</p>
+            </div>
+            
+            <div class="content">
+                <!-- Selector de modo -->
+                <div class="mode-selector">
+                    <div class="mode-tabs">
+                        <div class="mode-tab active" data-mode="descriptive" aria-label="Modo estadística descriptiva">
+                            📈 Estadística Descriptiva
+                        </div>
+                        <div class="mode-tab" data-mode="correlation" aria-label="Modo análisis de correlación">
+                            🔗 Correlación
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modo Estadística Descriptiva -->
+                <div id="descriptive-mode" class="mode-content">
+                    <!-- Entrada de datos -->
+                    <section class="data-input-section" aria-label="Entrada de datos">
+                        <div class="input-method">
+                            <h3>📝 Ingreso Manual de Datos</h3>
+                            <div class="manual-input">
+                                <input type="number" id="data-input" class="data-input" placeholder="Introduce un valor numérico" step="any" aria-label="Valor numérico">
+                                <button onclick="addData()" class="add-button" aria-label="Agregar valor">Agregar</button>
+                            </div>
+                        </div>
+
+                        <div class="input-method">
+                            <h3>📎 Importar CSV</h3>
+                            <div class="csv-upload">
+                                <input type="file" id="csv-file" accept=".csv" class="file-input" onchange="loadCSV()" aria-label="Seleccionar archivo CSV">
+                                <small style="color: var(--text-muted);">El archivo debe contener una columna de números separados por comas</small>
+                            </div>
+                        </div>
+
+                        <div class="data-display">
+                            <h4>Datos actuales: <span id="data-count">0</span>/100</h4>
+                            <div id="data-list" class="data-list" aria-label="Lista de datos ingresados">
+                                <span style="color: var(--text-muted);">No hay datos ingresados</span>
+                            </div>
+                            <button onclick="clearData()" class="clear-button" aria-label="Limpiar todos los datos">Limpiar Datos</button>
+                        </div>
+                    </section>
+
+                    <!-- Resultados estadísticos -->
+                    <section class="results-section" aria-label="Resultados estadísticos">
+                        <h3>📊 Resultados Estadísticos</h3>
+                        <div class="results-grid" id="results-grid" aria-live="polite">
+                            <!-- Se llenarán dinámicamente -->
+                        </div>
+                        
+                        <div class="chart-section">
+                            <h4>📈 Histograma</h4>
+                            <div id="histogram" class="histogram" role="img" aria-label="Histograma de distribución de datos">
+                                <span style="color: var(--text-muted);">Agrega datos para ver el histograma</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Modo Correlación -->
+                <div id="correlation-mode" class="mode-content correlation-section">
+                    <section class="data-input-section" aria-label="Análisis de correlación">
+                        <h3>🔗 Análisis de Correlación</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                            Ingresa dos series de datos para calcular su correlación.<br>
+                            <strong>Importante:</strong> Ambas series deben tener el mismo número de elementos.
+                        </p>
+                        
+                        <div class="two-series-input">
+                            <div class="series-input">
+                                <div class="series-label">Serie X:</div>
+                                <textarea id="series-x" placeholder="Ingresa valores separados por comas&#10;Ejemplo: 1, 2, 3, 4, 5" rows="3" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 10px;" aria-label="Serie X de datos"></textarea>
+                                <input type="file" id="csv-x" accept=".csv" class="file-input" onchange="loadCorrelationCSV('x')" style="font-size: 12px;" aria-label="Importar CSV para serie X">
+                                <small style="color: var(--text-muted); display: block; margin-top: 5px;">O importa CSV con una columna</small>
+                            </div>
+                            
+                            <div class="series-input">
+                                <div class="series-label">Serie Y:</div>
+                                <textarea id="series-y" placeholder="Ingresa valores separados por comas&#10;Ejemplo: 2, 4, 6, 8, 10" rows="3" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 10px;" aria-label="Serie Y de datos"></textarea>
+                                <input type="file" id="csv-y" accept=".csv" class="file-input" onchange="loadCorrelationCSV('y')" style="font-size: 12px;" aria-label="Importar CSV para serie Y">
+                                <small style="color: var(--text-muted); display: block; margin-top: 5px;">O importa CSV con una columna</small>
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateCorrelation()" class="add-button" style="width: 100%; margin-top: 15px;" aria-label="Calcular correlación entre series">
+                            Calcular Correlación
+                        </button>
+                    </section>
+
+                    <section class="results-section" aria-label="Resultados de correlación">
+                        <h3>🔗 Resultado de Correlación</h3>
+                        <div id="correlation-results" aria-live="polite">
+                            <span style="color: var(--text-muted);">Ingresa dos series de datos para calcular la correlación</span>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="disclaimer">
+                    <strong>Aviso importante:</strong> Esta herramienta realiza cálculos estadísticos básicos con fines educativos. 
+                    Los resultados no deben ser utilizados para tomar decisiones críticas sin consultar con un profesional. 
+                    La correlación no implica causalidad. Máximo 100 registros por análisis.
+                </div>
+            </div>
+        </main>
+
+        <!-- Sección informativa SEO -->
+        <section class="info-section">
+            <h2>¿Qué es la Estadística Descriptiva?</h2>
+            <p>
+                La estadística descriptiva es la rama de la estadística que se encarga de resumir, organizar y presentar 
+                datos de manera que sea fácil entender las características principales de un conjunto de información. 
+                A través de medidas como la media, mediana, moda y desviación estándar, podemos obtener una visión 
+                clara de la distribución y comportamiento de nuestros datos.
+            </p>
+            <p>
+                Nuestra calculadora estadística online te permite realizar análisis completos sin necesidad de software 
+                especializado. Procesa hasta 100 datos simultáneamente y calcula automáticamente todas las medidas de 
+                tendencia central y dispersión más importantes, además de generar visualizaciones para interpretar 
+                mejor tus resultados.
+            </p>
+            
+            <h3>Medidas que puedes calcular</h3>
+            <ul>
+                <li><strong>Media Aritmética:</strong> El promedio de todos los valores en tu conjunto de datos</li>
+                <li><strong>Mediana:</strong> El valor central cuando los datos están ordenados</li>
+                <li><strong>Moda:</strong> El valor que aparece con mayor frecuencia</li>
+                <li><strong>Desviación Estándar:</strong> Medida de dispersión que indica qué tan alejados están los datos de la media</li>
+                <li><strong>Varianza:</strong> Cuadrado de la desviación estándar, útil para comparar dispersiones</li>
+                <li><strong>Correlación de Pearson:</strong> Mide la relación lineal entre dos variables</li>
+            </ul>
+        </section>
+        
+        <!-- Sección FAQ -->
+        <section class="faq-section">
+            <h2>Preguntas Frecuentes sobre Estadística</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cuál es la diferencia entre media y mediana?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La media es el promedio aritmético de todos los valores, mientras que la mediana es el valor central cuando los datos están ordenados. La mediana es más resistente a valores extremos (outliers) que la media.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Qué indica la desviación estándar?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La desviación estándar mide qué tan dispersos están los datos respecto a la media. Una desviación estándar baja indica que los datos están cerca de la media, mientras que una alta indica mayor dispersión.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cuándo usar correlación de Pearson?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La correlación de Pearson se usa para medir la relación lineal entre dos variables numéricas. Los valores van de -1 (correlación negativa perfecta) a +1 (correlación positiva perfecta). Un valor de 0 indica ausencia de correlación lineal.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Puedo usar esta calculadora para mi tarea universitaria?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, esta calculadora es perfecta para verificar cálculos estadísticos básicos en tareas académicas. Sin embargo, te recomendamos entender los conceptos detrás de cada medida estadística para un aprendizaje completo.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Qué formatos de archivo CSV acepta la calculadora?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La calculadora acepta archivos CSV estándar con valores numéricos separados por comas. Cada valor debe estar en una línea separada o separado por comas en la misma línea. Máximo 100 valores por análisis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Schema Markup FAQ -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuál es la diferencia entre media y mediana?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La media es el promedio aritmético de todos los valores, mientras que la mediana es el valor central cuando los datos están ordenados. La mediana es más resistente a valores extremos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué indica la desviación estándar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La desviación estándar mide qué tan dispersos están los datos respecto a la media. Una desviación baja indica datos cerca de la media, una alta indica mayor dispersión."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuándo usar correlación de Pearson?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La correlación de Pearson mide la relación lineal entre dos variables numéricas. Los valores van de -1 a +1, donde 0 indica ausencia de correlación lineal."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo usar esta calculadora para mi tarea universitaria?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, es perfecta para verificar cálculos estadísticos básicos en tareas académicas. Te recomendamos entender los conceptos detrás de cada medida estadística."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué formatos de archivo CSV acepta la calculadora?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Acepta archivos CSV estándar con valores numéricos separados por comas. Cada valor en línea separada o separado por comas. Máximo 100 valores."
+              }
+            }
+          ]
+        }
+        </script>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer>
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // ==========================================
+        // VARIABLES GLOBALES
+        // ==========================================
+
+        let currentData = [];
+        const MAX_DATA_POINTS = 100;
+
+        // ==========================================
+        // INICIALIZACIÓN
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupModeListeners();
+            
+            // Enter para agregar datos
+            document.getElementById('data-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addData();
+                }
+            });
+        });
+
+        function setupModeListeners() {
+            document.querySelectorAll('.mode-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const mode = this.getAttribute('data-mode');
+                    switchMode(mode);
+                });
+            });
+        }
+
+        function switchMode(mode) {
+            // Actualizar pestañas
+            document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+            
+            // Mostrar/ocultar contenido
+            document.querySelectorAll('.mode-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            if (mode === 'descriptive') {
+                document.getElementById('descriptive-mode').style.display = 'block';
+            } else if (mode === 'correlation') {
+                document.getElementById('correlation-mode').style.display = 'block';
+            }
+        }
+
+        // ==========================================
+        // MANEJO DE DATOS
+        // ==========================================
+
+        function addData() {
+            const input = document.getElementById('data-input');
+            const value = parseFloat(input.value);
+            
+            if (isNaN(value)) {
+                alert('Por favor, introduce un valor numérico válido');
+                return;
+            }
+            
+            if (currentData.length >= MAX_DATA_POINTS) {
+                alert(`Máximo ${MAX_DATA_POINTS} datos permitidos`);
+                return;
+            }
+            
+            currentData.push(value);
+            input.value = '';
+            updateDataDisplay();
+            calculateStatistics();
+        }
+
+        function removeData(index) {
+            currentData.splice(index, 1);
+            updateDataDisplay();
+            calculateStatistics();
+        }
+
+        function clearData() {
+            currentData = [];
+            updateDataDisplay();
+            clearResults();
+        }
+
+        function updateDataDisplay() {
+            const dataList = document.getElementById('data-list');
+            const dataCount = document.getElementById('data-count');
+            
+            dataCount.textContent = currentData.length;
+            
+            if (currentData.length === 0) {
+                dataList.innerHTML = '<span style="color: var(--text-muted);">No hay datos ingresados</span>';
+                return;
+            }
+            
+            dataList.innerHTML = currentData.map((value, index) => 
+                `<span class="data-tag">${value}<span class="remove-data" onclick="removeData(${index})">×</span></span>`
+            ).join('');
+        }
+
+        function loadCorrelationCSV(series) {
+            const fileInput = document.getElementById(`csv-${series}`);
+            const file = fileInput.files[0];
+            
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const values = text.split(/[,\n\r]+/)
+                    .map(val => parseFloat(val.trim()))
+                    .filter(val => !isNaN(val))
+                    .slice(0, MAX_DATA_POINTS);
+                
+                if (values.length === 0) {
+                    alert('No se encontraron números válidos en el archivo CSV');
+                    return;
+                }
+                
+                // Insertar valores en el textarea correspondiente
+                document.getElementById(`series-${series}`).value = values.join(', ');
+                fileInput.value = '';
+                
+                console.log(`Serie ${series.toUpperCase()} cargada: ${values.length} valores`);
+            };
+            reader.readAsText(file);
+        }
+
+        // ==========================================
+        // CÁLCULOS ESTADÍSTICOS
+        // ==========================================
+
+        function calculateStatistics() {
+            if (currentData.length === 0) {
+                clearResults();
+                return;
+            }
+            
+            const stats = {
+                count: currentData.length,
+                sum: sum(currentData),
+                mean: mean(currentData),
+                median: median(currentData),
+                mode: mode(currentData),
+                range: range(currentData),
+                variance: variance(currentData),
+                stdDev: standardDeviation(currentData),
+                min: Math.min(...currentData),
+                max: Math.max(...currentData),
+                q1: percentile(currentData, 25),
+                q3: percentile(currentData, 75)
+            };
+            
+            displayResults(stats);
+            drawHistogram();
+        }
+
+        function sum(data) {
+            return data.reduce((a, b) => a + b, 0);
+        }
+
+        function mean(data) {
+            return sum(data) / data.length;
+        }
+
+        function median(data) {
+            const sorted = [...data].sort((a, b) => a - b);
+            const mid = Math.floor(sorted.length / 2);
+            return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+        }
+
+        function mode(data) {
+            const frequency = {};
+            let maxFreq = 0;
+            let modes = [];
+            
+            data.forEach(val => {
+                frequency[val] = (frequency[val] || 0) + 1;
+                if (frequency[val] > maxFreq) {
+                    maxFreq = frequency[val];
+                    modes = [val];
+                } else if (frequency[val] === maxFreq && !modes.includes(val)) {
+                    modes.push(val);
+                }
+            });
+            
+            return maxFreq === 1 ? 'Sin moda' : modes.join(', ');
+        }
+
+        function range(data) {
+            return Math.max(...data) - Math.min(...data);
+        }
+
+        function variance(data) {
+            const avg = mean(data);
+            return sum(data.map(x => Math.pow(x - avg, 2))) / data.length;
+        }
+
+        function standardDeviation(data) {
+            return Math.sqrt(variance(data));
+        }
+
+        function percentile(data, p) {
+            const sorted = [...data].sort((a, b) => a - b);
+            const index = (p / 100) * (sorted.length - 1);
+            
+            if (index % 1 === 0) {
+                return sorted[index];
+            }
+            
+            const lower = sorted[Math.floor(index)];
+            const upper = sorted[Math.ceil(index)];
+            return lower + (upper - lower) * (index % 1);
+        }
+
+        function displayResults(stats) {
+            const resultsGrid = document.getElementById('results-grid');
+            
+            resultsGrid.innerHTML = `
+                <div class="result-item">
+                    <div class="result-label">Cantidad</div>
+                    <div class="result-value">${stats.count}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Media</div>
+                    <div class="result-value">${formatNumber(stats.mean)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Mediana</div>
+                    <div class="result-value">${formatNumber(stats.median)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Moda</div>
+                    <div class="result-value" style="font-size: 16px;">${stats.mode}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Rango</div>
+                    <div class="result-value">${formatNumber(stats.range)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Desv. Estándar</div>
+                    <div class="result-value">${formatNumber(stats.stdDev)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Varianza</div>
+                    <div class="result-value">${formatNumber(stats.variance)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Mínimo</div>
+                    <div class="result-value">${formatNumber(stats.min)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Máximo</div>
+                    <div class="result-value">${formatNumber(stats.max)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Q1 (25%)</div>
+                    <div class="result-value">${formatNumber(stats.q1)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Q3 (75%)</div>
+                    <div class="result-value">${formatNumber(stats.q3)}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Suma</div>
+                    <div class="result-value">${formatNumber(stats.sum)}</div>
+                </div>
+            `;
+        }
+
+        function clearResults() {
+            document.getElementById('results-grid').innerHTML = '';
+            document.getElementById('histogram').innerHTML = '<span style="color: var(--text-muted);">Agrega datos para ver el histograma</span>';
+        }
+
+        function formatNumber(num) {
+            if (typeof num === 'string') return num;
+            if (Math.abs(num) >= 1000) {
+                return num.toLocaleString('es-ES', { maximumFractionDigits: 2 });
+            }
+            return num.toFixed(3).replace(/\.?0+$/, '');
+        }
+
+        function drawHistogram() {
+            if (currentData.length === 0) return;
+            
+            const histogram = document.getElementById('histogram');
+            const bins = createHistogramBins(currentData, 8);
+            const maxCount = Math.max(...bins.map(bin => bin.count));
+            
+            if (maxCount === 0) {
+                histogram.innerHTML = '<span style="color: var(--text-muted);">Sin datos para mostrar</span>';
+                return;
+            }
+            
+            histogram.innerHTML = bins.map(bin => {
+                const height = (bin.count / maxCount) * 160;
+                return `<div class="bar" style="height: ${height}px;" title="${bin.range}: ${bin.count} valores"></div>`;
+            }).join('');
+        }
+
+        function createHistogramBins(data, numBins) {
+            const min = Math.min(...data);
+            const max = Math.max(...data);
+            const binWidth = (max - min) / numBins;
+            
+            const bins = [];
+            for (let i = 0; i < numBins; i++) {
+                const start = min + i * binWidth;
+                const end = start + binWidth;
+                bins.push({
+                    range: `${formatNumber(start)}-${formatNumber(end)}`,
+                    count: data.filter(val => val >= start && (i === numBins - 1 ? val <= end : val < end)).length
+                });
+            }
+            
+            return bins;
+        }
+
+        // ==========================================
+        // CORRELACIÓN
+        // ==========================================
+
+        function calculateCorrelation() {
+            const seriesXText = document.getElementById('series-x').value.trim();
+            const seriesYText = document.getElementById('series-y').value.trim();
+            
+            if (!seriesXText || !seriesYText) {
+                alert('Por favor, ingresa ambas series de datos');
+                return;
+            }
+            
+            const seriesX = parseDataSeries(seriesXText);
+            const seriesY = parseDataSeries(seriesYText);
+            
+            if (seriesX.length === 0 || seriesY.length === 0) {
+                alert('No se encontraron números válidos en las series');
+                return;
+            }
+            
+            if (seriesX.length !== seriesY.length) {
+                alert('Las dos series deben tener la misma cantidad de datos');
+                return;
+            }
+            
+            if (seriesX.length > MAX_DATA_POINTS) {
+                alert(`Máximo ${MAX_DATA_POINTS} datos por serie`);
+                return;
+            }
+            
+            const correlation = pearsonCorrelation(seriesX, seriesY);
+            displayCorrelationResults(seriesX, seriesY, correlation);
+        }
+
+        function parseDataSeries(text) {
+            return text.split(/[,\n\r\s]+/)
+                .map(val => parseFloat(val.trim()))
+                .filter(val => !isNaN(val));
+        }
+
+        function pearsonCorrelation(x, y) {
+            const n = x.length;
+            const sumX = sum(x);
+            const sumY = sum(y);
+            const sumXY = x.reduce((acc, xi, i) => acc + xi * y[i], 0);
+            const sumX2 = x.reduce((acc, xi) => acc + xi * xi, 0);
+            const sumY2 = y.reduce((acc, yi) => acc + yi * yi, 0);
+            
+            const numerator = n * sumXY - sumX * sumY;
+            const denominator = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+            
+            return denominator === 0 ? 0 : numerator / denominator;
+        }
+
+        function displayCorrelationResults(seriesX, seriesY, correlation) {
+            const resultsDiv = document.getElementById('correlation-results');
+            
+            let interpretation = '';
+            let color = '';
+            
+            if (Math.abs(correlation) >= 0.8) {
+                interpretation = Math.abs(correlation) === 1 ? 'Correlación perfecta' : 'Correlación muy fuerte';
+                color = '#2E86AB';
+            } else if (Math.abs(correlation) >= 0.6) {
+                interpretation = 'Correlación fuerte';
+                color = '#48A9A6';
+            } else if (Math.abs(correlation) >= 0.4) {
+                interpretation = 'Correlación moderada';
+                color = '#ffc107';
+            } else if (Math.abs(correlation) >= 0.2) {
+                interpretation = 'Correlación débil';
+                color = '#ff9800';
+            } else {
+                interpretation = 'Correlación muy débil o nula';
+                color = '#999999';
+            }
+            
+            const direction = correlation > 0 ? 'positiva' : correlation < 0 ? 'negativa' : 'nula';
+            
+            resultsDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div class="result-item">
+                        <div class="result-label">Coeficiente de Pearson</div>
+                        <div class="result-value" style="color: ${color};">${formatNumber(correlation)}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Interpretación</div>
+                        <div class="result-value" style="font-size: 14px; color: ${color};">${interpretation}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Dirección</div>
+                        <div class="result-value" style="font-size: 16px; color: ${color};">${direction}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Datos procesados</div>
+                        <div class="result-value">${seriesX.length} pares</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--hover); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 10px;">Explicación:</h4>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                        ${getCorrelationExplanation(correlation)}
+                    </p>
+                </div>
+            `;
+        }
+
+        function getCorrelationExplanation(r) {
+            const absR = Math.abs(r);
+            
+            if (absR === 1) {
+                return r > 0 
+                    ? 'Existe una relación lineal perfecta positiva: cuando X aumenta, Y aumenta proporcionalmente.'
+                    : 'Existe una relación lineal perfecta negativa: cuando X aumenta, Y disminuye proporcionalmente.';
+            } else if (absR >= 0.8) {
+                return r > 0 
+                    ? 'Hay una relación lineal muy fuerte y positiva entre las variables: valores altos de X tienden a asociarse con valores altos de Y.'
+                    : 'Hay una relación lineal muy fuerte y negativa entre las variables: valores altos de X tienden a asociarse con valores bajos de Y.';
+            } else if (absR >= 0.6) {
+                return r > 0 
+                    ? 'Existe una relación lineal fuerte y positiva: las variables tienden a aumentar juntas.'
+                    : 'Existe una relación lineal fuerte y negativa: cuando una variable aumenta, la otra tiende a disminuir.';
+            } else if (absR >= 0.4) {
+                return 'Hay una relación lineal moderada entre las variables. La asociación es notable pero no muy fuerte.';
+            } else if (absR >= 0.2) {
+                return 'Existe una relación lineal débil entre las variables. La asociación es pequeña.';
+            } else {
+                return 'No hay evidencia de una relación lineal significativa entre las variables.';
+            }
+        }
+
+        // ==========================================
+        // LOGGING
+        // ==========================================
+
+        console.log('📊 Calculadora Estadística cargada correctamente');
+
+        // Función para FAQ desplegables
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

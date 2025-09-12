@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Cartera - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        /* Estilos específicos para el simulador de cartera */
+        .portfolio-hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+        }
+
+        .portfolio-hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .portfolio-hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .simulator-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .simulator-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .config-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .config-panel h3 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-presets {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .preset-card {
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .preset-card:hover {
+            border-color: #4f46e5;
+            background: #f0f7ff;
+        }
+
+        .preset-card.active {
+            border-color: #4f46e5;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .preset-card h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1em;
+        }
+
+        .preset-card p {
+            margin: 0;
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .allocation-controls {
+            margin-bottom: 2rem;
+        }
+
+        .asset-slider {
+            margin-bottom: 1.5rem;
+        }
+
+        .asset-slider label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .slider-value {
+            background: #4f46e5;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.85em;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+        }
+
+        .slider-input::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+        }
+
+        .allocation-summary {
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+
+        .allocation-warning {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border-left: 4px solid #e53e3e;
+            font-size: 0.9em;
+            margin-bottom: 1rem;
+        }
+
+        .allocation-success {
+            background: #c6f6d5;
+            color: #2d7738;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            font-size: 0.9em;
+            margin-bottom: 1rem;
+        }
+
+        .investment-params {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .param-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .param-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+
+        .param-group input {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .param-group input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .param-group small {
+            margin-top: 0.25rem;
+            color: #718096;
+            font-size: 0.8em;
+        }
+
+        .results-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+
+        .portfolio-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .metric-card.highlight {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #4f46e5;
+            border: 2px solid #4f46e5;
+        }
+
+        .metric-card h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .metric-value {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .metric-subtitle {
+            font-size: 0.8em;
+            margin-top: 0.25rem;
+            opacity: 0.7;
+        }
+
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .risk-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e2e8f0;
+        }
+
+        .risk-dot.active {
+            background: currentColor;
+        }
+
+        .allocation-chart {
+            background: white;
+            padding: 1.5rem 1.5rem 3rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            min-height: 400px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 340px;
+            width: 100%;
+        }
+
+        .simulation-results {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .results-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .results-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .projection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .projection-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .projection-period {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .projection-value {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #4f46e5;
+            margin: 0.5rem 0;
+        }
+
+        .projection-gain {
+            font-size: 0.9em;
+            color: #48bb78;
+        }
+
+        .controls-section {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .recommendations-panel {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fef9e7 0%, #f6e6cc 100%);
+            border-radius: 15px;
+            border: 1px solid #ecc94b;
+        }
+
+        .recommendations-panel h3 {
+            color: #744210;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recommendation-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ecc94b;
+        }
+
+        .mobile-responsive {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .simulator-layout {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .simulator-container {
+                padding: 1rem;
+            }
+
+            .portfolio-hero h1 {
+                font-size: 1.8em;
+            }
+
+            .profile-presets {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .investment-params {
+                grid-template-columns: 1fr;
+            }
+
+            .projection-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .controls-section {
+                flex-direction: column;
+            }
+
+            .mobile-responsive {
+                display: block;
+            }
+
+            .desktop-only {
+                display: none;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .metric-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .pulse-gentle {
+            animation: pulseGentle 3s infinite;
+        }
+
+        @keyframes pulseGentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="../guia/conceptos-basicos.html">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../guia/conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="../guia/productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="../guia/estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="../guia/aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="../guia/asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="../guia/gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="../guia/psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="../guia/guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="../guia/casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="../guia/mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="herramientas.html" class="active">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="simulator-container">
+        <!-- Hero Section -->
+        <div class="portfolio-hero">
+            <h1>💼 Simulador de Cartera</h1>
+            <p>Diseña tu cartera ideal, analiza el riesgo y simula el crecimiento de tus inversiones con diferentes estrategias de asset allocation</p>
+        </div>
+
+        <!-- Layout Principal -->
+        <div class="simulator-layout">
+            <!-- Panel de Configuración -->
+            <div class="config-panel">
+                <h3>⚙️ Configuración de Cartera</h3>
+                
+                <!-- Perfiles Predefinidos -->
+                <div class="profile-presets">
+                    <div class="preset-card" data-profile="conservative">
+                        <h4>🛡️ Conservador</h4>
+                        <p>Bajo riesgo, estabilidad</p>
+                    </div>
+                    <div class="preset-card active" data-profile="moderate">
+                        <h4>⚖️ Moderado</h4>
+                        <p>Equilibrio riesgo-rentabilidad</p>
+                    </div>
+                    <div class="preset-card" data-profile="aggressive">
+                        <h4>🚀 Agresivo</h4>
+                        <p>Alto crecimiento, mayor riesgo</p>
+                    </div>
+                </div>
+
+                <!-- Controles de Asset Allocation -->
+                <div class="allocation-controls">
+                    <h4>🎯 Asset Allocation Personalizada</h4>
+                    
+                    <div class="asset-slider">
+                        <label>
+                            <span>🏢 Renta Variable (Acciones)</span>
+                            <span class="slider-value" id="equityValue">60%</span>
+                        </label>
+                        <input type="range" class="slider-input" id="equitySlider" min="0" max="100" value="60">
+                        <small>Acciones globales, ETFs de índices amplios</small>
+                    </div>
+
+                    <div class="asset-slider">
+                        <label>
+                            <span>🏛️ Renta Fija (Bonos)</span>
+                            <span class="slider-value" id="bondsValue">30%</span>
+                        </label>
+                        <input type="range" class="slider-input" id="bondsSlider" min="0" max="100" value="30">
+                        <small>Bonos gubernamentales y corporativos</small>
+                    </div>
+
+                    <div class="asset-slider">
+                        <label>
+                            <span>🏘️ Inmobiliario (REITs)</span>
+                            <span class="slider-value" id="reitsValue">5%</span>
+                        </label>
+                        <input type="range" class="slider-input" id="reitsSlider" min="0" max="100" value="5">
+                        <small>Fondos inmobiliarios cotizados</small>
+                    </div>
+
+                    <div class="asset-slider">
+                        <label>
+                            <span>🥇 Materias Primas</span>
+                            <span class="slider-value" id="commoditiesValue">5%</span>
+                        </label>
+                        <input type="range" class="slider-input" id="commoditiesSlider" min="0" max="100" value="5">
+                        <small>Oro, petróleo, agricultura</small>
+                    </div>
+                </div>
+
+                <!-- Resumen de Allocation -->
+                <div class="allocation-summary" id="allocationSummary">
+                    <strong>Total Asignado: <span id="totalAllocation">100%</span></strong>
+                </div>
+
+                <div id="allocationWarning" class="allocation-warning" style="display: none;">
+                    ⚠️ La suma debe ser exactamente 100%
+                </div>
+
+                <div id="allocationSuccess" class="allocation-success" style="display: none;">
+                    ✅ Asignación correcta al 100%
+                </div>
+
+                <!-- Parámetros de Inversión -->
+                <div class="investment-params">
+                    <div class="param-group">
+                        <label for="initialAmount">💰 Capital Inicial (€)</label>
+                        <input type="number" id="initialAmount" value="25000" min="1000" step="1000">
+                        <small>Inversión inicial mínima recomendada</small>
+                    </div>
+
+                    <div class="param-group">
+                        <label for="monthlyContribution">📅 Aportación Mensual (€)</label>
+                        <input type="number" id="monthlyContribution" value="800" min="0" step="50">
+                        <small>Aportaciones periódicas (DCA)</small>
+                    </div>
+
+                    <div class="param-group">
+                        <label for="timeHorizon">⏰ Horizonte Temporal (años)</label>
+                        <input type="number" id="timeHorizon" value="15" min="1" max="40" step="1">
+                        <small>Tiempo hasta necesitar el dinero</small>
+                    </div>
+
+                    <div class="param-group">
+                        <label for="rebalancing">🔄 Rebalanceo</label>
+                        <select id="rebalancing">
+                            <option value="annual">Anual</option>
+                            <option value="quarterly">Trimestral</option>
+                            <option value="never">Nunca</option>
+                        </select>
+                        <small>Frecuencia de rebalanceo</small>
+                    </div>
+                </div>
+
+                <div class="controls-section">
+                    <button class="btn btn-primary" onclick="simulatePortfolio()">
+                        📊 Simular Cartera
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetSimulator()">
+                        🔄 Reiniciar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel Combinado: Resultados + Gráfico -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <!-- Panel de Resultados -->
+                <div class="results-panel">
+                    <h3>📈 Análisis de Cartera</h3>
+                    
+                    <div class="portfolio-metrics" id="portfolioMetrics">
+                        <div class="metric-card highlight">
+                            <h4>📊 Rentabilidad Esperada</h4>
+                            <div class="metric-value" id="expectedReturn">7.2%</div>
+                            <div class="metric-subtitle">Anual promedio</div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h4>📉 Volatilidad (Riesgo)</h4>
+                            <div class="metric-value" id="portfolioRisk">12.4%</div>
+                            <div class="risk-indicator" id="riskIndicator">
+                                <div class="risk-dot"></div>
+                                <div class="risk-dot"></div>
+                                <div class="risk-dot active"></div>
+                                <div class="risk-dot"></div>
+                                <div class="risk-dot"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h4>🎯 Ratio Sharpe</h4>
+                            <div class="metric-value" id="sharpeRatio">0.65</div>
+                            <div class="metric-subtitle">Rentabilidad ajustada por riesgo</div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h4>📋 Perfil Detectado</h4>
+                            <div class="metric-value" id="detectedProfile">Moderado</div>
+                            <div class="metric-subtitle">Basado en tu allocation</div>
+                        </div>
+                    </div>
+
+                    <div id="portfolioInsights" class="recommendations-panel" style="display: none;">
+                        <h3>💡 Análisis y Recomendaciones</h3>
+                        <div id="insightsList"></div>
+                    </div>
+                </div>
+
+                <!-- Gráfico de Asset Allocation (Ahora al lado) -->
+                <div class="allocation-chart" id="chartContainer">
+                    <h3>🥧 Distribución de tu Cartera</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="allocationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados de Simulación -->
+        <div class="simulation-results" id="simulationResults" style="display: none;">
+            <div class="results-header">
+                <h3>🔮 Proyección de Crecimiento</h3>
+                <p>Simulación basada en rendimientos históricos promedio</p>
+            </div>
+            
+            <div class="projection-grid" id="projectionGrid">
+                <!-- Los resultados se generarán dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Controles Finales -->
+        <div class="controls-section" id="finalControls" style="display: none;">
+            <button class="btn btn-primary" onclick="generatePortfolioReport()">
+                📄 Descargar Reporte
+            </button>
+            <button class="btn btn-secondary" onclick="sharePortfolio()">
+                📤 Compartir Cartera
+            </button>
+            <button class="btn btn-secondary" onclick="optimizePortfolio()">
+                🎯 Optimizar Cartera
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Variables globales
+        let portfolioData = {
+            allocation: { equity: 60, bonds: 30, reits: 5, commodities: 5 },
+            parameters: { initial: 25000, monthly: 800, years: 15, rebalancing: 'annual' },
+            results: null
+        };
+        
+        let allocationChart = null;
+
+        // Datos históricos promedio (simplificados para educación)
+        const assetData = {
+            equity: { return: 8.5, volatility: 18, name: 'Renta Variable' },
+            bonds: { return: 4.2, volatility: 5, name: 'Renta Fija' },
+            reits: { return: 7.8, volatility: 15, name: 'Inmobiliario' },
+            commodities: { return: 6.5, volatility: 22, name: 'Materias Primas' }
+        };
+
+        const profilePresets = {
+            conservative: { equity: 25, bonds: 60, reits: 10, commodities: 5 },
+            moderate: { equity: 60, bonds: 30, reits: 5, commodities: 5 },
+            aggressive: { equity: 80, bonds: 10, reits: 5, commodities: 5 }
+        };
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Simulador de Cartera cargado');
+            
+            setupEventListeners();
+            updateAllocationChart();
+            calculateMetrics();
+            
+            console.log('✅ Simulador inicializado correctamente');
+        });
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Sliders de asset allocation
+            document.getElementById('equitySlider').addEventListener('input', updateAllocation);
+            document.getElementById('bondsSlider').addEventListener('input', updateAllocation);
+            document.getElementById('reitsSlider').addEventListener('input', updateAllocation);
+            document.getElementById('commoditiesSlider').addEventListener('input', updateAllocation);
+            
+            // Parámetros de inversión
+            const paramInputs = ['initialAmount', 'monthlyContribution', 'timeHorizon', 'rebalancing'];
+            paramInputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', updateParameters);
+            });
+            
+            // Perfiles predefinidos
+            document.querySelectorAll('.preset-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    selectProfile(this.dataset.profile);
+                });
+            });
+        }
+
+        // Actualizar allocation desde sliders
+        function updateAllocation() {
+            const equity = parseInt(document.getElementById('equitySlider').value);
+            const bonds = parseInt(document.getElementById('bondsSlider').value);
+            const reits = parseInt(document.getElementById('reitsSlider').value);
+            const commodities = parseInt(document.getElementById('commoditiesSlider').value);
+            
+            // Actualizar valores mostrados
+            document.getElementById('equityValue').textContent = equity + '%';
+            document.getElementById('bondsValue').textContent = bonds + '%';
+            document.getElementById('reitsValue').textContent = reits + '%';
+            document.getElementById('commoditiesValue').textContent = commodities + '%';
+            
+            // Actualizar datos globales
+            portfolioData.allocation = { equity, bonds, reits, commodities };
+            
+            // Validar suma = 100%
+            const total = equity + bonds + reits + commodities;
+            document.getElementById('totalAllocation').textContent = total + '%';
+            
+            const warningEl = document.getElementById('allocationWarning');
+            const successEl = document.getElementById('allocationSuccess');
+            
+            if (total !== 100) {
+                warningEl.style.display = 'block';
+                successEl.style.display = 'none';
+            } else {
+                warningEl.style.display = 'none';
+                successEl.style.display = 'block';
+            }
+            
+            // Actualizar gráfico y métricas
+            updateAllocationChart();
+            calculateMetrics();
+            
+            // Quitar selección de perfil predefinido
+            document.querySelectorAll('.preset-card').forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+
+        // Actualizar parámetros de inversión
+        function updateParameters() {
+            portfolioData.parameters = {
+                initial: parseFloat(document.getElementById('initialAmount').value) || 25000,
+                monthly: parseFloat(document.getElementById('monthlyContribution').value) || 800,
+                years: parseInt(document.getElementById('timeHorizon').value) || 15,
+                rebalancing: document.getElementById('rebalancing').value
+            };
+            
+            calculateMetrics();
+        }
+
+        // Seleccionar perfil predefinido
+        function selectProfile(profileName) {
+            const profile = profilePresets[profileName];
+            if (!profile) return;
+            
+            // Actualizar sliders
+            document.getElementById('equitySlider').value = profile.equity;
+            document.getElementById('bondsSlider').value = profile.bonds;
+            document.getElementById('reitsSlider').value = profile.reits;
+            document.getElementById('commoditiesSlider').value = profile.commodities;
+            
+            // Actualizar visualización
+            updateAllocation();
+            
+            // Marcar como activo
+            document.querySelectorAll('.preset-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`[data-profile="${profileName}"]`).classList.add('active');
+        }
+
+        // Calcular métricas de la cartera
+        function calculateMetrics() {
+            const { allocation } = portfolioData;
+            const total = allocation.equity + allocation.bonds + allocation.reits + allocation.commodities;
+            
+            if (total !== 100) return;
+            
+            // Calcular rentabilidad esperada (media ponderada)
+            const expectedReturn = (
+                (allocation.equity / 100) * assetData.equity.return +
+                (allocation.bonds / 100) * assetData.bonds.return +
+                (allocation.reits / 100) * assetData.reits.return +
+                (allocation.commodities / 100) * assetData.commodities.return
+            );
+            
+            // Calcular volatilidad (simplificado - sin correlaciones)
+            const portfolioVariance = (
+                Math.pow(allocation.equity / 100, 2) * Math.pow(assetData.equity.volatility, 2) +
+                Math.pow(allocation.bonds / 100, 2) * Math.pow(assetData.bonds.volatility, 2) +
+                Math.pow(allocation.reits / 100, 2) * Math.pow(assetData.reits.volatility, 2) +
+                Math.pow(allocation.commodities / 100, 2) * Math.pow(assetData.commodities.volatility, 2)
+            );
+            
+            const portfolioVolatility = Math.sqrt(portfolioVariance);
+            
+            // Ratio Sharpe (asumiendo tipo libre de riesgo del 2%)
+            const riskFreeRate = 2.0;
+            const sharpeRatio = (expectedReturn - riskFreeRate) / portfolioVolatility;
+            
+            // Detectar perfil
+            const detectedProfile = detectProfile(allocation);
+            
+            // Actualizar interfaz
+            document.getElementById('expectedReturn').textContent = expectedReturn.toFixed(1) + '%';
+            document.getElementById('portfolioRisk').textContent = portfolioVolatility.toFixed(1) + '%';
+            document.getElementById('sharpeRatio').textContent = sharpeRatio.toFixed(2);
+            document.getElementById('detectedProfile').textContent = detectedProfile;
+            
+            // Actualizar indicador de riesgo
+            updateRiskIndicator(portfolioVolatility);
+            
+            // Generar insights
+            generatePortfolioInsights(expectedReturn, portfolioVolatility, sharpeRatio, detectedProfile);
+            
+            // Guardar métricas
+            portfolioData.metrics = {
+                expectedReturn,
+                volatility: portfolioVolatility,
+                sharpeRatio,
+                profile: detectedProfile
+            };
+        }
+
+        // Detectar perfil basado en allocation
+        function detectProfile(allocation) {
+            if (allocation.equity <= 35) return 'Conservador';
+            if (allocation.equity <= 70) return 'Moderado';
+            return 'Agresivo';
+        }
+
+        // Actualizar indicador visual de riesgo
+        function updateRiskIndicator(volatility) {
+            const dots = document.querySelectorAll('.risk-dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            let activeLevel = 1;
+            if (volatility > 8) activeLevel = 2;
+            if (volatility > 12) activeLevel = 3;
+            if (volatility > 16) activeLevel = 4;
+            if (volatility > 20) activeLevel = 5;
+            
+            for (let i = 0; i < activeLevel; i++) {
+                dots[i].classList.add('active');
+            }
+        }
+
+        // Generar insights de la cartera
+        function generatePortfolioInsights(expectedReturn, volatility, sharpeRatio, profile) {
+            const insights = [];
+            
+            // Insight sobre rentabilidad
+            if (expectedReturn > 7.5) {
+                insights.push({
+                    icon: '📈',
+                    title: 'Excelente Potencial de Crecimiento',
+                    text: `Tu cartera tiene una rentabilidad esperada del ${expectedReturn.toFixed(1)}%, superior al promedio del mercado. Esto sugiere un buen potencial de crecimiento a largo plazo.`
+                });
+            } else if (expectedReturn < 5) {
+                insights.push({
+                    icon: '🛡️',
+                    title: 'Enfoque Conservador',
+                    text: `Tu cartera prioriza la estabilidad con una rentabilidad esperada del ${expectedReturn.toFixed(1)}%. Ideal para preservar capital con crecimiento moderado.`
+                });
+            }
+            
+            // Insight sobre riesgo
+            if (volatility > 15) {
+                insights.push({
+                    icon: '⚠️',
+                    title: 'Volatilidad Elevada',
+                    text: `Tu cartera tiene una volatilidad del ${volatility.toFixed(1)}%. Prepárate para fluctuaciones significativas, especialmente a corto plazo.`
+                });
+            } else if (volatility < 8) {
+                insights.push({
+                    icon: '🎯',
+                    title: 'Riesgo Controlado',
+                    text: `Con una volatilidad del ${volatility.toFixed(1)}%, tu cartera ofrece estabilidad y fluctuaciones moderadas.`
+                });
+            }
+            
+            // Insight sobre Ratio Sharpe
+            if (sharpeRatio > 0.7) {
+                insights.push({
+                    icon: '🏆',
+                    title: 'Excelente Eficiencia',
+                    text: `Tu ratio Sharpe de ${sharpeRatio.toFixed(2)} indica una excelente relación riesgo-rentabilidad. Estás obteniendo buena compensación por el riesgo asumido.`
+                });
+            } else if (sharpeRatio < 0.4) {
+                insights.push({
+                    icon: '🔧',
+                    title: 'Margen de Mejora',
+                    text: `Tu ratio Sharpe de ${sharpeRatio.toFixed(2)} sugiere que podrías optimizar la relación riesgo-rentabilidad. Considera rebalancear tu allocation.`
+                });
+            }
+            
+            // Insight sobre diversificación
+            const maxAllocation = Math.max(portfolioData.allocation.equity, portfolioData.allocation.bonds, portfolioData.allocation.reits, portfolioData.allocation.commodities);
+            if (maxAllocation > 80) {
+                insights.push({
+                    icon: '🌐',
+                    title: 'Considera Mayor Diversificación',
+                    text: `Tu cartera está muy concentrada (${maxAllocation}% en un solo activo). Una mayor diversificación podría reducir el riesgo.`
+                });
+            } else if (maxAllocation < 40) {
+                insights.push({
+                    icon: '✅',
+                    title: 'Excelente Diversificación',
+                    text: 'Tu cartera está bien diversificada entre diferentes clases de activos, lo que ayuda a reducir el riesgo general.'
+                });
+            }
+            
+            // Mostrar insights
+            if (insights.length > 0) {
+                const insightsPanel = document.getElementById('portfolioInsights');
+                const insightsList = document.getElementById('insightsList');
+                
+                insightsList.innerHTML = '';
+                insights.forEach(insight => {
+                    const insightElement = document.createElement('div');
+                    insightElement.className = 'recommendation-item';
+                    insightElement.innerHTML = `
+                        <strong>${insight.icon} ${insight.title}</strong><br>
+                        <span>${insight.text}</span>
+                    `;
+                    insightsList.appendChild(insightElement);
+                });
+                
+                insightsPanel.style.display = 'block';
+            }
+        }
+
+        // Actualizar gráfico de asset allocation
+        function updateAllocationChart() {
+            const ctx = document.getElementById('allocationChart').getContext('2d');
+            
+            if (allocationChart) {
+                allocationChart.destroy();
+            }
+            
+            const { allocation } = portfolioData;
+            const labels = [];
+            const data = [];
+            const colors = [];
+            const colorMap = {
+                equity: '#4f46e5',
+                bonds: '#059669',
+                reits: '#dc2626',
+                commodities: '#d97706'
+            };
+            
+            // Solo incluir assets con allocation > 0
+            Object.entries(allocation).forEach(([asset, percentage]) => {
+                if (percentage > 0) {
+                    labels.push(assetData[asset].name);
+                    data.push(percentage);
+                    colors.push(colorMap[asset]);
+                }
+            });
+            
+            allocationChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderWidth: 3,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'botton',
+                            labels: {
+                                padding: 15,
+                                usePointStyle: true,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Simular cartera
+        function simulatePortfolio() {
+            const { allocation, parameters, metrics } = portfolioData;
+            const total = allocation.equity + allocation.bonds + allocation.reits + allocation.commodities;
+            
+            if (total !== 100) {
+                alert('⚠️ La suma de asset allocation debe ser exactamente 100%');
+                return;
+            }
+            
+            console.log('🚀 Iniciando simulación de cartera...');
+            
+            // Realizar proyecciones para diferentes períodos
+            const periods = [5, 10, 15, 20, 25];
+            const projections = [];
+            
+            periods.forEach(years => {
+                if (years <= parameters.years) {
+                    const projection = calculateProjection(years);
+                    projections.push({ years, ...projection });
+                }
+            });
+            
+            // Mostrar resultados
+            displaySimulationResults(projections);
+            
+            // Mostrar controles finales
+            document.getElementById('finalControls').style.display = 'flex';
+            
+            // Scroll suave a resultados
+            setTimeout(() => {
+                document.getElementById('simulationResults').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+            
+            console.log('✅ Simulación completada');
+        }
+
+        // Calcular proyección para un período específico
+        function calculateProjection(years) {
+            const { parameters, metrics } = portfolioData;
+            const annualReturn = metrics.expectedReturn / 100;
+            const monthlyReturn = annualReturn / 12;
+            
+            let balance = parameters.initial;
+            let totalContributed = parameters.initial;
+            
+            // Simulación mes a mes
+            for (let month = 1; month <= years * 12; month++) {
+                // Añadir aportación mensual
+                balance += parameters.monthly;
+                totalContributed += parameters.monthly;
+                
+                // Aplicar rentabilidad mensual
+                balance *= (1 + monthlyReturn);
+            }
+            
+            const totalGain = balance - totalContributed;
+            const roi = ((balance - totalContributed) / totalContributed) * 100;
+            
+            return {
+                finalAmount: balance,
+                totalContributed,
+                totalGain,
+                roi
+            };
+        }
+
+        // Mostrar resultados de simulación
+        function displaySimulationResults(projections) {
+            const resultsContainer = document.getElementById('simulationResults');
+            const projectionGrid = document.getElementById('projectionGrid');
+            
+            projectionGrid.innerHTML = '';
+            
+            projections.forEach(projection => {
+                const card = document.createElement('div');
+                card.className = 'projection-card';
+                card.innerHTML = `
+                    <div class="projection-period">${projection.years} año${projection.years > 1 ? 's' : ''}</div>
+                    <div class="projection-value">${formatCurrency(projection.finalAmount)}</div>
+                    <div class="projection-gain">+${formatCurrency(projection.totalGain)} (${projection.roi.toFixed(1)}%)</div>
+                `;
+                projectionGrid.appendChild(card);
+            });
+            
+            resultsContainer.style.display = 'block';
+            portfolioData.projections = projections;
+        }
+
+        // Reiniciar simulador
+        function resetSimulator() {
+            // Restablecer a perfil moderado
+            selectProfile('moderate');
+            
+            // Restablecer parámetros
+            document.getElementById('initialAmount').value = 25000;
+            document.getElementById('monthlyContribution').value = 800;
+            document.getElementById('timeHorizon').value = 15;
+            document.getElementById('rebalancing').value = 'annual';
+            
+            // Ocultar resultados
+            document.getElementById('simulationResults').style.display = 'none';
+            document.getElementById('finalControls').style.display = 'none';
+            document.getElementById('portfolioInsights').style.display = 'none';
+            
+            // Actualizar datos
+            updateParameters();
+            
+            console.log('🔄 Simulador reiniciado');
+        }
+
+        // Generar reporte PDF
+        function generatePortfolioReport() {
+            if (!portfolioData.projections) {
+                alert('⚠️ Primero debes simular la cartera para generar el reporte');
+                return;
+            }
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Configuración
+                const margin = 20;
+                let yPosition = margin;
+                
+                // Título
+                doc.setFontSize(18);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Reporte de Simulación de Cartera', margin, yPosition);
+                yPosition += 15;
+                
+                // Fecha
+                const today = new Date().toLocaleDateString('es-ES');
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Fecha: ${today}`, margin, yPosition);
+                yPosition += 20;
+                
+                // Asset Allocation
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Asset Allocation:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                const { allocation } = portfolioData;
+                doc.text(`• Renta Variable: ${allocation.equity}%`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`• Renta Fija: ${allocation.bonds}%`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`• Inmobiliario (REITs): ${allocation.reits}%`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`• Materias Primas: ${allocation.commodities}%`, margin, yPosition);
+                yPosition += 15;
+                
+                // Métricas
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Métricas de la Cartera:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                const { metrics } = portfolioData;
+                doc.text(`• Rentabilidad Esperada: ${metrics.expectedReturn.toFixed(1)}% anual`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`• Volatilidad: ${metrics.volatility.toFixed(1)}%`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`• Ratio Sharpe: ${metrics.sharpeRatio.toFixed(2)}`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`• Perfil: ${metrics.profile}`, margin, yPosition);
+                yPosition += 15;
+                
+                // Proyecciones
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Proyecciones de Crecimiento:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.text('Años', margin, yPosition);
+                doc.text('Capital Final', margin + 40, yPosition);
+                doc.text('Total Aportado', margin + 100, yPosition);
+                doc.text('Ganancia', margin + 150, yPosition);
+                yPosition += 8;
+                
+                portfolioData.projections.forEach(proj => {
+                    doc.text(`${proj.years}`, margin, yPosition);
+                    doc.text(`${formatCurrency(proj.finalAmount)}`, margin + 40, yPosition);
+                    doc.text(`${formatCurrency(proj.totalContributed)}`, margin + 100, yPosition);
+                    doc.text(`${formatCurrency(proj.totalGain)}`, margin + 150, yPosition);
+                    yPosition += 6;
+                });
+                
+                // Pie de página
+                const footerY = doc.internal.pageSize.height - 20;
+                doc.setFontSize(8);
+                doc.setFont('helvetica', 'italic');
+                doc.text('Reporte generado por el Simulador de Cartera', margin, footerY);
+                doc.text('Decisiones de Inversión - Simulación educativa', margin, footerY + 5);
+                
+                // Descargar
+                const fileName = `cartera-simulacion-${today.replace(/\//g, '-')}.pdf`;
+                doc.save(fileName);
+                
+                console.log('✅ Reporte PDF generado:', fileName);
+                
+            } catch (error) {
+                console.error('❌ Error al generar PDF:', error);
+                alert('Error al generar el reporte PDF');
+            }
+        }
+
+        // Compartir cartera
+        function sharePortfolio() {
+            if (!portfolioData.metrics) {
+                alert('⚠️ Primero calcula las métricas de la cartera');
+                return;
+            }
+            
+            const { allocation, metrics, parameters } = portfolioData;
+            const shareText = `💼 Mi Cartera de Inversión:
+
+📊 Asset Allocation:
+• Renta Variable: ${allocation.equity}%
+• Renta Fija: ${allocation.bonds}%
+• Inmobiliario: ${allocation.reits}%
+• Materias Primas: ${allocation.commodities}%
+
+📈 Métricas:
+• Rentabilidad esperada: ${metrics.expectedReturn.toFixed(1)}%
+• Riesgo (volatilidad): ${metrics.volatility.toFixed(1)}%
+• Perfil: ${metrics.profile}
+
+💰 Inversión: ${formatCurrency(parameters.initial)} inicial + ${formatCurrency(parameters.monthly)}/mes
+
+Diseñada con el Simulador de Cartera 🚀`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mi Cartera de Inversión',
+                    text: shareText,
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('🔗 Cartera copiada al portapapeles');
+                }).catch(() => {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('🔗 Cartera copiada al portapapeles');
+                });
+            }
+        }
+
+        // Optimizar cartera (funcionalidad futura)
+        function optimizePortfolio() {
+            alert('🔧 Función de optimización próximamente disponible. Podrás optimizar automáticamente tu cartera para maximizar el ratio Sharpe.');
+        }
+
+        // Función de utilidad para formatear moneda
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        console.log('🎯 Simulador de Cartera cargado completamente');
+    </script>
+</body>
+</html>

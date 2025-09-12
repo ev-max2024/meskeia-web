@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags SEO Ampliados -->
+    <title>Calculadora Impuesto de Donaciones Cataluña 2025 - Cálculo Gratuito | meskeIA</title>
+    <meta name="description" content="Calculadora gratuita del Impuesto de Donaciones en Cataluña 2025. Calcula reducciones por primera vivienda y discapacidad con la normativa actualizada. Herramienta oficial.">
+    <meta name="keywords" content="impuesto donaciones cataluña, calculadora donaciones, agència tributària catalunya, primera vivienda, reducciones fiscales, donación padres hijos, bonificaciones">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Calculadora Impuesto de Donaciones Cataluña 2025">
+    <meta property="og:description" content="Herramienta gratuita para calcular el Impuesto de Donaciones en Cataluña con todas las reducciones vigentes en 2025.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/impuesto-donaciones">
+    <meta property="og:image" content="https://meskeia.com/assets/og-impuesto-donaciones.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora Impuesto Donaciones Cataluña">
+    <meta name="twitter:description" content="Calcula el impuesto de donaciones en Cataluña con reducciones por primera vivienda y discapacidad.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-impuesto-donaciones.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/impuesto-donaciones">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora Impuesto de Donaciones Cataluña",
+        "description": "Calculadora gratuita del Impuesto de Donaciones en Cataluña 2025. Calcula reducciones por primera vivienda y discapacidad según la normativa vigente de la Agència Tributària de Catalunya.",
+        "url": "https://meskeia.com/aplicaciones/impuesto-donaciones",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "HTML5, JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "featureList": [
+            "Cálculo completo del Impuesto de Donaciones",
+            "Reducciones por primera vivienda habitual",
+            "Bonificaciones por parentesco",
+            "Reducciones por discapacidad",
+            "Normativa Cataluña 2025"
+        ]
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta minimalista meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #28a745;
+            --warning: #ffc107;
+            --error: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: var(--secondary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+            margin-bottom: 100px;
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        /* Disclaimer / Aviso Legal */
+        .disclaimer-box {
+            background: #fef5e7;
+            border: 1px solid var(--warning);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 30px;
+            border-left: 4px solid var(--warning);
+        }
+
+        .disclaimer-title {
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .disclaimer-content {
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .disclaimer-content strong {
+            color: #6c5400;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .form-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section h3::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .form-group-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        input[type="number"]:disabled {
+            background: var(--hover);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        .warning-box {
+            background: #fef5e7;
+            border-left: 4px solid var(--warning);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        .error-box {
+            background: #ffebee;
+            border-left: 4px solid var(--error);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #c62828;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #2e7d32;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            color: var(--primary);
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: var(--text-primary);
+            color: var(--bg-card);
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 134, 171, 0.3);
+        }
+
+        .btn-reset {
+            background: var(--border);
+            color: var(--text-secondary);
+        }
+
+        .btn-reset:hover {
+            background: var(--hover);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, var(--success) 0%, #2e7d32 100%);
+            color: white;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .results {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .results.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .results h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .result-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .result-total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--primary);
+            font-size: 18px;
+        }
+
+        .result-total .result-value {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .donaciones-anteriores {
+            margin-top: 15px;
+        }
+
+        .donacion-anterior {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: flex-end;
+        }
+
+        .donacion-anterior input {
+            flex: 1;
+        }
+
+        .btn-remove {
+            padding: 8px 12px;
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-add {
+            padding: 8px 16px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .donation-types-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .donation-type-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .donation-type-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .small-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        /* Footer meskeIA */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 0;
+                margin-bottom: 60px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .disclaimer-box {
+                margin: 15px;
+            }
+            
+            footer {
+                bottom: 5px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+
+            .donation-type-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CSS Responsive para contenido educativo SEO */
+        @media (max-width: 768px) {
+            div[style*="max-width: 900px"] {
+                max-width: calc(100vw - 20px) !important;
+                padding: 0 10px !important;
+                margin: 1rem auto !important;
+            }
+            
+            div[style*="display: grid"][style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            div[style*="padding: 1.5rem"] {
+                padding: 1rem !important;
+            }
+            
+            h2[style*="font-size: 1.5rem"] {
+                font-size: 1.2rem !important;
+                text-align: left !important;
+            }
+            
+            h3[style*="font-size: 1.2rem"] {
+                font-size: 1.1rem !important;
+            }
+            
+            details[style*="border: 1px solid var(--border)"] {
+                padding: 0.75rem !important;
+                margin: 0.75rem 0 !important;
+            }
+            
+            summary {
+                font-size: 14px !important;
+                line-height: 1.4 !important;
+            }
+            
+            ul[style*="padding-left: 1.5rem"] {
+                padding-left: 1rem !important;
+                font-size: 14px !important;
+            }
+            
+            p[style*="line-height: 1.6"] {
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+            }
+        }
+
+        /* Estilos para impresión */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .meskeia-logo-container {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .container {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            .btn-print, .btn-reset, .btn-calculate, .btn-add, .btn-remove {
+                display: none;
+            }
+            
+            .disclaimer-box {
+                margin: 20px 0;
+                page-break-inside: avoid;
+            }
+            
+            footer {
+                position: static;
+                text-align: center;
+                margin-top: 30px;
+            }
+            
+            .form-section {
+                page-break-inside: avoid;
+            }
+            
+            .results {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Calculadora Impuesto de Donaciones</h1>
+            <p>Cataluña 2025 - Herramienta Informativa</p>
+        </div>
+        
+        <!-- Disclaimer / Aviso Legal -->
+        <div class="disclaimer-box">
+            <div class="disclaimer-title">
+                ⚠️ IMPORTANTE - AVISO LEGAL
+            </div>
+            <div class="disclaimer-content">
+                <strong>Esta calculadora es únicamente una herramienta informativa y orientativa.</strong><br><br>
+                Los resultados obtenidos son estimaciones basadas en la normativa vigente del Impuesto sobre Sucesiones y Donaciones en Cataluña, pero <strong>NO sustituyen el asesoramiento profesional</strong>. Cada situación fiscal es única y puede estar sujeta a particularidades no contempladas en esta herramienta.<br><br>
+                <strong>⚠️ Casos especiales no incluidos:</strong><br>
+                <ul style="margin: 10px 0 10px 20px; color: #856404;">
+                    <li><strong>Empresas familiares o negocios profesionales</strong></li>
+                    <li>Explotaciones agrarias</li>
+                    <li>Bienes del patrimonio cultural</li>
+                    <li>Participaciones societarias complejas</li>
+                </ul>
+                Para estos casos, <strong>consulte con un asesor fiscal especializado</strong>.<br><br>
+                <strong>Recomendamos encarecidamente:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Consultar con un <strong>Asesor Fiscal profesional</strong> antes de tomar decisiones</li>
+                    <li>Verificar los requisitos específicos de cada reducción con la <strong>Agència Tributària de Catalunya</strong></li>
+                    <li>Confirmar que cumple todos los requisitos legales para las reducciones aplicables</li>
+                </ul><br>
+                meskeIA no se responsabiliza de las decisiones tomadas basándose en estos cálculos. El uso de esta herramienta implica la aceptación de estas condiciones.
+            </div>
+        </div>
+        
+        <div class="content">
+            <form id="donacionForm">
+                <!-- Sección 1: Desglose de la Donación -->
+                <div class="form-section">
+                    <h3>Desglose de la Donación</h3>
+                    
+                    <div class="info-box">
+                        <strong>Importante:</strong> Desglose los diferentes conceptos de la donación para un cálculo más preciso del impuesto
+                    </div>
+
+                    <div class="donation-types-grid">
+                        <div class="donation-type-row">
+                            <div>
+                                <div class="donation-type-label">
+                                    Primera vivienda habitual
+                                    <span class="tooltip">ℹ
+                                        <span class="tooltiptext">Vivienda que constituirá la primera residencia habitual del donatario. Tiene reducción del 95% con límites</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="importePrimeraVivienda" min="0" step="0.01" placeholder="0.00 €">
+                            </div>
+                        </div>
+
+                        <div class="donation-type-row">
+                            <div>
+                                <div class="donation-type-label">
+                                    Dinero para adquisición primera vivienda
+                                    <span class="small-text">(escritura en 1 mes, compra en 3 meses)</span>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="dineroPrimeraVivienda" min="0" step="0.01" placeholder="0.00 €">
+                            </div>
+                        </div>
+
+                        <div class="donation-type-row">
+                            <div>
+                                <div class="donation-type-label">
+                                    Dinero para reformas/mobiliario primera vivienda
+                                    <span class="tooltip">ℹ
+                                        <span class="tooltiptext">Se incluye en el límite de reducción de primera vivienda si se formaliza correctamente</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="dineroReformas" min="0" step="0.01" placeholder="0.00 €">
+                            </div>
+                        </div>
+
+                        <div class="donation-type-row">
+                            <div>
+                                <div class="donation-type-label">
+                                    Segunda vivienda o inmuebles
+                                    <span class="small-text">(sin reducción especial)</span>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="segundaVivienda" min="0" step="0.01" placeholder="0.00 €">
+                            </div>
+                        </div>
+
+
+                        <div class="donation-type-row">
+                            <div>
+                                <div class="donation-type-label">
+                                    Dinero para pagar el impuesto
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="dineroPagarImpuesto" min="0" step="0.01" placeholder="0.00 €">
+                            </div>
+                        </div>
+
+                        <div class="donation-type-row">
+                            <div>
+                                <div class="donation-type-label">
+                                    Otros bienes o dinero efectivo
+                                    <span class="small-text">(sin reducción especial)</span>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="otrosBienes" min="0" step="0.01" placeholder="0.00 €">
+                            </div>
+                        </div>
+
+                        <div class="donation-type-row" style="border-top: 2px solid var(--primary); padding-top: 15px; margin-top: 15px;">
+                            <div>
+                                <div class="donation-type-label" style="font-size: 16px; color: var(--primary);">
+                                    <strong>TOTAL DONACIÓN</strong>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number" id="totalDonacion" readonly disabled style="font-weight: bold; color: var(--primary);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>
+                            ¿Se formalizará en escritura pública?
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Obligatorio para reducciones. Para grupos I y II permite aplicar tarifa reducida</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="escrituraSi" name="escritura" value="si" checked>
+                                <label for="escrituraSi">Sí</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="escrituraNo" name="escritura" value="no">
+                                <label for="escrituraNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 2: Relación entre Donante y Donatario -->
+                <div class="form-section">
+                    <h3>Relación entre Donante y Donatario</h3>
+                    
+                    <div class="form-group">
+                        <label for="grupoParentesco">
+                            Grupo de parentesco
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">El grado de parentesco determina las reducciones y coeficientes aplicables</span>
+                            </span>
+                        </label>
+                        <select id="grupoParentesco" required>
+                            <option value="">Seleccione...</option>
+                            <option value="I">Grupo I - Descendientes menores de 21 años</option>
+                            <option value="II-hijo">Grupo II - Hijos de 21 años o más</option>
+                            <option value="II-conyuge">Grupo II - Cónyuge o pareja estable</option>
+                            <option value="II-ascendiente">Grupo II - Padres o ascendientes</option>
+                            <option value="III">Grupo III - Hermanos, tíos, sobrinos</option>
+                            <option value="IV">Grupo IV - Primos, extraños</option>
+                        </select>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Grupos de parentesco:</strong><br>
+                        • <strong>Grupo I:</strong> Hijos y descendientes menores de 21 años<br>
+                        • <strong>Grupo II:</strong> Hijos de 21+, cónyuge, pareja estable, padres<br>
+                        • <strong>Grupo III:</strong> Hermanos, tíos, sobrinos (2º y 3er grado)<br>
+                        • <strong>Grupo IV:</strong> Primos (4º grado) y extraños
+                    </div>
+                </div>
+
+                <!-- Sección 3: Datos del Donatario -->
+                <div class="form-section">
+                    <h3>Datos del Donatario (quien recibe)</h3>
+                    
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="edadDonatario">
+                                Edad del donatario
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Máximo 36 años para reducción primera vivienda (salvo discapacidad ≥65%)</span>
+                                </span>
+                            </label>
+                            <input type="number" id="edadDonatario" min="0" max="120" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ingresosAnuales">
+                                Base imponible IRPF del donatario (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Suma de base general + base del ahorro - mínimos. Máximo 36.000€ para reducción primera vivienda</span>
+                                </span>
+                            </label>
+                            <input type="number" id="ingresosAnuales" min="0" step="0.01" placeholder="Ingresos anuales">
+                        </div>
+                    </div>
+
+                    <div id="avisoIngresos" class="warning-box" style="display: none;">
+                        <strong>⚠️ Atención:</strong> Los ingresos superan los 36.000€ anuales. No se podrá aplicar la reducción por primera vivienda.
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patrimonioPreexistente">
+                            Patrimonio preexistente del donatario (€)
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Valor total del patrimonio del donatario antes de la donación</span>
+                            </span>
+                        </label>
+                        <select id="patrimonioPreexistente" required>
+                            <option value="1">Hasta 500.000 €</option>
+                            <option value="2">De 500.000,01 € a 2.000.000 €</option>
+                            <option value="3">De 2.000.000,01 € a 4.000.000 €</option>
+                            <option value="4">Más de 4.000.000 €</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            ¿Tiene algún grado de discapacidad?
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Las personas con discapacidad tienen reducciones especiales y mayores límites</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="discapacidadNo" name="discapacidad" value="0" checked>
+                                <label for="discapacidadNo">No</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="discapacidad33" name="discapacidad" value="33">
+                                <label for="discapacidad33">33% - 64%</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="discapacidad65" name="discapacidad" value="65">
+                                <label for="discapacidad65">65% o más</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 4: Donaciones Anteriores -->
+                <div class="form-section">
+                    <h3>Donaciones Anteriores (últimos 3 años)</h3>
+                    
+                    <div class="info-box">
+                        Las donaciones del mismo donante en los últimos 3 años se acumulan para calcular el tipo impositivo
+                    </div>
+
+                    <div id="donacionesAnteriores" class="donaciones-anteriores">
+                        <!-- Se añadirán dinámicamente -->
+                    </div>
+                    
+                    <button type="button" class="btn-add" onclick="agregarDonacionAnterior()">
+                        + Añadir donación anterior
+                    </button>
+                </div>
+
+                <!-- Sección 5: Verificación de Requisitos -->
+                <div class="form-section">
+                    <h3>Verificación de Requisitos para Reducciones</h3>
+                    
+                    <div id="requisitosCheck">
+                        <div class="info-box">Introduzca los datos para verificar el cumplimiento de requisitos</div>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="button-group">
+                    <button type="button" class="btn-reset" onclick="resetForm()">Limpiar</button>
+                    <button type="submit" class="btn-calculate">Calcular Impuesto</button>
+                </div>
+            </form>
+
+            <!-- Resultados -->
+            <div id="results" class="results">
+                <h3>Resultado del Cálculo</h3>
+                <div id="resultContent"></div>
+                <div class="button-group" style="margin-top: 20px;">
+                    <button type="button" class="btn-print" onclick="imprimirResultados()">🖨️ Imprimir / Guardar PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido educativo sobre Impuesto de Donaciones -->
+    <div style="max-width: 900px; margin: 2rem auto; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">🏠 Guía del Impuesto de Donaciones en Cataluña</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏠 Primera Vivienda Habitual</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Las donaciones para adquisición de la primera vivienda habitual tienen importantes beneficios fiscales. Reducción del 95% con límites específicos según la edad del donatario.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Menores de 36 años:</strong> Hasta 200.000€ de reducción</li>
+                        <li><strong>36 años o más:</strong> Hasta 100.000€ de reducción</li>
+                        <li><strong>Requisito:</strong> Mantener la vivienda 5 años</li>
+                        <li><strong>Condición:</strong> Primera residencia habitual</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--success);">
+                    <h3 style="color: var(--success); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Bonificaciones por Parentesco</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Cataluña aplica bonificaciones generosas según el grado de parentesco entre donante y donatario, especialmente favorables para familiares directos.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Cónyuges:</strong> Bonificación del 99%</li>
+                        <li><strong>Descendientes/Ascendientes:</strong> Variable 20-60%</li>
+                        <li><strong>Hermanos:</strong> Tipos reducidos especiales</li>
+                        <li><strong>Otros familiares:</strong> Según grado parentesco</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--warning);">
+                    <h3 style="color: var(--warning); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">💼 Planificación Fiscal</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">La planificación adecuada de las donaciones puede generar importantes ahorros fiscales. Es fundamental conocer los límites y requisitos de cada reducción.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Momento optimal:</strong> Planificar según edad</li>
+                        <li><strong>Fraccionamiento:</strong> Donaciones parciales anuales</li>
+                        <li><strong>Documentación:</strong> Escritura pública necesaria</li>
+                        <li><strong>Plazos:</strong> Liquidación en 30 días hábiles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 900px; margin: 0 auto 2rem; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border);">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes</h2>
+            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué reducciones se aplican en donaciones de primera vivienda?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "En Cataluña, las donaciones para primera vivienda habitual tienen reducción del 95%: hasta 200.000€ para menores de 36 años (con ingresos máximos de 30.000€ anuales) y hasta 100.000€ para mayores de 36 años. Debe mantenerse como residencia habitual durante 5 años."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo funcionan las bonificaciones por parentesco?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Los cónyuges tienen bonificación del 99%. Descendientes y ascendientes entre 20-60% según el importe. Hermanos y otros familiares tienen tipos reducidos especiales. Cuanto más cercano el parentesco, mayor la bonificación."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué documentos necesito para la donación?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Necesita escritura pública de donación ante notario, tasación oficial del bien donado, documentación que acredite el parentesco, y en su caso, certificados de discapacidad. La liquidación debe presentarse en 30 días hábiles."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cuál es el plazo para liquidar el impuesto?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "El Impuesto de Donaciones debe liquidarse en el plazo de 30 días hábiles desde la fecha de la escritura de donación. El retraso conlleva recargos e intereses de demora. Es recomendable preparar la documentación con antelación."
+                        }
+                    }
+                ]
+            }
+            </script>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Qué reducciones se aplican en donaciones de primera vivienda?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">En Cataluña, las donaciones para primera vivienda habitual tienen reducción del 95%: hasta 200.000€ para menores de 36 años y hasta 100.000€ para mayores de 36 años. El donatario debe mantener la vivienda como residencia habitual durante al menos 5 años tras la donación.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo funcionan las bonificaciones por parentesco?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Los cónyuges disfrutan de una bonificación del 99%. Los descendientes y ascendientes tienen bonificaciones variables entre 20-60% según el importe donado. Hermanos y otros familiares tienen tipos reducidos especiales. Cuanto más cercano sea el parentesco, mayor será la bonificación aplicable.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Qué documentos necesito para la donación?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Necesita escritura pública de donación ante notario, tasación oficial del bien donado (si es inmueble), documentación que acredite el grado de parentesco, y en su caso, certificados de discapacidad. La liquidación del impuesto debe presentarse en la Agència Tributària de Catalunya en 30 días hábiles.</p>
+                </details>
+                
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cuál es el plazo para liquidar el impuesto?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El Impuesto de Donaciones debe liquidarse en el plazo de 30 días hábiles desde la fecha de la escritura de donación. El incumplimiento de este plazo conlleva recargos e intereses de demora. Es recomendable preparar toda la documentación necesaria con antelación para evitar retrasos.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer>
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Configuración de tarifas y coeficientes según normativa catalana 2025
+        const TARIFAS = {
+            general: [
+                { hasta: 50000, cuota: 0, resto: 50000, tipo: 7 },
+                { hasta: 150000, cuota: 3500, resto: 400000, tipo: 11 },
+                { hasta: 550000, cuota: 14500, resto: 800000, tipo: 17 },
+                { hasta: 1350000, cuota: 57000, resto: Infinity, tipo: 24 },
+                { hasta: Infinity, cuota: 153000, resto: Infinity, tipo: 32 }
+            ],
+            reducida: [ // Para grupos I y II con escritura pública
+                { hasta: 200000, cuota: 0, resto: 200000, tipo: 5 },
+                { hasta: 800000, cuota: 10000, resto: 600000, tipo: 7 },
+                { hasta: Infinity, cuota: 38000, resto: Infinity, tipo: 9 }
+            ]
+        };
+
+        const COEFICIENTES = {
+            'I': [1.0000, 1.1000, 1.1500, 1.2000],
+            'II': [1.0000, 1.1000, 1.1500, 1.2000],
+            'III': [1.5882, 1.5882, 1.5882, 1.5882],
+            'IV': [2.0000, 2.0000, 2.0000, 2.0000]
+        };
+
+        let donacionesAnterioresCount = 0;
+        let ultimoResultado = null;
+
+        // Actualizar total donación automáticamente
+        function actualizarTotalDonacion() {
+            const campos = [
+                'importePrimeraVivienda',
+                'dineroPrimeraVivienda',
+                'dineroReformas',
+                'segundaVivienda',
+                'dineroPagarImpuesto',
+                'otrosBienes'
+            ];
+            
+            let total = 0;
+            campos.forEach(campo => {
+                total += parseFloat(document.getElementById(campo).value || 0);
+            });
+            
+            document.getElementById('totalDonacion').value = total.toFixed(2);
+            verificarRequisitos();
+        }
+
+        // Añadir listeners a todos los campos de importes
+        document.addEventListener('DOMContentLoaded', function() {
+            const camposImporte = [
+                'importePrimeraVivienda',
+                'dineroPrimeraVivienda', 
+                'dineroReformas',
+                'segundaVivienda',
+                'dineroPagarImpuesto',
+                'otrosBienes'
+            ];
+            
+            camposImporte.forEach(campo => {
+                document.getElementById(campo).addEventListener('input', actualizarTotalDonacion);
+            });
+
+            // Listeners para verificación de requisitos
+            document.getElementById('edadDonatario').addEventListener('input', verificarRequisitos);
+            document.getElementById('ingresosAnuales').addEventListener('input', verificarRequisitos);
+            document.getElementById('patrimonioPreexistente').addEventListener('change', verificarRequisitos);
+            document.querySelectorAll('input[name="discapacidad"]').forEach(radio => {
+                radio.addEventListener('change', verificarRequisitos);
+            });
+            document.querySelectorAll('input[name="escritura"]').forEach(radio => {
+                radio.addEventListener('change', verificarRequisitos);
+            });
+        });
+
+        function verificarRequisitos() {
+            const edad = parseInt(document.getElementById('edadDonatario').value) || 0;
+            const ingresos = parseFloat(document.getElementById('ingresosAnuales').value) || 0;
+            const discapacidad = parseInt(document.querySelector('input[name="discapacidad"]:checked')?.value) || 0;
+            const patrimonio = parseInt(document.getElementById('patrimonioPreexistente').value) || 1;
+            const escritura = document.querySelector('input[name="escritura"]:checked')?.value === 'si';
+            
+            const primeraVivienda = parseFloat(document.getElementById('importePrimeraVivienda').value) || 0;
+            const dineroPrimeraVivienda = parseFloat(document.getElementById('dineroPrimeraVivienda').value) || 0;
+            const dineroReformas = parseFloat(document.getElementById('dineroReformas').value) || 0;
+            
+            let html = '';
+            
+            // Verificar primera vivienda
+            if (primeraVivienda > 0 || dineroPrimeraVivienda > 0 || dineroReformas > 0) {
+                const totalPrimeraVivienda = primeraVivienda + dineroPrimeraVivienda + dineroReformas;
+                const limiteReduccion = discapacidad >= 65 ? 120000 : 60000;
+                
+                let cumpleRequisitos = true;
+                let requisitosNo = [];
+                
+                if (!escritura) {
+                    cumpleRequisitos = false;
+                    requisitosNo.push('Debe formalizarse en escritura pública');
+                }
+                
+                if (edad > 36 && discapacidad < 65) {
+                    cumpleRequisitos = false;
+                    requisitosNo.push('Edad máxima 36 años (sin discapacidad ≥65%)');
+                }
+                
+                if (ingresos > 36000) {
+                    cumpleRequisitos = false;
+                    requisitosNo.push('Ingresos máximos 36.000€');
+                }
+                
+                if (cumpleRequisitos) {
+                    html += `<div class="success-box">
+                        <strong>✓ Primera vivienda:</strong> Cumple requisitos. 
+                        Reducción 95% sobre ${formatearMoneda(totalPrimeraVivienda)}, 
+                        máximo ${formatearMoneda(limiteReduccion)}
+                    </div>`;
+                } else {
+                    html += `<div class="error-box">
+                        <strong>✗ Primera vivienda:</strong> NO cumple requisitos:<br>
+                        ${requisitosNo.map(r => `• ${r}`).join('<br>')}
+                    </div>`;
+                }
+            }
+            
+            // Verificar empresa
+            if (empresa > 0) {
+                const limiteReduccion = discapacidad >= 33 ? 400000 : 200000;
+                let cumpleRequisitos = true;
+                let requisitosNo = [];
+                
+                if (!escritura) {
+                    cumpleRequisitos = false;
+                    requisitosNo.push('Debe formalizarse en escritura pública');
+                }
+                
+                if (patrimonio > 2 && discapacidad < 33) {
+                    requisitosNo.push('Patrimonio máximo recomendado: 500.000€');
+                }
+                
+                if (cumpleRequisitos && requisitosNo.length === 0) {
+                    html += `<div class="success-box">
+                        <strong>✓ Empresa/Negocio:</strong> Cumple requisitos. 
+                        Reducción 95% sobre ${formatearMoneda(empresa)}, 
+                        máximo ${formatearMoneda(limiteReduccion)}
+                    </div>`;
+                } else if (!cumpleRequisitos) {
+                    html += `<div class="error-box">
+                        <strong>✗ Empresa/Negocio:</strong> NO cumple requisitos:<br>
+                        ${requisitosNo.map(r => `• ${r}`).join('<br>')}
+                    </div>`;
+                } else {
+                    html += `<div class="warning-box">
+                        <strong>⚠ Empresa/Negocio:</strong> Revisar:<br>
+                        ${requisitosNo.map(r => `• ${r}`).join('<br>')}
+                    </div>`;
+                }
+            }
+            
+            // Mostrar aviso de ingresos
+            const avisoIngresos = document.getElementById('avisoIngresos');
+            if (ingresos > 36000 && (primeraVivienda > 0 || dineroPrimeraVivienda > 0 || dineroReformas > 0)) {
+                avisoIngresos.style.display = 'block';
+            } else {
+                avisoIngresos.style.display = 'none';
+            }
+            
+            document.getElementById('requisitosCheck').innerHTML = html || 
+                '<div class="info-box">Introduzca los datos para verificar el cumplimiento de requisitos</div>';
+        }
+
+        function agregarDonacionAnterior() {
+            const container = document.getElementById('donacionesAnteriores');
+            const id = ++donacionesAnterioresCount;
+            
+            const div = document.createElement('div');
+            div.className = 'donacion-anterior';
+            div.id = `donacion-${id}`;
+            div.innerHTML = `
+                <div style="flex: 1;">
+                    <label>Fecha</label>
+                    <input type="date" id="fecha-${id}" required>
+                </div>
+                <div style="flex: 1;">
+                    <label>Importe (€)</label>
+                    <input type="number" id="importe-${id}" min="0" step="0.01" required>
+                </div>
+                <button type="button" class="btn-remove" onclick="eliminarDonacionAnterior(${id})">Eliminar</button>
+            `;
+            
+            container.appendChild(div);
+        }
+
+        function eliminarDonacionAnterior(id) {
+            const element = document.getElementById(`donacion-${id}`);
+            if (element) {
+                element.remove();
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('donacionForm').reset();
+            document.getElementById('donacionesAnteriores').innerHTML = '';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('requisitosCheck').innerHTML = '<div class="info-box">Introduzca los datos para verificar el cumplimiento de requisitos</div>';
+            document.getElementById('avisoIngresos').style.display = 'none';
+            donacionesAnterioresCount = 0;
+            ultimoResultado = null;
+            actualizarTotalDonacion();
+        }
+
+        function calcularTarifa(base, tarifa) {
+            let cuotaTotal = 0;
+            let baseRestante = base;
+            
+            for (const tramo of tarifa) {
+                if (baseRestante <= 0) break;
+                
+                const baseTramo = Math.min(baseRestante, tramo.resto);
+                const cuotaTramo = (baseTramo * tramo.tipo) / 100;
+                cuotaTotal += tramo.cuota + cuotaTramo;
+                
+                baseRestante -= tramo.resto;
+                
+                if (baseRestante <= 0) {
+                    cuotaTotal = tramo.cuota + (baseTramo * tramo.tipo) / 100;
+                    break;
+                }
+            }
+            
+            return cuotaTotal;
+        }
+
+        function obtenerCoeficiente(grupo, patrimonio) {
+            const grupoBase = grupo.startsWith('II') ? 'II' : grupo;
+            const indicePatrimonio = parseInt(patrimonio) - 1;
+            return COEFICIENTES[grupoBase][indicePatrimonio];
+        }
+
+        function calcularDonacionesAcumuladas() {
+            let total = 0;
+            const hoy = new Date();
+            const tresAnosAtras = new Date(hoy.getFullYear() - 3, hoy.getMonth(), hoy.getDate());
+            
+            for (let i = 1; i <= donacionesAnterioresCount; i++) {
+                const fecha = document.getElementById(`fecha-${i}`)?.value;
+                const importe = parseFloat(document.getElementById(`importe-${i}`)?.value || 0);
+                
+                if (fecha && importe > 0) {
+                    const fechaDonacion = new Date(fecha);
+                    if (fechaDonacion >= tresAnosAtras && fechaDonacion <= hoy) {
+                        total += importe;
+                    }
+                }
+            }
+            
+            return total;
+        }
+
+        function aplicarReducciones(datos) {
+            let reducciones = 0;
+            let detallesReducciones = [];
+            
+            // Reducción primera vivienda
+            const totalPrimeraVivienda = datos.importePrimeraVivienda + datos.dineroPrimeraVivienda + datos.dineroReformas;
+            
+            if (totalPrimeraVivienda > 0 && 
+                datos.edad <= 36 && 
+                datos.ingresos <= 36000 && 
+                datos.escritura) {
+                
+                const limiteReduccion = datos.discapacidad >= 65 ? 120000 : 60000;
+                const reduccion = Math.min(totalPrimeraVivienda * 0.95, limiteReduccion);
+                reducciones += reduccion;
+                detallesReducciones.push({
+                    tipo: 'Primera vivienda',
+                    base: totalPrimeraVivienda,
+                    importe: reduccion,
+                    detalle: `95% sobre ${formatearMoneda(totalPrimeraVivienda)}, límite ${formatearMoneda(limiteReduccion)}`
+                });
+            } else if (totalPrimeraVivienda > 0 && datos.discapacidad >= 65 && datos.ingresos <= 36000 && datos.escritura) {
+                // Excepción para discapacidad >= 65%
+                const limiteReduccion = 120000;
+                const reduccion = Math.min(totalPrimeraVivienda * 0.95, limiteReduccion);
+                reducciones += reduccion;
+                detallesReducciones.push({
+                    tipo: 'Primera vivienda (discapacidad ≥65%)',
+                    base: totalPrimeraVivienda,
+                    importe: reduccion,
+                    detalle: `95% sobre ${formatearMoneda(totalPrimeraVivienda)}, límite ${formatearMoneda(limiteReduccion)}`
+                });
+            }
+            
+            
+            return { total: reducciones, detalles: detallesReducciones };
+        }
+
+        document.getElementById('donacionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Recoger datos del formulario
+            const datos = {
+                // Importes desglosados
+                importePrimeraVivienda: parseFloat(document.getElementById('importePrimeraVivienda').value) || 0,
+                dineroPrimeraVivienda: parseFloat(document.getElementById('dineroPrimeraVivienda').value) || 0,
+                dineroReformas: parseFloat(document.getElementById('dineroReformas').value) || 0,
+                segundaVivienda: parseFloat(document.getElementById('segundaVivienda').value) || 0,
+                dineroPagarImpuesto: parseFloat(document.getElementById('dineroPagarImpuesto').value) || 0,
+                otrosBienes: parseFloat(document.getElementById('otrosBienes').value) || 0,
+                
+                // Otros datos
+                escritura: document.querySelector('input[name="escritura"]:checked').value === 'si',
+                grupoParentesco: document.getElementById('grupoParentesco').value,
+                edad: parseInt(document.getElementById('edadDonatario').value),
+                ingresos: parseFloat(document.getElementById('ingresosAnuales').value) || 0,
+                patrimonioPreexistente: document.getElementById('patrimonioPreexistente').value,
+                discapacidad: parseInt(document.querySelector('input[name="discapacidad"]:checked').value)
+            };
+            
+            // Calcular total donación
+            datos.totalDonacion = datos.importePrimeraVivienda + datos.dineroPrimeraVivienda + 
+                                  datos.dineroReformas + datos.segundaVivienda + 
+                                  datos.dineroPagarImpuesto + datos.otrosBienes;
+            
+            if (datos.totalDonacion === 0) {
+                alert('Por favor, introduzca al menos un importe de donación');
+                return;
+            }
+            
+            // Calcular base imponible
+            let baseImponible = datos.totalDonacion;
+            const donacionesAcumuladas = calcularDonacionesAcumuladas();
+            const baseImponibleAcumulada = baseImponible + donacionesAcumuladas;
+            
+            // Aplicar reducciones
+            const reducciones = aplicarReducciones(datos);
+            const baseLiquidable = Math.max(0, baseImponible - reducciones.total);
+            const baseLiquidableAcumulada = baseLiquidable + donacionesAcumuladas;
+            
+            // Determinar tarifa aplicable
+            const usarTarifaReducida = datos.escritura && 
+                (datos.grupoParentesco === 'I' || datos.grupoParentesco.startsWith('II'));
+            const tarifa = usarTarifaReducida ? TARIFAS.reducida : TARIFAS.general;
+            
+            // Calcular cuota íntegra
+            let cuotaIntegra;
+            if (donacionesAcumuladas > 0) {
+                // Calcular tipo medio con acumulación
+                const cuotaTotal = calcularTarifa(baseLiquidableAcumulada, tarifa);
+                const tipoMedio = (cuotaTotal / baseLiquidableAcumulada) * 100;
+                cuotaIntegra = (baseLiquidable * tipoMedio) / 100;
+            } else {
+                cuotaIntegra = calcularTarifa(baseLiquidable, tarifa);
+            }
+            
+            // Aplicar coeficiente multiplicador
+            const coeficiente = obtenerCoeficiente(datos.grupoParentesco, datos.patrimonioPreexistente);
+            const cuotaTributaria = cuotaIntegra * coeficiente;
+            
+            // Guardar resultado para impresión
+            ultimoResultado = {
+                datos,
+                baseImponible,
+                donacionesAcumuladas,
+                reducciones,
+                baseLiquidable,
+                cuotaIntegra,
+                coeficiente,
+                cuotaTributaria,
+                tarifaAplicada: usarTarifaReducida ? 'Reducida' : 'General',
+                grupoParentesco: datos.grupoParentesco
+            };
+            
+            // Mostrar resultados
+            mostrarResultados(ultimoResultado);
+        });
+
+        function mostrarResultados(resultado) {
+            const resultContent = document.getElementById('resultContent');
+            
+            let html = '<h4 style="color: var(--primary); margin-bottom: 15px;">Desglose de la donación:</h4>';
+            
+            // Mostrar desglose de importes
+            if (resultado.datos.importePrimeraVivienda > 0) {
+                html += `<div class="result-item">
+                    <span class="result-label">Primera vivienda habitual:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.importePrimeraVivienda)}</span>
+                </div>`;
+            }
+            if (resultado.datos.dineroPrimeraVivienda > 0) {
+                html += `<div class="result-item">
+                    <span class="result-label">Dinero para primera vivienda:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.dineroPrimeraVivienda)}</span>
+                </div>`;
+            }
+            if (resultado.datos.dineroReformas > 0) {
+                html += `<div class="result-item">
+                    <span class="result-label">Dinero para reformas/mobiliario:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.dineroReformas)}</span>
+                </div>`;
+            }
+            if (resultado.datos.segundaVivienda > 0) {
+                html += `<div class="result-item">
+                    <span class="result-label">Segunda vivienda/inmuebles:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.segundaVivienda)}</span>
+                </div>`;
+            }
+            if (resultado.datos.dineroPagarImpuesto > 0) {
+                html += `<div class="result-item">
+                    <span class="result-label">Dinero para pagar impuesto:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.dineroPagarImpuesto)}</span>
+                </div>`;
+            }
+            if (resultado.datos.otrosBienes > 0) {
+                html += `<div class="result-item">
+                    <span class="result-label">Otros bienes/dinero:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.otrosBienes)}</span>
+                </div>`;
+            }
+            
+            html += `
+                <div class="result-item" style="border-top: 2px solid var(--primary); margin-top: 10px; padding-top: 10px;">
+                    <span class="result-label"><strong>BASE IMPONIBLE TOTAL:</strong></span>
+                    <span class="result-value"><strong>${formatearMoneda(resultado.baseImponible)}</strong></span>
+                </div>
+            `;
+            
+            if (resultado.donacionesAcumuladas > 0) {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Donaciones anteriores acumuladas:</span>
+                        <span class="result-value">${formatearMoneda(resultado.donacionesAcumuladas)}</span>
+                    </div>
+                `;
+            }
+            
+            html += '<h4 style="color: var(--primary); margin: 20px 0 15px 0;">Reducciones aplicadas:</h4>';
+            
+            if (resultado.reducciones.total > 0) {
+                resultado.reducciones.detalles.forEach(red => {
+                    html += `
+                        <div class="result-item">
+                            <span class="result-label">Reducción ${red.tipo}:</span>
+                            <span class="result-value">- ${formatearMoneda(red.importe)}</span>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-muted); margin-left: 20px; margin-bottom: 10px;">
+                            ${red.detalle}
+                        </div>
+                    `;
+                });
+            } else {
+                html += '<div class="info-box">No se aplican reducciones</div>';
+            }
+            
+            html += `
+                <h4 style="color: var(--primary); margin: 20px 0 15px 0;">Liquidación del impuesto:</h4>
+                <div class="result-item">
+                    <span class="result-label">Base liquidable:</span>
+                    <span class="result-value">${formatearMoneda(resultado.baseLiquidable)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tarifa aplicada:</span>
+                    <span class="result-value">${resultado.tarifaAplicada} (Grupo ${resultado.grupoParentesco})</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Cuota íntegra:</span>
+                    <span class="result-value">${formatearMoneda(resultado.cuotaIntegra)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Coeficiente multiplicador:</span>
+                    <span class="result-value">x ${resultado.coeficiente.toFixed(4)}</span>
+                </div>
+                <div class="result-item result-total">
+                    <span class="result-label"><strong>TOTAL A PAGAR:</strong></span>
+                    <span class="result-value">${formatearMoneda(resultado.cuotaTributaria)}</span>
+                </div>
+            `;
+            
+            resultContent.innerHTML = html;
+            document.getElementById('results').classList.add('show');
+            
+            // Scroll suave hasta los resultados
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function formatearMoneda(cantidad) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(cantidad);
+        }
+
+        function imprimirResultados() {
+            if (!ultimoResultado) {
+                alert('No hay resultados para imprimir. Por favor, realice primero el cálculo.');
+                return;
+            }
+            
+            // Preparar contenido para impresión
+            const ventanaImpresion = window.open('', '_blank');
+            const fechaHoy = new Date().toLocaleDateString('es-ES', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const gruposParentesco = {
+                'I': 'Grupo I - Descendientes menores de 21 años',
+                'II-hijo': 'Grupo II - Hijos de 21 años o más',
+                'II-conyuge': 'Grupo II - Cónyuge o pareja estable',
+                'II-ascendiente': 'Grupo II - Padres o ascendientes',
+                'III': 'Grupo III - Hermanos, tíos, sobrinos',
+                'IV': 'Grupo IV - Primos, extraños'
+            };
+            
+            // Construir HTML del desglose
+            let desgloseDonacion = '';
+            if (ultimoResultado.datos.importePrimeraVivienda > 0) {
+                desgloseDonacion += `
+                    <div class="fila">
+                        <span class="label">Primera vivienda habitual:</span>
+                        <span class="valor">${formatearMoneda(ultimoResultado.datos.importePrimeraVivienda)}</span>
+                    </div>`;
+            }
+            if (ultimoResultado.datos.dineroPrimeraVivienda > 0) {
+                desgloseDonacion += `
+                    <div class="fila">
+                        <span class="label">Dinero para primera vivienda:</span>
+                        <span class="valor">${formatearMoneda(ultimoResultado.datos.dineroPrimeraVivienda)}</span>
+                    </div>`;
+            }
+            if (ultimoResultado.datos.dineroReformas > 0) {
+                desgloseDonacion += `
+                    <div class="fila">
+                        <span class="label">Dinero para reformas/mobiliario:</span>
+                        <span class="valor">${formatearMoneda(ultimoResultado.datos.dineroReformas)}</span>
+                    </div>`;
+            }
+            if (ultimoResultado.datos.segundaVivienda > 0) {
+                desgloseDonacion += `
+                    <div class="fila">
+                        <span class="label">Segunda vivienda/inmuebles:</span>
+                        <span class="valor">${formatearMoneda(ultimoResultado.datos.segundaVivienda)}</span>
+                    </div>`;
+            }
+            if (ultimoResultado.datos.dineroPagarImpuesto > 0) {
+                desgloseDonacion += `
+                    <div class="fila">
+                        <span class="label">Dinero para pagar impuesto:</span>
+                        <span class="valor">${formatearMoneda(ultimoResultado.datos.dineroPagarImpuesto)}</span>
+                    </div>`;
+            }
+            if (ultimoResultado.datos.otrosBienes > 0) {
+                desgloseDonacion += `
+                    <div class="fila">
+                        <span class="label">Otros bienes/dinero:</span>
+                        <span class="valor">${formatearMoneda(ultimoResultado.datos.otrosBienes)}</span>
+                    </div>`;
+            }
+            
+            const htmlImpresion = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Cálculo Impuesto Donaciones - meskeIA</title>
+                    <style>
+                        body {
+                            font-family: 'Segoe UI', Arial, sans-serif;
+                            padding: 20px;
+                            max-width: 800px;
+                            margin: 0 auto;
+                            font-size: 12px;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 30px;
+                            padding-bottom: 20px;
+                            border-bottom: 2px solid #2E86AB;
+                        }
+                        .logo {
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                        .logo .meske { color: #2E86AB; }
+                        .logo .ia { color: #48A9A6; }
+                        h1 {
+                            color: #1A1A1A;
+                            margin: 10px 0;
+                            font-size: 20px;
+                        }
+                        .fecha {
+                            color: #666;
+                            font-size: 12px;
+                        }
+                        .seccion {
+                            margin: 15px 0;
+                            padding: 12px;
+                            background: #f7f7f7;
+                            border-radius: 8px;
+                            page-break-inside: avoid;
+                        }
+                        .seccion h2 {
+                            color: #2E86AB;
+                            font-size: 14px;
+                            margin-bottom: 8px;
+                        }
+                        .fila {
+                            display: flex;
+                            justify-content: space-between;
+                            margin: 6px 0;
+                            padding: 4px 0;
+                            border-bottom: 1px dotted #ddd;
+                        }
+                        .fila:last-child {
+                            border-bottom: none;
+                        }
+                        .label {
+                            color: #666666;
+                            font-size: 11px;
+                        }
+                        .valor {
+                            font-weight: bold;
+                            color: #1A1A1A;
+                            font-size: 11px;
+                        }
+                        .total {
+                            margin-top: 15px;
+                            padding-top: 12px;
+                            border-top: 2px solid #2E86AB;
+                            font-size: 14px;
+                        }
+                        .total .valor {
+                            color: #2E86AB;
+                            font-size: 18px;
+                        }
+                        .aviso {
+                            margin-top: 20px;
+                            padding: 12px;
+                            background: #fef5e7;
+                            border: 1px solid #ffc107;
+                            border-radius: 8px;
+                            font-size: 10px;
+                            color: #856404;
+                            page-break-inside: avoid;
+                        }
+                        .footer {
+                            margin-top: 20px;
+                            text-align: center;
+                            color: #666;
+                            font-size: 10px;
+                        }
+                        @media print {
+                            body { padding: 10px; font-size: 11px; }
+                            .seccion { background: white; border: 1px solid #ddd; margin: 10px 0; padding: 8px; }
+                            .aviso { margin-top: 15px; padding: 10px; }
+                            .footer { margin-top: 15px; }
+                        }
+                        @page {
+                            size: A4;
+                            margin: 15mm;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="logo">
+                            <span class="meske">meske</span><span class="ia">IA</span>
+                        </div>
+                        <h1>Cálculo del Impuesto de Donaciones</h1>
+                        <div class="fecha">Cataluña - ${fechaHoy}</div>
+                    </div>
+                    
+                    <div class="seccion">
+                        <h2>Desglose de la Donación</h2>
+                        ${desgloseDonacion}
+                        <div class="fila" style="border-top: 2px solid #2E86AB; margin-top: 10px; padding-top: 10px;">
+                            <span class="label"><strong>TOTAL DONACIÓN:</strong></span>
+                            <span class="valor" style="font-size: 14px; color: #2E86AB;">
+                                <strong>${formatearMoneda(ultimoResultado.datos.totalDonacion)}</strong>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="seccion">
+                        <h2>Datos del Donatario</h2>
+                        <div class="fila">
+                            <span class="label">Parentesco:</span>
+                            <span class="valor">${gruposParentesco[ultimoResultado.datos.grupoParentesco]}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Edad:</span>
+                            <span class="valor">${ultimoResultado.datos.edad} años</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Base imponible IRPF:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.datos.ingresos)}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Patrimonio preexistente:</span>
+                            <span class="valor">Rango ${ultimoResultado.datos.patrimonioPreexistente}</span>
+                        </div>
+                        ${ultimoResultado.datos.discapacidad > 0 ? `
+                        <div class="fila">
+                            <span class="label">Grado de discapacidad:</span>
+                            <span class="valor">${ultimoResultado.datos.discapacidad}%</span>
+                        </div>
+                        ` : ''}
+                        <div class="fila">
+                            <span class="label">Escritura pública:</span>
+                            <span class="valor">${ultimoResultado.datos.escritura ? 'Sí' : 'No'}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="seccion">
+                        <h2>Cálculo del Impuesto</h2>
+                        <div class="fila">
+                            <span class="label">Base imponible:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.baseImponible)}</span>
+                        </div>
+                        ${ultimoResultado.donacionesAcumuladas > 0 ? `
+                        <div class="fila">
+                            <span class="label">Donaciones anteriores acumuladas:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.donacionesAcumuladas)}</span>
+                        </div>
+                        ` : ''}
+                        ${ultimoResultado.reducciones.detalles.map(red => `
+                        <div class="fila">
+                            <span class="label">Reducción ${red.tipo}:</span>
+                            <span class="valor">- ${formatearMoneda(red.importe)}</span>
+                        </div>
+                        `).join('')}
+                        <div class="fila">
+                            <span class="label">Base liquidable:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.baseLiquidable)}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Tarifa aplicada:</span>
+                            <span class="valor">${ultimoResultado.tarifaAplicada}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Cuota íntegra:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.cuotaIntegra)}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Coeficiente multiplicador:</span>
+                            <span class="valor">x ${ultimoResultado.coeficiente.toFixed(4)}</span>
+                        </div>
+                        <div class="fila total">
+                            <span class="label"><strong>TOTAL A PAGAR:</strong></span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.cuotaTributaria)}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="aviso">
+                        <strong>AVISO IMPORTANTE:</strong> Este cálculo es meramente informativo y orientativo. 
+                        No sustituye el asesoramiento profesional. Consulte con un Asesor Fiscal antes de tomar decisiones 
+                        y verifique con la Agència Tributària de Catalunya que cumple todos los requisitos legales 
+                        para las reducciones aplicables. meskeIA no se responsabiliza de las decisiones tomadas 
+                        basándose en estos cálculos.
+                    </div>
+                    
+                    <div class="footer">
+                        <p>© 2025 meskeIA - Herramienta de cálculo informativa</p>
+                        <p>www.meskeia.com</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            ventanaImpresion.document.write(htmlImpresion);
+            ventanaImpresion.document.close();
+            
+            // Esperar a que se cargue el contenido antes de imprimir
+            setTimeout(() => {
+                ventanaImpresion.print();
+            }, 500);
+        }
+    </script>
+</body>
+</html>

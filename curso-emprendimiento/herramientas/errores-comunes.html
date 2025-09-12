@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errores Comunes de Emprendedores | Curso Emprendimiento meskeIA</title>
+    <meta name="description" content="Aprende de los errores más frecuentes de emprendedores y cómo evitarlos. Casos reales documentados con estrategias de prevención.">
+    <meta name="keywords" content="errores emprendimiento, fracasos startup, lecciones emprendedores, cómo evitar errores, casos de fracaso">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/curso-emprendimiento/herramientas/errores-comunes">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Errores Comunes de Emprendedores - meskeIA">
+    <meta property="og:description" content="Aprende de los errores más costosos del emprendimiento y cómo evitarlos.">
+    <meta property="og:url" content="https://meskeia.com/curso-emprendimiento/herramientas/errores-comunes">
+    
+    <link rel="icon" type="image/png" href="../../icon_meskeia.png">
+
+    <style>
+        :root {
+            /* Paleta meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --primary: #2E86AB;
+            --secondary: #A23B72;
+            --success: #38A169;
+            --warning: #ED8936;
+            --danger: #E53E3E;
+            --border: #E2E8F0;
+            --focus: #EBF8FF;
+            --error-bg: rgba(229, 62, 62, 0.05);
+            --warning-bg: rgba(237, 137, 54, 0.05);
+            --success-bg: rgba(56, 161, 105, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Stats section */
+        .stats-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--error-bg) 0%, rgba(255,255,255,0.8) 100%);
+            border-radius: 8px;
+            border-left: 4px solid var(--danger);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--danger);
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Errors grid */
+        .errors-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .error-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--danger);
+        }
+
+        .error-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .error-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--danger);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .error-title {
+            flex: 1;
+        }
+
+        .error-title h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .error-subtitle {
+            font-size: 1rem;
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .error-content {
+            margin-bottom: 25px;
+        }
+
+        .error-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .case-study {
+            background: var(--error-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--danger);
+        }
+
+        .case-study h4 {
+            font-size: 1.1rem;
+            color: var(--danger);
+            margin-bottom: 10px;
+        }
+
+        .case-study p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .prevention-section {
+            background: var(--success-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--success);
+        }
+
+        .prevention-section h4 {
+            font-size: 1.1rem;
+            color: var(--success);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prevention-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .prevention-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .prevention-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        /* Filter tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--primary);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2571a3;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Back link */
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 80px 15px 40px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .error-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .error-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Print styles */
+        @media print {
+            .meskeia-logo-container,
+            .action-buttons,
+            .filter-tabs,
+            .back-link {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .error-card {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../curso-emprendimiento.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Errores Comunes de Emprendedores</h1>
+            <p>Aprende de los <strong>fracasos más documentados</strong> del emprendimiento y descubre estrategias concretas para evitarlos. La mayoría de estos errores se pueden prevenir con conocimiento y planificación.</p>
+        </div>
+
+        <!-- Stats section -->
+        <div class="stats-section">
+            <h3>📊 La Cruda Realidad</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-text">de las startups fracasan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-text">fracasa por errores evitables</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">38%</div>
+                    <div class="stat-text">se queda sin dinero</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-text">no hay demanda real</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterErrors('todos')">Todos los Errores</div>
+            <div class="filter-tab" onclick="filterErrors('validacion')">Validación</div>
+            <div class="filter-tab" onclick="filterErrors('equipo')">Equipo</div>
+            <div class="filter-tab" onclick="filterErrors('producto')">Producto</div>
+            <div class="filter-tab" onclick="filterErrors('financiero')">Financiero</div>
+            <div class="filter-tab" onclick="filterErrors('marketing')">Marketing</div>
+        </div>
+
+        <!-- Errors grid -->
+        <div class="errors-grid" id="errors-container">
+            
+            <!-- Error 1: No validar con clientes reales -->
+            <div class="error-card" data-category="validacion">
+                <div class="error-header">
+                    <div class="error-icon">🚫</div>
+                    <div class="error-title">
+                        <h3>No Validar con Clientes Reales</h3>
+                        <div class="error-subtitle">35% de las startups fracasan por este motivo</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Muchos emprendedores se enamoran de su idea y asumen que otros la necesitan sin validarlo realmente. Construyen productos completos sin confirmar que existe demanda real.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Segway</h4>
+                        <p>Invirtieron $100M en un producto "revolucionario" sin validar si la gente realmente lo quería. Vendieron solo 140.000 unidades en 19 años, muy lejos de las predicciones de 10.000/semana.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Habla con 50+ personas de tu público objetivo ANTES de construir nada</li>
+                        <li>Pregunta problemas específicos, no si les gusta tu solución</li>
+                        <li>Crea un MVP (Producto Mínimo Viable) para testear la demanda real</li>
+                        <li>Mide comportamiento real, no solo palabras: ¿pagan? ¿usan el producto?</li>
+                        <li>Usa landing pages para medir interés antes de desarrollar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 2: Enamorarse de la solución -->
+            <div class="error-card" data-category="validacion">
+                <div class="error-header">
+                    <div class="error-icon">💔</div>
+                    <div class="error-title">
+                        <h3>Enamorarse de la Solución, No del Problema</h3>
+                        <div class="error-subtitle">La causa #1 de productos que nadie quiere</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Los emprendedores se obsesionan con su idea brillante y se niegan a cambiarla aunque el mercado les diga claramente que no la quiere. Se enfocan en perfeccionar la solución en lugar de entender el problema.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Google Glass</h4>
+                        <p>Google se enamoró de la tecnología de realidad aumentada pero ignoró las preocupaciones de privacidad y usabilidad. El producto era impresionante técnicamente pero solucionaba un problema que la gente no tenía.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Define claramente QUÉ problema resuelves y para QUIÉN</li>
+                        <li>Mantén un "problem-solution fit" antes que un "product-market fit"</li>
+                        <li>Cambia la solución si el problema es más importante</li>
+                        <li>Haz entrevistas semanales con usuarios potenciales</li>
+                        <li>Mide el dolor: ¿cuánto pagan hoy por resolver este problema?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 3: Scaling prematuro -->
+            <div class="error-card" data-category="producto">
+                <div class="error-header">
+                    <div class="error-icon">📈</div>
+                    <div class="error-title">
+                        <h3>Crecer Demasiado Rápido (Premature Scaling)</h3>
+                        <div class="error-subtitle">70% de las startups escalan antes de encontrar su modelo</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Contratar equipo, abrir oficinas, hacer marketing masivo o expandirse geográficamente antes de tener un modelo de negocio probado y rentable. Es como pisar el acelerador sin saber si la dirección es correcta.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Quibi</h4>
+                        <p>Levantaron $1.75B y contrataron cientos de empleados antes de validar que la gente quería videos cortos de calidad premium en móvil. Cerraron en 6 meses por falta de audiencia.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Encuentra product-market fit con un equipo pequeño primero</li>
+                        <li>Valida métricas clave: retención, LTV, CAC antes de escalar</li>
+                        <li>Escala gradualmente: 2x usuarios, luego 2x recursos</li>
+                        <li>Mantén al menos 6-12 meses de runway antes de crecer agresivamente</li>
+                        <li>Prioriza métricas de engagement sobre métricas de vanidad</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 4: Ignorar la competencia -->
+            <div class="error-card" data-category="marketing">
+                <div class="error-header">
+                    <div class="error-icon">🙈</div>
+                    <div class="error-title">
+                        <h3>Ignorar o Subestimar la Competencia</h3>
+                        <div class="error-subtitle">"No tenemos competencia" es una red flag enorme</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Pensar que tu idea es completamente única o que la competencia no importa. En realidad, la competencia valida que existe un mercado, y no conocerla te deja vulnerable a sus movimientos.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: MySpace vs Facebook</h4>
+                        <p>MySpace ignoró las innovaciones de Facebook (timeline, real names, clean design) y se mantuvo en su estrategia de personalización extrema. Facebook los superó en pocos años.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Mapea toda la competencia: directa, indirecta y sustitutos</li>
+                        <li>Analiza sus fortalezas, debilidades, precios y estrategias</li>
+                        <li>Encuentra tu diferenciación clara y comunicable</li>
+                        <li>Monitoriza sus movimientos con Google Alerts y redes sociales</li>
+                        <li>Aprende de sus errores y éxitos sin copiar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 5: Problemas de co-fundadores -->
+            <div class="error-card" data-category="equipo">
+                <div class="error-header">
+                    <div class="error-icon">👥</div>
+                    <div class="error-title">
+                        <h3>Conflictos entre Co-fundadores</h3>
+                        <div class="error-subtitle">20% de las startups fracasan por problemas internos</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Sociedades mal estructuradas, roles poco definidos, expectativas diferentes o falta de comunicación entre socios. Los conflictos internos pueden destruir hasta las mejores ideas.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Friendster</h4>
+                        <p>Los fundadores tenían visiones completamente diferentes del producto y la estrategia. Los conflictos internos les impidieron competir eficazmente contra MySpace y Facebook.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Define roles y responsabilidades claras desde el día 1</li>
+                        <li>Acuerda la repartición de equity antes de empezar</li>
+                        <li>Documenta la visión, misión y valores compartidos</li>
+                        <li>Establece procesos de toma de decisiones y resolución de conflictos</li>
+                        <li>Ten conversaciones difíciles temprano, no después</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 6: Gestión financiera deficiente -->
+            <div class="error-card" data-category="financiero">
+                <div class="error-header">
+                    <div class="error-icon">💰</div>
+                    <div class="error-title">
+                        <h3>Quedarse sin Dinero</h3>
+                        <div class="error-subtitle">38% de startups fracasan por falta de capital</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Mala planificación financiera, gastos descontrolados, no levantar financiación a tiempo, o calcular mal cuánto dinero se necesita para llegar al siguiente hito.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Jawbone</h4>
+                        <p>A pesar de levantar $900M+, tuvieron problemas de cash flow por producción costosa, devoluciones altas y competencia feroz. No gestionaron bien el burn rate vs ingresos.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Mantén al menos 12-18 meses de runway siempre</li>
+                        <li>Calcula unit economics: CAC, LTV, margen por cliente</li>
+                        <li>Separa gastos fijos de variables y prioriza lo esencial</li>
+                        <li>Levanta dinero 6 meses antes de necesitarlo</li>
+                        <li>Ten un plan B si no consigues financiación</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 7: Marketing incorrecto -->
+            <div class="error-card" data-category="marketing">
+                <div class="error-header">
+                    <div class="error-icon">📢</div>
+                    <div class="error-title">
+                        <h3>Marketing y Adquisición de Clientes Ineficaz</h3>
+                        <div class="error-subtitle">CAC > LTV mata hasta las mejores startups</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Gastar más en adquirir clientes de lo que estos van a generar de ingresos, no entender dónde están tus clientes, o usar canales de marketing incorrectos para tu público objetivo.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Homejoy</h4>
+                        <p>Gastaban $200+ para adquirir cada cliente que solo generaba $100 en ingresos lifetime. No lograron que la adquisición orgánica creciera lo suficiente para ser sostenible.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Calcula LTV (Lifetime Value) real de tus clientes</li>
+                        <li>Mantén CAC (Customer Acquisition Cost) por debajo de LTV/3</li>
+                        <li>Testea múltiples canales de marketing con presupuesto pequeño</li>
+                        <li>Prioriza canales donde ya está tu audiencia</li>
+                        <li>Invierte en retención antes que en adquisición masiva</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Error 8: Producto demasiado complejo -->
+            <div class="error-card" data-category="producto">
+                <div class="error-header">
+                    <div class="error-icon">🔧</div>
+                    <div class="error-title">
+                        <h3>Construir un Producto Demasiado Complejo</h3>
+                        <div class="error-subtitle">Feature creep destruye la usabilidad</div>
+                    </div>
+                </div>
+                <div class="error-content">
+                    <p class="error-description">
+                        Agregar demasiadas funcionalidades sin validar que sean necesarias, crear interfaces complejas, o intentar resolver muchos problemas a la vez en lugar de ser excelente en uno.
+                    </p>
+                    <div class="case-study">
+                        <h4>💸 Caso Real: Windows Phone</h4>
+                        <p>Microsoft intentó competir con iPhone y Android agregando muchas funcionalidades que confundían a los usuarios. La interfaz era compleja comparada con la simplicidad de iOS.</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h4>🛡️ Cómo Evitarlo</h4>
+                    <ul class="prevention-list">
+                        <li>Sigue la regla del 80/20: 80% del valor viene del 20% de features</li>
+                        <li>Lanza con el mínimo viable, agrega features basado en uso real</li>
+                        <li>Cada nueva feature debe tener un caso de uso claro</li>
+                        <li>Testa la usabilidad con usuarios reales constantemente</li>
+                        <li>Es mejor ser excelente en una cosa que mediocre en muchas</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="showChecklistModal()">📋 Mi Checklist Anti-Errores</button>
+            <button class="btn btn-outline" onclick="printErrors()">📄 Imprimir Guía</button>
+        </div>
+
+        <!-- Back link -->
+        <div class="back-link">
+            <a href="../curso-emprendimiento.html">← Volver al Curso</a>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Modal for checklist -->
+    <div id="checklistModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 12px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+            <h3 style="margin-bottom: 20px; color: var(--text-primary);">📋 Tu Checklist Anti-Errores Personal</h3>
+            <div id="checklistContent"></div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn btn-primary" onclick="closeChecklistModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        function filterErrors(category) {
+            const cards = document.querySelectorAll('.error-card');
+            const tabs = document.querySelectorAll('.filter-tab');
+            
+            // Update active tab
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide cards
+            cards.forEach(card => {
+                if (category === 'todos' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Show checklist modal
+        function showChecklistModal() {
+            const modal = document.getElementById('checklistModal');
+            const content = document.getElementById('checklistContent');
+            
+            const checklist = `
+                <div style="text-align: left;">
+                    <h4 style="color: var(--success); margin-bottom: 15px;">✅ Antes de Empezar:</h4>
+                    <div style="margin-bottom: 20px;">
+                        <input type="checkbox" id="check1"> <label for="check1">He validado mi idea con 50+ personas del público objetivo</label><br><br>
+                        <input type="checkbox" id="check2"> <label for="check2">Puedo explicar claramente QUÉ problema resuelvo y para QUIÉN</label><br><br>
+                        <input type="checkbox" id="check3"> <label for="check3">He mapeado toda la competencia (directa e indirecta)</label><br><br>
+                        <input type="checkbox" id="check4"> <label for="check4">Tengo al menos 12 meses de runway calculado</label>
+                    </div>
+
+                    <h4 style="color: var(--warning); margin-bottom: 15px;">⚠️ Durante el Desarrollo:</h4>
+                    <div style="margin-bottom: 20px;">
+                        <input type="checkbox" id="check5"> <label for="check5">Cada nueva feature tiene un caso de uso validado</label><br><br>
+                        <input type="checkbox" id="check6"> <label for="check6">Hago entrevistas semanales con usuarios</label><br><br>
+                        <input type="checkbox" id="check7"> <label for="check7">Mido comportamiento real, no solo opiniones</label><br><br>
+                        <input type="checkbox" id="check8"> <label for="check8">Roles y equity están claramente definidos</label>
+                    </div>
+
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">🚀 Antes de Escalar:</h4>
+                    <div>
+                        <input type="checkbox" id="check9"> <label for="check9">He encontrado product-market fit comprobable</label><br><br>
+                        <input type="checkbox" id="check10"> <label for="check10">CAC < LTV/3 en mi canal principal</label><br><br>
+                        <input type="checkbox" id="check11"> <label for="check11">Tengo métricas de retención y engagement sólidas</label><br><br>
+                        <input type="checkbox" id="check12"> <label for="check12">El equipo puede manejar 2x el trabajo actual</label>
+                    </div>
+                </div>
+            `;
+            
+            content.innerHTML = checklist;
+            modal.style.display = 'block';
+        }
+
+        // Close checklist modal
+        function closeChecklistModal() {
+            document.getElementById('checklistModal').style.display = 'none';
+        }
+
+        // Print functionality
+        function printErrors() {
+            window.print();
+        }
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('checklistModal');
+            if (event.target === modal) {
+                closeChecklistModal();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any initialization code here
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <meta name="robots" content="index, follow">
+    
+    <!-- SEO Meta Tags Optimizados -->
+    <title>Calculadora de Notas Académicas Online Gratis | Media Ponderada, EvAU y Créditos ECTS - meskeIA</title>
+    <meta name="description" content="Calculadora de notas académicas profesional gratuita. Calcula media ponderada universitaria, nota EvAU, convierte escalas y simula notas necesarias. Herramienta para estudiantes españoles.">
+    <meta name="keywords" content="calculadora notas académicas, media ponderada universidad, calculadora EvAU, créditos ECTS, nota necesaria, conversor notas, bachillerato españa, universidad españa">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Notas Académicas | Media Ponderada y EvAU - meskeIA">
+    <meta property="og:description" content="Herramienta gratuita para estudiantes españoles. Calcula media ponderada con créditos ECTS, nota EvAU y convierte escalas académicas.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/calculadora-notas">
+    <meta property="og:image" content="https://meskeia.com/assets/og-calculadora-notas.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Notas Académicas | EvAU y Universidad">
+    <meta name="twitter:description" content="Calcula tu media ponderada universitaria, nota EvAU y convierte escalas académicas gratis.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-calculadora-notas.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Notas Académicas",
+        "description": "Herramienta educativa gratuita para calcular media ponderada universitaria, nota EvAU y convertir escalas académicas según el sistema español",
+        "url": "https://meskeia.com/aplicaciones/calculadora-notas",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "featureList": [
+            "Cálculo de media ponderada con créditos ECTS",
+            "Calculadora EvAU completa",
+            "Simulador de nota necesaria",
+            "Conversor de escalas académicas",
+            "Compatible con sistema educativo español",
+            "Cálculo automático en tiempo real"
+        ]
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            /* Estados */
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 100px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--bg-primary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            background: white;
+            border-bottom-color: var(--primary);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--hover);
+            color: var(--text-primary);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .subjects-section {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .subjects-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .subjects-header h3 {
+            color: var(--primary);
+            margin-bottom: 0;
+        }
+
+        .add-subject-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-subject-btn:hover {
+            background: #3a9f9c;
+            transform: translateY(-1px);
+        }
+
+        .subject-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .subject-item:hover {
+            box-shadow: 0 2px 8px rgba(46, 134, 171, 0.1);
+        }
+
+        .subject-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .subject-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .remove-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-inputs {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .results-section {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            height: fit-content;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .grade-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .grade-excellent {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .grade-good {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .grade-pass {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .grade-fail {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .simulation-section {
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .simulation-title {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .simulation-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .simulation-result {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .evau-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .evau-phase {
+            background: var(--bg-primary);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .evau-phase h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .evau-subject {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .scale-converter {
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .converter-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .converter-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .converter-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 60px auto 80px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .subject-inputs {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .simulation-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .evau-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .converter-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            /* Secciones educativas responsive */
+            .educational-content, .faq-section {
+                margin: var(--spacing-xs, 8px) !important;
+                padding: var(--spacing-sm, 16px) !important;
+                overflow-x: hidden;
+                max-width: calc(100vw - 32px);
+            }
+
+            .educational-content h2, .faq-section h2 {
+                font-size: 1.4rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .educational-content h3, .faq-section h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .educational-content p, .faq-section p {
+                font-size: 0.8rem !important;
+                line-height: 1.5 !important;
+            }
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        .disclaimer {
+            background: #FFF8DC;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .disclaimer h4 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        /* FAQ desplegables */
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 10px rgba(46, 134, 171, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--hover);
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        .faq-question h3 {
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-question {
+                padding: 15px;
+            }
+            
+            .faq-answer p {
+                padding: 0 15px 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Calculadora de Notas Académicas</h1>
+            <p>Tu herramienta completa para cálculos académicos en España</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('media-ponderada')">📊 Media Ponderada</button>
+            <button class="tab" onclick="showTab('evau')">🏛️ EvAU</button>
+            <button class="tab" onclick="showTab('conversor')">🔄 Conversor</button>
+        </div>
+
+        <!-- Tab: Media Ponderada -->
+        <div class="tab-content active" id="media-ponderada">
+            <div class="form-grid">
+                <div class="subjects-section">
+                    <div class="subjects-header">
+                        <h3>📚 Asignaturas</h3>
+                        <button class="add-subject-btn" onclick="addSubject()">+ Añadir Asignatura</button>
+                    </div>
+                    
+                    <div id="subjects-list">
+                        <!-- Las asignaturas se añaden dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">📈 Resultados</h3>
+                    
+                    <div class="result-card">
+                        <div class="result-value" id="media-result">-</div>
+                        <div class="result-label">Media Ponderada</div>
+                        <div class="grade-status" id="grade-status"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-value" id="creditos-total">-</div>
+                        <div class="result-label">Total Créditos ECTS</div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-value" id="asignaturas-total">-</div>
+                        <div class="result-label">Asignaturas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulador de Nota Necesaria -->
+            <div class="simulation-section">
+                <h4 class="simulation-title">
+                    🎯 ¿Qué nota necesito?
+                </h4>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                    Calcula qué nota necesitas en una asignatura para alcanzar tu objetivo
+                </p>
+                
+                <div class="simulation-inputs">
+                    <div class="form-group">
+                        <label>Media objetivo que quieres conseguir</label>
+                        <input type="number" id="objetivo-media" step="0.1" min="0" max="10" placeholder="7.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Créditos de la nueva asignatura</label>
+                        <input type="number" id="objetivo-creditos" step="0.5" min="0.5" max="12" placeholder="6">
+                    </div>
+                </div>
+
+                <div class="simulation-result">
+                    <div id="simulation-output">
+                        <p style="color: var(--text-muted);">Completa tus asignaturas actuales y define tu objetivo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: EvAU -->
+        <div class="tab-content" id="evau">
+            <h3 style="color: var(--primary); margin-bottom: 30px; text-align: center;">🏛️ Calculadora EvAU (Bachillerato)</h3>
+            
+            <div class="evau-section">
+                <div class="evau-phase">
+                    <h4>📚 Fase General (60%)</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.9rem;">
+                        Obligatorias - Todas las notas cuentan
+                    </p>
+                    
+                    <div class="evau-subject">
+                        <label>Lengua Castellana y Literatura</label>
+                        <input type="number" class="evau-input" id="evau-lengua" step="0.1" min="0" max="10" placeholder="7.0">
+                    </div>
+                    
+                    <div class="evau-subject">
+                        <label>Historia de España</label>
+                        <input type="number" class="evau-input" id="evau-historia" step="0.1" min="0" max="10" placeholder="6.5">
+                    </div>
+                    
+                    <div class="evau-subject">
+                        <label>Primera Lengua Extranjera</label>
+                        <input type="number" class="evau-input" id="evau-idioma" step="0.1" min="0" max="10" placeholder="7.5">
+                    </div>
+                    
+                    <div class="evau-subject">
+                        <label>Materia de modalidad (a elegir)</label>
+                        <input type="number" class="evau-input" id="evau-modalidad" step="0.1" min="0" max="10" placeholder="8.0">
+                    </div>
+                </div>
+
+                <div class="evau-phase">
+                    <h4>🎯 Fase Específica (40%)</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.9rem;">
+                        Optativas - Solo las 2 mejores notas
+                    </p>
+                    
+                    <div class="evau-subject">
+                        <label>Materia Específica 1</label>
+                        <input type="number" class="evau-input" id="evau-esp1" step="0.1" min="0" max="10" placeholder="7.8">
+                    </div>
+                    
+                    <div class="evau-subject">
+                        <label>Materia Específica 2</label>
+                        <input type="number" class="evau-input" id="evau-esp2" step="0.1" min="0" max="10" placeholder="8.2">
+                    </div>
+                    
+                    <div class="evau-subject">
+                        <label>Materia Específica 3</label>
+                        <input type="number" class="evau-input" id="evau-esp3" step="0.1" min="0" max="10" placeholder="">
+                    </div>
+                    
+                    <div class="evau-subject">
+                        <label>Materia Específica 4</label>
+                        <input type="number" class="evau-input" id="evau-esp4" step="0.1" min="0" max="10" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section" style="margin-top: 30px;">
+                <h3 style="color: var(--primary); margin-bottom: 20px; text-align: center;">📊 Resultado EvAU</h3>
+                
+                <div class="result-card">
+                    <div class="result-value" id="evau-general">-</div>
+                    <div class="result-label">Nota Fase General</div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-value" id="evau-especifica">-</div>
+                    <div class="result-label">Nota Fase Específica</div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-value" id="evau-final">-</div>
+                    <div class="result-label">Nota Final EvAU</div>
+                    <div class="grade-status" id="evau-status"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Conversor -->
+        <div class="tab-content" id="conversor">
+            <div class="scale-converter">
+                <h3 style="color: var(--secondary); margin-bottom: 20px; text-align: center;">🔄 Conversor de Escalas de Notas</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                    Convierte entre diferentes sistemas de calificación
+                </p>
+
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div class="form-group" style="max-width: 300px; margin: 0 auto;">
+                        <label>Introduce tu nota (escala 0-10):</label>
+                        <input type="number" id="convert-input" step="0.1" min="0" max="10" placeholder="7.5" 
+                               style="font-size: 1.2rem; text-align: center; padding: 15px;">
+                    </div>
+                </div>
+
+                <div class="converter-grid">
+                    <div class="converter-item">
+                        <div class="converter-value" id="conv-spain">-</div>
+                        <div class="converter-label">España (0-10)</div>
+                    </div>
+                    
+                    <div class="converter-item">
+                        <div class="converter-value" id="conv-usa">-</div>
+                        <div class="converter-label">EE.UU. (0-4)</div>
+                    </div>
+                    
+                    <div class="converter-item">
+                        <div class="converter-value" id="conv-letter">-</div>
+                        <div class="converter-label">Letras (A-F)</div>
+                    </div>
+                    
+                    <div class="converter-item">
+                        <div class="converter-value" id="conv-percentage">-</div>
+                        <div class="converter-label">Porcentaje (%)</div>
+                    </div>
+                    
+                    <div class="converter-item">
+                        <div class="converter-value" id="conv-ects">-</div>
+                        <div class="converter-label">ECTS (A-F)</div>
+                    </div>
+                    
+                    <div class="converter-item">
+                        <div class="converter-value" id="conv-status">-</div>
+                        <div class="converter-label">Estado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Educativa: Sistema de Notas en España -->
+        <section class="educational-content" id="education" style="background: var(--bg-card); padding: 24px; margin: 24px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--border);">
+            <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 1.5rem; text-align: center;">🎓 Sistema de Calificaciones en España</h2>
+            
+            <div style="max-width: 100%; margin: 0 auto; line-height: 1.8; color: var(--text-primary);">
+                <p style="margin-bottom: 1rem; font-size: 0.9rem;">
+                    El sistema educativo español utiliza diferentes escalas de calificación según el nivel académico. La <strong>media ponderada</strong> con créditos ECTS es fundamental en la universidad, mientras que <strong>EvAU</strong> (Evaluación de Acceso a la Universidad) determina el acceso a estudios superiores.
+                </p>
+                
+                <p style="margin-bottom: 1rem; font-size: 0.9rem;">
+                    Los <strong>créditos ECTS</strong> (European Credit Transfer System) representan la carga de trabajo del estudiante. Un crédito equivale aproximadamente a 25-30 horas de trabajo, incluyendo clases, estudio personal y evaluaciones.
+                </p>
+
+                <h3 style="color: var(--primary); font-size: 1.2rem; margin: 1.5rem 0 1rem 0;">Escalas de Calificación por Nivel</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 1.5rem;">
+                    <div style="background: var(--hover); padding: 12px; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <h4 style="color: var(--primary); margin-bottom: 4px; font-size: 0.95rem;">🏫 Educación Secundaria y Bachillerato</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Escala 1-10: Insuficiente (1-4), Suficiente (5), Bien (6), Notable (7-8), Sobresaliente (9-10)</p>
+                    </div>
+                    
+                    <div style="background: var(--hover); padding: 12px; border-radius: 8px; border-left: 4px solid var(--success);">
+                        <h4 style="color: var(--success); margin-bottom: 4px; font-size: 0.95rem;">🎓 Universidad (Grado y Máster)</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Escala 0-10 con media ponderada por créditos ECTS. Necesario 5.0 para aprobar cada asignatura</p>
+                    </div>
+                    
+                    <div style="background: var(--hover); padding: 12px; border-radius: 8px; border-left: 4px solid var(--warning);">
+                        <h4 style="color: var(--warning); margin-bottom: 4px; font-size: 0.95rem;">🏛️ EvAU (Selectividad)</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Fase General (60%) + Fase Específica (40%). Nota máxima: 14 puntos. Mínimo para acceso: 5.0</p>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary); font-size: 1.2rem; margin: 1.5rem 0 1rem 0;">Cálculo de Media Ponderada</h3>
+                
+                <p style="margin-bottom: 1rem; font-size: 0.85rem;">
+                    La media ponderada se calcula multiplicando cada nota por sus créditos ECTS, sumando todos los productos y dividiendo entre el total de créditos. Esta fórmula da más peso a las asignaturas con mayor carga de trabajo.
+                </p>
+
+                <div style="background: var(--primary-light, rgba(46, 134, 171, 0.1)); padding: 12px; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 0.95rem;">📐 Fórmula Matemática</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px;"><strong>Media Ponderada = Σ(Nota × Créditos) ÷ Σ(Créditos)</strong></p>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary);">Ejemplo: (8×6 + 7×4 + 9×3) ÷ (6+4+3) = 103÷13 = 7.92</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq" style="background: var(--bg-card); padding: 24px; margin: 24px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--border);">
+            <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 1.5rem; text-align: center;">Preguntas Frecuentes sobre Notas Académicas</h2>
+            
+            <div class="faq-container" style="max-width: 100%; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo se calcula la media ponderada universitaria?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Se multiplica cada nota por sus créditos ECTS, se suman todos los productos y se divide entre el total de créditos. Las asignaturas con más créditos tienen mayor peso en la media final.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Qué nota necesito en EvAU para acceder a la universidad?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La nota mínima es 5.0 puntos sobre 14. Se calcula: Fase General (60%) + Fase Específica (40%). Las notas de corte varían por carrera y universidad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo funcionan los créditos ECTS?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Un crédito ECTS equivale a 25-30 horas de trabajo del estudiante. Un curso académico tiene 60 ECTS. Determinan la carga de trabajo y el peso de cada asignatura en la media.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Qué diferencia hay entre media aritmética y ponderada?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La media aritmética es la suma de notas dividida por el número de asignaturas. La ponderada considera los créditos ECTS, dando más peso a asignaturas con mayor carga de trabajo.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Se pueden convalidar asignaturas de otros países?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, mediante el sistema ECTS es posible convalidar estudios europeos. Para otros países, cada universidad tiene sus propios criterios de convalidación y conversión de notas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            <h4>📋 Información y Limitaciones</h4>
+            <p>Esta calculadora está diseñada según el sistema educativo español vigente. Los cálculos de EvAU pueden variar según la comunidad autónoma. Las conversiones de escalas son aproximadas y pueden no coincidir exactamente con los baremos oficiales de cada institución.</p>
+            <br>
+            <p>Para decisiones académicas importantes, consulte siempre con su centro educativo. meskeIA no se hace responsable de decisiones tomadas basándose únicamente en estos cálculos.</p>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Schema.org FAQ structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Cómo se calcula la media ponderada universitaria?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Se multiplica cada nota por sus créditos ECTS, se suman todos los productos y se divide entre el total de créditos. Las asignaturas con más créditos tienen mayor peso en la media final."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué nota necesito en EvAU para acceder a la universidad?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La nota mínima es 5.0 puntos sobre 14. Se calcula: Fase General (60%) + Fase Específica (40%). Las notas de corte varían por carrera y universidad."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cómo funcionan los créditos ECTS?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Un crédito ECTS equivale a 25-30 horas de trabajo del estudiante. Un curso académico tiene 60 ECTS. Determinan la carga de trabajo y el peso de cada asignatura en la media."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué diferencia hay entre media aritmética y ponderada?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La media aritmética es la suma de notas dividida por el número de asignaturas. La ponderada considera los créditos ECTS, dando más peso a asignaturas con mayor carga de trabajo."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Se pueden convalidar asignaturas de otros países?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, mediante el sistema ECTS es posible convalidar estudios europeos. Para otros países, cada universidad tiene sus propios criterios de convalidación y conversión de notas."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <script>
+        let subjectCounter = 0;
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Añadir algunas asignaturas por defecto
+            addSubject('Matemáticas', 8.5, 6);
+            addSubject('Física', 7.8, 6);
+            addSubject('Programación', 9.2, 4.5);
+            
+            // Event listeners
+            setupEventListeners();
+            
+            // Cálculo inicial
+            calculateMedia();
+        });
+
+        function setupEventListeners() {
+            // EvAU inputs
+            const evauInputs = document.querySelectorAll('.evau-input');
+            evauInputs.forEach(input => {
+                input.addEventListener('input', calculateEvau);
+            });
+
+            // Conversor input
+            document.getElementById('convert-input').addEventListener('input', convertScales);
+
+            // Simulador inputs
+            document.getElementById('objetivo-media').addEventListener('input', calculateSimulation);
+            document.getElementById('objetivo-creditos').addEventListener('input', calculateSimulation);
+        }
+
+        function showTab(tabName) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Mostrar el seleccionado
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function addSubject(name = '', grade = '', credits = '') {
+            subjectCounter++;
+            const subjectsList = document.getElementById('subjects-list');
+            
+            const subjectDiv = document.createElement('div');
+            subjectDiv.className = 'subject-item';
+            subjectDiv.setAttribute('data-id', subjectCounter);
+            
+            subjectDiv.innerHTML = `
+                <div class="subject-header">
+                    <span class="subject-name">Asignatura ${subjectCounter}</span>
+                    <button class="remove-btn" onclick="removeSubject(${subjectCounter})">&times;</button>
+                </div>
+                <div class="subject-inputs">
+                    <div class="form-group">
+                        <label>Nombre de la asignatura</label>
+                        <input type="text" placeholder="Ej: Matemáticas I" value="${name}" onchange="updateSubjectName(${subjectCounter}, this.value); calculateMedia();">
+                    </div>
+                    <div class="form-group">
+                        <label>Nota (0-10)</label>
+                        <input type="number" step="0.1" min="0" max="10" placeholder="8.5" value="${grade}" onchange="calculateMedia();">
+                    </div>
+                    <div class="form-group">
+                        <label>Créditos ECTS</label>
+                        <input type="number" step="0.5" min="0.5" max="12" placeholder="6" value="${credits}" onchange="calculateMedia();">
+                    </div>
+                </div>
+            `;
+            
+            subjectsList.appendChild(subjectDiv);
+            calculateMedia();
+        }
+
+        function removeSubject(id) {
+            const subject = document.querySelector(`[data-id="${id}"]`);
+            if (subject) {
+                subject.remove();
+                calculateMedia();
+            }
+        }
+
+        function updateSubjectName(id, name) {
+            const subject = document.querySelector(`[data-id="${id}"] .subject-name`);
+            if (subject) {
+                subject.textContent = name || `Asignatura ${id}`;
+            }
+        }
+
+        function calculateMedia() {
+            const subjects = document.querySelectorAll('.subject-item');
+            let totalPoints = 0;
+            let totalCredits = 0;
+            let validSubjects = 0;
+
+            subjects.forEach(subject => {
+                const gradeInput = subject.querySelector('input[type="number"][step="0.1"]');
+                const creditsInput = subject.querySelector('input[type="number"][step="0.5"]');
+                
+                const grade = parseFloat(gradeInput.value);
+                const credits = parseFloat(creditsInput.value);
+
+                if (!isNaN(grade) && !isNaN(credits) && grade >= 0 && credits > 0) {
+                    totalPoints += grade * credits;
+                    totalCredits += credits;
+                    validSubjects++;
+                }
+            });
+
+            const media = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
+
+            // Actualizar resultados
+            document.getElementById('media-result').textContent = totalCredits > 0 ? media.toFixed(2) : '-';
+            document.getElementById('creditos-total').textContent = totalCredits > 0 ? totalCredits.toFixed(1) : '-';
+            document.getElementById('asignaturas-total').textContent = validSubjects || '-';
+
+            // Actualizar estado
+            updateGradeStatus(media);
+            
+            // Recalcular simulación
+            calculateSimulation();
+        }
+
+        function updateGradeStatus(media) {
+            const statusElement = document.getElementById('grade-status');
+            
+            if (media === 0) {
+                statusElement.textContent = '';
+                statusElement.className = 'grade-status';
+                return;
+            }
+
+            let statusText = '';
+            let statusClass = 'grade-status ';
+
+            if (media >= 9) {
+                statusText = 'Sobresaliente';
+                statusClass += 'grade-excellent';
+            } else if (media >= 7) {
+                statusText = 'Notable';
+                statusClass += 'grade-good';
+            } else if (media >= 5) {
+                statusText = 'Aprobado';
+                statusClass += 'grade-pass';
+            } else {
+                statusText = 'Suspendido';
+                statusClass += 'grade-fail';
+            }
+
+            statusElement.textContent = statusText;
+            statusElement.className = statusClass;
+        }
+
+        function calculateSimulation() {
+            const objetivoMedia = parseFloat(document.getElementById('objetivo-media').value);
+            const objetivoCreditos = parseFloat(document.getElementById('objetivo-creditos').value);
+            const outputElement = document.getElementById('simulation-output');
+
+            // Obtener media y créditos actuales
+            const subjects = document.querySelectorAll('.subject-item');
+            let totalPoints = 0;
+            let totalCredits = 0;
+
+            subjects.forEach(subject => {
+                const gradeInput = subject.querySelector('input[type="number"][step="0.1"]');
+                const creditsInput = subject.querySelector('input[type="number"][step="0.5"]');
+                
+                const grade = parseFloat(gradeInput.value);
+                const credits = parseFloat(creditsInput.value);
+
+                if (!isNaN(grade) && !isNaN(credits) && grade >= 0 && credits > 0) {
+                    totalPoints += grade * credits;
+                    totalCredits += credits;
+                }
+            });
+
+            if (isNaN(objetivoMedia) || isNaN(objetivoCreditos) || totalCredits === 0) {
+                outputElement.innerHTML = '<p style="color: var(--text-muted);">Completa tus asignaturas actuales y define tu objetivo</p>';
+                return;
+            }
+
+            // Calcular nota necesaria
+            // (totalPoints + notaNecesaria * objetivoCreditos) / (totalCredits + objetivoCreditos) = objetivoMedia
+            const notaNecesaria = (objetivoMedia * (totalCredits + objetivoCreditos) - totalPoints) / objetivoCreditos;
+
+            let resultHtml = '';
+            if (notaNecesaria < 0) {
+                resultHtml = `
+                    <h4 style="color: var(--success); margin-bottom: 10px;">🎉 ¡Ya has alcanzado tu objetivo!</h4>
+                    <p>Tu media actual ya supera el objetivo de <strong>${objetivoMedia.toFixed(2)}</strong></p>
+                `;
+            } else if (notaNecesaria > 10) {
+                resultHtml = `
+                    <h4 style="color: var(--danger); margin-bottom: 10px;">❌ Objetivo inalcanzable</h4>
+                    <p>Necesitarías un <strong>${notaNecesaria.toFixed(2)}</strong> en la nueva asignatura</p>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Considera reducir tu objetivo o añadir más créditos</p>
+                `;
+            } else {
+                let colorClass = notaNecesaria >= 9 ? 'var(--danger)' : notaNecesaria >= 7 ? 'var(--warning)' : 'var(--success)';
+                resultHtml = `
+                    <h4 style="color: ${colorClass}; margin-bottom: 10px;">🎯 Nota necesaria</h4>
+                    <div style="font-size: 2rem; font-weight: bold; color: ${colorClass}; margin: 10px 0;">
+                        ${notaNecesaria.toFixed(2)}
+                    </div>
+                    <p>Para conseguir una media de <strong>${objetivoMedia.toFixed(2)}</strong></p>
+                `;
+            }
+
+            outputElement.innerHTML = resultHtml;
+        }
+
+        function calculateEvau() {
+            // Fase General (60%)
+            const lengua = parseFloat(document.getElementById('evau-lengua').value) || 0;
+            const historia = parseFloat(document.getElementById('evau-historia').value) || 0;
+            const idioma = parseFloat(document.getElementById('evau-idioma').value) || 0;
+            const modalidad = parseFloat(document.getElementById('evau-modalidad').value) || 0;
+
+            const faseGeneral = (lengua + historia + idioma + modalidad) / 4;
+
+            // Fase Específica (40%) - Solo las 2 mejores
+            const especificas = [
+                parseFloat(document.getElementById('evau-esp1').value) || 0,
+                parseFloat(document.getElementById('evau-esp2').value) || 0,
+                parseFloat(document.getElementById('evau-esp3').value) || 0,
+                parseFloat(document.getElementById('evau-esp4').value) || 0
+            ].filter(nota => nota > 0).sort((a, b) => b - a);
+
+            const faseEspecifica = especificas.length >= 2 ? (especificas[0] + especificas[1]) / 2 : 
+                                   especificas.length === 1 ? especificas[0] : 0;
+
+            const notaFinal = faseGeneral * 0.6 + faseEspecifica * 0.4;
+
+            // Actualizar resultados
+            document.getElementById('evau-general').textContent = faseGeneral.toFixed(2);
+            document.getElementById('evau-especifica').textContent = faseEspecifica.toFixed(2);
+            document.getElementById('evau-final').textContent = notaFinal.toFixed(2);
+
+            // Estado EvAU
+            const statusElement = document.getElementById('evau-status');
+            let statusText = '';
+            let statusClass = 'grade-status ';
+
+            if (notaFinal >= 9) {
+                statusText = 'Excelente';
+                statusClass += 'grade-excellent';
+            } else if (notaFinal >= 7) {
+                statusText = 'Muy Bueno';
+                statusClass += 'grade-good';
+            } else if (notaFinal >= 5) {
+                statusText = 'Apto';
+                statusClass += 'grade-pass';
+            } else {
+                statusText = 'No Apto';
+                statusClass += 'grade-fail';
+            }
+
+            statusElement.textContent = statusText;
+            statusElement.className = statusClass;
+        }
+
+        function convertScales() {
+            const inputValue = parseFloat(document.getElementById('convert-input').value);
+            
+            if (isNaN(inputValue) || inputValue < 0 || inputValue > 10) {
+                // Limpiar resultados
+                ['conv-spain', 'conv-usa', 'conv-letter', 'conv-percentage', 'conv-ects', 'conv-status']
+                    .forEach(id => document.getElementById(id).textContent = '-');
+                return;
+            }
+
+            // España (0-10)
+            document.getElementById('conv-spain').textContent = inputValue.toFixed(1);
+
+            // EE.UU. (0-4 GPA)
+            const usaGpa = (inputValue / 10) * 4;
+            document.getElementById('conv-usa').textContent = usaGpa.toFixed(2);
+
+            // Letras A-F
+            let letterGrade = 'F';
+            if (inputValue >= 9) letterGrade = 'A';
+            else if (inputValue >= 7) letterGrade = 'B';
+            else if (inputValue >= 5) letterGrade = 'C';
+            else if (inputValue >= 4) letterGrade = 'D';
+            document.getElementById('conv-letter').textContent = letterGrade;
+
+            // Porcentaje
+            const percentage = (inputValue / 10) * 100;
+            document.getElementById('conv-percentage').textContent = percentage.toFixed(0) + '%';
+
+            // ECTS
+            let ectsGrade = 'F';
+            if (inputValue >= 9) ectsGrade = 'A';
+            else if (inputValue >= 7) ectsGrade = 'B';
+            else if (inputValue >= 5) ectsGrade = 'C';
+            else if (inputValue >= 4) ectsGrade = 'D';
+            document.getElementById('conv-ects').textContent = ectsGrade;
+
+            // Estado
+            let status = 'Suspendido';
+            if (inputValue >= 9) status = 'Sobresaliente';
+            else if (inputValue >= 7) status = 'Notable';
+            else if (inputValue >= 5) status = 'Aprobado';
+            document.getElementById('conv-status').textContent = status;
+        }
+
+        // Función para FAQ desplegables
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

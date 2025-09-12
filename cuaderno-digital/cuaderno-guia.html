@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- SEO -->
+    <title>Guía de Uso - Cuaderno Digital | meskeIA</title>
+    <meta name="description" content="Aprende a usar el Cuaderno Digital: organiza notas con Markdown, gestiona categorías y realiza backups seguros - meskeIA">
+    <meta name="keywords" content="guía cuaderno digital, tutorial markdown, organizar notas, backup documentos, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        /* Reset y Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2E86AB;
+            --secondary-teal: #48A9A6;
+            --light-blue: #7FB3D3;
+            --dark-gray: #2C3E50;
+            --light-gray: #ECF0F1;
+            --white: #FFFFFF;
+            --success: #16A085;
+            --purple: #8E44AD;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            --shadow-hover: 0 8px 30px rgba(46, 134, 171, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        /* Logo meskeIA */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .section h3 {
+            color: var(--secondary-teal);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .section ul, .section ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #f39c12;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            color: #856404;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            color: #155724;
+        }
+
+        .code-example {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .keyboard-shortcut {
+            background: var(--dark-gray);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .back-button {
+                position: static;
+                margin-top: 1rem;
+                display: inline-block;
+            }
+
+            .content {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>📖 Guía del Cuaderno Digital</h1>
+            <p>Aprende a aprovechar al máximo tu organizador personal con Markdown</p>
+            <button class="back-button" onclick="window.close(); return false;">← Volver al Cuaderno</button>
+        </div>
+
+        <div class="content">
+            <!-- Introducción -->
+            <div class="section">
+                <h2>🚀 Bienvenido a tu Cuaderno Digital</h2>
+                <p>El <strong>Cuaderno Digital</strong> es tu herramienta personal para organizar notas, ideas, proyectos y documentos. Todo se guarda de forma <strong>100% privada</strong> en tu navegador, sin enviar datos a servidores externos.</p>
+                
+                <div class="highlight-box">
+                    <strong>🔒 Privacidad Total:</strong> Todos tus documentos se almacenan únicamente en tu navegador. Nadie más puede acceder a ellos, ni siquiera nosotros.
+                </div>
+            </div>
+
+            <!-- Primeros Pasos -->
+            <div class="section">
+                <h2>✨ Primeros Pasos</h2>
+                
+                <h3><span class="step-number">1</span>Crear tu Primera Nota</h3>
+                <ul>
+                    <li>Haz clic en <strong>"✏️ Nuevo Documento"</strong></li>
+                    <li>Escribe un <strong>título descriptivo</strong> para tu nota</li>
+                    <li>Selecciona una <strong>categoría</strong> (o crea una nueva)</li>
+                    <li>Elige un <strong>color</strong> para identificar rápidamente tu nota</li>
+                    <li>Redacta tu contenido usando <strong>Markdown</strong> en el panel izquierdo</li>
+                    <li>Ve el resultado en <strong>tiempo real</strong> en el panel derecho</li>
+                </ul>
+
+                <h3><span class="step-number">2</span>Guardar y Organizar</h3>
+                <ul>
+                    <li>Haz clic en <strong>"Guardar Documento"</strong> cuando termines</li>
+                    <li>Tu nota aparecerá como una <strong>tarjeta colorida</strong> en la pantalla principal</li>
+                    <li>Usa las <strong>categorías</strong> para agrupar notas relacionadas</li>
+                    <li>El <strong>buscador</strong> te ayuda a encontrar cualquier nota rápidamente</li>
+                </ul>
+            </div>
+
+            <!-- Características Principales -->
+            <div class="section">
+                <h2>🎯 Características Principales</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">✏️</div>
+                        <h4>Editor Markdown</h4>
+                        <p>Escribe con formato usando la sintaxis simple de Markdown. Vista previa en tiempo real.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🏷️</div>
+                        <h4>Categorías Inteligentes</h4>
+                        <p>Organiza tus notas por temas. Autocompletado y sugerencias automáticas.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h4>Colores Personalizables</h4>
+                        <p>Cada nota puede tener su propio color para una identificación visual rápida.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h4>Búsqueda Avanzada</h4>
+                        <p>Encuentra cualquier nota buscando por título, categoría o contenido.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h4>Exportación Completa</h4>
+                        <p>Exporta notas individuales en HTML o todo tu cuaderno en formato JSON.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🖨️</div>
+                        <h4>Impresión Limpia</h4>
+                        <p>Imprime tus notas con formato profesional y diseño optimizado.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trabajando con Categorías -->
+            <div class="section">
+                <h2>🏷️ Sistema de Categorías</h2>
+                
+                <h3>Categorías Sugeridas para Empezar:</h3>
+                <ul>
+                    <li><strong>📋 Trabajo:</strong> Reuniones, proyectos, tareas laborales</li>
+                    <li><strong>💡 Ideas:</strong> Inspiraciones, brainstorming, conceptos nuevos</li>
+                    <li><strong>📚 Aprendizaje:</strong> Notas de estudio, cursos, investigación</li>
+                    <li><strong>🏠 Personal:</strong> Recordatorios, listas, pensamientos personales</li>
+                    <li><strong>🚀 Proyectos:</strong> Planificación, seguimiento, recursos</li>
+                    <li><strong>📝 Borradores:</strong> Escritos en progreso, esquemas</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>💡 Consejo:</strong> Usa categorías amplias al principio. Puedes crear subcategorías más específicas a medida que tu cuaderno crezca.
+                </div>
+            </div>
+
+            <!-- Markdown Básico -->
+            <div class="section">
+                <h2>📝 Guía Rápida de Markdown</h2>
+                
+                <h3>Formato de Texto:</h3>
+                <div class="code-example">
+**Texto en negrita**
+*Texto en cursiva*
+`Código inline`
+~~Texto tachado~~
+</div>
+
+                <h3>Títulos y Estructura:</h3>
+                <div class="code-example">
+# Título Principal (H1)
+## Subtítulo (H2)
+### Título Menor (H3)
+</div>
+
+                <h3>Listas:</h3>
+                <div class="code-example">
+- Lista con viñetas
+- Otro elemento
+- Tercer elemento
+
+1. Lista numerada
+2. Segundo elemento
+3. Tercer elemento
+
+- [x] Tarea completada
+- [ ] Tarea pendiente
+</div>
+
+                <h3>Enlaces y Código:</h3>
+                <div class="code-example">
+[Texto del enlace](https://ejemplo.com)
+
+```javascript
+function ejemplo() {
+    console.log("Bloque de código");
+}
+```
+</div>
+
+                <h3>Citas y Separadores:</h3>
+                <div class="code-example">
+> Esto es una cita importante
+> que puede ocupar varias líneas
+
+---
+(Línea horizontal para separar secciones)
+</div>
+            </div>
+
+            <!-- Gestión de Notas -->
+            <div class="section">
+                <h2>📋 Gestión de tus Notas</h2>
+                
+                <h3>Operaciones con Tarjetas:</h3>
+                <ul>
+                    <li><strong>👁️ Ver:</strong> Haz clic en cualquier tarjeta para leer el contenido completo</li>
+                    <li><strong>✏️ Editar:</strong> Hover sobre la tarjeta y haz clic en el icono de editar</li>
+                    <li><strong>🗑️ Eliminar:</strong> Hover sobre la tarjeta y haz clic en el icono de eliminar</li>
+                    <li><strong>🔍 Buscar:</strong> Usa la barra de búsqueda para encontrar notas específicas</li>
+                    <li><strong>🏷️ Filtrar:</strong> Selecciona una categoría para ver solo notas de ese tipo</li>
+                </ul>
+
+                <h3>Funciones del Lector:</h3>
+                <ul>
+                    <li><strong>✏️ Editar:</strong> Modifica la nota directamente desde el lector</li>
+                    <li><strong>🖨️ Imprimir:</strong> Genera una versión limpia para imprimir</li>
+                    <li><strong>💾 Exportar:</strong> Descarga la nota como archivo HTML</li>
+                </ul>
+            </div>
+
+            <!-- Backup y Seguridad -->
+            <div class="section">
+                <h2>💾 Backup y Seguridad</h2>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Importante:</strong> Tus notas se guardan en el navegador. Si borras los datos del navegador o cambias de dispositivo, perderás tus notas.
+                </div>
+
+                <h3>Estrategia de Backup Recomendada:</h3>
+                <ol>
+                    <li><strong>Backup Regular:</strong> Usa "💾 Exportar Todo" cada semana o mes</li>
+                    <li><strong>Archivo Seguro:</strong> Guarda el archivo JSON en múltiples ubicaciones</li>
+                    <li><strong>Sincronización:</strong> Sube el backup a tu nube personal (Drive, Dropbox, etc.)</li>
+                    <li><strong>Restauración:</strong> Usa "📂 Importar Backup" para recuperar tus notas</li>
+                </ol>
+
+                <h3>Migración Entre Dispositivos:</h3>
+                <ol>
+                    <li>En el dispositivo origen: <strong>"💾 Exportar Todo"</strong></li>
+                    <li>Transfiere el archivo JSON al nuevo dispositivo</li>
+                    <li>En el nuevo dispositivo: <strong>"📂 Importar Backup"</strong></li>
+                    <li>Elige si combinar o reemplazar las notas existentes</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>✅ Consejo Pro:</strong> Añade el Cuaderno Digital a los marcadores de tu navegador para acceso rápido desde cualquier pestaña.
+                </div>
+            </div>
+
+            <!-- Acceso Rápido -->
+            <div class="section">
+                <h2>⚡ Acceso Rápido y Productividad</h2>
+                
+                <h3>Añadir a Marcadores:</h3>
+                <ol>
+                    <li>Con el Cuaderno Digital abierto, presiona <span class="keyboard-shortcut">Ctrl+D</span> (Windows/Linux) o <span class="keyboard-shortcut">Cmd+D</span> (Mac)</li>
+                    <li>Guárdalo en la barra de marcadores para acceso con un clic</li>
+                    <li>Puedes renombrarlo como "📝 Cuaderno" para identificarlo fácilmente</li>
+                </ol>
+
+                <h3>Atajos de Teclado en el Editor:</h3>
+                <ul>
+                    <li><span class="keyboard-shortcut">Ctrl+S</span> - Guardar documento</li>
+                    <li><span class="keyboard-shortcut">Ctrl+Z</span> - Deshacer</li>
+                    <li><span class="keyboard-shortcut">Ctrl+Y</span> - Rehacer</li>
+                    <li><span class="keyboard-shortcut">Tab</span> - Indentar texto</li>
+                    <li><span class="keyboard-shortcut">Escape</span> - Cerrar modal</li>
+                </ul>
+
+                <h3>Consejos de Organización:</h3>
+                <ul>
+                    <li><strong>🎨 Código de Colores:</strong> Asigna colores por urgencia (rojo=urgente, azul=información)</li>
+                    <li><strong>📅 Prefijos de Fecha:</strong> Usa "2025-01-19" al inicio de títulos para orden cronológico</li>
+                    <li><strong>🏷️ Convención de Categorías:</strong> Mantén nombres cortos y consistentes</li>
+                    <li><strong>🔍 Palabras Clave:</strong> Incluye términos clave en el contenido para búsquedas eficientes</li>
+                </ul>
+            </div>
+
+            <!-- Casos de Uso -->
+            <div class="section">
+                <h2>💼 Casos de Uso Comunes</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💼</div>
+                        <h4>Reuniones de Trabajo</h4>
+                        <p>Toma notas en tiempo real, organiza por proyecto, exporta resúmenes para compartir.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h4>Apuntes de Estudio</h4>
+                        <p>Organiza por materias, crea resúmenes con formato, imprime para repasar.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h4>Diario de Ideas</h4>
+                        <p>Captura inspiraciones rápidamente, categoriza por temas, desarrolla proyectos.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <h4>Gestión de Proyectos</h4>
+                        <p>Planifica tareas, hace seguimiento de progreso, documenta decisiones importantes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solución de Problemas -->
+            <div class="section">
+                <h2>🔧 Solución de Problemas</h2>
+                
+                <h3>Problemas Comunes:</h3>
+                
+                <div class="highlight-box">
+                    <strong>❓ No veo mis notas después de cerrar el navegador</strong><br>
+                    Las notas están guardadas en el navegador específico. Verifica que estás usando el mismo navegador y no has borrado los datos de navegación.
+                </div>
+
+                <div class="highlight-box">
+                    <strong>❓ El backup no se puede importar</strong><br>
+                    Asegúrate de que el archivo es un JSON válido exportado desde el Cuaderno Digital. Verifica que no se haya corrompido durante la transferencia.
+                </div>
+
+                <div class="highlight-box">
+                    <strong>❓ La vista previa de Markdown no funciona</strong><br>
+                    Refresca la página y vuelve a abrir el editor. Si persiste, verifica que no hay caracteres especiales que puedan causar conflictos.
+                </div>
+
+                <div class="highlight-box">
+                    <strong>❓ No puedo crear nuevas categorías</strong><br>
+                    Simplemente escribe el nombre de la nueva categoría en el campo. El sistema la creará automáticamente al guardar.
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section">
+                <div style="text-align: center; padding: 2rem; background: var(--light-gray); border-radius: var(--border-radius); margin-top: 3rem;">
+                    <p><strong>¡Feliz Organización! 🎉</strong></p>
+                    <p>Tu Cuaderno Digital está listo para ayudarte a mantener todas tus ideas, proyectos y pensamientos perfectamente organizados.</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                        ¿Tienes dudas? El botón "📖 Ayuda Markdown" en el editor siempre está disponible para consulta rápida.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

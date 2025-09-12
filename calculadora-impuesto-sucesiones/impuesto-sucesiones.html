@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags SEO Ampliados -->
+    <title>Calculadora Impuesto de Sucesiones Cataluña 2025 - Cálculo Gratuito | meskeIA</title>
+    <meta name="description" content="Calculadora gratuita del Impuesto de Sucesiones en Cataluña 2025. Calcula reducciones, bonificaciones y herencia con la normativa actualizada. Incluye vivienda habitual, discapacidad y grupos de parentesco.">
+    <meta name="keywords" content="impuesto sucesiones cataluña, calculadora herencias, agència tributària catalunya, reducciones fiscales, bonificaciones herencia, vivienda habitual, cónyuge, descendientes, grupo parentesco, discapacidad">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Calculadora Impuesto de Sucesiones Cataluña 2025">
+    <meta property="og:description" content="Herramienta gratuita para calcular el Impuesto de Sucesiones en Cataluña con todas las reducciones y bonificaciones vigentes en 2025.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/impuesto-sucesiones">
+    <meta property="og:image" content="https://meskeia.com/assets/og-impuesto-sucesiones.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora Impuesto Sucesiones Cataluña">
+    <meta name="twitter:description" content="Calcula el impuesto de herencias en Cataluña con reducciones y bonificaciones vigentes.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-impuesto-sucesiones.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/impuesto-sucesiones">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta minimalista meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #28a745;
+            --warning: #ffc107;
+            --error: #dc3545;
+            --info: #17a2b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .meske {
+            color: var(--primary);
+        }
+
+        .ia {
+            color: var(--secondary);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+            margin-bottom: 100px;
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .disclaimer-box {
+            margin: 20px;
+            padding: 20px;
+            background: #fef5e7;
+            border: 1px solid var(--warning);
+            border-radius: 10px;
+            border-left: 4px solid var(--warning);
+        }
+
+        .disclaimer-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .disclaimer-content {
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .form-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .form-subsection {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .form-subsection h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .form-group input[type="number"]:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .form-group input[readonly] {
+            background-color: var(--hover);
+            cursor: not-allowed;
+        }
+
+        .total-field {
+            background: linear-gradient(to right, var(--hover), #e3f2fd) !important;
+            border-color: var(--primary) !important;
+            font-weight: bold;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--info);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .warning-box {
+            background: #fef5e7;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            color: var(--primary);
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: var(--text-primary);
+            color: var(--bg-card);
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 13px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: block;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(46, 134, 171, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text-secondary);
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover);
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--hover);
+            border-radius: 10px;
+            display: none;
+            border: 1px solid var(--border);
+        }
+
+        .results.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .results h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+            padding-top: 20px;
+            margin-top: 10px;
+            border-top: 2px solid var(--primary);
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .result-value {
+            color: var(--text-primary);
+            font-weight: bold;
+        }
+
+        .result-total {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .meskeia-logo-container,
+            .disclaimer-box,
+            .btn-calculate,
+            .btn-secondary,
+            footer {
+                display: none !important;
+            }
+            
+            .container {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            .header {
+                background: none;
+                color: black;
+                border-bottom: 2px solid #333;
+            }
+            
+            .form-section {
+                page-break-inside: avoid;
+            }
+            
+            .results {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            /* Ajustes responsive para contenido educativo */
+            div[style*="max-width: 900px"] {
+                max-width: calc(100vw - 40px) !important;
+                margin: 1rem auto !important;
+                padding: 0 10px !important;
+            }
+            
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            /* Excluir cards educativas con border-left del ajuste general */
+            div[style*="padding: 1.5rem"]:not([style*="border-left"]) {
+                padding: 1rem !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            /* Ajuste específico para cards educativas con border-left */
+            div[style*="padding: 1.5rem"][style*="border-left"] {
+                padding: 1rem !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+            }
+            
+            div[style*="border-radius: 20px"] {
+                border-radius: 12px !important;
+                max-width: calc(100vw - 20px) !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                overflow: hidden !important;
+            }
+            
+            /* Excluir cards educativas del ajuste de border-radius */
+            div[style*="border-radius: 12px"]:not([style*="border-left"]) {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            h2[style*="font-size: 1.5rem"] {
+                font-size: 1.3rem !important;
+            }
+            
+            h3[style*="font-size: 1.2rem"] {
+                font-size: 1.1rem !important;
+            }
+            
+            /* Asegurar que las listas no se desborden */
+            ul[style*="padding-left: 1.5rem"] {
+                padding-left: 1rem !important;
+                margin-right: 1rem !important;
+            }
+            
+            /* Ajustar elementos details para móvil */
+            details[style*="padding: 1rem"] {
+                padding: 0.8rem !important;
+                max-width: calc(100% - 20px) !important;
+                margin: 0 10px !important;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 0;
+                margin-bottom: 60px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .disclaimer-box {
+                margin: 15px;
+            }
+            
+            footer {
+                bottom: 5px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Footer meskeIA */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon"></div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora Impuesto de Sucesiones Cataluña",
+        "description": "Calculadora gratuita del Impuesto de Sucesiones en Cataluña 2025. Calcula reducciones, bonificaciones y el impuesto total según la normativa vigente de la Agència Tributària de Catalunya.",
+        "url": "https://meskeia.com/aplicaciones/impuesto-sucesiones",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "HTML5, JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "featureList": [
+            "Cálculo completo del Impuesto de Sucesiones",
+            "Reducciones por vivienda habitual",
+            "Bonificaciones por parentesco",
+            "Reducciones por discapacidad",
+            "Aplicación de coeficientes multiplicadores",
+            "Normativa Cataluña 2025"
+        ]
+    }
+    </script>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Calculadora Impuesto de Sucesiones</h1>
+            <p>Cataluña 2025 - Herramienta Informativa</p>
+        </div>
+        
+        <!-- Disclaimer / Aviso Legal -->
+        <div class="disclaimer-box">
+            <div class="disclaimer-title">
+                ⚠️ IMPORTANTE - AVISO LEGAL
+            </div>
+            <div class="disclaimer-content">
+                <strong>Esta calculadora es únicamente una herramienta informativa y orientativa.</strong><br><br>
+                Los resultados obtenidos son estimaciones basadas en la normativa vigente del Impuesto sobre Sucesiones y Donaciones en Cataluña, pero <strong>NO sustituyen el asesoramiento profesional</strong>.<br><br>
+                Cada situación fiscal es única y puede estar sujeta a particularidades no contempladas en esta herramienta.<br><br>
+                <strong>Recomendamos encarecidamente:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Consultar con un <strong>Asesor Fiscal profesional</strong> antes de tomar decisiones</li>
+                    <li>Verificar los requisitos específicos de cada reducción con la <strong>Agència Tributària de Catalunya</strong></li>
+                    <li>Confirmar que cumple todos los requisitos legales para las reducciones aplicables</li>
+                </ul><br>
+                meskeIA no se responsabiliza de las decisiones tomadas basándose en estos cálculos. El uso de esta herramienta implica la aceptación de estas condiciones.
+            </div>
+        </div>
+        
+        <div class="content">
+            <form id="sucesionesForm">
+                <!-- Sección 1: Bienes y Deudas de la Herencia -->
+                <div class="form-section">
+                    <h3>Bienes y Deudas de la Herencia</h3>
+                    
+                    <div class="info-box">
+                        <strong>📌 Nota importante:</strong> Los Planes de Pensiones del fallecido NO se incluyen aquí. Los beneficiarios los reciben directamente y tributan por IRPF como rendimiento del trabajo, no por el Impuesto de Sucesiones.
+                    </div>
+                    
+                    <!-- Activos -->
+                    <div class="form-subsection">
+                        <h4>ACTIVOS - Bienes que recibe</h4>
+                        
+                        <div class="form-group">
+                            <label for="saldosCuentas">
+                                Saldos en cuentas bancarias (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Suma total de todas las cuentas corrientes, de ahorro y depósitos del fallecido</span>
+                                </span>
+                            </label>
+                            <input type="number" id="saldosCuentas" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accionesFondos">
+                                Acciones, fondos de inversión y otros valores (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Valor de mercado de acciones, participaciones en fondos, bonos y otros valores mobiliarios</span>
+                                </span>
+                            </label>
+                            <input type="number" id="accionesFondos" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="segurosVida">
+                                Seguros de vida a favor del heredero (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Importe total de seguros de vida donde usted es beneficiario</span>
+                                </span>
+                            </label>
+                            <input type="number" id="segurosVida" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="viviendaHabitual">
+                                Vivienda habitual del causante (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Valor de mercado de la vivienda donde residía habitualmente el fallecido. Se aplicará reducción del 95% (máx. 500.000€) si cumple requisitos</span>
+                                </span>
+                            </label>
+                            <input type="number" id="viviendaHabitual" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otrosInmuebles">
+                                Otros inmuebles (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Segundas residencias, locales, terrenos, plazas de garaje, etc.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="otrosInmuebles" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otrosBienes">
+                                Otros bienes (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Vehículos, joyas, obras de arte, muebles de valor, etc.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="otrosBienes" min="0" step="0.01" value="0">
+                        </div>
+                    </div>
+
+                    <!-- Pasivos -->
+                    <div class="form-subsection">
+                        <h4>PASIVOS - Deudas que se descuentan</h4>
+                        
+                        <div class="form-group">
+                            <label for="hipotecaVivienda">
+                                Hipoteca sobre la vivienda habitual (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Importe pendiente de pago de la hipoteca sobre la vivienda habitual</span>
+                                </span>
+                            </label>
+                            <input type="number" id="hipotecaVivienda" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hipotecaOtros">
+                                Hipotecas sobre otros inmuebles (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Importe pendiente de hipotecas sobre segundas residencias u otros inmuebles</span>
+                                </span>
+                            </label>
+                            <input type="number" id="hipotecaOtros" min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otrasDeudas">
+                                Otras deudas del causante (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Préstamos personales, tarjetas de crédito, deudas con proveedores, etc.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="otrasDeudas" min="0" step="0.01" value="0">
+                        </div>
+                    </div>
+
+                    <!-- Totales calculados -->
+                    <div class="form-subsection">
+                        <h4>RESUMEN</h4>
+                        
+                        <div class="form-group">
+                            <label for="valorNetoHeredado">
+                                Valor neto heredado (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Total activos menos total pasivos. Se calcula automáticamente.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="valorNetoHeredado" readonly class="total-field">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ajuarDomestico">
+                                Ajuar doméstico - 3% (€)
+                                <span class="tooltip">ℹ
+                                    <span class="tooltiptext">Por ley se presume que el ajuar doméstico vale el 3% del caudal hereditario</span>
+                                </span>
+                            </label>
+                            <input type="number" id="ajuarDomestico" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 2: Tipo de Adquisición -->
+                <div class="form-section">
+                    <h3>Tipo de Adquisición</h3>
+                    
+                    <div class="form-group">
+                        <label>
+                            ¿Qué tipo de herencia recibe?
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">El usufructo es el derecho a usar y disfrutar. La nuda propiedad es la propiedad sin el derecho de uso.</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="herenciaCompleta" name="tipoAdquisicion" value="completa" checked>
+                                <label for="herenciaCompleta">Herencia completa</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="soloUsufructo" name="tipoAdquisicion" value="usufructo">
+                                <label for="soloUsufructo">Solo usufructo</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="nudaPropiedad" name="tipoAdquisicion" value="nuda">
+                                <label for="nudaPropiedad">Solo nuda propiedad</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group hidden" id="edadUsufructuarioGroup">
+                        <label for="edadUsufructuario">
+                            Edad del usufructuario
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Necesaria para calcular el valor del usufructo según la fórmula: 89 - edad (mínimo 10%)</span>
+                            </span>
+                        </label>
+                        <input type="number" id="edadUsufructuario" min="0" max="100" step="1">
+                    </div>
+                </div>
+
+                <!-- Sección 3: Datos del Heredero -->
+                <div class="form-section">
+                    <h3>Datos del Heredero</h3>
+                    
+                    <div class="form-group">
+                        <label for="grupoParentesco">
+                            Parentesco con el fallecido
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">El grado de parentesco determina las reducciones y bonificaciones aplicables</span>
+                            </span>
+                        </label>
+                        <select id="grupoParentesco" required>
+                            <option value="">Seleccione...</option>
+                            <option value="I-conyuge">Grupo I - Cónyuge</option>
+                            <option value="I-descendiente">Grupo I - Descendiente menor de 21 años</option>
+                            <option value="II">Grupo II - Descendiente de 21 o más años</option>
+                            <option value="II-ascendiente">Grupo II - Ascendiente</option>
+                            <option value="III">Grupo III - Colateral 2º y 3º grado (hermanos, sobrinos)</option>
+                            <option value="IV">Grupo IV - Colateral 4º grado o sin parentesco</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="edadHerederoGroup">
+                        <label for="edadHeredero">
+                            Edad del heredero
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Para menores de 21 años del Grupo I hay reducciones adicionales</span>
+                            </span>
+                        </label>
+                        <input type="number" id="edadHeredero" min="0" max="120" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patrimonioPreexistente">
+                            Patrimonio preexistente del heredero
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Su patrimonio actual antes de recibir la herencia. Afecta al coeficiente multiplicador</span>
+                            </span>
+                        </label>
+                        <select id="patrimonioPreexistente" required>
+                            <option value="1">Hasta 500.000€</option>
+                            <option value="2">De 500.000€ a 2.000.000€</option>
+                            <option value="3">De 2.000.000€ a 4.000.000€</option>
+                            <option value="4">Más de 4.000.000€</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            ¿Tiene algún grado de discapacidad reconocido?
+                            <span class="tooltip">ℹ
+                                <span class="tooltiptext">Las personas con discapacidad tienen reducciones especiales importantes</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="discapacidadNo" name="discapacidad" value="0" checked>
+                                <label for="discapacidadNo">No</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="discapacidad33" name="discapacidad" value="33">
+                                <label for="discapacidad33">33% - 64%</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="discapacidad65" name="discapacidad" value="65">
+                                <label for="discapacidad65">65% o más</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 4: Información adicional -->
+                <div class="form-section">
+                    <h3>Información Adicional</h3>
+                    
+                    <div class="success-box">
+                        <strong>📋 Reducciones que se aplicarán automáticamente si corresponden:</strong><br><br>
+                        • <strong>Vivienda habitual:</strong> Si ha indicado valor en "Vivienda habitual del causante" y es cónyuge, descendiente o ascendiente, se aplicará reducción del 95% (máx. 500.000€)<br>
+                        • <strong>Reducción personal:</strong> Según su grupo de parentesco<br>
+                        • <strong>Reducción por edad:</strong> Para menores de 21 años del Grupo I<br>
+                        • <strong>Reducción por discapacidad:</strong> Si ha indicado grado de discapacidad<br>
+                        • <strong>Bonificaciones:</strong> 99% para cónyuge, variable para Grupo II
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Casos especiales no incluidos:</strong><br><br>
+                        • Empresas familiares o negocios profesionales<br>
+                        • Explotaciones agrarias<br>
+                        • Bienes del patrimonio cultural<br>
+                        • Fideicomisos o legados específicos<br><br>
+                        Para estos casos, consulte con un asesor fiscal especializado.
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <button type="submit" class="btn-calculate">Calcular Impuesto</button>
+                <button type="button" class="btn-secondary" onclick="resetForm()">Limpiar formulario</button>
+                <button type="button" class="btn-secondary" onclick="imprimirResultado()" id="btnImprimir" style="display:none;">Imprimir resultado</button>
+            </form>
+
+            <!-- Resultados -->
+            <div id="results" class="results">
+                <h3>Resultado del Cálculo</h3>
+                <div id="resultContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido educativo sobre Impuesto de Sucesiones -->
+    <div style="max-width: 900px; margin: 2rem auto; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">💼 Guía del Impuesto de Sucesiones en Cataluña</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏠 Reducciones por Vivienda Habitual</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">La vivienda habitual del causante goza de una reducción del 95% de su valor, con un límite máximo de 500.000€. Esta reducción se aplica automáticamente para cónyuges, descendientes y ascendientes.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Requisito:</strong> Ser cónyuge, descendiente o ascendiente</li>
+                        <li><strong>Reducción:</strong> 95% del valor neto de la vivienda</li>
+                        <li><strong>Límite máximo:</strong> 500.000€ de reducción</li>
+                        <li><strong>Permanencia:</strong> Mantener la vivienda 5 años</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--secondary);">
+                    <h3 style="color: var(--secondary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">👥 Grupos de Parentesco</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">El grado de parentesco determina las reducciones personales y bonificaciones aplicables. Cuanto más cercano sea el parentesco, mayores serán los beneficios fiscales.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Grupo I:</strong> Cónyuges y descendientes menores 21 años</li>
+                        <li><strong>Grupo II:</strong> Descendientes ≥21 años y ascendientes</li>
+                        <li><strong>Grupo III:</strong> Colaterales 2º y 3º grado (hermanos, sobrinos)</li>
+                        <li><strong>Grupo IV:</strong> Colaterales 4º grado y extraños</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--success);">
+                    <h3 style="color: var(--success); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Bonificaciones Especiales</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Cataluña aplica bonificaciones muy generosas que pueden reducir drásticamente el impuesto final. Los cónyuges disfrutan de una bonificación del 99%.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Cónyuges:</strong> Bonificación del 99%</li>
+                        <li><strong>Descendientes/Ascendientes:</strong> Entre 20% y 60%</li>
+                        <li><strong>Variable según:</strong> Importe heredado</li>
+                        <li><strong>Aplicación:</strong> Sobre cuota tributaria final</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: var(--hover); border-radius: 12px; border-left: 4px solid var(--warning);">
+                    <h3 style="color: var(--warning); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">♿ Reducciones por Discapacidad</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Las personas con discapacidad reconocida tienen derecho a reducciones especiales importantes que se suman a las reducciones generales por parentesco.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Grado 33%-64%:</strong> Reducción de 275.000€</li>
+                        <li><strong>Grado ≥65%:</strong> Reducción de 650.000€</li>
+                        <li><strong>Acumulable:</strong> Con otras reducciones</li>
+                        <li><strong>Certificación:</strong> Requiere reconocimiento oficial</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes</h2>
+            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué reducciones se aplican en el Impuesto de Sucesiones en Cataluña?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "En Cataluña se aplican reducciones por parentesco (100.000€ Grupo I, 50.000€ Grupo II), reducción por vivienda habitual del 95% (máx. 500.000€), reducciones por edad para menores de 21 años (12.000€ por cada año hasta 21), y reducciones por discapacidad (275.000€ para 33-64%, 650.000€ para ≥65%)."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cuánto paga un cónyuge por el Impuesto de Sucesiones?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "En Cataluña, los cónyuges disfrutan de una bonificación del 99% sobre la cuota tributaria final. Además, tienen una reducción personal de 100.000€ y pueden aplicar la reducción del 95% por vivienda habitual. En la práctica, esto significa que pagan muy poco o nada por el impuesto."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo funciona la reducción por vivienda habitual?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "La reducción por vivienda habitual en Cataluña es del 95% del valor neto de la vivienda, con un máximo de 500.000€ de reducción. Se aplica automáticamente para cónyuges, descendientes y ascendientes. El heredero debe mantener la vivienda durante al menos 5 años."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué documentos necesito para la liquidación?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Para la liquidación del Impuesto de Sucesiones necesita: certificado de defunción, certificado de últimas voluntades, testamento o declaración de herederos, inventario valorado de bienes, justificantes de deudas, certificados bancarios, escrituras de inmuebles, y documentación que acredite las reducciones aplicables (discapacidad, parentesco, etc.)."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cuál es el plazo para presentar la liquidación?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "El plazo general para presentar la liquidación del Impuesto de Sucesiones es de 6 meses desde el fallecimiento. Este plazo puede prorrogarse por otros 6 meses solicitando la prórroga dentro de los primeros 5 meses. La presentación fuera de plazo conlleva recargos e intereses de demora."
+                        }
+                    }
+                ]
+            }
+            </script>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Qué reducciones se aplican en el Impuesto de Sucesiones en Cataluña?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">En Cataluña se aplican reducciones por parentesco (100.000€ Grupo I, 50.000€ Grupo II), reducción por vivienda habitual del 95% (máx. 500.000€), reducciones por edad para menores de 21 años (12.000€ por cada año hasta 21), y reducciones por discapacidad (275.000€ para 33-64%, 650.000€ para ≥65%). Nuestra calculadora aplica automáticamente todas las que correspondan.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cuánto paga un cónyuge por el Impuesto de Sucesiones?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">En Cataluña, los cónyuges disfrutan de una bonificación del 99% sobre la cuota tributaria final. Además, tienen una reducción personal de 100.000€ y pueden aplicar la reducción del 95% por vivienda habitual. En la práctica, esto significa que pagan muy poco o nada por el impuesto en la mayoría de casos.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo funciona la reducción por vivienda habitual?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">La reducción por vivienda habitual en Cataluña es del 95% del valor neto de la vivienda, con un máximo de 500.000€ de reducción. Se aplica automáticamente para cónyuges, descendientes y ascendientes. El heredero debe mantener la vivienda durante al menos 5 años tras la herencia.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Qué documentos necesito para la liquidación?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Para la liquidación del Impuesto de Sucesiones necesita: certificado de defunción, certificado de últimas voluntades, testamento o declaración de herederos, inventario valorado de bienes, justificantes de deudas, certificados bancarios, escrituras de inmuebles, y documentación que acredite las reducciones aplicables (discapacidad, parentesco, etc.).</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cuál es el plazo para presentar la liquidación?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El plazo general para presentar la liquidación del Impuesto de Sucesiones es de 6 meses desde el fallecimiento. Este plazo puede prorrogarse por otros 6 meses solicitando la prórroga dentro de los primeros 5 meses. La presentación fuera de plazo conlleva recargos e intereses de demora.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer>
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Tarifas del impuesto
+        const TARIFAS = {
+            general: [
+                { hasta: 100000, cuota: 0, resto: 100000, tipo: 7 },
+                { hasta: 200000, cuota: 7000, resto: 100000, tipo: 11 },
+                { hasta: 400000, cuota: 18000, resto: 200000, tipo: 17 },
+                { hasta: 800000, cuota: 52000, resto: 400000, tipo: 24 },
+                { hasta: Infinity, cuota: 148000, resto: Infinity, tipo: 32 }
+            ]
+        };
+
+        // Coeficientes multiplicadores
+        const COEFICIENTES = {
+            'I': [1.0000, 1.0000, 1.0000, 1.0000],
+            'II': [1.0000, 1.0000, 1.0000, 1.0000],
+            'III': [1.5882, 1.5882, 1.5882, 1.5882],
+            'IV': [2.0000, 2.0000, 2.0000, 2.0000]
+        };
+
+        let ultimoResultado = null;
+
+        // Función para formatear visualmente los campos readonly
+        function mostrarValoresFormateados() {
+            const valorNeto = document.getElementById('valorNetoHeredado');
+            const ajuar = document.getElementById('ajuarDomestico');
+            
+            if (valorNeto.value) {
+                const valor = parseFloat(valorNeto.value);
+                if (!isNaN(valor)) {
+                    valorNeto.placeholder = valor.toLocaleString('es-ES', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }) + ' €';
+                }
+            }
+            
+            if (ajuar.value) {
+                const valor = parseFloat(ajuar.value);
+                if (!isNaN(valor)) {
+                    ajuar.placeholder = valor.toLocaleString('es-ES', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }) + ' €';
+                }
+            }
+        }
+
+        // Función para calcular totales
+        function calcularTotales() {
+            // Calcular activos
+            const saldos = parseFloat(document.getElementById('saldosCuentas').value) || 0;
+            const acciones = parseFloat(document.getElementById('accionesFondos').value) || 0;
+            const seguros = parseFloat(document.getElementById('segurosVida').value) || 0;
+            const vivienda = parseFloat(document.getElementById('viviendaHabitual').value) || 0;
+            const otrosInm = parseFloat(document.getElementById('otrosInmuebles').value) || 0;
+            const otros = parseFloat(document.getElementById('otrosBienes').value) || 0;
+            
+            // Calcular pasivos
+            const hipVivienda = parseFloat(document.getElementById('hipotecaVivienda').value) || 0;
+            const hipOtros = parseFloat(document.getElementById('hipotecaOtros').value) || 0;
+            const otrasDeudas = parseFloat(document.getElementById('otrasDeudas').value) || 0;
+            
+            // Totales
+            const totalActivos = saldos + acciones + seguros + vivienda + otrosInm + otros;
+            const totalPasivos = hipVivienda + hipOtros + otrasDeudas;
+            const valorNeto = totalActivos - totalPasivos;
+            
+            // Actualizar campos
+            document.getElementById('valorNetoHeredado').value = valorNeto.toFixed(2);
+            
+            // Calcular ajuar doméstico (3% del valor neto)
+            const ajuar = valorNeto * 0.03;
+            document.getElementById('ajuarDomestico').value = ajuar.toFixed(2);
+            
+            // Mostrar valores formateados visualmente
+            mostrarValoresFormateados();
+        }
+
+        // Event listeners para recalcular totales
+        const camposCalculo = [
+            'saldosCuentas', 'accionesFondos', 'segurosVida', 
+            'viviendaHabitual', 'otrosInmuebles', 'otrosBienes',
+            'hipotecaVivienda', 'hipotecaOtros', 'otrasDeudas'
+        ];
+        
+        camposCalculo.forEach(campo => {
+            document.getElementById(campo).addEventListener('input', calcularTotales);
+        });
+
+        // Mostrar/ocultar campo edad usufructuario
+        document.querySelectorAll('input[name="tipoAdquisicion"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const edadGroup = document.getElementById('edadUsufructuarioGroup');
+                if (this.value === 'usufructo' || this.value === 'nuda') {
+                    edadGroup.classList.remove('hidden');
+                    document.getElementById('edadUsufructuario').required = true;
+                } else {
+                    edadGroup.classList.add('hidden');
+                    document.getElementById('edadUsufructuario').required = false;
+                }
+            });
+        });
+
+        // Manejar cambio en grupo de parentesco
+        document.getElementById('grupoParentesco').addEventListener('change', function() {
+            const edadHerederoGroup = document.getElementById('edadHerederoGroup');
+            const edadHeredero = document.getElementById('edadHeredero');
+            
+            if (this.value === 'I-descendiente') {
+                edadHerederoGroup.classList.remove('hidden');
+                edadHeredero.required = true;
+                edadHeredero.max = 20;
+            } else if (this.value === 'I-conyuge' || this.value.startsWith('II') || this.value === 'III' || this.value === 'IV') {
+                edadHerederoGroup.classList.remove('hidden');
+                edadHeredero.required = true;
+                edadHeredero.max = 120;
+            } else {
+                edadHerederoGroup.classList.add('hidden');
+                edadHeredero.required = false;
+            }
+        });
+
+        function resetForm() {
+            document.getElementById('sucesionesForm').reset();
+            document.getElementById('valorNetoHeredado').value = '';
+            document.getElementById('ajuarDomestico').value = '';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('btnImprimir').style.display = 'none';
+            document.getElementById('edadUsufructuarioGroup').classList.add('hidden');
+            ultimoResultado = null;
+        }
+
+        function calcularTarifa(base) {
+            let cuotaTotal = 0;
+            let baseRestante = base;
+            
+            for (const tramo of TARIFAS.general) {
+                if (baseRestante <= 0) break;
+                
+                const baseTramo = Math.min(baseRestante, tramo.resto);
+                const cuotaTramo = (baseTramo * tramo.tipo) / 100;
+                cuotaTotal += tramo.cuota + cuotaTramo;
+                
+                baseRestante -= tramo.resto;
+                
+                if (baseRestante <= 0) {
+                    cuotaTotal = tramo.cuota + (baseTramo * tramo.tipo) / 100;
+                    break;
+                }
+            }
+            
+            return cuotaTotal;
+        }
+
+        function obtenerCoeficiente(grupo, patrimonio) {
+            let grupoBase = grupo;
+            if (grupo.startsWith('I-')) grupoBase = 'I';
+            if (grupo.startsWith('II-')) grupoBase = 'II';
+            
+            const indicePatrimonio = parseInt(patrimonio) - 1;
+            return COEFICIENTES[grupoBase][indicePatrimonio];
+        }
+
+        function calcularValorUsufructo(edad) {
+            const porcentaje = Math.max(10, 89 - edad);
+            return porcentaje / 100;
+        }
+
+        function aplicarReducciones(baseImponible, datos) {
+            let reducciones = 0;
+            let detallesReducciones = [];
+            
+            // Reducción personal por parentesco
+            if (datos.grupoParentesco === 'I-conyuge' || datos.grupoParentesco === 'I-descendiente') {
+                reducciones += 100000;
+                detallesReducciones.push({
+                    tipo: 'Reducción Grupo I',
+                    importe: 100000
+                });
+            } else if (datos.grupoParentesco.startsWith('II')) {
+                reducciones += 50000;
+                detallesReducciones.push({
+                    tipo: 'Reducción Grupo II',
+                    importe: 50000
+                });
+            }
+            
+            // Reducción adicional por edad (menores de 21 años, Grupo I)
+            if (datos.grupoParentesco === 'I-descendiente' && datos.edadHeredero < 21) {
+                const reduccionEdad = 12000 * (21 - datos.edadHeredero);
+                reducciones += reduccionEdad;
+                detallesReducciones.push({
+                    tipo: `Reducción por edad (${21 - datos.edadHeredero} años)`,
+                    importe: reduccionEdad
+                });
+            }
+            
+            // Reducción por discapacidad
+            if (datos.discapacidad === 33) {
+                reducciones += 275000;
+                detallesReducciones.push({
+                    tipo: 'Reducción discapacidad 33-64%',
+                    importe: 275000
+                });
+            } else if (datos.discapacidad === 65) {
+                reducciones += 650000;
+                detallesReducciones.push({
+                    tipo: 'Reducción discapacidad ≥65%',
+                    importe: 650000
+                });
+            }
+            
+            // Reducción vivienda habitual (automática si hay valor y cumple parentesco)
+            if (datos.viviendaHabitual > 0) {
+                // Validar que sea cónyuge, descendiente o ascendiente
+                const puedeAplicar = datos.grupoParentesco === 'I-conyuge' || 
+                                   datos.grupoParentesco === 'I-descendiente' || 
+                                   datos.grupoParentesco === 'II' || 
+                                   datos.grupoParentesco === 'II-ascendiente';
+                
+                if (puedeAplicar) {
+                    // Calcular el valor neto de la vivienda (valor - hipoteca)
+                    const valorNetoVivienda = Math.max(0, datos.viviendaHabitual - datos.hipotecaVivienda);
+                    const reduccionVivienda = Math.min(valorNetoVivienda * 0.95, 500000);
+                    reducciones += reduccionVivienda;
+                    detallesReducciones.push({
+                        tipo: 'Vivienda habitual (95%)',
+                        importe: reduccionVivienda
+                    });
+                }
+            }
+            
+            return { total: reducciones, detalles: detallesReducciones };
+        }
+
+        function aplicarBonificaciones(cuotaTributaria, datos, baseLiquidable) {
+            let bonificacion = 0;
+            let tipoBonificacion = '';
+            
+            // Bonificación del 99% para cónyuge
+            if (datos.grupoParentesco === 'I-conyuge') {
+                bonificacion = cuotaTributaria * 0.99;
+                tipoBonificacion = 'Bonificación cónyuge 99%';
+            }
+            // Bonificación para Grupo II (descendientes y ascendientes)
+            else if (datos.grupoParentesco === 'II' || datos.grupoParentesco === 'II-ascendiente') {
+                let porcentaje = 0;
+                
+                if (baseLiquidable <= 100000) {
+                    porcentaje = 0.60;
+                } else if (baseLiquidable <= 200000) {
+                    porcentaje = 0.60 - ((baseLiquidable - 100000) / 100000 * 0.10);
+                } else if (baseLiquidable <= 300000) {
+                    porcentaje = 0.50 - ((baseLiquidable - 200000) / 100000 * 0.10);
+                } else if (baseLiquidable <= 500000) {
+                    porcentaje = 0.40 - ((baseLiquidable - 300000) / 200000 * 0.15);
+                } else if (baseLiquidable <= 750000) {
+                    porcentaje = 0.25 - ((baseLiquidable - 500000) / 250000 * 0.05);
+                } else {
+                    porcentaje = 0.20;
+                }
+                
+                bonificacion = cuotaTributaria * porcentaje;
+                tipoBonificacion = `Bonificación Grupo II (${(porcentaje * 100).toFixed(0)}%)`;
+            }
+            
+            return { bonificacion, tipoBonificacion };
+        }
+
+        document.getElementById('sucesionesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Recoger datos del formulario
+            const datos = {
+                // Activos
+                saldosCuentas: parseFloat(document.getElementById('saldosCuentas').value) || 0,
+                accionesFondos: parseFloat(document.getElementById('accionesFondos').value) || 0,
+                segurosVida: parseFloat(document.getElementById('segurosVida').value) || 0,
+                viviendaHabitual: parseFloat(document.getElementById('viviendaHabitual').value) || 0,
+                otrosInmuebles: parseFloat(document.getElementById('otrosInmuebles').value) || 0,
+                otrosBienes: parseFloat(document.getElementById('otrosBienes').value) || 0,
+                // Pasivos
+                hipotecaVivienda: parseFloat(document.getElementById('hipotecaVivienda').value) || 0,
+                hipotecaOtros: parseFloat(document.getElementById('hipotecaOtros').value) || 0,
+                otrasDeudas: parseFloat(document.getElementById('otrasDeudas').value) || 0,
+                // Calculados
+                valorNetoHeredado: parseFloat(document.getElementById('valorNetoHeredado').value) || 0,
+                ajuarDomestico: parseFloat(document.getElementById('ajuarDomestico').value) || 0,
+                // Otros datos
+                tipoAdquisicion: document.querySelector('input[name="tipoAdquisicion"]:checked').value,
+                edadUsufructuario: parseInt(document.getElementById('edadUsufructuario').value) || 0,
+                grupoParentesco: document.getElementById('grupoParentesco').value,
+                edadHeredero: parseInt(document.getElementById('edadHeredero').value) || 0,
+                patrimonioPreexistente: document.getElementById('patrimonioPreexistente').value,
+                discapacidad: parseInt(document.querySelector('input[name="discapacidad"]:checked').value)
+            };
+            
+            // Calcular base imponible
+            let baseImponible = datos.valorNetoHeredado + datos.ajuarDomestico;
+            
+            // Ajustar por tipo de adquisición
+            if (datos.tipoAdquisicion === 'usufructo') {
+                const porcentajeUsufructo = calcularValorUsufructo(datos.edadUsufructuario);
+                baseImponible = baseImponible * porcentajeUsufructo;
+            } else if (datos.tipoAdquisicion === 'nuda') {
+                const porcentajeUsufructo = calcularValorUsufructo(datos.edadUsufructuario);
+                baseImponible = baseImponible * (1 - porcentajeUsufructo);
+            }
+            
+            // Aplicar reducciones
+            const reducciones = aplicarReducciones(baseImponible, datos);
+            const baseLiquidable = Math.max(0, baseImponible - reducciones.total);
+            
+            // Calcular cuota íntegra
+            const cuotaIntegra = calcularTarifa(baseLiquidable);
+            
+            // Aplicar coeficiente multiplicador
+            const coeficiente = obtenerCoeficiente(datos.grupoParentesco, datos.patrimonioPreexistente);
+            const cuotaTributaria = cuotaIntegra * coeficiente;
+            
+            // Aplicar bonificaciones
+            const { bonificacion, tipoBonificacion } = aplicarBonificaciones(cuotaTributaria, datos, baseLiquidable);
+            const cuotaFinal = cuotaTributaria - bonificacion;
+            
+            // Guardar resultado para impresión
+            ultimoResultado = {
+                datos,
+                baseImponible,
+                reducciones,
+                baseLiquidable,
+                cuotaIntegra,
+                coeficiente,
+                cuotaTributaria,
+                bonificacion,
+                tipoBonificacion,
+                cuotaFinal
+            };
+            
+            // Mostrar resultados
+            mostrarResultados(ultimoResultado);
+        });
+
+        function formatearMoneda(cantidad) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR'
+            }).format(cantidad);
+        }
+
+        function mostrarResultados(resultado) {
+            const resultContent = document.getElementById('resultContent');
+            
+            let html = '<h4 style="color: var(--primary); margin-bottom: 15px;">Composición de la base imponible:</h4>';
+            
+            // Mostrar composición de la base imponible
+            html += `
+                <div class="result-item">
+                    <span class="result-label">Valor neto heredado:</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.valorNetoHeredado)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Ajuar doméstico (3%):</span>
+                    <span class="result-value">${formatearMoneda(resultado.datos.ajuarDomestico)}</span>
+                </div>
+            `;
+            
+            if (resultado.datos.tipoAdquisicion !== 'completa') {
+                const porcentaje = resultado.datos.tipoAdquisicion === 'usufructo' ? 
+                    calcularValorUsufructo(resultado.datos.edadUsufructuario) : 
+                    (1 - calcularValorUsufructo(resultado.datos.edadUsufructuario));
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Porcentaje aplicado (${resultado.datos.tipoAdquisicion}):</span>
+                        <span class="result-value">${(porcentaje * 100).toFixed(0)}%</span>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div class="result-item" style="border-top: 2px solid var(--border); padding-top: 10px; margin-top: 10px;">
+                    <span class="result-label"><strong>Base imponible total:</strong></span>
+                    <span class="result-value"><strong>${formatearMoneda(resultado.baseImponible)}</strong></span>
+                </div>
+            `;
+            
+            // Sección de reducciones
+            html += '<h4 style="color: var(--primary); margin: 20px 0 15px 0;">Reducciones aplicadas:</h4>';
+            
+            if (resultado.reducciones.detalles.length > 0) {
+                resultado.reducciones.detalles.forEach(red => {
+                    html += `
+                        <div class="result-item">
+                            <span class="result-label">${red.tipo}:</span>
+                            <span class="result-value">- ${formatearMoneda(red.importe)}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                html += '<div class="info-box">No se aplican reducciones</div>';
+            }
+            
+            // Sección de liquidación del impuesto
+            html += '<h4 style="color: var(--primary); margin: 20px 0 15px 0;">Liquidación del impuesto:</h4>';
+            
+            html += `
+                <div class="result-item">
+                    <span class="result-label">Base liquidable:</span>
+                    <span class="result-value">${formatearMoneda(resultado.baseLiquidable)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Cuota íntegra:</span>
+                    <span class="result-value">${formatearMoneda(resultado.cuotaIntegra)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Coeficiente multiplicador (Grupo ${resultado.datos.grupoParentesco.split('-')[0]}):</span>
+                    <span class="result-value">x ${resultado.coeficiente.toFixed(4)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Cuota tributaria:</span>
+                    <span class="result-value">${formatearMoneda(resultado.cuotaTributaria)}</span>
+                </div>
+            `;
+            
+            if (resultado.bonificacion > 0) {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">${resultado.tipoBonificacion}:</span>
+                        <span class="result-value">- ${formatearMoneda(resultado.bonificacion)}</span>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div class="result-item" style="border-top: 2px solid var(--primary); padding-top: 15px; margin-top: 15px;">
+                    <span class="result-label"><strong>TOTAL A PAGAR:</strong></span>
+                    <span class="result-value result-total">${formatearMoneda(resultado.cuotaFinal)}</span>
+                </div>
+            `;
+            
+            resultContent.innerHTML = html;
+            document.getElementById('results').classList.add('show');
+            document.getElementById('btnImprimir').style.display = 'inline-block';
+            
+            // Scroll suave hasta los resultados
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function imprimirResultado() {
+            if (!ultimoResultado) return;
+            
+            const ventanaImpresion = window.open('', '_blank');
+            const fechaHoy = new Date().toLocaleDateString('es-ES');
+            
+            const tiposAdquisicion = {
+                'completa': 'Herencia completa',
+                'usufructo': 'Solo usufructo',
+                'nuda': 'Solo nuda propiedad'
+            };
+            
+            const gruposParentesco = {
+                'I-conyuge': 'Grupo I - Cónyuge',
+                'I-descendiente': 'Grupo I - Descendiente menor de 21 años',
+                'II': 'Grupo II - Descendiente de 21 o más años',
+                'II-ascendiente': 'Grupo II - Ascendiente',
+                'III': 'Grupo III - Colateral 2º y 3º grado',
+                'IV': 'Grupo IV - Colateral 4º grado o sin parentesco'
+            };
+            
+            const html = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Cálculo Impuesto de Sucesiones - ${fechaHoy}</title>
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            max-width: 800px; 
+                            margin: 0 auto; 
+                            padding: 20px;
+                            color: #1A1A1A;
+                        }
+                        .header { 
+                            text-align: center; 
+                            border-bottom: 2px solid #2E86AB; 
+                            padding-bottom: 20px;
+                            margin-bottom: 30px;
+                        }
+                        .logo {
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                        .meske { color: #2E86AB; }
+                        .ia { color: #48A9A6; }
+                        h1 { 
+                            color: #2E86AB; 
+                            margin: 10px 0;
+                        }
+                        .fecha {
+                            color: #666;
+                            font-size: 14px;
+                        }
+                        .seccion { 
+                            margin-bottom: 25px;
+                            background: #f8f9fa;
+                            padding: 15px;
+                            border-radius: 8px;
+                        }
+                        .seccion h2 {
+                            color: #666666;
+                            font-size: 18px;
+                            margin-bottom: 15px;
+                            border-bottom: 1px solid #E5E5E5;
+                            padding-bottom: 8px;
+                        }
+                        .fila { 
+                            display: flex; 
+                            justify-content: space-between; 
+                            padding: 8px 0;
+                            border-bottom: 1px solid #E5E5E5;
+                        }
+                        .fila:last-child {
+                            border-bottom: none;
+                        }
+                        .label { 
+                            color: #666666;
+                        }
+                        .valor { 
+                            font-weight: bold;
+                            color: #1A1A1A;
+                        }
+                        .total {
+                            margin-top: 15px;
+                            padding-top: 15px;
+                            border-top: 2px solid #2E86AB;
+                            font-size: 20px;
+                        }
+                        .total .valor {
+                            color: #2E86AB;
+                        }
+                        .aviso {
+                            margin-top: 30px;
+                            padding: 15px;
+                            background: #fef5e7;
+                            border: 1px solid #ffc107;
+                            border-radius: 8px;
+                            font-size: 12px;
+                            color: #856404;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #E5E5E5;
+                            font-size: 12px;
+                            color: #666666;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="logo">
+                            <span class="meske">meske</span><span class="ia">IA</span>
+                        </div>
+                        <h1>Cálculo del Impuesto de Sucesiones</h1>
+                        <div class="fecha">Cataluña - ${fechaHoy}</div>
+                    </div>
+                    
+                    <div class="seccion">
+                        <h2>Datos del Heredero</h2>
+                        <div class="fila">
+                            <span class="label">Parentesco:</span>
+                            <span class="valor">${gruposParentesco[ultimoResultado.datos.grupoParentesco]}</span>
+                        </div>
+                        ${ultimoResultado.datos.edadHeredero ? `
+                        <div class="fila">
+                            <span class="label">Edad:</span>
+                            <span class="valor">${ultimoResultado.datos.edadHeredero} años</span>
+                        </div>` : ''}
+                        <div class="fila">
+                            <span class="label">Patrimonio preexistente:</span>
+                            <span class="valor">Rango ${ultimoResultado.datos.patrimonioPreexistente}</span>
+                        </div>
+                        ${ultimoResultado.datos.discapacidad > 0 ? `
+                        <div class="fila">
+                            <span class="label">Grado de discapacidad:</span>
+                            <span class="valor">${ultimoResultado.datos.discapacidad}%</span>
+                        </div>` : ''}
+                    </div>
+                    
+                    <div class="seccion">
+                        <h2>Cálculo del Impuesto</h2>
+                        <div class="fila">
+                            <span class="label">Base imponible:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.baseImponible)}</span>
+                        </div>
+                        ${ultimoResultado.reducciones.detalles.map(red => `
+                        <div class="fila">
+                            <span class="label">${red.tipo}:</span>
+                            <span class="valor">- ${formatearMoneda(red.importe)}</span>
+                        </div>`).join('')}
+                        <div class="fila">
+                            <span class="label">Base liquidable:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.baseLiquidable)}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Cuota íntegra:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.cuotaIntegra)}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Coeficiente multiplicador:</span>
+                            <span class="valor">x ${ultimoResultado.coeficiente.toFixed(4)}</span>
+                        </div>
+                        <div class="fila">
+                            <span class="label">Cuota tributaria:</span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.cuotaTributaria)}</span>
+                        </div>
+                        ${ultimoResultado.bonificacion > 0 ? `
+                        <div class="fila">
+                            <span class="label">${ultimoResultado.tipoBonificacion}:</span>
+                            <span class="valor">- ${formatearMoneda(ultimoResultado.bonificacion)}</span>
+                        </div>` : ''}
+                        <div class="fila total">
+                            <span class="label"><strong>TOTAL A PAGAR:</strong></span>
+                            <span class="valor">${formatearMoneda(ultimoResultado.cuotaFinal)}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="aviso">
+                        <strong>AVISO IMPORTANTE:</strong> Este cálculo es meramente informativo y orientativo. 
+                        No sustituye el asesoramiento profesional. Cada situación fiscal es única y puede estar 
+                        sujeta a particularidades no contempladas en esta herramienta. Consulte con un asesor 
+                        fiscal profesional antes de tomar decisiones.
+                    </div>
+                    
+                    <div class="footer">
+                        <p>Documento generado por la Calculadora de Impuesto de Sucesiones de meskeIA</p>
+                        <p>© 2025 meskeIA - www.meskeia.com</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            ventanaImpresion.document.write(html);
+            ventanaImpresion.document.close();
+            ventanaImpresion.print();
+        }
+
+        // Calcular totales al cargar la página
+        window.addEventListener('load', calcularTotales);
+    </script>
+</body>
+</html>

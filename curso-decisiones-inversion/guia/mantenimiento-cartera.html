@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenimiento de Cartera - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="conceptos-basicos.html" class="active">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="mantenimiento-cartera.html" class="active">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="../herramientas/herramientas.html">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="../herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="../herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="../herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📊 Mantenimiento de Cartera</h1>
+            <p>Guía completa para el seguimiento, análisis y optimización continua de tu cartera de inversión</p>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="casos-practicos.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Casos Prácticos</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">10 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <span class="course-nav-btn disabled">
+                <span>Siguiente</span>
+                <span>→</span>
+            </span>
+        </div>
+
+        <!-- Índice de navegación rápida -->
+        <div class="quick-nav">
+            <h3>📋 Contenido de la Guía</h3>
+            <div class="nav-grid">
+                <a href="#seguimiento-performance" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Seguimiento de Performance</span>
+                </a>
+                <a href="#rebalanceo" class="nav-item">
+                    <span class="nav-icon">⚖️</span>
+                    <span class="nav-text">Estrategias de Rebalanceo</span>
+                </a>
+                <a href="#analisis-periodico" class="nav-item">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-text">Análisis Periódico</span>
+                </a>
+                <a href="#herramientas-seguimiento" class="nav-item">
+                    <span class="nav-icon">🛠️</span>
+                    <span class="nav-text">Herramientas</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sección: Introducción -->
+        <section id="introduccion">
+            <div class="card">
+                <h2>🎯 ¿Por qué es Importante el Mantenimiento?</h2>
+                <div class="highlight-box info">
+                    <h4>💡 Concepto Clave</h4>
+                    <p>El mantenimiento de cartera es un proceso continuo que garantiza que tu inversión se mantenga alineada con tus objetivos, tolerancia al riesgo y condiciones de mercado cambiantes.</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>✅ Beneficios del Mantenimiento Regular</h4>
+                        <ul class="benefits-list">
+                            <li><strong>Control de riesgo:</strong> Evita desviaciones excesivas del objetivo</li>
+                            <li><strong>Optimización fiscal:</strong> Aprovecha oportunidades de compensación</li>
+                            <li><strong>Disciplina de inversión:</strong> Reduce decisiones emocionales</li>
+                            <li><strong>Mejora de rendimientos:</strong> Captura primas de rebalanceo</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>⚠️ Riesgos de No Mantener</h4>
+                        <ul class="risks-list">
+                            <li><strong>Deriva del riesgo:</strong> Cartera más arriesgada de lo deseado</li>
+                            <li><strong>Concentración:</strong> Dependencia excesiva de pocos activos</li>
+                            <li><strong>Ineficiencia fiscal:</strong> Pérdida de oportunidades de ahorro</li>
+                            <li><strong>Decisiones emocionales:</strong> Comprar alto, vender bajo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Seguimiento de Performance -->
+        <section id="seguimiento-performance">
+            <div class="card">
+                <h2>📈 Seguimiento de Performance</h2>
+                
+                <div class="subsection">
+                    <h3>📊 Métricas Clave a Monitorizar</h3>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h4>💰 Rentabilidad</h4>
+                            <ul>
+                                <li><strong>Rentabilidad absoluta:</strong> Ganancia/pérdida total</li>
+                                <li><strong>Rentabilidad anualizada:</strong> CAGR (Compound Annual Growth Rate)</li>
+                                <li><strong>Rentabilidad vs benchmark:</strong> Comparación con índices</li>
+                            </ul>
+                            
+                            <div class="example-box">
+                                <h5>📝 Ejemplo de Cálculo</h5>
+                                <div class="formula">
+                                    <p><strong>CAGR = (Valor Final / Valor Inicial)^(1/años) - 1</strong></p>
+                                    <p>Inversión inicial: 10.000€ → Valor actual: 12.597€ (3 años)</p>
+                                    <p>CAGR = (12.597 / 10.000)^(1/3) - 1 = <strong>8%</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h4>📊 Volatilidad y Riesgo</h4>
+                            <ul>
+                                <li><strong>Volatilidad (σ):</strong> Desviación estándar de rentabilidades</li>
+                                <li><strong>Máximo Drawdown:</strong> Pérdida máxima desde máximos</li>
+                                <li><strong>Ratio de Sharpe:</strong> Rentabilidad ajustada por riesgo</li>
+                            </ul>
+                            
+                            <div class="example-box">
+                                <h5>📝 Interpretación del Ratio Sharpe</h5>
+                                <ul>
+                                    <li><strong>&gt; 1.0:</strong> Excelente rendimiento ajustado por riesgo</li>
+                                    <li><strong>0.5 - 1.0:</strong> Bueno</li>
+                                    <li><strong>&lt; 0.5:</strong> Mejorable</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>📅 Frecuencia de Seguimiento</h3>
+                    
+                    <div class="frequency-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Frecuencia</th>
+                                    <th>Qué Revisar</th>
+                                    <th>Perfil Inversor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Diario</strong></td>
+                                    <td>Solo si hay noticias relevantes</td>
+                                    <td>Activo/Trading</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Semanal</strong></td>
+                                    <td>Valor total, grandes movimientos</td>
+                                    <td>Moderadamente activo</td>
+                                </tr>
+                                <tr class="highlight">
+                                    <td><strong>Mensual</strong></td>
+                                    <td>Performance, allocation, rebalanceo</td>
+                                    <td>Buy & Hold (Recomendado)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Trimestral</strong></td>
+                                    <td>Revisión completa y ajustes</td>
+                                    <td>Muy pasivo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Rebalanceo -->
+        <section id="rebalanceo">
+            <div class="card">
+                <h2>⚖️ Estrategias de Rebalanceo</h2>
+                
+                <div class="highlight-box warning">
+                    <h4>🎯 Concepto Fundamental</h4>
+                    <p>El rebalanceo consiste en ajustar las proporciones de activos para mantener la asignación objetivo, vendiendo activos sobreponderados y comprando infraponderados.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>📊 Métodos de Rebalanceo</h3>
+                    
+                    <div class="rebalancing-methods">
+                        <div class="method-card">
+                            <h4>📅 Rebalanceo Temporal</h4>
+                            <p><strong>Frecuencia fija:</strong> Cada 3, 6 o 12 meses</p>
+                            
+                            <div class="pros-cons">
+                                <div class="pros">
+                                    <h5>✅ Ventajas</h5>
+                                    <ul>
+                                        <li>Simple de implementar</li>
+                                        <li>Disciplina automática</li>
+                                        <li>Costos predecibles</li>
+                                    </ul>
+                                </div>
+                                <div class="cons">
+                                    <h5>❌ Desventajas</h5>
+                                    <ul>
+                                        <li>Puede ser innecesario</li>
+                                        <li>Ignora condiciones de mercado</li>
+                                        <li>Costos de transacción fijos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="method-card recommended">
+                            <span class="badge recommended">🏆 Recomendado</span>
+                            <h4>📈 Rebalanceo por Umbral</h4>
+                            <p><strong>Cuando desviación &gt; X%:</strong> Ejemplo: ±5% del objetivo</p>
+                            
+                            <div class="pros-cons">
+                                <div class="pros">
+                                    <h5>✅ Ventajas</h5>
+                                    <ul>
+                                        <li>Eficiente en costos</li>
+                                        <li>Responde a movimientos</li>
+                                        <li>Control preciso del riesgo</li>
+                                    </ul>
+                                </div>
+                                <div class="cons">
+                                    <h5>❌ Desventajas</h5>
+                                    <ul>
+                                        <li>Requiere más seguimiento</li>
+                                        <li>Puede crear inactividad prolongada</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="method-card">
+                            <h4>🔄 Rebalanceo Híbrido</h4>
+                            <p><strong>Combina ambos:</strong> Mínimo semestral + umbral 5%</p>
+                            
+                            <div class="pros-cons">
+                                <div class="pros">
+                                    <h5>✅ Ventajas</h5>
+                                    <ul>
+                                        <li>Mejor de ambos métodos</li>
+                                        <li>Garantiza acción mínima</li>
+                                        <li>Eficiencia adaptativa</li>
+                                    </ul>
+                                </div>
+                                <div class="cons">
+                                    <h5>❌ Desventajas</h5>
+                                    <ul>
+                                        <li>Más complejo de implementar</li>
+                                        <li>Requiere seguimiento constante</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🧮 Ejemplo Práctico de Rebalanceo</h3>
+                    
+                    <div class="example-rebalancing">
+                        <h4>📊 Situación Inicial</h4>
+                        <div class="portfolio-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Activo</th>
+                                        <th>Objetivo</th>
+                                        <th>Actual</th>
+                                        <th>Desviación</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="sell">
+                                        <td>Acciones Desarrolladas</td>
+                                        <td>60%</td>
+                                        <td>67%</td>
+                                        <td>+7%</td>
+                                        <td><strong>Vender</strong> 3.500€</td>
+                                    </tr>
+                                    <tr class="buy">
+                                        <td>Acciones Emergentes</td>
+                                        <td>20%</td>
+                                        <td>16%</td>
+                                        <td>-4%</td>
+                                        <td><strong>Comprar</strong> 2.000€</td>
+                                    </tr>
+                                    <tr class="buy">
+                                        <td>Bonos</td>
+                                        <td>20%</td>
+                                        <td>17%</td>
+                                        <td>-3%</td>
+                                        <td><strong>Comprar</strong> 1.500€</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="highlight-box success">
+                            <h5>✨ Resultado del Rebalanceo</h5>
+                            <p><strong>Beneficio:</strong> Vendemos lo que ha subido más (caro) y compramos lo que ha subido menos (barato), capturando la prima de rebalanceo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>💡 Consejos para Rebalancear Eficientemente</h3>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h4>💰 Optimización de Costos</h4>
+                            <ul>
+                                <li><strong>Usa nuevas aportaciones:</strong> Compra activos infraponderados</li>
+                                <li><strong>Aprovecha dividendos:</strong> Reinvierte en activos necesarios</li>
+                                <li><strong>Considera ETFs:</strong> Menores costos que fondos activos</li>
+                                <li><strong>Agrupa operaciones:</strong> Reduce comisiones múltiples</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>🏛️ Consideraciones Fiscales</h4>
+                            <ul>
+                                <li><strong>Cuentas exentas:</strong> Prioriza rebalanceo en PPA/PIAS</li>
+                                <li><strong>Compensación fiscal:</strong> Realiza pérdidas para compensar ganancias</li>
+                                <li><strong>Timing fiscal:</strong> Considera el calendario fiscal anual</li>
+                                <li><strong>Productos eficientes:</strong> ETFs vs fondos de inversión</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Análisis Periódico -->
+        <section id="analisis-periodico">
+            <div class="card">
+                <h2>🔍 Análisis Periódico Integral</h2>
+                
+                <div class="subsection">
+                    <h3>📋 Checklist de Revisión Trimestral</h3>
+                    
+                    <div class="checklist-comprehensive">
+                        <div class="checklist-section">
+                            <h4>🎯 Objetivos y Circunstancias</h4>
+                            <div class="checklist-items">
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check1">
+                                    <label for="check1">¿Han cambiado tus objetivos de inversión?</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check2">
+                                    <label for="check2">¿Tu tolerancia al riesgo sigue siendo la misma?</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check3">
+                                    <label for="check3">¿Tu situación financiera ha cambiado significativamente?</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check4">
+                                    <label for="check4">¿Tu horizonte temporal sigue siendo el mismo?</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="checklist-section">
+                            <h4>📊 Performance y Asignación</h4>
+                            <div class="checklist-items">
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check5">
+                                    <label for="check5">Calcular rentabilidad anualizada y compararla con benchmark</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check6">
+                                    <label for="check6">Verificar asignación actual vs objetiva</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check7">
+                                    <label for="check7">Revisar concentración por sectores/países</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check8">
+                                    <label for="check8">Evaluar necesidad de rebalanceo</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="checklist-section">
+                            <h4>💼 Productos y Costos</h4>
+                            <div class="checklist-items">
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check9">
+                                    <label for="check9">Revisar comisiones de gestión anuales</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check10">
+                                    <label for="check10">Evaluar alternativas más eficientes/baratas</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check11">
+                                    <label for="check11">Verificar tracking error de ETFs indexados</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check12">
+                                    <label for="check12">Revisar cambios en políticas de productos</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>📈 Análisis de Attribution</h3>
+                    <p>Entender <strong>por qué</strong> tu cartera ha tenido ese rendimiento:</p>
+                    
+                    <div class="attribution-analysis">
+                        <div class="attribution-component">
+                            <h4>🌍 Asset Allocation</h4>
+                            <p><strong>¿La asignación entre clases de activos fue correcta?</strong></p>
+                            <ul>
+                                <li>Compara rendimiento de cada clase de activo vs benchmark</li>
+                                <li>Evalúa si sobre/infraponderaste las clases ganadoras</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="attribution-component">
+                            <h4>🎯 Security Selection</h4>
+                            <p><strong>¿Los productos elegidos fueron mejores que la media?</strong></p>
+                            <ul>
+                                <li>Compara tus ETFs/fondos vs índices de referencia</li>
+                                <li>Identifica productos con tracking error excesivo</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="attribution-component">
+                            <h4>⏰ Timing</h4>
+                            <p><strong>¿Las decisiones de compra/venta fueron oportunas?</strong></p>
+                            <ul>
+                                <li>Revisa si el rebalanceo mejoró o empeoró resultados</li>
+                                <li>Evalúa si las emociones afectaron las decisiones</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Herramientas -->
+        <section id="herramientas-seguimiento">
+            <div class="card">
+                <h2>🛠️ Herramientas de Seguimiento</h2>
+                
+                <div class="subsection">
+                    <h3>📱 Aplicaciones y Plataformas</h3>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-card free">
+                            <span class="badge free">🆓 Gratuito</span>
+                            <h4>Portfolio Visualizer</h4>
+                            <p><strong>Web:</strong> portfoliovisualizer.com</p>
+                            <ul>
+                                <li>Backtesting de estrategias</li>
+                                <li>Análisis de correlaciones</li>
+                                <li>Monte Carlo simulations</li>
+                                <li>Asset allocation optimization</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tool-card free">
+                            <span class="badge free">🆓 Gratuito</span>
+                            <h4>Google Sheets + Portfolio</h4>
+                            <p><strong>Plantilla personalizable</strong></p>
+                            <ul>
+                                <li>Seguimiento manual detallado</li>
+                                <li>Cálculos personalizados</li>
+                                <li>Gráficos automáticos</li>
+                                <li>Importación de datos automática (APIs)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <h4>Broker Dashboard</h4>
+                            <p><strong>Tu propio broker</strong></p>
+                            <ul>
+                                <li>Interactive Brokers: Portfolio Analyst</li>
+                                <li>DeGiro: Portfolio insights básicos</li>
+                                <li>Renta 4: Herramientas de análisis</li>
+                                <li>MyInvestor: Dashboard integrado</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tool-card premium">
+                            <span class="badge premium">💳 Premium</span>
+                            <h4>Morningstar Premium</h4>
+                            <p><strong>Análisis profesional</strong></p>
+                            <ul>
+                                <li>X-Ray de cartera completo</li>
+                                <li>Análisis de riesgo avanzado</li>
+                                <li>Recomendaciones personalizadas</li>
+                                <li>Research de fondos premium</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>📊 Métricas Calculables en Excel/Sheets</h3>
+                    
+                    <div class="metrics-formulas">
+                        <div class="formula-card">
+                            <h4>📈 Rentabilidad Anualizada (CAGR)</h4>
+                            <div class="formula">
+                                <code>=POWER(Valor_Final/Valor_Inicial,1/Años)-1</code>
+                            </div>
+                            <p><strong>Ejemplo:</strong> =POWER(B2/B1,1/A2)-1</p>
+                        </div>
+                        
+                        <div class="formula-card">
+                            <h4>📊 Volatilidad Anualizada</h4>
+                            <div class="formula">
+                                <code>=STDEV(Rentabilidades_Mensuales)*SQRT(12)</code>
+                            </div>
+                            <p><strong>Nota:</strong> Usa SQRT(252) para datos diarios</p>
+                        </div>
+                        
+                        <div class="formula-card">
+                            <h4>⚡ Ratio de Sharpe</h4>
+                            <div class="formula">
+                                <code>=(Rentabilidad_Anual-Tipo_Sin_Riesgo)/Volatilidad_Anual</code>
+                            </div>
+                            <p><strong>Ejemplo:</strong> =(8%-2%)/15% = 0.4</p>
+                        </div>
+                        
+                        <div class="formula-card">
+                            <h4>📉 Maximum Drawdown</h4>
+                            <div class="formula">
+                                <code>=MIN((Valor_Actual/MAX_ACUMULADO($B$1:B2))-1)</code>
+                            </div>
+                            <p><strong>Aplicar a serie temporal completa</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🔗 Enlaces de Referencia</h3>
+                    
+                    <div class="reference-links">
+                        <div class="link-category">
+                            <h4>📊 Datos de Mercado</h4>
+                            <ul>
+                                <li><strong>Yahoo Finance:</strong> Cotizaciones históricas gratuitas</li>
+                                <li><strong>Morningstar.es:</strong> Análisis de fondos y ETFs</li>
+                                <li><strong>Investing.com:</strong> Datos técnicos y fundamentales</li>
+                                <li><strong>JustETF:</strong> Comparador de ETFs europeos</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="link-category">
+                            <h4>🏛️ Datos Oficiales</h4>
+                            <ul>
+                                <li><strong>Banco de España:</strong> Tipos de interés oficiales</li>
+                                <li><strong>INE:</strong> Datos de inflación (IPC)</li>
+                                <li><strong>CNMV:</strong> Información regulatoria de productos</li>
+                                <li><strong>BME:</strong> Datos del mercado español</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Casos Prácticos -->
+        <section id="casos-mantenimiento">
+            <div class="card">
+                <h2>💼 Casos Prácticos de Mantenimiento</h2>
+                
+                <div class="case-study">
+                    <h3>📈 Caso 1: Cartera Desbalanceada por Bull Market</h3>
+                    
+                    <div class="case-scenario">
+                        <h4>🏢 Situación</h4>
+                        <p><strong>Inversor:</strong> Ana, 35 años, cartera de 50.000€<br>
+                        <strong>Objetivo inicial:</strong> 70% acciones / 30% bonos<br>
+                        <strong>Situación actual:</strong> Tras 2 años de mercado alcista</p>
+                        
+                        <div class="before-after">
+                            <div class="before">
+                                <h5>❌ Antes (Desbalanceada)</h5>
+                                <ul>
+                                    <li>Acciones: 78% (39.000€)</li>
+                                    <li>Bonos: 22% (11.000€)</li>
+                                    <li><strong>Riesgo:</strong> Mucho mayor al objetivo</li>
+                                </ul>
+                            </div>
+                            <div class="after">
+                                <h5>✅ Después (Rebalanceada)</h5>
+                                <ul>
+                                    <li>Acciones: 70% (35.000€)</li>
+                                    <li>Bonos: 30% (15.000€)</li>
+                                    <li><strong>Acción:</strong> Vender 4.000€ acciones, comprar bonos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-outcome">
+                        <h4>🎯 Resultado y Lecciones</h4>
+                        <div class="highlight-box success">
+                            <ul>
+                                <li><strong>Mantiene disciplina:</strong> Vende caro (acciones) compra barato (bonos)</li>
+                                <li><strong>Controla riesgo:</strong> Evita concentración excesiva en un activo</li>
+                                <li><strong>Preparada para bear market:</strong> Mayor cushion de bonos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <h3>🛠️ Caso 2: Optimización de Costos en Cartera</h3>
+                    
+                    <div class="case-scenario">
+                        <h4>🏢 Situación</h4>
+                        <p><strong>Inversor:</strong> Carlos, 45 años, cartera de 100.000€<br>
+                        <strong>Problema:</strong> Costos excesivos por fondos activos<br>
+                        <strong>Objetivo:</strong> Mantener strategy pero reducir costos</p>
+                        
+                        <div class="cost-comparison">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Activo</th>
+                                        <th>Actual (Costo)</th>
+                                        <th>Alternativa (Costo)</th>
+                                        <th>Ahorro Anual</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Renta Variable España</td>
+                                        <td>Fondo activo (1.8%)</td>
+                                        <td>ETF IBEX 35 (0.3%)</td>
+                                        <td>750€</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Renta Variable USA</td>
+                                        <td>Fondo activo (2.1%)</td>
+                                        <td>ETF S&P 500 (0.07%)</td>
+                                        <td>609€</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bonos Gobierno</td>
+                                        <td>Fondo activo (1.2%)</td>
+                                        <td>ETF Bonos EUR (0.16%)</td>
+                                        <td>208€</td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td colspan="3"><strong>Total ahorro anual:</strong></td>
+                                        <td><strong>1.567€</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="case-outcome">
+                        <h4>💰 Impacto a 20 años</h4>
+                        <div class="highlight-box info">
+                            <p><strong>Ahorro anual:</strong> 1.567€<br>
+                            <strong>Ahorro capitalizado (20 años, 6% rentabilidad):</strong> ~57.000€<br>
+                            <strong>Conclusión:</strong> Los costos importan tremendamente a largo plazo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="casos-practicos.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Casos Prácticos</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">10 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <span class="course-nav-btn disabled">
+                <span>Siguiente</span>
+                <span>→</span>
+            </span>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

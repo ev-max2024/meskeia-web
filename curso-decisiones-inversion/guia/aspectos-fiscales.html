@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspectos Fiscales de las Inversiones - Decisiones de Inversión</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/logo-meskeia.css">
+    <style>
+        .tax-calculator {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .tax-table th {
+            background: #2E86AB;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .tax-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .tax-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .tax-benefit {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .tax-warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .optimization-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .broker-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .broker-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .broker-card.recommended {
+            border-color: #28a745;
+        }
+        
+        .broker-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .fiscal-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .timeline-date {
+            background: #2E86AB;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            min-width: 120px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .timeline-content {
+            margin-left: 2rem;
+            flex: 1;
+        }
+        
+        .tax-scenario {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .scenario-item {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .scenario-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-enhanced">
+                <div class="logo-icon">
+                    <div class="neural-network">
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                        <div class="neural-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <span class="meske">meske</span><span class="ia">IA</span>
+                </div>
+                <div class="main-title-inline">Decisiones de Inversión</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="aspectos-fiscales.html" class="active">Guía</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                        <li><a href="productos-financieros.html">Productos Financieros</a></li>
+                        <li><a href="estrategias-inversion.html">Estrategias</a></li>
+                        <li><a href="aspectos-fiscales.html">Aspectos Fiscales</a></li>
+                        <li><a href="asset-allocation.html">Asset Allocation</a></li>
+                        <li><a href="gestion-riesgo.html">Gestión de Riesgo</a></li>
+                        <li><a href="psicologia-inversor.html">Psicología</a></li>
+                        <li><a href="guia-brokers.html">Guía de Brokers</a></li>
+                        <li><a href="casos-practicos.html">Casos Prácticos</a></li>
+                        <li><a href="mantenimiento-cartera.html">Mantenimiento de Cartera</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+
+                    <a href="../herramientas/herramientas.html">Herramientas</a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="../herramientas/calculadora-perfil-riesgo.html">Calculadora Perfil Riesgo</a></li>
+
+                        <li><a href="../herramientas/calculadora-intereses-compuesto.html">Calculadora Interés Compuesto</a></li>
+
+                        <li><a href="../herramientas/simulador-cartera.html">Simulador de Cartera</a></li>
+
+                    </ul>
+
+                </li>
+                <li class="dropdown">
+                    <a href="#">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recursos/glosario.html">Glosario</a></li>
+                        <li><a href="../recursos/bibliografia.html">Bibliografía</a></li>
+                        <li><a href="../recursos/enlaces-utiles.html">Enlaces Útiles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>💰 Aspectos Fiscales de las Inversiones</h1>
+            <p>Guía completa sobre tributación, optimización fiscal y obligaciones para inversores en España</p>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="estrategias-inversion.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Estrategias</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">4 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="asset-allocation.html" class="course-nav-btn next">
+                <span>Asset Allocation</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- Índice de contenido -->
+        <div class="card">
+            <h3>📋 Contenido de esta sección</h3>
+            <div class="grid-2">
+                <div>
+                    <a href="#tributacion-basica" class="custom-list-item">📊 Tributación Básica</a>
+                    <a href="#tipos-rentas" class="custom-list-item">💵 Tipos de Rentas</a>
+                    <a href="#productos-fiscalidad" class="custom-list-item">📈 Fiscalidad por Producto</a>
+                    <a href="#optimizacion-fiscal" class="custom-list-item">🎯 Optimización Fiscal</a>
+                </div>
+                <div>
+                    <a href="#brokers-fiscalidad" class="custom-list-item">🏦 Brokers y Fiscalidad</a>
+                    <a href="#declaracion-renta" class="custom-list-item">📝 Declaración de la Renta</a>
+                    <a href="#calendario-fiscal" class="custom-list-item">📅 Calendario Fiscal</a>
+                    <a href="#casos-practicos-fiscales" class="custom-list-item">💼 Casos Prácticos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerta importante -->
+        <div class="alert alert-warning">
+            <h3>⚠️ Aviso Legal Importante</h3>
+            <p>Esta guía tiene fines educativos y se basa en la normativa fiscal española vigente en 2024-2025. <strong>La información fiscal puede cambiar</strong> y las situaciones personales varían. Siempre consulta con un asesor fiscal profesional para tu caso específico.</p>
+        </div>
+
+        <!-- Tributación Básica -->
+        <section id="tributacion-basica">
+            <div class="card">
+                <h2>📊 Conceptos Básicos de Tributación</h2>
+                <p>En España, las rentas del ahorro (dividendos, intereses y ganancias patrimoniales) tributan en el IRPF con una escala progresiva específica.</p>
+
+                <h3>🔢 Tipos Impositivos 2024</h3>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Base Imponible</th>
+                            <th>Tipo Impositivo</th>
+                            <th>Ejemplo de Cálculo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hasta 6.000€</td>
+                            <td><strong>19%</strong></td>
+                            <td>Ganancia de 5.000€ → Paga 950€</td>
+                        </tr>
+                        <tr>
+                            <td>De 6.000€ a 50.000€</td>
+                            <td><strong>21%</strong></td>
+                            <td>Ganancia de 30.000€ → Paga 6.180€</td>
+                        </tr>
+                        <tr>
+                            <td>De 50.000€ a 200.000€</td>
+                            <td><strong>23%</strong></td>
+                            <td>Ganancia de 100.000€ → Paga 21.180€</td>
+                        </tr>
+                        <tr>
+                            <td>De 200.000€ a 300.000€</td>
+                            <td><strong>27%</strong></td>
+                            <td>Ganancia de 250.000€ → Paga 59.680€</td>
+                        </tr>
+                        <tr>
+                            <td>Más de 300.000€</td>
+                            <td><strong>28%</strong></td>
+                            <td>Ganancia de 400.000€ → Paga 86.680€</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-info">
+                    <h4>💡 Ejemplo Práctico</h4>
+                    <p>Si obtienes una ganancia de 15.000€ vendiendo acciones:</p>
+                    <ul>
+                        <li>Primeros 6.000€ al 19% = 1.140€</li>
+                        <li>Siguientes 9.000€ al 21% = 1.890€</li>
+                        <li><strong>Total a pagar: 3.030€</strong> (20.2% efectivo)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipos de Rentas -->
+        <section id="tipos-rentas">
+            <div class="card">
+                <h2>💵 Tipos de Rentas de Inversión</h2>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3>📈 Ganancias Patrimoniales</h3>
+                        <p>Diferencia entre precio de venta y compra de un activo.</p>
+                        <ul>
+                            <li>✅ Se pueden compensar pérdidas con ganancias</li>
+                            <li>✅ Aplicable a acciones, ETFs, fondos, inmuebles</li>
+                            <li>⏱️ Tributación diferida hasta la venta</li>
+                        </ul>
+
+                        <div class="tax-benefit">
+                            <strong>Ventaja fiscal:</strong> Solo tributas cuando vendes con beneficio
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>💰 Rendimientos del Capital Mobiliario</h3>
+                        <p>Dividendos, intereses y otros rendimientos periódicos.</p>
+                        <ul>
+                            <li>📅 Tributación inmediata al cobrar</li>
+                            <li>🏦 Retención del 19% en origen</li>
+                            <li>❌ No se pueden compensar con pérdidas patrimoniales</li>
+                        </ul>
+
+                        <div class="tax-warning">
+                            <strong>Atención:</strong> Los dividendos tributan aunque los reinviertas
+                        </div>
+                    </div>
+                </div>
+
+                <h3>🔄 Reglas de Compensación</h3>
+                <div class="optimization-card">
+                    <h4>Compensación de pérdidas y ganancias:</h4>
+                    <ol>
+                        <li><strong>Mismo año:</strong> Pérdidas y ganancias patrimoniales se compensan al 100%</li>
+                        <li><strong>Con rendimientos:</strong> Hasta el 25% de los rendimientos del capital mobiliario</li>
+                        <li><strong>Años siguientes:</strong> Las pérdidas no compensadas se pueden aplicar durante 4 años</li>
+                    </ol>
+                    
+                    <div class="alert alert-success">
+                        <strong>💡 Estrategia:</strong> Vender posiciones en pérdidas antes de fin de año para compensar ganancias
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fiscalidad por Producto -->
+        <section id="productos-fiscalidad">
+            <div class="card">
+                <h2>📈 Fiscalidad por Tipo de Producto</h2>
+
+                <div class="product-comparison">
+                    <!-- Acciones -->
+                    <div class="optimization-card">
+                        <h3>📊 Acciones</h3>
+                        <ul>
+                            <li><strong>Dividendos:</strong> Tributan como rendimiento del capital (19% retención)</li>
+                            <li><strong>Venta:</strong> Ganancia/pérdida patrimonial</li>
+                            <li><strong>Exención:</strong> Primeros 1.500€ de dividendos exentos (derogada desde 2015)</li>
+                        </ul>
+                        <div class="tax-benefit">
+                            ✅ Posibilidad de aplicar la regla de los 2 meses para evitar doble imposición
+                        </div>
+                    </div>
+
+                    <!-- ETFs -->
+                    <div class="optimization-card">
+                        <h3>🌍 ETFs</h3>
+                        <ul>
+                            <li><strong>Acumulación:</strong> No tributan hasta la venta (más eficientes)</li>
+                            <li><strong>Distribución:</strong> Dividendos tributan al cobrarlos</li>
+                            <li><strong>Traspaso:</strong> NO tienen ventaja fiscal del traspaso</li>
+                        </ul>
+                        <div class="tax-warning">
+                            ⚠️ Los ETFs extranjeros pueden tener retención en origen
+                        </div>
+                    </div>
+
+                    <!-- Fondos de Inversión -->
+                    <div class="optimization-card">
+                        <h3>🏦 Fondos de Inversión</h3>
+                        <ul>
+                            <li><strong>Traspasos:</strong> SIN tributación entre fondos</li>
+                            <li><strong>Acumulación:</strong> Todo se reinvierte automáticamente</li>
+                            <li><strong>Venta:</strong> Tributación solo al reembolsar</li>
+                        </ul>
+                        <div class="tax-benefit">
+                            ⭐ MEJOR ventaja fiscal: Traspasos libres de impuestos
+                        </div>
+                    </div>
+
+                    <!-- Planes de Pensiones -->
+                    <div class="optimization-card">
+                        <h3>🏖️ Planes de Pensiones</h3>
+                        <ul>
+                            <li><strong>Aportación:</strong> Reduce base imponible (máx. 1.500€/año)</li>
+                            <li><strong>Rescate:</strong> Tributa como rendimiento del trabajo</li>
+                            <li><strong>Problema:</strong> Tipo marginal alto al rescatar</li>
+                        </ul>
+                        <div class="tax-warning">
+                            ❌ Iliquidez hasta jubilación + tributación elevada
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla comparativa -->
+                <h3>📊 Comparativa Fiscal Rápida</h3>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Ventaja Principal</th>
+                            <th>Desventaja Principal</th>
+                            <th>Ideal Para</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fondos Indexados</strong></td>
+                            <td>✅ Traspasos sin tributar</td>
+                            <td>❌ Comisiones más altas</td>
+                            <td>Rebalanceos frecuentes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ETFs Acumulación</strong></td>
+                            <td>✅ Bajas comisiones</td>
+                            <td>❌ Sin ventaja traspaso</td>
+                            <td>Buy & Hold largo plazo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acciones Individuales</strong></td>
+                            <td>✅ Control total</td>
+                            <td>❌ Dividendos tributan</td>
+                            <td>Inversores activos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plan de Pensiones</strong></td>
+                            <td>✅ Deducción fiscal</td>
+                            <td>❌ Iliquidez total</td>
+                            <td>Rentas muy altas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Optimización Fiscal -->
+        <section id="optimizacion-fiscal">
+            <div class="card">
+                <h2>🎯 Estrategias de Optimización Fiscal</h2>
+                
+                <div class="strategy-grid">
+                    <div class="optimization-card">
+                        <h3>1️⃣ Tax Loss Harvesting</h3>
+                        <p>Vender posiciones en pérdidas para compensar ganancias.</p>
+                        <h4>Cómo hacerlo:</h4>
+                        <ol>
+                            <li>Identifica posiciones en pérdidas en diciembre</li>
+                            <li>Vende para materializar la pérdida</li>
+                            <li>Compensa con las ganancias del año</li>
+                            <li>Recompra después de 2 meses (evitar regla anti-aplicación)</li>
+                        </ol>
+                        <div class="tax-benefit">
+                            💰 Ahorro potencial: 19-28% de las pérdidas compensadas
+                        </div>
+                    </div>
+
+                    <div class="optimization-card">
+                        <h3>2️⃣ Gestión de Dividendos</h3>
+                        <p>Minimizar el impacto fiscal de los dividendos.</p>
+                        <h4>Estrategias:</h4>
+                        <ul>
+                            <li>✅ Priorizar ETFs de acumulación vs distribución</li>
+                            <li>✅ Evitar acciones de alto dividendo en cuentas no protegidas</li>
+                            <li>✅ Considerar empresas de crecimiento sin dividendo</li>
+                        </ul>
+                        <div class="alert alert-info">
+                            Los dividendos de empresas españolas tienen retención del 19% automática
+                        </div>
+                    </div>
+
+                    <div class="optimization-card">
+                        <h3>3️⃣ Método FIFO vs LIFO</h3>
+                        <p>Elegir qué acciones vender para optimizar impuestos.</p>
+                        <h4>En España:</h4>
+                        <ul>
+                            <li>📋 Obligatorio método FIFO (First In, First Out)</li>
+                            <li>📅 Se venden primero las acciones más antiguas</li>
+                            <li>⚠️ No puedes elegir qué lote vender</li>
+                        </ul>
+                        <div class="tax-warning">
+                            Planifica tus compras sabiendo que venderás las más antiguas primero
+                        </div>
+                    </div>
+
+                    <div class="optimization-card">
+                        <h3>4️⃣ Diferir Tributación</h3>
+                        <p>Retrasar el pago de impuestos el máximo posible.</p>
+                        <h4>Técnicas:</h4>
+                        <ul>
+                            <li>🔄 Usar fondos indexados para rebalancear sin tributar</li>
+                            <li>⏰ No vender hasta necesitar el dinero</li>
+                            <li>📈 Buy & Hold extremo con ETFs de acumulación</li>
+                            <li>🏦 Traspasos entre fondos para cambiar estrategia</li>
+                        </ul>
+                        <div class="tax-benefit">
+                            El dinero no pagado en impuestos sigue generando rentabilidad
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de optimización -->
+                <div class="tax-scenario">
+                    <h3>💡 Caso Práctico: Optimización Anual</h3>
+                    <p>Juan tiene las siguientes posiciones en diciembre 2024:</p>
+                    <div class="scenario-grid">
+                        <div class="scenario-item">
+                            <span>Ganancias realizadas</span>
+                            <span class="scenario-value">+15.000€</span>
+                        </div>
+                        <div class="scenario-item">
+                            <span>Pérdidas latentes</span>
+                            <span class="scenario-value">-8.000€</span>
+                        </div>
+                        <div class="scenario-item">
+                            <span>Dividendos cobrados</span>
+                            <span class="scenario-value">+2.000€</span>
+                        </div>
+                    </div>
+                    
+                    <h4>Estrategia óptima:</h4>
+                    <ol>
+                        <li>Vender las posiciones con -8.000€ de pérdidas</li>
+                        <li>Compensar con los +15.000€ de ganancias</li>
+                        <li>Base imponible final: 7.000€ + 2.000€ = 9.000€</li>
+                        <li><strong>Ahorro fiscal: 1.596€</strong> (8.000€ × 19.95% tipo medio)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brokers y Fiscalidad -->
+        <section id="brokers-fiscalidad">
+            <div class="card">
+                <h2>🏦 Brokers: Nacionales vs Extranjeros</h2>
+                
+                <div class="broker-comparison">
+                    <!-- Brokers Españoles -->
+                    <div class="broker-card recommended">
+                        <span class="broker-badge">Recomendado Principiantes</span>
+                        <h3>🇪🇸 Brokers Españoles</h3>
+                        <p><strong>Ejemplos:</strong> MyInvestor, Openbank, Self Bank, Renta 4</p>
+                        
+                        <h4>✅ Ventajas Fiscales:</h4>
+                        <ul>
+                            <li>📝 Envían datos a Hacienda automáticamente</li>
+                            <li>🎯 Borrador de la renta pre-rellenado</li>
+                            <li>💰 Retenciones automáticas correctas</li>
+                            <li>📊 Informes fiscales en español</li>
+                            <li>🆘 Soporte en tu idioma</li>
+                        </ul>
+                        
+                        <h4>❌ Desventajas:</h4>
+                        <ul>
+                            <li>Comisiones más altas</li>
+                            <li>Menos productos disponibles</li>
+                            <li>Plataformas menos avanzadas</li>
+                        </ul>
+                        
+                        <div class="tax-benefit">
+                            💡 Ideal si valoras la simplicidad fiscal sobre el coste
+                        </div>
+                    </div>
+
+                    <!-- Brokers Extranjeros -->
+                    <div class="broker-card">
+                        <h3>🌍 Brokers Extranjeros</h3>
+                        <p><strong>Ejemplos:</strong> DeGiro, Interactive Brokers, Trading 212</p>
+                        
+                        <h4>✅ Ventajas:</h4>
+                        <ul>
+                            <li>💰 Comisiones mucho más bajas</li>
+                            <li>🌐 Acceso a mercados globales</li>
+                            <li>🛠️ Herramientas profesionales</li>
+                            <li>📊 Más productos (opciones, futuros)</li>
+                        </ul>
+                        
+                        <h4>❌ Obligaciones Fiscales Extra:</h4>
+                        <ul>
+                            <li>📋 Modelo D6 (declaración de cuenta en el extranjero)</li>
+                            <li>💶 Modelo 720 (si superas 50.000€)</li>
+                            <li>📝 Calcular tú mismo las ganancias/pérdidas</li>
+                            <li>🔄 Conversión de divisas</li>
+                            <li>❓ Sin borrador automático</li>
+                        </ul>
+                        
+                        <div class="tax-warning">
+                            ⚠️ Requiere más trabajo fiscal pero ahorra en comisiones
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Obligaciones según broker -->
+                <h3>📋 Obligaciones de Declaración</h3>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>¿Qué es?</th>
+                            <th>¿Cuándo?</th>
+                            <th>Broker Español</th>
+                            <th>Broker Extranjero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>D6</strong></td>
+                            <td>Declaración cuenta extranjera</td>
+                            <td>Enero (año siguiente)</td>
+                            <td>❌ No necesario</td>
+                            <td>✅ Obligatorio</td>
+                        </tr>
+                        <tr>
+                            <td><strong>720</strong></td>
+                            <td>Bienes en el extranjero</td>
+                            <td>Marzo (si > 50.000€)</td>
+                            <td>❌ No necesario</td>
+                            <td>✅ Si > 50.000€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>100</strong></td>
+                            <td>Declaración de la Renta</td>
+                            <td>Abril-Junio</td>
+                            <td>✅ Automático</td>
+                            <td>✅ Manual</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Declaración de la Renta -->
+        <section id="declaracion-renta">
+            <div class="card">
+                <h2>📝 Declaración de la Renta - Guía Práctica</h2>
+                
+                <h3>📊 ¿Cuándo estás obligado a declarar?</h3>
+                <div class="alert alert-warning">
+                    <p>Debes declarar si cumples alguna de estas condiciones:</p>
+                    <ul>
+                        <li>Ganancias patrimoniales > 1.000€</li>
+                        <li>Rendimientos del capital > 1.600€</li>
+                        <li>Pérdidas patrimoniales de cualquier importe (para compensar)</li>
+                        <li>Cuentas en el extranjero (aunque no hayas ganado)</li>
+                    </ul>
+                </div>
+
+                <h3>📋 Documentación Necesaria</h3>
+                <div class="grid-2">
+                    <div>
+                        <h4>Broker Español:</h4>
+                        <ul>
+                            <li>✅ Informe fiscal anual (lo envían en febrero)</li>
+                            <li>✅ Certificado de retenciones</li>
+                            <li>✅ Todo viene en el borrador</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Broker Extranjero:</h4>
+                        <ul>
+                            <li>📊 Annual Statement del broker</li>
+                            <li>💱 Tipos de cambio del BCE</li>
+                            <li>📝 Excel con todas las operaciones</li>
+                            <li>🧮 Cálculo manual de FIFO</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>🔢 Cómo Calcular las Ganancias/Pérdidas</h3>
+                <div class="tax-calculator">
+                    <h4>Fórmula básica:</h4>
+                    <code>
+                        Ganancia = (Precio Venta × Nº Acciones) - (Precio Compra × Nº Acciones) - Comisiones
+                    </code>
+                    
+                    <h4>Ejemplo con broker extranjero (DeGiro):</h4>
+                    <ol>
+                        <li><strong>Compra:</strong> 100 acciones Apple a $150 (cambio 1.20 $/€) = 12.500€</li>
+                        <li><strong>Venta:</strong> 100 acciones Apple a $180 (cambio 1.10 $/€) = 16.364€</li>
+                        <li><strong>Comisiones:</strong> 10€ compra + 10€ venta = 20€</li>
+                        <li><strong>Ganancia:</strong> 16.364€ - 12.500€ - 20€ = <strong>3.844€</strong></li>
+                        <li><strong>Impuestos:</strong> 3.844€ × 19% = <strong>730€</strong></li>
+                    </ol>
+                </div>
+
+                <h3>⚠️ Errores Comunes a Evitar</h3>
+                <div class="grid-2">
+                    <div class="tax-warning">
+                        <h4>❌ Error 1: Olvidar las minusvalías</h4>
+                        <p>Siempre declara las pérdidas para compensar en años futuros</p>
+                    </div>
+                    <div class="tax-warning">
+                        <h4>❌ Error 2: No declarar cuentas extranjeras</h4>
+                        <p>Multas de 5.000€ mínimo por no presentar el modelo D6</p>
+                    </div>
+                    <div class="tax-warning">
+                        <h4>❌ Error 3: Usar cambio de divisa incorrecto</h4>
+                        <p>Usa siempre el tipo de cambio del BCE del día de la operación</p>
+                    </div>
+                    <div class="tax-warning">
+                        <h4>❌ Error 4: No aplicar método FIFO</h4>
+                        <p>Obligatorio vender primero las acciones más antiguas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendario Fiscal -->
+        <section id="calendario-fiscal">
+            <div class="card">
+                <h2>📅 Calendario Fiscal del Inversor</h2>
+                
+                <div class="fiscal-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Enero</div>
+                        <div class="timeline-content">
+                            <h4>Modelo D6</h4>
+                            <p>Declarar cuentas en brokers extranjeros del año anterior</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Febrero</div>
+                        <div class="timeline-content">
+                            <h4>Recepción de Informes</h4>
+                            <p>Los brokers españoles envían informes fiscales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Marzo</div>
+                        <div class="timeline-content">
+                            <h4>Modelo 720</h4>
+                            <p>Si tienes más de 50.000€ en el extranjero (hasta 31 marzo)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Abril-Junio</div>
+                        <div class="timeline-content">
+                            <h4>Campaña de la Renta</h4>
+                            <p>Presentar declaración con todas las ganancias/pérdidas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Diciembre</div>
+                        <div class="timeline-content">
+                            <h4>Optimización Fiscal</h4>
+                            <p>Último mes para hacer tax loss harvesting y compensar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <h4>💡 Consejo Pro:</h4>
+                    <p>Mantén un Excel actualizado durante el año con todas tus operaciones. En abril solo tendrás que copiar los totales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Casos Prácticos Fiscales -->
+        <section id="casos-practicos-fiscales">
+            <div class="card">
+                <h2>💼 Casos Prácticos de Fiscalidad</h2>
+
+                <!-- Caso 1 -->
+                <div class="optimization-card">
+                    <h3>👨‍💼 Caso 1: Pedro, Inversor Principiante</h3>
+                    <p><strong>Situación:</strong> 10.000€ para invertir, quiere simplicidad fiscal</p>
+                    
+                    <h4>Estrategia Fiscal Óptima:</h4>
+                    <ul>
+                        <li>✅ Broker español (MyInvestor)</li>
+                        <li>✅ Fondo indexado MSCI World (traspasos sin tributar)</li>
+                        <li>✅ Sin necesidad de declaraciones adicionales</li>
+                        <li>✅ Borrador automático en la renta</li>
+                    </ul>
+                    
+                    <div class="tax-benefit">
+                        Resultado: Máxima simplicidad, puede rebalancear sin tributar
+                    </div>
+                </div>
+
+                <!-- Caso 2 -->
+                <div class="optimization-card">
+                    <h3>👩‍💻 Caso 2: María, Inversora Avanzada</h3>
+                    <p><strong>Situación:</strong> 100.000€ cartera, opera frecuentemente</p>
+                    
+                    <h4>Estrategia Fiscal Óptima:</h4>
+                    <ul>
+                        <li>✅ Interactive Brokers (comisiones mínimas)</li>
+                        <li>✅ ETFs de acumulación para el core (70%)</li>
+                        <li>✅ Trading con el 30% restante</li>
+                        <li>✅ Tax loss harvesting agresivo en diciembre</li>
+                        <li>✅ Software de gestión fiscal (CoinTracking adaptado)</li>
+                    </ul>
+                    
+                    <div class="tax-warning">
+                        Obligaciones: Modelo D6 + Modelo 720 + cálculo manual
+                    </div>
+                </div>
+
+                <!-- Caso 3 -->
+                <div class="optimization-card">
+                    <h3>👨‍👩‍👧 Caso 3: Familia con Objetivos a Largo Plazo</h3>
+                    <p><strong>Situación:</strong> Ahorro de 500€/mes para la universidad de los hijos (15 años)</p>
+                    
+                    <h4>Estrategia Fiscal Óptima:</h4>
+                    <ul>
+                        <li>✅ Combinación: 70% fondos indexados + 30% ETFs</li>
+                        <li>✅ Fondos para rebalancear sin coste fiscal</li>
+                        <li>✅ ETFs acumulación para buy & hold extremo</li>
+                        <li>✅ Cuenta a nombre del menor (posibles ventajas)</li>
+                        <li>✅ No vender nada hasta necesitar el dinero</li>
+                    </ul>
+                    
+                    <div class="tax-benefit">
+                        Resultado: Diferimiento fiscal máximo durante 15 años
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumen y Recomendaciones -->
+        <section id="resumen-fiscal">
+            <div class="card">
+                <h2>🎯 Resumen y Recomendaciones Finales</h2>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3>✅ Para Principiantes:</h3>
+                        <ol>
+                            <li>Usa un broker español</li>
+                            <li>Invierte en fondos indexados</li>
+                            <li>Olvídate de complicaciones fiscales</li>
+                            <li>Revisa el borrador en abril</li>
+                        </ol>
+                    </div>
+                    
+                    <div>
+                        <h3>✅ Para Avanzados:</h3>
+                        <ol>
+                            <li>Broker extranjero para menores costes</li>
+                            <li>ETFs de acumulación</li>
+                            <li>Tax loss harvesting anual</li>
+                            <li>Excel con todas las operaciones</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="alert alert-success">
+                    <h3>🏆 La Estrategia Ganadora:</h3>
+                    <p><strong>Minimiza los eventos fiscales:</strong> Cuanto menos vendas, menos impuestos pagas. El buy & hold no es solo una buena estrategia de inversión, también es fiscalmente óptima.</p>
+                </div>
+
+                <div class="tax-scenario">
+                    <h3>💰 Impacto de la Optimización Fiscal</h3>
+                    <p>Con una cartera de 50.000€ y rentabilidad del 8% anual:</p>
+                    <div class="scenario-grid">
+                        <div class="scenario-item">
+                            <span>Sin optimización</span>
+                            <span class="scenario-value">-950€/año</span>
+                        </div>
+                        <div class="scenario-item">
+                            <span>Con optimización</span>
+                            <span class="scenario-value">-380€/año</span>
+                        </div>
+                        <div class="scenario-item">
+                            <span>Ahorro anual</span>
+                            <span class="scenario-value">+570€</span>
+                        </div>
+                        <div class="scenario-item">
+                            <span>Ahorro en 20 años</span>
+                            <span class="scenario-value">+25.000€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enlaces y Recursos -->
+        <div class="card">
+            <h3>🔗 Enlaces y Recursos Útiles</h3>
+            <div class="grid-2">
+                <div>
+                    <h4>Oficiales:</h4>
+                    <ul>
+                        <li><a href="https://sede.agenciatributaria.gob.es" target="_blank">Agencia Tributaria</a></li>
+                        <li><a href="https://www.bde.es/bde/es/" target="_blank">Banco de España (tipos de cambio)</a></li>
+                        <li><a href="https://www.cnmv.es" target="_blank">CNMV - Educación financiera</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Herramientas:</h4>
+                    <ul>
+                        <li><a href="../herramientas/calculadora-fiscal.html">Calculadora Fiscal (próximamente)</a></li>
+                        <li><a href="../recursos/plantilla-excel-fiscal.xlsx">Plantilla Excel Operaciones</a></li>
+                        <li><a href="../recursos/guia-modelo-720.pdf">Guía Modelo 720</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación Universal del Curso -->
+        <div class="course-navigation">
+            <a href="estrategias-inversion.html" class="course-nav-btn prev">
+                <span>←</span>
+                <span>Estrategias</span>
+            </a>
+            <div class="course-nav-center">
+                <div class="course-progress">4 de 10</div>
+                <div>Progreso del Curso</div>
+            </div>
+            <a href="asset-allocation.html" class="course-nav-btn next">
+                <span>Asset Allocation</span>
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

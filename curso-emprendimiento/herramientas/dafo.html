@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis DAFO Interactivo | Curso Emprendimiento meskeIA</title>
+    <meta name="description" content="Herramienta interactiva para hacer tu análisis DAFO. Identifica las fortalezas, oportunidades, debilidades y amenazas de tu proyecto emprendedor.">
+    <meta name="keywords" content="análisis DAFO, FODA, SWOT, fortalezas, oportunidades, debilidades, amenazas, emprendimiento, estrategia">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/curso-emprendimiento/herramientas/dafo">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Análisis DAFO Interactivo - meskeIA">
+    <meta property="og:description" content="Realiza tu análisis DAFO de forma interactiva. Identifica fortalezas, oportunidades, debilidades y amenazas.">
+    <meta property="og:url" content="https://meskeia.com/curso-emprendimiento/herramientas/dafo">
+    
+    <link rel="icon" type="image/png" href="../../icon_meskeia.png">
+
+    <style>
+        :root {
+            /* Paleta meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --primary: #2E86AB;
+            --secondary: #A23B72;
+            --success: #38A169;
+            --warning: #ED8936;
+            --danger: #E53E3E;
+            --border: #E2E8F0;
+            --focus: #EBF8FF;
+            --fortalezas: #4CAF50;
+            --oportunidades: #2196F3;
+            --debilidades: #FF9800;
+            --amenazas: #F44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* DAFO Matrix */
+        .dafo-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dafo-quadrant {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid var(--border);
+            min-height: 400px;
+        }
+
+        .dafo-quadrant.fortalezas {
+            border-color: var(--fortalezas);
+            background: linear-gradient(135deg, rgba(76,175,80,0.05) 0%, rgba(255,255,255,1) 100%);
+        }
+
+        .dafo-quadrant.oportunidades {
+            border-color: var(--oportunidades);
+            background: linear-gradient(135deg, rgba(33,150,243,0.05) 0%, rgba(255,255,255,1) 100%);
+        }
+
+        .dafo-quadrant.debilidades {
+            border-color: var(--debilidades);
+            background: linear-gradient(135deg, rgba(255,152,0,0.05) 0%, rgba(255,255,255,1) 100%);
+        }
+
+        .dafo-quadrant.amenazas {
+            border-color: var(--amenazas);
+            background: linear-gradient(135deg, rgba(244,67,54,0.05) 0%, rgba(255,255,255,1) 100%);
+        }
+
+        .quadrant-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .quadrant-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .fortalezas .quadrant-icon {
+            background: var(--fortalezas);
+        }
+
+        .oportunidades .quadrant-icon {
+            background: var(--oportunidades);
+        }
+
+        .debilidades .quadrant-icon {
+            background: var(--debilidades);
+        }
+
+        .amenazas .quadrant-icon {
+            background: var(--amenazas);
+        }
+
+        .quadrant-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .quadrant-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .quadrant-textarea {
+            width: 100%;
+            min-height: 250px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        .quadrant-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .quadrant-textarea::placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2571a3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #8e3466;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Example section */
+        .example-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .example-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .example-header h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .example-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .example-content {
+            display: none;
+        }
+
+        .example-content.show {
+            display: block;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .example-quadrant {
+            background: rgba(255,255,255,0.5);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid;
+        }
+
+        .example-quadrant.fortalezas { border-left-color: var(--fortalezas); }
+        .example-quadrant.oportunidades { border-left-color: var(--oportunidades); }
+        .example-quadrant.debilidades { border-left-color: var(--debilidades); }
+        .example-quadrant.amenazas { border-left-color: var(--amenazas); }
+
+        .example-quadrant h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .example-quadrant ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-quadrant li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .example-quadrant li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 80px 15px 40px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .dafo-matrix {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .quadrant-textarea {
+                min-height: 200px;
+            }
+
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Print styles */
+        @media print {
+            .meskeia-logo-container,
+            .action-buttons,
+            .example-section,
+            .back-link {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .dafo-matrix {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../curso-emprendimiento.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Análisis DAFO de tu Proyecto</h1>
+            <p>Identifica las <strong>Fortalezas</strong> y <strong>Oportunidades</strong> que puedes aprovechar, junto con las <strong>Debilidades</strong> que debes mejorar y las <strong>Amenazas</strong> que debes vigilar. Esta matriz te ayudará a tomar decisiones estratégicas fundamentales.</p>
+        </div>
+
+        <!-- Progress indicator -->
+        <div class="progress-indicator">
+            <p><strong id="progress-text">0 de 4 cuadrantes completados</strong></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Example section -->
+        <div class="example-section">
+            <div class="example-header">
+                <h3>📚 Ejemplo: Startup de Delivery Sostenible en España</h3>
+                <button class="example-toggle" onclick="toggleExample()">Ver ejemplo</button>
+            </div>
+            <div class="example-content" id="example-content">
+                <div class="example-grid">
+                    <div class="example-quadrant fortalezas">
+                        <h4>💪 Fortalezas</h4>
+                        <ul>
+                            <li>Equipo con experiencia en logística</li>
+                            <li>Tecnología propia desarrollada</li>
+                            <li>Marca diferenciada (sostenibilidad)</li>
+                            <li>Alianzas con restaurantes locales</li>
+                            <li>Modelo financiero validado</li>
+                        </ul>
+                    </div>
+                    <div class="example-quadrant oportunidades">
+                        <h4>🚀 Oportunidades</h4>
+                        <ul>
+                            <li>Crecimiento del mercado delivery post-COVID</li>
+                            <li>Mayor conciencia ecológica de consumidores</li>
+                            <li>Ayudas europeas para proyectos verdes</li>
+                            <li>Ciudades implementando zonas de bajas emisiones</li>
+                            <li>Tendencia hacia consumo local</li>
+                        </ul>
+                    </div>
+                    <div class="example-quadrant debilidades">
+                        <h4>⚠️ Debilidades</h4>
+                        <ul>
+                            <li>Capital inicial limitado</li>
+                            <li>Equipo pequeño y sin marketing digital</li>
+                            <li>Sin presencia en redes sociales</li>
+                            <li>Dependencia de pocos proveedores clave</li>
+                            <li>Tecnología aún en fase beta</li>
+                        </ul>
+                    </div>
+                    <div class="example-quadrant amenazas">
+                        <h4>🚨 Amenazas</h4>
+                        <ul>
+                            <li>Competencia de grandes plataformas (Glovo, Uber Eats)</li>
+                            <li>Posible recesión económica</li>
+                            <li>Regulaciones más estrictas para delivery</li>
+                            <li>Aumento de costes energéticos</li>
+                            <li>Cambio en hábitos de consumo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAFO Matrix -->
+        <div class="dafo-matrix">
+            <!-- Fortalezas -->
+            <div class="dafo-quadrant fortalezas">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">💪</div>
+                    <div>
+                        <div class="quadrant-title">Fortalezas</div>
+                        <div class="quadrant-description">¿Qué haces mejor que la competencia?</div>
+                    </div>
+                </div>
+                <textarea class="quadrant-textarea" id="fortalezas-textarea" placeholder="Ejemplos:
+• Equipo con mucha experiencia
+• Tecnología propia y diferenciada
+• Red de contactos sólida
+• Ubicación estratégica
+• Producto único en el mercado
+• Marca reconocida
+• Recursos financieros suficientes
+• Procesos eficientes...
+
+Piensa en tus ventajas competitivas, recursos únicos, habilidades especiales del equipo, activos valiosos, etc."></textarea>
+            </div>
+
+            <!-- Oportunidades -->
+            <div class="dafo-quadrant oportunidades">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">🚀</div>
+                    <div>
+                        <div class="quadrant-title">Oportunidades</div>
+                        <div class="quadrant-description">¿Qué tendencias puedes aprovechar?</div>
+                    </div>
+                </div>
+                <textarea class="quadrant-textarea" id="oportunidades-textarea" placeholder="Ejemplos:
+• Crecimiento del mercado online
+• Nuevas tecnologías disponibles
+• Cambios en hábitos de consumo
+• Regulaciones favorables
+• Nichos de mercado desatendidos
+• Alianzas estratégicas posibles
+• Expansión a nuevas zonas geográficas
+• Cambios demográficos favorables...
+
+Identifica tendencias del mercado, cambios tecnológicos, nuevas regulaciones, comportamientos de consumidores, etc."></textarea>
+            </div>
+
+            <!-- Debilidades -->
+            <div class="dafo-quadrant debilidades">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">⚠️</div>
+                    <div>
+                        <div class="quadrant-title">Debilidades</div>
+                        <div class="quadrant-description">¿Dónde debes mejorar?</div>
+                    </div>
+                </div>
+                <textarea class="quadrant-textarea" id="debilidades-textarea" placeholder="Ejemplos:
+• Falta de capital inicial
+• Equipo pequeño o sin experiencia
+• Sin presencia online
+• Procesos poco eficientes
+• Dependencia de pocos clientes
+• Ubicación desfavorable
+• Producto aún sin validar
+• Falta de conocimiento del mercado...
+
+Sé honesto sobre tus limitaciones: recursos, habilidades, procesos, tecnología, etc."></textarea>
+            </div>
+
+            <!-- Amenazas -->
+            <div class="dafo-quadrant amenazas">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">🚨</div>
+                    <div>
+                        <div class="quadrant-title">Amenazas</div>
+                        <div class="quadrant-description">¿Qué riesgos debes vigilar?</div>
+                    </div>
+                </div>
+                <textarea class="quadrant-textarea" id="amenazas-textarea" placeholder="Ejemplos:
+• Competencia agresiva
+• Crisis económica
+• Cambios en regulaciones
+• Nuevas tecnologías disruptivas
+• Cambio de gustos de consumidores
+• Proveedores poco fiables
+• Dependencia excesiva de un canal
+• Barreras de entrada altas...
+
+Considera riesgos externos: competencia, economía, regulaciones, tecnología, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="saveDAFO()">💾 Guardar DAFO</button>
+            <button class="btn btn-outline" onclick="loadExample()">📋 Cargar Ejemplo</button>
+            <button class="btn btn-outline" onclick="clearDAFO()">🗑️ Limpiar Todo</button>
+            <button class="btn btn-secondary" onclick="printDAFO()">📄 Imprimir/PDF</button>
+        </div>
+
+        <!-- Back link -->
+        <div class="back-link">
+            <a href="../curso-emprendimiento.html">← Volver al Curso</a>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // DAFO App Class
+        class DAFOApp {
+            constructor() {
+                this.data = {
+                    fortalezas: '',
+                    oportunidades: '',
+                    debilidades: '',
+                    amenazas: ''
+                };
+                this.init();
+            }
+
+            init() {
+                this.loadFromStorage();
+                this.attachEventListeners();
+                this.updateProgress();
+            }
+
+            attachEventListeners() {
+                // Auto-save on input
+                const textareas = ['fortalezas', 'oportunidades', 'debilidades', 'amenazas'];
+                textareas.forEach(section => {
+                    const textarea = document.getElementById(`${section}-textarea`);
+                    textarea.addEventListener('input', () => {
+                        this.data[section] = textarea.value;
+                        this.updateProgress();
+                        this.autoSave();
+                    });
+                });
+            }
+
+            updateProgress() {
+                const sections = ['fortalezas', 'oportunidades', 'debilidades', 'amenazas'];
+                let completed = 0;
+                
+                sections.forEach(section => {
+                    if (this.data[section] && this.data[section].trim().length > 20) {
+                        completed++;
+                    }
+                });
+
+                const percentage = (completed / 4) * 100;
+                document.getElementById('progress-text').textContent = `${completed} de 4 cuadrantes completados`;
+                document.getElementById('progress-fill').style.width = `${percentage}%`;
+            }
+
+            loadFromStorage() {
+                try {
+                    const saved = localStorage.getItem('meskeia_dafo');
+                    if (saved) {
+                        this.data = JSON.parse(saved);
+                        this.populateForm();
+                    }
+                } catch (error) {
+                    console.log('No hay datos guardados');
+                }
+            }
+
+            populateForm() {
+                Object.keys(this.data).forEach(section => {
+                    const textarea = document.getElementById(`${section}-textarea`);
+                    if (textarea) {
+                        textarea.value = this.data[section] || '';
+                    }
+                });
+            }
+
+            autoSave() {
+                try {
+                    localStorage.setItem('meskeia_dafo', JSON.stringify(this.data));
+                } catch (error) {
+                    console.error('Error al guardar automáticamente');
+                }
+            }
+
+            save() {
+                try {
+                    localStorage.setItem('meskeia_dafo', JSON.stringify(this.data));
+                    this.showToast('✅ DAFO guardado correctamente', 'success');
+                } catch (error) {
+                    this.showToast('❌ Error al guardar', 'error');
+                }
+            }
+
+            loadExample() {
+                const exampleData = {
+                    fortalezas: `• Equipo con experiencia en logística y tecnología
+• Plataforma propia desarrollada con funcionalidades únicas
+• Marca diferenciada enfocada en sostenibilidad
+• Alianzas establecidas con restaurantes locales
+• Modelo de negocio validado con primeros clientes
+• Conocimiento profundo del mercado local
+• Procesos operativos eficientes diseñados desde el inicio`,
+                    
+                    oportunidades: `• Crecimiento explosivo del mercado delivery post-COVID
+• Mayor conciencia ecológica de los consumidores españoles
+• Ayudas y subvenciones europeas para proyectos sostenibles
+• Implementación de zonas de bajas emisiones en ciudades
+• Tendencia hacia el consumo local y de proximidad
+• Regulaciones favorables hacia el transporte sostenible
+• Posibilidad de expansión a otras ciudades españolas`,
+                    
+                    debilidades: `• Capital inicial limitado para competir con grandes plataformas
+• Equipo pequeño sin experiencia en marketing digital masivo
+• Sin presencia consolidada en redes sociales
+• Dependencia de pocos proveedores tecnológicos clave
+• Plataforma tecnológica aún en fase de optimización
+• Falta de reconocimiento de marca fuera del mercado local
+• Procesos de atención al cliente aún por escalar`,
+                    
+                    amenazas: `• Competencia agresiva de Glovo, Uber Eats y Just Eat
+• Posible recesión económica que reduzca gasto en delivery
+• Regulaciones más estrictas para trabajadores de plataformas
+• Aumento de costes energéticos y de combustibles
+• Cambio en hábitos de consumo hacia mayor presencialidad
+• Saturación del mercado en ciudades principales
+• Posible entrada de Amazon u otras grandes tecnológicas`
+                };
+
+                Object.keys(exampleData).forEach(section => {
+                    this.data[section] = exampleData[section];
+                    document.getElementById(`${section}-textarea`).value = exampleData[section];
+                });
+
+                this.updateProgress();
+                this.save();
+                this.showToast('📋 Ejemplo cargado correctamente', 'success');
+            }
+
+            clear() {
+                if (confirm('¿Estás seguro de que quieres limpiar todo el DAFO? Esta acción no se puede deshacer.')) {
+                    this.data = {
+                        fortalezas: '',
+                        oportunidades: '',
+                        debilidades: '',
+                        amenazas: ''
+                    };
+
+                    Object.keys(this.data).forEach(section => {
+                        document.getElementById(`${section}-textarea`).value = '';
+                    });
+
+                    localStorage.removeItem('meskeia_dafo');
+                    this.updateProgress();
+                    this.showToast('🗑️ DAFO limpiado correctamente', 'success');
+                }
+            }
+
+            print() {
+                window.print();
+            }
+
+            showToast(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.className = `toast show ${type}`;
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Global functions
+        let dafoApp;
+
+        function initApp() {
+            dafoApp = new DAFOApp();
+        }
+
+        function saveDAFO() {
+            dafoApp.save();
+        }
+
+        function loadExample() {
+            dafoApp.loadExample();
+        }
+
+        function clearDAFO() {
+            dafoApp.clear();
+        }
+
+        function printDAFO() {
+            dafoApp.print();
+        }
+
+        function toggleExample() {
+            const content = document.getElementById('example-content');
+            const button = document.querySelector('.example-toggle');
+            
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                button.textContent = 'Ver ejemplo';
+            } else {
+                content.classList.add('show');
+                button.textContent = 'Ocultar ejemplo';
+            }
+        }
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

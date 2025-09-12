@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/jaceb/meskeIA/Aplicaciones/**)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Read(//c/Users/jaceb/meskeIA/Web meskeIA/**)",
+      "Bash(git commit:*)",
+      "Bash(find:*)",
+      "Read(//c/Users/jaceb/meskeIA/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

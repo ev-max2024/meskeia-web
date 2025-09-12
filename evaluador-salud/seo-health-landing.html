@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags Optimizados -->
+    <title>Evaluador de Salud Online Gratis | Calculadora IMC, Edad Biológica y Fitness - meskeIA</title>
+    <meta name="description" content="Evaluador de salud integral gratuito. Calcula tu IMC, edad biológica, VO2 máximo, grasa corporal, riesgo cardiovascular y más. Herramienta educativa con 15+ métricas de salud basadas en evidencia científica.">
+    <meta name="keywords" content="evaluador salud, calculadora IMC, edad biológica, VO2 máximo, grasa corporal, riesgo cardiovascular, fitness score, salud integral, bienestar, calculadora médica">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="rating" content="general">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/evaluador-salud">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Evaluador de Salud Online Gratis | 15+ Métricas de Bienestar - meskeIA">
+    <meta property="og:description" content="Herramienta gratuita para evaluar tu salud integral. Calcula IMC, edad biológica, VO2 máximo, grasa corporal y más. Basado en fórmulas médicas validadas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/evaluador-salud">
+    <meta property="og:image" content="https://meskeia.com/assets/og-evaluador-salud.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Evaluador de Salud Integral | Herramienta Gratuita">
+    <meta name="twitter:description" content="Evalúa tu salud con 15+ métricas: IMC, edad biológica, VO2 máximo, grasa corporal. Herramienta educativa gratuita.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-evaluador-salud.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "name": "Evaluador de Salud Integral",
+        "description": "Herramienta educativa gratuita para evaluar múltiples aspectos de la salud: IMC, edad biológica, VO2 máximo, grasa corporal, riesgo cardiovascular y más.",
+        "url": "https://meskeia.com/aplicaciones/evaluador-salud",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "medicalAudience": {
+            "@type": "MedicalAudience",
+            "audienceType": "Patient",
+            "healthCondition": "General Health Assessment"
+        },
+        "about": {
+            "@type": "MedicalCondition",
+            "name": "Evaluación de salud general",
+            "description": "Evaluación integral de múltiples indicadores de salud y bienestar"
+        },
+        "educationalLevel": "Público general",
+        "educationalUse": "Autoevaluación orientativa",
+        "disclaimer": "Esta herramienta proporciona estimaciones orientativas basadas en fórmulas científicas validadas. Los resultados NO sustituyen el consejo médico profesional. Consulte siempre con profesionales de la salud para evaluaciones personalizadas.",
+        "mainEntity": {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "¿Qué métricas de salud calcula el evaluador?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El evaluador calcula más de 15 métricas de salud incluyendo: IMC (Índice de Masa Corporal), porcentaje de grasa corporal, edad biológica, VO2 máximo, fitness score, riesgo cardiovascular, metabolismo basal, peso ideal, zonas de frecuencia cardíaca para entrenamiento, y recomendaciones personalizadas de salud."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Es fiable el cálculo de la edad biológica?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La edad biológica se estima usando múltiples factores validados científicamente como IMC, presión arterial, actividad física, hábitos de sueño y estilo de vida. Aunque proporciona una estimación útil, la edad biológica real solo puede determinarse mediante pruebas médicas especializadas como análisis de telómeros o metilación del ADN."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Cómo se calcula el porcentaje de grasa corporal?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Utilizamos la fórmula CUN-BAE (Clínica Universidad de Navarra - Body Adiposity Estimator), validada científicamente y que considera edad, sexo, peso y altura. Para mayor precisión, se recomienda usar métodos como DEXA o bioimpedancia en un entorno clínico."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Qué es el VO2 máximo y por qué es importante?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El VO2 máximo es la cantidad máxima de oxígeno que tu cuerpo puede utilizar durante el ejercicio. Es el mejor indicador de capacidad cardiovascular y un predictor importante de salud y longevidad. Valores más altos indican mejor condición física y menor riesgo de enfermedades cardiovasculares."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Los resultados sustituyen una consulta médica?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "NO. Esta herramienta es exclusivamente educativa y orientativa. Los resultados se basan en fórmulas estadísticas generales y no consideran condiciones médicas individuales, medicaciones o factores genéticos. Siempre consulte con profesionales de la salud para evaluaciones médicas personalizadas."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Cómo se calcula el riesgo cardiovascular?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El riesgo cardiovascular se estima considerando múltiples factores: presión arterial, IMC, edad, sexo, nivel de actividad física, consumo de alcohol y tabaco, y niveles de estrés. Usamos algoritmos basados en estudios epidemiológicos, pero para una evaluación precisa se requieren análisis de colesterol, glucosa y otros marcadores clínicos."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Es seguro compartir mis datos de salud?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Tu privacidad es nuestra prioridad. Esta herramienta funciona completamente en tu navegador sin enviar datos a ningún servidor. No almacenamos, compartimos ni procesamos tu información personal. Todos los cálculos se realizan localmente en tu dispositivo."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Qué significa el Fitness Score?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El Fitness Score es una puntuación integral de 0-100 que combina múltiples indicadores de condición física: IMC, grasa corporal, VO2 máximo, nivel de actividad física y parámetros cardiovasculares. Una puntuación mayor indica mejor estado físico general."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Con qué frecuencia debo usar el evaluador?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Recomendamos usar el evaluador mensualmente para seguir tu progreso. Sin embargo, los cambios significativos en salud ocurren gradualmente, por lo que evaluaciones cada 2-3 meses pueden ser más representativas de mejoras reales en tu condición física."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Las fórmulas están actualizadas?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sí, utilizamos las fórmulas y referencias más actuales disponibles en la literatura médica, incluyendo las guías de la OMS, American Heart Association, y estudios recientes publicados en revistas médicas revisadas por pares. La herramienta se actualiza regularmente."
+                    }
+                }
+            ]
+        },
+        "operatingSystem": "Web",
+        "applicationCategory": "HealthApplication",
+        "permissions": "No requiere permisos especiales",
+        "price": "0",
+        "priceCurrency": "EUR"
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            --success: #27AE60;
+            --warning: #E67E22;
+            --danger: #E74C3C;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Medical Disclaimer Alert */
+        .medical-alert {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.05) 0%, rgba(231, 76, 60, 0.02) 100%);
+            border: 2px solid var(--danger);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .medical-alert-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--danger);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .medical-alert p {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 134, 171, 0.3);
+            margin: 1rem 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 134, 171, 0.4);
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Metrics Section */
+        .metrics-section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .metrics-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem;
+            background: var(--hover);
+            border-radius: 8px;
+        }
+
+        .metric-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 3rem;
+        }
+
+        .faq-title {
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* How it Works */
+        .how-it-works {
+            background: linear-gradient(135deg, rgba(46, 134, 171, 0.05) 0%, rgba(72, 169, 166, 0.05) 100%);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .privacy-notice {
+            background: var(--hover);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero {
+                padding: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🏥 Evaluador de Salud Integral</h1>
+            <p class="subtitle">Herramienta educativa gratuita con más de 15 métricas de salud y bienestar</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Medical Disclaimer -->
+        <div class="medical-alert">
+            <div class="medical-alert-header">
+                ⚠️ Aviso Médico Importante
+            </div>
+            <p>
+                Esta herramienta proporciona <strong>estimaciones orientativas</strong> basadas en fórmulas científicas validadas. 
+                Los resultados <strong>NO sustituyen</strong> el consejo médico profesional. 
+                Consulte siempre con profesionales de la salud para evaluaciones personalizadas. 
+                No use esta herramienta para diagnóstico o tratamiento de condiciones médicas.
+            </p>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Conoce tu Estado de Salud en 5 Minutos</h2>
+            <p style="margin: 1rem 0; color: var(--text-secondary); font-size: 1.1rem;">
+                Evalúa múltiples aspectos de tu salud con algoritmos basados en evidencia científica
+            </p>
+            <a href="evaluador-salud.html" class="cta-button">
+                🚀 Iniciar Evaluación Gratuita
+            </a>
+            <div class="security-note">
+                🔒 100% Privado - Sin registro - Cálculos en tu dispositivo
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">15+ Métricas de Salud</h3>
+                <p class="feature-description">
+                    IMC, grasa corporal, edad biológica, VO2 máximo, metabolismo basal, 
+                    riesgo cardiovascular y mucho más en una sola herramienta.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔬</div>
+                <h3 class="feature-title">Base Científica</h3>
+                <p class="feature-description">
+                    Fórmulas validadas por organizaciones médicas internacionales 
+                    como la OMS y American Heart Association.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Resultados Visuales</h3>
+                <p class="feature-description">
+                    Gráficos interactivos y comparativas que te ayudan a entender 
+                    tu estado de salud de forma clara y sencilla.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3 class="feature-title">Recomendaciones</h3>
+                <p class="feature-description">
+                    Sugerencias personalizadas basadas en tus resultados para 
+                    mejorar tu salud y bienestar.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Exporta tus Datos</h3>
+                <p class="feature-description">
+                    Descarga tu evaluación en PDF para compartir con tu médico 
+                    o llevar un registro de tu progreso.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3 class="feature-title">100% Privado</h3>
+                <p class="feature-description">
+                    Todos los cálculos se realizan en tu navegador. 
+                    No almacenamos ni compartimos tu información.
+                </p>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="metrics-section">
+            <h2 class="metrics-title">Métricas que Evaluamos</h2>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <span class="metric-icon">⚖️</span>
+                    <span>IMC - Índice de Masa Corporal</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">💪</span>
+                    <span>Porcentaje de Grasa Corporal</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">⏰</span>
+                    <span>Edad Biológica</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">🫁</span>
+                    <span>VO2 Máximo</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">❤️</span>
+                    <span>Riesgo Cardiovascular</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">🔥</span>
+                    <span>Metabolismo Basal</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">🎯</span>
+                    <span>Peso Ideal</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">🏃</span>
+                    <span>Fitness Score</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">💓</span>
+                    <span>Zonas de Frecuencia Cardíaca</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">📏</span>
+                    <span>Índice Cintura-Cadera</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">🩺</span>
+                    <span>Presión Arterial</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">🧬</span>
+                    <span>Masa Muscular</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works -->
+        <section class="how-it-works">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">¿Cómo Funciona?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Introduce tus Datos</h3>
+                    <p>Completa el formulario con información básica como edad, peso, altura y hábitos.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Análisis Automático</h3>
+                    <p>Nuestros algoritmos calculan más de 15 métricas de salud al instante.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Resultados Visuales</h3>
+                    <p>Obtén gráficos claros y comparativas con valores de referencia.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Recomendaciones</h3>
+                    <p>Recibe sugerencias personalizadas para mejorar tu salud.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="faq-title">Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">¿Qué métricas de salud calcula el evaluador?</h3>
+                    <p class="faq-answer">
+                        El evaluador calcula más de 15 métricas incluyendo: IMC, porcentaje de grasa corporal, 
+                        edad biológica, VO2 máximo, fitness score, riesgo cardiovascular, metabolismo basal, 
+                        peso ideal, zonas de frecuencia cardíaca para entrenamiento, y proporciona 
+                        recomendaciones personalizadas basadas en tus resultados.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">¿Es fiable el cálculo de la edad biológica?</h3>
+                    <p class="faq-answer">
+                        La edad biológica se estima usando múltiples factores validados científicamente como IMC, 
+                        presión arterial, actividad física, hábitos de sueño y estilo de vida. Aunque proporciona 
+                        una estimación útil, la edad biológica real solo puede determinarse mediante pruebas 
+                        médicas especializadas como análisis de telómeros o metilación del ADN.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">¿Los resultados sustituyen una consulta médica?</h3>
+                    <p class="faq-answer">
+                        <strong>NO.</strong> Esta herramienta es exclusivamente educativa y orientativa. 
+                        Los resultados se basan en fórmulas estadísticas generales y no consideran condiciones 
+                        médicas individuales, medicaciones o factores genéticos. Siempre consulte con 
+                        profesionales de la salud para evaluaciones médicas personalizadas.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">¿Es seguro compartir mis datos de salud?</h3>
+                    <p class="faq-answer">
+                        Tu privacidad es nuestra prioridad absoluta. Esta herramienta funciona completamente 
+                        en tu navegador sin enviar datos a ningún servidor. No almacenamos, compartimos ni 
+                        procesamos tu información personal. Todos los cálculos se realizan localmente en tu dispositivo.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">¿Qué es el VO2 máximo y por qué es importante?</h3>
+                    <p class="faq-answer">
+                        El VO2 máximo es la cantidad máxima de oxígeno que tu cuerpo puede utilizar durante 
+                        el ejercicio. Es el mejor indicador de capacidad cardiovascular y un predictor importante 
+                        de salud y longevidad. Valores más altos indican mejor condición física y menor riesgo 
+                        de enfermedades cardiovasculares.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">¿Con qué frecuencia debo usar el evaluador?</h3>
+                    <p class="faq-answer">
+                        Recomendamos usar el evaluador mensualmente para seguir tu progreso. Sin embargo, 
+                        los cambios significativos en salud ocurren gradualmente, por lo que evaluaciones 
+                        cada 2-3 meses pueden ser más representativas de mejoras reales en tu condición física.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="hero" style="background: linear-gradient(135deg, rgba(46, 134, 171, 0.05) 0%, rgba(72, 169, 166, 0.05) 100%);">
+            <h2>Comienza tu Evaluación de Salud Ahora</h2>
+            <p style="margin: 1rem 0; color: var(--text-secondary);">
+                Únete a miles de personas que ya han mejorado su salud con información objetiva
+            </p>
+            <a href="evaluador-salud.html" class="cta-button">
+                ✨ Evaluar mi Salud Gratis
+            </a>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                Sin registro • Sin costos ocultos • Resultados inmediatos
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="privacy-notice">
+                <p>🔒 <strong>Privacidad Total:</strong> Esta herramienta no recopila, almacena ni transmite ningún dato personal.</p>
+            </div>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">
+                © 2024 meskeIA - Herramienta educativa de evaluación de salud
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
+                Los resultados son orientativos y no sustituyen el consejo médico profesional
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

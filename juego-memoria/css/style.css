@@ -1,0 +1,770 @@
+:root {
+    /* Backgrounds - Inspirados en Claude */
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    
+    /* Tu identidad de marca */
+    --primary: #2E86AB;
+    --primary-hover: #1e5f7a;
+    --secondary: #48A9A6;
+    
+    /* Textos minimalistas */
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    
+    /* Elementos estructurales */
+    --border: #E5E5E5;
+    --hover: #F5F5F5;
+    --focus: rgba(46,134,171,0.1);
+    
+    /* Colores para las cartas */
+    --card-back: #2E86AB;
+    --card-front: #FFFFFF;
+    --card-matched: #48A9A6;
+    
+    /* Spacing system */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    
+    /* Shadows */
+    --shadow-light: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-medium: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-card: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+/* Contenedor principal del juego centrado */
+.main-game-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Contenido SEO que aparece después del juego */
+.seo-content {
+    padding: var(--spacing-md);
+    background: var(--bg-primary);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.container {
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow-medium);
+    padding: var(--spacing-xl);
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid var(--border);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+h1 {
+    color: var(--text-primary);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 400;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+/* Game Controls */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.control-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.control-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.difficulty-select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 160px;
+}
+
+.difficulty-select:hover {
+    border-color: var(--primary);
+}
+
+.difficulty-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--focus);
+}
+
+/* Buttons */
+.game-buttons {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    letter-spacing: -0.01em;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+
+.btn-outline:hover {
+    background: var(--hover);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+}
+
+/* Stats Panel */
+.stats-panel {
+    display: flex;
+    justify-content: space-around;
+    background: var(--hover);
+    border-radius: 12px;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Game Container */
+.game-container {
+    margin-bottom: var(--spacing-lg);
+}
+
+.game-status {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+#game-message {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Memory Board */
+.memory-board {
+    display: grid;
+    gap: var(--spacing-xs);
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.memory-board.easy {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    max-width: 300px;
+}
+
+.memory-board.medium {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    max-width: 320px;
+}
+
+.memory-board.hard {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    max-width: 320px;
+}
+
+/* Memory Cards */
+.memory-card {
+    aspect-ratio: 1;
+    min-height: 70px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.memory-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+}
+
+.card-front {
+    background: var(--card-back);
+    color: white;
+}
+
+.card-front::after {
+    content: '?';
+    opacity: 0.7;
+}
+
+.card-back {
+    background: var(--card-front);
+    color: var(--text-primary);
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched .card-back {
+    background: var(--card-matched);
+    color: white;
+    animation: matched-glow 0.6s ease-in-out;
+}
+
+.memory-card.disabled {
+    pointer-events: none;
+}
+
+@keyframes matched-glow {
+    0%, 100% { transform: rotateY(180deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.05); }
+}
+
+/* Hover effects */
+.memory-card:not(.flipped):not(.matched):hover .card-inner {
+    transform: scale(1.02);
+}
+
+.memory-card:not(.flipped):not(.matched):hover .card-front {
+    background: var(--primary-hover);
+}
+
+/* Achievements */
+.achievements {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(46,134,171,0.05);
+    border-radius: 12px;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.achievement-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.achievement-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.achievement-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+/* Game States */
+.game-won #game-message {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+    position: fixed;
+    bottom: var(--spacing-sm);
+    right: var(--spacing-md);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Logo meskeIA */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* Responsive Design - Mobile First */
+@media screen and (max-width: 768px) {
+    * {
+        box-sizing: border-box !important;
+    }
+    
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .main-game-wrapper {
+        padding: 16px !important;
+        min-height: 100vh !important;
+        padding-top: 70px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .container {
+        padding: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+    }
+    
+    h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .game-controls {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .game-buttons {
+        justify-content: center !important;
+        gap: 12px !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .btn {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Memory Board Responsive */
+    .memory-board {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .memory-board.easy {
+        max-width: 240px !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+    }
+    
+    .memory-board.medium {
+        max-width: 260px !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 5px !important;
+    }
+    
+    .memory-board.hard {
+        max-width: 260px !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 4px !important;
+    }
+    
+    .memory-card {
+        min-height: 55px !important;
+        max-height: 65px !important;
+        width: 100% !important;
+        aspect-ratio: 1 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .card-front, .card-back {
+        font-size: 1.2rem !important;
+        border-radius: 6px !important;
+    }
+    
+    .card-front::after {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Stats and Achievements */
+    .stats-panel {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 12px !important;
+        justify-content: center !important;
+    }
+    
+    .stat-item {
+        min-width: 80px !important;
+        flex: 1 !important;
+        text-align: center !important;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem !important;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem !important;
+    }
+    
+    .achievements {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 12px !important;
+        justify-content: center !important;
+    }
+    
+    .achievement-item {
+        min-width: 120px !important;
+        flex: 1 !important;
+        text-align: center !important;
+    }
+    
+    .achievement-label {
+        font-size: 0.65rem !important;
+    }
+    
+    .achievement-value {
+        font-size: 1rem !important;
+    }
+    
+    /* Logo and Footer */
+    .meskeia-logo-container {
+        top: 8px !important;
+        left: 8px !important;
+        padding: 4px 8px !important;
+        gap: 6px !important;
+        position: fixed !important;
+        z-index: 1000 !important;
+    }
+    
+    .meskeia-logo-icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .meskeia-logo-icon::before {
+        width: 8px !important;
+        height: 8px !important;
+        top: 6px !important;
+        left: 6px !important;
+    }
+    
+    .meskeia-logo-icon::after {
+        width: 3px !important;
+        height: 3px !important;
+        top: 8.5px !important;
+        left: 8.5px !important;
+    }
+    
+    .meskeia-logo-text {
+        font-size: 0.9rem !important;
+    }
+    
+    .footer-copyright {
+        bottom: 8px !important;
+        right: 8px !important;
+        left: 8px !important;
+        font-size: 0.75rem !important;
+        text-align: center !important;
+        position: static !important;
+        margin-top: 16px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    /* SEO Content Responsive */
+    .seo-content {
+        padding: 16px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+    
+    .seo-content * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+    }
+    
+    .seo-content > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .seo-content div[style] {
+        max-width: none !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+    
+    .seo-content h2 {
+        font-size: 1.3rem !important;
+        text-align: center !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .seo-content h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 12px !important;
+    }
+    
+    /* Convertir grids a columna única */
+    .seo-content div[style*="grid"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    /* Cajas de contenido */
+    .seo-content div[style*="padding"] {
+        padding: 16px !important;
+        margin-bottom: 16px !important;
+        border-radius: 12px !important;
+    }
+    
+    .seo-content ul {
+        padding-left: 20px !important;
+        margin: 8px 0 !important;
+    }
+    
+    .seo-content p {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+        margin: 8px 0 !important;
+    }
+    
+    .seo-content details {
+        width: 100% !important;
+        margin-bottom: 12px !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+    }
+    
+    .seo-content summary {
+        font-size: 0.95rem !important;
+        padding: 8px 0 !important;
+    }
+}

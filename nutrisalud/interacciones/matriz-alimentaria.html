@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Matriz Alimentaria Importa - NutriSalud</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Colores específicos para matriz - Tonalidades verdes de la paleta meskeIA */
+            --matrix-primary: #48A9A6;  /* Secondary como principal */
+            --matrix-secondary: #5DB3B0;  /* Versión más clara */
+            --matrix-accent: #3A9996;  /* Versión más oscura */
+            --matrix-light: rgba(72, 169, 166, 0.08);  /* Background sutil */
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-neural-network {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .meskeia-neural-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .meskeia-neural-dot:nth-child(2) { animation-delay: 0.5s; }
+        .meskeia-neural-dot:nth-child(3) { animation-delay: 1s; }
+        .meskeia-neural-dot:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .meskeia-logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .meske {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ia {
+            color: #F18F01;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navegación breadcrumb */
+        .breadcrumb {
+            background: var(--bg-card);
+            padding: 20px 0;
+            margin-top: 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        /* Header del artículo */
+        .article-header {
+            background: linear-gradient(135deg, var(--matrix-primary) 0%, var(--matrix-secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid var(--matrix-primary);
+            padding-left: 20px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* Cards de ejemplos de matriz */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .matrix-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matrix-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--matrix-primary), var(--matrix-secondary));
+        }
+
+        .matrix-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .matrix-icon {
+            font-size: 1.5rem;
+        }
+
+        .matrix-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .matrix-comparison {
+            background: var(--matrix-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--matrix-primary);
+        }
+
+        .comparison-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+            padding: 10px;
+            background: var(--bg-card);
+            border-radius: 6px;
+        }
+
+        .food-state {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .bioavailability {
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .bioavailability.high {
+            background: rgba(72, 169, 166, 0.2);
+            color: var(--matrix-primary);
+        }
+
+        .bioavailability.medium {
+            background: rgba(46, 134, 171, 0.2);
+            color: var(--primary);
+        }
+
+        .bioavailability.low {
+            background: rgba(102, 102, 102, 0.2);
+            color: var(--text-secondary);
+        }
+
+        /* Sección de procesamiento */
+        .processing-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .processing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .processing-method {
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .processing-method:hover {
+            border-color: var(--matrix-primary);
+            transform: translateY(-3px);
+        }
+
+        .processing-method.beneficial {
+            border-color: var(--matrix-primary);
+            background: var(--matrix-light);
+        }
+
+        .processing-method.neutral {
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .processing-method.detrimental {
+            border-color: var(--text-muted);
+            background: rgba(102, 102, 102, 0.05);
+        }
+
+        .processing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .processing-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .processing-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Calculadora de procesamiento */
+        .calculator-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid var(--border);
+        }
+
+        .calculator-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .input-field {
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-primary);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--matrix-primary);
+        }
+
+        .analyze-btn {
+            background: var(--matrix-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .analyze-btn:hover {
+            background: var(--matrix-accent);
+            transform: translateY(-2px);
+        }
+
+        .analysis-result {
+            background: var(--matrix-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid var(--matrix-primary);
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .result-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--matrix-primary);
+            margin-bottom: 5px;
+        }
+
+        .result-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .optimization-tips {
+            margin-top: 20px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+
+        .tip-icon {
+            color: var(--matrix-primary);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .tip-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Tips destacados */
+        .tip-box {
+            background: var(--matrix-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--matrix-primary);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Enlaces a páginas relacionadas */
+        .related-links {
+            background: linear-gradient(135deg, var(--focus) 0%, rgba(72, 169, 166, 0.1) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .related-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .related-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .related-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Navegación inferior */
+        .bottom-nav {
+            background: var(--bg-card);
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.2rem;
+            }
+
+            .matrix-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .processing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .comparison-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .related-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../nutrisalud.html'" style="cursor: pointer;">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="../nutrisalud.html">NutriSalud</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Interacciones y Sinergias</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>La Matriz Alimentaria Importa</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header del artículo -->
+    <header class="article-header">
+        <div class="container">
+            <h1 class="article-title">La Matriz Alimentaria Importa</h1>
+            <p class="article-subtitle">
+                Descubre cómo la estructura física de los alimentos puede multiplicar hasta por 10 veces la biodisponibilidad de sus nutrientes
+            </p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Introducción -->
+            <section class="content-section">
+                <h2 class="section-title">Más Allá del Contenido: La Estructura Importa</h2>
+                <div class="section-content">
+                    <p>Dos alimentos pueden tener exactamente la misma cantidad de un nutriente en su tabla nutricional, pero tu cuerpo puede absorber cantidades completamente diferentes dependiendo de <strong>cómo están estructurados físicamente</strong>. La matriz alimentaria se refiere a la organización tridimensional de los componentes del alimento: cómo están unidos los nutrientes, qué barreras celulares los protegen, y cómo interactúan entre sí a nivel molecular.</p>
+                    
+                    <p>Esta estructura determina la <strong>liberación, solubilización y absorción</strong> de los nutrientes durante la digestión. Un tomate fresco y una salsa de tomate cocida contienen licopeno, pero la biodisponibilidad puede variar hasta 1000% debido únicamente a cómo está organizada la matriz alimentaria.</p>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🧬 Ejemplo revelador
+                    </div>
+                    <div class="tip-content">
+                        Las almendras enteras liberan solo el 60% de sus calorías durante la digestión, mientras que la mantequilla de almendras libera el 90%. La diferencia no está en el contenido nutricional, sino en cómo la estructura celular protege o expone los nutrientes a las enzimas digestivas.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ejemplos específicos de matriz -->
+            <section class="content-section">
+                <h2 class="section-title">Casos Emblemáticos: Cuando la Forma lo Cambia Todo</h2>
+                
+                <div class="matrix-grid">
+                    
+                    <!-- Tomate y Licopeno -->
+                    <div class="matrix-card">
+                        <h3 class="matrix-title">
+                            <span class="matrix-icon">🍅</span>
+                            Tomate: Crudo vs Cocido
+                        </h3>
+                        <p class="matrix-description">
+                            El licopeno en tomates frescos está encapsulado en cromoplastos con paredes celulares rígidas. El calor rompe estas estructuras, liberando el licopeno y haciéndolo accesible para la absorción.
+                        </p>
+                        <div class="matrix-comparison">
+                            <div class="comparison-title">Biodisponibilidad del licopeno:</div>
+                            <div class="comparison-row">
+                                <span class="food-state">Tomate fresco</span>
+                                <span class="bioavailability low">Baja (5%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Salsa de tomate cocida</span>
+                                <span class="bioavailability high">Alta (35%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Concentrado + aceite</span>
+                                <span class="bioavailability high">Muy alta (50%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zanahoria y Betacaroteno -->
+                    <div class="matrix-card">
+                        <h3 class="matrix-title">
+                            <span class="matrix-icon">🥕</span>
+                            Zanahoria: Procesamiento del Betacaroteno
+                        </h3>
+                        <p class="matrix-description">
+                            Los betacarotenos están unidos a proteínas y encerrados en paredes celulares. La cocción y el triturado rompen estas barreras, mientras que las grasas facilitan la formación de micelas para absorción.
+                        </p>
+                        <div class="matrix-comparison">
+                            <div class="comparison-title">Absorción de betacaroteno:</div>
+                            <div class="comparison-row">
+                                <span class="food-state">Zanahoria cruda entera</span>
+                                <span class="bioavailability low">Muy baja (1%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Zanahoria rallada cruda</span>
+                                <span class="bioavailability low">Baja (3%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Zanahoria cocida</span>
+                                <span class="bioavailability medium">Media (15%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Puré con aceite</span>
+                                <span class="bioavailability high">Alta (40%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Espinacas y Hierro -->
+                    <div class="matrix-card">
+                        <h3 class="matrix-title">
+                            <span class="matrix-icon">🥬</span>
+                            Espinacas: Liberación de Minerales
+                        </h3>
+                        <p class="matrix-description">
+                            El hierro en espinacas está quelado con ácidos orgánicos y encerrado en cloroplastos. La cocción desnaturaliza proteínas y debilita las paredes celulares, liberando el hierro para la absorción.
+                        </p>
+                        <div class="matrix-comparison">
+                            <div class="comparison-title">Disponibilidad de hierro:</div>
+                            <div class="comparison-row">
+                                <span class="food-state">Espinacas crudas</span>
+                                <span class="bioavailability low">Baja (2%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Espinacas blanqueadas</span>
+                                <span class="bioavailability medium">Media (8%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Espinacas salteadas</span>
+                                <span class="bioavailability high">Alta (12%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legumbres -->
+                    <div class="matrix-card">
+                        <h3 class="matrix-title">
+                            <span class="matrix-icon">🫘</span>
+                            Legumbres: Remojo y Cocción
+                        </h3>
+                        <p class="matrix-description">
+                            Las legumbres contienen fitatos y oligosacáridos en estructuras complejas. El remojo activa enzimas que degradan estos compuestos, mientras que la cocción completa la liberación de nutrientes.
+                        </p>
+                        <div class="matrix-comparison">
+                            <div class="comparison-title">Digestibilidad de proteínas:</div>
+                            <div class="comparison-row">
+                                <span class="food-state">Legumbres secas</span>
+                                <span class="bioavailability low">Indigerible</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Remojadas 12h</span>
+                                <span class="bioavailability low">Baja (30%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Cocidas 60min</span>
+                                <span class="bioavailability high">Alta (85%)</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="food-state">Fermentadas</span>
+                                <span class="bioavailability high">Muy alta (95%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Métodos de procesamiento -->
+            <section class="processing-section">
+                <h2 class="section-title">Métodos de Procesamiento y su Impacto Nutricional</h2>
+                
+                <div class="processing-grid">
+                    
+                    <div class="processing-method beneficial">
+                        <span class="processing-icon">🔥</span>
+                        <div class="processing-title">Cocción Suave</div>
+                        <div class="processing-description">
+                            Vapor, hervido ligero, salteado. Rompe paredes celulares sin destruir nutrientes termosensibles. Ideal para carotenoides y minerales.
+                        </div>
+                    </div>
+
+                    <div class="processing-method beneficial">
+                        <span class="processing-icon">🫧</span>
+                        <div class="processing-title">Fermentación</div>
+                        <div class="processing-description">
+                            Microorganismos descomponen antinutrientes y pre-digieren proteínas. Mejora dramáticamente la biodisponibilidad de vitaminas B y minerales.
+                        </div>
+                    </div>
+
+                    <div class="processing-method beneficial">
+                        <span class="processing-icon">💧</span>
+                        <div class="processing-title">Remojo Prolongado</div>
+                        <div class="processing-description">
+                            Activa enzimas endógenas que degradan fitatos y taninos. Reduce antinutrientes sin pérdida de vitaminas. Esencial para legumbres y cereales.
+                        </div>
+                    </div>
+
+                    <div class="processing-method neutral">
+                        <span class="processing-icon">🧊</span>
+                        <div class="processing-title">Congelación</div>
+                        <div class="processing-description">
+                            Cristales de hielo rompen paredes celulares. Puede mejorar la liberación de algunos nutrientes, pero también puede oxidar vitaminas sensibles.
+                        </div>
+                    </div>
+
+                    <div class="processing-method neutral">
+                        <span class="processing-icon">🔪</span>
+                        <div class="processing-title">Triturado/Licuado</div>
+                        <div class="processing-description">
+                            Aumenta superficie de contacto y rompe estructuras celulares. Mejora acceso a nutrientes, pero puede oxidar vitaminas por exposición al aire.
+                        </div>
+                    </div>
+
+                    <div class="processing-method detrimental">
+                        <span class="processing-icon">🔥</span>
+                        <div class="processing-title">Fritura Profunda</div>
+                        <div class="processing-description">
+                            Altas temperaturas destruyen vitaminas termosensibles y pueden formar compuestos tóxicos. La matriz grasa puede secuestrar vitaminas liposolubles.
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Calculadora de procesamiento -->
+            <section class="calculator-section">
+                <h3 class="calculator-title">🧪 Analizador de Matriz Alimentaria</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                    Evalúa cómo diferentes métodos de procesamiento afectan la biodisponibilidad de tus alimentos
+                </p>
+                
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Tipo de alimento:</label>
+                        <select class="input-field" id="foodType">
+                            <option value="vegetales">Vegetales (zanahoria, tomate, espinacas)</option>
+                            <option value="legumbres">Legumbres (lentejas, garbanzos, judías)</option>
+                            <option value="cereales">Cereales integrales (avena, quinoa)</option>
+                            <option value="frutos_secos">Frutos secos (almendras, nueces)</option>
+                            <option value="frutas">Frutas (cítricos, bayas)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Método de procesamiento:</label>
+                        <select class="input-field" id="processing">
+                            <option value="crudo">Crudo/Sin procesar</option>
+                            <option value="cocido_vapor">Cocido al vapor</option>
+                            <option value="cocido_agua">Hervido en agua</option>
+                            <option value="salteado">Salteado con aceite</option>
+                            <option value="asado">Asado/Horneado</option>
+                            <option value="triturado">Triturado/Licuado</option>
+                            <option value="fermentado">Fermentado</option>
+                            <option value="remojado">Remojado 8-12h</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Nutriente de interés:</label>
+                        <select class="input-field" id="nutrient">
+                            <option value="carotenoides">Carotenoides (vitamina A)</option>
+                            <option value="licopeno">Licopeno</option>
+                            <option value="hierro">Hierro no hemo</option>
+                            <option value="vitamina_c">Vitamina C</option>
+                            <option value="proteinas">Proteínas</option>
+                            <option value="minerales">Minerales (zinc, magnesio)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="analyze-btn" onclick="analyzeMatrix()">Analizar Biodisponibilidad</button>
+                
+                <div class="analysis-result" id="analysisResult">
+                    <div class="result-header">
+                        <div class="result-score" id="bioScore"></div>
+                        <div class="result-description" id="bioDescription"></div>
+                    </div>
+                    <div class="optimization-tips" id="optimizationTips"></div>
+                </div>
+            </section>
+
+            <!-- Tips prácticos -->
+            <section class="content-section">
+                <h2 class="section-title">Principios para Optimizar la Matriz Alimentaria</h2>
+                
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🌡️ Regla del calor inteligente
+                    </div>
+                    <div class="tip-content">
+                        Aplica calor suave a vegetales ricos en carotenoides (tomate, zanahoria, espinacas) para mejorar biodisponibilidad. Evita altas temperaturas con alimentos ricos en vitamina C (frutas, pimientos).
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        💧 El poder del remojo
+                    </div>
+                    <div class="tip-content">
+                        Remoja legumbres, cereales integrales y frutos secos durante 8-12 horas. Esto activa enzimas que degradan fitatos y mejora la digestibilidad de proteínas hasta un 300%.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        🫒 Grasa como vehículo
+                    </div>
+                    <div class="tip-content">
+                        Combina vegetales ricos en carotenoides con grasas saludables (aceite de oliva, aguacate, frutos secos). Un 5-15% de grasa en la comida puede multiplicar por 10 la absorción de vitaminas liposolubles.
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">
+                        ⚖️ Balance procesamiento-nutrientes
+                    </div>
+                    <div class="tip-content">
+                        No existe un método perfecto universal. Rota entre alimentos crudos (vitamina C, enzimas) y cocidos (carotenoides, minerales) para obtener el máximo espectro nutricional.
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="bottom-nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="timing-nutricional.html" class="nav-btn secondary">← Timing Nutricional Óptimo</a>
+                <a href="../nutrisalud.html" class="nav-btn">Volver al inicio →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        function analyzeMatrix() {
+            const foodType = document.getElementById('foodType').value;
+            const processing = document.getElementById('processing').value;
+            const nutrient = document.getElementById('nutrient').value;
+            
+            // Base de datos de efectos del procesamiento
+            const matrixEffects = {
+                vegetales: {
+                    crudo: { carotenoides: 10, licopeno: 5, vitamina_c: 100, minerales: 30 },
+                    cocido_vapor: { carotenoides: 60, licopeno: 40, vitamina_c: 75, minerales: 50 },
+                    cocido_agua: { carotenoides: 45, licopeno: 30, vitamina_c: 50, minerales: 40 },
+                    salteado: { carotenoides: 80, licopeno: 70, vitamina_c: 60, minerales: 60 },
+                    asado: { carotenoides: 70, licopeno: 60, vitamina_c: 40, minerales: 55 },
+                    triturado: { carotenoides: 25, licopeno: 15, vitamina_c: 90, minerales: 40 }
+                },
+                legumbres: {
+                    crudo: { proteinas: 0, hierro: 5, minerales: 10 },
+                    remojado: { proteinas: 30, hierro: 15, minerales: 25 },
+                    cocido_agua: { proteinas: 85, hierro: 45, minerales: 60 },
+                    fermentado: { proteinas: 95, hierro: 70, minerales: 85 }
+                },
+                cereales: {
+                    crudo: { proteinas: 20, hierro: 10, minerales: 15 },
+                    remojado: { proteinas: 40, hierro: 25, minerales: 35 },
+                    cocido_agua: { proteinas: 80, hierro: 40, minerales: 55 },
+                    fermentado: { proteinas: 90, hierro: 65, minerales: 80 }
+                },
+                frutos_secos: {
+                    crudo: { proteinas: 60, minerales: 30 },
+                    remojado: { proteinas: 75, minerales: 50 },
+                    tostado: { proteinas: 70, minerales: 35 },
+                    triturado: { proteinas: 85, minerales: 45 }
+                }
+            };
+            
+            // Calcular biodisponibilidad
+            let score = 0;
+            let description = '';
+            let tips = [];
+            
+            if (matrixEffects[foodType] && matrixEffects[foodType][processing] && matrixEffects[foodType][processing][nutrient]) {
+                score = matrixEffects[foodType][processing][nutrient];
+            } else {
+                score = 30; // Valor por defecto
+            }
+            
+            // Generar descripción según puntuación
+            if (score >= 80) {
+                description = 'Biodisponibilidad Excelente';
+            } else if (score >= 60) {
+                description = 'Biodisponibilidad Alta';
+            } else if (score >= 40) {
+                description = 'Biodisponibilidad Media';
+            } else if (score >= 20) {
+                description = 'Biodisponibilidad Baja';
+            } else {
+                description = 'Biodisponibilidad Muy Baja';
+            }
+            
+            // Generar consejos específicos
+            if (nutrient === 'carotenoides' && processing === 'crudo') {
+                tips.push('💡 Cocina ligeramente los vegetales para romper las paredes celulares');
+                tips.push('🫒 Añade aceite de oliva para mejorar la absorción de carotenoides');
+            }
+            
+            if (foodType === 'legumbres' && processing === 'crudo') {
+                tips.push('💧 Remoja las legumbres 8-12 horas antes de cocinar');
+                tips.push('🔥 Cocina completamente para inactivar antinutrientes');
+            }
+            
+            if (nutrient === 'vitamina_c' && (processing === 'cocido_agua' || processing === 'asado')) {
+                tips.push('⚠️ La vitamina C se destruye con calor prolongado');
+                tips.push('🥗 Considera consumir parte del alimento crudo');
+            }
+            
+            if (nutrient === 'hierro' && foodType === 'vegetales') {
+                tips.push('🍊 Combina con vitamina C para multiplicar la absorción');
+                tips.push('☕ Evita té o café en la misma comida');
+            }
+            
+            // Consejos adicionales según el procesamiento
+            if (processing === 'fermentado') {
+                tips.push('✨ La fermentación es uno de los mejores métodos para maximizar nutrientes');
+            }
+            
+            if (processing === 'salteado') {
+                tips.push('👍 Método equilibrado que preserva y libera nutrientes');
+            }
+            
+            // Mostrar resultados
+            document.getElementById('bioScore').textContent = score + '%';
+            document.getElementById('bioDescription').textContent = description;
+            
+            const tipsContainer = document.getElementById('optimizationTips');
+            tipsContainer.innerHTML = '<h4 style="margin-bottom: 15px; color: var(--text-primary);">Consejos de optimización:</h4>';
+            
+            tips.forEach(tip => {
+                const tipElement = document.createElement('div');
+                tipElement.className = 'tip-item';
+                tipElement.innerHTML = `
+                    <span class="tip-icon">→</span>
+                    <span class="tip-text">${tip}</span>
+                `;
+                tipsContainer.appendChild(tipElement);
+            });
+            
+            // Mostrar el resultado
+            const resultDiv = document.getElementById('analysisResult');
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.matrix-card, .processing-method');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
