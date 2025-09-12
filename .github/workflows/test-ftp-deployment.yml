@@ -21,11 +21,11 @@ jobs:
         cat test-ftp-deployment.txt
         echo "=== Fin del archivo ==="
         
-    - name: 🚀 Test FTP Upload with URL encoding
+    - name: 🚀 Test FTP Upload with secret username
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
-        username: ftp.meskeia.com%40meskeia.com
+        username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
         server-dir: /public_html/meskeia.com/
@@ -36,8 +36,8 @@ jobs:
           **/.github/**
           **/.claude/**
           **/desktop.ini
-        include: |
-          test-ftp-deployment.txt
+          **/*
+          !test-ftp-deployment.txt
         dry-run: false
         log-level: verbose
         
