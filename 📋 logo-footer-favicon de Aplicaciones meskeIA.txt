@@ -193,7 +193,7 @@ Este código pone el icon meskeIA para que aparezca en el navegador.
 📍 DÓNDE COLOCARLO
 Pega el siguiente código en <head> después de:  <meta name=”viewport” …..
 
-<link rel="icon" type="image/png" href="../../assets/icon_meskeia.png">
+<link rel="icon" type="image/png" href="icon_meskeia.png">
 
 
 
