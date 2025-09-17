@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start calculadora-tir.html)",
+      "Read(//c/Users/jaceb/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

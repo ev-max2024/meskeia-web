@@ -1,0 +1,568 @@
+/* Variables de color - Paleta meskeIA */
+:root {
+    /* Colores principales meskeIA */
+    --primary-color: #2E86AB;
+    --secondary-color: #48A9A6;
+    --accent-color: #7FB3D3;
+
+    /* Backgrounds - Inspirados en Claude */
+    --background-color: #FAFAFA;
+    --surface-color: #FFFFFF;
+
+    /* Textos minimalistas */
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+
+    /* Elementos estructurales */
+    --border-color: #E5E5E5;
+    --hover-color: #F5F5F5;
+    --focus-color: rgba(46,134,171,0.1);
+
+    /* Estados y feedback */
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+
+    /* Sombras meskeIA */
+    --shadow-sm: 0 2px 4px rgba(46,134,171,0.1);
+    --shadow-md: 0 4px 6px rgba(46,134,171,0.1);
+    --shadow-lg: 0 10px 20px rgba(46,134,171,0.1);
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--background-color) 0%, #F0F0F0 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Container principal */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 0;
+    background: var(--surface-color);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-md);
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+}
+
+/* Contenido principal - Grid */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Paneles */
+.calculator-panel,
+.visualization-panel,
+.reference-panel {
+    background: var(--surface-color);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+}
+
+.reference-panel {
+    grid-column: 1 / -1;
+}
+
+/* Secciones de calculadora */
+.calc-section,
+.viz-section {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.calc-section:last-child,
+.viz-section:last-child {
+    border-bottom: none;
+}
+
+/* Títulos */
+h2 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+h3 {
+    color: var(--text-primary);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+h4 {
+    color: var(--text-primary);
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Inputs y formularios */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.input-group label {
+    min-width: 100px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+input[type="number"],
+select {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+    background: var(--background-color);
+    flex: 1;
+    max-width: 200px;
+}
+
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.1);
+}
+
+/* Flecha de conversión */
+.conversion-arrow {
+    text-align: center;
+    font-size: 1.5em;
+    color: var(--accent-color);
+    margin: 10px 0;
+}
+
+/* Resultados */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.result-item {
+    padding: 12px;
+    background: var(--background-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.result-item .label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.result-item .value {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Botones */
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: #d1d8de;
+}
+
+.btn-function {
+    padding: 8px 16px;
+    margin: 5px;
+    background: var(--background-color);
+    color: var(--text-primary);
+}
+
+.btn-function.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Canvas */
+canvas {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: white;
+    display: block;
+    margin: 20px auto;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Controles */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+input[type="range"] {
+    width: 200px;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+#angle-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-width: 50px;
+}
+
+/* Info de triángulo */
+.triangle-info {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.triangle-info p {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 8px 16px;
+    background: var(--background-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.triangle-info span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Inputs de triángulo */
+.triangle-inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Panel de referencia */
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.ref-card {
+    padding: 20px;
+    background: var(--background-color);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.ref-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.ref-card p {
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+/* Tabla de ángulos especiales */
+.special-angles {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.special-angles th,
+.special-angles td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.special-angles th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.special-angles tr:nth-child(even) {
+    background: var(--background-color);
+}
+
+/* Logo meskeIA - Componente reutilizable */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .reference-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-group label {
+        min-width: auto;
+    }
+
+    input[type="number"],
+    select {
+        max-width: none;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .meskeia-logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .meskeia-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .meskeia-logo-icon::before {
+        width: 9px;
+        height: 9px;
+        top: 7.5px;
+        left: 7.5px;
+    }
+
+    .meskeia-logo-icon::after {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .meskeia-logo-text {
+        font-size: 1rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calc-section,
+.viz-section,
+.ref-card {
+    animation: fadeIn 0.5s ease-out;
+}

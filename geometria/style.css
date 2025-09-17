@@ -1,0 +1,879 @@
+/* ========== VARIABLES CSS - PALETA meskeIA ========== */
+:root {
+    /* Backgrounds - Inspirados en Claude */
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+
+    /* Tu identidad de marca meskeIA */
+    --primary: #2E86AB;
+    --secondary: #48A9A6;
+    --accent: #F39C12;
+
+    /* Estados y feedback */
+    --success: #27AE60;
+    --warning: #F39C12;
+    --danger: #E74C3C;
+    --info: #3498DB;
+
+    /* Textos minimalistas */
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --text-white: #FFFFFF;
+
+    /* Elementos estructurales */
+    --border: #E5E5E5;
+    --hover: #F5F5F5;
+    --focus: rgba(46,134,171,0.1);
+    --shadow: rgba(0,0,0,0.1);
+
+    /* Spacing y sizing */
+    --container-max: 1200px;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+
+    /* Fuentes */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 14px;
+    --font-size-large: 16px;
+    --font-size-small: 12px;
+
+    /* Z-index */
+    --z-header: 100;
+    --z-modal: 1000;
+    --z-tooltip: 1050;
+}
+
+/* ========== RESET Y BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    overflow-x: hidden;
+}
+
+/* ========== LAYOUT PRINCIPAL ========== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 10px var(--shadow);
+    z-index: var(--z-header);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 120px 20px 20px;
+}
+
+/* ========== LOGO FLOTANTE ========== */
+.logo-float {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 101;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: var(--transition);
+}
+
+.logo-text:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46,134,171,0.2);
+}
+
+/* ========== NAVEGACIÓN ========== */
+.nav {
+    padding: 20px 0;
+}
+
+.nav-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-title {
+    font-size: 24px;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: var(--font-size-small);
+}
+
+.nav-btn:hover {
+    background: var(--primary);
+    color: var(--text-white);
+    transform: translateY(-1px);
+}
+
+.nav-btn.active {
+    background: var(--primary);
+    color: var(--text-white);
+}
+
+/* ========== SECCIONES ========== */
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-large);
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.hero-title {
+    font-size: 36px;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+}
+
+/* ========== GRIDS ========== */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.formulas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* ========== CARDS ========== */
+.feature-card, .formula-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.feature-card:hover, .formula-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--shadow);
+    border-color: var(--primary);
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3, .formula-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+}
+
+/* ========== PANELS ========== */
+.tool-panel, .visualization-panel, .calculator-panel, .animation-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 25px;
+}
+
+.tool-panel h3, .visualization-panel h3, .calculator-panel h3, .animation-panel h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 18px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 8px;
+}
+
+/* ========== BOTONES ========== */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--text-white);
+}
+
+.btn-primary:hover {
+    background: #2574A3;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--text-white);
+}
+
+.btn-secondary:hover {
+    background: #3D9794;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--text-white);
+}
+
+/* ========== SELECTORES DE FORMAS ========== */
+.shape-selector, .transform-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shape-btn, .transform-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+    font-size: var(--font-size-base);
+}
+
+.shape-btn:hover, .transform-btn:hover {
+    background: var(--hover);
+    border-color: var(--primary);
+}
+
+.shape-btn.active, .transform-btn.active {
+    background: var(--primary);
+    color: var(--text-white);
+}
+
+/* ========== CANVAS ========== */
+canvas {
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--bg-card);
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.canvas-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* ========== FORMULARIOS ========== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+input[type="number"], input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    transition: var(--transition);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--focus);
+}
+
+/* ========== INPUTS ESPECÍFICOS ========== */
+.calc-inputs {
+    margin-bottom: 20px;
+}
+
+.calc-inputs .form-group {
+    margin-bottom: 15px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.inputs input {
+    padding: 8px 12px;
+}
+
+/* ========== RESULTADOS ========== */
+.calc-results, .result {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.result {
+    font-weight: 500;
+    color: var(--primary);
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ========== FÓRMULAS ========== */
+.formula {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* ========== INFORMACIÓN DE ÁNGULOS ========== */
+.angle-types {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.angle-info {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 8px 12px;
+    font-size: var(--font-size-small);
+}
+
+/* ========== CONTROLES DE ÁNGULOS ========== */
+.angle-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.angle-controls input[type="range"] {
+    flex: 1;
+    max-width: 200px;
+}
+
+.angle-controls span {
+    font-weight: bold;
+    color: var(--primary);
+    min-width: 50px;
+}
+
+/* ========== CONTROLES DE TRANSFORMACIÓN ========== */
+.transform-controls {
+    margin-top: 15px;
+}
+
+.animation-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.speed-control label {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.speed-control input[type="range"] {
+    flex: 1;
+}
+
+/* ========== RESULTADOS TRIGONOMÉTRICOS ========== */
+.trig-inputs {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.trig-inputs input {
+    flex: 2;
+}
+
+.trig-inputs select {
+    flex: 1;
+}
+
+.trig-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.trig-result {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    text-align: center;
+}
+
+.trig-result .label {
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+}
+
+.trig-result .value {
+    font-weight: bold;
+    color: var(--primary);
+    font-size: var(--font-size-large);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+    padding: 30px 0;
+}
+
+.footer-content {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .nav-title {
+        font-size: 20px;
+    }
+
+    .nav-menu {
+        gap: 8px;
+    }
+
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .container {
+        padding: 140px 15px 20px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .formulas-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    canvas {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .trig-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .trig-results {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .section-header h2 {
+        font-size: 24px;
+    }
+
+    .feature-card, .formula-card, .tool-panel, .visualization-panel, .calculator-panel {
+        padding: 20px;
+    }
+
+    .animation-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* ========== ANIMACIONES Y EFECTOS ========== */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+/* ========== UTILIDADES ========== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: 10px; }
+.mt-2 { margin-top: 20px; }
+.mt-3 { margin-top: 30px; }
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+.mb-3 { margin-bottom: 30px; }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+.flex { display: flex; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+.gap-1 { gap: 10px; }
+.gap-2 { gap: 20px; }
+.gap-3 { gap: 30px; }
+
+/* ========== ESTADOS DE CARGA ========== */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--border);
+    border-top: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Logo meskeIA - Componente reutilizable */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .meskeia-logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .meskeia-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .meskeia-logo-icon::before {
+        width: 9px;
+        height: 9px;
+        top: 7.5px;
+        left: 7.5px;
+    }
+
+    .meskeia-logo-icon::after {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .meskeia-logo-text {
+        font-size: 1rem;
+    }
+}

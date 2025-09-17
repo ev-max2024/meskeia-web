@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álgebra Abstracta Interactiva | meskeIA</title>
+    <meta name="description" content="Explora el álgebra abstracta de forma interactiva: grupos, anillos, cuerpos y más con visualizaciones y calculadoras especializadas">
+    <meta name="keywords" content="álgebra abstracta, grupos, anillos, cuerpos, matemáticas, teoría de grupos, calculadora algebraica, meskeIA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Álgebra Abstracta Interactiva | meskeIA">
+    <meta property="og:description" content="Herramienta educativa para aprender álgebra abstracta con visualizaciones interactivas">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://meskeia.com/algebra-abstracta/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Álgebra Abstracta Interactiva">
+    <meta name="twitter:description" content="Aprende álgebra abstracta de forma visual e interactiva">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6B46C1">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- MathJax para notación matemática -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PLACEHOLDER');
+    </script>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="nav-principal">
+        <div class="nav-container">
+            <h1 class="nav-titulo">Álgebra Abstracta</h1>
+            <div class="nav-menu">
+                <button class="nav-btn active" data-section="teoria">Teoría</button>
+                <button class="nav-btn" data-section="grupos">Grupos</button>
+                <button class="nav-btn" data-section="anillos">Anillos</button>
+                <button class="nav-btn" data-section="cuerpos">Cuerpos</button>
+                <button class="nav-btn" data-section="herramientas">Herramientas</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="contenido-principal">
+
+        <!-- Sección: Teoría -->
+        <section id="teoria" class="seccion active">
+            <div class="container">
+                <h2>Fundamentos del Álgebra Abstracta</h2>
+
+                <div class="teoria-intro">
+                    <p>El álgebra abstracta estudia estructuras algebraicas como grupos, anillos y cuerpos.
+                    Estas estructuras nos permiten entender patrones y simetrías fundamentales en matemáticas.</p>
+                </div>
+
+                <div class="conceptos-grid">
+                    <div class="concepto-card">
+                        <h3>¿Qué es una Estructura Algebraica?</h3>
+                        <p>Una estructura algebraica es un conjunto equipado con una o más operaciones que satisfacen ciertos axiomas.</p>
+                        <div class="ejemplo-math">
+                            \( (G, \cdot) \) donde \( G \) es un conjunto y \( \cdot \) es una operación binaria
+                        </div>
+                    </div>
+
+                    <div class="concepto-card">
+                        <h3>Propiedades Fundamentales</h3>
+                        <ul class="propiedades-lista">
+                            <li><strong>Clausura:</strong> \( a \cdot b \in G \)</li>
+                            <li><strong>Asociatividad:</strong> \( (a \cdot b) \cdot c = a \cdot (b \cdot c) \)</li>
+                            <li><strong>Elemento Neutro:</strong> \( \exists e : a \cdot e = e \cdot a = a \)</li>
+                            <li><strong>Elemento Inverso:</strong> \( \forall a, \exists a^{-1} : a \cdot a^{-1} = e \)</li>
+                        </ul>
+                    </div>
+
+                    <div class="concepto-card">
+                        <h3>Jerarquía de Estructuras</h3>
+                        <div class="jerarquia">
+                            <div class="nivel">Semigrupo → Monoide → Grupo</div>
+                            <div class="nivel">Anillo → Dominio de Integridad → Cuerpo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navegacion-teoria">
+                    <button class="btn-teoria" data-tema="conjuntos">Conjuntos y Operaciones</button>
+                    <button class="btn-teoria" data-tema="funciones">Funciones</button>
+                    <button class="btn-teoria" data-tema="relaciones">Relaciones de Equivalencia</button>
+                </div>
+
+                <div id="contenido-teoria" class="contenido-detallado"></div>
+            </div>
+        </section>
+
+        <!-- Sección: Grupos -->
+        <section id="grupos" class="seccion">
+            <div class="container">
+                <h2>Teoría de Grupos</h2>
+
+                <div class="herramientas-grupos">
+                    <div class="tabs-grupos">
+                        <button class="tab-btn active" data-tab="definicion">Definición</button>
+                        <button class="tab-btn" data-tab="ejemplos">Ejemplos</button>
+                        <button class="tab-btn" data-tab="cayley">Tabla de Cayley</button>
+                        <button class="tab-btn" data-tab="subgrupos">Subgrupos</button>
+                        <button class="tab-btn" data-tab="visualizador">Visualizador</button>
+                    </div>
+
+                    <div class="tab-content" id="grupos-content">
+                        <div class="tab-pane active" id="definicion">
+                            <h3>Definición de Grupo</h3>
+                            <p>Un grupo \((G, \cdot)\) es un conjunto \(G\) con una operación binaria \(\cdot\) que satisface:</p>
+                            <ol class="axiomas-lista">
+                                <li><strong>Clausura:</strong> \(\forall a,b \in G : a \cdot b \in G\)</li>
+                                <li><strong>Asociatividad:</strong> \(\forall a,b,c \in G : (a \cdot b) \cdot c = a \cdot (b \cdot c)\)</li>
+                                <li><strong>Elemento neutro:</strong> \(\exists e \in G : \forall a \in G : e \cdot a = a \cdot e = a\)</li>
+                                <li><strong>Elemento inverso:</strong> \(\forall a \in G : \exists b \in G : a \cdot b = b \cdot a = e\)</li>
+                            </ol>
+                            <div class="nota-adicional">
+                                <p><strong>Grupo Abeliano:</strong> Si además \(a \cdot b = b \cdot a\) para todo \(a,b \in G\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculadora de Grupos -->
+                <div class="calculadora-grupos">
+                    <h3>Calculadora de Grupos</h3>
+                    <div class="calc-controles">
+                        <label>
+                            Tipo de Grupo:
+                            <select id="tipo-grupo">
+                                <option value="Zn">ℤₙ - Enteros módulo n</option>
+                                <option value="Sn">Sₙ - Grupo simétrico</option>
+                                <option value="Dn">Dₙ - Grupo diédrico</option>
+                                <option value="custom">Personalizado</option>
+                            </select>
+                        </label>
+                        <label>
+                            Orden:
+                            <input type="number" id="orden-grupo" min="1" max="12" value="4">
+                        </label>
+                        <button class="btn-generar" onclick="generarGrupo()">Generar Tabla</button>
+                    </div>
+                    <div id="tabla-cayley" class="tabla-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Anillos -->
+        <section id="anillos" class="seccion">
+            <div class="container">
+                <h2>Anillos</h2>
+
+                <div class="definicion-anillo">
+                    <h3>Definición de Anillo</h3>
+                    <p>Un anillo \((R, +, \cdot)\) es un conjunto con dos operaciones que satisface:</p>
+                    <ul>
+                        <li>\((R, +)\) es un grupo abeliano</li>
+                        <li>\((R, \cdot)\) es un semigrupo</li>
+                        <li>Distributividad: \(a \cdot (b + c) = a \cdot b + a \cdot c\)</li>
+                    </ul>
+                </div>
+
+                <div class="ejemplos-anillos">
+                    <h3>Ejemplos Clásicos</h3>
+                    <div class="ejemplos-grid">
+                        <div class="ejemplo-card">
+                            <h4>ℤ - Enteros</h4>
+                            <p>Anillo conmutativo con unidad</p>
+                        </div>
+                        <div class="ejemplo-card">
+                            <h4>ℤₙ - Enteros módulo n</h4>
+                            <p>Anillo finito conmutativo</p>
+                        </div>
+                        <div class="ejemplo-card">
+                            <h4>ℝ[x] - Polinomios reales</h4>
+                            <p>Anillo de polinomios con coeficientes reales</p>
+                        </div>
+                        <div class="ejemplo-card">
+                            <h4>Mₙ(ℝ) - Matrices n×n</h4>
+                            <p>Anillo no conmutativo con unidad</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculadora-anillos">
+                    <h3>Calculadora de Anillos ℤₙ</h3>
+                    <div class="calc-input">
+                        <input type="number" id="n-anillo" placeholder="n" min="2" max="20" value="6">
+                        <input type="number" id="a-anillo" placeholder="a" min="0" value="2">
+                        <select id="op-anillo">
+                            <option value="+">+</option>
+                            <option value="*">×</option>
+                        </select>
+                        <input type="number" id="b-anillo" placeholder="b" min="0" value="3">
+                        <button onclick="calcularAnillo()">Calcular</button>
+                    </div>
+                    <div id="resultado-anillo" class="resultado"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Cuerpos -->
+        <section id="cuerpos" class="seccion">
+            <div class="container">
+                <h2>Cuerpos</h2>
+
+                <div class="definicion-cuerpo">
+                    <h3>Definición de Cuerpo</h3>
+                    <p>Un cuerpo \((F, +, \cdot)\) es un anillo conmutativo donde todo elemento no nulo tiene inverso multiplicativo.</p>
+                    <div class="propiedades-cuerpo">
+                        <p>Equivalentemente: \((F, +)\) es grupo abeliano y \((F \setminus \{0\}, \cdot)\) es grupo abeliano.</p>
+                    </div>
+                </div>
+
+                <div class="ejemplos-cuerpos">
+                    <h3>Ejemplos Fundamentales</h3>
+                    <div class="cuerpos-grid">
+                        <div class="cuerpo-card">
+                            <h4>ℚ - Racionales</h4>
+                            <p>El cuerpo más pequeño que contiene a ℤ</p>
+                        </div>
+                        <div class="cuerpo-card">
+                            <h4>ℝ - Reales</h4>
+                            <p>Cuerpo completo ordenado</p>
+                        </div>
+                        <div class="cuerpo-card">
+                            <h4>ℂ - Complejos</h4>
+                            <p>Cuerpo algebraicamente cerrado</p>
+                        </div>
+                        <div class="cuerpo-card">
+                            <h4>𝔽ₚ - Cuerpo finito</h4>
+                            <p>ℤₚ donde p es primo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verificador-cuerpo">
+                    <h3>Verificador de Cuerpo Finito</h3>
+                    <p>Verifica si ℤₙ es un cuerpo (n debe ser primo)</p>
+                    <input type="number" id="n-cuerpo" min="2" max="100" placeholder="Ingrese n">
+                    <button onclick="verificarCuerpo()">Verificar</button>
+                    <div id="resultado-cuerpo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Herramientas -->
+        <section id="herramientas" class="seccion">
+            <div class="container">
+                <h2>Herramientas Interactivas</h2>
+
+                <div class="herramientas-grid">
+                    <div class="herramienta-card">
+                        <h3>Verificador de Estructura</h3>
+                        <p>Determina si una tabla de operación define un grupo, anillo o cuerpo</p>
+                        <button class="btn-herramienta" onclick="abrirVerificador()">Abrir Verificador</button>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h3>Explorador de Subgrupos</h3>
+                        <p>Encuentra todos los subgrupos de un grupo dado</p>
+                        <button class="btn-herramienta" onclick="abrirExplorador()">Explorar Subgrupos</button>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h3>Generador de Homomorfismos</h3>
+                        <p>Visualiza homomorfismos entre grupos</p>
+                        <button class="btn-herramienta" onclick="abrirHomomorfismos()">Ver Homomorfismos</button>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h3>Calculadora de Polinomios</h3>
+                        <p>Operaciones en anillos de polinomios</p>
+                        <button class="btn-herramienta" onclick="abrirPolinomios()">Calcular Polinomios</button>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h3>Visualizador de Retículos</h3>
+                        <p>Diagrama de Hasse para retículos de subgrupos</p>
+                        <button class="btn-herramienta" onclick="abrirReticulos()">Ver Retículos</button>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h3>Ejercicios Interactivos</h3>
+                        <p>Practica con ejercicios guiados paso a paso</p>
+                        <button class="btn-herramienta" onclick="abrirEjercicios()">Practicar</button>
+                    </div>
+                </div>
+
+                <!-- Área de trabajo para herramientas -->
+                <div id="area-herramienta" class="area-trabajo"></div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Modal para herramientas -->
+    <div id="modal-herramienta" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    <script src="visualizaciones.js"></script>
+    <script src="service-worker.js"></script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

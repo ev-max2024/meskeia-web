@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start index.html)",
+      "Read(C:\\Users\\jaceb\\meskeIA\\Web meskeIA/**)",
+      "Bash(dir:*)",
+      "Read(C:\\Users\\jaceb\\meskeIA\\Web meskeIA/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

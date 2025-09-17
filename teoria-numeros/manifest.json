@@ -1,0 +1,87 @@
+{
+  "name": "Teoría de Números - meskeIA",
+  "short_name": "Teoría Números",
+  "description": "Calculadoras interactivas y recursos educativos para el estudio de teoría de números: primos, divisibilidad, congruencias y funciones aritméticas",
+  "version": "1.0.0",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#2E86AB",
+  "orientation": "portrait-primary",
+  "categories": ["education", "mathematics", "calculator"],
+  "lang": "es",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "icon_meskeia.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Calculadoras de números primos y divisibilidad"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Congruencias modulares y funciones aritméticas"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Números Primos",
+      "short_name": "Primos",
+      "description": "Calculadoras de números primos y factorización",
+      "url": "/#primos",
+      "icons": [
+        {
+          "src": "icon_meskeia.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Divisibilidad",
+      "short_name": "MCD/MCM",
+      "description": "Calculadoras MCD, MCM y algoritmo de Euclides",
+      "url": "/#divisibilidad",
+      "icons": [
+        {
+          "src": "icon_meskeia.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Congruencias",
+      "short_name": "Modular",
+      "description": "Aritmética modular y teorema chino del resto",
+      "url": "/#congruencias",
+      "icons": [
+        {
+          "src": "icon_meskeia.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://meskeia.com/aplicaciones/",
+      "id": "meskeIA-apps"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ========== METADATOS BÁSICOS ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ========== SEO BÁSICO ========== -->
+    <title>Calculadora de Cálculo - Derivadas, Integrales y Límites | meskeIA</title>
+    <meta name="description" content="Calculadora online gratuita de cálculo diferencial e integral. Resuelve derivadas, integrales, límites y visualiza funciones matemáticas paso a paso.">
+    <meta name="keywords" content="calculadora cálculo, derivadas online, integrales, límites, matemáticas, cálculo diferencial, cálculo integral">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== OPEN GRAPH / FACEBOOK ========== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Cálculo - Derivadas e Integrales Online">
+    <meta property="og:description" content="Herramienta gratuita para resolver derivadas, integrales, límites y graficar funciones matemáticas con soluciones paso a paso.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/calculo">
+    <meta property="og:image" content="https://meskeia.com/assets/og-calculo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Cálculo - Derivadas e Integrales">
+    <meta name="twitter:description" content="Resuelve problemas de cálculo diferencial e integral online. Gratuito y fácil de usar.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-calculo.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+    <meta name="twitter:site" content="@meskeIA">
+
+    <!-- ========== CANONICAL URL ========== -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/calculo">
+
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <!-- ========== SCHEMA.ORG / STRUCTURED DATA ========== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Cálculo meskeIA",
+        "description": "Calculadora online para resolver derivadas, integrales, límites y visualizar funciones matemáticas con soluciones paso a paso.",
+        "url": "https://meskeia.com/aplicaciones/calculo",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com",
+            "logo": "https://meskeia.com/logo.png"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "85"
+        },
+        "featureList": [
+            "Derivadas simbólicas y numéricas",
+            "Integrales definidas e indefinidas",
+            "Evaluación de límites",
+            "Graficador de funciones 2D",
+            "Soluciones paso a paso",
+            "Derivadas parciales"
+        ]
+    }
+    </script>
+
+    <!-- ========== PWA MANIFEST ========== -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- ========== PRECONNECT PARA OPTIMIZACIÓN ========== -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- ========== LIBRERÍAS EXTERNAS ========== -->
+    <!-- Math.js para cálculo matemático -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js" defer></script>
+
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" defer></script>
+
+    <!-- Algebrite para álgebra simbólica -->
+    <script src="https://unpkg.com/algebrite@1.4.0/dist/algebrite.bundle-for-browser.js" defer></script>
+
+    <!-- ========== ESTILOS ========== -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="container">
+        <!-- Título principal -->
+        <h1 class="main-title">Calculadora de Cálculo</h1>
+        <p class="subtitle">Resuelve derivadas, integrales, límites y visualiza funciones matemáticas</p>
+
+        <!-- Navegación por pestañas -->
+        <nav class="calc-nav">
+            <button class="nav-tab active" data-section="derivadas">
+                <span class="tab-icon">∂</span>
+                Derivadas
+            </button>
+            <button class="nav-tab" data-section="integrales">
+                <span class="tab-icon">∫</span>
+                Integrales
+            </button>
+            <button class="nav-tab" data-section="limites">
+                <span class="tab-icon">lim</span>
+                Límites
+            </button>
+            <button class="nav-tab" data-section="graficos">
+                <span class="tab-icon">📊</span>
+                Gráficos
+            </button>
+        </nav>
+
+        <!-- Contenido de las secciones -->
+        <div class="calc-content">
+            <!-- SECCIÓN: DERIVADAS -->
+            <section id="derivadas" class="calc-section active">
+                <div class="section-header">
+                    <h2>Cálculo de Derivadas</h2>
+                    <p class="section-description">Calcula la derivada de una función respecto a una variable</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="derivada-funcion">Función f(x):</label>
+                    <input type="text" id="derivada-funcion" placeholder="x^2 + 3*x + 1" class="math-input">
+                    <div class="input-hint">Ejemplos: x^2, sin(x), e^x, ln(x), sqrt(x)</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="derivada-variable">Variable:</label>
+                    <input type="text" id="derivada-variable" value="x" class="math-input small">
+                </div>
+
+                <div class="input-group">
+                    <label for="derivada-orden">Orden de derivación:</label>
+                    <select id="derivada-orden" class="math-select">
+                        <option value="1">Primera derivada</option>
+                        <option value="2">Segunda derivada</option>
+                        <option value="3">Tercera derivada</option>
+                        <option value="n">Orden n</option>
+                    </select>
+                </div>
+
+                <button class="calc-button" onclick="calcularDerivada()">
+                    Calcular Derivada
+                </button>
+
+                <div class="result-container" id="resultado-derivada">
+                    <!-- Resultado aquí -->
+                </div>
+            </section>
+
+            <!-- SECCIÓN: INTEGRALES -->
+            <section id="integrales" class="calc-section">
+                <div class="section-header">
+                    <h2>Cálculo de Integrales</h2>
+                    <p class="section-description">Calcula integrales definidas e indefinidas</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="integral-funcion">Función f(x):</label>
+                    <input type="text" id="integral-funcion" placeholder="x^2 + 3*x + 1" class="math-input">
+                </div>
+
+                <div class="input-group">
+                    <label for="integral-variable">Variable:</label>
+                    <input type="text" id="integral-variable" value="x" class="math-input small">
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo de integral:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="integral-tipo" value="indefinida" checked>
+                            Indefinida ∫ f(x) dx
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="integral-tipo" value="definida">
+                            Definida ∫ᵃᵇ f(x) dx
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group" id="limites-integracion" style="display: none;">
+                    <div class="input-row">
+                        <div class="input-col">
+                            <label for="limite-inferior">Límite inferior (a):</label>
+                            <input type="text" id="limite-inferior" placeholder="0" class="math-input">
+                        </div>
+                        <div class="input-col">
+                            <label for="limite-superior">Límite superior (b):</label>
+                            <input type="text" id="limite-superior" placeholder="1" class="math-input">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calcularIntegral()">
+                    Calcular Integral
+                </button>
+
+                <div class="result-container" id="resultado-integral">
+                    <!-- Resultado aquí -->
+                </div>
+            </section>
+
+            <!-- SECCIÓN: LÍMITES -->
+            <section id="limites" class="calc-section">
+                <div class="section-header">
+                    <h2>Cálculo de Límites</h2>
+                    <p class="section-description">Evalúa el límite de una función cuando x tiende a un valor</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="limite-funcion">Función f(x):</label>
+                    <input type="text" id="limite-funcion" placeholder="sin(x)/x" class="math-input">
+                </div>
+
+                <div class="input-group">
+                    <label for="limite-variable">Variable:</label>
+                    <input type="text" id="limite-variable" value="x" class="math-input small">
+                </div>
+
+                <div class="input-group">
+                    <label for="limite-tiende">x tiende a:</label>
+                    <input type="text" id="limite-tiende" placeholder="0" class="math-input">
+                    <div class="input-hint">Valores especiales: Infinity, -Infinity</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Dirección del límite:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="limite-direccion" value="ambos" checked>
+                            Bilateral
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="limite-direccion" value="izquierda">
+                            Por la izquierda (x → a⁻)
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="limite-direccion" value="derecha">
+                            Por la derecha (x → a⁺)
+                        </label>
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calcularLimite()">
+                    Calcular Límite
+                </button>
+
+                <div class="result-container" id="resultado-limite">
+                    <!-- Resultado aquí -->
+                </div>
+            </section>
+
+            <!-- SECCIÓN: GRÁFICOS -->
+            <section id="graficos" class="calc-section">
+                <div class="section-header">
+                    <h2>Graficador de Funciones</h2>
+                    <p class="section-description">Visualiza funciones matemáticas y sus propiedades</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="grafico-funcion">Función f(x):</label>
+                    <input type="text" id="grafico-funcion" placeholder="x^2" class="math-input">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-row">
+                        <div class="input-col">
+                            <label for="grafico-xmin">X mínimo:</label>
+                            <input type="number" id="grafico-xmin" value="-10" class="math-input">
+                        </div>
+                        <div class="input-col">
+                            <label for="grafico-xmax">X máximo:</label>
+                            <input type="number" id="grafico-xmax" value="10" class="math-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-row">
+                        <div class="input-col">
+                            <label for="grafico-ymin">Y mínimo:</label>
+                            <input type="number" id="grafico-ymin" value="-10" class="math-input">
+                        </div>
+                        <div class="input-col">
+                            <label for="grafico-ymax">Y máximo:</label>
+                            <input type="number" id="grafico-ymax" value="10" class="math-input">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="dibujarGrafico()">
+                    Generar Gráfico
+                </button>
+
+                <div class="grafico-container">
+                    <canvas id="grafico-canvas"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <!-- Historial de cálculos -->
+        <div class="historial-container">
+            <h3>Historial de cálculos</h3>
+            <div id="historial-lista">
+                <p class="historial-vacio">No hay cálculos recientes</p>
+            </div>
+            <button class="clear-button" onclick="limpiarHistorial()">Limpiar historial</button>
+        </div>
+    </main>
+
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="script.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

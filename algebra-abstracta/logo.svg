@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Fondo circular con gradiente meskeIA -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B46C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Círculo de fondo -->
+  <circle cx="100" cy="100" r="90" fill="url(#bgGradient)" filter="url(#shadow)"/>
+
+  <!-- Símbolo matemático estilizado (conjunto de grupos) -->
+  <g transform="translate(100, 100)">
+    <!-- Símbolo de grupo G -->
+    <text x="-35" y="-10" font-family="Georgia, serif" font-size="48" font-weight="bold" fill="white" opacity="0.9">G</text>
+
+    <!-- Operación binaria -->
+    <circle cx="0" cy="15" r="4" fill="white" opacity="0.8"/>
+
+    <!-- Flecha de morfismo -->
+    <path d="M -25 20 L 25 20" stroke="white" stroke-width="3" fill="none" opacity="0.7"/>
+    <path d="M 20 15 L 25 20 L 20 25" stroke="white" stroke-width="3" fill="none" opacity="0.7"/>
+
+    <!-- Símbolo H (subgrupo) -->
+    <text x="10" y="5" font-family="Georgia, serif" font-size="36" fill="white" opacity="0.7">H</text>
+  </g>
+
+  <!-- Elementos orbitales representando estructura algebraica -->
+  <g transform="translate(100, 100)">
+    <circle cx="-50" cy="-20" r="6" fill="white" opacity="0.4"/>
+    <circle cx="50" cy="-20" r="6" fill="white" opacity="0.4"/>
+    <circle cx="0" cy="-50" r="6" fill="white" opacity="0.4"/>
+
+    <!-- Líneas conectoras -->
+    <line x1="-50" y1="-20" x2="0" y2="-50" stroke="white" stroke-width="1" opacity="0.3"/>
+    <line x1="50" y1="-20" x2="0" y2="-50" stroke="white" stroke-width="1" opacity="0.3"/>
+    <line x1="-50" y1="-20" x2="50" y2="-20" stroke="white" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Texto meskeIA -->
+  <text x="100" y="175" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#6B46C1" text-anchor="middle">meskeIA</text>
+</svg>

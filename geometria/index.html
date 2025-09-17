@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Básico -->
+    <title>Geometría Interactiva - meskeIA</title>
+    <meta name="description" content="Aplicación web interactiva para explorar geometría: figuras, ángulos, áreas, volúmenes y transformaciones. Herramienta educativa gratuita.">
+    <meta name="keywords" content="geometría, matemáticas, figuras geométricas, ángulos, áreas, volúmenes, transformaciones, educación">
+    <meta name="author" content="meskeIA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Geometría Interactiva - meskeIA">
+    <meta property="og:description" content="Explora el mundo de la geometría con herramientas interactivas: figuras 2D/3D, cálculos automáticos y visualizaciones dinámicas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="icon-512x512.png">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Geometría Interactiva - meskeIA">
+    <meta name="twitter:description" content="Herramientas interactivas para aprender geometría de forma visual y práctica.">
+    <meta name="twitter:image" content="icon-512x512.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Geometría">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <h1 class="nav-title">📐 Geometría Interactiva</h1>
+                <div class="nav-menu">
+                    <button class="nav-btn" data-section="figuras2d">Figuras 2D</button>
+                    <button class="nav-btn" data-section="figuras3d">Figuras 3D</button>
+                    <button class="nav-btn" data-section="angulos">Ángulos</button>
+                    <button class="nav-btn" data-section="areas">Áreas</button>
+                    <button class="nav-btn" data-section="volumenes">Volúmenes</button>
+                    <button class="nav-btn" data-section="transformaciones">Transformaciones</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Sección de inicio -->
+        <section id="inicio" class="section active">
+            <div class="hero">
+                <h2 class="hero-title">Explora el Mundo de la Geometría</h2>
+                <p class="hero-subtitle">Herramientas interactivas para aprender geometría de forma visual y práctica</p>
+
+                <div class="features-grid">
+                    <div class="feature-card" data-feature="figuras2d">
+                        <div class="feature-icon">📐</div>
+                        <h3>Figuras 2D</h3>
+                        <p>Triángulos, cuadriláteros, polígonos y círculos con cálculos automáticos</p>
+                    </div>
+
+                    <div class="feature-card" data-feature="figuras3d">
+                        <div class="feature-icon">📦</div>
+                        <h3>Figuras 3D</h3>
+                        <p>Prismas, pirámides, esferas y cilindros en visualización interactiva</p>
+                    </div>
+
+                    <div class="feature-card" data-feature="angulos">
+                        <div class="feature-icon">📏</div>
+                        <h3>Ángulos</h3>
+                        <p>Medición, conversión y trigonometría con calculadora integrada</p>
+                    </div>
+
+                    <div class="feature-card" data-feature="areas">
+                        <div class="feature-icon">⬜</div>
+                        <h3>Áreas</h3>
+                        <p>Cálculo de áreas y perímetros con fórmulas interactivas</p>
+                    </div>
+
+                    <div class="feature-card" data-feature="volumenes">
+                        <div class="feature-icon">🧊</div>
+                        <h3>Volúmenes</h3>
+                        <p>Cálculo de volúmenes de sólidos regulares e irregulares</p>
+                    </div>
+
+                    <div class="feature-card" data-feature="transformaciones">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Transformaciones</h3>
+                        <p>Traslación, rotación, reflexión y escala con animaciones</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Figuras 2D -->
+        <section id="figuras2d" class="section">
+            <div class="section-header">
+                <h2>📐 Figuras 2D</h2>
+                <p>Explora y calcula propiedades de figuras bidimensionales</p>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-panel">
+                    <h3>Selector de Figura</h3>
+                    <div class="shape-selector">
+                        <button class="shape-btn active" data-shape="triangulo">🔺 Triángulo</button>
+                        <button class="shape-btn" data-shape="cuadrado">⬜ Cuadrado</button>
+                        <button class="shape-btn" data-shape="rectangulo">▭ Rectángulo</button>
+                        <button class="shape-btn" data-shape="circulo">⭕ Círculo</button>
+                        <button class="shape-btn" data-shape="poligono">⬢ Polígono</button>
+                    </div>
+                </div>
+
+                <div class="visualization-panel">
+                    <h3>Visualización</h3>
+                    <canvas id="canvas2d" width="400" height="300"></canvas>
+                    <div class="canvas-controls">
+                        <button class="btn btn-secondary" id="clearCanvas">Limpiar</button>
+                        <button class="btn btn-primary" id="exportCanvas">Exportar</button>
+                    </div>
+                </div>
+
+                <div class="calculator-panel">
+                    <h3>Calculadora</h3>
+                    <div class="calc-inputs" id="calcInputs">
+                        <!-- Los inputs se generan dinámicamente según la figura -->
+                    </div>
+                    <div class="calc-results" id="calcResults">
+                        <!-- Los resultados se muestran aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Figuras 3D -->
+        <section id="figuras3d" class="section">
+            <div class="section-header">
+                <h2>📦 Figuras 3D</h2>
+                <p>Visualiza y calcula propiedades de sólidos tridimensionales</p>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-panel">
+                    <h3>Selector de Sólido</h3>
+                    <div class="shape-selector">
+                        <button class="shape-btn active" data-shape="cubo">🧊 Cubo</button>
+                        <button class="shape-btn" data-shape="esfera">⚪ Esfera</button>
+                        <button class="shape-btn" data-shape="cilindro">🥤 Cilindro</button>
+                        <button class="shape-btn" data-shape="cono">🎯 Cono</button>
+                        <button class="shape-btn" data-shape="piramide">🔺 Pirámide</button>
+                    </div>
+                </div>
+
+                <div class="visualization-panel">
+                    <h3>Visualización 3D</h3>
+                    <canvas id="canvas3d" width="400" height="300"></canvas>
+                    <div class="canvas-controls">
+                        <button class="btn btn-secondary" id="rotate3d">🔄 Rotar</button>
+                        <button class="btn btn-primary" id="reset3d">↻ Reset</button>
+                    </div>
+                </div>
+
+                <div class="calculator-panel">
+                    <h3>Calculadora 3D</h3>
+                    <div class="calc-inputs" id="calc3dInputs">
+                        <!-- Los inputs se generan dinámicamente según el sólido -->
+                    </div>
+                    <div class="calc-results" id="calc3dResults">
+                        <!-- Los resultados se muestran aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Ángulos -->
+        <section id="angulos" class="section">
+            <div class="section-header">
+                <h2>📏 Ángulos y Trigonometría</h2>
+                <p>Medición, conversión y cálculos trigonométricos</p>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-panel">
+                    <h3>Tipo de Ángulo</h3>
+                    <div class="angle-types">
+                        <div class="angle-info">
+                            <strong>Agudo:</strong> 0° - 90°
+                        </div>
+                        <div class="angle-info">
+                            <strong>Recto:</strong> 90°
+                        </div>
+                        <div class="angle-info">
+                            <strong>Obtuso:</strong> 90° - 180°
+                        </div>
+                        <div class="angle-info">
+                            <strong>Llano:</strong> 180°
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visualization-panel">
+                    <h3>Medidor de Ángulos</h3>
+                    <canvas id="canvasAngles" width="400" height="300"></canvas>
+                    <div class="angle-controls">
+                        <input type="range" id="angleSlider" min="0" max="360" value="45">
+                        <span id="angleValue">45°</span>
+                    </div>
+                </div>
+
+                <div class="calculator-panel">
+                    <h3>Calculadora Trigonométrica</h3>
+                    <div class="trig-inputs">
+                        <div class="form-group">
+                            <label>Ángulo:</label>
+                            <input type="number" id="trigAngle" placeholder="45">
+                            <select id="angleUnit">
+                                <option value="degrees">Grados</option>
+                                <option value="radians">Radianes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="trig-results" id="trigResults">
+                        <!-- Resultados trigonométricos -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Áreas -->
+        <section id="areas" class="section">
+            <div class="section-header">
+                <h2>⬜ Áreas y Perímetros</h2>
+                <p>Cálculo automático de áreas y perímetros con fórmulas interactivas</p>
+            </div>
+
+            <div class="formulas-grid">
+                <div class="formula-card">
+                    <h3>🔺 Triángulo</h3>
+                    <div class="formula">A = (b × h) ÷ 2</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Base" id="triBase">
+                        <input type="number" placeholder="Altura" id="triHeight">
+                    </div>
+                    <div class="result" id="triResult">Área: --</div>
+                </div>
+
+                <div class="formula-card">
+                    <h3>⬜ Cuadrado</h3>
+                    <div class="formula">A = l²</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Lado" id="sqSide">
+                    </div>
+                    <div class="result" id="sqResult">Área: --</div>
+                </div>
+
+                <div class="formula-card">
+                    <h3>▭ Rectángulo</h3>
+                    <div class="formula">A = b × h</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Base" id="rectBase">
+                        <input type="number" placeholder="Altura" id="rectHeight">
+                    </div>
+                    <div class="result" id="rectResult">Área: --</div>
+                </div>
+
+                <div class="formula-card">
+                    <h3>⭕ Círculo</h3>
+                    <div class="formula">A = π × r²</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Radio" id="circRadius">
+                    </div>
+                    <div class="result" id="circResult">Área: --</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Volúmenes -->
+        <section id="volumenes" class="section">
+            <div class="section-header">
+                <h2>🧊 Volúmenes</h2>
+                <p>Cálculo de volúmenes de sólidos regulares</p>
+            </div>
+
+            <div class="formulas-grid">
+                <div class="formula-card">
+                    <h3>🧊 Cubo</h3>
+                    <div class="formula">V = a³</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Arista" id="cubeEdge">
+                    </div>
+                    <div class="result" id="cubeResult">Volumen: --</div>
+                </div>
+
+                <div class="formula-card">
+                    <h3>⚪ Esfera</h3>
+                    <div class="formula">V = (4/3) × π × r³</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Radio" id="sphereRadius">
+                    </div>
+                    <div class="result" id="sphereResult">Volumen: --</div>
+                </div>
+
+                <div class="formula-card">
+                    <h3>🥤 Cilindro</h3>
+                    <div class="formula">V = π × r² × h</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Radio" id="cylRadius">
+                        <input type="number" placeholder="Altura" id="cylHeight">
+                    </div>
+                    <div class="result" id="cylResult">Volumen: --</div>
+                </div>
+
+                <div class="formula-card">
+                    <h3>🎯 Cono</h3>
+                    <div class="formula">V = (1/3) × π × r² × h</div>
+                    <div class="inputs">
+                        <input type="number" placeholder="Radio" id="coneRadius">
+                        <input type="number" placeholder="Altura" id="coneHeight">
+                    </div>
+                    <div class="result" id="coneResult">Volumen: --</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Transformaciones -->
+        <section id="transformaciones" class="section">
+            <div class="section-header">
+                <h2>🔄 Transformaciones Geométricas</h2>
+                <p>Visualiza traslaciones, rotaciones, reflexiones y escalas</p>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-panel">
+                    <h3>Tipo de Transformación</h3>
+                    <div class="transform-selector">
+                        <button class="transform-btn active" data-transform="traslacion">➡️ Traslación</button>
+                        <button class="transform-btn" data-transform="rotacion">🔄 Rotación</button>
+                        <button class="transform-btn" data-transform="reflexion">🪞 Reflexión</button>
+                        <button class="transform-btn" data-transform="escala">📏 Escala</button>
+                    </div>
+                </div>
+
+                <div class="visualization-panel">
+                    <h3>Visualización de Transformaciones</h3>
+                    <canvas id="canvasTransform" width="400" height="300"></canvas>
+                    <div class="transform-controls" id="transformControls">
+                        <!-- Los controles cambian según la transformación -->
+                    </div>
+                </div>
+
+                <div class="animation-panel">
+                    <h3>Animación</h3>
+                    <div class="animation-controls">
+                        <button class="btn btn-primary" id="playAnimation">▶️ Reproducir</button>
+                        <button class="btn btn-secondary" id="pauseAnimation">⏸️ Pausar</button>
+                        <button class="btn btn-outline" id="resetTransform">↻ Reset</button>
+                    </div>
+                    <div class="speed-control">
+                        <label>Velocidad:</label>
+                        <input type="range" id="speedSlider" min="0.5" max="3" step="0.1" value="1">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+    </script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

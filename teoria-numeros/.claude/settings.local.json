@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\Users\\jaceb\\Mis Desarrollos\\teoria-numeros\")",
+      "Read(//c/Users/jaceb/Mis Desarrollos/Agentes/**)",
+      "Bash(start \"C:\\Users\\jaceb\\Mis Desarrollos\\teoria-numeros\\index.html\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

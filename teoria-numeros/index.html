@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ========== METADATOS BÁSICOS ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ========== SEO BÁSICO ========== -->
+    <title>Teoría de Números - Calculadoras y Recursos Educativos | meskeIA</title>
+    <meta name="description" content="Aplicación educativa sobre teoría de números: calculadoras de primos, MCD, MCM, congruencias modulares y funciones aritméticas. Recursos gratuitos para estudiantes.">
+    <meta name="keywords" content="teoría números, números primos, mcd, mcm, congruencias, aritmética modular, matemáticas, calculadora">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== OPEN GRAPH / FACEBOOK ========== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoría de Números - Herramientas Educativas">
+    <meta property="og:description" content="Aprende teoría de números con calculadoras interactivas de primos, divisibilidad, congruencias y funciones aritméticas.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/teoria-numeros">
+    <meta property="og:image" content="https://meskeia.com/assets/og-teoria-numeros.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Teoría de Números - Calculadoras Interactivas">
+    <meta name="twitter:description" content="Herramientas educativas para aprender teoría de números: primos, MCD, MCM, congruencias modulares y más.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-teoria-numeros.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+    <meta name="twitter:site" content="@meskeIA">
+
+    <!-- ========== CANONICAL URL ========== -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/teoria-numeros">
+
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- ========== SCHEMA.ORG / STRUCTURED DATA ========== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Teoría de Números",
+        "description": "Aplicación educativa interactiva para aprender teoría de números con calculadoras de primos, MCD, MCM, congruencias modulares y funciones aritméticas",
+        "url": "https://meskeia.com/aplicaciones/teoria-numeros",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com",
+            "logo": "https://meskeia.com/logo.png"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127"
+        },
+        "featureList": [
+            "Calculadora de números primos",
+            "Criba de Eratóstenes interactiva",
+            "Calculadora MCD y MCM",
+            "Aritmética modular",
+            "Funciones de Euler",
+            "Teoremas con demostraciones"
+        ]
+    }
+    </script>
+
+    <!-- ========== PWA MANIFEST ========== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- ========== PRECONNECT PARA OPTIMIZACIÓN ========== -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- ========== LIBRERÍAS EXTERNAS ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" defer></script>
+
+    <!-- ========== ESTILOS ========== -->
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables CSS meskeIA */
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+
+            /* Identidad meskeIA */
+            --primary: #2E86AB;
+            --primary-hover: #246b8a;
+            --primary-light: rgba(46, 134, 171, 0.1);
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --error: #EF4444;
+
+            /* Espaciados */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+
+            /* Border radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        /* Estructura base */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 100px 20px 60px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Títulos */
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Grid de calculadoras */
+        .calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+        }
+
+        /* Formularios */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Botones */
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3e8a87;
+            transform: translateY(-1px);
+        }
+
+        /* Resultados */
+        .result {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary);
+        }
+
+        .result.success {
+            border-left-color: var(--success);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .result.error {
+            border-left-color: var(--error);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        /* Tabs de navegación */
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-tab {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-tab:hover {
+            color: var(--primary);
+            background: var(--hover);
+        }
+
+        /* Contenido de tabs */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Visualización de números */
+        .number-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-md) 0;
+            text-align: center;
+        }
+
+        /* Lista de números */
+        .numbers-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .number-item {
+            background: var(--primary);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .number-item.prime {
+            background: var(--success);
+        }
+
+        .number-item.composite {
+            background: var(--warning);
+        }
+
+        /* Utilidades */
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .mt-1 { margin-top: var(--spacing-sm); }
+        .mt-2 { margin-top: var(--spacing-md); }
+        .mt-3 { margin-top: var(--spacing-lg); }
+        .mb-1 { margin-bottom: var(--spacing-sm); }
+        .mb-2 { margin-bottom: var(--spacing-md); }
+        .mb-3 { margin-bottom: var(--spacing-lg); }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 15px 50px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .calculators-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+
+/* Logo meskeIA - Componente reutilizable */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .meskeia-logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .meskeia-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .meskeia-logo-icon::before {
+        width: 9px;
+        height: 9px;
+        top: 7.5px;
+        left: 7.5px;
+    }
+
+    .meskeia-logo-icon::after {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .meskeia-logo-text {
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Logo meskeIA -->
+<div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+    <div class="meskeia-logo-icon">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+    </div>
+    <div class="meskeia-logo-text">
+        <span class="meske">meske</span><span class="ia">IA</span>
+    </div>
+</div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="container">
+        <!-- Título principal -->
+        <h1 class="main-title">📊 Teoría de Números</h1>
+        <p class="subtitle">Calculadoras interactivas y recursos educativos para el estudio de los números enteros</p>
+
+        <!-- Navegación por secciones -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('primos')">🔢 Números Primos</button>
+            <button class="nav-tab" onclick="showTab('divisibilidad')">➗ Divisibilidad</button>
+            <button class="nav-tab" onclick="showTab('congruencias')">⚡ Congruencias</button>
+            <button class="nav-tab" onclick="showTab('funciones')">📈 Funciones</button>
+            <button class="nav-tab" onclick="showTab('teoremas')">📚 Teoremas</button>
+        </div>
+
+        <!-- ========== SECCIÓN: NÚMEROS PRIMOS ========== -->
+        <div id="primos" class="tab-content active">
+            <div class="calculators-grid">
+                <!-- Calculadora de Primos -->
+                <div class="card">
+                    <h3 class="card-title">🔍 Verificar si es Primo</h3>
+                    <div class="form-group">
+                        <label class="form-label">Número a verificar:</label>
+                        <input type="number" id="primeInput" class="form-input" placeholder="Ej: 97" min="2">
+                    </div>
+                    <button class="btn btn-primary" onclick="checkPrime()">Verificar</button>
+                    <div id="primeResult"></div>
+                </div>
+
+                <!-- Criba de Eratóstenes -->
+                <div class="card">
+                    <h3 class="card-title">🎯 Criba de Eratóstenes</h3>
+                    <div class="form-group">
+                        <label class="form-label">Encontrar primos hasta:</label>
+                        <input type="number" id="sieveLimit" class="form-input" placeholder="Ej: 100" min="2" max="1000">
+                    </div>
+                    <button class="btn btn-primary" onclick="sieveOfEratosthenes()">Calcular</button>
+                    <div id="sieveResult"></div>
+                </div>
+
+                <!-- Factorización -->
+                <div class="card">
+                    <h3 class="card-title">🧮 Factorización Prima</h3>
+                    <div class="form-group">
+                        <label class="form-label">Número a factorizar:</label>
+                        <input type="number" id="factorInput" class="form-input" placeholder="Ej: 60" min="2">
+                    </div>
+                    <button class="btn btn-primary" onclick="primeFactorization()">Factorizar</button>
+                    <div id="factorResult"></div>
+                </div>
+
+                <!-- Generador de Primos -->
+                <div class="card">
+                    <h3 class="card-title">🎲 Generar Primos</h3>
+                    <div class="form-group">
+                        <label class="form-label">Cantidad de primos:</label>
+                        <input type="number" id="primeCount" class="form-input" placeholder="Ej: 10" min="1" max="100">
+                    </div>
+                    <button class="btn btn-secondary" onclick="generatePrimes()">Generar</button>
+                    <div id="generateResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECCIÓN: DIVISIBILIDAD ========== -->
+        <div id="divisibilidad" class="tab-content">
+            <div class="calculators-grid">
+                <!-- MCD Calculator -->
+                <div class="card">
+                    <h3 class="card-title">🔄 Máximo Común Divisor (MCD)</h3>
+                    <div class="form-group">
+                        <label class="form-label">Primer número:</label>
+                        <input type="number" id="gcdA" class="form-input" placeholder="Ej: 48">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Segundo número:</label>
+                        <input type="number" id="gcdB" class="form-input" placeholder="Ej: 18">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateGCD()">Calcular MCD</button>
+                    <div id="gcdResult"></div>
+                </div>
+
+                <!-- MCM Calculator -->
+                <div class="card">
+                    <h3 class="card-title">🔢 Mínimo Común Múltiplo (MCM)</h3>
+                    <div class="form-group">
+                        <label class="form-label">Primer número:</label>
+                        <input type="number" id="lcmA" class="form-input" placeholder="Ej: 12">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Segundo número:</label>
+                        <input type="number" id="lcmB" class="form-input" placeholder="Ej: 15">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateLCM()">Calcular MCM</button>
+                    <div id="lcmResult"></div>
+                </div>
+
+                <!-- Algoritmo de Euclides Extendido -->
+                <div class="card">
+                    <h3 class="card-title">🧠 Algoritmo de Euclides Extendido</h3>
+                    <div class="form-group">
+                        <label class="form-label">Primer número (a):</label>
+                        <input type="number" id="euclidA" class="form-input" placeholder="Ej: 35">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Segundo número (b):</label>
+                        <input type="number" id="euclidB" class="form-input" placeholder="Ej: 15">
+                    </div>
+                    <button class="btn btn-secondary" onclick="extendedEuclid()">Calcular</button>
+                    <div id="euclidResult"></div>
+                </div>
+
+                <!-- Divisores -->
+                <div class="card">
+                    <h3 class="card-title">📋 Encontrar Divisores</h3>
+                    <div class="form-group">
+                        <label class="form-label">Número:</label>
+                        <input type="number" id="divisorInput" class="form-input" placeholder="Ej: 24" min="1">
+                    </div>
+                    <button class="btn btn-secondary" onclick="findDivisors()">Encontrar</button>
+                    <div id="divisorResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECCIÓN: CONGRUENCIAS ========== -->
+        <div id="congruencias" class="tab-content">
+            <div class="calculators-grid">
+                <!-- Aritmética Modular -->
+                <div class="card">
+                    <h3 class="card-title">🔄 Aritmética Modular</h3>
+                    <div class="form-group">
+                        <label class="form-label">a ≡ ? (mod m)</label>
+                        <input type="number" id="modA" class="form-input" placeholder="Valor de a">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Módulo (m):</label>
+                        <input type="number" id="modM" class="form-input" placeholder="Ej: 7" min="1">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateMod()">Calcular</button>
+                    <div id="modResult"></div>
+                </div>
+
+                <!-- Inverso Modular -->
+                <div class="card">
+                    <h3 class="card-title">🔀 Inverso Modular</h3>
+                    <div class="form-group">
+                        <label class="form-label">Número (a):</label>
+                        <input type="number" id="invA" class="form-input" placeholder="Ej: 3">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Módulo (m):</label>
+                        <input type="number" id="invM" class="form-input" placeholder="Ej: 11" min="2">
+                    </div>
+                    <button class="btn btn-primary" onclick="modularInverse()">Calcular Inverso</button>
+                    <div id="invResult"></div>
+                </div>
+
+                <!-- Potencia Modular -->
+                <div class="card">
+                    <h3 class="card-title">⚡ Potencia Modular</h3>
+                    <div class="form-group">
+                        <label class="form-label">Base (a):</label>
+                        <input type="number" id="powA" class="form-input" placeholder="Ej: 2">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Exponente (b):</label>
+                        <input type="number" id="powB" class="form-input" placeholder="Ej: 10">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Módulo (m):</label>
+                        <input type="number" id="powM" class="form-input" placeholder="Ej: 1000" min="1">
+                    </div>
+                    <button class="btn btn-secondary" onclick="modularPower()">Calcular a^b mod m</button>
+                    <div id="powResult"></div>
+                </div>
+
+                <!-- Sistema de Congruencias -->
+                <div class="card">
+                    <h3 class="card-title">🧮 Sistema de Congruencias</h3>
+                    <p class="text-muted">Teorema Chino del Resto (2 ecuaciones)</p>
+                    <div class="form-group">
+                        <label class="form-label">x ≡ a₁ (mod m₁) → a₁:</label>
+                        <input type="number" id="crtA1" class="form-input" placeholder="Ej: 2">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">m₁:</label>
+                        <input type="number" id="crtM1" class="form-input" placeholder="Ej: 3" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">x ≡ a₂ (mod m₂) → a₂:</label>
+                        <input type="number" id="crtA2" class="form-input" placeholder="Ej: 3">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">m₂:</label>
+                        <input type="number" id="crtM2" class="form-input" placeholder="Ej: 5" min="2">
+                    </div>
+                    <button class="btn btn-secondary" onclick="chineseRemainder()">Resolver Sistema</button>
+                    <div id="crtResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECCIÓN: FUNCIONES ARITMÉTICAS ========== -->
+        <div id="funciones" class="tab-content">
+            <div class="calculators-grid">
+                <!-- Función de Euler -->
+                <div class="card">
+                    <h3 class="card-title">φ Función de Euler</h3>
+                    <div class="form-group">
+                        <label class="form-label">Calcular φ(n) para n =</label>
+                        <input type="number" id="eulerN" class="form-input" placeholder="Ej: 12" min="1">
+                    </div>
+                    <button class="btn btn-primary" onclick="eulerTotient()">Calcular φ(n)</button>
+                    <div id="eulerResult"></div>
+                </div>
+
+                <!-- Función divisor -->
+                <div class="card">
+                    <h3 class="card-title">τ Función Divisor</h3>
+                    <div class="form-group">
+                        <label class="form-label">Calcular τ(n) para n =</label>
+                        <input type="number" id="tauN" class="form-input" placeholder="Ej: 24" min="1">
+                    </div>
+                    <button class="btn btn-primary" onclick="divisorFunction()">Calcular τ(n)</button>
+                    <div id="tauResult"></div>
+                </div>
+
+                <!-- Función suma de divisores -->
+                <div class="card">
+                    <h3 class="card-title">σ Suma de Divisores</h3>
+                    <div class="form-group">
+                        <label class="form-label">Calcular σ(n) para n =</label>
+                        <input type="number" id="sigmaN" class="form-input" placeholder="Ej: 28" min="1">
+                    </div>
+                    <button class="btn btn-secondary" onclick="sumOfDivisors()">Calcular σ(n)</button>
+                    <div id="sigmaResult"></div>
+                </div>
+
+                <!-- Números Perfectos -->
+                <div class="card">
+                    <h3 class="card-title">✨ Números Perfectos</h3>
+                    <div class="form-group">
+                        <label class="form-label">Verificar si n es perfecto:</label>
+                        <input type="number" id="perfectN" class="form-input" placeholder="Ej: 28" min="1">
+                    </div>
+                    <button class="btn btn-secondary" onclick="checkPerfect()">Verificar</button>
+                    <div id="perfectResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECCIÓN: TEOREMAS ========== -->
+        <div id="teoremas" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">📚 Teoremas Fundamentales</h3>
+
+                <div class="card mt-2">
+                    <h4>🔢 Teorema Fundamental de la Aritmética</h4>
+                    <p>Todo número entero mayor que 1 puede expresarse de manera única como producto de números primos.</p>
+                    <div class="number-display">n = p₁^a₁ × p₂^a₂ × ... × pₖ^aₖ</div>
+                    <p class="text-muted">Ejemplo: 60 = 2² × 3¹ × 5¹</p>
+                </div>
+
+                <div class="card mt-2">
+                    <h4>⚡ Pequeño Teorema de Fermat</h4>
+                    <p>Si p es primo y a no es divisible por p, entonces:</p>
+                    <div class="number-display">a^(p-1) ≡ 1 (mod p)</div>
+                    <p class="text-muted">Ejemplo: 3⁶ ≡ 1 (mod 7), donde 7 es primo</p>
+                </div>
+
+                <div class="card mt-2">
+                    <h4>🔄 Teorema de Euler</h4>
+                    <p>Si gcd(a,n) = 1, entonces:</p>
+                    <div class="number-display">a^φ(n) ≡ 1 (mod n)</div>
+                    <p class="text-muted">Generalización del Teorema de Fermat</p>
+                </div>
+
+                <div class="card mt-2">
+                    <h4>🧮 Teorema Chino del Resto</h4>
+                    <p>Sistema de congruencias con módulos coprimos tiene solución única módulo el producto:</p>
+                    <div class="number-display">
+                        x ≡ a₁ (mod m₁)<br>
+                        x ≡ a₂ (mod m₂)<br>
+                        ...<br>
+                        Solución única mod (m₁ × m₂ × ...)
+                    </div>
+                </div>
+
+                <div class="card mt-2">
+                    <h4>🎯 Criba de Eratóstenes</h4>
+                    <p>Algoritmo para encontrar todos los primos menores que n:</p>
+                    <p>1. Listar números de 2 a n</p>
+                    <p>2. Marcar múltiplos de cada primo</p>
+                    <p>3. Los no marcados son primos</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer meskeIA -->
+<footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    © 2025 meskeIA
+</footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="script.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

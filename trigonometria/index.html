@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Trigonometría | meskeIA</title>
+    <meta name="description" content="Calculadora interactiva de trigonometría con visualizaciones gráficas. Aprende y calcula senos, cosenos, tangentes y resuelve triángulos.">
+    <meta name="keywords" content="trigonometría, calculadora, seno, coseno, tangente, círculo unitario, triángulos, matemáticas">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/trigonometria/">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Trigonometría | meskeIA">
+    <meta property="og:description" content="Herramienta interactiva para aprender y calcular trigonometría">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/trigonometria/">
+    <meta property="og:image" content="https://meskeia.com/trigonometria/icon_meskeia.png">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Trigonometría | meskeIA">
+    <meta name="twitter:description" content="Herramienta interactiva para aprender y calcular trigonometría">
+    <meta name="twitter:image" content="https://meskeia.com/trigonometria/icon_meskeia.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de Trigonometría",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web Browser",
+      "description": "Calculadora interactiva de trigonometría con visualizaciones gráficas para aprender funciones trigonométricas",
+      "url": "https://meskeia.com/trigonometria/",
+      "creator": {
+        "@type": "Organization",
+        "name": "meskeIA"
+      },
+      "featureList": [
+        "Conversión grados-radianes",
+        "Funciones trigonométricas",
+        "Círculo unitario interactivo",
+        "Resolver triángulos",
+        "Gráficas de funciones"
+      ]
+    }
+    </script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // Nota: Reemplazar GA_MEASUREMENT_ID con el ID real de Google Analytics
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            page_title: 'Calculadora de Trigonometría',
+            page_location: window.location.href,
+            custom_map: {'custom_parameter_1': 'calculator_type'}
+        });
+    </script>
+
+    <link rel="stylesheet" href="style.css?v=2025">
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📐 Calculadora de Trigonometría</h1>
+            <p class="subtitle">Explora y comprende las funciones trigonométricas de forma visual</p>
+        </header>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+
+            <!-- Panel de Calculadora -->
+            <section class="calculator-panel">
+                <h2>Calculadora Básica</h2>
+
+                <!-- Conversión de Ángulos -->
+                <div class="calc-section">
+                    <h3>Conversión de Ángulos</h3>
+                    <div class="input-group">
+                        <label for="degrees">Grados:</label>
+                        <input type="number" id="degrees" step="any" placeholder="45">
+                        <span>°</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <label for="radians">Radianes:</label>
+                        <input type="number" id="radians" step="any" placeholder="0.7854">
+                        <span>rad</span>
+                    </div>
+                </div>
+
+                <!-- Funciones Trigonométricas -->
+                <div class="calc-section">
+                    <h3>Funciones Trigonométricas</h3>
+                    <div class="input-group">
+                        <label for="angle-input">Ángulo:</label>
+                        <input type="number" id="angle-input" step="any" value="45">
+                        <select id="angle-unit">
+                            <option value="degrees">Grados</option>
+                            <option value="radians">Radianes</option>
+                        </select>
+                    </div>
+
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <span class="label">sen(θ) =</span>
+                            <span id="sin-result" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">cos(θ) =</span>
+                            <span id="cos-result" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">tan(θ) =</span>
+                            <span id="tan-result" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">csc(θ) =</span>
+                            <span id="csc-result" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">sec(θ) =</span>
+                            <span id="sec-result" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">cot(θ) =</span>
+                            <span id="cot-result" class="value">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resolver Triángulo -->
+                <div class="calc-section">
+                    <h3>Resolver Triángulo Rectángulo</h3>
+                    <div class="triangle-inputs">
+                        <div class="input-group">
+                            <label for="side-a">Lado a:</label>
+                            <input type="number" id="side-a" step="any" placeholder="Opuesto">
+                        </div>
+                        <div class="input-group">
+                            <label for="side-b">Lado b:</label>
+                            <input type="number" id="side-b" step="any" placeholder="Adyacente">
+                        </div>
+                        <div class="input-group">
+                            <label for="side-c">Hipotenusa c:</label>
+                            <input type="number" id="side-c" step="any" placeholder="Hipotenusa">
+                        </div>
+                        <div class="input-group">
+                            <label for="angle-A">Ángulo A:</label>
+                            <input type="number" id="angle-A" step="any" placeholder="Grados">
+                            <span>°</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="angle-B">Ángulo B:</label>
+                            <input type="number" id="angle-B" step="any" placeholder="Grados">
+                            <span>°</span>
+                        </div>
+                    </div>
+                    <button id="solve-triangle" class="btn-primary">Resolver Triángulo</button>
+                    <button id="clear-triangle" class="btn-secondary">Limpiar</button>
+                </div>
+            </section>
+
+            <!-- Panel de Visualización -->
+            <section class="visualization-panel">
+                <h2>Visualización Interactiva</h2>
+
+                <!-- Círculo Unitario -->
+                <div class="viz-section">
+                    <h3>Círculo Unitario</h3>
+                    <canvas id="unit-circle" width="400" height="400"></canvas>
+                    <div class="controls">
+                        <input type="range" id="angle-slider" min="0" max="360" value="45" step="1">
+                        <span id="angle-display">45°</span>
+                    </div>
+                </div>
+
+                <!-- Triángulo Visual -->
+                <div class="viz-section">
+                    <h3>Triángulo Rectángulo</h3>
+                    <canvas id="triangle-canvas" width="400" height="300"></canvas>
+                    <div class="triangle-info">
+                        <p>Área: <span id="triangle-area">0</span></p>
+                        <p>Perímetro: <span id="triangle-perimeter">0</span></p>
+                    </div>
+                </div>
+
+                <!-- Gráfica de Funciones -->
+                <div class="viz-section">
+                    <h3>Gráficas de Funciones</h3>
+                    <div class="function-buttons">
+                        <button class="btn-function active" data-function="sin">sen(x)</button>
+                        <button class="btn-function" data-function="cos">cos(x)</button>
+                        <button class="btn-function" data-function="tan">tan(x)</button>
+                    </div>
+                    <canvas id="function-graph" width="400" height="200"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <!-- Panel de Referencia Rápida -->
+        <section class="reference-panel">
+            <h2>📚 Referencia Rápida</h2>
+            <div class="reference-grid">
+                <div class="ref-card">
+                    <h4>Identidades Pitagóricas</h4>
+                    <p>sen²θ + cos²θ = 1</p>
+                    <p>1 + tan²θ = sec²θ</p>
+                    <p>1 + cot²θ = csc²θ</p>
+                </div>
+                <div class="ref-card">
+                    <h4>Ángulos Especiales</h4>
+                    <table class="special-angles">
+                        <tr>
+                            <th>°</th><th>rad</th><th>sen</th><th>cos</th><th>tan</th>
+                        </tr>
+                        <tr>
+                            <td>0°</td><td>0</td><td>0</td><td>1</td><td>0</td>
+                        </tr>
+                        <tr>
+                            <td>30°</td><td>π/6</td><td>1/2</td><td>√3/2</td><td>√3/3</td>
+                        </tr>
+                        <tr>
+                            <td>45°</td><td>π/4</td><td>√2/2</td><td>√2/2</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>60°</td><td>π/3</td><td>√3/2</td><td>1/2</td><td>√3</td>
+                        </tr>
+                        <tr>
+                            <td>90°</td><td>π/2</td><td>1</td><td>0</td><td>∞</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="ref-card">
+                    <h4>Fórmulas de Triángulos</h4>
+                    <p><strong>Teorema de Pitágoras:</strong> a² + b² = c²</p>
+                    <p><strong>Área:</strong> ½ × base × altura</p>
+                    <p><strong>sen θ =</strong> opuesto / hipotenusa</p>
+                    <p><strong>cos θ =</strong> adyacente / hipotenusa</p>
+                    <p><strong>tan θ =</strong> opuesto / adyacente</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer meskeIA -->
+        <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            © 2025 meskeIA
+        </footer>
+    </div>
+
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

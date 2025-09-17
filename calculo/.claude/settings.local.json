@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/jaceb/Mis Desarrollos/Agentes/**)",
+      "Bash(start index.html)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_evaluate"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - meskeIA</title>
+    <link rel="icon" type="image/png" href="../../assets/icon_meskeia.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Calculadora -->
+    <div class="calculator">
+        <!-- Pantalla -->
+        <div class="display-container">
+            <div class="history" id="history"></div>
+            <div class="display" id="display">0</div>
+        </div>
+
+        <!-- Botones -->
+        <div class="buttons">
+            <!-- Fila 1 -->
+            <button class="btn clear" onclick="clearAll()">AC</button>
+            <button class="btn clear" onclick="deleteLast()">⌫</button>
+            <button class="btn operator" onclick="percentage()">%</button>
+            <button class="btn operator" onclick="appendOperator('/')">÷</button>
+
+            <!-- Fila 2 -->
+            <button class="btn number" onclick="appendNumber('7')">7</button>
+            <button class="btn number" onclick="appendNumber('8')">8</button>
+            <button class="btn number" onclick="appendNumber('9')">9</button>
+            <button class="btn operator" onclick="appendOperator('*')">×</button>
+
+            <!-- Fila 3 -->
+            <button class="btn number" onclick="appendNumber('4')">4</button>
+            <button class="btn number" onclick="appendNumber('5')">5</button>
+            <button class="btn number" onclick="appendNumber('6')">6</button>
+            <button class="btn operator" onclick="appendOperator('-')">−</button>
+
+            <!-- Fila 4 -->
+            <button class="btn number" onclick="appendNumber('1')">1</button>
+            <button class="btn number" onclick="appendNumber('2')">2</button>
+            <button class="btn number" onclick="appendNumber('3')">3</button>
+            <button class="btn operator" onclick="appendOperator('+')">+</button>
+
+            <!-- Fila 5 -->
+            <button class="btn number zero" onclick="appendNumber('0')">0</button>
+            <button class="btn number" onclick="appendDecimal()">.</button>
+            <button class="btn equals" onclick="calculate()">=</button>
+        </div>
+
+        <!-- Botones adicionales -->
+        <div class="extra-functions">
+            <button class="btn-extra" onclick="toggleSign()">±</button>
+            <button class="btn-extra" onclick="square()">x²</button>
+            <button class="btn-extra" onclick="squareRoot()">√</button>
+            <button class="btn-extra" onclick="reciprocal()">1/x</button>
+            <button class="btn-extra" onclick="log10()">log</button>
+            <button class="btn-extra" onclick="logNatural()">ln</button>
+            <button class="btn-extra" onclick="insertPi()">π</button>
+            <button class="btn-extra" onclick="insertE()">e</button>
+        </div>
+    </div>
+
+    <!-- Historial -->
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h3>Historial</h3>
+            <button class="clear-history" onclick="clearHistory()">Limpiar</button>
+        </div>
+        <div class="history-list" id="historyList"></div>
+    </div>
+
+    <!-- Toggle historial -->
+    <button class="history-toggle" onclick="toggleHistory()">
+        <span id="historyToggleText">📜</span>
+    </button>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

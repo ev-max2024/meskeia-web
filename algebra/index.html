@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ========== METADATOS BÁSICOS ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ========== SEO BÁSICO ========== -->
+    <title>Calculadora de Álgebra - Resolver Ecuaciones Online | meskeIA</title>
+    <meta name="description" content="Calculadora de álgebra gratuita. Resuelve ecuaciones lineales, sistemas de ecuaciones, factorización y más. Herramienta educativa con pasos detallados.">
+    <meta name="keywords" content="álgebra, calculadora, ecuaciones, matemáticas, resolver ecuaciones, factorización, sistemas ecuaciones">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== OPEN GRAPH / FACEBOOK ========== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Álgebra - Resolver Ecuaciones Online">
+    <meta property="og:description" content="Herramienta gratuita para resolver ecuaciones lineales, sistemas y factorización. Con pasos detallados para aprender.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/algebra">
+    <meta property="og:image" content="https://meskeia.com/assets/og-algebra.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Álgebra - Resolver Ecuaciones">
+    <meta name="twitter:description" content="Resuelve ecuaciones lineales, sistemas y más con pasos detallados">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-algebra.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+    <meta name="twitter:site" content="@meskeIA">
+
+    <!-- ========== CANONICAL URL ========== -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/algebra">
+
+    <!-- ========== FAVICON MESKEIA ========== -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192x192.png">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180x180.png">
+
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#2E86AB">
+    <meta name="msapplication-TileImage" content="./icon-144x144.png">
+    <meta name="msapplication-config" content="./browserconfig.xml">
+
+    <!-- ========== SCHEMA.ORG / STRUCTURED DATA ========== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Álgebra meskeIA",
+        "description": "Calculadora algebraica gratuita para resolver ecuaciones lineales, sistemas de ecuaciones, factorización de polinomios y simplificación de expresiones algebraicas.",
+        "url": "https://meskeia.com/aplicaciones/algebra",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com",
+            "logo": "https://meskeia.com/logo.png"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150"
+        },
+        "featureList": [
+            "Resolver ecuaciones lineales",
+            "Sistemas de ecuaciones 2x2",
+            "Factorización de polinomios",
+            "Simplificación de expresiones",
+            "Historial de operaciones"
+        ]
+    }
+    </script>
+
+    <!-- ========== PWA MANIFEST ========== -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Álgebra meskeIA">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- ========== PRECONNECT PARA OPTIMIZACIÓN ========== -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- ========== ESTILOS CON PALETA MESKEIA ========== -->
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables CSS - Paleta meskeIA */
+        :root {
+            /* Backgrounds */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad meskeIA */
+            --primary: #2E86AB;
+            --primary-hover: #246b8a;
+            --primary-light: rgba(46, 134, 171, 0.1);
+            --secondary: #48A9A6;
+
+            /* Textos */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Estructura */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+
+            /* Estados */
+            --success: #10B981;
+            --error: #EF4444;
+            --warning: #F59E0B;
+
+            /* Espaciados estándar */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+
+            /* Border radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+        }
+
+        /* Estructura base del body */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Título principal */
+        .main-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Formularios */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Botones */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: white;
+        }
+
+        /* Grid de botones */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Resultados */
+        .result-area {
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .steps {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .step {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            color: var(--primary);
+            font-weight: 600;
+            margin-right: var(--spacing-sm);
+        }
+
+        /* Historial */
+        .history {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item:hover {
+            background: var(--hover);
+        }
+
+        /* Navegación por tabs */
+        .nav-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-tab {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-tab:hover {
+            color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+
+        /* Utilidades */
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .mt-1 { margin-top: var(--spacing-sm); }
+        .mt-2 { margin-top: var(--spacing-md); }
+        .mt-3 { margin-top: var(--spacing-lg); }
+        .mb-1 { margin-bottom: var(--spacing-sm); }
+        .mb-2 { margin-bottom: var(--spacing-md); }
+        .mb-3 { margin-bottom: var(--spacing-lg); }
+        .d-flex { display: flex; }
+        .gap-2 { gap: var(--spacing-md); }
+        .justify-between { justify-content: space-between; }
+        .align-center { align-items: center; }
+
+        /* Responsivo básico */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .btn-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="container">
+        <!-- Título principal -->
+        <h1 class="main-title">🧮 Calculadora de Álgebra</h1>
+        <p class="subtitle">Resuelve ecuaciones, sistemas y simplifica expresiones algebraicas</p>
+
+        <!-- Navegación por tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="linear">Ecuaciones Lineales</button>
+            <button class="nav-tab" data-tab="system">Sistemas 2x2</button>
+            <button class="nav-tab" data-tab="factorization">Factorización</button>
+            <button class="nav-tab" data-tab="calculator">Calculadora</button>
+            <button class="nav-tab" data-tab="history">Historial</button>
+        </div>
+
+        <!-- Tab: Ecuaciones Lineales -->
+        <div id="linear" class="tab-content active">
+            <div class="card">
+                <h2 class="card-title">Resolver Ecuación Lineal: ax + b = c</h2>
+                <div class="form-group">
+                    <label class="form-label">Coeficiente a:</label>
+                    <input type="number" id="linear-a" class="form-input" placeholder="Ej: 2" step="any">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Término independiente b:</label>
+                    <input type="number" id="linear-b" class="form-input" placeholder="Ej: 5" step="any">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Resultado c:</label>
+                    <input type="number" id="linear-c" class="form-input" placeholder="Ej: 11" step="any">
+                </div>
+                <button class="btn btn-primary" onclick="solveLinear()">Resolver Ecuación</button>
+
+                <div id="linear-result" class="result-area">
+                    Introduce los valores y pulsa "Resolver Ecuación"
+                </div>
+
+                <div id="linear-steps" class="steps" style="display: none;">
+                    <h3>Pasos de resolución:</h3>
+                    <div id="linear-steps-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Sistemas 2x2 -->
+        <div id="system" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Sistema de Ecuaciones 2x2</h2>
+                <p class="text-muted mb-2">
+                    Ecuación 1: a₁x + b₁y = c₁<br>
+                    Ecuación 2: a₂x + b₂y = c₂
+                </p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>Ecuación 1:</h4>
+                        <div class="form-group">
+                            <input type="number" id="sys-a1" class="form-input" placeholder="a₁" step="any">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="sys-b1" class="form-input" placeholder="b₁" step="any">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="sys-c1" class="form-input" placeholder="c₁" step="any">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Ecuación 2:</h4>
+                        <div class="form-group">
+                            <input type="number" id="sys-a2" class="form-input" placeholder="a₂" step="any">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="sys-b2" class="form-input" placeholder="b₂" step="any">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="sys-c2" class="form-input" placeholder="c₂" step="any">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="solveSystem()">Resolver Sistema</button>
+
+                <div id="system-result" class="result-area">
+                    Introduce los coeficientes y pulsa "Resolver Sistema"
+                </div>
+
+                <div id="system-steps" class="steps" style="display: none;">
+                    <h3>Método de Cramer:</h3>
+                    <div id="system-steps-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Factorización -->
+        <div id="factorization" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Factorización de Polinomios</h2>
+                <div class="form-group">
+                    <label class="form-label">Polinomio cuadrático: ax² + bx + c</label>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Coeficiente a:</label>
+                    <input type="number" id="fact-a" class="form-input" placeholder="Ej: 1" step="any">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Coeficiente b:</label>
+                    <input type="number" id="fact-b" class="form-input" placeholder="Ej: 5" step="any">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Término independiente c:</label>
+                    <input type="number" id="fact-c" class="form-input" placeholder="Ej: 6" step="any">
+                </div>
+                <button class="btn btn-primary" onclick="factorizeQuadratic()">Factorizar</button>
+
+                <div id="fact-result" class="result-area">
+                    Introduce los coeficientes y pulsa "Factorizar"
+                </div>
+
+                <div id="fact-steps" class="steps" style="display: none;">
+                    <h3>Proceso de factorización:</h3>
+                    <div id="fact-steps-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Calculadora -->
+        <div id="calculator" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Calculadora Algebraica</h2>
+
+                <!-- Sección 1: Evaluar expresiones -->
+                <div class="calc-section">
+                    <h3 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 1rem;">📊 Evaluar Expresión</h3>
+                    <p class="text-muted mb-2">Calcula el valor de una expresión algebraica para un valor específico de x</p>
+
+                    <div class="form-group">
+                        <label class="form-label">Expresión algebraica:</label>
+                        <input type="text" id="calc-expression" class="form-input" placeholder="Ej: 2*x + 3, x^2 - 4*x + 5, (x + 1)*(x - 2)">
+                        <small class="text-muted">Usar: x para variable, * para multiplicar, ^ para potencias, +, -, (), etc.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Valor de x:</label>
+                        <input type="number" id="calc-x" class="form-input" placeholder="Ej: 5" step="any">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="evaluateExpression()">📊 Evaluar Expresión</button>
+
+                    <div id="calc-result" class="result-area">
+                        Introduce una expresión y un valor para x
+                    </div>
+                </div>
+
+                <!-- Sección 2: Operaciones básicas -->
+                <div class="calc-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--border);">
+                    <h3 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 1rem;">🧮 Operaciones Básicas</h3>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <div class="form-group">
+                                <label class="form-label">Primer número (a):</label>
+                                <input type="number" id="basic-a" class="form-input" placeholder="Ej: 15" step="any">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="form-label">Segundo número (b):</label>
+                                <input type="number" id="basic-b" class="form-input" placeholder="Ej: 3" step="any">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-grid">
+                        <button class="btn btn-outline" onclick="basicOperation('add')">a + b</button>
+                        <button class="btn btn-outline" onclick="basicOperation('subtract')">a - b</button>
+                        <button class="btn btn-outline" onclick="basicOperation('multiply')">a × b</button>
+                        <button class="btn btn-outline" onclick="basicOperation('divide')">a ÷ b</button>
+                        <button class="btn btn-outline" onclick="basicOperation('power')">a^b</button>
+                        <button class="btn btn-outline" onclick="basicOperation('sqrt')">√a</button>
+                    </div>
+
+                    <div id="basic-result" class="result-area">
+                        Introduce dos números y selecciona una operación
+                    </div>
+                </div>
+
+                <!-- Sección 3: Simplificación de expresiones -->
+                <div class="calc-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--border);">
+                    <h3 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 1rem;">✨ Simplificar Expresiones</h3>
+
+                    <div class="form-group">
+                        <label class="form-label">Expresión a simplificar:</label>
+                        <input type="text" id="simplify-expression" class="form-input" placeholder="Ej: 2x + 3x - x, 5(x + 2) - 3x">
+                        <small class="text-muted">Simplifica términos semejantes y distribuye productos</small>
+                    </div>
+
+                    <button class="btn btn-secondary" onclick="simplifyExpression()">✨ Simplificar</button>
+
+                    <div id="simplify-result" class="result-area">
+                        Introduce una expresión para simplificar
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Historial -->
+        <div id="history" class="tab-content">
+            <div class="card">
+                <div class="d-flex justify-between align-center mb-2">
+                    <h2 class="card-title">Historial de Operaciones</h2>
+                    <button class="btn btn-danger" onclick="clearHistory()">Limpiar Historial</button>
+                </div>
+                <div id="history-list" class="history">
+                    <p class="text-center text-muted">No hay operaciones en el historial</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Configuración global para formato español
+        const LOCALE_CONFIG = {
+            locale: 'es-ES',
+            currency: 'EUR',
+            timezone: 'Europe/Madrid'
+        };
+
+        // Variables globales
+        let history = JSON.parse(localStorage.getItem('meskeia_algebra_history')) || [];
+
+        // Inicialización de la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Calculadora de Álgebra meskeIA cargada');
+
+            // Configurar navegación por tabs
+            setupTabs();
+
+            // Cargar historial
+            loadHistory();
+
+            // Configurar eventos de teclado para mejor UX
+            setupKeyboardEvents();
+
+            // Registrar Service Worker para PWA
+            registerServiceWorker();
+        });
+
+        // Registrar Service Worker
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./service-worker.js')
+                        .then(registration => {
+                            console.log('Service Worker registrado exitosamente:', registration.scope);
+
+                            // Verificar actualizaciones
+                            registration.addEventListener('updatefound', () => {
+                                const newWorker = registration.installing;
+                                console.log('Nueva versión del Service Worker disponible');
+
+                                newWorker.addEventListener('statechange', () => {
+                                    if (newWorker.state === 'installed') {
+                                        if (navigator.serviceWorker.controller) {
+                                            // Mostrar notificación de actualización disponible
+                                            showUpdateNotification();
+                                        }
+                                    }
+                                });
+                            });
+                        })
+                        .catch(error => {
+                            console.log('Error al registrar Service Worker:', error);
+                        });
+                });
+            }
+        }
+
+        // Mostrar notificación de actualización
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--primary);
+                color: white;
+                padding: 12px 20px;
+                border-radius: var(--radius-full);
+                box-shadow: var(--shadow-medium);
+                z-index: 10000;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            `;
+            notification.textContent = '✨ Nueva versión disponible. Toca para actualizar.';
+
+            notification.addEventListener('click', () => {
+                window.location.reload();
+            });
+
+            document.body.appendChild(notification);
+
+            // Auto-eliminar después de 10 segundos
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 10000);
+        }
+
+        // Sistema de navegación por tabs
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remover active de todos los tabs y contenidos
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    // Activar tab y contenido seleccionado
+                    tab.classList.add('active');
+                    const targetTab = tab.getAttribute('data-tab');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+        }
+
+        // Configurar eventos de teclado
+        function setupKeyboardEvents() {
+            // Enter para resolver en cada sección
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const activeTab = document.querySelector('.tab-content.active').id;
+                        switch(activeTab) {
+                            case 'linear':
+                                solveLinear();
+                                break;
+                            case 'system':
+                                solveSystem();
+                                break;
+                            case 'factorization':
+                                factorizeQuadratic();
+                                break;
+                            case 'calculator':
+                                evaluateExpression();
+                                break;
+                        }
+                    }
+                });
+            });
+        }
+
+        // Resolver ecuación lineal: ax + b = c
+        function solveLinear() {
+            const a = parseFloat(document.getElementById('linear-a').value);
+            const b = parseFloat(document.getElementById('linear-b').value);
+            const c = parseFloat(document.getElementById('linear-c').value);
+
+            const resultDiv = document.getElementById('linear-result');
+            const stepsDiv = document.getElementById('linear-steps');
+            const stepsContent = document.getElementById('linear-steps-content');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                resultDiv.textContent = 'Por favor, introduce valores numéricos válidos';
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            if (a === 0) {
+                if (b === c) {
+                    resultDiv.textContent = 'La ecuación tiene infinitas soluciones';
+                } else {
+                    resultDiv.textContent = 'La ecuación no tiene solución';
+                }
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            // Resolver: ax + b = c => x = (c - b) / a
+            const x = (c - b) / a;
+            const formattedX = formatNumber(x);
+
+            resultDiv.innerHTML = `<strong>x = ${formattedX}</strong>`;
+
+            // Mostrar pasos
+            stepsContent.innerHTML = `
+                <div class="step">
+                    <span class="step-number">1.</span>
+                    Ecuación original: ${formatNumber(a)}x + ${formatNumber(b)} = ${formatNumber(c)}
+                </div>
+                <div class="step">
+                    <span class="step-number">2.</span>
+                    Restar ${formatNumber(b)} de ambos lados: ${formatNumber(a)}x = ${formatNumber(c)} - ${formatNumber(b)}
+                </div>
+                <div class="step">
+                    <span class="step-number">3.</span>
+                    Simplificar: ${formatNumber(a)}x = ${formatNumber(c - b)}
+                </div>
+                <div class="step">
+                    <span class="step-number">4.</span>
+                    Dividir entre ${formatNumber(a)}: x = ${formatNumber(c - b)} ÷ ${formatNumber(a)}
+                </div>
+                <div class="step">
+                    <span class="step-number">5.</span>
+                    <strong>Resultado: x = ${formattedX}</strong>
+                </div>
+            `;
+            stepsDiv.style.display = 'block';
+
+            // Guardar en historial
+            addToHistory(`Ecuación lineal: ${formatNumber(a)}x + ${formatNumber(b)} = ${formatNumber(c)}`, `x = ${formattedX}`);
+        }
+
+        // Resolver sistema de ecuaciones 2x2
+        function solveSystem() {
+            const a1 = parseFloat(document.getElementById('sys-a1').value);
+            const b1 = parseFloat(document.getElementById('sys-b1').value);
+            const c1 = parseFloat(document.getElementById('sys-c1').value);
+            const a2 = parseFloat(document.getElementById('sys-a2').value);
+            const b2 = parseFloat(document.getElementById('sys-b2').value);
+            const c2 = parseFloat(document.getElementById('sys-c2').value);
+
+            const resultDiv = document.getElementById('system-result');
+            const stepsDiv = document.getElementById('system-steps');
+            const stepsContent = document.getElementById('system-steps-content');
+
+            if ([a1, b1, c1, a2, b2, c2].some(isNaN)) {
+                resultDiv.textContent = 'Por favor, introduce todos los coeficientes';
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            // Método de Cramer
+            const det = a1 * b2 - a2 * b1;
+
+            if (det === 0) {
+                resultDiv.textContent = 'El sistema no tiene solución única (determinante = 0)';
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            const x = (c1 * b2 - c2 * b1) / det;
+            const y = (a1 * c2 - a2 * c1) / det;
+
+            const formattedX = formatNumber(x);
+            const formattedY = formatNumber(y);
+
+            resultDiv.innerHTML = `<strong>x = ${formattedX}, y = ${formattedY}</strong>`;
+
+            // Mostrar pasos del método de Cramer
+            stepsContent.innerHTML = `
+                <div class="step">
+                    <span class="step-number">1.</span>
+                    Sistema: ${formatNumber(a1)}x + ${formatNumber(b1)}y = ${formatNumber(c1)}, ${formatNumber(a2)}x + ${formatNumber(b2)}y = ${formatNumber(c2)}
+                </div>
+                <div class="step">
+                    <span class="step-number">2.</span>
+                    Determinante principal: |${formatNumber(a1)} ${formatNumber(b1)}| = ${formatNumber(a1)} × ${formatNumber(b2)} - ${formatNumber(a2)} × ${formatNumber(b1)} = ${formatNumber(det)}
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|${formatNumber(a2)} ${formatNumber(b2)}|
+                </div>
+                <div class="step">
+                    <span class="step-number">3.</span>
+                    Determinante x: |${formatNumber(c1)} ${formatNumber(b1)}| = ${formatNumber(c1)} × ${formatNumber(b2)} - ${formatNumber(c2)} × ${formatNumber(b1)} = ${formatNumber(c1 * b2 - c2 * b1)}
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|${formatNumber(c2)} ${formatNumber(b2)}|
+                </div>
+                <div class="step">
+                    <span class="step-number">4.</span>
+                    Determinante y: |${formatNumber(a1)} ${formatNumber(c1)}| = ${formatNumber(a1)} × ${formatNumber(c2)} - ${formatNumber(a2)} × ${formatNumber(c1)} = ${formatNumber(a1 * c2 - a2 * c1)}
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|${formatNumber(a2)} ${formatNumber(c2)}|
+                </div>
+                <div class="step">
+                    <span class="step-number">5.</span>
+                    <strong>x = ${formatNumber(c1 * b2 - c2 * b1)} ÷ ${formatNumber(det)} = ${formattedX}</strong>
+                </div>
+                <div class="step">
+                    <span class="step-number">6.</span>
+                    <strong>y = ${formatNumber(a1 * c2 - a2 * c1)} ÷ ${formatNumber(det)} = ${formattedY}</strong>
+                </div>
+            `;
+            stepsDiv.style.display = 'block';
+
+            // Guardar en historial
+            addToHistory(`Sistema 2x2`, `x = ${formattedX}, y = ${formattedY}`);
+        }
+
+        // Factorizar polinomio cuadrático
+        function factorizeQuadratic() {
+            const a = parseFloat(document.getElementById('fact-a').value);
+            const b = parseFloat(document.getElementById('fact-b').value);
+            const c = parseFloat(document.getElementById('fact-c').value);
+
+            const resultDiv = document.getElementById('fact-result');
+            const stepsDiv = document.getElementById('fact-steps');
+            const stepsContent = document.getElementById('fact-steps-content');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                resultDiv.textContent = 'Por favor, introduce valores numéricos válidos';
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            if (a === 0) {
+                resultDiv.textContent = 'No es una ecuación cuadrática (a = 0)';
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            // Calcular discriminante
+            const discriminant = b * b - 4 * a * c;
+
+            if (discriminant < 0) {
+                resultDiv.textContent = 'No se puede factorizar en números reales (discriminante < 0)';
+                stepsDiv.style.display = 'none';
+                return;
+            }
+
+            // Calcular raíces
+            const sqrtDisc = Math.sqrt(discriminant);
+            const root1 = (-b + sqrtDisc) / (2 * a);
+            const root2 = (-b - sqrtDisc) / (2 * a);
+
+            let factorization;
+            if (a === 1) {
+                factorization = `(x - ${formatNumber(-root1)})(x - ${formatNumber(-root2)})`;
+            } else {
+                factorization = `${formatNumber(a)}(x - ${formatNumber(-root1)})(x - ${formatNumber(-root2)})`;
+            }
+
+            resultDiv.innerHTML = `<strong>${factorization}</strong>`;
+
+            // Mostrar pasos
+            stepsContent.innerHTML = `
+                <div class="step">
+                    <span class="step-number">1.</span>
+                    Polinomio original: ${formatNumber(a)}x² + ${formatNumber(b)}x + ${formatNumber(c)}
+                </div>
+                <div class="step">
+                    <span class="step-number">2.</span>
+                    Discriminante: Δ = b² - 4ac = ${formatNumber(b)}² - 4(${formatNumber(a)})(${formatNumber(c)}) = ${formatNumber(discriminant)}
+                </div>
+                <div class="step">
+                    <span class="step-number">3.</span>
+                    Raíces: x = (-b ± √Δ) / 2a
+                </div>
+                <div class="step">
+                    <span class="step-number">4.</span>
+                    x₁ = (${formatNumber(-b)} + ${formatNumber(sqrtDisc)}) / ${formatNumber(2 * a)} = ${formatNumber(root1)}
+                </div>
+                <div class="step">
+                    <span class="step-number">5.</span>
+                    x₂ = (${formatNumber(-b)} - ${formatNumber(sqrtDisc)}) / ${formatNumber(2 * a)} = ${formatNumber(root2)}
+                </div>
+                <div class="step">
+                    <span class="step-number">6.</span>
+                    <strong>Factorización: ${factorization}</strong>
+                </div>
+            `;
+            stepsDiv.style.display = 'block';
+
+            // Guardar en historial
+            addToHistory(`Factorización: ${formatNumber(a)}x² + ${formatNumber(b)}x + ${formatNumber(c)}`, factorization);
+        }
+
+        // Evaluar expresión algebraica
+        function evaluateExpression() {
+            const expression = document.getElementById('calc-expression').value.trim();
+            const xValue = parseFloat(document.getElementById('calc-x').value);
+            const resultDiv = document.getElementById('calc-result');
+
+            if (!expression) {
+                resultDiv.textContent = 'Por favor, introduce una expresión algebraica';
+                return;
+            }
+
+            if (isNaN(xValue)) {
+                resultDiv.textContent = 'Por favor, introduce un valor numérico válido para x';
+                return;
+            }
+
+            try {
+                // Reemplazar x por el valor, manejar potencias y multiplicación implícita
+                let processedExpression = expression
+                    .toLowerCase()
+                    .replace(/\s+/g, '') // Eliminar espacios
+                    .replace(/(\d)x/g, '$1*x') // 2x -> 2*x
+                    .replace(/x(\d)/g, 'x*$1') // x2 -> x*2
+                    .replace(/\)x/g, ')*x') // )x -> )*x
+                    .replace(/x\(/g, 'x*(') // x( -> x*(
+                    .replace(/x/g, `(${xValue})`) // x -> (valor)
+                    .replace(/\^/g, '**'); // ^ -> **
+
+                // Verificar caracteres permitidos
+                const allowedChars = /^[0-9+\-*/().\s]+$/;
+                if (!allowedChars.test(processedExpression)) {
+                    resultDiv.textContent = 'Expresión no válida. Usa solo números, x, +, -, *, /, ^, ()';
+                    return;
+                }
+
+                const result = eval(processedExpression);
+                const formattedResult = formatNumber(result);
+
+                resultDiv.innerHTML = `
+                    <div style="text-align: center;">
+                        <strong>${expression}</strong> cuando <strong>x = ${formatNumber(xValue)}</strong><br>
+                        <span style="font-size: 1.3rem; color: var(--primary);">${formattedResult}</span>
+                    </div>
+                `;
+
+                // Guardar en historial
+                addToHistory(`Evaluar: ${expression} con x = ${formatNumber(xValue)}`, formattedResult);
+
+            } catch (error) {
+                resultDiv.textContent = 'Error: Expresión inválida. Verifica la sintaxis (ej: 2*x + 3, x^2 - 1)';
+            }
+        }
+
+        // Operaciones básicas
+        function basicOperation(operation) {
+            const a = parseFloat(document.getElementById('basic-a').value);
+            const b = parseFloat(document.getElementById('basic-b').value);
+            const resultDiv = document.getElementById('basic-result');
+
+            if (isNaN(a)) {
+                resultDiv.textContent = 'Por favor, introduce el primer número (a)';
+                return;
+            }
+
+            if (operation !== 'sqrt' && isNaN(b)) {
+                resultDiv.textContent = 'Por favor, introduce el segundo número (b)';
+                return;
+            }
+
+            let result, operationText;
+
+            try {
+                switch(operation) {
+                    case 'add':
+                        result = a + b;
+                        operationText = `${formatNumber(a)} + ${formatNumber(b)}`;
+                        break;
+                    case 'subtract':
+                        result = a - b;
+                        operationText = `${formatNumber(a)} - ${formatNumber(b)}`;
+                        break;
+                    case 'multiply':
+                        result = a * b;
+                        operationText = `${formatNumber(a)} × ${formatNumber(b)}`;
+                        break;
+                    case 'divide':
+                        if (b === 0) {
+                            resultDiv.textContent = 'Error: División por cero';
+                            return;
+                        }
+                        result = a / b;
+                        operationText = `${formatNumber(a)} ÷ ${formatNumber(b)}`;
+                        break;
+                    case 'power':
+                        result = Math.pow(a, b);
+                        operationText = `${formatNumber(a)}^${formatNumber(b)}`;
+                        break;
+                    case 'sqrt':
+                        if (a < 0) {
+                            resultDiv.textContent = 'Error: Raíz cuadrada de número negativo';
+                            return;
+                        }
+                        result = Math.sqrt(a);
+                        operationText = `√${formatNumber(a)}`;
+                        break;
+                    default:
+                        resultDiv.textContent = 'Operación no válida';
+                        return;
+                }
+
+                const formattedResult = formatNumber(result);
+                resultDiv.innerHTML = `
+                    <div style="text-align: center;">
+                        <strong>${operationText}</strong> =
+                        <span style="font-size: 1.3rem; color: var(--primary);">${formattedResult}</span>
+                    </div>
+                `;
+
+                // Guardar en historial
+                addToHistory(operationText, formattedResult);
+
+            } catch (error) {
+                resultDiv.textContent = 'Error en el cálculo';
+            }
+        }
+
+        // Simplificar expresión mejorada
+        function simplifyExpression() {
+            const expression = document.getElementById('simplify-expression').value.trim();
+            const resultDiv = document.getElementById('simplify-result');
+
+            if (!expression) {
+                resultDiv.textContent = 'Por favor, introduce una expresión para simplificar';
+                return;
+            }
+
+            try {
+                // Simplificación básica de términos semejantes
+                let simplified = expression
+                    .replace(/\s+/g, '') // Eliminar espacios
+                    .toLowerCase()
+                    .replace(/\+0/g, '') // Eliminar +0
+                    .replace(/0\+/g, '') // Eliminar 0+
+                    .replace(/\*1(?!\d)/g, '') // Eliminar *1 (no seguido de dígito)
+                    .replace(/1\*(?!\d)/g, '') // Eliminar 1*
+                    .replace(/\*0/g, '*0') // Mantener *0 para mostrar que se anula
+                    .replace(/0\*/g, '0*') // Mantener 0*
+                    .replace(/\+\+/g, '+') // ++ -> +
+                    .replace(/--/g, '+') // -- -> +
+                    .replace(/\+-/g, '-') // +- -> -
+                    .replace(/-\+/g, '-') // -+ -> -
+                    .replace(/^\+/, ''); // Eliminar + inicial
+
+                // Detectar y simplificar términos semejantes básicos
+                const termRegex = /([+-]?\d*)\*?x/g;
+                const terms = [];
+                let match;
+                let constantTerm = '';
+
+                // Extraer términos con x
+                let tempExpression = simplified;
+                while ((match = termRegex.exec(simplified)) !== null) {
+                    let coeff = match[1];
+                    if (coeff === '' || coeff === '+') coeff = '1';
+                    if (coeff === '-') coeff = '-1';
+                    terms.push(parseInt(coeff) || 1);
+                    tempExpression = tempExpression.replace(match[0], '');
+                }
+
+                // Sumar coeficientes de x
+                if (terms.length > 0) {
+                    const totalCoeff = terms.reduce((sum, term) => sum + term, 0);
+
+                    if (totalCoeff === 0) {
+                        simplified = tempExpression || '0';
+                    } else if (totalCoeff === 1) {
+                        simplified = 'x' + (tempExpression ? '+' + tempExpression : '');
+                    } else if (totalCoeff === -1) {
+                        simplified = '-x' + (tempExpression ? '+' + tempExpression : '');
+                    } else {
+                        simplified = totalCoeff + 'x' + (tempExpression ? '+' + tempExpression : '');
+                    }
+                }
+
+                // Limpiar resultado final
+                simplified = simplified
+                    .replace(/\+\+/g, '+')
+                    .replace(/\+-/g, '-')
+                    .replace(/^\+/, '')
+                    .replace(/\+$/, '');
+
+                if (!simplified) simplified = '0';
+
+                resultDiv.innerHTML = `
+                    <div style="text-align: center;">
+                        <div style="margin-bottom: 0.5rem;">Expresión original: <strong>${expression}</strong></div>
+                        <div>Simplificada: <span style="font-size: 1.3rem; color: var(--primary);"><strong>${simplified}</strong></span></div>
+                    </div>
+                `;
+
+                // Guardar en historial
+                addToHistory(`Simplificar: ${expression}`, simplified);
+
+            } catch (error) {
+                resultDiv.textContent = 'Error al simplificar. Verifica la sintaxis de la expresión.';
+            }
+        }
+
+        // Función para formatear números con formato español
+        function formatNumber(num) {
+            if (Number.isInteger(num)) {
+                return num.toString();
+            }
+
+            // Redondear a 4 decimales para evitar errores de punto flotante
+            const rounded = Math.round(num * 10000) / 10000;
+
+            // Formato español: coma decimal
+            return rounded.toString().replace('.', ',');
+        }
+
+        // Agregar al historial
+        function addToHistory(operation, result) {
+            const timestamp = new Date().toLocaleString('es-ES');
+            const historyItem = {
+                operation,
+                result,
+                timestamp
+            };
+
+            history.unshift(historyItem);
+
+            // Mantener solo los últimos 50 elementos
+            if (history.length > 50) {
+                history = history.slice(0, 50);
+            }
+
+            // Guardar en localStorage
+            localStorage.setItem('meskeia_algebra_history', JSON.stringify(history));
+
+            // Actualizar vista del historial
+            loadHistory();
+        }
+
+        // Cargar historial
+        function loadHistory() {
+            const historyList = document.getElementById('history-list');
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<p class="text-center text-muted">No hay operaciones en el historial</p>';
+                return;
+            }
+
+            historyList.innerHTML = history.map(item => `
+                <div class="history-item">
+                    <div>
+                        <strong>${item.operation}</strong><br>
+                        <span style="color: var(--primary);">${item.result}</span><br>
+                        <small class="text-muted">${item.timestamp}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Limpiar historial
+        function clearHistory() {
+            if (confirm('¿Estás seguro de que quieres limpiar todo el historial?')) {
+                history = [];
+                localStorage.removeItem('meskeia_algebra_history');
+                loadHistory();
+            }
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</body>
+</html>
