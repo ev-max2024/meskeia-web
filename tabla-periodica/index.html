@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla Periódica Interactiva - Explora los elementos químicos de forma visual y educativa con juegos y filtros avanzados">
+    <meta name="keywords" content="tabla periódica, elementos químicos, química, educación, interactiva, juegos educativos">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tabla Periódica Interactiva | meskeIA">
+    <meta property="og:description" content="Explora los 118 elementos químicos de forma interactiva con filtros, juegos y información detallada">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="img/tabla-periodica-preview.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tabla Periódica Interactiva | meskeIA">
+    <meta name="twitter:description" content="Explora los 118 elementos químicos de forma interactiva">
+    <meta name="twitter:image" content="img/tabla-periodica-preview.jpg">
+
+    <!-- Favicon meskeIA -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2C3E50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tabla Periódica">
+
+    <title>Tabla Periódica Interactiva | meskeIA</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Tabla Periódica Interactiva",
+        "description": "Aplicación web interactiva para explorar los elementos químicos",
+        "url": "",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        }
+    }
+    </script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="title">
+                <span class="title-icon">⚛️</span>
+                Tabla Periódica Interactiva
+            </h1>
+            <p class="subtitle">Explora los 118 elementos químicos de forma visual y educativa</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-controls">
+                <button class="btn btn-primary" id="btn-vista-tabla" data-active="true">
+                    📊 Vista Tabla
+                </button>
+                <button class="btn btn-secondary" id="btn-modo-juego">
+                    🎮 Modo Juego
+                </button>
+                <button class="btn btn-secondary" id="btn-info">
+                    ℹ️ Información
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Filtros y Controles -->
+            <section class="controls-panel" id="controls-panel">
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="filtro-familia">Familia:</label>
+                        <select id="filtro-familia" class="select">
+                            <option value="todos">Todos los elementos</option>
+                            <option value="metales-alcalinos">Metales Alcalinos</option>
+                            <option value="metales-alcalinoterreos">Metales Alcalinotérreos</option>
+                            <option value="metales-transicion">Metales de Transición</option>
+                            <option value="metaloides">Metaloides</option>
+                            <option value="no-metales">No Metales</option>
+                            <option value="halogenos">Halógenos</option>
+                            <option value="gases-nobles">Gases Nobles</option>
+                            <option value="lantanidos">Lantánidos</option>
+                            <option value="actinidos">Actínidos</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filtro-estado">Estado:</label>
+                        <select id="filtro-estado" class="select">
+                            <option value="todos">Todos los estados</option>
+                            <option value="solido">Sólido</option>
+                            <option value="liquido">Líquido</option>
+                            <option value="gas">Gas</option>
+                            <option value="sintetico">Sintético</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="buscar-elemento">Buscar:</label>
+                        <input type="text" id="buscar-elemento" class="input" placeholder="Nombre, símbolo o número...">
+                    </div>
+
+                    <button class="btn btn-outline" id="btn-limpiar-filtros">
+                        🗑️ Limpiar
+                    </button>
+                </div>
+
+                <!-- Rango de Propiedades -->
+                <div class="properties-row">
+                    <div class="property-slider">
+                        <label for="rango-masa">Masa Atómica (u):</label>
+                        <input type="range" id="rango-masa" min="1" max="300" value="300" class="slider">
+                        <span id="valor-masa">1 - 300</span>
+                    </div>
+
+                    <div class="property-slider">
+                        <label for="rango-radio">Radio Atómico (pm):</label>
+                        <input type="range" id="rango-radio" min="30" max="300" value="300" class="slider">
+                        <span id="valor-radio">30 - 300</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla Periódica -->
+            <section class="tabla-container" id="tabla-container">
+                <div class="tabla-periodica" id="tabla-periodica">
+                    <!-- La tabla se generará dinámicamente con JavaScript -->
+                </div>
+
+                <!-- Leyenda -->
+                <div class="leyenda">
+                    <h3>Leyenda por Familias</h3>
+                    <div class="leyenda-items">
+                        <div class="leyenda-item">
+                            <span class="color-box metales-alcalinos"></span>
+                            <span>Metales Alcalinos</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box metales-alcalinoterreos"></span>
+                            <span>Metales Alcalinotérreos</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box metales-transicion"></span>
+                            <span>Metales de Transición</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box metaloides"></span>
+                            <span>Metaloides</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box no-metales"></span>
+                            <span>No Metales</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box halogenos"></span>
+                            <span>Halógenos</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box gases-nobles"></span>
+                            <span>Gases Nobles</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box lantanidos"></span>
+                            <span>Lantánidos</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <span class="color-box actinidos"></span>
+                            <span>Actínidos</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de Juego -->
+            <section class="juego-container" id="juego-container" style="display: none;">
+                <div class="juego-panel">
+                    <div class="juego-header">
+                        <h2>🎮 Modo Juego: Adivina el Elemento</h2>
+                        <div class="juego-stats">
+                            <span>Puntuación: <strong id="puntuacion">0</strong></span>
+                            <span>Racha: <strong id="racha">0</strong></span>
+                            <span>Nivel: <strong id="nivel">1</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="juego-content">
+                        <div class="pista-container">
+                            <h3>Pistas del Elemento:</h3>
+                            <div id="pistas-elemento" class="pistas">
+                                <!-- Las pistas se generarán dinámicamente -->
+                            </div>
+                        </div>
+
+                        <div class="respuesta-container">
+                            <input type="text" id="respuesta-input" class="input-large" placeholder="Escribe el nombre del elemento...">
+                            <div class="juego-buttons">
+                                <button class="btn btn-primary" id="btn-responder">Responder</button>
+                                <button class="btn btn-outline" id="btn-pista">💡 Más Pista</button>
+                                <button class="btn btn-secondary" id="btn-saltar">⏭️ Saltar</button>
+                            </div>
+                        </div>
+
+                        <div class="resultado-container" id="resultado-container">
+                            <!-- El resultado se mostrará aquí -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de Información del Elemento -->
+            <section class="info-panel" id="info-panel">
+                <div class="info-content">
+                    <button class="btn-close" id="btn-cerrar-info">✕</button>
+                    <div class="elemento-info">
+                        <div class="elemento-header">
+                            <div class="elemento-simbolo" id="info-simbolo">H</div>
+                            <div class="elemento-datos">
+                                <h2 id="info-nombre">Hidrógeno</h2>
+                                <p id="info-numero">Número atómico: 1</p>
+                                <p id="info-masa">Masa atómica: 1,008 u</p>
+                            </div>
+                        </div>
+
+                        <div class="elemento-detalles">
+                            <div class="detalle-grupo">
+                                <h3>Propiedades Básicas</h3>
+                                <div class="propiedades-grid">
+                                    <div class="propiedad">
+                                        <strong>Grupo:</strong>
+                                        <span id="info-grupo">1</span>
+                                    </div>
+                                    <div class="propiedad">
+                                        <strong>Período:</strong>
+                                        <span id="info-periodo">1</span>
+                                    </div>
+                                    <div class="propiedad">
+                                        <strong>Familia:</strong>
+                                        <span id="info-familia">No metal</span>
+                                    </div>
+                                    <div class="propiedad">
+                                        <strong>Estado:</strong>
+                                        <span id="info-estado">Gas</span>
+                                    </div>
+                                    <div class="propiedad">
+                                        <strong>Radio atómico:</strong>
+                                        <span id="info-radio">53 pm</span>
+                                    </div>
+                                    <div class="propiedad">
+                                        <strong>Electronegatividad:</strong>
+                                        <span id="info-electronegatividad">2,2</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detalle-grupo">
+                                <h3>Usos Principales</h3>
+                                <ul id="info-usos">
+                                    <li>Combustible en cohetes</li>
+                                    <li>Soldadura</li>
+                                    <li>Refinado de petróleo</li>
+                                </ul>
+                            </div>
+
+                            <div class="detalle-grupo">
+                                <h3>Dato Curioso</h3>
+                                <p id="info-dato-curioso">Es el elemento más abundante del universo, constituyendo aproximadamente el 75% de la materia visible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Cargando elementos químicos...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/elementos-data.js"></script>
+    <script src="js/tabla-periodica.js"></script>
+    <script src="js/juego-elementos.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('SW registrado con éxito: ', registration.scope);
+                    }, function(err) {
+                        console.log('SW falló al registrarse: ', err);
+                    });
+            });
+        }
+    </script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

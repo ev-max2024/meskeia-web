@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(start http://localhost:8000)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

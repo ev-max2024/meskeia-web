@@ -10,8 +10,8 @@
     
     <!-- SEO Principal -->
     <title>meskeIA - Biblioteca de Aplicaciones Web Gratuitas | Herramientas Online Minimalistas</title>
-    <meta name="description" content="Biblioteca gratuita de aplicaciones web y cursos educativos: matemáticas avanzadas, probabilidad, álgebra, geometría, cálculo, simulador de hipoteca, rentas vitalicias, TIR-VAN, curso de emprendimiento, cuaderno digital, herramientas de salud y más utilidades online sin registro. Diseño minimalista para España.">
-    <meta name="keywords" content="matemáticas, probabilidad, álgebra, geometría, cálculo, trigonometría, estadística, rentas vitalicias, TIR VAN, curso emprendimiento, curso inversiones, cuaderno digital, simulador hipoteca, calculadora fechas, calculadora matemática, teoría números, investigación operativa, lorem ipsum, generador contraseñas, calculadora irpf, evaluador salud, nutrisalud, formación empresarial, herramientas web gratuitas, aplicaciones online España, meskeIA">
+    <meta name="description" content="Biblioteca gratuita de aplicaciones web y cursos educativos: matemáticas avanzadas, física, química, cinemática, tabla periódica, probabilidad, álgebra, geometría, simulador de hipoteca, rentas vitalicias, TIR-VAN, curso de emprendimiento, cuaderno digital, herramientas de salud y más utilidades online sin registro. Diseño minimalista para España.">
+    <meta name="keywords" content="matemáticas, física, química, cinemática, tabla periódica, elementos químicos, calculadora movimiento, MRU, MRUA, tiro parabólico, caída libre, probabilidad, álgebra, geometría, cálculo, trigonometría, estadística, rentas vitalicias, TIR VAN, curso emprendimiento, curso inversiones, cuaderno digital, simulador hipoteca, calculadora fechas, calculadora matemática, teoría números, investigación operativa, lorem ipsum, generador contraseñas, calculadora irpf, evaluador salud, nutrisalud, formación empresarial, herramientas web gratuitas, aplicaciones online España, meskeIA">
     
     <link rel="canonical" href="https://meskeia.com/">
     <link rel="manifest" href="manifest.json">
@@ -28,7 +28,7 @@
     <!-- Open Graph para redes sociales -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="meskeIA - Biblioteca de Aplicaciones Web Gratuitas">
-    <meta property="og:description" content="Matemáticas avanzadas, probabilidad, álgebra, simulador de hipoteca, rentas vitalicias, cuaderno digital y más aplicaciones web. Todo gratis y sin registro.">
+    <meta property="og:description" content="Matemáticas, física, química, cinemática, tabla periódica, estadística, finanzas, simulador de hipoteca, rentas vitalicias, cuaderno digital y más aplicaciones web. Todo gratis y sin registro.">
     <meta property="og:url" content="https://meskeia.com">
     <meta property="og:site_name" content="meskeIA">
     <meta property="og:locale" content="es_ES">
@@ -36,7 +36,7 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="meskeIA - Biblioteca de Aplicaciones Web Gratuitas">
-    <meta name="twitter:description" content="Matemáticas, estadística, finanzas, productividad: aplicaciones web gratuitas con diseño limpio para España">
+    <meta name="twitter:description" content="Matemáticas, física, química, estadística, finanzas, productividad: aplicaciones web gratuitas con diseño limpio para España">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="icon_meskeia.png">
@@ -955,21 +955,21 @@
                 </ul>
             </div>
 
-            <div class="category-card" onclick="toggleCategory('salud')" itemscope itemtype="https://schema.org/SoftwareApplication">
+            <div class="category-card" onclick="toggleCategory('fisica-quimica')" itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="category-header">
-                    <div class="category-icon">🏥</div>
-                    <h2 class="category-title">Salud & Bienestar</h2>
+                    <div class="category-icon">🧪⚛️</div>
+                    <h2 class="category-title">Física y Química</h2>
                 </div>
                 <p class="category-description">
-                    Herramientas educativas para el cuidado de la salud y información nutricional basada en ciencia.
+                    Herramientas interactivas para el estudio de física y química con simulaciones y visualizaciones dinámicas.
                 </p>
-                <ul class="category-tools" id="salud-tools" style="display: none;" onclick="event.stopPropagation()">
-                    <li><a href="evaluador-salud/evaluador-salud.html" onclick="event.stopPropagation()" title="Calcula tu IMC, metabolismo basal y evalúa tu estado de salud">Evaluador de Salud</a></li>
-                    <li><a href="nutrisalud/nutrisalud.html" onclick="event.stopPropagation()" title="Información nutricional educativa basada en evidencia científica">NutriSalud - Nutrición Avanzada</a></li>
+                <ul class="category-tools" id="fisica-quimica-tools" style="display: none;" onclick="event.stopPropagation()">
+                    <li><a href="calculadora-movimiento/index.html" onclick="event.stopPropagation()" title="Calculadora interactiva de cinemática con gráficos y animaciones para MRU, MRUA, caída libre y tiro parabólico">Calculadora de Movimiento (Cinemática)</a></li>
+                    <li><a href="tabla-periodica/index.html" onclick="event.stopPropagation()" title="Tabla periódica interactiva con información detallada de todos los elementos químicos">Tabla Periódica Interactiva</a></li>
                 </ul>
             </div>
 
-            <div class="category-card" onclick="toggleCategory('productividad')" itemscope itemtype="https://schema.org/SoftwareApplication">
+<div class="category-card" onclick="toggleCategory('productividad')" itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="category-header">
                     <div class="category-icon">⚡</div>
                     <h2 class="category-title">Herramientas de Productividad</h2>
@@ -1021,6 +1021,21 @@
                     <li><a href="curso-emprendimiento/curso-emprendimiento.html" onclick="event.stopPropagation()" title="Guía práctica de emprendimiento: de la idea al primer cliente con ejemplos españoles">Curso de Emprendimiento Práctico</a></li>
                 </ul>
             </div>
+
+            <div class="category-card" onclick="toggleCategory('salud')" itemscope itemtype="https://schema.org/SoftwareApplication">
+                <div class="category-header">
+                    <div class="category-icon">🏥</div>
+                    <h2 class="category-title">Salud & Bienestar</h2>
+                </div>
+                <p class="category-description">
+                    Herramientas educativas para el cuidado de la salud y información nutricional basada en ciencia.
+                </p>
+                <ul class="category-tools" id="salud-tools" style="display: none;" onclick="event.stopPropagation()">
+                    <li><a href="evaluador-salud/evaluador-salud.html" onclick="event.stopPropagation()" title="Calcula tu IMC, metabolismo basal y evalúa tu estado de salud">Evaluador de Salud</a></li>
+                    <li><a href="nutrisalud/nutrisalud.html" onclick="event.stopPropagation()" title="Información nutricional educativa basada en evidencia científica">NutriSalud - Nutrición Avanzada</a></li>
+                </ul>
+            </div>
+
         </section>
 
         <!-- Ventajas en Cards Separadas -->

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+    <title>Calculadora de Movimiento - meskeIA</title>
+    <meta name="description" content="Calculadora interactiva de cinemática para resolver problemas de movimiento uniforme y uniformemente acelerado">
+    <meta name="keywords" content="cinemática, física, calculadora, movimiento, MRU, MRUA, velocidad, aceleración">
+    <meta name="author" content="meskeIA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Movimiento - meskeIA">
+    <meta property="og:description" content="Herramienta educativa para cálculos y visualización de movimiento">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/calculadora-movimiento">
+
+    <!-- Favicon meskeIA -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192x192.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Cinemática">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🚀 Calculadora de Movimiento</h1>
+            <p class="subtitle">Cinemática interactiva para estudiantes</p>
+        </header>
+
+        <main>
+            <!-- Selector de tipo de movimiento -->
+            <section class="card">
+                <h2>Tipo de Movimiento</h2>
+                <div class="movement-type">
+                    <button class="btn-type active" data-type="mru">MRU</button>
+                    <button class="btn-type" data-type="mrua">MRUA</button>
+                    <button class="btn-type" data-type="caida">Caída Libre</button>
+                    <button class="btn-type" data-type="parabolico">Tiro Parabólico</button>
+                </div>
+            </section>
+
+            <!-- Panel de entrada de datos -->
+            <section class="card">
+                <h2>Parámetros de Entrada</h2>
+                <form id="parametros-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="velocidad-inicial">
+                                Velocidad Inicial (v₀)
+                                <span class="unit">m/s</span>
+                            </label>
+                            <input type="number" id="velocidad-inicial" step="0.1" value="0">
+                        </div>
+
+                        <div class="input-group" id="aceleracion-group">
+                            <label for="aceleracion">
+                                Aceleración (a)
+                                <span class="unit">m/s²</span>
+                            </label>
+                            <input type="number" id="aceleracion" step="0.1" value="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="tiempo">
+                                Tiempo (t)
+                                <span class="unit">s</span>
+                            </label>
+                            <input type="number" id="tiempo" step="0.1" value="10" min="0.1">
+                        </div>
+
+                        <div class="input-group" id="angulo-group" style="display: none;">
+                            <label for="angulo">
+                                Ángulo de lanzamiento
+                                <span class="unit">°</span>
+                            </label>
+                            <input type="number" id="angulo" step="1" value="45" min="0" max="90">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-calculate">Calcular</button>
+                </form>
+            </section>
+
+            <!-- Ejemplos predefinidos -->
+            <section class="card">
+                <h2>Ejemplos Rápidos</h2>
+                <div class="examples-grid">
+                    <button class="btn-example" data-example="pelota">
+                        ⚽ Pelota lanzada
+                    </button>
+                    <button class="btn-example" data-example="coche">
+                        🚗 Coche frenando
+                    </button>
+                    <button class="btn-example" data-example="cohete">
+                        🚀 Cohete acelerando
+                    </button>
+                    <button class="btn-example" data-example="caida-libre">
+                        📦 Objeto en caída
+                    </button>
+                </div>
+            </section>
+
+            <!-- Resultados -->
+            <section class="card" id="resultados" style="display: none;">
+                <h2>Resultados</h2>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-label">Velocidad Final</span>
+                        <span class="result-value" id="velocidad-final">-</span>
+                        <span class="result-unit">m/s</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Distancia Recorrida</span>
+                        <span class="result-value" id="distancia">-</span>
+                        <span class="result-unit">m</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Altura Máxima</span>
+                        <span class="result-value" id="altura-max">-</span>
+                        <span class="result-unit">m</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Alcance Horizontal</span>
+                        <span class="result-value" id="alcance">-</span>
+                        <span class="result-unit">m</span>
+                    </div>
+                </div>
+
+                <!-- Fórmulas utilizadas -->
+                <div class="formulas">
+                    <h3>Fórmulas utilizadas:</h3>
+                    <div id="formulas-content"></div>
+                </div>
+            </section>
+
+            <!-- Visualización -->
+            <section class="visualization">
+                <!-- Gráfico de posición vs tiempo -->
+                <div class="card">
+                    <h2>📊 Gráfico Posición-Tiempo</h2>
+                    <div class="chart-container">
+                        <canvas id="chart-posicion"></canvas>
+                    </div>
+                </div>
+
+                <!-- Animación de trayectoria -->
+                <div class="card">
+                    <h2>🎯 Simulación de Trayectoria</h2>
+                    <div class="animation-container">
+                        <canvas id="canvas-animation"></canvas>
+                        <div class="animation-controls">
+                            <button id="btn-play" class="btn-control">▶ Reproducir</button>
+                            <button id="btn-pause" class="btn-control">⏸ Pausar</button>
+                            <button id="btn-reset" class="btn-control">↺ Reiniciar</button>
+                            <div class="speed-control">
+                                <label for="speed-slider">Velocidad:</label>
+                                <input type="range" id="speed-slider" min="0.1" max="2" step="0.1" value="1">
+                                <span id="speed-value">1x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <script src="script.js"></script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>
