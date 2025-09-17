@@ -10,8 +10,8 @@
     
     <!-- SEO Principal -->
     <title>meskeIA - Biblioteca de Aplicaciones Web Gratuitas | Herramientas Online Minimalistas</title>
-    <meta name="description" content="Biblioteca gratuita de aplicaciones web y cursos educativos: cuaderno digital, simulador de hipoteca, curso de emprendimiento, curso decisiones de inversión, calculadora de fechas, herramientas de salud, NutriSalud y más utilidades online sin registro. Diseño minimalista para España.">
-    <meta name="keywords" content="curso emprendimiento, curso inversiones, cuaderno digital, simulador hipoteca, calculadora fechas, lorem ipsum, generador contraseñas, calculadora irpf, evaluador salud, nutrisalud, formación empresarial, herramientas web gratuitas, aplicaciones online España, meskeIA">
+    <meta name="description" content="Biblioteca gratuita de aplicaciones web y cursos educativos: matemáticas avanzadas, probabilidad, álgebra, geometría, cálculo, simulador de hipoteca, rentas vitalicias, TIR-VAN, curso de emprendimiento, cuaderno digital, herramientas de salud y más utilidades online sin registro. Diseño minimalista para España.">
+    <meta name="keywords" content="matemáticas, probabilidad, álgebra, geometría, cálculo, trigonometría, estadística, rentas vitalicias, TIR VAN, curso emprendimiento, curso inversiones, cuaderno digital, simulador hipoteca, calculadora fechas, calculadora matemática, teoría números, investigación operativa, lorem ipsum, generador contraseñas, calculadora irpf, evaluador salud, nutrisalud, formación empresarial, herramientas web gratuitas, aplicaciones online España, meskeIA">
     
     <link rel="canonical" href="https://meskeia.com/">
     <link rel="manifest" href="manifest.json">
@@ -28,7 +28,7 @@
     <!-- Open Graph para redes sociales -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="meskeIA - Biblioteca de Aplicaciones Web Gratuitas">
-    <meta property="og:description" content="Cuaderno digital, simulador de hipoteca, calculadora de fechas y más aplicaciones web. Todo gratis y sin registro.">
+    <meta property="og:description" content="Matemáticas avanzadas, probabilidad, álgebra, simulador de hipoteca, rentas vitalicias, cuaderno digital y más aplicaciones web. Todo gratis y sin registro.">
     <meta property="og:url" content="https://meskeia.com">
     <meta property="og:site_name" content="meskeIA">
     <meta property="og:locale" content="es_ES">
@@ -36,7 +36,7 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="meskeIA - Biblioteca de Aplicaciones Web Gratuitas">
-    <meta name="twitter:description" content="Aplicaciones web gratuitas con diseño limpio y funcional para España">
+    <meta name="twitter:description" content="Matemáticas, estadística, finanzas, productividad: aplicaciones web gratuitas con diseño limpio para España">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="icon_meskeia.png">
@@ -913,6 +913,7 @@
                     <li><a href="simulador-irpf/simulador-irpf.html" onclick="event.stopPropagation()" title="Calcula tu IRPF y retenciones según la normativa fiscal española actual">Simulador IRPF</a></li>
                     <li><a href="impuesto-donaciones/impuesto-donaciones.html" onclick="event.stopPropagation()" title="Calcula el impuesto de donaciones según tu comunidad autónoma">Calculadora Impuesto de Donaciones</a></li>
                     <li><a href="impuesto-sucesiones/impuesto-sucesiones.html" onclick="event.stopPropagation()" title="Calcula el impuesto de sucesiones con las bonificaciones de tu comunidad">Calculadora Impuesto de Sucesiones</a></li>
+                    <li><a href="tir-van/calculadora-tir.html" onclick="event.stopPropagation()" title="Calcula TIR y VAN para análisis de inversiones">Calculadora TIR-VAN</a></li>
                 </ul>
             </div>
 
@@ -922,15 +923,35 @@
                     <h2 class="category-title">Calculadoras y Utilidades</h2>
                 </div>
                 <p class="category-description">
-                    Herramientas de cálculo matemático, conversión de unidades y utilidades prácticas para el día a día.
+                    Herramientas de conversión, cálculo de fechas y utilidades prácticas para el día a día.
                 </p>
                 <ul class="category-tools" id="calculadoras-tools" style="display: none;" onclick="event.stopPropagation()">
                     <li><a href="calculadora-fechas/calculadora-fechas.html" onclick="event.stopPropagation()" title="Calcula días entre fechas, suma o resta días a cualquier fecha">Calculadora de Fechas</a></li>
                     <li><a href="calculadora-notas/calculadora-notas.html" onclick="event.stopPropagation()" title="Calcula tu media académica ponderada y nota final del curso">Calculadora de Notas Académicas</a></li>
                     <li><a href="conversor-tallas/conversor-tallas.html" onclick="event.stopPropagation()" title="Convierte tallas de ropa y calzado entre sistemas EU, UK, US">Conversor de Tallas Internacional</a></li>
+                    <li><a href="conversor-unidades/conversor-unidades.html" onclick="event.stopPropagation()" title="Convierte entre unidades de longitud, peso, temperatura y más">Conversor de Unidades</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card" onclick="toggleCategory('matematicas')" itemscope itemtype="https://schema.org/SoftwareApplication">
+                <div class="category-header">
+                    <div class="category-icon">📐</div>
+                    <h2 class="category-title">Matemáticas y Estadística</h2>
+                </div>
+                <p class="category-description">
+                    Herramientas especializadas para cálculo matemático avanzado, álgebra, geometría, probabilidad y análisis estadístico.
+                </p>
+                <ul class="category-tools" id="matematicas-tools" style="display: none;" onclick="event.stopPropagation()">
+                    <li><a href="probabilidad/index.html" onclick="event.stopPropagation()" title="Calculadora completa de probabilidades con teoría y simulaciones">Calculadora de Probabilidad</a></li>
                     <li><a href="calculadora-estadistica/calculadora-estadistica.html" onclick="event.stopPropagation()" title="Calcula media, mediana, desviación estándar y análisis estadístico completo">Calculadora Estadística</a></li>
                     <li><a href="calculadora-matematica/calculadora-matematica.html" onclick="event.stopPropagation()" title="Resuelve ecuaciones, matrices, derivadas e integrales online">Calculadora Matemática Avanzada</a></li>
-                    <li><a href="conversor-unidades/conversor-unidades.html" onclick="event.stopPropagation()" title="Convierte entre unidades de longitud, peso, temperatura y más">Conversor de Unidades</a></li>
+                    <li><a href="algebra/index.html" onclick="event.stopPropagation()" title="Resuelve ecuaciones lineales, cuadráticas y sistemas de ecuaciones">Álgebra</a></li>
+                    <li><a href="geometria/index.html" onclick="event.stopPropagation()" title="Calcula áreas, perímetros y volúmenes de figuras geométricas">Geometría</a></li>
+                    <li><a href="calculo/index.html" onclick="event.stopPropagation()" title="Deriva e integra funciones, límites y análisis matemático">Cálculo Diferencial e Integral</a></li>
+                    <li><a href="trigonometria/index.html" onclick="event.stopPropagation()" title="Funciones trigonométricas, identidades y triángulos">Trigonometría</a></li>
+                    <li><a href="teoria-numeros/index.html" onclick="event.stopPropagation()" title="Números primos, factorización y teoría de números">Teoría de Números</a></li>
+                    <li><a href="algebra-abstracta/index.html" onclick="event.stopPropagation()" title="Grupos, anillos, campos y estructuras algebraicas">Álgebra Abstracta</a></li>
+                    <li><a href="investigacion-operativa/index.html" onclick="event.stopPropagation()" title="Optimización, programación lineal y análisis de operaciones">Investigación Operativa</a></li>
                 </ul>
             </div>
 

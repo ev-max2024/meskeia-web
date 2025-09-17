@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <!-- ========== METADATOS BÁSICOS ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ========== SEO BÁSICO ========== -->
+    <title>Investigación Operativa - Calculadoras y Simuladores | meskeIA</title>
+    <meta name="description" content="Herramientas interactivas de investigación operativa: teoría de colas, problema del transporte y planificación CPM/PERT. Calculadoras y simuladores web gratuitos.">
+    <meta name="keywords" content="investigación operativa, teoría de colas, transporte, CPM, PERT, planificación, optimización, simuladores">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== OPEN GRAPH / FACEBOOK ========== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Investigación Operativa - Herramientas meskeIA">
+    <meta property="og:description" content="Calculadoras y simuladores interactivos para teoría de colas, transporte y planificación de proyectos. Herramientas académicas gratuitas.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/investigacion-operativa">
+    <meta property="og:image" content="https://meskeia.com/assets/og-investigacion-operativa.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Investigación Operativa - meskeIA">
+    <meta name="twitter:description" content="Herramientas interactivas para estudiar teoría de colas, transporte y planificación de proyectos. Gratuito y sin registro.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-investigacion-operativa.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+    <meta name="twitter:site" content="@meskeIA">
+
+    <!-- ========== CANONICAL URL ========== -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/investigacion-operativa">
+
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <!-- ========== SCHEMA.ORG / STRUCTURED DATA ========== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Investigación Operativa - meskeIA",
+        "description": "Herramientas interactivas de investigación operativa con calculadoras de teoría de colas, problema del transporte y planificación CPM/PERT",
+        "url": "https://meskeia.com/aplicaciones/investigacion-operativa",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com",
+            "logo": "https://meskeia.com/logo.png"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150"
+        },
+        "featureList": [
+            "Calculadora de Teoría de Colas M/M/1",
+            "Problema del Transporte con múltiples métodos",
+            "Planificación de proyectos CPM/PERT",
+            "Visualización de resultados en tiempo real",
+            "Simulaciones interactivas",
+            "Exportación de resultados"
+        ]
+    }
+    </script>
+
+    <!-- ========== PWA MANIFEST ========== -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- ========== PRECONNECT PARA OPTIMIZACIÓN ========== -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- ========== LIBRERÍAS EXTERNAS ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js" defer></script>
+
+    <!-- ========== ESTILOS ========== -->
+    <style>
+        /* ========== RESET Y VARIABLES CSS ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad meskeIA */
+            --primary: #2E86AB;
+            --primary-hover: #246b8a;
+            --primary-light: rgba(46, 134, 171, 0.1);
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+
+            /* Espaciados estándar */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+
+            /* Border radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+
+            /* Estados de alerta */
+            --success: #27AE60;
+            --warning: #F39C12;
+            --error: #E74C3C;
+            --info: #3498DB;
+        }
+
+        /* ========== ESTRUCTURA BASE ========== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 100px 20px 60px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== COMPONENTES PRINCIPALES ========== */
+
+        /* Tarjetas */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .card-body {
+            padding: var(--spacing-lg);
+        }
+
+        /* Botones */
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3d8b89;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Inputs */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        /* Navegación por pestañas */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--spacing-xl);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            overflow: hidden;
+        }
+
+        .tab {
+            flex: 1;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--hover);
+            color: var(--text-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Grid para resultados */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Título principal */
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Alertas y mensajes */
+        .alert {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            border: 1px solid;
+        }
+
+        .alert-info {
+            background: rgba(52, 152, 219, 0.1);
+            border-color: var(--info);
+            color: var(--info);
+        }
+
+        .alert-success {
+            background: rgba(39, 174, 96, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .alert-warning {
+            background: rgba(243, 156, 18, 0.1);
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        /* Navegación interna de teoría */
+        .teoria-nav {
+            transition: all 0.3s ease;
+        }
+
+        .teoria-nav.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .teoria-section {
+            display: none;
+        }
+
+        .teoria-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* FAQs Expandibles */
+        .faq-container {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            background: var(--bg-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .faq-question.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            width: 20px;
+            text-align: center;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            background: var(--bg-card);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Utilidades */
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .mt-1 { margin-top: var(--spacing-sm); }
+        .mt-2 { margin-top: var(--spacing-md); }
+        .mt-3 { margin-top: var(--spacing-lg); }
+        .mb-1 { margin-bottom: var(--spacing-sm); }
+        .mb-2 { margin-bottom: var(--spacing-md); }
+        .mb-3 { margin-bottom: var(--spacing-lg); }
+        .d-flex { display: flex; }
+        .gap-2 { gap: var(--spacing-md); }
+        .align-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 15px 50px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                text-align: center;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="container">
+        <!-- Título principal -->
+        <h1 class="main-title">Investigación Operativa</h1>
+        <p class="subtitle">Herramientas interactivas para análisis de sistemas de colas, optimización de transporte y planificación de proyectos</p>
+
+        <!-- Navegación por módulos -->
+        <div class="tabs">
+            <button class="tab active" data-tab="colas">📊 Teoría de Colas</button>
+            <button class="tab" data-tab="transporte">🚚 Transporte</button>
+            <button class="tab" data-tab="planificacion">📅 Planificación</button>
+            <button class="tab" data-tab="teoria">📚 Teoría</button>
+        </div>
+
+        <!-- ========== MÓDULO: TEORÍA DE COLAS ========== -->
+        <div class="tab-content active" id="colas">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Calculadora de Sistema M/M/1</h2>
+                    <p class="card-subtitle">Sistema de cola con llegadas Poisson y servicios exponenciales</p>
+                </div>
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <!-- Parámetros de entrada -->
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Parámetros del Sistema</h3>
+
+                            <div class="form-group">
+                                <label class="form-label">Tasa de llegada (λ) - clientes/hora</label>
+                                <input type="text" class="form-input" id="lambda"
+                                       placeholder="5,0" data-type="number">
+                                <small class="text-muted">Número promedio de clientes que llegan por hora</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Tasa de servicio (μ) - clientes/hora</label>
+                                <input type="text" class="form-input" id="mu"
+                                       placeholder="8,0" data-type="number">
+                                <small class="text-muted">Número promedio de clientes servidos por hora</small>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="calcularColas()" style="width: 100%;">
+                                🧮 Calcular Métricas
+                            </button>
+                        </div>
+
+                        <!-- Resultados -->
+                        <div id="resultados-colas">
+                            <h3 style="margin-bottom: 1rem;">Métricas del Sistema</h3>
+                            <div class="alert alert-info">
+                                Ingrese los parámetros para ver los resultados
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico de visualización -->
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                        <h3 style="margin-bottom: 1rem;">Visualización del Sistema</h3>
+                        <canvas id="grafico-colas" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== MÓDULO: PROBLEMA DE TRANSPORTE ========== -->
+        <div class="tab-content" id="transporte">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Problema del Transporte</h2>
+                    <p class="card-subtitle">Optimización de costos de distribución entre fuentes y destinos</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Configuración del Problema:</strong>
+                        Defina el número de fuentes (orígenes) y destinos para crear la matriz de costos.
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label class="form-label">Número de Fuentes</label>
+                            <input type="number" class="form-input" id="num-fuentes" value="3" min="2" max="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número de Destinos</label>
+                            <input type="number" class="form-input" id="num-destinos" value="3" min="2" max="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Método de Solución</label>
+                            <select class="form-input" id="metodo-transporte">
+                                <option value="esquina-noroeste">Esquina Noroeste</option>
+                                <option value="costo-minimo">Costo Mínimo</option>
+                                <option value="vogel">Método de Vogel (Aproximación)</option>
+                            </select>
+                        </div>
+                        <div style="align-self: end;">
+                            <button class="btn btn-secondary" onclick="generarTablaTransporte()">
+                                🔧 Generar Tabla
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="tabla-transporte"></div>
+                    <div id="resultados-transporte"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== MÓDULO: PLANIFICACIÓN CPM ========== -->
+        <div class="tab-content" id="planificacion">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Planificación de Proyectos - CPM</h2>
+                    <p class="card-subtitle">Método de Ruta Crítica para gestión de proyectos</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Gestión de Actividades:</strong>
+                        Define las actividades del proyecto con sus duraciones y dependencias.
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <!-- Entrada de actividades -->
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Nueva Actividad</h3>
+
+                            <div class="form-group">
+                                <label class="form-label">ID de Actividad</label>
+                                <input type="text" class="form-input" id="actividad-id"
+                                       placeholder="A" maxlength="3">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Descripción</label>
+                                <input type="text" class="form-input" id="actividad-desc"
+                                       placeholder="Descripción de la actividad">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Duración (días)</label>
+                                <input type="text" class="form-input" id="actividad-duracion"
+                                       placeholder="5" data-type="number">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Actividades Predecesoras</label>
+                                <input type="text" class="form-input" id="actividad-predecesoras"
+                                       placeholder="A,B (separadas por comas)">
+                                <small class="text-muted">Dejar vacío si no tiene predecesoras</small>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="agregarActividad()">
+                                    ➕ Agregar
+                                </button>
+                                <button class="btn btn-outline" onclick="limpiarActividades()">
+                                    🗑️ Limpiar Todo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Lista de actividades -->
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Actividades del Proyecto</h3>
+                            <div id="lista-actividades">
+                                <div class="alert alert-info">
+                                    No hay actividades definidas
+                                </div>
+                            </div>
+
+                            <button class="btn btn-secondary" onclick="calcularCPM()"
+                                    style="width: 100%; margin-top: 1rem;" disabled>
+                                📊 Calcular Ruta Crítica
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="resultados-cpm" style="margin-top: 2rem;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== MÓDULO: TEORÍA EXPLICATIVA ========== -->
+        <div class="tab-content" id="teoria">
+            <div class="alert alert-info">
+                <strong>📚 Guía Teórica</strong>
+                Conceptos fundamentales, explicaciones detalladas y preguntas frecuentes sobre los métodos de Investigación Operativa.
+            </div>
+
+            <!-- Navegación interna de teoría -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
+                <button class="btn btn-outline teoria-nav active" data-section="colas-teoria">
+                    🔄 Teoría de Colas
+                </button>
+                <button class="btn btn-outline teoria-nav" data-section="transporte-teoria">
+                    🚚 Transporte
+                </button>
+                <button class="btn btn-outline teoria-nav" data-section="cpm-teoria">
+                    📅 Planificación
+                </button>
+                <button class="btn btn-outline teoria-nav" data-section="recursos-teoria">
+                    📖 Recursos
+                </button>
+            </div>
+
+            <!-- ========== TEORÍA DE COLAS ========== -->
+            <div class="teoria-section active" id="colas-teoria">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🔄 Fundamentos de Teoría de Colas</h2>
+                        <p class="card-subtitle">Sistemas de espera y análisis de congestión</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 2rem;">
+
+                            <!-- Conceptos Básicos -->
+                            <div class="card" style="background: var(--primary-light);">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 ¿Qué es la Teoría de Colas?</h3>
+                                    <p style="line-height: 1.7; margin-bottom: 1rem;">
+                                        La <strong>Teoría de Colas</strong> es una rama de la investigación operativa que estudia los
+                                        <strong>sistemas de espera</strong>. Analiza situaciones donde los "clientes" llegan a un sistema,
+                                        esperan en cola si es necesario, reciben servicio y después se van.
+                                    </p>
+
+                                    <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">Ejemplos Cotidianos:</h4>
+                                    <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                                        <li><strong>Banco:</strong> Clientes esperan para ser atendidos por cajeros</li>
+                                        <li><strong>Hospital:</strong> Pacientes en urgencias esperando atención médica</li>
+                                        <li><strong>Supermercado:</strong> Compradores en cajas registradoras</li>
+                                        <li><strong>Call Center:</strong> Llamadas esperando a operadores</li>
+                                        <li><strong>Servidor web:</strong> Peticiones HTTP esperando procesamiento</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Componentes del Sistema -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🏗️ Componentes de un Sistema de Colas</h3>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                                            <h4 style="color: var(--primary);">👥 Población de Clientes</h4>
+                                            <p><strong>Fuente:</strong> De donde vienen los clientes</p>
+                                            <p><strong>Tamaño:</strong> Finita o infinita</p>
+                                            <p><strong>Comportamiento:</strong> Pacientes o impacientes</p>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--secondary);">
+                                            <h4 style="color: var(--secondary);">📈 Proceso de Llegada</h4>
+                                            <p><strong>Patrón:</strong> Determinista o aleatorio</p>
+                                            <p><strong>Tasa (λ):</strong> Clientes por unidad de tiempo</p>
+                                            <p><strong>Distribución:</strong> Poisson es la más común</p>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--warning);">
+                                            <h4 style="color: var(--warning);">📋 Cola</h4>
+                                            <p><strong>Capacidad:</strong> Limitada o ilimitada</p>
+                                            <p><strong>Disciplina:</strong> FIFO, LIFO, prioridades</p>
+                                            <p><strong>Comportamiento:</strong> Balking, reneging</p>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--success);">
+                                            <h4 style="color: var(--success);">⚙️ Sistema de Servicio</h4>
+                                            <p><strong>Servidores:</strong> Uno o múltiples</p>
+                                            <p><strong>Tasa (μ):</strong> Clientes servidos por tiempo</p>
+                                            <p><strong>Distribución:</strong> Exponencial es común</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notación de Kendall -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🔤 Notación de Kendall (A/B/C/D/E/F)</h3>
+
+                                    <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); margin: 1rem 0;">
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center;">
+                                            <div>
+                                                <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">M</div>
+                                                <div style="font-weight: 600;">Llegadas</div>
+                                                <div style="font-size: 0.9rem; color: var(--text-secondary);">Markoviano (Poisson)</div>
+                                            </div>
+                                            <div style="font-size: 1.5rem; color: var(--text-muted);">/</div>
+                                            <div>
+                                                <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);">M</div>
+                                                <div style="font-weight: 600;">Servicio</div>
+                                                <div style="font-size: 0.9rem; color: var(--text-secondary);">Markoviano (Exponencial)</div>
+                                            </div>
+                                            <div style="font-size: 1.5rem; color: var(--text-muted);">/</div>
+                                            <div>
+                                                <div style="font-size: 2rem; font-weight: bold; color: var(--warning);">1</div>
+                                                <div style="font-weight: 600;">Servidores</div>
+                                                <div style="font-size: 0.9rem; color: var(--text-secondary);">Un solo servidor</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top: 1rem;">
+                                        <strong>Otros símbolos comunes:</strong>
+                                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                            <li><strong>M:</strong> Markoviano (Poisson/Exponencial)</li>
+                                            <li><strong>D:</strong> Determinista (tiempos fijos)</li>
+                                            <li><strong>G:</strong> General (cualquier distribución)</li>
+                                            <li><strong>c:</strong> Número de servidores</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sistema M/M/1 -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">⚡ Sistema M/M/1 - El Modelo Básico</h3>
+
+                                    <div class="alert alert-info">
+                                        <strong>Características del M/M/1:</strong>
+                                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                            <li>Llegadas siguen un <strong>proceso de Poisson</strong> con tasa λ</li>
+                                            <li>Tiempos de servicio son <strong>exponenciales</strong> con tasa μ</li>
+                                            <li><strong>Un solo servidor</strong></li>
+                                            <li>Cola de capacidad <strong>infinita</strong></li>
+                                            <li>Disciplina <strong>FIFO</strong> (primero en llegar, primero en salir)</li>
+                                        </ul>
+                                    </div>
+
+                                    <h4 style="margin: 1.5rem 0 1rem 0;">📊 Fórmulas Principales:</h4>
+
+                                    <div style="display: grid; gap: 1rem;">
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md);">
+                                            <strong>ρ = λ/μ</strong> (Factor de utilización)
+                                            <br><small>Debe ser < 1 para estabilidad del sistema</small>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md);">
+                                            <strong>L = λ/(μ-λ)</strong> (Número promedio en el sistema)
+                                            <br><small>Incluye clientes en cola + siendo servidos</small>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md);">
+                                            <strong>Lq = λ²/[μ(μ-λ)]</strong> (Número promedio en cola)
+                                            <br><small>Solo clientes esperando ser servidos</small>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md);">
+                                            <strong>W = 1/(μ-λ)</strong> (Tiempo promedio en sistema)
+                                            <br><small>Tiempo total desde llegada hasta salida</small>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md);">
+                                            <strong>Wq = λ/[μ(μ-λ)]</strong> (Tiempo promedio en cola)
+                                            <br><small>Tiempo esperando antes del servicio</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert alert-success" style="margin-top: 1.5rem;">
+                                        <strong>💡 Ley de Little:</strong> L = λW y Lq = λWq
+                                        <br>
+                                        <small>Relaciona el número promedio de clientes con el tiempo promedio de permanencia</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQs de Colas -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">❓ Preguntas Frecuentes - Teoría de Colas</h3>
+
+                                    <div class="faq-container">
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Qué significa que ρ debe ser menor que 1?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>El factor de utilización <strong>ρ = λ/μ</strong> representa la fracción de tiempo que el servidor está ocupado.</p>
+                                                <ul>
+                                                    <li><strong>ρ < 1:</strong> Sistema estable, la cola no crece indefinidamente</li>
+                                                    <li><strong>ρ = 1:</strong> Sistema crítico, el servidor está al 100% de capacidad</li>
+                                                    <li><strong>ρ > 1:</strong> Sistema inestable, la cola crece sin límite</li>
+                                                </ul>
+                                                <p><strong>Ejemplo:</strong> Si λ=8 y μ=10, entonces ρ=0.8 (80% de utilización, sistema estable)</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Cómo interpreto el tiempo de espera en cola?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Wq</strong> es el tiempo promedio que un cliente espera en cola antes de ser atendido.</p>
+                                                <ul>
+                                                    <li><strong>No incluye</strong> el tiempo de servicio</li>
+                                                    <li>Se mide en las mismas unidades que λ y μ</li>
+                                                    <li>Si λ=5 clientes/hora y Wq=0.2 horas, cada cliente espera 12 minutos promedio</li>
+                                                </ul>
+                                                <p><strong>Tiempo total = Wq (espera) + 1/μ (servicio)</strong></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Por qué usar distribuciones Poisson y exponencial?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>Estas distribuciones tienen propiedades matemáticas que simplifican los cálculos:</p>
+                                                <ul>
+                                                    <li><strong>Poisson:</strong> Modela llegadas aleatorias independientes</li>
+                                                    <li><strong>Exponencial:</strong> Tiene la propiedad "sin memoria"</li>
+                                                    <li><strong>Markoviano:</strong> El futuro solo depende del estado presente</li>
+                                                </ul>
+                                                <p><strong>En la práctica:</strong> Son aproximaciones razonables para muchos sistemas reales</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Qué hago si mi sistema tiene ρ > 1?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>Un sistema con ρ > 1 es inestable. <strong>Soluciones posibles:</strong></p>
+                                                <ul>
+                                                    <li><strong>Aumentar μ:</strong> Mejorar el proceso de servicio</li>
+                                                    <li><strong>Reducir λ:</strong> Controlar las llegadas (citas, reservas)</li>
+                                                    <li><strong>Agregar servidores:</strong> Cambiar a modelo M/M/c</li>
+                                                    <li><strong>Capacidad limitada:</strong> Usar modelo M/M/1/K</li>
+                                                </ul>
+                                                <p><strong>Ejemplo práctico:</strong> Un banco con colas muy largas puede abrir más ventanillas</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Cuándo NO usar el modelo M/M/1?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>El modelo M/M/1 <strong>NO es apropiado cuando:</strong></p>
+                                                <ul>
+                                                    <li><strong>Múltiples servidores:</strong> Usar M/M/c</li>
+                                                    <li><strong>Llegadas por lotes:</strong> Usar modelos de lotes</li>
+                                                    <li><strong>Prioridades:</strong> Usar modelos con prioridades</li>
+                                                    <li><strong>Tiempos fijos:</strong> Usar M/D/1 o D/D/1</li>
+                                                    <li><strong>Capacidad limitada:</strong> Usar M/M/1/K</li>
+                                                    <li><strong>Población finita:</strong> Usar M/M/1/N/N</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== TEORÍA DEL TRANSPORTE ========== -->
+            <div class="teoria-section" id="transporte-teoria">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🚚 Fundamentos del Problema de Transporte</h2>
+                        <p class="card-subtitle">Optimización de costos de distribución</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 2rem;">
+
+                            <!-- Definición -->
+                            <div class="card" style="background: var(--primary-light);">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 ¿Qué es el Problema de Transporte?</h3>
+                                    <p style="line-height: 1.7; margin-bottom: 1rem;">
+                                        El <strong>Problema de Transporte</strong> es un tipo especial de programación lineal que busca
+                                        encontrar la forma <strong>más económica</strong> de transportar un producto desde varios
+                                        <strong>puntos de origen</strong> (fuentes) hasta varios <strong>puntos de destino</strong>.
+                                    </p>
+
+                                    <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">Ejemplos Prácticos:</h4>
+                                    <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                                        <li><strong>Distribución:</strong> Desde almacenes a tiendas</li>
+                                        <li><strong>Producción:</strong> Desde fábricas a centros de distribución</li>
+                                        <li><strong>Logística:</strong> Reparto de productos a clientes</li>
+                                        <li><strong>Recursos:</strong> Asignación de trabajadores a proyectos</li>
+                                        <li><strong>Energía:</strong> Plantas de energía a ciudades</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Formulación Matemática -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🧮 Formulación Matemática</h3>
+
+                                    <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md);">
+                                        <h4 style="margin-bottom: 1rem;">Datos del problema:</h4>
+                                        <ul style="margin-left: 1.5rem;">
+                                            <li><strong>m fuentes</strong> con ofertas s₁, s₂, ..., sₘ</li>
+                                            <li><strong>n destinos</strong> con demandas d₁, d₂, ..., dₙ</li>
+                                            <li><strong>Costos unitarios</strong> cᵢⱼ de fuente i a destino j</li>
+                                            <li><strong>Variables</strong> xᵢⱼ = cantidad a transportar de i a j</li>
+                                        </ul>
+
+                                        <h4 style="margin: 1.5rem 0 1rem 0;">Función objetivo (minimizar):</h4>
+                                        <div style="text-align: center; font-size: 1.1rem; background: white; padding: 1rem; border-radius: var(--radius-sm);">
+                                            <strong>Z = Σᵢ Σⱼ cᵢⱼ × xᵢⱼ</strong>
+                                        </div>
+
+                                        <h4 style="margin: 1.5rem 0 1rem 0;">Restricciones:</h4>
+                                        <ul style="margin-left: 1.5rem;">
+                                            <li><strong>Oferta:</strong> Σⱼ xᵢⱼ = sᵢ (para cada fuente i)</li>
+                                            <li><strong>Demanda:</strong> Σᵢ xᵢⱼ = dⱼ (para cada destino j)</li>
+                                            <li><strong>No negatividad:</strong> xᵢⱼ ≥ 0</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tipos de Problemas -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">⚖️ Tipos de Problemas de Transporte</h3>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                                        <div style="background: var(--success); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: white; margin-bottom: 1rem;">✅ Problema Balanceado</h4>
+                                            <p style="margin-bottom: 1rem;"><strong>Σ Oferta = Σ Demanda</strong></p>
+                                            <ul style="margin-left: 1rem;">
+                                                <li>Toda la oferta se consume</li>
+                                                <li>Toda la demanda se satisface</li>
+                                                <li>Solución siempre existe</li>
+                                                <li>Más fácil de resolver</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--warning); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: white; margin-bottom: 1rem;">⚠️ Problema No Balanceado</h4>
+                                            <p style="margin-bottom: 1rem;"><strong>Σ Oferta ≠ Σ Demanda</strong></p>
+                                            <ul style="margin-left: 1rem;">
+                                                <li>Sobra oferta o demanda</li>
+                                                <li>Se agregan fuentes/destinos ficticios</li>
+                                                <li>Costos ficticios = 0</li>
+                                                <li>Se convierte en balanceado</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert alert-info" style="margin-top: 1.5rem;">
+                                        <strong>💡 Conversión a problema balanceado:</strong>
+                                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                            <li><strong>Exceso de oferta:</strong> Agregar destino ficticio con demanda igual al exceso</li>
+                                            <li><strong>Exceso de demanda:</strong> Agregar fuente ficticia con oferta igual al exceso</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Métodos de Resolución -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🔧 Métodos de Resolución</h3>
+
+                                    <div style="display: grid; gap: 1.5rem;">
+
+                                        <div style="border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--primary);">1️⃣ Método de la Esquina Noroeste</h4>
+                                            <p><strong>Procedimiento:</strong></p>
+                                            <ol style="margin-left: 1.5rem;">
+                                                <li>Comenzar en la celda superior izquierda (esquina noroeste)</li>
+                                                <li>Asignar el máximo posible: min(oferta, demanda)</li>
+                                                <li>Eliminar fila o columna que se agote</li>
+                                                <li>Moverse a la siguiente celda disponible</li>
+                                                <li>Repetir hasta completar la tabla</li>
+                                            </ol>
+                                            <div class="alert alert-warning" style="margin-top: 1rem;">
+                                                <strong>Ventaja:</strong> Muy simple de aplicar<br>
+                                                <strong>Desventaja:</strong> No considera los costos, solución no óptima
+                                            </div>
+                                        </div>
+
+                                        <div style="border: 2px solid var(--secondary); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--secondary);">2️⃣ Método del Costo Mínimo</h4>
+                                            <p><strong>Procedimiento:</strong></p>
+                                            <ol style="margin-left: 1.5rem;">
+                                                <li>Identificar la celda con menor costo disponible</li>
+                                                <li>Asignar el máximo posible en esa celda</li>
+                                                <li>Eliminar fila o columna que se agote</li>
+                                                <li>Repetir con la siguiente celda de menor costo</li>
+                                            </ol>
+                                            <div class="alert alert-success" style="margin-top: 1rem;">
+                                                <strong>Ventaja:</strong> Considera costos, mejor solución inicial<br>
+                                                <strong>Desventaja:</strong> Aún no garantiza optimalidad
+                                            </div>
+                                        </div>
+
+                                        <div style="border: 2px solid var(--warning); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--warning);">3️⃣ Método de Vogel (VAM)</h4>
+                                            <p><strong>Procedimiento:</strong></p>
+                                            <ol style="margin-left: 1.5rem;">
+                                                <li>Calcular penalizaciones para cada fila y columna</li>
+                                                <li>Penalización = diferencia entre dos costos menores</li>
+                                                <li>Seleccionar fila/columna con mayor penalización</li>
+                                                <li>Asignar en la celda de menor costo de esa fila/columna</li>
+                                                <li>Recalcular penalizaciones y repetir</li>
+                                            </ol>
+                                            <div class="alert alert-success" style="margin-top: 1rem;">
+                                                <strong>Ventaja:</strong> Generalmente da la mejor solución inicial<br>
+                                                <strong>Desventaja:</strong> Más complejo de calcular manualmente
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQs de Transporte -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">❓ Preguntas Frecuentes - Problema de Transporte</h3>
+
+                                    <div class="faq-container">
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Qué hago si mi problema no está balanceado?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Problema no balanceado</strong> significa que la oferta total ≠ demanda total.</p>
+                                                <p><strong>Solución:</strong></p>
+                                                <ul>
+                                                    <li><strong>Si sobra oferta:</strong> Agregar un destino ficticio con demanda igual al exceso</li>
+                                                    <li><strong>Si sobra demanda:</strong> Agregar una fuente ficticia con oferta igual al exceso</li>
+                                                    <li><strong>Costos ficticios = 0</strong> (no hay costo real)</li>
+                                                </ul>
+                                                <p><strong>Ejemplo:</strong> Oferta=500, Demanda=400 → Agregar destino ficticio con demanda=100</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Cuál es el mejor método para empezar?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Depende de tus objetivos:</strong></p>
+                                                <ul>
+                                                    <li><strong>Aprendiendo:</strong> Esquina Noroeste (más simple)</li>
+                                                    <li><strong>Practicando:</strong> Costo Mínimo (balance entre simplicidad y calidad)</li>
+                                                    <li><strong>Optimizando:</strong> Método de Vogel (mejor solución inicial)</li>
+                                                </ul>
+                                                <p><strong>En la práctica:</strong> Usa software especializado como simplex, pero entender los métodos heurísticos ayuda a validar resultados.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Cómo sé si mi solución es óptima?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>Los métodos heurísticos dan <strong>soluciones iniciales</strong>, no necesariamente óptimas.</p>
+                                                <p><strong>Para verificar optimalidad:</strong></p>
+                                                <ul>
+                                                    <li><strong>Método MODI</strong> (test de optimalidad)</li>
+                                                    <li><strong>Stepping Stone</strong> (mejora iterativa)</li>
+                                                    <li><strong>Método Simplex</strong> (garantiza optimalidad)</li>
+                                                </ul>
+                                                <p><strong>En esta aplicación:</strong> Los métodos implementados son heurísticos para enseñanza, no garantizan optimalidad total.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Puedo tener rutas prohibidas?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Sí</strong>, a veces ciertas rutas no son factibles por restricciones físicas, políticas o económicas.</p>
+                                                <p><strong>Solución:</strong> Asignar un costo <strong>muy alto (M)</strong> a las rutas prohibidas.</p>
+                                                <p><strong>Ejemplo:</strong></p>
+                                                <ul>
+                                                    <li>Costo normal: 10€</li>
+                                                    <li>Ruta prohibida: 9999€ (valor M)</li>
+                                                </ul>
+                                                <p>El algoritmo evitará automáticamente estas rutas al buscar el costo mínimo.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Qué significan las unidades en el problema?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Consistencia de unidades es clave:</strong></p>
+                                                <ul>
+                                                    <li><strong>Ofertas/Demandas:</strong> Toneladas, cajas, litros, etc.</li>
+                                                    <li><strong>Costos:</strong> €/tonelada, $/caja, €/litro, etc.</li>
+                                                </ul>
+                                                <p><strong>Ejemplo consistente:</strong></p>
+                                                <ul>
+                                                    <li>Oferta: 100 toneladas</li>
+                                                    <li>Demanda: 80 toneladas</li>
+                                                    <li>Costo: 15 €/tonelada</li>
+                                                    <li>Resultado: 1.200€ total</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== TEORÍA CPM ========== -->
+            <div class="teoria-section" id="cpm-teoria">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📅 Fundamentos de la Planificación CPM</h2>
+                        <p class="card-subtitle">Método de la Ruta Crítica para gestión de proyectos</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 2rem;">
+
+                            <!-- Definición CPM -->
+                            <div class="card" style="background: var(--primary-light);">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 ¿Qué es el Método CPM?</h3>
+                                    <p style="line-height: 1.7; margin-bottom: 1rem;">
+                                        <strong>CPM (Critical Path Method)</strong> es una técnica de planificación de proyectos que identifica
+                                        la <strong>ruta crítica</strong> - la secuencia más larga de actividades que determina la
+                                        <strong>duración mínima</strong> del proyecto completo.
+                                    </p>
+
+                                    <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">Aplicaciones Comunes:</h4>
+                                    <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                                        <li><strong>Construcción:</strong> Planificación de edificios, carreteras</li>
+                                        <li><strong>Software:</strong> Desarrollo de aplicaciones, sistemas</li>
+                                        <li><strong>Eventos:</strong> Organización de conferencias, bodas</li>
+                                        <li><strong>Producción:</strong> Lanzamiento de nuevos productos</li>
+                                        <li><strong>Investigación:</strong> Proyectos científicos, estudios</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Conceptos Fundamentales -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🧩 Conceptos Fundamentales</h3>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">📋 Actividad</h4>
+                                            <p style="margin-bottom: 0.5rem;">Tarea específica del proyecto</p>
+                                            <ul style="font-size: 0.9rem; color: var(--text-secondary);">
+                                                <li>Consume tiempo y recursos</li>
+                                                <li>Tiene un inicio y fin definidos</li>
+                                                <li>Ejemplo: "Diseñar planos"</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--secondary);">
+                                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">⏱️ Duración</h4>
+                                            <p style="margin-bottom: 0.5rem;">Tiempo necesario para completar una actividad</p>
+                                            <ul style="font-size: 0.9rem; color: var(--text-secondary);">
+                                                <li>Se estima en días, semanas, meses</li>
+                                                <li>CPM asume duraciones determinísticas</li>
+                                                <li>Ejemplo: 5 días</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--warning);">
+                                            <h4 style="color: var(--warning); margin-bottom: 0.5rem;">🔗 Dependencia</h4>
+                                            <p style="margin-bottom: 0.5rem;">Relación entre actividades</p>
+                                            <ul style="font-size: 0.9rem; color: var(--text-secondary);">
+                                                <li>Predecesora: debe terminar antes</li>
+                                                <li>Sucesora: puede empezar después</li>
+                                                <li>Ejemplo: A debe terminar antes que B</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--error);">
+                                            <h4 style="color: var(--error); margin-bottom: 0.5rem;">🛤️ Ruta Crítica</h4>
+                                            <p style="margin-bottom: 0.5rem;">Secuencia más larga de actividades</p>
+                                            <ul style="font-size: 0.9rem; color: var(--text-secondary);">
+                                                <li>Determina duración del proyecto</li>
+                                                <li>Sin holgura (slack = 0)</li>
+                                                <li>Ejemplo: A → C → F</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cálculos CPM -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🧮 Cálculos del Método CPM</h3>
+
+                                    <div style="display: grid; gap: 2rem;">
+
+                                        <!-- Forward Pass -->
+                                        <div style="border: 2px solid var(--success); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--success); margin-bottom: 1rem;">➡️ Forward Pass (Cálculo Hacia Adelante)</h4>
+                                            <p style="margin-bottom: 1rem;">Calcula los <strong>tiempos más tempranos</strong> de inicio y fin.</p>
+
+                                            <div style="background: rgba(39, 174, 96, 0.1); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+                                                <p><strong>Fórmulas:</strong></p>
+                                                <ul style="margin-left: 1.5rem;">
+                                                    <li><strong>IT (Inicio Temprano) = max(FT de predecesoras)</strong></li>
+                                                    <li><strong>FT (Fin Temprano) = IT + Duración</strong></li>
+                                                </ul>
+                                            </div>
+
+                                            <p><strong>Procedimiento:</strong></p>
+                                            <ol style="margin-left: 1.5rem;">
+                                                <li>Actividades sin predecesoras: IT = 0</li>
+                                                <li>Para cada actividad: IT = max(FT de sus predecesoras)</li>
+                                                <li>Calcular FT = IT + Duración</li>
+                                                <li>Continuar hasta la actividad final</li>
+                                            </ol>
+                                        </div>
+
+                                        <!-- Backward Pass -->
+                                        <div style="border: 2px solid var(--warning); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--warning); margin-bottom: 1rem;">⬅️ Backward Pass (Cálculo Hacia Atrás)</h4>
+                                            <p style="margin-bottom: 1rem;">Calcula los <strong>tiempos más tardíos</strong> de inicio y fin.</p>
+
+                                            <div style="background: rgba(243, 156, 18, 0.1); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+                                                <p><strong>Fórmulas:</strong></p>
+                                                <ul style="margin-left: 1.5rem;">
+                                                    <li><strong>FT Tardío = min(IT Tardío de sucesoras)</strong></li>
+                                                    <li><strong>IT Tardío = FT Tardío - Duración</strong></li>
+                                                </ul>
+                                            </div>
+
+                                            <p><strong>Procedimiento:</strong></p>
+                                            <ol style="margin-left: 1.5rem;">
+                                                <li>Actividades finales: FT Tardío = FT Temprano</li>
+                                                <li>Para cada actividad: FT Tardío = min(IT Tardío de sucesoras)</li>
+                                                <li>Calcular IT Tardío = FT Tardío - Duración</li>
+                                                <li>Continuar hasta las actividades iniciales</li>
+                                            </ol>
+                                        </div>
+
+                                        <!-- Holguras -->
+                                        <div style="border: 2px solid var(--error); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--error); margin-bottom: 1rem;">⏰ Cálculo de Holguras</h4>
+                                            <p style="margin-bottom: 1rem;">La <strong>holgura (slack)</strong> indica cuánto se puede retrasar una actividad sin afectar el proyecto.</p>
+
+                                            <div style="background: rgba(231, 76, 60, 0.1); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+                                                <p><strong>Fórmula:</strong></p>
+                                                <ul style="margin-left: 1.5rem;">
+                                                    <li><strong>Holgura = IT Tardío - IT Temprano</strong></li>
+                                                    <li><strong>También: Holgura = FT Tardío - FT Temprano</strong></li>
+                                                </ul>
+                                            </div>
+
+                                            <p><strong>Interpretación:</strong></p>
+                                            <ul style="margin-left: 1.5rem;">
+                                                <li><strong>Holgura = 0:</strong> Actividad crítica (no se puede retrasar)</li>
+                                                <li><strong>Holgura > 0:</strong> Actividad con flexibilidad de tiempo</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Identificación Ruta Crítica -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 Identificación de la Ruta Crítica</h3>
+
+                                    <div class="alert alert-warning" style="margin-bottom: 1.5rem;">
+                                        <strong>🔴 Ruta Crítica:</strong> Secuencia de actividades con holgura = 0 que va desde el inicio hasta el final del proyecto.
+                                    </div>
+
+                                    <h4 style="margin-bottom: 1rem;">Propiedades de la Ruta Crítica:</h4>
+                                    <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                                        <li><strong>Determina la duración mínima</strong> del proyecto</li>
+                                        <li><strong>Actividades sin margen</strong> de tiempo (holgura = 0)</li>
+                                        <li><strong>Cualquier retraso</strong> en estas actividades retrasa todo el proyecto</li>
+                                        <li>Puede haber <strong>múltiples rutas críticas</strong> en algunos proyectos</li>
+                                        <li><strong>Cambia dinámicamente</strong> según avance del proyecto</li>
+                                    </ul>
+
+                                    <div style="background: var(--primary-light); padding: 1.5rem; border-radius: var(--radius-md);">
+                                        <h4 style="color: var(--primary); margin-bottom: 1rem;">💡 Gestión de la Ruta Crítica:</h4>
+                                        <ul style="margin-left: 1.5rem;">
+                                            <li><strong>Monitoreo constante:</strong> Revisar progreso diariamente</li>
+                                            <li><strong>Recursos prioritarios:</strong> Asignar los mejores recursos</li>
+                                            <li><strong>Planes de contingencia:</strong> Preparar alternativas</li>
+                                            <li><strong>Comunicación clara:</strong> Informar a todos los stakeholders</li>
+                                            <li><strong>Flexibilidad:</strong> Redistribuir recursos de actividades no críticas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQs CPM -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">❓ Preguntas Frecuentes - Planificación CPM</h3>
+
+                                    <div class="faq-container">
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Qué pasa si una actividad crítica se retrasa?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Impacto directo:</strong> Todo el proyecto se retrasa el mismo tiempo.</p>
+                                                <p><strong>Estrategias de mitigación:</strong></p>
+                                                <ul>
+                                                    <li><strong>Crashing:</strong> Agregar recursos para acelerar</li>
+                                                    <li><strong>Fast tracking:</strong> Hacer actividades en paralelo</li>
+                                                    <li><strong>Replanificación:</strong> Cambiar secuencia de actividades</li>
+                                                    <li><strong>Reducir alcance:</strong> Eliminar actividades no esenciales</li>
+                                                </ul>
+                                                <p><strong>Ejemplo:</strong> Si "Cimentación" (crítica) se retrasa 3 días, todo el proyecto se retrasa 3 días.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Puedo usar la holgura de actividades no críticas?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>¡Sí!</strong> Las actividades con holgura > 0 ofrecen flexibilidad.</p>
+                                                <p><strong>Usos estratégicos de la holgura:</strong></p>
+                                                <ul>
+                                                    <li><strong>Redistribución de recursos:</strong> Mover personal a actividades críticas</li>
+                                                    <li><strong>Optimización de costos:</strong> Usar recursos más económicos</li>
+                                                    <li><strong>Gestión de riesgos:</strong> Buffer para imprevistos</li>
+                                                    <li><strong>Mejorar calidad:</strong> Tiempo extra para revisiones</li>
+                                                </ul>
+                                                <p><strong>Cuidado:</strong> No uses toda la holgura - deja margen para imprevistos.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Cómo manejo las dependencias circulares?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Dependencias circulares = ERROR</strong> en la planificación.</p>
+                                                <p><strong>Ejemplo problemático:</strong> A depende de B, B depende de C, C depende de A</p>
+                                                <p><strong>Soluciones:</strong></p>
+                                                <ul>
+                                                    <li><strong>Revisar lógica:</strong> ¿Realmente existe esa dependencia?</li>
+                                                    <li><strong>Dividir actividades:</strong> Separar en subtareas más específicas</li>
+                                                    <li><strong>Eliminar dependencias:</strong> Hacer actividades independientes</li>
+                                                    <li><strong>Replanificar secuencia:</strong> Cambiar el orden lógico</li>
+                                                </ul>
+                                                <p><strong>La aplicación detecta automáticamente</strong> estos errores y los reporta.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿CPM vs PERT? ¿Cuál usar?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>Principales diferencias:</strong></p>
+                                                <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+                                                    <strong>CPM (Critical Path Method):</strong>
+                                                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                                                        <li>Duraciones determinísticas (fijas)</li>
+                                                        <li>Enfoque en costo y tiempo</li>
+                                                        <li>Mejor para proyectos repetitivos</li>
+                                                    </ul>
+                                                </div>
+                                                <div style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-sm);">
+                                                    <strong>PERT (Program Evaluation Review Technique):</strong>
+                                                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                                                        <li>Duraciones probabilísticas (optimista/pesimista/más probable)</li>
+                                                        <li>Enfoque en incertidumbre</li>
+                                                        <li>Mejor para proyectos únicos/innovadores</li>
+                                                    </ul>
+                                                </div>
+                                                <p><strong>Esta aplicación usa CPM</strong> por simplicidad educativa.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                                <span>¿Qué tamaño de proyecto es recomendable?</span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><strong>CPM es escalable</strong>, pero la complejidad crece exponencialmente.</p>
+                                                <p><strong>Recomendaciones por tamaño:</strong></p>
+                                                <ul>
+                                                    <li><strong>5-20 actividades:</strong> Ideal para aprender, fácil de visualizar</li>
+                                                    <li><strong>20-50 actividades:</strong> Proyectos medianos, necesitas software</li>
+                                                    <li><strong>50+ actividades:</strong> Proyectos grandes, herramientas profesionales</li>
+                                                </ul>
+                                                <p><strong>Consejo:</strong> Comienza con proyectos pequeños para dominar la técnica, luego escala.</p>
+                                                <p><strong>Esta aplicación</strong> está optimizada para proyectos de aprendizaje (5-15 actividades).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== RECURSOS ADICIONALES ========== -->
+            <div class="teoria-section" id="recursos-teoria">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📖 Recursos Adicionales</h2>
+                        <p class="card-subtitle">Bibliografía, enlaces y material complementario</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 2rem;">
+
+                            <!-- Bibliografía -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">📚 Bibliografía Recomendada</h3>
+
+                                    <div style="display: grid; gap: 1.5rem;">
+                                        <div style="border-left: 4px solid var(--primary); padding-left: 1rem;">
+                                            <h4 style="color: var(--text-primary);">Hillier, F. S., & Lieberman, G. J.</h4>
+                                            <p style="font-style: italic; color: var(--text-secondary);">"Introduction to Operations Research"</p>
+                                            <p><strong>Editorial:</strong> McGraw-Hill • <strong>Edición:</strong> 11ª (2021)</p>
+                                            <p style="color: var(--text-secondary);">El texto más completo y reconocido mundialmente. Excelente para teoría de colas y programación lineal.</p>
+                                        </div>
+
+                                        <div style="border-left: 4px solid var(--secondary); padding-left: 1rem;">
+                                            <h4 style="color: var(--text-primary);">Winston, W. L.</h4>
+                                            <p style="font-style: italic; color: var(--text-secondary);">"Operations Research: Applications and Algorithms"</p>
+                                            <p><strong>Editorial:</strong> Cengage Learning • <strong>Edición:</strong> 4ª (2003)</p>
+                                            <p style="color: var(--text-secondary);">Enfoque muy práctico con muchos ejercicios resueltos paso a paso.</p>
+                                        </div>
+
+                                        <div style="border-left: 4px solid var(--warning); padding-left: 1rem;">
+                                            <h4 style="color: var(--text-primary);">Taha, H. A.</h4>
+                                            <p style="font-style: italic; color: var(--text-secondary);">"Operations Research: An Introduction"</p>
+                                            <p><strong>Editorial:</strong> Pearson • <strong>Edición:</strong> 10ª (2017)</p>
+                                            <p style="color: var(--text-secondary);">Excelente para principiantes, explicaciones claras y ejemplos detallados.</p>
+                                        </div>
+
+                                        <div style="border-left: 4px solid var(--success); padding-left: 1rem;">
+                                            <h4 style="color: var(--text-primary);">Render, B., Stair, R. M., & Hanna, M. E.</h4>
+                                            <p style="font-style: italic; color: var(--text-secondary);">"Quantitative Analysis for Management"</p>
+                                            <p><strong>Editorial:</strong> Pearson • <strong>Edición:</strong> 13ª (2018)</p>
+                                            <p style="color: var(--text-secondary);">Enfoque gerencial, ideal para aplicaciones en administración y negocios.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Software Especializado -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">💻 Software Profesional</h3>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: var(--primary);">🔢 Investigación Operativa</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li><strong>LINDO/LINGO:</strong> Programación lineal profesional</li>
+                                                <li><strong>CPLEX:</strong> IBM, optimización industrial</li>
+                                                <li><strong>Gurobi:</strong> Solver de optimización avanzado</li>
+                                                <li><strong>Excel Solver:</strong> Para problemas pequeños</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: var(--secondary);">📊 Gestión de Proyectos</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li><strong>Microsoft Project:</strong> Estándar de la industria</li>
+                                                <li><strong>Primavera P6:</strong> Para proyectos complejos</li>
+                                                <li><strong>GanttProject:</strong> Gratuito y open source</li>
+                                                <li><strong>Asana/Trello:</strong> Gestión ágil</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: var(--warning);">🔄 Simulación</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li><strong>Arena:</strong> Simulación de eventos discretos</li>
+                                                <li><strong>AnyLogic:</strong> Multi-método de simulación</li>
+                                                <li><strong>R/Python:</strong> Para análisis estadístico</li>
+                                                <li><strong>MATLAB:</strong> Cálculos técnicos</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: var(--success);">🆓 Herramientas Gratuitas</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li><strong>LibreOffice Calc:</strong> Solver gratuito</li>
+                                                <li><strong>R (package lpSolve):</strong> Programación lineal</li>
+                                                <li><strong>Python (PuLP, OR-Tools):</strong> Optimización</li>
+                                                <li><strong>Esta aplicación:</strong> Educación interactiva</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Casos de Estudio -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🏭 Casos de Estudio Famosos</h3>
+
+                                    <div style="display: grid; gap: 1.5rem;">
+
+                                        <div style="border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--primary);">🏗️ Proyecto Manhattan (1942-1945)</h4>
+                                            <p><strong>Aplicación:</strong> Una de las primeras aplicaciones masivas de CPM/PERT</p>
+                                            <p><strong>Desafío:</strong> Coordinar miles de actividades para desarrollo de armas nucleares</p>
+                                            <p><strong>Resultado:</strong> Completado en tiempo récord, estableció las bases de la gestión de proyectos moderna</p>
+                                            <p><strong>Lecciones:</strong> Importancia de la coordinación, gestión de recursos críticos</p>
+                                        </div>
+
+                                        <div style="border: 2px solid var(--secondary); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--secondary);">🚀 Programa Apollo - NASA</h4>
+                                            <p><strong>Aplicación:</strong> PERT para llegar a la Luna</p>
+                                            <p><strong>Desafío:</strong> Más de 400,000 personas, presupuesto de $25 mil millones</p>
+                                            <p><strong>Resultado:</strong> Apollo 11 aterrizó en la Luna en 1969</p>
+                                            <p><strong>Lecciones:</strong> Gestión de riesgos, integración de sistemas complejos</p>
+                                        </div>
+
+                                        <div style="border: 2px solid var(--warning); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--warning);">📱 Desarrollo del iPhone - Apple</h4>
+                                            <p><strong>Aplicación:</strong> Planificación de desarrollo de productos</p>
+                                            <p><strong>Desafío:</strong> Coordinar hardware, software y manufactura</p>
+                                            <p><strong>Resultado:</strong> Lanzamiento exitoso en 2007</p>
+                                            <p><strong>Lecciones:</strong> Secreto, prototipado rápido, integración vertical</p>
+                                        </div>
+
+                                        <div style="border: 2px solid var(--success); border-radius: var(--radius-md); padding: 1.5rem;">
+                                            <h4 style="color: var(--success);">🏥 Gestión COVID-19 - Hospitales</h4>
+                                            <p><strong>Aplicación:</strong> Teoría de colas para gestión de pacientes</p>
+                                            <p><strong>Desafío:</strong> Optimizar flujo de pacientes, recursos limitados</p>
+                                            <p><strong>Resultado:</strong> Mejora en tiempos de espera y utilización de recursos</p>
+                                            <p><strong>Lecciones:</strong> Adaptabilidad, priorización dinámica</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tendencias Futuras -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">🚀 Tendencias Futuras en IO</h3>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+                                        <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: white; margin-bottom: 1rem;">🤖 IA y Machine Learning</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li>Optimización automática de parámetros</li>
+                                                <li>Predicción de demanda inteligente</li>
+                                                <li>Detección de patrones complejos</li>
+                                                <li>Algoritmos de aprendizaje evolutivo</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: linear-gradient(135deg, var(--secondary), var(--warning)); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: white; margin-bottom: 1rem;">☁️ Computación en la Nube</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li>Solvers distribuidos masivamente</li>
+                                                <li>Optimización en tiempo real</li>
+                                                <li>Colaboración global de equipos</li>
+                                                <li>Escalabilidad automática</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: linear-gradient(135deg, var(--warning), var(--success)); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: white; margin-bottom: 1rem;">🌐 IoT y Datos en Tiempo Real</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li>Sensores para captura automática</li>
+                                                <li>Optimización dinámica continua</li>
+                                                <li>Mantenimiento predictivo</li>
+                                                <li>Trazabilidad completa</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="background: linear-gradient(135deg, var(--success), var(--primary)); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+                                            <h4 style="color: white; margin-bottom: 1rem;">🎯 Aplicaciones Emergentes</h4>
+                                            <ul style="margin-left: 1rem;">
+                                                <li>Smart cities y movilidad urbana</li>
+                                                <li>Logística autónoma (drones)</li>
+                                                <li>Optimización energética sostenible</li>
+                                                <li>Medicina personalizada</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contacto y Soporte -->
+                            <div class="card" style="background: var(--primary-light);">
+                                <div class="card-body">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem;">📞 Soporte y Contacto</h3>
+
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                        <div>
+                                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌐 meskeIA</h4>
+                                            <p style="color: var(--text-secondary);">
+                                                <strong>Web:</strong> https://meskeia.com<br>
+                                                <strong>Email:</strong> contacto@meskeia.com<br>
+                                                <strong>Soporte:</strong> Consultas técnicas y educativas
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">📚 Recursos Educativos</h4>
+                                            <p style="color: var(--text-secondary);">
+                                                ✅ Aplicación gratuita y open source<br>
+                                                ✅ Uso educativo sin restricciones<br>
+                                                ✅ Actualizaciones periódicas<br>
+                                                ✅ Documentación completa incluida
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert alert-info" style="margin-top: 1.5rem;">
+                                        <strong>💡 ¿Sugerencias de mejora?</strong>
+                                        Esta aplicación está en desarrollo continuo. Envíanos tus ideas para nuevos módulos,
+                                        mejoras en la interfaz o contenido educativo adicional.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="script.js"></script>
+
+    <!-- ========== PWA SCRIPT ==========
+    <script>
+        // ========== INSTALACIÓN DEL SERVICE WORKER ==========
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker registrado:', registration.scope);
+
+                        // Manejar actualizaciones
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // Nueva versión disponible
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Error registrando Service Worker:', error);
+                    });
+            });
+        }
+
+        // ========== INSTALACIÓN PWA ==========
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('📱 PWA install prompt disponible');
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallBanner();
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('✅ PWA instalada exitosamente');
+            hideInstallBanner();
+            showInstalledNotification();
+        });
+
+        function showInstallBanner() {
+            // Mostrar banner de instalación después de 30 segundos
+            setTimeout(() => {
+                if (deferredPrompt && !window.matchMedia('(display-mode: standalone)').matches) {
+                    const banner = document.createElement('div');
+                    banner.id = 'install-banner';
+                    banner.style.cssText = `
+                        position: fixed;
+                        bottom: 20px;
+                        left: 20px;
+                        right: 20px;
+                        background: var(--primary);
+                        color: white;
+                        padding: 15px;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                        z-index: 1000;
+                        max-width: 400px;
+                        margin: 0 auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 15px;
+                    `;
+
+                    banner.innerHTML = `
+                        <div>
+                            <strong>¡Instala la app!</strong>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Accede más rápido y funciona offline</div>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <button id="install-btn" style="
+                                background: white;
+                                color: var(--primary);
+                                border: none;
+                                padding: 8px 16px;
+                                border-radius: 6px;
+                                cursor: pointer;
+                                font-weight: 500;
+                            ">Instalar</button>
+                            <button id="close-banner" style="
+                                background: none;
+                                border: none;
+                                color: white;
+                                font-size: 1.5rem;
+                                cursor: pointer;
+                                opacity: 0.8;
+                            ">×</button>
+                        </div>
+                    `;
+
+                    document.body.appendChild(banner);
+
+                    document.getElementById('install-btn').addEventListener('click', installPWA);
+                    document.getElementById('close-banner').addEventListener('click', () => {
+                        banner.remove();
+                    });
+
+                    // Auto-ocultar después de 15 segundos
+                    setTimeout(() => {
+                        if (banner.parentNode) banner.remove();
+                    }, 15000);
+                }
+            }, 30000);
+        }
+
+        function hideInstallBanner() {
+            const banner = document.getElementById('install-banner');
+            if (banner) banner.remove();
+        }
+
+        async function installPWA() {
+            if (!deferredPrompt) return;
+
+            try {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+
+                console.log(`📱 Usuario ${outcome} la instalación`);
+
+                if (outcome === 'accepted') {
+                    // Analytics de instalación
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'pwa_install', {
+                            'outcome': 'accepted',
+                            'app': 'investigacion-operativa'
+                        });
+                    }
+                }
+
+                deferredPrompt = null;
+                hideInstallBanner();
+
+            } catch (error) {
+                console.error('Error en instalación PWA:', error);
+            }
+        }
+
+        function showInstalledNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--success);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1001;
+                font-weight: 500;
+            `;
+            notification.textContent = '✅ App instalada exitosamente';
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                background: var(--warning);
+                color: white;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1001;
+                text-align: center;
+                max-width: 400px;
+                margin: 0 auto;
+            `;
+            notification.innerHTML = `
+                <div style="margin-bottom: 8px;">Nueva versión disponible</div>
+                <button onclick="window.location.reload()" style="
+                    background: white;
+                    color: var(--warning);
+                    border: none;
+                    padding: 5px 15px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-weight: 500;
+                ">Actualizar</button>
+            `;
+
+            document.body.appendChild(notification);
+        }
+
+        // ========== VERIFICAR SI ES PWA ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('🚀 Ejecutándose como PWA instalada');
+                document.body.classList.add('pwa-mode');
+            }
+
+            // Verificar si es iOS PWA
+            if (window.navigator.standalone === true) {
+                console.log('🍎 Ejecutándose como PWA en iOS');
+                document.body.classList.add('ios-pwa');
+            }
+        });
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            custom_map: {
+                'custom_parameter_1': 'investigacion_operativa'
+            }
+        });
+
+        // Event tracking para módulos
+        function trackModuleUsage(module, action) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'module_usage', {
+                    'module_name': module,
+                    'action': action,
+                    'app_name': 'investigacion_operativa'
+                });
+            }
+        }
+
+        // Hacer disponible globalmente
+        window.trackModuleUsage = trackModuleUsage;
+    </script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>

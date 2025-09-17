@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/jaceb/Mis Desarrollos/Agentes/meskeia-design/**)",
+      "Read(//c/Users/jaceb/Mis Desarrollos/Agentes/**)",
+      "Bash(python:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

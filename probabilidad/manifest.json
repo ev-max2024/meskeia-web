@@ -1,0 +1,64 @@
+{
+  "name": "Calculadora de Probabilidad - meskeIA",
+  "short_name": "Probabilidad",
+  "description": "Calculadora completa de probabilidades con módulos educativos",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0a0f2b",
+  "theme_color": "#4a9eff",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "es",
+  "categories": ["education", "utilities", "mathematics"],
+  "icons": [
+    {
+      "src": "icon_meskeia.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Probabilidad Clásica",
+      "short_name": "Clásica",
+      "url": "./?tab=clasica",
+      "icons": [
+        {
+          "src": "icon_meskeia.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Distribuciones",
+      "short_name": "Distribuciones",
+      "url": "./?tab=distribuciones",
+      "icons": [
+        {
+          "src": "icon_meskeia.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Monte Carlo",
+      "short_name": "Monte Carlo",
+      "url": "./?tab=montecarlo",
+      "icons": [
+        {
+          "src": "icon_meskeia.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

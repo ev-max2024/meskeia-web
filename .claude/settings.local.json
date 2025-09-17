@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Read(//c/Users/jaceb/meskeIA/Agentes/**)",
+      "Read(//c/Users/jaceb/Mis Desarrollos/Proyectos/test-preguntas/**)",
+      "Bash(xcopy:*)",
+      "Bash(robocopy:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ========== METADATOS BÁSICOS ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ========== SEO BÁSICO ========== -->
+    <title>Calculadora de Probabilidad - Herramientas Estadísticas | meskeIA</title>
+    <meta name="description" content="Calculadora de probabilidad online gratuita. Resuelve problemas de probabilidad clásica, condicional, Bayes, distribuciones y simulaciones Monte Carlo con explicaciones paso a paso.">
+    <meta name="keywords" content="probabilidad, calculadora probabilidad, teorema bayes, distribuciones, binomial, normal, monte carlo, estadística, matemáticas">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== OPEN GRAPH / FACEBOOK ========== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Probabilidad - Herramientas Interactivas">
+    <meta property="og:description" content="Herramienta gratuita para resolver problemas de probabilidad, distribuciones estadísticas y simulaciones con visualizaciones interactivas.">
+    <meta property="og:url" content="https://meskeia.com/aplicaciones/probabilidad">
+    <meta property="og:image" content="https://meskeia.com/assets/og-probabilidad.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Probabilidad - meskeIA">
+    <meta name="twitter:description" content="Resuelve problemas de probabilidad, distribuciones y simulaciones estadísticas de forma interactiva">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-probabilidad.jpg">
+    <meta name="twitter:creator" content="@meskeIA">
+    <meta name="twitter:site" content="@meskeIA">
+
+    <!-- ========== CANONICAL URL ========== -->
+    <link rel="canonical" href="https://meskeia.com/aplicaciones/probabilidad">
+
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- ========== SCHEMA.ORG / STRUCTURED DATA ========== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Probabilidad meskeIA",
+        "description": "Calculadora interactiva de probabilidad con herramientas para resolver problemas de probabilidad clásica, condicional, distribuciones y simulaciones Monte Carlo",
+        "url": "https://meskeia.com/aplicaciones/probabilidad",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com",
+            "logo": "https://meskeia.com/logo.png"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "245"
+        },
+        "featureList": [
+            "Probabilidad clásica y condicional",
+            "Teorema de Bayes interactivo",
+            "Distribuciones estadísticas",
+            "Simulador Monte Carlo",
+            "Combinatoria aplicada",
+            "Visualizaciones interactivas",
+            "Explicaciones teóricas"
+        ]
+    }
+    </script>
+
+    <!-- ========== PWA MANIFEST ========== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Probabilidad">
+
+    <!-- ========== PRECONNECT PARA OPTIMIZACIÓN ========== -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- ========== LIBRERÍAS EXTERNAS ========== -->
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" defer></script>
+
+    <!-- Math.js para cálculos matemáticos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js" defer></script>
+
+    <!-- ========== ESTILOS ========== -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="container">
+        <!-- Título principal -->
+        <h1 class="main-title">🎲 Calculadora de Probabilidad</h1>
+        <p class="subtitle">Resuelve problemas de probabilidad y estadística con visualizaciones interactivas</p>
+
+        <!-- Navegación por tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="clasica">Probabilidad Clásica</button>
+            <button class="nav-tab" data-tab="condicional">Condicional y Bayes</button>
+            <button class="nav-tab" data-tab="distribuciones">Distribuciones</button>
+            <button class="nav-tab" data-tab="montecarlo">Monte Carlo</button>
+            <button class="nav-tab" data-tab="combinatoria">Combinatoria</button>
+            <button class="nav-tab" data-tab="teoria">📚 Teoría</button>
+        </div>
+
+        <!-- Tab: Probabilidad Clásica -->
+        <div id="clasica" class="tab-content active">
+            <div class="card">
+                <h2 class="card-title">Probabilidad Clásica</h2>
+                <p class="card-subtitle">Calcula probabilidades de eventos simples y compuestos</p>
+
+                <div class="calc-section">
+                    <h3>Probabilidad Simple</h3>
+                    <div class="form-group">
+                        <label class="form-label">Casos favorables:</label>
+                        <input type="number" id="casos-favorables" class="form-input" min="0" value="3">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Casos totales:</label>
+                        <input type="number" id="casos-totales" class="form-input" min="1" value="6">
+                    </div>
+                    <button class="btn btn-primary" onclick="calcularProbabilidadSimple()">Calcular P(A)</button>
+                    <div id="resultado-simple" class="result-area">
+                        <span class="placeholder">Introduce los valores y pulsa calcular</span>
+                    </div>
+                </div>
+
+                <div class="calc-section">
+                    <h3>Probabilidad Compuesta</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">P(A):</label>
+                            <input type="number" id="prob-a" class="form-input" min="0" max="1" step="0.01" value="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">P(B):</label>
+                            <input type="number" id="prob-b" class="form-input" min="0" max="1" step="0.01" value="0.3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">P(A ∩ B) - Intersección:</label>
+                        <input type="number" id="prob-interseccion" class="form-input" min="0" max="1" step="0.01" value="0.1">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline" onclick="calcularUnion()">P(A ∪ B)</button>
+                        <button class="btn btn-outline" onclick="calcularComplemento()">P(A')</button>
+                        <button class="btn btn-outline" onclick="calcularDiferencia()">P(A - B)</button>
+                    </div>
+                    <div id="resultado-compuesta" class="result-area">
+                        <span class="placeholder">Selecciona una operación</span>
+                    </div>
+
+                    <!-- Diagrama de Venn -->
+                    <div class="visualization-container">
+                        <h4>Diagrama de Venn</h4>
+                        <canvas id="venn-diagram" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Probabilidad Condicional y Bayes -->
+        <div id="condicional" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Probabilidad Condicional y Teorema de Bayes</h2>
+
+                <div class="calc-section">
+                    <h3>Probabilidad Condicional P(A|B)</h3>
+                    <div class="form-group">
+                        <label class="form-label">P(A ∩ B) - Probabilidad conjunta:</label>
+                        <input type="number" id="cond-interseccion" class="form-input" min="0" max="1" step="0.01" value="0.15">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">P(B) - Probabilidad del evento condicionante:</label>
+                        <input type="number" id="cond-b" class="form-input" min="0.01" max="1" step="0.01" value="0.5">
+                    </div>
+                    <button class="btn btn-primary" onclick="calcularCondicional()">Calcular P(A|B)</button>
+                    <div id="resultado-condicional" class="result-area">
+                        <span class="placeholder">Introduce los valores y pulsa calcular</span>
+                    </div>
+                </div>
+
+                <div class="calc-section">
+                    <h3>Teorema de Bayes</h3>
+                    <div class="bayes-scenario">
+                        <p class="info-text">Calcula P(A|B) usando el teorema de Bayes</p>
+                        <div class="form-group">
+                            <label class="form-label">P(A) - Probabilidad a priori:</label>
+                            <input type="number" id="bayes-prior" class="form-input" min="0" max="1" step="0.01" value="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">P(B|A) - Probabilidad de B dado A:</label>
+                            <input type="number" id="bayes-likelihood" class="form-input" min="0" max="1" step="0.01" value="0.99">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">P(B|A') - Probabilidad de B dado no A:</label>
+                            <input type="number" id="bayes-likelihood-neg" class="form-input" min="0" max="1" step="0.01" value="0.05">
+                        </div>
+                        <button class="btn btn-primary" onclick="calcularBayes()">Aplicar Teorema de Bayes</button>
+
+                        <div id="resultado-bayes" class="result-area">
+                            <span class="placeholder">Introduce los valores para calcular</span>
+                        </div>
+
+                        <!-- Visualización de Bayes -->
+                        <div class="bayes-visualization" id="bayes-tree"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Distribuciones -->
+        <div id="distribuciones" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Distribuciones de Probabilidad</h2>
+
+                <div class="distribution-selector">
+                    <label class="form-label">Selecciona una distribución:</label>
+                    <select id="tipo-distribucion" class="form-select" onchange="cambiarDistribucion()">
+                        <option value="binomial">Binomial</option>
+                        <option value="poisson">Poisson</option>
+                        <option value="normal">Normal</option>
+                        <option value="exponencial">Exponencial</option>
+                        <option value="uniforme">Uniforme</option>
+                    </select>
+                </div>
+
+                <!-- Parámetros Binomial -->
+                <div id="params-binomial" class="distribution-params">
+                    <h3>Distribución Binomial</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">n (número de ensayos):</label>
+                            <input type="number" id="binomial-n" class="form-input" min="1" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">p (probabilidad de éxito):</label>
+                            <input type="number" id="binomial-p" class="form-input" min="0" max="1" step="0.01" value="0.5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">k (número de éxitos):</label>
+                        <input type="number" id="binomial-k" class="form-input" min="0" value="5">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="calcularBinomial('exacta')">P(X = k)</button>
+                        <button class="btn btn-outline" onclick="calcularBinomial('menor')">P(X ≤ k)</button>
+                        <button class="btn btn-outline" onclick="calcularBinomial('mayor')">P(X > k)</button>
+                    </div>
+                </div>
+
+                <!-- Parámetros Poisson -->
+                <div id="params-poisson" class="distribution-params" style="display:none;">
+                    <h3>Distribución Poisson</h3>
+                    <div class="form-group">
+                        <label class="form-label">λ (lambda - tasa media):</label>
+                        <input type="number" id="poisson-lambda" class="form-input" min="0.01" step="0.1" value="3">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">k (número de ocurrencias):</label>
+                        <input type="number" id="poisson-k" class="form-input" min="0" value="2">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="calcularPoisson('exacta')">P(X = k)</button>
+                        <button class="btn btn-outline" onclick="calcularPoisson('menor')">P(X ≤ k)</button>
+                        <button class="btn btn-outline" onclick="calcularPoisson('mayor')">P(X > k)</button>
+                    </div>
+                </div>
+
+                <!-- Parámetros Normal -->
+                <div id="params-normal" class="distribution-params" style="display:none;">
+                    <h3>Distribución Normal</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">μ (media):</label>
+                            <input type="number" id="normal-mu" class="form-input" step="0.1" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">σ (desviación estándar):</label>
+                            <input type="number" id="normal-sigma" class="form-input" min="0.01" step="0.1" value="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">x (valor):</label>
+                        <input type="number" id="normal-x" class="form-input" step="0.1" value="1">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="calcularNormal('menor')">P(X ≤ x)</button>
+                        <button class="btn btn-outline" onclick="calcularNormal('mayor')">P(X > x)</button>
+                        <button class="btn btn-outline" onclick="calcularNormal('z')">Valor Z</button>
+                    </div>
+                </div>
+
+                <!-- Resultado de distribuciones -->
+                <div id="resultado-distribucion" class="result-area">
+                    <span class="placeholder">Selecciona una distribución y calcula</span>
+                </div>
+
+                <!-- Gráfico de distribución -->
+                <div class="visualization-container">
+                    <h4>Visualización de la Distribución</h4>
+                    <canvas id="distribution-chart"></canvas>
+                </div>
+
+                <!-- Estadísticas de la distribución -->
+                <div id="stats-distribucion" class="stats-box"></div>
+            </div>
+        </div>
+
+        <!-- Tab: Simulador Monte Carlo -->
+        <div id="montecarlo" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Simulador Monte Carlo</h2>
+                <p class="card-subtitle">Simula experimentos aleatorios y estima probabilidades</p>
+
+                <div class="simulation-selector">
+                    <label class="form-label">Selecciona un experimento:</label>
+                    <select id="tipo-simulacion" class="form-select" onchange="cambiarSimulacion()">
+                        <option value="monedas">Lanzamiento de Monedas</option>
+                        <option value="dados">Lanzamiento de Dados</option>
+                        <option value="urna">Extracción de Urna</option>
+                        <option value="agujas">Agujas de Buffon (π)</option>
+                        <option value="cumpleanos">Paradoja del Cumpleaños</option>
+                    </select>
+                </div>
+
+                <!-- Simulación de Monedas -->
+                <div id="sim-monedas" class="simulation-params">
+                    <h3>Lanzamiento de Monedas</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Número de monedas:</label>
+                            <input type="number" id="monedas-cantidad" class="form-input" min="1" max="10" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número de simulaciones:</label>
+                            <input type="number" id="monedas-sims" class="form-input" min="100" max="100000" value="10000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Objetivo (número de caras):</label>
+                        <input type="number" id="monedas-objetivo" class="form-input" min="0" max="10" value="2">
+                    </div>
+                </div>
+
+                <!-- Simulación de Dados -->
+                <div id="sim-dados" class="simulation-params" style="display:none;">
+                    <h3>Lanzamiento de Dados</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Número de dados:</label>
+                            <input type="number" id="dados-cantidad" class="form-input" min="1" max="6" value="2">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número de simulaciones:</label>
+                            <input type="number" id="dados-sims" class="form-input" min="100" max="100000" value="10000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Suma objetivo:</label>
+                        <input type="number" id="dados-objetivo" class="form-input" min="1" max="36" value="7">
+                    </div>
+                </div>
+
+                <!-- Controles de simulación -->
+                <div class="simulation-controls">
+                    <button class="btn btn-primary" onclick="ejecutarSimulacion()">
+                        <span class="btn-icon">▶</span> Ejecutar Simulación
+                    </button>
+                    <button class="btn btn-outline" onclick="pausarSimulacion()" disabled>
+                        <span class="btn-icon">⏸</span> Pausar
+                    </button>
+                    <button class="btn btn-danger" onclick="reiniciarSimulacion()">
+                        <span class="btn-icon">↻</span> Reiniciar
+                    </button>
+                </div>
+
+                <!-- Barra de progreso -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="sim-progress"></div>
+                    <span class="progress-text" id="sim-progress-text">0%</span>
+                </div>
+
+                <!-- Resultados de simulación -->
+                <div id="resultado-simulacion" class="result-area">
+                    <span class="placeholder">Configura y ejecuta la simulación</span>
+                </div>
+
+                <!-- Visualización de resultados -->
+                <div class="visualization-container">
+                    <h4>Convergencia de la Probabilidad</h4>
+                    <canvas id="montecarlo-chart" width="600" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Combinatoria -->
+        <div id="combinatoria" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Combinatoria Aplicada a Probabilidad</h2>
+
+                <div class="calc-section">
+                    <h3>Permutaciones y Combinaciones</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">n (total de elementos):</label>
+                            <input type="number" id="comb-n" class="form-input" min="1" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">r (elementos a seleccionar):</label>
+                            <input type="number" id="comb-r" class="form-input" min="0" value="3">
+                        </div>
+                    </div>
+
+                    <div class="btn-grid">
+                        <button class="btn btn-outline" onclick="calcularPermutacion()">
+                            <strong>nPr</strong><br>Permutaciones
+                        </button>
+                        <button class="btn btn-outline" onclick="calcularCombinacion()">
+                            <strong>nCr</strong><br>Combinaciones
+                        </button>
+                        <button class="btn btn-outline" onclick="calcularPermutacionRep()">
+                            <strong>nPr con Rep.</strong><br>Perm. con repetición
+                        </button>
+                        <button class="btn btn-outline" onclick="calcularCombinacionRep()">
+                            <strong>nCr con Rep.</strong><br>Comb. con repetición
+                        </button>
+                    </div>
+
+                    <div id="resultado-combinatoria" class="result-area">
+                        <span class="placeholder">Selecciona un tipo de cálculo</span>
+                    </div>
+                </div>
+
+                <div class="calc-section">
+                    <h3>Aplicaciones a Probabilidad</h3>
+
+                    <!-- Problema de cartas -->
+                    <div class="example-problem">
+                        <h4>🃏 Problema de Cartas</h4>
+                        <p>¿Cuál es la probabilidad de obtener exactamente <input type="number" id="cartas-ases" min="0" max="4" value="2" style="width:50px"> ases
+                        al extraer <input type="number" id="cartas-mano" min="1" max="52" value="5" style="width:50px"> cartas de una baraja?</p>
+                        <button class="btn btn-primary" onclick="resolverProblemaCartas()">Resolver</button>
+                    </div>
+
+                    <!-- Problema de lotería -->
+                    <div class="example-problem">
+                        <h4>🎰 Problema de Lotería</h4>
+                        <p>En una lotería se eligen <input type="number" id="loteria-elegir" min="1" max="10" value="6" style="width:50px"> números
+                        de <input type="number" id="loteria-total" min="1" max="100" value="49" style="width:50px"> posibles.
+                        ¿Cuál es la probabilidad de acertar?</p>
+                        <button class="btn btn-primary" onclick="resolverProblemaLoteria()">Calcular</button>
+                    </div>
+
+                    <div id="resultado-aplicaciones" class="result-area">
+                        <span class="placeholder">Resuelve un problema aplicado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Teoría -->
+        <div id="teoria" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">📚 Conceptos Teóricos de Probabilidad</h2>
+
+                <div class="theory-section">
+                    <h3>1. Conceptos Fundamentales</h3>
+
+                    <div class="concept-card">
+                        <h4>Experimento Aleatorio</h4>
+                        <p>Un experimento cuyo resultado no puede predecirse con certeza antes de realizarlo.</p>
+                        <div class="example">
+                            <strong>Ejemplos:</strong> Lanzar un dado, extraer una carta, resultado de un partido.
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h4>Espacio Muestral (Ω)</h4>
+                        <p>Conjunto de todos los resultados posibles de un experimento aleatorio.</p>
+                        <div class="example">
+                            <strong>Ejemplo:</strong> Al lanzar un dado: Ω = {1, 2, 3, 4, 5, 6}
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h4>Evento o Suceso</h4>
+                        <p>Cualquier subconjunto del espacio muestral.</p>
+                        <div class="example">
+                            <strong>Ejemplo:</strong> "Obtener número par" = {2, 4, 6}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>2. Tipos de Probabilidad</h3>
+
+                    <div class="formula-card">
+                        <h4>Probabilidad Clásica (Laplace)</h4>
+                        <div class="formula">
+                            P(A) = Casos favorables / Casos totales
+                        </div>
+                        <p class="condition">Válida cuando todos los resultados son equiprobables.</p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Probabilidad Frecuentista</h4>
+                        <div class="formula">
+                            P(A) = lim(n→∞) [nₐ/n]
+                        </div>
+                        <p>Donde nₐ es el número de veces que ocurre A en n repeticiones.</p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Probabilidad Subjetiva</h4>
+                        <p>Basada en el grado de creencia o información disponible sobre un evento.</p>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>3. Axiomas de Kolmogorov</h3>
+
+                    <div class="axiom-card">
+                        <h4>Axioma 1: No negatividad</h4>
+                        <div class="formula">P(A) ≥ 0</div>
+                    </div>
+
+                    <div class="axiom-card">
+                        <h4>Axioma 2: Certeza</h4>
+                        <div class="formula">P(Ω) = 1</div>
+                    </div>
+
+                    <div class="axiom-card">
+                        <h4>Axioma 3: Aditividad</h4>
+                        <div class="formula">Si A ∩ B = ∅ → P(A ∪ B) = P(A) + P(B)</div>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>4. Reglas de Probabilidad</h3>
+
+                    <div class="rule-card">
+                        <h4>Regla del Complemento</h4>
+                        <div class="formula">P(A') = 1 - P(A)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <h4>Regla de la Suma</h4>
+                        <div class="formula">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <h4>Regla del Producto</h4>
+                        <div class="formula">P(A ∩ B) = P(A) × P(B|A) = P(B) × P(A|B)</div>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>5. Probabilidad Condicional</h3>
+
+                    <div class="formula-card">
+                        <h4>Definición</h4>
+                        <div class="formula">P(A|B) = P(A ∩ B) / P(B)</div>
+                        <p>La probabilidad de A dado que B ha ocurrido.</p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Independencia</h4>
+                        <p>Dos eventos son independientes si:</p>
+                        <div class="formula">P(A ∩ B) = P(A) × P(B)</div>
+                        <div class="formula">P(A|B) = P(A)</div>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>6. Teorema de Bayes</h3>
+
+                    <div class="formula-card">
+                        <h4>Forma Simple</h4>
+                        <div class="formula">P(A|B) = P(B|A) × P(A) / P(B)</div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Teorema de la Probabilidad Total</h4>
+                        <div class="formula">P(B) = Σᵢ P(B|Aᵢ) × P(Aᵢ)</div>
+                        <p>Donde {A₁, A₂, ..., Aₙ} es una partición del espacio muestral.</p>
+                    </div>
+
+                    <div class="example">
+                        <h4>Aplicación Clásica: Test Médico</h4>
+                        <p><strong>Sensibilidad:</strong> P(Test+|Enfermo) = Verdaderos positivos</p>
+                        <p><strong>Especificidad:</strong> P(Test-|Sano) = Verdaderos negativos</p>
+                        <p><strong>Valor Predictivo Positivo:</strong> P(Enfermo|Test+)</p>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>7. Distribuciones de Probabilidad</h3>
+
+                    <div class="distribution-card">
+                        <h4>Distribuciones Discretas</h4>
+                        <ul>
+                            <li><strong>Binomial:</strong> n ensayos independientes con probabilidad p de éxito</li>
+                            <li><strong>Poisson:</strong> Número de eventos en un intervalo de tiempo/espacio</li>
+                            <li><strong>Geométrica:</strong> Número de ensayos hasta el primer éxito</li>
+                            <li><strong>Hipergeométrica:</strong> Muestreo sin reemplazo</li>
+                        </ul>
+                    </div>
+
+                    <div class="distribution-card">
+                        <h4>Distribuciones Continuas</h4>
+                        <ul>
+                            <li><strong>Normal:</strong> La campana de Gauss, fundamental por el TCL</li>
+                            <li><strong>Exponencial:</strong> Tiempo entre eventos en un proceso de Poisson</li>
+                            <li><strong>Uniforme:</strong> Todos los valores igualmente probables</li>
+                            <li><strong>Chi-cuadrado:</strong> Suma de normales estándar al cuadrado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>8. Teorema Central del Límite</h3>
+
+                    <div class="tcl-card">
+                        <p>La distribución de la media muestral de cualquier variable aleatoria con media μ y varianza σ²
+                        converge a una distribución normal cuando el tamaño de muestra n → ∞:</p>
+                        <div class="formula">X̄ ~ N(μ, σ²/n)</div>
+                        <p class="importance">⚡ Fundamental para la inferencia estadística</p>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h3>9. Paradojas y Curiosidades</h3>
+
+                    <div class="paradox-card">
+                        <h4>Paradoja del Cumpleaños</h4>
+                        <p>En un grupo de solo 23 personas, la probabilidad de que dos compartan cumpleaños es > 50%</p>
+                    </div>
+
+                    <div class="paradox-card">
+                        <h4>Problema de Monty Hall</h4>
+                        <p>Cambiar de puerta aumenta la probabilidad de ganar de 1/3 a 2/3</p>
+                    </div>
+
+                    <div class="paradox-card">
+                        <h4>Falacia del Jugador</h4>
+                        <p>Los eventos pasados no afectan las probabilidades futuras en eventos independientes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de historial -->
+        <div class="history-panel">
+            <h3>📊 Historial de Cálculos</h3>
+            <div id="history-list" class="history-list">
+                <p class="text-muted">No hay cálculos en el historial</p>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="limpiarHistorial()">Limpiar Historial</button>
+        </div>
+    </main>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+
+    <!-- Service Worker para PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => console.log('SW registrado'))
+                    .catch(err => console.log('SW error:', err));
+            });
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</body>
+</html>

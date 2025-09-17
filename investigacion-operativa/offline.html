@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión - Investigación Operativa | meskeIA</title>
+    <style>
+        /* Estilos inline para funcionar sin conexión */
+        :root {
+            --primary: #2E86AB;
+            --bg-primary: #FAFAFA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --success: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .offline-container {
+            max-width: 500px;
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .offline-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .retry-btn:hover {
+            background: #246b8a;
+        }
+
+        .offline-features {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .offline-features h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .offline-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .offline-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+        }
+
+        .offline-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .app-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #E5E5E5;
+        }
+
+        .app-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .module-card {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #E5E5E5;
+        }
+
+        .module-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .module-card .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 480px) {
+            .offline-container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .offline-icon {
+                font-size: 3rem;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📊</div>
+        <h1>Sin conexión a internet</h1>
+        <p>
+            No hay conexión disponible en este momento.
+            La aplicación de Investigación Operativa funciona principalmente offline una vez cargada.
+        </p>
+
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Reintentar conexión
+        </button>
+
+        <div class="offline-features">
+            <h3>Funciones disponibles offline:</h3>
+            <ul>
+                <li>Calculadora de Teoría de Colas M/M/1</li>
+                <li>Problema de Transporte (3 métodos)</li>
+                <li>Planificación CPM con Ruta Crítica</li>
+                <li>Exportar resultados en formato texto</li>
+                <li>Simulación de eventos discretos</li>
+            </ul>
+        </div>
+
+        <div class="app-info">
+            <h3>Módulos de Investigación Operativa</h3>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="icon">📊</div>
+                    <div class="title">Teoría de Colas</div>
+                </div>
+                <div class="module-card">
+                    <div class="icon">🚚</div>
+                    <div class="title">Transporte</div>
+                </div>
+                <div class="module-card">
+                    <div class="icon">📅</div>
+                    <div class="title">Planificación</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; font-size: 0.9rem; color: var(--text-secondary);">
+            <strong>meskeIA</strong> - Herramientas educativas gratuitas
+        </div>
+    </div>
+
+    <script>
+        // Detectar cuando se recupera la conexión
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+
+        // Mostrar estado de conexión
+        if (!navigator.onLine) {
+            document.querySelector('.retry-btn').textContent = '📡 Sin conexión - Reintentando...';
+            document.querySelector('.retry-btn').disabled = true;
+            document.querySelector('.retry-btn').style.opacity = '0.6';
+        }
+
+        // Verificar conexión periódicamente
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 10000); // Cada 10 segundos
+
+        // Intentar acceder a la página principal offline
+        document.addEventListener('DOMContentLoaded', () => {
+            // Si el service worker tiene la página en caché, intentar cargarla
+            if ('serviceWorker' in navigator) {
+                setTimeout(() => {
+                    try {
+                        window.location.href = '/';
+                    } catch (e) {
+                        console.log('No se puede cargar la página principal offline');
+                    }
+                }, 2000);
+            }
+        });
+
+        console.log('📊 Página offline de Investigación Operativa cargada');
+        console.log('🔄 Verificando conexión cada 10 segundos...');
+    </script>
+</body>
+</html>
