@@ -3,7 +3,12 @@
     "allow": [
       "Read(//c/Users/jaceb/Mis Desarrollos/Agentes/meskeia-design/**)",
       "Read(//c/Users/jaceb/Mis Desarrollos/Agentes/**)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_take_screenshot",
+      "Read(//c/Users/jaceb/Downloads/**)"
     ],
     "deny": [],
     "ask": []
