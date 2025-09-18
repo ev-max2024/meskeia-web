@@ -23,51 +23,115 @@
     <priority>0.3</priority>
   </url>
   
+  <!-- Aplicaciones de Matemáticas -->
+  <url>
+    <loc>https://meskeia.com/algebra/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/algebra-abstracta/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/calculo/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/geometria/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/trigonometria/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/probabilidad/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/teoria-numeros/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/investigacion-operativa/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Aplicaciones de Finanzas -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Simulador%20de%20Hipoteca/simulador-hipoteca.html</loc>
+    <loc>https://meskeia.com/simulador-hipoteca/simulador-hipoteca.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Jubilaci%C3%B3n/calculadora-jubilacion.html</loc>
+    <loc>https://meskeia.com/calculadora-jubilacion/calculadora-jubilacion.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Inversiones/calculadora-inversiones.html</loc>
+    <loc>https://meskeia.com/calculadora-inversiones/calculadora-inversiones.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Inter%C3%A9s%20Compuesto/interes-compuesto.html</loc>
+    <loc>https://meskeia.com/interes-compuesto/interes-compuesto.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Simulador%20IRPF/simulador-irpf.html</loc>
+    <loc>https://meskeia.com/tir-van/calculadora-tir.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/simulador-irpf/simulador-irpf.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Impuesto%20de%20Donaciones/impuesto-donaciones.html</loc>
+    <loc>https://meskeia.com/impuesto-donaciones/impuesto-donaciones.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Impuesto%20de%20Sucesiones/impuesto-sucesiones.html</loc>
+    <loc>https://meskeia.com/impuesto-sucesiones/impuesto-sucesiones.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -75,42 +139,63 @@
   
   <!-- Calculadoras y Utilidades -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Fechas/calculadora-fechas.html</loc>
+    <loc>https://meskeia.com/calculadora-simple/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/calculadora-movimiento/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/tabla-periodica/index.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meskeia.com/Calculadora%20de%20Fechas/calculadora-fechas.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20de%20Notas%20Acad%C3%A9micas/calculadora-notas.html</loc>
+    <loc>https://meskeia.com/Calculadora%20de%20Notas%20Acad%C3%A9micas/calculadora-notas.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Conversor%20de%20Tallas%20Internacional/conversor-tallas.html</loc>
+    <loc>https://meskeia.com/Conversor%20de%20Tallas%20Internacional/conversor-tallas.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Estad%C3%ADstica/calculadora-estadistica.html</loc>
+    <loc>https://meskeia.com/Calculadora%20Estad%C3%ADstica/calculadora-estadistica.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Calculadora%20Matem%C3%A1tica%20Avanzada/calculadora-matematica.html</loc>
+    <loc>https://meskeia.com/Calculadora%20Matem%C3%A1tica%20Avanzada/calculadora-matematica.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Conversor%20de%20Unidades/conversor-unidades.html</loc>
+    <loc>https://meskeia.com/Conversor%20de%20Unidades/conversor-unidades.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -118,14 +203,14 @@
   
   <!-- Salud y Bienestar -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Evaluador%20de%20Salud/evaluador-salud.html</loc>
+    <loc>https://meskeia.com/Evaluador%20de%20Salud/evaluador-salud.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/nutrisalud.html</loc>
+    <loc>https://meskeia.com/NutriSalud/nutrisalud.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -133,28 +218,28 @@
   
   <!-- NutriSalud - Fundamentos -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/diferencia-comer-nutrirse.html</loc>
+    <loc>https://meskeia.com/NutriSalud/fundamentos/diferencia-comer-nutrirse.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/macronutrientes-profundidad.html</loc>
+    <loc>https://meskeia.com/NutriSalud/fundamentos/macronutrientes-profundidad.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/micronutrientes-biodisponibilidad.html</loc>
+    <loc>https://meskeia.com/NutriSalud/fundamentos/micronutrientes-biodisponibilidad.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/fundamentos/sistema-digestivo-laboratorio.html</loc>
+    <loc>https://meskeia.com/NutriSalud/fundamentos/sistema-digestivo-laboratorio.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -162,28 +247,28 @@
   
   <!-- NutriSalud - Órganos y Sistemas -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/cerebro-neurotransmisores.html</loc>
+    <loc>https://meskeia.com/NutriSalud/organos/cerebro-neurotransmisores.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/higado-metabolismo.html</loc>
+    <loc>https://meskeia.com/NutriSalud/organos/higado-metabolismo.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/intestino-microbiota.html</loc>
+    <loc>https://meskeia.com/NutriSalud/organos/intestino-microbiota.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/organos/sistema-cardiovascular.html</loc>
+    <loc>https://meskeia.com/NutriSalud/organos/sistema-cardiovascular.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -191,28 +276,28 @@
   
   <!-- NutriSalud - Interacciones -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/combinaciones-potencian.html</loc>
+    <loc>https://meskeia.com/NutriSalud/interacciones/combinaciones-potencian.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/combinaciones-inhiben.html</loc>
+    <loc>https://meskeia.com/NutriSalud/interacciones/combinaciones-inhiben.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/matriz-alimentaria.html</loc>
+    <loc>https://meskeia.com/NutriSalud/interacciones/matriz-alimentaria.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/interacciones/timing-nutricional.html</loc>
+    <loc>https://meskeia.com/NutriSalud/interacciones/timing-nutricional.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -220,28 +305,28 @@
   
   <!-- NutriSalud - Aplicación Práctica -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/calculadora-nutricional-inteligente.html</loc>
+    <loc>https://meskeia.com/NutriSalud/aplicacion/calculadora-nutricional-inteligente.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/lectura-critica-etiquetas.html</loc>
+    <loc>https://meskeia.com/NutriSalud/aplicacion/lectura-critica-etiquetas.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/mitos-nutricionales-desmontados.html</loc>
+    <loc>https://meskeia.com/NutriSalud/aplicacion/mitos-nutricionales-desmontados.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/NutriSalud/aplicacion/planificacion-personalizada.html</loc>
+    <loc>https://meskeia.com/NutriSalud/aplicacion/planificacion-personalizada.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -249,49 +334,49 @@
   
   <!-- Herramientas de Productividad -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Cuaderno%20Digital/cuaderno-digital.html</loc>
+    <loc>https://meskeia.com/Cuaderno%20Digital/cuaderno-digital.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Lista%20de%20Tareas/lista-tareas.html</loc>
+    <loc>https://meskeia.com/Lista%20de%20Tareas/lista-tareas.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Temporizador%20Pomodoro/temporizador-pomodoro.html</loc>
+    <loc>https://meskeia.com/Temporizador%20Pomodoro/temporizador-pomodoro.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Informaci%C3%B3n%20del%20Tiempo/informacion-tiempo.html</loc>
+    <loc>https://meskeia.com/Informaci%C3%B3n%20del%20Tiempo/informacion-tiempo.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Generador%20de%20Contrase%C3%B1as/generador-contraseñas.html</loc>
+    <loc>https://meskeia.com/Generador%20de%20Contrase%C3%B1as/generador-contraseñas.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Generador%20Lorem%20Ipsum/lorem-ipsum.html</loc>
+    <loc>https://meskeia.com/Generador%20Lorem%20Ipsum/lorem-ipsum.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Creador%20de%20Paletas/creador-paletas.html</loc>
+    <loc>https://meskeia.com/Creador%20de%20Paletas/creador-paletas.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -299,49 +384,49 @@
   
   <!-- Juegos y Entretenimiento -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Wordle%20en%20Espa%C3%B1ol/wordle-espanol.html</loc>
+    <loc>https://meskeia.com/Wordle%20en%20Espa%C3%B1ol/wordle-espanol.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Sudoku%20Cl%C3%A1sico/sudoku-clasico.html</loc>
+    <loc>https://meskeia.com/Sudoku%20Cl%C3%A1sico/sudoku-clasico.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Tres%20en%20Raya/tres-en-raya.html</loc>
+    <loc>https://meskeia.com/Tres%20en%20Raya/tres-en-raya.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Juego%20de%20Memoria/juego-de-memoria.html</loc>
+    <loc>https://meskeia.com/Juego%20de%20Memoria/juego-de-memoria.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Piedra%20Papel%20Tijera/piedra-papel-tijera.html</loc>
+    <loc>https://meskeia.com/Piedra%20Papel%20Tijera/piedra-papel-tijera.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/2048/juego-2048.html</loc>
+    <loc>https://meskeia.com/2048/juego-2048.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/Puzzle%20Matem%C3%A1tico/puzzle-matematico.html</loc>
+    <loc>https://meskeia.com/Puzzle%20Matem%C3%A1tico/puzzle-matematico.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -349,14 +434,14 @@
   
   <!-- Cursos y Formación -->
   <url>
-    <loc>https://meskeia.com/Aplicaciones/curso-decisiones-inversion/index.html</loc>
+    <loc>https://meskeia.com/curso-decisiones-inversion/index.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://meskeia.com/Aplicaciones/curso-emprendimiento/curso-emprendimiento.html</loc>
+    <loc>https://meskeia.com/curso-emprendimiento/curso-emprendimiento.html</loc>
     <lastmod>2025-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
