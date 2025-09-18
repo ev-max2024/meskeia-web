@@ -39,6 +39,16 @@
     box-sizing: border-box;
 }
 
+/* Prevenir overflow horizontal en toda la página */
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+html, body {
+    max-width: 100%;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: var(--bg-primary);
@@ -158,6 +168,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    overflow-x: hidden; /* Prevenir scroll horizontal */
 }
 
 /* Header */
@@ -188,6 +199,8 @@ header h1 {
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
     box-shadow: 0 4px 15px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -400,9 +413,15 @@ header h1 {
 /* Visualization */
 .visualization {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: 1fr;
     gap: 25px;
     margin-top: 25px;
+}
+
+@media (min-width: 769px) {
+    .visualization {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
 }
 
 .chart-container {
@@ -482,6 +501,55 @@ header h1 {
 
 /* Responsive para móviles */
 @media (max-width: 768px) {
+    /* Prevenir overflow horizontal global */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .container {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card {
+        width: auto;
+        max-width: none;
+        box-sizing: border-box;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 15px;
+    }
+
+    /* Fix específico para section visualization */
+    .visualization {
+        width: 100% !important;
+        max-width: calc(100vw - 20px) !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Fix específico para cards con visualización */
+    .visualization .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        padding: 15px !important;
+    }
+
+    .visualization .chart-container,
+    .visualization .animation-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 10px !important;
+    }
+
     .meskeia-logo-container {
         top: 10px;
         left: 10px;
@@ -518,10 +586,40 @@ header h1 {
 
     .visualization {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .chart-container {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        height: 250px;
+    }
+
+    .animation-container {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Canvas debe respetar el ancho del contenedor */
+    #canvas-animation {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #chart-posicion {
+        max-width: 100%;
+        height: auto;
     }
 
     .input-grid {
         grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
     }
 
     .movement-type {

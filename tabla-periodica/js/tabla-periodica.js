@@ -142,12 +142,56 @@ class TablaPeriodica {
             <div class="masa">${elemento.masa.toFixed(elemento.masa % 1 === 0 ? 0 : 1)}</div>
         `;
 
-        // Eventos
-        div.addEventListener('click', () => this.mostrarInfoElemento(elemento));
-        div.addEventListener('mouseenter', (e) => this.mostrarTooltip(e, elemento));
-        div.addEventListener('mouseleave', () => this.ocultarTooltip());
+        // Eventos - Diferentes para dispositivos táctiles y ratón
+        if (this.esPantallaTouch()) {
+            // En dispositivos táctiles: SOLO click para modal, NO tooltips NUNCA
+            div.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.limpiarTodosLosTooltips();
+                this.mostrarInfoElemento(elemento);
+            });
+
+            // Prevenir cualquier evento que pueda generar tooltips
+            div.addEventListener('touchstart', (e) => {
+                this.limpiarTodosLosTooltips();
+            });
+
+            div.addEventListener('touchend', (e) => {
+                this.limpiarTodosLosTooltips();
+            });
+
+            // Desactivar hover completamente
+            div.style.pointerEvents = 'auto';
+            div.addEventListener('mouseenter', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.limpiarTodosLosTooltips();
+            });
+
+            div.addEventListener('mouseleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.limpiarTodosLosTooltips();
+            });
+
+        } else {
+            // En dispositivos con ratón: hover para tooltip y click para modal
+            div.addEventListener('click', () => {
+                this.ocultarTooltip();
+                this.mostrarInfoElemento(elemento);
+            });
+            div.addEventListener('mouseenter', (e) => this.mostrarTooltip(e, elemento));
+            div.addEventListener('mouseleave', () => this.ocultarTooltip());
+        }
 
         return div;
+    }
+
+    esPantallaTouch() {
+        return (('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0) ||
+                (navigator.msMaxTouchPoints > 0));
     }
 
     mostrarTooltip(event, elemento) {
@@ -208,7 +252,66 @@ class TablaPeriodica {
         }
     }
 
+    limpiarTodosLosTooltips() {
+        // Método ultra-agresivo para eliminar TODOS los tooltips
+
+        // Limpiar referencia actual
+        this.tooltipActual = null;
+
+        // Eliminar por múltiples selectores
+        const selectores = [
+            '.tooltip',
+            '[class*="tooltip"]',
+            '[style*="position: fixed"]',
+            '[style*="z-index: 1000"]',
+            '[style*="pointer-events: none"]'
+        ];
+
+        selectores.forEach(selector => {
+            try {
+                const elementos = document.querySelectorAll(selector);
+                elementos.forEach(el => {
+                    if (el.classList.contains('tooltip') ||
+                        el.textContent.includes('Número:') ||
+                        el.textContent.includes('Masa:') ||
+                        el.style.position === 'fixed') {
+                        el.remove();
+                    }
+                });
+            } catch (e) {
+                // Ignorar errores de selector
+            }
+        });
+
+        // Eliminar cualquier elemento con contenido similar a tooltip
+        const todosLosElementos = document.querySelectorAll('*');
+        todosLosElementos.forEach(el => {
+            if (el.style.position === 'fixed' &&
+                el.style.zIndex >= 1000 &&
+                el !== document.getElementById('info-panel') &&
+                !el.classList.contains('meskeia-logo-container')) {
+                el.remove();
+            }
+        });
+
+        // Forzar limpieza del DOM
+        setTimeout(() => {
+            const tooltipsRestantes = document.querySelectorAll('.tooltip');
+            tooltipsRestantes.forEach(t => t.remove());
+        }, 1);
+    }
+
     mostrarInfoElemento(elemento) {
+        // Limpieza ultra-agresiva usando el nuevo método
+        this.limpiarTodosLosTooltips();
+
+        // Limpieza inmediata y repetitiva para casos extremos
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                this.limpiarTodosLosTooltips();
+            }, i * 10);
+        }
+
         const panel = document.getElementById('info-panel');
 
         // Actualizar información

@@ -563,6 +563,15 @@ body {
     padding: var(--espaciado-md);
 }
 
+/* Ocultar todos los tooltips cuando el modal esté abierto */
+.info-panel + .tooltip,
+.info-panel ~ .tooltip,
+body:has(.info-panel[style*="display: flex"]) .tooltip {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
 .info-content {
     background: white;
     border-radius: var(--borde-radio);
@@ -636,6 +645,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--espaciado-sm);
 }
+
+/* Mobile-first responsive design consolidated below */
 
 .propiedad {
     background: var(--color-fondo-alt);
@@ -860,6 +871,139 @@ body {
     }
 }
 
+/* Ajustes específicos para modal en móviles */
+/* Consolidated mobile styles for max-width: 480px */
+@media (max-width: 480px) {
+    /* Modal and panel layout */
+    .info-panel {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 15px;
+        box-sizing: border-box;
+    }
+
+    .info-content {
+        max-width: 100%;
+        width: calc(100vw - 16px);
+        max-height: calc(100vh - 20px);
+        margin: 0 auto;
+        border-radius: var(--borde-radio-sm);
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .elemento-info {
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    .elemento-header {
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+    }
+
+    .elemento-simbolo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .elemento-datos h2 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .elemento-datos p {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* CRITICAL: Single column layout for mobile */
+    .elemento-detalles .propiedades-grid,
+    .propiedades-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+
+    .elemento-detalles .propiedad,
+    .propiedad {
+        font-size: 0.85rem !important;
+        padding: 8px 10px !important;
+        margin-bottom: 5px !important;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .detalle-grupo h3 {
+        font-size: 0.95rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    #info-usos li {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    #info-dato-curioso {
+        font-size: 0.85rem;
+        padding: 10px;
+        line-height: 1.4;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .btn-close {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+
+    /* Container and layout adjustments */
+    .container {
+        padding: 0 var(--espaciado-sm);
+    }
+
+    .controls-panel, .juego-container {
+        padding: var(--espaciado-md);
+    }
+
+    .tabla-periodica {
+        padding: var(--espaciado-sm);
+    }
+
+    .elemento {
+        min-height: 40px;
+    }
+
+    .simbolo {
+        font-size: 0.9rem;
+    }
+
+    .numero-atomico, .nombre, .masa {
+        font-size: 0.5rem;
+    }
+
+    /* Asegurar que ningún elemento se desborde */
+    .info-content * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
 @media (max-width: 768px) {
     .title {
         font-size: 2rem;
@@ -915,10 +1059,16 @@ body {
 
     .elemento-detalles {
         grid-template-columns: 1fr;
+        gap: var(--espaciado-lg);
+    }
+
+    .detalle-grupo {
+        margin-bottom: var(--espaciado-md);
     }
 
     .detalle-grupo:last-child {
         grid-column: span 1;
+        margin-bottom: 0;
     }
 
     .juego-header {
@@ -940,39 +1090,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .container {
-        padding: 0 var(--espaciado-sm);
-    }
-
-    .controls-panel, .juego-container {
-        padding: var(--espaciado-md);
-    }
-
-    .tabla-periodica {
-        padding: var(--espaciado-sm);
-    }
-
-    .elemento {
-        min-height: 40px;
-    }
-
-    .simbolo {
-        font-size: 0.9rem;
-    }
-
-    .numero-atomico, .nombre, .masa {
-        font-size: 0.5rem;
-    }
-
-    .info-content {
-        margin: var(--espaciado-sm);
-    }
-
-    .elemento-info {
-        padding: var(--espaciado-lg);
-    }
-}
+/* Duplicate media query removed - consolidated above */
 
 /* Estados especiales */
 .elemento.destacado {
@@ -1010,6 +1128,22 @@ body {
     box-shadow: var(--sombra-media);
     max-width: 200px;
     line-height: 1.4;
+}
+
+/* Desactivar completamente tooltips en dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .tooltip,
+    .elemento:hover .tooltip {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .elemento:hover {
+        transform: none !important;
+        box-shadow: var(--sombra-suave) !important;
+    }
 }
 
 .tooltip::after {
