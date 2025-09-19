@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>Calculadora de Electricidad - Ley de Ohm y Potencia | meskeIA</title>
+    <meta name="description" content="Calculadora interactiva de electricidad. Calcula voltaje, corriente, resistencia y potencia. Incluye circuito animado, ejemplos prácticos y consejos de seguridad.">
+    <meta name="keywords" content="calculadora electricidad, ley de ohm, voltaje, corriente, resistencia, potencia eléctrica, circuito eléctrico, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/calculadora-electricidad">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Calculadora de Electricidad - Ley de Ohm | meskeIA">
+    <meta property="og:description" content="Herramienta interactiva para cálculos eléctricos con circuito animado y consejos de seguridad.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/calculadora-electricidad">
+    <meta property="og:image" content="https://meskeia.com/images/calculadora-electricidad-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@meskeia">
+    <meta name="twitter:title" content="Calculadora de Electricidad - Ley de Ohm">
+    <meta name="twitter:description" content="Herramienta interactiva para cálculos eléctricos con circuito animado.">
+    <meta name="twitter:image" content="https://meskeia.com/images/calculadora-electricidad-twitter.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+    <link rel="apple-touch-icon" href="icon_meskeia.png">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2E86AB">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Electricidad",
+        "description": "Calculadora interactiva de electricidad con Ley de Ohm y potencia",
+        "url": "https://meskeia.com/calculadora-electricidad",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150"
+        }
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PLACEHOLDER');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "PLACEHOLDER");
+    </script>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>⚡ Calculadora de Electricidad</h1>
+        <p class="subtitle">Ley de Ohm y Potencia Eléctrica Interactiva</p>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Tabs de calculadoras -->
+        <div class="calculator-tabs">
+            <button class="tab-button active" data-tab="ohm">
+                <span class="tab-icon">Ω</span>
+                Ley de Ohm
+            </button>
+            <button class="tab-button" data-tab="power">
+                <span class="tab-icon">W</span>
+                Potencia
+            </button>
+            <button class="tab-button" data-tab="series">
+                <span class="tab-icon">⚡</span>
+                Serie/Paralelo
+            </button>
+            <button class="tab-button" data-tab="cables">
+                <span class="tab-icon">📏</span>
+                Cables
+            </button>
+            <button class="tab-button" data-tab="consumption">
+                <span class="tab-icon">💰</span>
+                Consumo
+            </button>
+        </div>
+
+        <!-- Circuito Animado -->
+        <div class="circuit-container" id="animated-circuit">
+            <svg id="circuit-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Batería -->
+                <g id="battery">
+                    <line x1="50" y1="100" x2="50" y2="200" stroke="#333" stroke-width="3"/>
+                    <line x1="70" y1="120" x2="70" y2="180" stroke="#333" stroke-width="2"/>
+                    <text x="40" y="90" fill="#666" font-size="14">+</text>
+                    <text x="40" y="220" fill="#666" font-size="14">-</text>
+                    <text x="85" y="155" fill="#2E86AB" font-size="12" id="voltage-display">0V</text>
+                </g>
+
+                <!-- Cables -->
+                <path id="wire-top" d="M 70 120 L 200 120 L 200 140" stroke="#666" stroke-width="2" fill="none"/>
+                <path id="wire-bottom" d="M 70 180 L 200 180 L 200 160" stroke="#666" stroke-width="2" fill="none"/>
+
+                <!-- Resistencia -->
+                <g id="resistor">
+                    <rect x="180" y="140" width="40" height="20" fill="none" stroke="#8B4513" stroke-width="2"/>
+                    <path d="M 190 150 L 195 145 L 200 150 L 205 145 L 210 150" stroke="#8B4513" stroke-width="1.5" fill="none"/>
+                    <text x="195" y="175" fill="#8B4513" font-size="11" id="resistance-display">0Ω</text>
+                </g>
+
+                <!-- LED/Bombilla -->
+                <g id="bulb">
+                    <circle cx="300" cy="150" r="20" fill="#FFE4B5" stroke="#666" stroke-width="2" opacity="0.3" id="bulb-glow"/>
+                    <circle cx="300" cy="150" r="15" fill="none" stroke="#333" stroke-width="2"/>
+                    <path d="M 290 150 Q 300 140 310 150" stroke="#666" stroke-width="1" fill="none"/>
+                    <path d="M 295 155 L 305 155" stroke="#666" stroke-width="1"/>
+                </g>
+
+                <!-- Cables de conexión al LED -->
+                <line x1="220" y1="150" x2="280" y2="150" stroke="#666" stroke-width="2"/>
+                <line x1="320" y1="150" x2="350" y2="150" stroke="#666" stroke-width="2"/>
+                <path d="M 350 150 L 350 180 L 70 180" stroke="#666" stroke-width="2" fill="none"/>
+                <path d="M 350 150 L 350 120 L 70 120" stroke="#666" stroke-width="2" fill="none"/>
+
+                <!-- Amperímetro -->
+                <g id="ammeter">
+                    <circle cx="250" cy="120" r="15" fill="white" stroke="#2E86AB" stroke-width="2"/>
+                    <text x="250" y="125" text-anchor="middle" fill="#2E86AB" font-size="12" font-weight="bold">A</text>
+                    <text x="250" y="100" text-anchor="middle" fill="#48A9A6" font-size="11" id="current-display">0A</text>
+                </g>
+
+                <!-- Partículas de electrones (para animación) -->
+                <g id="electrons"></g>
+            </svg>
+        </div>
+
+        <!-- Esquemas Serie/Paralelo -->
+        <div class="series-diagrams-container" id="series-diagrams" style="display: none;">
+            <div class="diagrams-grid">
+                <div class="diagram-card" id="series-diagram">
+                    <h4>Circuito en Serie</h4>
+                    <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Batería -->
+                        <g class="battery-symbol">
+                            <line x1="30" y1="60" x2="30" y2="90" stroke="#333" stroke-width="3"/>
+                            <line x1="40" y1="65" x2="40" y2="85" stroke="#333" stroke-width="2"/>
+                            <text x="20" y="55" fill="#2E86AB" font-size="10">+</text>
+                            <text x="20" y="105" fill="#2E86AB" font-size="10">-</text>
+                        </g>
+
+                        <!-- Cables -->
+                        <path d="M 40 75 L 80 75" stroke="#666" stroke-width="2" fill="none"/>
+                        <path d="M 120 75 L 160 75" stroke="#666" stroke-width="2" fill="none"/>
+                        <path d="M 200 75 L 240 75" stroke="#666" stroke-width="2" fill="none"/>
+                        <path d="M 240 75 L 270 75 L 270 110 L 30 110 L 30 90" stroke="#666" stroke-width="2" fill="none"/>
+
+                        <!-- Resistencias en serie -->
+                        <g class="resistor">
+                            <rect x="80" y="70" width="40" height="10" fill="none" stroke="#8B4513" stroke-width="2"/>
+                            <text x="100" y="65" text-anchor="middle" fill="#8B4513" font-size="10">R1</text>
+                        </g>
+                        <g class="resistor">
+                            <rect x="160" y="70" width="40" height="10" fill="none" stroke="#8B4513" stroke-width="2"/>
+                            <text x="180" y="65" text-anchor="middle" fill="#8B4513" font-size="10">R2</text>
+                        </g>
+
+                        <!-- Flechas de corriente -->
+                        <g class="current-arrows">
+                            <path d="M 60 80 L 70 80 L 67 77 M 70 80 L 67 83" stroke="#F18F01" stroke-width="2" fill="none"/>
+                            <path d="M 140 80 L 150 80 L 147 77 M 150 80 L 147 83" stroke="#F18F01" stroke-width="2" fill="none"/>
+                            <text x="150" y="95" text-anchor="middle" fill="#F18F01" font-size="9">I igual en todas</text>
+                        </g>
+
+                        <!-- Fórmula -->
+                        <text x="150" y="130" text-anchor="middle" fill="#2E86AB" font-size="12" font-weight="bold">R_total = R1 + R2</text>
+                    </svg>
+                </div>
+
+                <div class="diagram-card" id="parallel-diagram">
+                    <h4>Circuito en Paralelo</h4>
+                    <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Batería -->
+                        <g class="battery-symbol">
+                            <line x1="30" y1="60" x2="30" y2="90" stroke="#333" stroke-width="3"/>
+                            <line x1="40" y1="65" x2="40" y2="85" stroke="#333" stroke-width="2"/>
+                            <text x="20" y="55" fill="#2E86AB" font-size="10">+</text>
+                            <text x="20" y="105" fill="#2E86AB" font-size="10">-</text>
+                        </g>
+
+                        <!-- Cables principales -->
+                        <path d="M 40 75 L 80 75" stroke="#666" stroke-width="2" fill="none"/>
+                        <path d="M 220 75 L 260 75 L 260 110 L 30 110 L 30 90" stroke="#666" stroke-width="2" fill="none"/>
+
+                        <!-- Nodos de división -->
+                        <circle cx="80" cy="75" r="3" fill="#333"/>
+                        <circle cx="220" cy="75" r="3" fill="#333"/>
+
+                        <!-- Rama superior -->
+                        <path d="M 80 75 L 80 55 L 220 55 L 220 75" stroke="#666" stroke-width="2" fill="none"/>
+                        <g class="resistor">
+                            <rect x="130" y="50" width="40" height="10" fill="none" stroke="#8B4513" stroke-width="2"/>
+                            <text x="150" y="45" text-anchor="middle" fill="#8B4513" font-size="10">R1</text>
+                        </g>
+
+                        <!-- Rama inferior -->
+                        <path d="M 80 75 L 80 95 L 220 95 L 220 75" stroke="#666" stroke-width="2" fill="none"/>
+                        <g class="resistor">
+                            <rect x="130" y="90" width="40" height="10" fill="none" stroke="#8B4513" stroke-width="2"/>
+                            <text x="150" y="110" text-anchor="middle" fill="#8B4513" font-size="10">R2</text>
+                        </g>
+
+                        <!-- Flechas de corriente -->
+                        <g class="current-arrows">
+                            <path d="M 100 50 L 110 50 L 107 47 M 110 50 L 107 53" stroke="#F18F01" stroke-width="2" fill="none"/>
+                            <path d="M 100 100 L 110 100 L 107 97 M 110 100 L 107 103" stroke="#F18F01" stroke-width="2" fill="none"/>
+                            <text x="85" y="40" text-anchor="middle" fill="#F18F01" font-size="8">I1</text>
+                            <text x="85" y="125" text-anchor="middle" fill="#F18F01" font-size="8">I2</text>
+                        </g>
+
+                        <!-- Fórmula -->
+                        <text x="150" y="130" text-anchor="middle" fill="#2E86AB" font-size="11" font-weight="bold">1/R_total = 1/R1 + 1/R2</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de Ley de Ohm -->
+        <div class="calculator-panel active" id="ohm-panel">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="voltage">
+                        <span class="input-icon">V</span>
+                        Voltaje (V)
+                    </label>
+                    <input type="number" id="voltage" step="0.01" placeholder="Ej: 12">
+                    <input type="range" class="slider" id="voltage-slider" min="0" max="240" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="current">
+                        <span class="input-icon">I</span>
+                        Corriente (A)
+                    </label>
+                    <input type="number" id="current" step="0.001" placeholder="Ej: 0,5">
+                    <input type="range" class="slider" id="current-slider" min="0" max="10" step="0.01" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="resistance">
+                        <span class="input-icon">R</span>
+                        Resistencia (Ω)
+                    </label>
+                    <input type="number" id="resistance" step="0.1" placeholder="Ej: 24">
+                    <input type="range" class="slider" id="resistance-slider" min="0" max="1000" value="0">
+                </div>
+            </div>
+
+            <div class="formula-display">
+                <div class="formula">V = I × R</div>
+                <div class="formula-desc">Ley de Ohm</div>
+            </div>
+
+            <!-- FAQs Ley de Ohm -->
+            <div class="faq-section" data-panel="ohm">
+                <h3>❓ Preguntas Frecuentes</h3>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué es la Ley de Ohm y para qué sirve?</button>
+                    <div class="faq-answer">
+                        La Ley de Ohm es la relación fundamental entre voltaje (V), corriente (I) y resistencia (R).
+                        Es como la ecuación básica de la electricidad. Te permite calcular cualquiera de estos valores
+                        si conoces los otros dos. Es útil para diseñar circuitos, elegir componentes y resolver problemas eléctricos.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuál es la diferencia entre voltaje y corriente?</button>
+                    <div class="faq-answer">
+                        <strong>Voltaje (V)</strong>: Es la "presión" que empuja los electrones. Como la presión del agua en una manguera.
+                        Se mide en Voltios. Tu casa tiene 230V.<br>
+                        <strong>Corriente (I)</strong>: Es la cantidad de electrones que fluyen. Como el caudal de agua.
+                        Se mide en Amperios (A). Un cargador de móvil usa unos 2A.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Por qué es importante conocer la resistencia?</button>
+                    <div class="faq-answer">
+                        La resistencia controla cuánta corriente fluye para un voltaje dado. Es como el grosor de la tubería:
+                        más resistencia = menos corriente. Conocerla te ayuda a prevenir sobrecalentamientos, elegir cables
+                        adecuados y proteger tus dispositivos.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de Potencia -->
+        <div class="calculator-panel" id="power-panel">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="power-voltage">
+                        <span class="input-icon">V</span>
+                        Voltaje (V)
+                    </label>
+                    <input type="number" id="power-voltage" step="0.01" placeholder="Ej: 220">
+                    <input type="range" class="slider" id="power-voltage-slider" min="0" max="240" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="power-current">
+                        <span class="input-icon">I</span>
+                        Corriente (A)
+                    </label>
+                    <input type="number" id="power-current" step="0.001" placeholder="Ej: 0,045">
+                    <input type="range" class="slider" id="power-current-slider" min="0" max="10" step="0.01" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="power">
+                        <span class="input-icon">P</span>
+                        Potencia (W)
+                    </label>
+                    <input type="number" id="power" step="0.01" placeholder="Ej: 10" readonly>
+                    <div class="power-display">
+                        <span id="power-kw">0 kW</span>
+                        <span id="monthly-cost">0 €/mes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-display">
+                <div class="formula">P = V × I</div>
+                <div class="formula-desc">Potencia Eléctrica</div>
+            </div>
+
+            <!-- FAQs Potencia -->
+            <div class="faq-section" data-panel="power">
+                <h3>❓ Preguntas Frecuentes</h3>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué es la potencia eléctrica?</button>
+                    <div class="faq-answer">
+                        La potencia (P) es la velocidad a la que se consume energía. Se mide en Vatios (W).
+                        Es lo que determina tu factura de luz. Un dispositivo de 100W consume el doble de energía
+                        que uno de 50W en el mismo tiempo. P = V × I (Potencia = Voltaje × Corriente).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cómo se calcula el consumo mensual?</button>
+                    <div class="faq-answer">
+                        Consumo = Potencia × Horas × Días / 1000<br>
+                        Ejemplo: Una bombilla de 10W usada 5 horas al día durante 30 días:<br>
+                        10W × 5h × 30 días = 1.500 Wh = 1,5 kWh<br>
+                        Si el kWh cuesta 0,15€, pagarás: 1,5 × 0,15 = 0,23€/mes
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué significa kW y kWh?</button>
+                    <div class="faq-answer">
+                        <strong>kW (kilovatio)</strong>: Es potencia, 1 kW = 1.000 W. Es la velocidad de consumo.<br>
+                        <strong>kWh (kilovatio-hora)</strong>: Es energía consumida. 1 kWh = usar 1.000W durante 1 hora.<br>
+                        Tu factura te cobra por kWh consumidos, no por kW.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Serie/Paralelo -->
+        <div class="calculator-panel" id="series-panel">
+            <div class="circuit-mode-selector">
+                <label class="radio-option">
+                    <input type="radio" name="circuit-mode" value="series" checked>
+                    <span>Circuito en Serie</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="circuit-mode" value="parallel">
+                    <span>Circuito en Paralelo</span>
+                </label>
+            </div>
+
+            <div class="resistors-container">
+                <h4>Resistencias del circuito</h4>
+                <div id="resistors-list" class="resistors-list">
+                    <div class="resistor-input">
+                        <span class="resistor-label">R1:</span>
+                        <input type="number" class="resistor-value" value="10" step="0.1">
+                        <span>Ω</span>
+                    </div>
+                    <div class="resistor-input">
+                        <span class="resistor-label">R2:</span>
+                        <input type="number" class="resistor-value" value="20" step="0.1">
+                        <span>Ω</span>
+                    </div>
+                </div>
+                <button class="add-resistor-btn" id="add-resistor">➕ Añadir Resistencia</button>
+            </div>
+
+            <div class="series-results">
+                <div class="result-box">
+                    <span class="result-label">Resistencia Total:</span>
+                    <span class="result-value" id="total-resistance">30 Ω</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">Voltaje Total:</span>
+                    <input type="number" id="series-voltage" value="12" step="0.1">
+                    <span>V</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">Corriente Total:</span>
+                    <span class="result-value" id="series-current">0,4 A</span>
+                </div>
+            </div>
+
+            <div class="formula-display">
+                <div class="formula" id="series-formula">R_total = R₁ + R₂ + R₃...</div>
+                <div class="formula-desc">Resistencias en Serie</div>
+            </div>
+
+            <!-- FAQs Serie/Paralelo -->
+            <div class="faq-section" data-panel="series">
+                <h3>❓ Preguntas Frecuentes</h3>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuál es la diferencia entre serie y paralelo?</button>
+                    <div class="faq-answer">
+                        <strong>En Serie:</strong> La corriente pasa por cada resistencia una tras otra. Si una falla, todas fallan.
+                        Como las luces navideñas antiguas. La resistencia total SUMA.<br>
+                        <strong>En Paralelo:</strong> La corriente se divide entre las resistencias. Si una falla, las otras siguen.
+                        Como los enchufes de tu casa. La resistencia total DISMINUYE.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuándo usar circuitos en serie o paralelo?</button>
+                    <div class="faq-answer">
+                        <strong>Serie:</strong> Para dividir voltaje, sensores, reguladores de intensidad.<br>
+                        <strong>Paralelo:</strong> Para instalaciones domésticas, cuando necesitas que cada dispositivo
+                        reciba el voltaje completo y funcione independientemente.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Por qué la resistencia disminuye en paralelo?</button>
+                    <div class="faq-answer">
+                        En paralelo, la corriente tiene múltiples caminos. Es como abrir más carriles en una autopista:
+                        el tráfico fluye más fácil. Matemáticamente: 1/R_total = 1/R₁ + 1/R₂ + 1/R₃...
+                        Por eso añadir más resistencias en paralelo reduce la resistencia total.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Sección de Cables -->
+        <div class="calculator-panel" id="cables-panel">
+            <div class="cables-inputs">
+                <div class="input-group">
+                    <label>
+                        <span class="input-icon">P</span>
+                        Potencia (W)
+                    </label>
+                    <input type="number" id="cable-power" value="2000" step="100">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <span class="input-icon">V</span>
+                        Voltaje (V)
+                    </label>
+                    <select id="cable-voltage">
+                        <option value="230">230V (Monofásico)</option>
+                        <option value="400">400V (Trifásico)</option>
+                        <option value="12">12V (Baja tensión)</option>
+                        <option value="24">24V (Baja tensión)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <span class="input-icon">L</span>
+                        Longitud cable (m)
+                    </label>
+                    <input type="number" id="cable-length" value="20" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <span class="input-icon">📦</span>
+                        Tipo instalación
+                    </label>
+                    <select id="cable-type">
+                        <option value="empotrada">Empotrada en pared</option>
+                        <option value="superficie">Sobre superficie</option>
+                        <option value="tubo">En tubo</option>
+                        <option value="aire">Al aire libre</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <span class="input-icon">%</span>
+                        Caída tensión máx
+                    </label>
+                    <select id="voltage-drop">
+                        <option value="3">3% (Iluminación)</option>
+                        <option value="5" selected>5% (Fuerza/Enchufes)</option>
+                        <option value="7">7% (Motores)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="cable-results">
+                <div class="result-card recommended">
+                    <h4>Sección Recomendada</h4>
+                    <div class="cable-section" id="cable-section">2,5 mm²</div>
+                    <div class="cable-details">
+                        <span>Corriente: <strong id="cable-current">8,7 A</strong></span>
+                        <span>Caída real: <strong id="cable-drop">2,3%</strong></span>
+                    </div>
+                </div>
+
+                <div class="cable-table">
+                    <h4>Tabla referencia rápida</h4>
+                    <table>
+                        <tr>
+                            <th>Sección</th>
+                            <th>Corriente Máx</th>
+                            <th>Uso típico</th>
+                        </tr>
+                        <tr>
+                            <td>1,5 mm²</td>
+                            <td>15A</td>
+                            <td>Iluminación</td>
+                        </tr>
+                        <tr>
+                            <td>2,5 mm²</td>
+                            <td>21A</td>
+                            <td>Enchufes</td>
+                        </tr>
+                        <tr>
+                            <td>4 mm²</td>
+                            <td>27A</td>
+                            <td>Climatización</td>
+                        </tr>
+                        <tr>
+                            <td>6 mm²</td>
+                            <td>36A</td>
+                            <td>Cocina/Horno</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FAQs Cables -->
+            <div class="faq-section" data-panel="cables">
+                <h3>❓ Preguntas Frecuentes</h3>
+                <div class="faq-item">
+                    <button class="faq-question">¿Por qué es importante el grosor del cable?</button>
+                    <div class="faq-answer">
+                        Un cable muy fino para la corriente que pasa se CALIENTA y puede causar incendios.
+                        Es como una pajita: si intentas pasar mucha agua, necesitas una más ancha.
+                        El grosor se mide en mm² de sección del conductor de cobre.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué es la caída de tensión?</button>
+                    <div class="faq-answer">
+                        Es el voltaje que se "pierde" por la resistencia del cable en distancias largas.
+                        Si es excesiva, tus dispositivos reciben menos voltaje del necesario y pueden funcionar mal.
+                        Por normativa: máx. 3% en iluminación, 5% en enchufes.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué sección usar en casa?</button>
+                    <div class="faq-answer">
+                        <strong>1,5 mm²</strong>: Iluminación (hasta 10A)<br>
+                        <strong>2,5 mm²</strong>: Enchufes generales (hasta 16A)<br>
+                        <strong>4 mm²</strong>: Lavadora, lavavajillas (hasta 20A)<br>
+                        <strong>6 mm²</strong>: Cocina eléctrica, horno (hasta 25A)<br>
+                        SIEMPRE consulta a un electricista certificado.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Consumo y Costo -->
+        <div class="calculator-panel" id="consumption-panel">
+            <div class="consumption-inputs">
+                <h4>Añadir Electrodoméstico</h4>
+                <div class="input-row">
+                    <input type="text" id="appliance-name" placeholder="Nombre (ej: Frigorífico)">
+                    <input type="number" id="appliance-power" placeholder="Potencia (W)" step="10">
+                    <input type="number" id="appliance-hours" placeholder="Horas/día" step="0.5" value="1">
+                    <button class="add-appliance-btn" id="add-appliance">Añadir</button>
+                </div>
+            </div>
+
+            <div class="appliances-list" id="appliances-list">
+                <h4>Electrodomésticos</h4>
+                <div class="appliance-item">
+                    <span>💡 Bombilla LED</span>
+                    <span>9W × 5h/día</span>
+                    <span>1,35 kWh/mes</span>
+                    <button class="remove-btn">❌</button>
+                </div>
+            </div>
+
+            <div class="consumption-config">
+                <div class="input-group">
+                    <label>Precio kWh (€)</label>
+                    <input type="number" id="kwh-price" value="0.15" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>Potencia contratada (kW)</label>
+                    <input type="number" id="contracted-power" value="3.45" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Precio potencia (€/kW/mes)</label>
+                    <input type="number" id="power-price" value="3.5" step="0.1">
+                </div>
+            </div>
+
+            <div class="consumption-results">
+                <div class="summary-card">
+                    <h4>Resumen Mensual</h4>
+                    <div class="summary-row">
+                        <span>Consumo total:</span>
+                        <strong id="total-consumption">0 kWh</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Costo energía:</span>
+                        <strong id="energy-cost">0 €</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Costo potencia:</span>
+                        <strong id="power-cost">12,08 €</strong>
+                    </div>
+                    <div class="summary-row total">
+                        <span>TOTAL MES:</span>
+                        <strong id="total-cost">12,08 €</strong>
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <h4>Comparación LED vs Incandescente</h4>
+                    <div class="comparison-row">
+                        <span>🔥 Incandescente 60W:</span>
+                        <span id="incandescent-cost">5,40 €/mes</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span>💡 LED 9W equivalente:</span>
+                        <span id="led-cost">0,81 €/mes</span>
+                    </div>
+                    <div class="comparison-row savings">
+                        <span>💰 Ahorro con LED:</span>
+                        <strong id="led-savings">4,59 €/mes</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQs Consumo -->
+            <div class="faq-section" data-panel="consumption">
+                <h3>❓ Preguntas Frecuentes</h3>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cómo se calcula mi factura de luz?</button>
+                    <div class="faq-answer">
+                        Tu factura tiene dos partes principales:<br>
+                        <strong>1. Término de potencia:</strong> Pagas por tener disponible una potencia (kW), uses o no la luz.<br>
+                        <strong>2. Término de energía:</strong> Pagas por lo que consumes (kWh).<br>
+                        Total = (Potencia contratada × €/kW) + (kWh consumidos × €/kWh) + impuestos
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuánto consume cada electrodoméstico?</button>
+                    <div class="faq-answer">
+                        Ejemplos típicos de consumo:<br>
+                        • Frigorífico: 150-300W (funciona 24h)<br>
+                        • Microondas: 800-1200W (uso puntual)<br>
+                        • TV LED: 50-150W<br>
+                        • Ordenador: 200-400W<br>
+                        • Aire acondicionado: 1000-3000W<br>
+                        • Bombilla LED: 5-15W (vs 40-100W incandescente)
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cómo puedo ahorrar en mi factura?</button>
+                    <div class="faq-answer">
+                        1. <strong>Cambia a LED:</strong> Consumen 85% menos que las incandescentes<br>
+                        2. <strong>Desenchufa stand-by:</strong> El modo espera consume hasta 10% de tu factura<br>
+                        3. <strong>Horarios valle:</strong> Usa electrodomésticos en horas más baratas<br>
+                        4. <strong>Ajusta potencia:</strong> Revisa si tienes contratada más potencia de la necesaria<br>
+                        5. <strong>Electrodomésticos eficientes:</strong> Busca etiqueta A+++
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicador de Seguridad -->
+        <div class="safety-indicator">
+            <div class="safety-level" id="safety-level">
+                <span class="safety-icon">🟢</span>
+                <span class="safety-text">Seguro</span>
+            </div>
+            <div class="safety-tips" id="safety-tips">
+                Los valores están en rangos seguros para uso doméstico.
+            </div>
+        </div>
+
+        <!-- Ejemplos Prácticos -->
+        <div class="examples-section">
+            <h3>💡 Ejemplos Prácticos</h3>
+            <div class="examples-grid">
+                <button class="example-btn" data-example="led">
+                    <span class="example-icon">💡</span>
+                    <span class="example-name">LED 9W</span>
+                    <span class="example-values">220V • 0,041A</span>
+                </button>
+                <button class="example-btn" data-example="phone">
+                    <span class="example-icon">📱</span>
+                    <span class="example-name">Cargador móvil</span>
+                    <span class="example-values">5V • 2A</span>
+                </button>
+                <button class="example-btn" data-example="car">
+                    <span class="example-icon">🚗</span>
+                    <span class="example-name">Batería coche</span>
+                    <span class="example-values">12V • 60A</span>
+                </button>
+                <button class="example-btn" data-example="solar">
+                    <span class="example-icon">☀️</span>
+                    <span class="example-name">Panel solar</span>
+                    <span class="example-values">18V • 5,5A</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Glosario Rápido -->
+        <div class="glossary">
+            <h3>📚 Conceptos Básicos</h3>
+            <div class="glossary-grid">
+                <div class="glossary-item">
+                    <span class="glossary-term">Voltaje (V)</span>
+                    <span class="glossary-def">La "presión" que empuja los electrones. Como la presión del agua en una tubería.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Corriente (I)</span>
+                    <span class="glossary-def">La cantidad de electrones que fluyen. Como el caudal de agua.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Resistencia (R)</span>
+                    <span class="glossary-def">La oposición al flujo. Como el grosor de la tubería.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Potencia (P)</span>
+                    <span class="glossary-def">La energía consumida por segundo. Determina tu factura de luz.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial -->
+        <div class="history-section">
+            <h3>📊 Historial de Cálculos</h3>
+            <div id="history-list" class="history-list">
+                <p class="history-empty">No hay cálculos guardados</p>
+            </div>
+            <button class="clear-history-btn" id="clear-history">Limpiar historial</button>
+        </div>
+    </main>
+
+    <!-- Footer meskeIA -->
+    <footer class="footer-meskeia">
+        <span>© 2025 meskeIA</span>
+    </footer>
+
+    <!-- Service Worker para PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+
+    <!-- JavaScript Principal -->
+    <script src="app.js"></script>
+</body>
+</html>

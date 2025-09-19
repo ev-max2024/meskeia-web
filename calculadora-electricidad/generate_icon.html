@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Icono meskeIA</title>
+</head>
+<body style="background: #f0f0f0; padding: 50px;">
+    <h2>Icono meskeIA para la aplicación</h2>
+    <p>Haz clic derecho en la imagen y guárdala como "icon_meskeia.png"</p>
+
+    <canvas id="canvas" width="192" height="192"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Fondo con esquinas redondeadas
+        ctx.fillStyle = '#2E86AB';
+        ctx.beginPath();
+        ctx.moveTo(20, 0);
+        ctx.lineTo(172, 0);
+        ctx.quadraticCurveTo(192, 0, 192, 20);
+        ctx.lineTo(192, 172);
+        ctx.quadraticCurveTo(192, 192, 172, 192);
+        ctx.lineTo(20, 192);
+        ctx.quadraticCurveTo(0, 192, 0, 172);
+        ctx.lineTo(0, 20);
+        ctx.quadraticCurveTo(0, 0, 20, 0);
+        ctx.fill();
+
+        // Logo estilizado de rayo/electricidad
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 3;
+
+        // Rayo central
+        ctx.beginPath();
+        ctx.moveTo(96, 40);
+        ctx.lineTo(70, 85);
+        ctx.lineTo(85, 85);
+        ctx.lineTo(75, 130);
+        ctx.lineTo(100, 130);
+        ctx.lineTo(96, 152);
+        ctx.lineTo(122, 107);
+        ctx.lineTo(107, 107);
+        ctx.lineTo(117, 62);
+        ctx.lineTo(92, 62);
+        ctx.closePath();
+        ctx.fill();
+
+        // Círculo exterior decorativo
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(96, 96, 65, 0, Math.PI * 2);
+        ctx.stroke();
+    </script>
+</body>
+</html>

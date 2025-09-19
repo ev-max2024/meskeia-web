@@ -1,0 +1,64 @@
+{
+    "name": "Calculadora de Electricidad - meskeIA",
+    "short_name": "Electricidad",
+    "description": "Calculadora interactiva de electricidad con Ley de Ohm, potencia y circuito animado",
+    "lang": "es-ES",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FAFAFA",
+    "theme_color": "#2E86AB",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "icon_meskeia.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon_meskeia.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshot1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "label": "Calculadora de Ley de Ohm"
+        },
+        {
+            "src": "screenshot2.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "label": "Circuito animado interactivo"
+        }
+    ],
+    "categories": ["education", "utilities", "productivity"],
+    "shortcuts": [
+        {
+            "name": "Ley de Ohm",
+            "short_name": "Ohm",
+            "description": "Calcular voltaje, corriente o resistencia",
+            "url": "/?tab=ohm",
+            "icons": [{
+                "src": "icon_meskeia.png",
+                "sizes": "192x192"
+            }]
+        },
+        {
+            "name": "Potencia",
+            "short_name": "Watts",
+            "description": "Calcular potencia eléctrica",
+            "url": "/?tab=power",
+            "icons": [{
+                "src": "icon_meskeia.png",
+                "sizes": "192x192"
+            }]
+        }
+    ],
+    "edge_side_panel": {
+        "preferred_width": 480
+    }
+}
