@@ -213,16 +213,16 @@ body {
 
 .tab-button {
     flex: 1;
-    min-width: 120px;
+    min-width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
-    padding: var(--spacing-md) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-sm);
     background: transparent;
     border: 2px solid transparent;
     border-radius: var(--radius-md);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-secondary);
     cursor: pointer;
@@ -384,6 +384,9 @@ input[type="number"] {
     font-family: inherit;
     transition: all var(--transition-fast);
     background: var(--bg-tertiary);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 input[type="number"]:focus {
@@ -707,6 +710,42 @@ input[type="number"]::placeholder {
         grid-template-columns: 1fr;
     }
 
+    /* Cables responsive para tablets */
+    .cables-inputs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .cable-table table {
+        font-size: 0.85rem;
+    }
+
+    /* Serie/Paralelo responsive para tablets */
+    .series-results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Consolidación de reglas adicionales */
+    .cable-results,
+    .consumption-results {
+        grid-template-columns: 1fr;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    .appliance-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Esquemas Serie/Paralelo responsive */
+    .diagrams-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
     .logo-meskeia {
         top: 10px;
         left: 10px;
@@ -761,7 +800,52 @@ input[type="number"]::placeholder {
     }
 
     .calculator-tabs {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .tab-button {
+        min-width: 80px;
+        padding: var(--spacing-sm) var(--spacing-xs);
+        font-size: 0.8rem;
+    }
+
+    .tab-icon {
+        font-size: 1rem;
+    }
+
+    /* Cables responsive */
+    .cables-inputs {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .cable-results {
+        grid-template-columns: 1fr;
+    }
+
+    /* Serie/Paralelo responsive */
+    .series-results {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .result-box input {
+        max-width: 120px;
+    }
+
+    /* Resistors responsive */
+    .resistors-list {
+        gap: var(--spacing-sm);
+    }
+
+    .resistor-input {
+        align-items: stretch;
+    }
+
+    .resistor-input input {
+        max-width: 100px;
     }
 }
 
@@ -853,7 +937,7 @@ input[type="number"]::placeholder {
 
 .series-results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
 }
@@ -882,7 +966,7 @@ input[type="number"]::placeholder {
 /* Panel Cables */
 .cables-inputs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
 }
@@ -1079,6 +1163,7 @@ input[type="number"]::placeholder {
 /* Select inputs */
 select {
     width: 100%;
+    max-width: 100%;
     padding: var(--spacing-md);
     border: 2px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -1087,6 +1172,7 @@ select {
     font-size: 1rem;
     cursor: pointer;
     transition: all var(--transition-fast);
+    box-sizing: border-box;
 }
 
 select:focus {
@@ -1180,25 +1266,3 @@ select:focus {
     font-weight: 600;
 }
 
-/* Responsive para nuevos paneles */
-@media (max-width: 768px) {
-    .cable-results,
-    .consumption-results {
-        grid-template-columns: 1fr;
-    }
-
-    .input-row {
-        flex-direction: column;
-    }
-
-    .appliance-item {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    /* Esquemas Serie/Paralelo responsive */
-    .diagrams-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
-    }
-}
