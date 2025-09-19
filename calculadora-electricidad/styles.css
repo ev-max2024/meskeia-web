@@ -993,6 +993,19 @@ input[type="number"]::placeholder {
     margin-bottom: var(--spacing-xl);
 }
 
+/* Forzar responsive en móvil para cables */
+@media (max-width: 480px) {
+    .cables-inputs {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    .cable-results {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-lg) !important;
+    }
+}
+
 .cable-results {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1139,6 +1152,30 @@ input[type="number"]::placeholder {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
+}
+
+/* Forzar responsive en móvil para consumo */
+@media (max-width: 480px) {
+    .consumption-config {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-md) !important;
+        padding: var(--spacing-md) !important;
+    }
+
+    .consumption-results {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-lg) !important;
+    }
+
+    .input-row {
+        flex-direction: column !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    .input-row input {
+        width: 100% !important;
+        flex: none !important;
+    }
 }
 
 .summary-card, .comparison-card {
