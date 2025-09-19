@@ -213,7 +213,8 @@ body {
 
 .tab-button {
     flex: 1;
-    min-width: 100px;
+    min-width: 85px;
+    max-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -811,13 +812,24 @@ input[type="number"]::placeholder {
     }
 
     .tab-button {
-        min-width: 80px;
+        min-width: 60px;
+        max-width: 70px;
         padding: var(--spacing-sm) var(--spacing-xs);
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        flex: 0 1 auto;
     }
 
     .tab-icon {
-        font-size: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Forzar contenedor de pestañas responsive */
+    .calculator-tabs {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        padding: var(--spacing-xs) !important;
+        gap: var(--spacing-xs) !important;
     }
 
     /* Cables responsive */
