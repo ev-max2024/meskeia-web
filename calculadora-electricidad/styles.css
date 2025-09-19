@@ -716,6 +716,11 @@ input[type="number"]::placeholder {
         gap: var(--spacing-md);
     }
 
+    .cable-results {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
     .cable-table table {
         font-size: 0.85rem;
     }
@@ -823,6 +828,23 @@ input[type="number"]::placeholder {
 
     .cable-results {
         grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    /* Consumo responsive */
+    .consumption-inputs .input-row {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .consumption-config {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .consumption-results {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
     }
 
     /* Serie/Paralelo responsive */
