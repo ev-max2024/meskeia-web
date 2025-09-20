@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta básicas mejoradas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="meskeIA">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- Evitar caché para actualizaciones -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- SEO Principal -->
+    <title>Calculadora de Regla de Tres - Simple y Compuesta con Ejemplos | meskeIA</title>
+    <meta name="description" content="Calculadora de regla de tres simple y compuesta con explicaciones paso a paso. Incluye ejemplos prácticos españoles: recetas, mezclas, proporciones y escalas. Aprende mientras calculas.">
+    <meta name="keywords" content="regla de tres, calculadora regla tres, proporciones, regla tres simple, regla tres compuesta, matemáticas básicas, calculadora proporciones, ejemplos regla tres, meskeIA">
+
+    <link rel="canonical" href="https://meskeia.com/regla-de-tres/regla-de-tres.html">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Regla de Tres - meskeIA">
+    <meta property="og:description" content="Resuelve regla de tres simple y compuesta con explicaciones paso a paso. Ejemplos prácticos españoles incluidos.">
+    <meta property="og:url" content="https://meskeia.com/regla-de-tres/regla-de-tres.html">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Regla de Tres - meskeIA">
+    <meta name="twitter:description" content="Aprende y calcula regla de tres con ejemplos prácticos españoles y explicaciones detalladas">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Regla de Tres">
+    <meta name="msapplication-TileColor" content="#2E86AB">
+    <meta name="msapplication-TileImage" content="../icon_meskeia.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Regla de Tres",
+        "description": "Herramienta educativa para resolver regla de tres simple y compuesta con explicaciones paso a paso y ejemplos prácticos españoles",
+        "url": "https://meskeia.com/regla-de-tres/regla-de-tres.html",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "email": "meskeia24@gmail.com"
+        },
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "inLanguage": "es-ES",
+        "audience": {
+            "@type": "Audience",
+            "geographicArea": "Spain"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "Regla de tres simple directa e inversa",
+            "Regla de tres compuesta",
+            "Explicaciones paso a paso",
+            "Ejemplos prácticos españoles",
+            "Verificación automática de resultados",
+            "Historial de cálculos"
+        ]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPGLJBQ4Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SPPGLJBQ4Z');
+    </script>
+
+    <style>
+        /* Reset y Variables Minimalistas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista meskeIA - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            --secondary: #48A9A6;       /* Verde azulado complementario */
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --success: #4CAF50;         /* Verde éxito */
+            --warning: #FF9800;         /* Naranja advertencia */
+            --error: #F44336;           /* Rojo error */
+
+            /* Sombras y efectos */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-strong: 0 8px 24px rgba(0,0,0,0.12);
+
+            /* Espaciado consistente */
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        /* Prevenir overflow en todos los elementos */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Reglas anti-overflow para móvil */
+        @media (max-width: 768px) {
+            *, *::before, *::after {
+                max-width: 100vw !important;
+                box-sizing: border-box !important;
+            }
+
+            body, html {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+            }
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-lg);
+            padding-top: 80px; /* Espacio para el logo flotante */
+        }
+
+        /* Título principal */
+        .page-title {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Panel principal */
+        .calculator-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        /* Pestañas */
+        .calculator-tabs {
+            display: flex;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            border-radius: var(--radius) var(--radius) 0 0;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--hover);
+            color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Formularios */
+        .calc-form {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .form-section {
+            background: var(--hover);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .proportion-display {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-template-rows: auto auto auto;
+            gap: var(--spacing-sm) var(--spacing-md);
+            align-items: center;
+            justify-items: center;
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-lg);
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            min-height: 120px;
+        }
+
+        .proportion-input {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            text-align: center;
+            transition: border-color 0.2s ease;
+            background: var(--bg-card);
+            height: 45px;
+            min-height: 45px;
+            min-width: 100px;
+            width: 100%;
+        }
+
+        /* Inputs más estrechos solo para la página Simple */
+        #simple-tab .proportion-input {
+            max-width: 120px;
+        }
+
+        /* Inputs más anchos para la página Compuesta */
+        #compuesta-tab .proportion-input {
+            text-align: left;
+            max-width: 100%;
+        }
+
+        .proportion-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        .proportion-input.unknown {
+            background: #FFF3CD;
+            border-color: var(--warning);
+            font-weight: 600;
+        }
+
+        .proportion-symbol {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+            height: 45px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .input-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .input-group select {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            font-size: 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+            height: 45px;
+            min-height: 45px;
+        }
+
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        .input-group select:hover {
+            border-color: var(--primary);
+        }
+
+        .calc-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .calc-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Resultado */
+        .result-section {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--success);
+            color: white;
+            border-radius: var(--radius);
+            display: none;
+        }
+
+        .result-main {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .result-explanation {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            margin-top: var(--spacing-md);
+        }
+
+        .result-steps {
+            margin-top: var(--spacing-md);
+        }
+
+        .result-steps h4 {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.9rem;
+        }
+
+        /* Panel lateral */
+        .side-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .side-panel h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        /* Ejemplos */
+        .examples-grid {
+            display: grid;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .example-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .example-btn:hover {
+            border-color: var(--primary);
+            background: var(--hover);
+        }
+
+        .example-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .example-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Historial */
+        .history-section {
+            border-top: 1px solid var(--border);
+            padding-top: var(--spacing-md);
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+        }
+
+        .history-item {
+            padding: var(--spacing-sm);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-item:hover {
+            background: var(--hover);
+        }
+
+        .clear-history {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: var(--spacing-sm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .calculator-tabs {
+                flex-wrap: wrap;
+                gap: var(--spacing-xs);
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: var(--spacing-md) var(--spacing-sm);
+                padding-top: 70px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .calculator-panel,
+            .side-panel {
+                padding: var(--spacing-md);
+                margin: 0;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .tab-btn {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.8rem;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .proportion-display {
+                grid-template-columns: 1fr auto 1fr;
+                grid-template-rows: auto auto auto;
+                gap: var(--spacing-xs) var(--spacing-sm);
+                text-align: center;
+                padding: var(--spacing-md);
+                min-height: 100px;
+            }
+
+            .proportion-symbol {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Fix para móviles muy pequeños */
+        @media (max-width: 375px) {
+            .container {
+                padding: var(--spacing-sm) 4px;
+                margin: 0;
+                max-width: 100vw;
+            }
+
+            .calculator-panel,
+            .side-panel {
+                padding: var(--spacing-sm);
+                margin: 0 -2px;
+                border-left: none;
+                border-right: none;
+            }
+
+            .tab-btn {
+                font-size: 0.75rem;
+                padding: 6px 4px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calculator-panel,
+        .side-panel {
+            animation: fadeInUp 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <!-- Título -->
+        <div class="page-title">
+            <h1>Calculadora de Regla de Tres</h1>
+            <p class="page-subtitle">
+                Resuelve proporciones simples y compuestas con explicaciones paso a paso y ejemplos prácticos
+            </p>
+        </div>
+
+        <!-- Grid principal -->
+        <div class="main-grid">
+            <!-- Panel principal -->
+            <div class="calculator-panel">
+                <!-- Pestañas -->
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('simple')">Simple</button>
+                    <button class="tab-btn" onclick="switchTab('compuesta')">Compuesta</button>
+                    <button class="tab-btn" onclick="switchTab('aprende')">Aprende</button>
+                </div>
+
+                <!-- Regla de tres simple -->
+                <div id="simple-tab" class="tab-content active">
+                    <div class="form-section">
+                        <div class="section-title">
+                            📐 Regla de Tres Simple
+                        </div>
+
+                        <div class="proportion-display">
+                            <!-- Primera fila: A : B -->
+                            <input type="number" id="a" class="proportion-input" placeholder="A" step="0.01">
+                            <span class="proportion-symbol">:</span>
+                            <input type="number" id="b" class="proportion-input" placeholder="B" step="0.01">
+
+                            <!-- Segunda fila: = (centrado en toda la fila) -->
+                            <span class="proportion-symbol" style="grid-column: 1 / span 3; font-size: 2rem;">=</span>
+
+                            <!-- Tercera fila: C : X -->
+                            <input type="number" id="c" class="proportion-input" placeholder="C" step="0.01">
+                            <span class="proportion-symbol">:</span>
+                            <input type="number" id="x" class="proportion-input unknown" placeholder="X" step="0.01" readonly>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Selecciona qué valor quieres encontrar:</label>
+                            <select id="unknown-select" onchange="updateUnknown()">
+                                <option value="a">A (primer valor)</option>
+                                <option value="b">B (segundo valor)</option>
+                                <option value="c">C (tercer valor)</option>
+                                <option value="x" selected>X (cuarto valor)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Tipo de proporción:</label>
+                            <select id="proportion-type">
+                                <option value="directa">Directa (a más, más)</option>
+                                <option value="inversa">Inversa (a más, menos)</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="calc-btn" onclick="calculateSimple()">Calcular</button>
+                    </div>
+                </div>
+
+                <!-- Regla de tres compuesta -->
+                <div id="compuesta-tab" class="tab-content">
+                    <div class="form-section">
+                        <div class="section-title">
+                            📊 Regla de Tres Compuesta
+                        </div>
+
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); font-size: 0.9rem;">
+                            Para problemas con múltiples variables. Ejemplo: Si 5 trabajadores hacen 10 productos en 8 horas, ¿cuántos productos harán 8 trabajadores en 12 horas?
+                        </p>
+
+                        <div class="input-group">
+                            <label>Variable 1 - Conocida:</label>
+                            <input type="number" id="var1-known" class="proportion-input" placeholder="ej: 5 trabajadores" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Variable 1 - Desconocida:</label>
+                            <input type="number" id="var1-unknown" class="proportion-input" placeholder="ej: 8 trabajadores" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Variable 2 - Conocida:</label>
+                            <input type="number" id="var2-known" class="proportion-input" placeholder="ej: 8 horas" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Variable 2 - Desconocida:</label>
+                            <input type="number" id="var2-unknown" class="proportion-input" placeholder="ej: 12 horas" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Resultado conocido:</label>
+                            <input type="number" id="result-known" class="proportion-input" placeholder="ej: 10 productos" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Relación Variable 1:</label>
+                            <select id="relation1">
+                                <option value="directa">Directa (más trabajadores → más productos)</option>
+                                <option value="inversa">Inversa (más trabajadores → menos tiempo)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Relación Variable 2:</label>
+                            <select id="relation2">
+                                <option value="directa">Directa (más horas → más productos)</option>
+                                <option value="inversa">Inversa (más horas → menos velocidad)</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="calc-btn" onclick="calculateCompound()">Calcular</button>
+                    </div>
+                </div>
+
+                <!-- Aprende -->
+                <div id="aprende-tab" class="tab-content">
+                    <div class="form-section">
+                        <div class="section-title">
+                            📚 ¿Cómo funciona la Regla de Tres?
+                        </div>
+
+                        <div style="color: var(--text-secondary); line-height: 1.6;">
+                            <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm);">Regla de Tres Simple:</h4>
+                            <p style="margin-bottom: var(--spacing-md);">
+                                Se usa cuando tenemos 3 valores conocidos y queremos encontrar un cuarto valor.
+                                La fórmula es: <strong>A : B = C : X</strong>
+                            </p>
+
+                            <p style="margin-bottom: var(--spacing-md);">
+                                <strong>Directa:</strong> A más A, más C → X = (B × C) ÷ A<br>
+                                <strong>Inversa:</strong> A más A, menos C → X = (B × A) ÷ C
+                            </p>
+
+                            <h4 style="color: var(--text-primary); margin: var(--spacing-md) 0 var(--spacing-sm);">Regla de Tres Compuesta:</h4>
+                            <p style="margin-bottom: var(--spacing-md);">
+                                Se usa cuando hay más de dos variables relacionadas. Se analiza cada variable por separado
+                                para determinar si la relación es directa o inversa.
+                            </p>
+
+                            <div style="background: var(--hover); padding: var(--spacing-md); border-radius: var(--radius); margin-top: var(--spacing-md);">
+                                <strong>💡 Ejemplo práctico:</strong><br>
+                                Si 3 kg de naranjas cuestan 6€, ¿cuánto costarán 5 kg?<br>
+                                <em>3 kg : 6€ = 5 kg : X€</em><br>
+                                <em>X = (6€ × 5 kg) ÷ 3 kg = 10€</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultado -->
+                <div id="result-section" class="result-section">
+                    <div id="result-main" class="result-main"></div>
+                    <div id="result-explanation" class="result-explanation"></div>
+                    <div id="result-steps" class="result-steps"></div>
+                </div>
+            </div>
+
+            <!-- Panel lateral -->
+            <div class="side-panel">
+                <h3>Ejemplos rápidos</h3>
+                <div class="examples-grid">
+                    <button class="example-btn" onclick="loadExample('receta')">
+                        <div class="example-title">🍰 Receta de cocina</div>
+                        <div class="example-desc">Para 4 personas necesito 200g harina. ¿Para 6 personas?</div>
+                    </button>
+
+                    <button class="example-btn" onclick="loadExample('pintura')">
+                        <div class="example-title">🎨 Mezcla de pintura</div>
+                        <div class="example-desc">3 partes azul + 2 partes blanco = azul claro</div>
+                    </button>
+
+                    <button class="example-btn" onclick="loadExample('velocidad')">
+                        <div class="example-title">🚗 Velocidad y tiempo</div>
+                        <div class="example-desc">En 2 horas recorro 120 km. ¿En 3 horas?</div>
+                    </button>
+
+                    <button class="example-btn" onclick="loadExample('escalas')">
+                        <div class="example-title">📏 Escalas y planos</div>
+                        <div class="example-desc">En plano 1:100, 5cm representa 5m reales</div>
+                    </button>
+
+                    <button class="example-btn" onclick="loadExample('trabajo')">
+                        <div class="example-title">👷 Trabajo y tiempo</div>
+                        <div class="example-desc">5 trabajadores, 8 días. ¿8 trabajadores cuántos días?</div>
+                    </button>
+                </div>
+
+                <!-- Historial -->
+                <div class="history-section">
+                    <h4>Historial de cálculos</h4>
+                    <div id="history-list" class="history-list">
+                        <div style="padding: var(--spacing-md); text-align: center; color: var(--text-muted);">
+                            No hay cálculos aún
+                        </div>
+                    </div>
+                    <button class="clear-history" onclick="clearHistory()">Limpiar historial</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Variables globales
+        let calculationHistory = JSON.parse(localStorage.getItem('meskeia_regla_tres_history') || '[]');
+
+        // Formateo de números español
+        function formatNumber(num) {
+            return new Intl.NumberFormat('es-ES', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 4
+            }).format(num);
+        }
+
+        // Gestión de pestañas
+        function switchTab(tabName) {
+            // Ocultar todas las pestañas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar pestaña seleccionada
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+
+            // Limpiar resultado
+            hideResult();
+        }
+
+        // Actualizar campo desconocido
+        function updateUnknown() {
+            const unknownSelect = document.getElementById('unknown-select');
+            const selectedValue = unknownSelect.value;
+
+            // Limpiar todos los campos
+            ['a', 'b', 'c', 'x'].forEach(id => {
+                const input = document.getElementById(id);
+                input.classList.remove('unknown');
+                input.removeAttribute('readonly');
+                input.placeholder = id.toUpperCase();
+            });
+
+            // Marcar el campo desconocido
+            const unknownInput = document.getElementById(selectedValue);
+            unknownInput.classList.add('unknown');
+            unknownInput.setAttribute('readonly', 'true');
+            unknownInput.placeholder = selectedValue.toUpperCase() + ' (?)';
+            unknownInput.value = '';
+        }
+
+        // Mostrar/ocultar resultado
+        function showResult(mainText, explanation, steps) {
+            document.getElementById('result-main').textContent = mainText;
+            document.getElementById('result-explanation').textContent = explanation;
+
+            if (steps) {
+                const stepsDiv = document.getElementById('result-steps');
+                stepsDiv.innerHTML = '<h4>Pasos de resolución:</h4>' +
+                    steps.map(step => `<div class="step">${step}</div>`).join('');
+            }
+
+            document.getElementById('result-section').style.display = 'block';
+        }
+
+        function hideResult() {
+            document.getElementById('result-section').style.display = 'none';
+        }
+
+        // Calculadora simple
+        function calculateSimple() {
+            const unknownVar = document.getElementById('unknown-select').value;
+            const proportionType = document.getElementById('proportion-type').value;
+
+            // Obtener valores
+            const values = {};
+            ['a', 'b', 'c', 'x'].forEach(id => {
+                if (id !== unknownVar) {
+                    const value = parseFloat(document.getElementById(id).value);
+                    if (isNaN(value)) {
+                        alert(`Por favor, introduce un valor válido para ${id.toUpperCase()}`);
+                        return;
+                    }
+                    values[id] = value;
+                }
+            });
+
+            if (Object.keys(values).length !== 3) {
+                alert('Por favor, introduce todos los valores conocidos');
+                return;
+            }
+
+            let result;
+            let explanation;
+            let steps = [];
+
+            // Calcular según el tipo y la variable desconocida
+            if (unknownVar === 'x') {
+                if (proportionType === 'directa') {
+                    result = (values.b * values.c) / values.a;
+                    explanation = `Proporción directa: A más ${values.a}, más ${values.c}`;
+                    steps = [
+                        `Fórmula directa: X = (B × C) ÷ A`,
+                        `X = (${formatNumber(values.b)} × ${formatNumber(values.c)}) ÷ ${formatNumber(values.a)}`,
+                        `X = ${formatNumber(values.b * values.c)} ÷ ${formatNumber(values.a)}`,
+                        `X = ${formatNumber(result)}`
+                    ];
+                } else {
+                    result = (values.b * values.a) / values.c;
+                    explanation = `Proporción inversa: A más ${values.a}, menos resultado`;
+                    steps = [
+                        `Fórmula inversa: X = (B × A) ÷ C`,
+                        `X = (${formatNumber(values.b)} × ${formatNumber(values.a)}) ÷ ${formatNumber(values.c)}`,
+                        `X = ${formatNumber(values.b * values.a)} ÷ ${formatNumber(values.c)}`,
+                        `X = ${formatNumber(result)}`
+                    ];
+                }
+            } else if (unknownVar === 'c') {
+                if (proportionType === 'directa') {
+                    result = (values.a * values.x) / values.b;
+                    steps = [
+                        `Despejando C: C = (A × X) ÷ B`,
+                        `C = (${formatNumber(values.a)} × ${formatNumber(values.x)}) ÷ ${formatNumber(values.b)}`,
+                        `C = ${formatNumber(result)}`
+                    ];
+                } else {
+                    result = (values.a * values.b) / values.x;
+                    steps = [
+                        `Proporción inversa, despejando C: C = (A × B) ÷ X`,
+                        `C = (${formatNumber(values.a)} × ${formatNumber(values.b)}) ÷ ${formatNumber(values.x)}`,
+                        `C = ${formatNumber(result)}`
+                    ];
+                }
+                explanation = `El tercer valor (C) es ${formatNumber(result)}`;
+            } else if (unknownVar === 'b') {
+                if (proportionType === 'directa') {
+                    result = (values.c * values.a) / values.x;
+                    steps = [
+                        `Despejando B: B = (C × A) ÷ X`,
+                        `B = (${formatNumber(values.c)} × ${formatNumber(values.a)}) ÷ ${formatNumber(values.x)}`,
+                        `B = ${formatNumber(result)}`
+                    ];
+                } else {
+                    result = (values.c * values.x) / values.a;
+                    steps = [
+                        `Proporción inversa, despejando B: B = (C × X) ÷ A`,
+                        `B = (${formatNumber(values.c)} × ${formatNumber(values.x)}) ÷ ${formatNumber(values.a)}`,
+                        `B = ${formatNumber(result)}`
+                    ];
+                }
+                explanation = `El segundo valor (B) es ${formatNumber(result)}`;
+            } else if (unknownVar === 'a') {
+                if (proportionType === 'directa') {
+                    result = (values.b * values.c) / values.x;
+                    steps = [
+                        `Despejando A: A = (B × C) ÷ X`,
+                        `A = (${formatNumber(values.b)} × ${formatNumber(values.c)}) ÷ ${formatNumber(values.x)}`,
+                        `A = ${formatNumber(result)}`
+                    ];
+                } else {
+                    result = (values.b * values.x) / values.c;
+                    steps = [
+                        `Proporción inversa, despejando A: A = (B × X) ÷ C`,
+                        `A = (${formatNumber(values.b)} × ${formatNumber(values.x)}) ÷ ${formatNumber(values.c)}`,
+                        `A = ${formatNumber(result)}`
+                    ];
+                }
+                explanation = `El primer valor (A) es ${formatNumber(result)}`;
+            }
+
+            // Mostrar resultado
+            document.getElementById(unknownVar).value = formatNumber(result);
+            showResult(
+                `${unknownVar.toUpperCase()} = ${formatNumber(result)}`,
+                explanation,
+                steps
+            );
+
+            // Guardar en historial
+            const proportionStr = `${unknownVar === 'a' ? '?' : formatNumber(values.a || result)} : ${unknownVar === 'b' ? '?' : formatNumber(values.b || result)} = ${unknownVar === 'c' ? '?' : formatNumber(values.c || result)} : ${unknownVar === 'x' ? '?' : formatNumber(values.x || result)}`;
+            addToHistory('Simple', proportionStr, `${unknownVar.toUpperCase()} = ${formatNumber(result)}`);
+        }
+
+        // Calculadora compuesta
+        function calculateCompound() {
+            const var1Known = parseFloat(document.getElementById('var1-known').value);
+            const var1Unknown = parseFloat(document.getElementById('var1-unknown').value);
+            const var2Known = parseFloat(document.getElementById('var2-known').value);
+            const var2Unknown = parseFloat(document.getElementById('var2-unknown').value);
+            const resultKnown = parseFloat(document.getElementById('result-known').value);
+            const relation1 = document.getElementById('relation1').value;
+            const relation2 = document.getElementById('relation2').value;
+
+            if ([var1Known, var1Unknown, var2Known, var2Unknown, resultKnown].some(isNaN)) {
+                alert('Por favor, introduce todos los valores');
+                return;
+            }
+
+            let factor1, factor2;
+
+            // Calcular factores según las relaciones
+            if (relation1 === 'directa') {
+                factor1 = var1Unknown / var1Known;
+            } else {
+                factor1 = var1Known / var1Unknown;
+            }
+
+            if (relation2 === 'directa') {
+                factor2 = var2Unknown / var2Known;
+            } else {
+                factor2 = var2Known / var2Unknown;
+            }
+
+            const result = resultKnown * factor1 * factor2;
+
+            const steps = [
+                `Variable 1 (${relation1}): ${formatNumber(var1Known)} → ${formatNumber(var1Unknown)}`,
+                `Factor 1 = ${relation1 === 'directa' ? `${formatNumber(var1Unknown)} ÷ ${formatNumber(var1Known)}` : `${formatNumber(var1Known)} ÷ ${formatNumber(var1Unknown)}`} = ${formatNumber(factor1)}`,
+                `Variable 2 (${relation2}): ${formatNumber(var2Known)} → ${formatNumber(var2Unknown)}`,
+                `Factor 2 = ${relation2 === 'directa' ? `${formatNumber(var2Unknown)} ÷ ${formatNumber(var2Known)}` : `${formatNumber(var2Known)} ÷ ${formatNumber(var2Unknown)}`} = ${formatNumber(factor2)}`,
+                `Resultado = ${formatNumber(resultKnown)} × ${formatNumber(factor1)} × ${formatNumber(factor2)} = ${formatNumber(result)}`
+            ];
+
+            showResult(
+                `Resultado = ${formatNumber(result)}`,
+                `Con las nuevas condiciones, el resultado cambia proporcionalmente`,
+                steps
+            );
+
+            addToHistory('Compuesta', `${formatNumber(var1Known)}→${formatNumber(var1Unknown)}, ${formatNumber(var2Known)}→${formatNumber(var2Unknown)}`, formatNumber(result));
+        }
+
+        // Ejemplos predefinidos
+        function loadExample(type) {
+            hideResult();
+
+            switch (type) {
+                case 'receta':
+                    switchTab('simple');
+                    document.querySelector('[onclick="switchTab(\'simple\')"]').click();
+                    document.getElementById('a').value = '4';
+                    document.getElementById('b').value = '200';
+                    document.getElementById('c').value = '6';
+                    document.getElementById('unknown-select').value = 'x';
+                    document.getElementById('proportion-type').value = 'directa';
+                    updateUnknown();
+                    calculateSimple();
+                    break;
+
+                case 'pintura':
+                    switchTab('simple');
+                    document.querySelector('[onclick="switchTab(\'simple\')"]').click();
+                    document.getElementById('a').value = '3';
+                    document.getElementById('b').value = '2';
+                    document.getElementById('c').value = '9';
+                    document.getElementById('unknown-select').value = 'x';
+                    document.getElementById('proportion-type').value = 'directa';
+                    updateUnknown();
+                    calculateSimple();
+                    break;
+
+                case 'velocidad':
+                    switchTab('simple');
+                    document.querySelector('[onclick="switchTab(\'simple\')"]').click();
+                    document.getElementById('a').value = '2';
+                    document.getElementById('b').value = '120';
+                    document.getElementById('c').value = '3';
+                    document.getElementById('unknown-select').value = 'x';
+                    document.getElementById('proportion-type').value = 'directa';
+                    updateUnknown();
+                    calculateSimple();
+                    break;
+
+                case 'escalas':
+                    switchTab('simple');
+                    document.querySelector('[onclick="switchTab(\'simple\')"]').click();
+                    document.getElementById('a').value = '1';
+                    document.getElementById('b').value = '100';
+                    document.getElementById('c').value = '5';
+                    document.getElementById('unknown-select').value = 'x';
+                    document.getElementById('proportion-type').value = 'directa';
+                    updateUnknown();
+                    calculateSimple();
+                    break;
+
+                case 'trabajo':
+                    switchTab('compuesta');
+                    document.querySelector('[onclick="switchTab(\'compuesta\')"]').click();
+                    document.getElementById('var1-known').value = '5';
+                    document.getElementById('var1-unknown').value = '8';
+                    document.getElementById('var2-known').value = '1';
+                    document.getElementById('var2-unknown').value = '1';
+                    document.getElementById('result-known').value = '8';
+                    document.getElementById('relation1').value = 'inversa';
+                    document.getElementById('relation2').value = 'directa';
+                    calculateCompound();
+                    break;
+            }
+        }
+
+        // Gestión del historial
+        function addToHistory(type, calculation, result) {
+            const historyItem = {
+                type: type,
+                calculation: calculation,
+                result: result,
+                timestamp: new Date().toLocaleString('es-ES')
+            };
+
+            calculationHistory.unshift(historyItem);
+            if (calculationHistory.length > 20) {
+                calculationHistory = calculationHistory.slice(0, 20);
+            }
+
+            localStorage.setItem('meskeia_regla_tres_history', JSON.stringify(calculationHistory));
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('history-list');
+
+            if (calculationHistory.length === 0) {
+                historyList.innerHTML = '<div style="padding: var(--spacing-md); text-align: center; color: var(--text-muted);">No hay cálculos aún</div>';
+                return;
+            }
+
+            historyList.innerHTML = calculationHistory.map(item => `
+                <div class="history-item">
+                    <div>
+                        <strong>[${item.type}] ${item.result}</strong><br>
+                        <small>${item.calculation}</small><br>
+                        <small style="color: var(--text-muted);">${item.timestamp}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearHistory() {
+            if (confirm('¿Estás seguro de que quieres limpiar el historial?')) {
+                calculationHistory = [];
+                localStorage.removeItem('meskeia_regla_tres_history');
+                updateHistoryDisplay();
+            }
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateHistoryDisplay();
+            updateUnknown();
+
+            // Evento de tracking para Google Analytics
+            gtag('event', 'page_view', {
+                page_title: 'Calculadora de Regla de Tres',
+                page_location: window.location.href
+            });
+        });
+    </script>
+</body>
+</html>

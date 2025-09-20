@@ -1,0 +1,62 @@
+{
+  "name": "Calculadora de Regla de Tres - meskeIA",
+  "short_name": "Regla de Tres",
+  "description": "Calculadora completa de regla de tres simple y compuesta con ejemplos prácticos españoles",
+  "start_url": "./regla-de-tres.html",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#2E86AB",
+  "orientation": "portrait-primary",
+  "categories": ["education", "utilities", "productivity"],
+  "lang": "es",
+  "dir": "ltr",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "../icon_meskeia.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icon_meskeia.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Regla de Tres Simple",
+      "short_name": "Simple",
+      "description": "Calculadora de regla de tres simple",
+      "url": "./regla-de-tres.html#simple",
+      "icons": [
+        {
+          "src": "../icon_meskeia.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Regla de Tres Compuesta",
+      "short_name": "Compuesta",
+      "description": "Calculadora de regla de tres compuesta",
+      "url": "./regla-de-tres.html#compuesta",
+      "icons": [
+        {
+          "src": "../icon_meskeia.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "../icon_meskeia.png",
+      "sizes": "640x480",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
