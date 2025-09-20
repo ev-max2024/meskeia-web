@@ -1,0 +1,6 @@
+
+# Playwright screenshots
+.playwright-mcp/
+
+# Claude settings
+.claude/settings.local.json
