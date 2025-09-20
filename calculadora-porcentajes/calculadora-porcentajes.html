@@ -142,6 +142,17 @@
             line-height: 1.6;
             font-size: 16px;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        /* Prevenir overflow en todos los elementos */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
 
@@ -568,11 +579,12 @@
         @media (max-width: 768px) {
             .main-grid {
                 grid-template-columns: 1fr;
-                gap: var(--spacing-lg);
+                gap: var(--spacing-md);
             }
 
             .calculator-tabs {
                 flex-wrap: wrap;
+                gap: var(--spacing-xs);
             }
 
             .page-title h1 {
@@ -584,7 +596,76 @@
             }
 
             .container {
-                padding: var(--spacing-lg) var(--spacing-md);
+                padding: var(--spacing-md) var(--spacing-sm);
+                padding-top: 70px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .calculator-panel,
+            .visualization-panel {
+                padding: var(--spacing-md);
+                margin: 0;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .input-row {
+                gap: var(--spacing-xs);
+            }
+
+            .input-field {
+                min-width: 0;
+                flex: 1;
+            }
+
+            .unit-label {
+                min-width: 40px;
+                padding: var(--spacing-xs);
+            }
+
+            .tab-btn {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.8rem;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .examples-grid .example-btn {
+                padding: var(--spacing-xs);
+            }
+
+            .chart-container {
+                height: 250px;
+            }
+
+            .history-list {
+                max-height: 150px;
+            }
+        }
+
+        /* Fix para móviles muy pequeños */
+        @media (max-width: 375px) {
+            .container {
+                padding: var(--spacing-sm) 8px;
+            }
+
+            .calculator-panel,
+            .visualization-panel {
+                padding: var(--spacing-sm);
+            }
+
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .tab-btn {
+                font-size: 0.75rem;
+                padding: 6px 8px;
             }
         }
 
