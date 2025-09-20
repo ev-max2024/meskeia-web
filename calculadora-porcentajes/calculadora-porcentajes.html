@@ -3,10 +3,15 @@
 <head>
     <!-- Meta básicas mejoradas -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="meskeIA">
     <meta name="theme-color" content="#2E86AB">
+
+    <!-- Evitar caché para correcciones responsive -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- SEO Principal -->
     <title>Calculadora de Porcentajes Avanzada - Cálculos con Visualización | meskeIA</title>
@@ -520,6 +525,15 @@
             position: relative;
             height: 300px;
             margin-bottom: var(--spacing-lg);
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .chart-container canvas {
+            max-width: 100% !important;
+            width: 100% !important;
+            height: auto !important;
         }
 
         /* Ejemplos predefinidos */
@@ -664,6 +678,15 @@
 
             .chart-container {
                 height: 250px;
+                width: 100% !important;
+                max-width: calc(100vw - 32px) !important;
+                overflow: hidden !important;
+            }
+
+            .chart-container canvas {
+                max-width: 100% !important;
+                width: 100% !important;
+                height: auto !important;
             }
 
             .history-list {
@@ -1210,21 +1233,35 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    devicePixelRatio: 1,
+                    resizeDelay: 0,
                     plugins: {
                         title: {
                             display: true,
                             text: title,
                             font: {
-                                size: 16,
+                                size: window.innerWidth < 400 ? 12 : 16,
                                 weight: 'bold'
                             },
                             color: '#1A1A1A'
                         },
                         legend: {
                             display: true,
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: window.innerWidth < 400 ? 10 : 12
+                                },
+                                boxWidth: window.innerWidth < 400 ? 10 : 12
+                            }
                         },
                         tooltip: {
+                            titleFont: {
+                                size: window.innerWidth < 400 ? 10 : 12
+                            },
+                            bodyFont: {
+                                size: window.innerWidth < 400 ? 10 : 12
+                            },
                             callbacks: {
                                 label: function(context) {
                                     if (type === 'doughnut') {
@@ -1241,12 +1278,30 @@
                         y: {
                             beginAtZero: true,
                             ticks: {
+                                font: {
+                                    size: window.innerWidth < 400 ? 10 : 12
+                                },
                                 callback: function(value) {
                                     return formatCurrency(value);
                                 }
                             }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: window.innerWidth < 400 ? 10 : 12
+                                }
+                            }
                         }
-                    } : {}
+                    } : {},
+                    layout: {
+                        padding: {
+                            left: window.innerWidth < 400 ? 5 : 10,
+                            right: window.innerWidth < 400 ? 5 : 10,
+                            top: window.innerWidth < 400 ? 5 : 10,
+                            bottom: window.innerWidth < 400 ? 5 : 10
+                        }
+                    }
                 }
             };
 
@@ -1355,6 +1410,23 @@
             });
         }
 
+        // Listener para redimensionar gráficos en cambios de orientación
+        window.addEventListener('resize', function() {
+            if (currentChart) {
+                setTimeout(() => {
+                    currentChart.resize();
+                }, 100);
+            }
+        });
+
+        window.addEventListener('orientationchange', function() {
+            if (currentChart) {
+                setTimeout(() => {
+                    currentChart.resize();
+                }, 300);
+            }
+        });
+
         // Inicialización
         document.addEventListener('DOMContentLoaded', function() {
             updateHistoryDisplay();
@@ -1373,6 +1445,15 @@
                 app_name: 'Calculadora Porcentajes meskeIA',
                 app_version: '1.0.0'
             });
+
+            // Forzar redimensión inicial en móvil
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    if (currentChart) {
+                        currentChart.resize();
+                    }
+                }, 500);
+            }
         });
     </script>
 </body>
