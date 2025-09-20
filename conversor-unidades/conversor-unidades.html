@@ -920,6 +920,31 @@
                         <div class="icon">💾</div>
                         <div class="name">Datos</div>
                     </div>
+
+                    <div class="category-tab" data-category="quimica">
+                        <div class="icon">🧪</div>
+                        <div class="name">Química</div>
+                    </div>
+
+                    <div class="category-tab" data-category="presion">
+                        <div class="icon">🔬</div>
+                        <div class="name">Presión</div>
+                    </div>
+
+                    <div class="category-tab" data-category="energia">
+                        <div class="icon">⚡</div>
+                        <div class="name">Energía</div>
+                    </div>
+
+                    <div class="category-tab" data-category="fuerza">
+                        <div class="icon">💪</div>
+                        <div class="name">Fuerza</div>
+                    </div>
+
+                    <div class="category-tab" data-category="potencia">
+                        <div class="icon">⚙️</div>
+                        <div class="name">Potencia</div>
+                    </div>
                 </div>
             </div>
 
@@ -979,7 +1004,7 @@
     <div class="seo-content">
         <section class="conversion-guide">
             <h2>Guía Completa de Conversión de Unidades</h2>
-            <p>Nuestro conversor de unidades online te permite realizar conversiones precisas e instantáneas entre diferentes sistemas de medidas. Con 8 categorías principales y más de 40 unidades diferentes, es la herramienta perfecta para estudiantes, profesionales e ingenieros.</p>
+            <p>Nuestro conversor de unidades online te permite realizar conversiones precisas e instantáneas entre diferentes sistemas de medidas. Con 13 categorías principales y más de 60 unidades diferentes, es la herramienta perfecta para estudiantes, profesionales e ingenieros.</p>
             
             <div class="categories-grid">
                 <div class="category-item">
@@ -1028,6 +1053,36 @@
                     <h4>💾 Conversión de Datos Digitales</h4>
                     <p><strong>Unidades disponibles:</strong> bytes, kilobytes, megabytes, gigabytes, terabytes.</p>
                     <p>Para almacenamiento, transferencia de datos, informática y telecomunicaciones. Sistema decimal (base 1000).</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>🧪 Conversión Química</h4>
+                    <p><strong>Unidades disponibles:</strong> moles, milimoles, micromoles, moléculas, gramos (con masa molecular).</p>
+                    <p>Conversiones fundamentales para química, bioquímica y laboratorio. Incluye número de Avogadro y cálculos estequiométricos.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>🔬 Conversión de Presión</h4>
+                    <p><strong>Unidades disponibles:</strong> pascales, kilopascales, bares, atmósferas, PSI, torr, milímetros de mercurio.</p>
+                    <p>Esencial para física, meteorología, ingeniería neumática e hidráulica. Conversiones precisas entre sistemas.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>⚡ Conversión de Energía</h4>
+                    <p><strong>Unidades disponibles:</strong> julios, kilojulios, calorías, kilocalorías, kilovatios-hora, BTU, electronvoltios.</p>
+                    <p>Para cálculos de física, nutrición, electricidad y termodinámica. Incluye equivalencias energéticas completas.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>💪 Conversión de Fuerza</h4>
+                    <p><strong>Unidades disponibles:</strong> newton, kilonewton, kilogramo-fuerza, libra-fuerza, dina, onza-fuerza.</p>
+                    <p>Fundamental para ingeniería mecánica, construcción y física. Conversiones entre sistema internacional e imperial.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>⚙️ Conversión de Potencia</h4>
+                    <p><strong>Unidades disponibles:</strong> vatios, kilovatios, megavatios, caballos de vapor (CV), caballos de fuerza (HP), BTU/hora.</p>
+                    <p>Imprescindible para motores, sistemas eléctricos y climatización. Comparación entre estándares europeos y americanos.</p>
                 </div>
             </div>
         </section>
@@ -1131,7 +1186,7 @@
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>El conversor incluye 8 categorías: longitud, peso, temperatura, área, volumen, tiempo, velocidad y datos digitales, cubriendo las necesidades más comunes de conversión.</p>
+                        <p>El conversor incluye 13 categorías: longitud, peso, temperatura, área, volumen, tiempo, velocidad, datos digitales, química, presión, energía, fuerza y potencia, cubriendo necesidades desde básicas hasta científicas avanzadas.</p>
                     </div>
                 </div>
             </div>
@@ -1252,6 +1307,73 @@
                     'megabyte': { name: 'Megabyte', symbol: 'MB', factor: 1000000 },
                     'gigabyte': { name: 'Gigabyte', symbol: 'GB', factor: 1000000000 },
                     'terabyte': { name: 'Terabyte', symbol: 'TB', factor: 1000000000000 }
+                }
+            },
+            quimica: {
+                name: 'Química',
+                info: 'Conversiones entre moles, gramos y moléculas. Requiere masa molecular para algunas conversiones.',
+                isSpecial: true,
+                baseUnit: 'mol',
+                units: {
+                    'mol': { name: 'Mol', symbol: 'mol' },
+                    'milimol': { name: 'Milimol', symbol: 'mmol' },
+                    'micromol': { name: 'Micromol', symbol: 'μmol' },
+                    'moleculas': { name: 'Moléculas', symbol: 'moléculas' },
+                    'gramos_con_mm': { name: 'Gramos (MM=18)', symbol: 'g' }
+                }
+            },
+            presion: {
+                name: 'Presión',
+                info: 'Conversiones entre diferentes unidades de presión para física, meteorología e ingeniería.',
+                baseUnit: 'pascal',
+                units: {
+                    'pascal': { name: 'Pascal', symbol: 'Pa', factor: 1 },
+                    'kilopascal': { name: 'Kilopascal', symbol: 'kPa', factor: 1000 },
+                    'bar': { name: 'Bar', symbol: 'bar', factor: 100000 },
+                    'atmosfera': { name: 'Atmósfera', symbol: 'atm', factor: 101325 },
+                    'psi': { name: 'PSI', symbol: 'psi', factor: 6894.76 },
+                    'torr': { name: 'Torr', symbol: 'Torr', factor: 133.322 },
+                    'mmhg': { name: 'milímetros de mercurio', symbol: 'mmHg', factor: 133.322 }
+                }
+            },
+            energia: {
+                name: 'Energía',
+                info: 'Conversiones entre unidades de energía para física, nutrición y aplicaciones técnicas.',
+                baseUnit: 'julio',
+                units: {
+                    'julio': { name: 'Julio', symbol: 'J', factor: 1 },
+                    'kilojulio': { name: 'Kilojulio', symbol: 'kJ', factor: 1000 },
+                    'caloria': { name: 'Caloría', symbol: 'cal', factor: 4.184 },
+                    'kilocaloria': { name: 'Kilocaloría', symbol: 'kcal', factor: 4184 },
+                    'kilovatio_hora': { name: 'Kilovatio-hora', symbol: 'kWh', factor: 3600000 },
+                    'btu': { name: 'BTU', symbol: 'BTU', factor: 1055.06 },
+                    'electronvoltio': { name: 'Electronvoltio', symbol: 'eV', factor: 1.60218e-19 }
+                }
+            },
+            fuerza: {
+                name: 'Fuerza',
+                info: 'Conversiones entre unidades de fuerza para física, ingeniería mecánica y construcción.',
+                baseUnit: 'newton',
+                units: {
+                    'newton': { name: 'Newton', symbol: 'N', factor: 1 },
+                    'kilonewton': { name: 'Kilonewton', symbol: 'kN', factor: 1000 },
+                    'kilogramo_fuerza': { name: 'Kilogramo-fuerza', symbol: 'kgf', factor: 9.80665 },
+                    'libra_fuerza': { name: 'Libra-fuerza', symbol: 'lbf', factor: 4.44822 },
+                    'dina': { name: 'Dina', symbol: 'dyn', factor: 0.00001 },
+                    'onza_fuerza': { name: 'Onza-fuerza', symbol: 'ozf', factor: 0.278014 }
+                }
+            },
+            potencia: {
+                name: 'Potencia',
+                info: 'Conversiones entre unidades de potencia para motores, electricidad y climatización.',
+                baseUnit: 'vatio',
+                units: {
+                    'vatio': { name: 'Vatio', symbol: 'W', factor: 1 },
+                    'kilovatio': { name: 'Kilovatio', symbol: 'kW', factor: 1000 },
+                    'megavatio': { name: 'Megavatio', symbol: 'MW', factor: 1000000 },
+                    'caballo_vapor': { name: 'Caballo de vapor', symbol: 'CV', factor: 735.49875 },
+                    'caballo_fuerza': { name: 'Caballo de fuerza', symbol: 'HP', factor: 745.69987 },
+                    'btu_hora': { name: 'BTU/hora', symbol: 'BTU/h', factor: 0.293071 }
                 }
             }
         };
@@ -1407,8 +1529,12 @@
                 let result;
                 const categoryData = CONVERSION_DATA[currentCategory];
                 
-                if (categoryData.isSpecial && currentCategory === 'temperatura') {
-                    result = convertTemperature(inputValue, fromUnit, toUnit);
+                if (categoryData.isSpecial) {
+                    if (currentCategory === 'temperatura') {
+                        result = convertTemperature(inputValue, fromUnit, toUnit);
+                    } else if (currentCategory === 'quimica') {
+                        result = convertChemistry(inputValue, fromUnit, toUnit);
+                    }
                 } else {
                     result = convertStandard(inputValue, fromUnit, toUnit, categoryData);
                 }
@@ -1475,6 +1601,48 @@
             console.log(`Cálculo: ${baseValue} / ${toFactor} = ${result} (resultado)`);
             
             return result;
+        }
+
+        function convertChemistry(value, fromUnit, toUnit) {
+            const avogadro = 6.022e23;
+            const masaMolecular = 18; // Agua por defecto (H2O), el usuario puede modificar
+
+            // Primero convertir a moles
+            let moles = value;
+
+            switch(fromUnit) {
+                case 'mol':
+                    moles = value;
+                    break;
+                case 'milimol':
+                    moles = value / 1000;
+                    break;
+                case 'micromol':
+                    moles = value / 1000000;
+                    break;
+                case 'moleculas':
+                    moles = value / avogadro;
+                    break;
+                case 'gramos_con_mm':
+                    moles = value / masaMolecular;
+                    break;
+            }
+
+            // Luego convertir de moles a la unidad destino
+            switch(toUnit) {
+                case 'mol':
+                    return moles;
+                case 'milimol':
+                    return moles * 1000;
+                case 'micromol':
+                    return moles * 1000000;
+                case 'moleculas':
+                    return moles * avogadro;
+                case 'gramos_con_mm':
+                    return moles * masaMolecular;
+                default:
+                    return moles;
+            }
         }
 
         function convertTemperature(value, fromUnit, toUnit) {
@@ -1577,8 +1745,12 @@
                 if (unitKey !== fromUnit) {
                     let result;
                     
-                    if (categoryData.isSpecial && currentCategory === 'temperatura') {
-                        result = convertTemperature(inputValue, fromUnit, unitKey);
+                    if (categoryData.isSpecial) {
+                        if (currentCategory === 'temperatura') {
+                            result = convertTemperature(inputValue, fromUnit, unitKey);
+                        } else if (currentCategory === 'quimica') {
+                            result = convertChemistry(inputValue, fromUnit, unitKey);
+                        }
                     } else {
                         result = convertStandard(inputValue, fromUnit, unitKey, categoryData);
                     }
