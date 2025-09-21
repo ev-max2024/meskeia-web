@@ -67,6 +67,35 @@
         </header>
 
         <main>
+            <!-- Sección explicativa -->
+            <div class="card info-card">
+                <h2>📚 ¿Qué es el Punto de Equilibrio?</h2>
+                <div class="info-content">
+                    <p>
+                        El <strong>Punto de Equilibrio</strong> (Break-Even Point) es el nivel de ventas donde los ingresos totales igualan a los costos totales,
+                        es decir, donde tu negocio no genera ni pérdidas ni ganancias. Es una herramienta fundamental para:
+                    </p>
+                    <ul>
+                        <li>✓ Determinar la viabilidad de tu negocio o proyecto</li>
+                        <li>✓ Establecer objetivos mínimos de ventas</li>
+                        <li>✓ Analizar el impacto de cambios en precios y costos</li>
+                        <li>✓ Tomar decisiones estratégicas informadas</li>
+                    </ul>
+
+                    <h3>📋 Cómo usar esta calculadora:</h3>
+                    <ol>
+                        <li><strong>Costos Fijos:</strong> Introduce todos los gastos que pagas regularmente, independientemente de tu volumen de ventas (alquiler, salarios fijos, seguros, etc.)</li>
+                        <li><strong>Costos Variables:</strong> Añade los costos que varían según la cantidad producida (materia prima, comisiones, envíos, etc.) calculados por unidad</li>
+                        <li><strong>Precio de Venta:</strong> Establece el precio al que venderás cada unidad de tu producto o servicio</li>
+                        <li>Haz clic en <strong>"Calcular Punto de Equilibrio"</strong> para obtener tu análisis completo</li>
+                    </ol>
+
+                    <div class="formula-box">
+                        <strong>Fórmula:</strong> Punto de Equilibrio (unidades) = Costos Fijos ÷ (Precio Venta - Costo Variable Unitario)
+                    </div>
+                </div>
+            </div>
+
             <!-- Sección de entrada de datos -->
             <div class="card">
                 <h2>📝 Datos del Negocio</h2>
@@ -179,6 +208,91 @@
             <div class="card" id="sesionesGuardadas" style="display: none;">
                 <h2>📁 Sesiones Guardadas</h2>
                 <div id="listaSesiones"></div>
+            </div>
+
+            <!-- Sección de FAQs -->
+            <div class="card faqs-card">
+                <h2>❓ Preguntas Frecuentes</h2>
+                <div class="faqs-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>¿Qué diferencia hay entre costos fijos y variables?</span>
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Costos Fijos:</strong> Son gastos que permanecen constantes independientemente del nivel de producción o ventas. Ejemplos: alquiler del local, salarios base, seguros, servicios básicos, amortizaciones.</p>
+                            <p><strong>Costos Variables:</strong> Son gastos que cambian en proporción directa al volumen de producción. Ejemplos: materia prima, comisiones por venta, empaquetado, transporte de mercancías.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>¿Cómo interpreto los resultados?</span>
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>• <strong>Punto de Equilibrio en Unidades:</strong> Cantidad mínima que debes vender para cubrir todos tus costos.</p>
+                            <p>• <strong>Punto de Equilibrio en Euros:</strong> Ingresos mínimos necesarios para no tener pérdidas.</p>
+                            <p>• <strong>Margen de Contribución:</strong> Beneficio por unidad después de restar los costos variables. Cuanto mayor sea, mejor.</p>
+                            <p>• Si vendes menos del punto de equilibrio tendrás pérdidas; si vendes más, obtendrás beneficios.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>¿Qué es el margen de contribución?</span>
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>El margen de contribución es la diferencia entre el precio de venta y el costo variable unitario. Representa cuánto aporta cada unidad vendida para cubrir los costos fijos y generar beneficio.</p>
+                            <p><strong>Fórmula:</strong> Margen de Contribución = Precio de Venta - Costo Variable Unitario</p>
+                            <p>Un margen alto indica mayor eficiencia y capacidad de generar beneficios.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>¿Puedo usar esta calculadora para servicios?</span>
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>¡Absolutamente sí! Esta calculadora funciona tanto para productos como para servicios:</p>
+                            <p>• Para <strong>servicios por hora:</strong> usa "hora de servicio" como unidad</p>
+                            <p>• Para <strong>servicios por proyecto:</strong> usa "proyecto" como unidad</p>
+                            <p>• Para <strong>suscripciones:</strong> usa "suscripción mensual" como unidad</p>
+                            <p>Adapta los conceptos de costos según tu modelo de negocio.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>¿Cómo puedo reducir mi punto de equilibrio?</span>
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Existen tres estrategias principales:</p>
+                            <p>1. <strong>Reducir costos fijos:</strong> Negociar alquileres, optimizar gastos generales, automatizar procesos</p>
+                            <p>2. <strong>Reducir costos variables:</strong> Negociar con proveedores, mejorar eficiencia productiva, reducir desperdicios</p>
+                            <p>3. <strong>Aumentar precio de venta:</strong> Mejorar la propuesta de valor, diferenciación, targeting de clientes premium</p>
+                            <p>Usa la calculadora para simular diferentes escenarios y encontrar la mejor estrategia.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>¿Qué limitaciones tiene el análisis del punto de equilibrio?</span>
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>El análisis del punto de equilibrio es útil pero tiene algunas limitaciones:</p>
+                            <p>• Asume que los costos y precios permanecen constantes</p>
+                            <p>• No considera economías de escala o descuentos por volumen</p>
+                            <p>• Simplifica la realidad al asumir relaciones lineales</p>
+                            <p>• No incluye factores externos como competencia o demanda del mercado</p>
+                            <p>Úsalo como una herramienta de referencia, no como única base para decisiones.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 

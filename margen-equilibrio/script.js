@@ -601,3 +601,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Función para toggle de FAQs
+function toggleFaq(questionElement) {
+    const faqItem = questionElement.parentElement;
+    const answer = faqItem.querySelector('.faq-answer');
+    const arrow = questionElement.querySelector('.faq-arrow');
+
+    if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        arrow.textContent = '▼';
+        faqItem.classList.remove('active');
+    } else {
+        answer.style.display = 'block';
+        arrow.textContent = '▲';
+        faqItem.classList.add('active');
+    }
+}

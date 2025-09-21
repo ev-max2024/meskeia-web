@@ -565,6 +565,136 @@ button {
     animation: pulse 1s infinite;
 }
 
+/* Estilos para sección informativa */
+.info-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, #f8fffe 100%);
+    border-left: 4px solid var(--primary);
+}
+
+.info-content {
+    line-height: 1.7;
+}
+
+.info-content ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.info-content ol {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.info-content li {
+    margin: 8px 0;
+}
+
+.formula-box {
+    background: var(--focus);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    margin: 15px 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Estilos para FAQs */
+.faqs-card {
+    margin-top: 20px;
+}
+
+.faqs-container {
+    margin-top: 20px;
+}
+
+.faq-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.faq-item.active {
+    border-color: var(--primary);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.faq-question:hover {
+    background: var(--hover);
+}
+
+.faq-question span:first-child {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.faq-arrow {
+    color: var(--primary);
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    min-width: 20px;
+    text-align: center;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 20px;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+}
+
+.faq-answer p {
+    margin-bottom: 10px;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsivo para nuevas secciones */
+@media (max-width: 768px) {
+    .info-content ol,
+    .info-content ul {
+        padding-left: 15px;
+    }
+
+    .formula-box {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .faq-question {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .faq-answer {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
 /* Print styles */
 @media print {
     body {
@@ -575,7 +705,8 @@ button {
     .btn-add,
     .btn-remove,
     .action-buttons,
-    footer {
+    footer,
+    .faqs-card {
         display: none;
     }
 
@@ -583,5 +714,10 @@ button {
         box-shadow: none;
         border: 1px solid #ddd;
         page-break-inside: avoid;
+    }
+
+    .info-card {
+        border-left: 2px solid #333;
+        background: white;
     }
 }
