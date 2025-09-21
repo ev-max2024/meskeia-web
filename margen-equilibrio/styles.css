@@ -524,8 +524,43 @@ button {
         gap: 10px;
     }
 
+    /* Corregir inputs en móvil */
+    .concept-input,
     .amount-input {
         width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btn-remove {
+        width: 100%;
+        margin-top: 5px;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Corregir precio de venta en móvil */
+    .price-input-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .price-input-container label {
+        text-align: left;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    #precioVenta {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        padding: 12px;
     }
 
     .results-grid {
