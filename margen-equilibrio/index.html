@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Punto de Equilibrio | meskeIA</title>
+
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Calcula el punto de equilibrio de tu negocio o empresa de forma rápida y visual. Herramienta gratuita para análisis financiero.">
+    <meta name="keywords" content="punto de equilibrio, break even, análisis financiero, costos fijos, costos variables, margen contribución, calculadora financiera">
+    <meta name="author" content="meskeIA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Punto de Equilibrio">
+    <meta property="og:description" content="Calcula el punto de equilibrio de tu negocio de forma visual e interactiva">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/punto-equilibrio">
+    <meta property="og:image" content="https://meskeia.com/img/punto-equilibrio.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Punto de Equilibrio">
+    <meta name="twitter:description" content="Herramienta gratuita para calcular el punto de equilibrio de tu negocio">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>📊 Calculadora de Punto de Equilibrio</h1>
+            <p class="subtitle">Analiza la rentabilidad de tu negocio de forma visual e interactiva</p>
+        </header>
+
+        <main>
+            <!-- Sección de entrada de datos -->
+            <div class="card">
+                <h2>📝 Datos del Negocio</h2>
+
+                <div class="input-section">
+                    <h3>Costos Fijos Mensuales</h3>
+                    <div id="costosFijos" class="costs-container">
+                        <div class="cost-item">
+                            <input type="text" placeholder="Concepto (ej: Alquiler)" class="concept-input">
+                            <input type="number" placeholder="Importe €" class="amount-input" step="0.01" min="0">
+                            <button class="btn-remove" onclick="removeItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button class="btn-add" onclick="addCostoFijo()">+ Agregar Costo Fijo</button>
+                    <div class="total-row">
+                        <span>Total Costos Fijos:</span>
+                        <span id="totalFijos">0,00 €</span>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Costos Variables (por unidad)</h3>
+                    <div id="costosVariables" class="costs-container">
+                        <div class="cost-item">
+                            <input type="text" placeholder="Concepto (ej: Materia prima)" class="concept-input">
+                            <input type="number" placeholder="Coste/unidad €" class="amount-input" step="0.01" min="0">
+                            <button class="btn-remove" onclick="removeItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button class="btn-add" onclick="addCostoVariable()">+ Agregar Costo Variable</button>
+                    <div class="total-row">
+                        <span>Total Costo Variable por Unidad:</span>
+                        <span id="totalVariables">0,00 €</span>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Precio de Venta</h3>
+                    <div class="price-input-container">
+                        <label for="precioVenta">Precio de venta por unidad:</label>
+                        <input type="number" id="precioVenta" placeholder="0,00 €" step="0.01" min="0">
+                    </div>
+                </div>
+
+                <button class="btn-calculate" onclick="calcularPuntoEquilibrio()">
+                    🎯 Calcular Punto de Equilibrio
+                </button>
+            </div>
+
+            <!-- Sección de resultados -->
+            <div class="card results-card" id="resultados" style="display: none;">
+                <h2>📈 Resultados del Análisis</h2>
+
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-label">Punto de Equilibrio</div>
+                        <div class="result-value" id="puntoEquilibrioUnidades">0</div>
+                        <div class="result-unit">unidades</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Ventas para Equilibrio</div>
+                        <div class="result-value" id="puntoEquilibrioEuros">0,00 €</div>
+                        <div class="result-unit">en ventas</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Margen de Contribución</div>
+                        <div class="result-value" id="margenContribucion">0,00 €</div>
+                        <div class="result-unit">por unidad</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">% Margen sobre Precio</div>
+                        <div class="result-value" id="margenPorcentaje">0%</div>
+                        <div class="result-unit">de margen</div>
+                    </div>
+                </div>
+
+                <!-- Gráfico -->
+                <div class="chart-container">
+                    <canvas id="breakEvenChart"></canvas>
+                </div>
+
+                <!-- Tabla de escenarios -->
+                <div class="scenarios-table">
+                    <h3>📋 Análisis de Escenarios</h3>
+                    <table id="scenariosTable">
+                        <thead>
+                            <tr>
+                                <th>Unidades</th>
+                                <th>Ventas</th>
+                                <th>Costos Totales</th>
+                                <th>Beneficio/Pérdida</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="action-buttons">
+                    <button class="btn-secondary" onclick="guardarSesion()">💾 Guardar Sesión</button>
+                    <button class="btn-secondary" onclick="exportarResultados()">📥 Exportar Resultados</button>
+                    <button class="btn-secondary" onclick="imprimirResultados()">🖨️ Imprimir</button>
+                </div>
+            </div>
+
+            <!-- Sesiones guardadas -->
+            <div class="card" id="sesionesGuardadas" style="display: none;">
+                <h2>📁 Sesiones Guardadas</h2>
+                <div id="listaSesiones"></div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Service Worker para PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+
+    <script src="script.js"></script>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+</body>
+</html>
