@@ -1,0 +1,668 @@
+/* Constructor de Fórmulas Químicas - CSS con paleta meskeIA */
+
+/* Variables CSS meskeIA - Paleta Web Oficial */
+:root {
+    /* Backgrounds - Inspirados en Claude */
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --bg-hover: #F5F5F5;
+    --bg-focus: rgba(46,134,171,0.1);
+
+    /* Tu identidad de marca meskeIA */
+    --primary: #2E86AB;
+    --primary-dark: #1F5F85;
+    --primary-light: #48A9A6;
+
+    --secondary: #48A9A6;
+    --secondary-dark: #357A78;
+    --secondary-light: #6BC4C1;
+
+    /* Colores de acento */
+    --accent: #F39C12;
+    --accent-dark: #D68910;
+    --accent-light: #F7DC6F;
+
+    /* Estados */
+    --success: #27AE60;
+    --warning: #F39C12;
+    --danger: #E74C3C;
+    --info: #3498DB;
+
+    /* Textos minimalistas */
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --text-light: #CCCCCC;
+
+    /* Elementos estructurales */
+    --border: #E5E5E5;
+    --border-dark: #CCCCCC;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+
+    /* Efectos y animaciones */
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --transition: all 0.3s ease;
+
+    /* Compatibilidad con nombres anteriores */
+    --meskeia-primary: var(--primary);
+    --meskeia-primary-dark: var(--primary-dark);
+    --meskeia-primary-light: var(--primary-light);
+    --meskeia-secondary: var(--secondary);
+    --meskeia-secondary-dark: var(--secondary-dark);
+    --meskeia-secondary-light: var(--secondary-light);
+    --meskeia-accent: var(--accent);
+    --meskeia-accent-dark: var(--accent-dark);
+    --meskeia-accent-light: var(--accent-light);
+    --meskeia-success: var(--success);
+    --meskeia-warning: var(--warning);
+    --meskeia-danger: var(--danger);
+    --meskeia-info: var(--info);
+    --meskeia-gray-50: var(--bg-primary);
+    --meskeia-gray-100: var(--bg-hover);
+    --meskeia-gray-200: var(--border);
+    --meskeia-gray-300: var(--border-dark);
+    --meskeia-gray-400: var(--text-light);
+    --meskeia-gray-500: var(--text-muted);
+    --meskeia-gray-600: var(--text-secondary);
+    --meskeia-gray-700: var(--text-primary);
+    --meskeia-gray-800: #2C3E50;
+    --meskeia-gray-900: #1A252F;
+    --meskeia-shadow: var(--shadow);
+    --meskeia-shadow-lg: var(--shadow-lg);
+    --meskeia-border-radius: var(--border-radius);
+    --meskeia-transition: var(--transition);
+}
+
+/* Reset y base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Logo meskeIA - Componente reutilizable */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* Tarjetas personalizadas */
+.card {
+    border: none;
+    border-radius: var(--meskeia-border-radius);
+    box-shadow: var(--meskeia-shadow);
+    transition: var(--meskeia-transition);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--meskeia-shadow-lg);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--meskeia-primary) 0%, var(--meskeia-primary-dark) 100%);
+    border-bottom: none;
+    padding: 1rem 1.25rem;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, var(--meskeia-success) 0%, #16a34a 100%) !important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, var(--meskeia-warning) 0%, var(--meskeia-accent-dark) 100%) !important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg, var(--meskeia-info) 0%, #0891b2 100%) !important;
+}
+
+/* Elementos químicos */
+.elementos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.elemento {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--meskeia-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    transition: var(--meskeia-transition);
+    position: relative;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+.elemento:active {
+    cursor: grabbing;
+}
+
+.elemento:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores por tipo de elemento */
+.elemento.metal {
+    background: linear-gradient(135deg, var(--meskeia-secondary) 0%, var(--meskeia-secondary-dark) 100%);
+}
+
+.elemento.no-metal {
+    background: linear-gradient(135deg, var(--meskeia-danger) 0%, #dc2626 100%);
+}
+
+.elemento.gas-noble {
+    background: linear-gradient(135deg, var(--meskeia-accent) 0%, var(--meskeia-accent-dark) 100%);
+}
+
+.elemento.metaloide {
+    background: linear-gradient(135deg, var(--meskeia-info) 0%, #0891b2 100%);
+}
+
+.elemento-simbolo {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.elemento-numero {
+    font-size: 0.65rem;
+    opacity: 0.9;
+    margin-top: 1px;
+}
+
+/* Área de construcción */
+.construction-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 200px;
+    padding: 20px;
+    background: var(--meskeia-gray-50);
+    border-radius: var(--meskeia-border-radius);
+    border: 2px dashed var(--meskeia-gray-300);
+    position: relative;
+}
+
+.drop-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    padding: 20px;
+    border-radius: var(--meskeia-border-radius);
+    transition: var(--meskeia-transition);
+    position: relative;
+}
+
+
+.drop-placeholder {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.reaction-arrow {
+    margin: 0 20px;
+    animation: pulse-arrow 2s infinite;
+}
+
+@keyframes pulse-arrow {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Elementos en construcción */
+.elemento-construccion {
+    display: inline-flex;
+    align-items: center;
+    margin: 4px;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--meskeia-shadow);
+    font-weight: 600;
+    position: relative;
+    cursor: grab;
+    transition: var(--meskeia-transition);
+}
+
+.elemento-construccion:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--meskeia-shadow-lg);
+}
+
+.elemento-construccion .simbolo {
+    font-size: 1.1rem;
+    margin-right: 4px;
+}
+
+.elemento-construccion .cantidad {
+    font-size: 0.8rem;
+    color: var(--meskeia-gray-600);
+}
+
+.elemento-construccion .btn-remove {
+    margin-left: 8px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--meskeia-danger);
+    color: white;
+    cursor: pointer;
+    transition: var(--meskeia-transition);
+}
+
+.elemento-construccion .btn-remove:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+}
+
+/* Fórmula resultado */
+.product-display {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: var(--meskeia-border-radius);
+    padding: 20px;
+    box-shadow: var(--meskeia-shadow);
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.formula-placeholder {
+    color: var(--meskeia-gray-400);
+    font-style: italic;
+}
+
+.formula-result {
+    color: var(--meskeia-gray-800);
+    font-family: 'Georgia', serif;
+}
+
+.formula-result .subindice {
+    font-size: 0.8em;
+    vertical-align: sub;
+}
+
+/* Estados de validación */
+.validacion-correcta {
+    border: 3px solid var(--meskeia-success) !important;
+    background: linear-gradient(135deg, white 0%, #f0fdf4 100%) !important;
+}
+
+.validacion-incorrecta {
+    border: 3px solid var(--meskeia-danger) !important;
+    background: linear-gradient(135deg, white 0%, #fef2f2 100%) !important;
+}
+
+/* Alertas personalizadas */
+.alert {
+    border: none;
+    border-radius: var(--meskeia-border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 4px solid var(--meskeia-info);
+    color: var(--meskeia-gray-800);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border-left: 4px solid var(--meskeia-success);
+    color: var(--meskeia-gray-800);
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #fef2f2 0%, #fef2f2 100%);
+    border-left: 4px solid var(--meskeia-danger);
+    color: var(--meskeia-gray-800);
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-left: 4px solid var(--meskeia-warning);
+    color: var(--meskeia-gray-800);
+}
+
+/* Botones personalizados */
+.btn {
+    border-radius: var(--meskeia-border-radius);
+    transition: var(--meskeia-transition);
+    font-weight: 500;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--meskeia-primary) 0%, var(--meskeia-primary-dark) 100%);
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4);
+    background: linear-gradient(135deg, #059669 0%, var(--meskeia-primary-dark) 100%);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--meskeia-primary);
+    color: var(--meskeia-primary);
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: var(--meskeia-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+/* Estadísticas */
+.stat-item {
+    padding: 1rem;
+    border-radius: var(--meskeia-border-radius);
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: var(--meskeia-transition);
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--meskeia-shadow);
+}
+
+.stat-item h3 {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* Progreso */
+.progress {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--meskeia-gray-200);
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--meskeia-primary) 0%, var(--meskeia-secondary) 100%);
+    transition: width 0.6s ease;
+}
+
+/* Historial */
+.historial-item {
+    padding: 8px 12px;
+    margin: 4px 0;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    font-size: 0.85rem;
+    transition: var(--meskeia-transition);
+}
+
+.historial-item:hover {
+    transform: translateX(4px);
+    box-shadow: var(--meskeia-shadow);
+}
+
+.historial-formula {
+    font-weight: 600;
+    font-family: 'Georgia', serif;
+}
+
+.historial-tipo {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+/* Toast personalizado */
+.toast {
+    border: none;
+    border-radius: var(--meskeia-border-radius);
+    box-shadow: var(--meskeia-shadow-lg);
+}
+
+.toast-header {
+    background: linear-gradient(135deg, var(--meskeia-primary) 0%, var(--meskeia-secondary) 100%);
+    color: white;
+    border-bottom: none;
+}
+
+/* Badges */
+.badge {
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.bg-secondary {
+    background: linear-gradient(135deg, var(--meskeia-gray-500) 0%, var(--meskeia-gray-600) 100%) !important;
+}
+
+/* Footer */
+.footer {
+    background: var(--meskeia-gray-50) !important;
+    border-color: var(--meskeia-gray-200) !important;
+}
+
+/* Efectos de interacción simplificados (solo clic) */
+.elemento:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .elementos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 6px;
+    }
+
+    .elemento {
+        width: 50px;
+        height: 50px;
+        font-size: 0.65rem;
+    }
+
+    .construction-area {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .reaction-arrow {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+
+    .meskeia-logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .meskeia-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .meskeia-logo-icon::before {
+        width: 9px;
+        height: 9px;
+        top: 7.5px;
+        left: 7.5px;
+    }
+
+    .meskeia-logo-icon::after {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .meskeia-logo-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .display-4 {
+        font-size: 1.5rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+}
