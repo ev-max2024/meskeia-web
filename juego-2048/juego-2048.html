@@ -97,6 +97,30 @@
                     "@type": "Answer",
                     "text": "Sí, el juego está optimizado para móviles y tablets. Puedes usar gestos táctiles para deslizar y mover las fichas en cualquier dirección."
                 }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Es posible ganar siempre en 2048?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, 2048 tiene un elemento de azar que hace imposible ganar el 100% de las veces. Sin embargo, con buena estrategia puedes mejorar significativamente tus probabilidades de éxito."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué hacer después de alcanzar 2048?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puedes continuar jugando para alcanzar fichas más altas como 4096, 8192, etc. Muchos jugadores consideran esto más desafiante que llegar al 2048 inicial."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Se guardan mis puntuaciones?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El juego guarda automáticamente tu mejor puntuación en el almacenamiento local de tu navegador, por lo que persiste entre sesiones."
+                }
             }
         ]
     }
@@ -716,60 +740,11 @@
         </div>
     </div>
 
-    <!-- FAQ Schema.org -->
+    <!-- FAQ Section -->
     <div style="max-width: 900px; margin: 0 auto 2rem; padding: 0 20px;">
         <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5;">
             <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes sobre 2048</h2>
-            
-            <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "¿Cómo se juega al 2048?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Usa las flechas del teclado para mover las fichas. Cuando dos fichas con el mismo número se tocan, se combinan en una sola ficha con el valor sumado. El objetivo es llegar al número 2048."
-                        }
-                    },
-                    {
-                        "@type": "Question", 
-                        "name": "¿Qué estrategias funcionan mejor en 2048?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Mantén las fichas de mayor valor en una esquina, construye secuencias ordenadas, planifica varios movimientos por adelantado y evita llenar completamente el tablero."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "¿Es posible ganar siempre en 2048?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "No, 2048 tiene un elemento de azar que hace imposible ganar el 100% de las veces. Sin embargo, con buena estrategia puedes mejorar significativamente tus probabilidades de éxito."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "¿Qué hacer después de alcanzar 2048?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Puedes continuar jugando para alcanzar fichas más altas como 4096, 8192, etc. Muchos jugadores consideran esto más desafiante que llegar al 2048 inicial."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "¿Se guardan mis puntuaciones?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "El juego guarda automáticamente tu mejor puntuación en el almacenamiento local de tu navegador, por lo que persiste entre sesiones."
-                        }
-                    }
-                ]
-            }
-            </script>
-            
+
             <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                 <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
                     <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cómo se juega al 2048?</summary>
