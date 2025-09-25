@@ -1,0 +1,38 @@
+# Redirecciones 301 permanentes para Google Search Console
+# Redirigir URLs sin subdirectorio a las URLs correctas con subdirectorio
+
+RewriteEngine On
+
+# Redirecciones específicas para aplicaciones
+RewriteRule ^algebra/?$ /algebra/ [L,R=301]
+RewriteRule ^algebra-abstracta/?$ /algebra-abstracta/ [L,R=301]
+RewriteRule ^calculadora-simple/?$ /calculadora-simple/ [L,R=301]
+RewriteRule ^calculadora-movimiento/?$ /calculadora-movimiento/ [L,R=301]
+RewriteRule ^tabla-periodica/?$ /tabla-periodica/ [L,R=301]
+RewriteRule ^probabilidad/?$ /probabilidad/ [L,R=301]
+RewriteRule ^geometria/?$ /geometria/ [L,R=301]
+RewriteRule ^calculo/?$ /calculo/ [L,R=301]
+RewriteRule ^trigonometria/?$ /trigonometria/ [L,R=301]
+RewriteRule ^investigacion-operativa/?$ /investigacion-operativa/ [L,R=301]
+RewriteRule ^teoria-numeros/?$ /teoria-numeros/ [L,R=301]
+RewriteRule ^curso-decisiones-inversion/?$ /curso-decisiones-inversion/ [L,R=301]
+
+# Asegurar que se sirva index.html cuando se accede a directorios
+DirectoryIndex index.html
+
+# Configuración de caché para mejorar rendimiento
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# Comprensión GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
