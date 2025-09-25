@@ -1,525 +1,351 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://meskeia.com/</loc>
-    <lastmod>2025-09-22</lastmod>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/algebra</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/algebra-abstracta/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/algebra/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/calculadora-electricidad/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/algebra-abstracta</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-estadistica/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-electricidad</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-fechas/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-jubilacion/calculadora-jubilacion</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-inversiones/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-movimiento</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-jubilacion/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-porcentajes/calculadora-porcentajes</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-matematica/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-simple</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-movimiento/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculo</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-notas/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-porcentajes/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/geometria</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculadora-simple/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/interes-compuesto/interes-compuesto</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/calculo/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/conversor-tallas/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/investigacion-operativa</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://meskeia.com/conversor-unidades/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/margen-equilibrio</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/nutrisalud</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/probabilidad</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/regla-de-tres/regla-de-tres</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/simulador-hipoteca/simulador-hipoteca</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/tabla-periodica</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/teoria-numeros</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/trigonometria</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/calculadora-estadistica/calculadora-estadistica</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/creador-paletas/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-fechas/calculadora-fechas</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/cuaderno-digital/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-inversiones/calculadora-inversiones</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/curso-decisiones-inversion/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/curso-decisiones-inversion/herramientas/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/curso-decisiones-inversion/recursos/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/curso-emprendimiento/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/curso-emprendimiento/herramientas/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/evaluador-salud/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-matematica/calculadora-matematica</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/formulas-quimicas/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/calculadora-notas/calculadora-notas</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/generador-contrasenas/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/conversor-tallas/conversor-tallas</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/geometria/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/impuesto-donaciones/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/conversor-unidades/conversor-unidades</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/impuesto-sucesiones/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/cuaderno-digital/cuaderno-digital</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/informacion-tiempo/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/generador-contrasenas/generador-contrasenas</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/interes-compuesto/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/lista-tareas/lista-tareas</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/investigacion-operativa/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/tir-van/calculadora-tir</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/aspectos-fiscales</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/asset-allocation</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/casos-practicos</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/conceptos-basicos</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/estrategias-inversion</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/gestion-riesgo</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/guia-brokers</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/mantenimiento-cartera</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/productos-financieros</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/guia/psicologia-inversor</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/herramientas/calculadora-intereses-compuesto</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/herramientas/calculadora-perfil-riesgo</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/herramientas/herramientas</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/herramientas/simulador-cartera</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/recursos/bibliografia</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/recursos/enlaces-utiles</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-decisiones-inversion/recursos/glosario</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-emprendimiento/herramientas/business-model-canvas</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-emprendimiento/herramientas/dafo</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-emprendimiento/herramientas/errores-comunes</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/curso-emprendimiento/herramientas/metricas-clave</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/aplicacion/calculadora-nutricional-inteligente</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/juego-2048/juego-2048</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/juego-2048/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/juego-memoria/juego-memoria</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/juego-memoria/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/piedra-papel-tijera/piedra-papel-tijera</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/lista-tareas/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/puzzle-matematico/puzzle-matematico</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/lorem-ipsum/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/sudoku-clasico/sudoku-clasico</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/margen-equilibrio/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/tres-en-raya/tres-en-raya</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/nutrisalud/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/wordle-espanol/wordle-espanol</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/nutrisalud/aplicacion/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/creador-paletas/creador-paletas</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://meskeia.com/nutrisalud/fundamentos/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/curso-emprendimiento/curso-emprendimiento</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://meskeia.com/nutrisalud/interacciones/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/evaluador-salud/evaluador-salud</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://meskeia.com/nutrisalud/organos/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/impuesto-donaciones/impuesto-donaciones</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://meskeia.com/piedra-papel-tijera/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/impuesto-sucesiones/impuesto-sucesiones</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/informacion-tiempo/informacion-tiempo</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/lorem-ipsum/lorem-ipsum</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/simulador-irpf/simulador-irpf</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/temporizador-pomodoro/temporizador-pomodoro</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/aplicacion/lectura-critica-etiquetas</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/aplicacion/mitos-nutricionales-desmontados</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/aplicacion/planificacion-personalizada</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/fundamentos/diferencia-comer-nutrirse</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/fundamentos/macronutrientes-profundidad</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/fundamentos/micronutrientes-biodisponibilidad</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/fundamentos/sistema-digestivo-laboratorio</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/interacciones/combinaciones-inhiben</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/interacciones/combinaciones-potencian</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/interacciones/matriz-alimentaria</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/interacciones/timing-nutricional</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/organos/cerebro-neurotransmisores</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/organos/higado-metabolismo</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/organos/intestino-microbiota</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/nutrisalud/organos/sistema-cardiovascular</loc>
-    <lastmod>2025-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://meskeia.com/privacidad</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/privacidad/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://meskeia.com/terminos</loc>
-    <lastmod>2025-09-22</lastmod>
+    <loc>https://meskeia.com/probabilidad/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/puzzle-matematico/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/regla-de-tres/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/simulador-hipoteca/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/simulador-irpf/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/sudoku-clasico/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/tabla-periodica/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/temporizador-pomodoro/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/teoria-numeros/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/terminos/</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/tir-van/calculadora-tir/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/tres-en-raya/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/trigonometria/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/wordle-espanol/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
