@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Glosario interactivo de Física y Química con quizzes educativos - meskeIA">
+    <meta name="keywords" content="física, química, glosario, quiz, educación, meskeIA">
+    <meta name="author" content="meskeIA">
+
+    <title>Glosario de Física y Química | meskeIA</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+
+    <meta property="og:title" content="Glosario de Física y Química - meskeIA">
+    <meta property="og:description" content="Aprende conceptos de Física y Química con nuestro glosario interactivo y quizzes">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9b87f5">
+</head>
+<body>
+<!-- Logo meskeIA -->
+<div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+    <div class="meskeia-logo-icon">
+        <div class="meskeia-neural-network">
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+            <div class="meskeia-neural-dot"></div>
+        </div>
+    </div>
+    <div class="meskeia-logo-text">
+        <span class="meske">meske</span><span class="ia">IA</span>
+    </div>
+</div>
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="40" y="40" width="120" height="120" rx="20" fill="#9b87f5"/>
+                    <rect x="50" y="50" width="100" height="100" rx="15" fill="#ffffff"/>
+                    <rect x="60" y="60" width="80" height="80" rx="10" fill="#9b87f5" opacity="0.3"/>
+                    <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#9b87f5">m</text>
+                </svg>
+                <h1>Glosario de Física y Química</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div class="controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar término..." class="search-input">
+                <button id="searchBtn" class="btn btn-primary">🔍 Buscar</button>
+            </div>
+
+            <div class="filter-container">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="todos">Todas las categorías</option>
+                    <option value="fisica">Física</option>
+                    <option value="quimica">Química</option>
+                </select>
+
+                <select id="levelFilter" class="filter-select">
+                    <option value="todos">Todos los niveles</option>
+                    <option value="basico">Básico</option>
+                    <option value="intermedio">Intermedio</option>
+                    <option value="avanzado">Avanzado</option>
+                </select>
+            </div>
+
+            <div class="mode-buttons">
+                <button id="glossaryBtn" class="btn btn-active">📚 Glosario</button>
+                <button id="quizBtn" class="btn">🎯 Quiz</button>
+                <button id="profileBtn" class="btn">👤 Perfil</button>
+            </div>
+        </div>
+
+        <div id="glossaryView" class="view-container active">
+            <div class="stats-bar">
+                <span id="termCount">0 términos encontrados</span>
+            </div>
+
+            <div id="termsContainer" class="terms-grid">
+            </div>
+        </div>
+
+        <div id="quizView" class="view-container">
+            <div class="quiz-header">
+                <h2>Quiz de Física y Química</h2>
+                <div class="quiz-stats">
+                    <span>Pregunta: <span id="questionNumber">1</span>/10</span>
+                    <span>Puntuación: <span id="score">0</span></span>
+                    <span class="level-indicator">
+                        <span id="playerLevel">Nivel 1</span> |
+                        <span id="playerXP">0 XP</span>
+                    </span>
+                </div>
+            </div>
+
+            <div id="quizContent" class="quiz-content">
+                <div class="quiz-welcome">
+                    <h3>¡Pon a prueba tus conocimientos!</h3>
+                    <p>Responde 10 preguntas aleatorias sobre los términos del glosario.</p>
+                    <button id="startQuizBtn" class="btn btn-primary btn-large">Comenzar Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="profileView" class="view-container">
+            <div class="profile-header">
+                <h2>👤 Perfil de Jugador</h2>
+            </div>
+
+            <div class="profile-content">
+                <div class="level-section">
+                    <div class="level-card">
+                        <div class="level-info">
+                            <h3 id="profileLevelName">Novato</h3>
+                            <span id="profileLevelNumber">Nivel 1</span>
+                        </div>
+                        <div class="xp-info">
+                            <span id="profileXP">0 XP</span>
+                            <div class="xp-bar">
+                                <div id="xpProgress" class="xp-fill"></div>
+                            </div>
+                            <span id="nextLevelXP">Siguiente: 100 XP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalQuestions">0</span>
+                            <span class="stat-label">Preguntas totales</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="correctAnswers">0</span>
+                            <span class="stat-label">Respuestas correctas</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="accuracy">0%</span>
+                            <span class="stat-label">Precisión</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="streakDays">0</span>
+                            <span class="stat-label">Días consecutivos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-stats">
+                    <h3>📈 Estadísticas por Categoría</h3>
+                    <div class="category-grid">
+                        <div class="category-card">
+                            <h4>⚛️ Física</h4>
+                            <div class="category-progress">
+                                <span>Preguntas: <span id="physicaQuestions">0</span></span>
+                                <span>Correctas: <span id="physicaCorrect">0</span></span>
+                                <span>Precisión: <span id="physicaAccuracy">0%</span></span>
+                            </div>
+                        </div>
+                        <div class="category-card">
+                            <h4>🧪 Química</h4>
+                            <div class="category-progress">
+                                <span>Preguntas: <span id="quimicaQuestions">0</span></span>
+                                <span>Correctas: <span id="quimicaCorrect">0</span></span>
+                                <span>Precisión: <span id="quimicaAccuracy">0%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-stats">
+                    <h3>📚 Estadísticas por Nivel</h3>
+                    <div class="level-grid">
+                        <div class="level-card-stat">
+                            <h4>🟢 Básico</h4>
+                            <div class="level-progress">
+                                <span>Preguntas: <span id="basicoQuestions">0</span></span>
+                                <span>Correctas: <span id="basicoCorrect">0</span></span>
+                                <span>Precisión: <span id="basicoAccuracy">0%</span></span>
+                            </div>
+                        </div>
+                        <div class="level-card-stat">
+                            <h4>🟡 Intermedio</h4>
+                            <div class="level-progress">
+                                <span>Preguntas: <span id="intermedioQuestions">0</span></span>
+                                <span>Correctas: <span id="intermedioCorrect">0</span></span>
+                                <span>Precisión: <span id="intermedioAccuracy">0%</span></span>
+                            </div>
+                        </div>
+                        <div class="level-card-stat">
+                            <h4>🔴 Avanzado</h4>
+                            <div class="level-progress">
+                                <span>Preguntas: <span id="avanzadoQuestions">0</span></span>
+                                <span>Correctas: <span id="avanzadoCorrect">0</span></span>
+                                <span>Precisión: <span id="avanzadoAccuracy">0%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="badges-section">
+                    <h3>🏆 Badges Desbloqueados</h3>
+                    <div id="badgesContainer" class="badges-grid">
+                        <div class="no-badges">
+                            <p>¡Completa quizzes para desbloquear badges!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="resetProgressBtn" class="btn btn-warning">🔄 Reiniciar Progreso</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="termModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 meskeIA - Glosario de Física y Química</p>
+            <p>Herramienta educativa gratuita para el aprendizaje de ciencias</p>
+        </div>
+    </footer>
+
+<!-- Footer meskeIA -->
+<footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    © 2025 meskeIA
+</footer>
+
+    <script src="data.js"></script>
+    <script src="gamification.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log('SW registrado'))
+                    .catch(registrationError => console.log('SW error:', registrationError));
+            });
+        }
+    </script>
+</body>
+</html>
