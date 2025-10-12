@@ -1,0 +1,804 @@
+/* ============================================
+   VARIABLES CSS - PALETA meskeIA
+   ============================================ */
+:root {
+    /* Backgrounds */
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --bg-hover: #F5F5F5;
+
+    /* Colores de marca meskeIA */
+    --primary: #2E86AB;
+    --secondary: #48A9A6;
+    --success: #2A9D8F;
+    --danger: #E76F51;
+    --warning: #F4A261;
+
+    /* Textos */
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+
+    /* Bordes y sombras */
+    --border: #E5E5E5;
+    --focus: rgba(46, 134, 171, 0.1);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+    /* Espaciado */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Bordes redondeados */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+/* ============================================
+   RESET Y BASE
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding-bottom: 60px;
+}
+
+/* ============================================
+   LOGO meskeIA (COMPONENTE OFICIAL)
+   ============================================ */
+.meskeia-logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 134, 171, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+    transition: all 0.3s ease;
+}
+
+.meskeia-logo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+}
+
+.meskeia-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.meskeia-logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.meskeia-logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2E86AB;
+    border-radius: 50%;
+    top: 13px;
+    left: 13px;
+}
+
+.meskeia-neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.meskeia-neural-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+.meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+.meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+.meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+.meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+.meskeia-logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.meskeia-logo-text .meske {
+    color: #2E86AB;
+}
+
+.meskeia-logo-text .ia {
+    color: #48A9A6;
+    font-weight: 700;
+    position: relative;
+}
+
+.meskeia-logo-text .ia::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+    border-radius: 1px;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin-top: 80px;
+    box-shadow: var(--shadow-md);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.container {
+    max-width: 1400px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-md);
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* ============================================
+   TARJETAS Y SECCIONES
+   ============================================ */
+.config-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.config-card h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.section {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 2px solid var(--border);
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section h3 {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* ============================================
+   LISTA DE ASIGNATURAS
+   ============================================ */
+.subjects-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.subject-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: var(--bg-hover);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.subject-item:hover {
+    background: #EEEEEE;
+    transform: translateX(4px);
+}
+
+.subject-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.subject-info strong {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+}
+
+.subject-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--spacing-lg);
+    font-style: italic;
+}
+
+/* ============================================
+   FORMULARIO AÑADIR ASIGNATURA
+   ============================================ */
+.add-subject-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr auto;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.add-subject-form input,
+.add-subject-form select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.add-subject-form input:focus,
+.add-subject-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--focus);
+}
+
+/* ============================================
+   DISPONIBILIDAD HORARIA
+   ============================================ */
+.availability-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.availability-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr;
+    gap: var(--spacing-md);
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: var(--bg-hover);
+    border-radius: var(--radius-sm);
+}
+
+.day-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.availability-row label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.availability-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.help-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: #FFF9E6;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--warning);
+}
+
+/* ============================================
+   PREFERENCIAS
+   ============================================ */
+.preferences-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.preference-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.preference-item label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.preference-item select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preference-item select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--focus);
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #246b8a;
+}
+
+.btn-secondary {
+    background: var(--text-secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #555555;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #238276;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #d35e42;
+}
+
+.btn-large {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: 1.2rem;
+}
+
+.btn-icon {
+    padding: var(--spacing-xs);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
+}
+
+.btn-icon:hover {
+    background: var(--bg-hover);
+    transform: scale(1.1);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+}
+
+/* ============================================
+   VISTA DE HORARIO
+   ============================================ */
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.schedule-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.schedule-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.schedule-container h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* ============================================
+   CALENDARIO SEMANAL
+   ============================================ */
+.weekly-calendar {
+    overflow-x: auto;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(7, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    min-width: 900px;
+}
+
+.calendar-header {
+    background: var(--primary);
+    color: white;
+    padding: var(--spacing-md);
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.calendar-slot-label {
+    background: var(--secondary);
+    color: white;
+    padding: var(--spacing-md);
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.calendar-slot-label small {
+    font-weight: 400;
+    opacity: 0.9;
+    font-size: 0.85rem;
+}
+
+.calendar-cell {
+    background: white;
+    padding: var(--spacing-md);
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.calendar-cell.empty {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+}
+
+.calendar-cell.filled {
+    color: white;
+    font-weight: 600;
+    border: 3px solid;
+    cursor: pointer;
+}
+
+.calendar-cell.filled:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.session-content {
+    text-align: center;
+}
+
+.session-content strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.session-content small {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* ============================================
+   INFORMACIÓN Y RESUMEN
+   ============================================ */
+.schedule-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.info-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.info-card h3 {
+    color: var(--primary);
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.summary-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--focus);
+    border-radius: var(--radius-sm);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stat-value {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.info-card h4 {
+    color: var(--text-primary);
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+.subject-distribution {
+    list-style: none;
+}
+
+.subject-distribution li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+}
+
+.subject-color-badge {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.info-card ul {
+    list-style: none;
+}
+
+.info-card ul li {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .schedule-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .meskeia-logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .meskeia-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .meskeia-logo-icon::before {
+        width: 9px;
+        height: 9px;
+        top: 7.5px;
+        left: 7.5px;
+    }
+
+    .meskeia-logo-icon::after {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .meskeia-logo-text {
+        font-size: 1rem;
+    }
+
+    .header {
+        margin-top: 60px;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .config-card {
+        padding: var(--spacing-lg);
+    }
+
+    .add-subject-form {
+        grid-template-columns: 1fr;
+    }
+
+    .availability-row {
+        grid-template-columns: 1fr;
+    }
+
+    .preferences-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .schedule-actions {
+        flex-direction: column;
+    }
+
+    .calendar-grid {
+        min-width: 700px;
+    }
+
+    .schedule-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .config-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .section h3 {
+        font-size: 1.2rem;
+    }
+
+    .calendar-grid {
+        min-width: 600px;
+    }
+}
