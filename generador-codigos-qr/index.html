@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <title>Generador de Códigos QR - meskeIA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Generador de Códigos QR</h1>
+            <p class="subtitle">Crea códigos QR personalizados para URLs, contactos, WiFi y más</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Panel de Configuración -->
+            <div class="config-panel">
+                <div class="card">
+                    <h2>Tipo de Contenido</h2>
+                    <div class="type-selector">
+                        <button class="type-btn active" data-type="url">
+                            <span class="icon">🔗</span>
+                            URL
+                        </button>
+                        <button class="type-btn" data-type="text">
+                            <span class="icon">📝</span>
+                            Texto
+                        </button>
+                        <button class="type-btn" data-type="email">
+                            <span class="icon">📧</span>
+                            Email
+                        </button>
+                        <button class="type-btn" data-type="phone">
+                            <span class="icon">📱</span>
+                            Teléfono
+                        </button>
+                        <button class="type-btn" data-type="sms">
+                            <span class="icon">💬</span>
+                            SMS
+                        </button>
+                        <button class="type-btn" data-type="wifi">
+                            <span class="icon">📶</span>
+                            WiFi
+                        </button>
+                        <button class="type-btn" data-type="vcard">
+                            <span class="icon">👤</span>
+                            Contacto
+                        </button>
+                        <button class="type-btn" data-type="event">
+                            <span class="icon">📅</span>
+                            Evento
+                        </button>
+                        <button class="type-btn" data-type="location">
+                            <span class="icon">📍</span>
+                            Ubicación
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Formularios dinámicos -->
+                <div class="card">
+                    <h2>Datos del QR</h2>
+
+                    <!-- Formulario URL -->
+                    <form id="form-url" class="qr-form active">
+                        <div class="form-group">
+                            <label for="url">URL del sitio web</label>
+                            <input type="url" id="url" placeholder="https://ejemplo.com" required>
+                        </div>
+                    </form>
+
+                    <!-- Formulario Texto -->
+                    <form id="form-text" class="qr-form">
+                        <div class="form-group">
+                            <label for="text">Texto libre</label>
+                            <textarea id="text" rows="4" placeholder="Escribe tu texto aquí..." required></textarea>
+                        </div>
+                    </form>
+
+                    <!-- Formulario Email -->
+                    <form id="form-email" class="qr-form">
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-subject">Asunto (opcional)</label>
+                            <input type="text" id="email-subject" placeholder="Asunto del correo">
+                        </div>
+                        <div class="form-group">
+                            <label for="email-body">Mensaje (opcional)</label>
+                            <textarea id="email-body" rows="3" placeholder="Cuerpo del mensaje"></textarea>
+                        </div>
+                    </form>
+
+                    <!-- Formulario Teléfono -->
+                    <form id="form-phone" class="qr-form">
+                        <div class="form-group">
+                            <label for="phone">Número de teléfono</label>
+                            <input type="tel" id="phone" placeholder="+34 600 000 000" required>
+                        </div>
+                    </form>
+
+                    <!-- Formulario SMS -->
+                    <form id="form-sms" class="qr-form">
+                        <div class="form-group">
+                            <label for="sms-number">Número de teléfono</label>
+                            <input type="tel" id="sms-number" placeholder="+34 600 000 000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sms-message">Mensaje</label>
+                            <textarea id="sms-message" rows="3" placeholder="Mensaje del SMS" required></textarea>
+                        </div>
+                    </form>
+
+                    <!-- Formulario WiFi -->
+                    <form id="form-wifi" class="qr-form">
+                        <div class="form-group">
+                            <label for="wifi-ssid">Nombre de red (SSID)</label>
+                            <input type="text" id="wifi-ssid" placeholder="Nombre del WiFi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wifi-password">Contraseña</label>
+                            <input type="text" id="wifi-password" placeholder="Contraseña del WiFi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wifi-encryption">Tipo de seguridad</label>
+                            <select id="wifi-encryption">
+                                <option value="WPA">WPA/WPA2</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">Sin contraseña</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="wifi-hidden">
+                                Red oculta
+                            </label>
+                        </div>
+                    </form>
+
+                    <!-- Formulario vCard -->
+                    <form id="form-vcard" class="qr-form">
+                        <div class="form-group">
+                            <label for="vcard-name">Nombre completo</label>
+                            <input type="text" id="vcard-name" placeholder="Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vcard-org">Organización (opcional)</label>
+                            <input type="text" id="vcard-org" placeholder="Empresa S.L.">
+                        </div>
+                        <div class="form-group">
+                            <label for="vcard-title">Cargo (opcional)</label>
+                            <input type="text" id="vcard-title" placeholder="Director General">
+                        </div>
+                        <div class="form-group">
+                            <label for="vcard-phone">Teléfono</label>
+                            <input type="tel" id="vcard-phone" placeholder="+34 600 000 000">
+                        </div>
+                        <div class="form-group">
+                            <label for="vcard-email">Email</label>
+                            <input type="email" id="vcard-email" placeholder="contacto@empresa.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="vcard-website">Sitio web (opcional)</label>
+                            <input type="url" id="vcard-website" placeholder="https://empresa.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="vcard-address">Dirección (opcional)</label>
+                            <textarea id="vcard-address" rows="2" placeholder="Calle Principal 123, 28001 Madrid"></textarea>
+                        </div>
+                    </form>
+
+                    <!-- Formulario Evento -->
+                    <form id="form-event" class="qr-form">
+                        <div class="form-group">
+                            <label for="event-title">Título del evento</label>
+                            <input type="text" id="event-title" placeholder="Reunión de equipo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-location">Ubicación</label>
+                            <input type="text" id="event-location" placeholder="Sala de conferencias A">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-start">Fecha y hora de inicio</label>
+                            <input type="datetime-local" id="event-start" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-end">Fecha y hora de fin</label>
+                            <input type="datetime-local" id="event-end" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-description">Descripción (opcional)</label>
+                            <textarea id="event-description" rows="3" placeholder="Descripción del evento"></textarea>
+                        </div>
+                    </form>
+
+                    <!-- Formulario Ubicación -->
+                    <form id="form-location" class="qr-form">
+                        <div class="form-group">
+                            <label for="location-lat">Latitud</label>
+                            <input type="number" id="location-lat" step="any" placeholder="40.416775" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location-lng">Longitud</label>
+                            <input type="number" id="location-lng" step="any" placeholder="-3.703790" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location-name">Nombre del lugar (opcional)</label>
+                            <input type="text" id="location-name" placeholder="Puerta del Sol, Madrid">
+                        </div>
+                        <p class="help-text">💡 Puedes obtener las coordenadas desde Google Maps</p>
+                    </form>
+                </div>
+
+                <!-- Personalización -->
+                <div class="card">
+                    <h2>Personalización</h2>
+                    <div class="customization">
+                        <div class="form-group">
+                            <label for="qr-size">Tamaño del QR</label>
+                            <select id="qr-size">
+                                <option value="200">Pequeño (200x200)</option>
+                                <option value="300" selected>Mediano (300x300)</option>
+                                <option value="400">Grande (400x400)</option>
+                                <option value="500">Extra grande (500x500)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="qr-color">Color del QR</label>
+                            <div class="color-picker-group">
+                                <input type="color" id="qr-color" value="#2E86AB">
+                                <span class="color-value">#2E86AB</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="qr-bg-color">Color de fondo</label>
+                            <div class="color-picker-group">
+                                <input type="color" id="qr-bg-color" value="#FFFFFF">
+                                <span class="color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generate-btn" class="generate-btn">
+                    <span class="icon">✨</span>
+                    Generar Código QR
+                </button>
+            </div>
+
+            <!-- Panel de Visualización -->
+            <div class="preview-panel">
+                <div class="card">
+                    <h2>Vista Previa</h2>
+                    <div id="qr-preview" class="qr-preview">
+                        <div class="empty-state">
+                            <span class="empty-icon">📱</span>
+                            <p>Configura los datos y genera tu código QR</p>
+                        </div>
+                    </div>
+                    <div id="qr-actions" class="qr-actions" style="display: none;">
+                        <button id="download-btn" class="action-btn primary">
+                            <span class="icon">⬇️</span>
+                            Descargar PNG
+                        </button>
+                        <button id="clear-btn" class="action-btn secondary">
+                            <span class="icon">🗑️</span>
+                            Limpiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Historial -->
+                <div class="card">
+                    <h2>Historial Reciente</h2>
+                    <div id="history-container" class="history-container">
+                        <div class="empty-state">
+                            <span class="empty-icon">📋</span>
+                            <p>No hay códigos QR generados aún</p>
+                        </div>
+                    </div>
+                    <button id="clear-history-btn" class="action-btn secondary" style="display: none; width: 100%; margin-top: 1rem;">
+                        Limpiar Historial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Librería QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
