@@ -43,6 +43,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://meskeia.com/calculadora-hidratacion/</loc>
+    <lastmod>2025-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://meskeia.com/calculadora-inversiones/</loc>
     <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -81,6 +87,12 @@
   <url>
     <loc>https://meskeia.com/calculadora-simple/</loc>
     <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/calculadora-sueno/</loc>
+    <lastmod>2025-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
