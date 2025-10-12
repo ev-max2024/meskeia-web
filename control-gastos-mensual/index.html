@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos Mensual | Gestor de Finanzas Personales - meskeIA</title>
+    <meta name="description" content="Controla tus gastos e ingresos mensuales de forma simple y visual. Gestiona tu presupuesto personal, categoriza transacciones, visualiza tu balance y descarga informes. 100% privado y gratuito.">
+    <meta name="keywords" content="control gastos, gestor finanzas personales, presupuesto mensual, balance ingresos gastos, categorias gastos, app finanzas gratis, control presupuesto, gastos mensuales, ahorro personal">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="canonical" href="https://meskeia.com/control-gastos-mensual/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Control de Gastos Mensual | Gestor de Finanzas Personales - meskeIA">
+    <meta property="og:description" content="Controla tus gastos e ingresos mensuales. Gestiona tu presupuesto personal de forma simple, visual y privada.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/control-gastos-mensual/">
+    <meta property="og:image" content="https://meskeia.com/icon_meskeia.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Control de Gastos Mensual - meskeIA">
+    <meta name="twitter:description" content="Gestiona tu presupuesto personal de forma simple y visual. 100% privado.">
+
+    <!-- Schema.org WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Control de Gastos Mensual",
+        "description": "Aplicación para gestionar gastos e ingresos mensuales, con categorización y balance visual",
+        "url": "https://meskeia.com/control-gastos-mensual/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        }
+    }
+    </script>
+
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://meskeia.com/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Finanzas y Fiscalidad",
+            "item": "https://meskeia.com/#finanzas-fiscalidad"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Control de Gastos Mensual",
+            "item": "https://meskeia.com/control-gastos-mensual/"
+        }]
+    }
+    </script>
+
+    <!-- Schema.org FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "¿Mis datos son privados?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, completamente. Todos tus datos se guardan únicamente en tu navegador usando localStorage. No se envía ninguna información a servidores externos. Tienes control total de tu información financiera."
+            }
+        },{
+            "@type": "Question",
+            "name": "¿Puedo usar la app sin conexión a internet?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, funciona 100% offline. No requiere conexión a internet para registrar gastos, ver tu balance o consultar el historial."
+            }
+        },{
+            "@type": "Question",
+            "name": "¿Cómo categorizo mis gastos?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Al añadir un gasto, seleccionas una categoría de la lista predefinida: Vivienda, Alimentación, Transporte, Salud, Ocio, Ropa, Suscripciones u Otros. Esto te permite analizar en qué gastas más."
+            }
+        },{
+            "@type": "Question",
+            "name": "¿Puedo exportar mis datos?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, tienes 2 opciones: (1) Exportar el mes actual a CSV para Excel/Google Sheets, (2) Exportar TODO a JSON para backup completo de todos los meses. También puedes importar backups JSON para restaurar tus datos."
+            }
+        },{
+            "@type": "Question",
+            "name": "¿Cómo hago backup de mis datos?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usa el botón 'Exportar TODO a JSON' para descargar un backup completo con todos los meses y transacciones. Guarda este archivo en tu nube (Google Drive, Dropbox) y podrás restaurarlo con 'Importar desde JSON'."
+            }
+        }]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPGLJBQ4Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SPPGLJBQ4Z');
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>💰 Control de Gastos Mensual</h1>
+            <p class="subtitle">Gestiona tus finanzas personales de forma simple y visual</p>
+        </header>
+
+        <main>
+            <!-- Resumen Principal -->
+            <section class="summary-cards">
+                <div class="summary-card income">
+                    <div class="summary-icon">📈</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Ingresos</span>
+                        <span class="summary-value" id="total-income">0,00 €</span>
+                    </div>
+                </div>
+
+                <div class="summary-card expense">
+                    <div class="summary-icon">📉</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Gastos</span>
+                        <span class="summary-value" id="total-expenses">0,00 €</span>
+                    </div>
+                </div>
+
+                <div class="summary-card balance" id="balance-card">
+                    <div class="summary-icon">💵</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Balance</span>
+                        <span class="summary-value" id="balance">0,00 €</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Selector de Mes -->
+            <section class="card month-selector">
+                <div class="month-controls">
+                    <button onclick="changeMonth(-1)" class="btn-month">◀ Mes Anterior</button>
+                    <h2 id="current-month">Enero 2025</h2>
+                    <button onclick="changeMonth(1)" class="btn-month">Mes Siguiente ▶</button>
+                </div>
+            </section>
+
+            <!-- Añadir Transacción -->
+            <section class="card">
+                <h2>➕ Nueva Transacción</h2>
+
+                <div class="transaction-type-selector">
+                    <button class="type-btn active" id="btn-expense" onclick="setTransactionType('expense')">
+                        📉 Gasto
+                    </button>
+                    <button class="type-btn" id="btn-income" onclick="setTransactionType('income')">
+                        📈 Ingreso
+                    </button>
+                </div>
+
+                <form id="transaction-form" onsubmit="addTransaction(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="amount">💶 Cantidad (€)</label>
+                            <input type="number" id="amount" step="0.01" min="0.01" placeholder="0,00" required>
+                        </div>
+
+                        <div class="form-group" id="category-group">
+                            <label for="category">🏷️ Categoría</label>
+                            <select id="category" required>
+                                <option value="">Seleccionar</option>
+                                <option value="vivienda">🏠 Vivienda</option>
+                                <option value="alimentacion">🍔 Alimentación</option>
+                                <option value="transporte">🚗 Transporte</option>
+                                <option value="salud">💊 Salud</option>
+                                <option value="ocio">🎬 Ocio</option>
+                                <option value="ropa">👕 Ropa</option>
+                                <option value="suscripciones">📱 Suscripciones</option>
+                                <option value="otros">💰 Otros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">📅 Fecha</label>
+                            <input type="date" id="date" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">📝 Descripción (opcional)</label>
+                            <input type="text" id="description" placeholder="Ej: Compra supermercado, factura luz...">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span id="btn-text">💾 Añadir Gasto</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Gráfico por Categorías -->
+            <section class="card" id="chart-section" style="display: none;">
+                <h2>📊 Gastos por Categoría</h2>
+                <div id="chart-container">
+                    <canvas id="expenses-chart"></canvas>
+                </div>
+                <div id="category-legend"></div>
+            </section>
+
+            <!-- Lista de Transacciones -->
+            <section class="card">
+                <div class="transactions-header">
+                    <h2>📜 Transacciones del Mes</h2>
+                    <div class="transactions-actions">
+                        <button onclick="exportToCSV()" class="btn btn-secondary" id="export-btn" style="display: none;">
+                            📥 CSV Mes Actual
+                        </button>
+                        <button onclick="clearAllTransactions()" class="btn btn-outline" id="clear-btn" style="display: none;">
+                            🗑️ Limpiar Todo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterTransactions('all')">Todas</button>
+                    <button class="filter-btn" onclick="filterTransactions('income')">Ingresos</button>
+                    <button class="filter-btn" onclick="filterTransactions('expense')">Gastos</button>
+                </div>
+
+                <div id="transactions-container">
+                    <p class="empty-state">No hay transacciones este mes. Añade tu primera transacción arriba.</p>
+                </div>
+            </section>
+
+            <!-- Backup y Restauración -->
+            <section class="card">
+                <h2>💾 Backup y Restauración</h2>
+                <p style="color: #666; margin-bottom: 20px;">Exporta todos tus datos para hacer backup o importa desde un archivo JSON para restaurar.</p>
+
+                <div class="backup-actions">
+                    <button onclick="exportAllToJSON()" class="btn btn-primary">
+                        📦 Exportar TODO a JSON
+                    </button>
+
+                    <div class="import-section">
+                        <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importFromJSON(event)">
+                        <button onclick="document.getElementById('import-file').click()" class="btn btn-secondary">
+                            📥 Importar desde JSON
+                        </button>
+                    </div>
+                </div>
+
+                <div class="backup-info">
+                    <p><strong>💡 Exportar TODO a JSON:</strong> Descarga todos tus meses con todas las transacciones. Ideal para backup completo.</p>
+                    <p><strong>💡 Importar desde JSON:</strong> Restaura un backup previo. Los datos actuales se fusionarán con los importados.</p>
+                    <p><strong>💡 CSV Mes Actual:</strong> Descarga solo el mes actual en formato CSV para abrir en Excel.</p>
+                </div>
+            </section>
+
+            <!-- Consejos de Ahorro -->
+            <section class="card tips-section">
+                <h2>💡 Consejos de Ahorro</h2>
+                <div class="tips-grid">
+                    <div class="tip">
+                        <span class="tip-icon">🎯</span>
+                        <h3>Regla 50/30/20</h3>
+                        <p>50% necesidades básicas, 30% gastos personales, 20% ahorro e inversión</p>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">📊</span>
+                        <h3>Revisa categorías</h3>
+                        <p>Identifica dónde gastas más y busca oportunidades de reducción</p>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">🔄</span>
+                        <h3>Registra diariamente</h3>
+                        <p>Añade gastos cada día para no olvidar ninguno y tener control total</p>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">💳</span>
+                        <h3>Revisa suscripciones</h3>
+                        <p>Cancela servicios que no uses. Pequeños gastos mensuales suman mucho</p>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">🎁</span>
+                        <h3>Fondo de emergencia</h3>
+                        <p>Ahorra 3-6 meses de gastos fijos para imprevistos</p>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">📅</span>
+                        <h3>Planifica gastos grandes</h3>
+                        <p>Vacaciones, regalos, reparaciones: prevé y ahorra con antelación</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
