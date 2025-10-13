@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Nombres de Empresa | Naming + Verificación de Dominios - meskeIA</title>
+    <meta name="description" content="Generador inteligente de nombres para empresas y negocios. Crea nombres creativos por sectores (Tech, Consultoría, E-commerce) y verifica disponibilidad de dominios .com, .es. Gratis y sin registro.">
+    <meta name="keywords" content="generador nombres empresa, naming empresarial, nombres para negocios, verificar dominio, registrar dominio, nombres creativos, branding, emprendimiento">
+    <meta name="author" content="meskeIA">
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+    <link rel="canonical" href="https://meskeia.com/generador-nombres-empresa/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Generador de Nombres de Empresa | Naming + Verificación de Dominios - meskeIA">
+    <meta property="og:description" content="Generador inteligente de nombres para empresas. Crea nombres creativos por sectores y verifica disponibilidad de dominios .com, .es. Gratis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/generador-nombres-empresa/">
+    <meta property="og:image" content="https://meskeia.com/generador-nombres-empresa/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Generador de Nombres de Empresa - meskeIA">
+    <meta name="twitter:description" content="Crea nombres creativos para tu empresa y verifica disponibilidad de dominios. Gratis y sin registro.">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Generador de Nombres de Empresa",
+        "description": "Generador inteligente de nombres para empresas y negocios con verificación de dominios",
+        "url": "https://meskeia.com/generador-nombres-empresa/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Banner informativo */
+        .info-banner {
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(46,134,171,0.2);
+        }
+
+        .info-banner h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-banner ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .info-banner li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-banner li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .info-banner p {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .info-banner strong {
+            font-weight: 600;
+        }
+
+        /* Sección de configuración */
+        .config-section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .config-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .help-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #236B8A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3A8784;
+            transform: translateY(-2px);
+        }
+
+        .btn-generar {
+            width: 100%;
+            justify-content: center;
+            font-size: 1.1rem;
+            padding: 16px;
+            margin-top: 10px;
+        }
+
+        /* Resultados */
+        .resultados-section {
+            margin-bottom: 30px;
+        }
+
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .nombre-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+        }
+
+        .nombre-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(46,134,171,0.15);
+            border-color: var(--primary);
+        }
+
+        .nombre-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--focus);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .pronunciabilidad {
+            color: var(--warning);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .verificar-section {
+            background: var(--hover);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .verificar-section h4 {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .btn-registrador {
+            display: block;
+            padding: 10px 15px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-registrador:hover {
+            border-color: var(--primary);
+            background: var(--focus);
+            transform: translateX(5px);
+        }
+
+        .btn-registrador strong {
+            color: var(--primary);
+        }
+
+        .btn-favorito {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-favorito:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-favorito.active {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Sección de favoritos */
+        .favoritos-section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .favoritos-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .favoritos-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .favoritos-tabla th,
+        .favoritos-tabla td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .favoritos-tabla th {
+            background: var(--hover);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .favoritos-tabla tr:hover {
+            background: var(--focus);
+        }
+
+        .btn-eliminar {
+            padding: 6px 12px;
+            background: white;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-eliminar:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .favoritos-vacio {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        .favoritos-acciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* FAQs */
+        .faq-section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .faq-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--hover);
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--focus);
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            line-height: 1.8;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+
+        .faq-answer strong {
+            color: var(--primary);
+        }
+
+        .faq-answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .faq-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resultados-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .favoritos-tabla {
+                font-size: 0.85rem;
+            }
+
+            .favoritos-acciones {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>💡 Generador de Nombres de Empresa</h1>
+            <p class="subtitle">Crea nombres creativos para tu negocio y verifica disponibilidad de dominios en registradores oficiales</p>
+        </header>
+
+        <!-- Banner informativo -->
+        <div class="info-banner">
+            <h3>ℹ️ ¿Cómo funciona el registro de dominios?</h3>
+            <p>Este generador crea nombres creativos para tu empresa utilizando algoritmos inteligentes. Para <strong>verificar disponibilidad de dominios</strong> y registrarlos, te proporcionamos enlaces directos a registradores oficiales donde podrás:</p>
+            <ul>
+                <li>Comprobar disponibilidad en tiempo real (.com, .es, .net, .io, etc.)</li>
+                <li>Reservar tu dominio instantáneamente</li>
+                <li>Completar el pago anual (desde 10-15€/año típicamente)</li>
+            </ul>
+            <p><strong>Registradores recomendados:</strong> Namecheap, Dominios.es, GoDaddy. Los enlaces se abren en nueva pestaña para tu comodidad.</p>
+        </div>
+
+        <!-- Configuración -->
+        <div class="config-section">
+            <h2>⚙️ Configura tu búsqueda</h2>
+            <div class="config-grid">
+                <div class="form-group">
+                    <label for="sector">🏢 Sector de tu empresa</label>
+                    <select id="sector">
+                        <option value="tecnologia">🖥️ Tecnología</option>
+                        <option value="consultoria">💼 Consultoría</option>
+                        <option value="ecommerce">🛒 E-commerce</option>
+                        <option value="servicios">🏥 Servicios Profesionales</option>
+                        <option value="creativos">🎨 Creativos/Diseño</option>
+                        <option value="construccion">🏗️ Construcción/Inmobiliaria</option>
+                        <option value="hosteleria">🍽️ Hostelería/Alimentación</option>
+                        <option value="salud">💪 Salud/Bienestar</option>
+                    </select>
+                    <span class="help-text">Selecciona el sector que mejor describa tu negocio</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="estilo">✨ Estilo del nombre</label>
+                    <select id="estilo">
+                        <option value="moderno">Moderno (TechVision, Innovatrix)</option>
+                        <option value="clasico">Clásico (Solutions, Group)</option>
+                        <option value="creativo">Creativo (fusiones únicas)</option>
+                        <option value="descriptivo">Descriptivo (claridad máxima)</option>
+                    </select>
+                    <span class="help-text">Define la personalidad de tu marca</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="longitud">📏 Longitud preferida</label>
+                    <select id="longitud">
+                        <option value="corto">Corto (4-8 letras)</option>
+                        <option value="medio">Medio (9-12 letras)</option>
+                        <option value="largo">Largo (13+ letras)</option>
+                        <option value="cualquiera">Cualquiera</option>
+                    </select>
+                    <span class="help-text">Nombres cortos suelen ser más memorables</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="idioma">🌍 Idioma</label>
+                    <select id="idioma">
+                        <option value="espanol">Español</option>
+                        <option value="ingles">Inglés</option>
+                        <option value="mixto">Mixto (ES/EN)</option>
+                    </select>
+                    <span class="help-text">Inglés suele tener más dominios .com disponibles</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-generar" onclick="generarNombres()">
+                ✨ Generar 10 Nombres Creativos
+            </button>
+        </div>
+
+        <!-- Resultados -->
+        <div class="resultados-section hidden" id="resultadosSection">
+            <div class="config-section">
+                <h2>🎯 Nombres Generados</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Haz clic en los enlaces para verificar disponibilidad y registrar tu dominio favorito</p>
+                <div class="resultados-grid" id="resultadosGrid"></div>
+            </div>
+        </div>
+
+        <!-- Favoritos -->
+        <div class="favoritos-section" id="favoritosSection">
+            <h2>⭐ Mis Favoritos</h2>
+            <div id="favoritosContent">
+                <div class="favoritos-vacio">
+                    <p>❤️ Aún no has añadido nombres favoritos</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Genera nombres y haz clic en "Añadir a Favoritos" para guardarlos aquí</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="faq-section">
+            <h2>❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>¿Cómo funciona el proceso de registro de dominios?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Paso 1: Generar nombres</strong> - Usa nuestra herramienta para crear opciones creativas.</p>
+                    <p><strong>Paso 2: Verificar disponibilidad</strong> - Haz clic en los enlaces de Namecheap, Dominios.es o GoDaddy para comprobar si el dominio está libre.</p>
+                    <p><strong>Paso 3: Registrar</strong> - Si está disponible, completa el registro directamente en el registrador (tarjeta de crédito/PayPal).</p>
+                    <p><strong>Paso 4: Configurar</strong> - Después del pago, puedes configurar DNS, email corporativo, hosting, etc.</p>
+                    <p><strong>Coste típico:</strong> 10-15€/año para .es, 12-20€/año para .com. Primera renovación suele ser más cara.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>¿Qué extensión elegir: .com, .es, .net, .io?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>.com</strong> - La más universal y reconocida. Ideal para negocios internacionales o con proyección global. Primera opción recomendada.</p>
+                    <p><strong>.es</strong> - Perfecta para negocios españoles o dirigidos al mercado español. Más barata (10€/año) y mejor SEO local en España.</p>
+                    <p><strong>.net</strong> - Alternativa cuando .com está ocupado. Originalmente para empresas de tecnología/redes.</p>
+                    <p><strong>.io</strong> - Muy popular en startups tecnológicas. Transmite innovación pero es más cara (30-50€/año).</p>
+                    <p><strong>.app, .tech, .store, .shop</strong> - Nuevas extensiones descriptivas. Claridad sobre tu sector pero menos reconocidas.</p>
+                    <p><strong>Consejo:</strong> Si tu nombre ideal .com está ocupado, considera cambiar el nombre en lugar de usar extensión alternativa.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>¿Cuánto cuesta registrar y mantener un dominio?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Costes de registro (primer año):</strong></p>
+                    <ul>
+                        <li>.es → 8-12€/año (Dominios.es: ~10€)</li>
+                        <li>.com → 10-15€/año primer año (Namecheap: ~12€)</li>
+                        <li>.net → 12-18€/año</li>
+                        <li>.io → 30-50€/año</li>
+                    </ul>
+                    <p><strong>Renovación anual:</strong> Suele ser 20-30% más cara que el primer año. Lee condiciones antes de comprar.</p>
+                    <p><strong>Costes adicionales opcionales:</strong></p>
+                    <ul>
+                        <li>Privacidad WHOIS (ocultar tus datos personales): 5-10€/año</li>
+                        <li>Email corporativo (nombre@tuempresa.com): 3-6€/mes por buzón</li>
+                        <li>Certificado SSL (candado HTTPS): Gratis con Let's Encrypt o incluido en hosting</li>
+                    </ul>
+                    <p><strong>Total típico:</strong> 15-25€/año solo por el dominio básico.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>¿Qué hacer si mi nombre ideal está ocupado?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Opciones disponibles:</strong></p>
+                    <p><strong>1. Cambiar extensión</strong> - Si ejemplo.com está ocupado, prueba ejemplo.es o ejemplo.io (menos recomendado).</p>
+                    <p><strong>2. Añadir sufijo geográfico</strong> - ejemplomadrid.com, ejemplospain.com</p>
+                    <p><strong>3. Añadir palabra descriptiva</strong> - ejemplotech.com, ejemplostudio.com, getejemplo.com</p>
+                    <p><strong>4. Usar guión</strong> - ejemplo-consulting.com (menos memorable)</p>
+                    <p><strong>5. Acortar/modificar</strong> - Si "SolucionesDigitales" está ocupado, prueba "SoluDigi", "SoluDigital"</p>
+                    <p><strong>6. Comprar el dominio ocupado</strong> - Contacta al propietario actual (suele costar 500-5000€+, no recomendado para startups).</p>
+                    <p><strong>Mejor consejo:</strong> Genera más nombres creativos con nuestra herramienta. Hay millones de combinaciones disponibles.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>¿Necesito registrar la marca comercial además del dominio?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Diferencias clave:</strong></p>
+                    <p><strong>Dominio web</strong> - Solo protege la URL en internet. Coste: 10-20€/año. Registro en minutos.</p>
+                    <p><strong>Marca comercial</strong> - Protege legalmente tu nombre comercial en territorio específico. Coste: 150-300€ (España). Proceso: 4-8 meses.</p>
+                    <p><strong>¿Cuándo registrar marca?</strong></p>
+                    <ul>
+                        <li>✅ Negocio serio con inversión significativa</li>
+                        <li>✅ Planeas vender productos físicos en tiendas</li>
+                        <li>✅ Quieres protección legal contra imitadores</li>
+                        <li>✅ Tienes presupuesto (300€ España, 1000€ Europa)</li>
+                    </ul>
+                    <p><strong>Puedes empezar sin marca:</strong> Registra primero el dominio y opera legalmente con CIF/NIF. Registra la marca cuando factures >50.000€/año o tengas competencia.</p>
+                    <p><strong>Importante:</strong> Antes de invertir en branding, verifica en la <strong>Base de Datos OEPM</strong> (España) que no existe una marca registrada igual.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Consejos legales: ¿Puedo usar cualquier nombre?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>❌ NO puedes usar:</strong></p>
+                    <ul>
+                        <li>Nombres de marcas registradas famosas (Nike, Apple, Zara, etc.)</li>
+                        <li>Nombres engañosos (no puedes llamarte "Microsoft España Oficial")</li>
+                        <li>Términos que requieren autorización ("Banco", "Seguros", "Farmacia")</li>
+                        <li>Nombres ofensivos o discriminatorios</li>
+                    </ul>
+                    <p><strong>✅ Recomendaciones legales:</strong></p>
+                    <ul>
+                        <li>Búsqueda en OEPM (Oficina Española de Patentes y Marcas) - base de datos gratuita</li>
+                        <li>Búsqueda en EUIPO (marcas europeas) - tmview.europa.eu</li>
+                        <li>Google del nombre + "marca registrada" para detectar conflictos</li>
+                        <li>Si tienes dudas, consulta con abogado especializado en propiedad industrial (consulta: 100-200€)</li>
+                    </ul>
+                    <p><strong>Regla de oro:</strong> Si el nombre es completamente inventado (neologismo) y no existe en Google, es casi seguro que puedes usarlo.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Vocabulario por sectores
+        const vocabulario = {
+            tecnologia: {
+                es: ['Tech', 'Digital', 'Innova', 'Solu', 'Soft', 'Data', 'Cloud', 'Smart', 'Cyber', 'Net', 'Web', 'App', 'Code', 'Tech', 'Bit', 'Byte', 'Sistema', 'Red', 'Nube', 'Inteligente'],
+                en: ['Tech', 'Digital', 'Innovate', 'Solutions', 'Software', 'Data', 'Cloud', 'Smart', 'Cyber', 'Network', 'Web', 'App', 'Code', 'Bit', 'Byte', 'System', 'Link', 'Hub', 'Logic', 'Matrix'],
+                sufijos: ['Tech', 'Soft', 'Lab', 'Hub', 'Systems', 'Solutions', 'Group', 'Pro', 'trix', 'fy', 'Core', 'Sphere']
+            },
+            consultoria: {
+                es: ['Estrategia', 'Consulta', 'Asesor', 'Expert', 'Pro', 'Elite', 'Prime', 'Óptima', 'Gestión', 'Desarrollo', 'Mejora', 'Análisis', 'Planifica', 'Coordina', 'Organiza', 'Integra', 'Transforma', 'Impulsa', 'Líder', 'Visión'],
+                en: ['Strategy', 'Consulting', 'Advisory', 'Expert', 'Pro', 'Elite', 'Prime', 'Optimal', 'Management', 'Development', 'Improvement', 'Analysis', 'Planning', 'Leadership', 'Vision', 'Growth', 'Impact', 'Insight', 'Advance', 'Transform'],
+                sufijos: ['Consulting', 'Advisory', 'Partners', 'Group', 'Associates', 'Solutions', 'Strategies', 'Experts', 'Pro', 'Global']
+            },
+            ecommerce: {
+                es: ['Tienda', 'Compra', 'Venta', 'Market', 'Shop', 'Store', 'Precio', 'Oferta', 'Deal', 'Express', 'Rápido', 'Entrega', 'Online', 'Click', 'Cart', 'Buy', 'Paga', 'Envío', 'Producto', 'Comercio'],
+                en: ['Shop', 'Store', 'Market', 'Buy', 'Deal', 'Express', 'Fast', 'Delivery', 'Online', 'Click', 'Cart', 'Purchase', 'Trade', 'Shipping', 'Product', 'Sale', 'Direct', 'Quick', 'Easy', 'Smart'],
+                sufijos: ['Shop', 'Store', 'Market', 'Bay', 'Cart', 'Direct', 'Express', 'Online', 'Plus', 'Pro']
+            },
+            servicios: {
+                es: ['Servicio', 'Profesional', 'Calidad', 'Expert', 'Solución', 'Ayuda', 'Asiste', 'Apoya', 'Gestiona', 'Facilita', 'Resuelve', 'Mejora', 'Optimiza', 'Garantiza', 'Atiende', 'Cuida', 'Protege', 'Mantiene', 'Repara', 'Instala'],
+                en: ['Service', 'Professional', 'Quality', 'Expert', 'Solution', 'Help', 'Assist', 'Support', 'Manage', 'Facilitate', 'Resolve', 'Improve', 'Optimize', 'Guarantee', 'Care', 'Protect', 'Maintain', 'Repair', 'Install', 'Premium'],
+                sufijos: ['Services', 'Pro', 'Expert', 'Care', 'Plus', 'Premium', 'Elite', 'Solutions', 'Team', 'Group']
+            },
+            creativos: {
+                es: ['Crea', 'Diseña', 'Arte', 'Visual', 'Studio', 'Atelier', 'Imagen', 'Color', 'Estilo', 'Forma', 'Trazo', 'Pixel', 'Canvas', 'Paleta', 'Sketch', 'Draft', 'Concepto', 'Idea', 'Original', 'Único'],
+                en: ['Create', 'Design', 'Art', 'Visual', 'Studio', 'Atelier', 'Image', 'Color', 'Style', 'Shape', 'Pixel', 'Canvas', 'Palette', 'Sketch', 'Draft', 'Concept', 'Idea', 'Original', 'Creative', 'Unique'],
+                sufijos: ['Studio', 'Design', 'Creative', 'Art', 'Lab', 'Works', 'Atelier', 'Co', 'House', 'Collective']
+            },
+            construccion: {
+                es: ['Construye', 'Edifica', 'Obra', 'Proyecto', 'Inmueble', 'Hogar', 'Casa', 'Piso', 'Vivienda', 'Espacio', 'Estructura', 'Reforma', 'Renova', 'Arquitectura', 'Diseño', 'Urban', 'Piedra', 'Cemento', 'Ladrillo', 'Forja'],
+                en: ['Build', 'Construct', 'Project', 'Property', 'Home', 'House', 'Space', 'Structure', 'Reform', 'Renovate', 'Architecture', 'Design', 'Urban', 'Stone', 'Forge', 'Foundation', 'Estate', 'Realty', 'Develop', 'Prime'],
+                sufijos: ['Build', 'Construction', 'Properties', 'Homes', 'Realty', 'Estate', 'Group', 'Development', 'Projects', 'Co']
+            },
+            hosteleria: {
+                es: ['Sabor', 'Gourmet', 'Fresco', 'Cocina', 'Mesa', 'Plato', 'Chef', 'Receta', 'Gusto', 'Aroma', 'Paladar', 'Delicia', 'Manjar', 'Comida', 'Cena', 'Menú', 'Gastronomía', 'Cata', 'Fusión', 'Tradicional'],
+                en: ['Taste', 'Gourmet', 'Fresh', 'Kitchen', 'Table', 'Dish', 'Chef', 'Recipe', 'Flavor', 'Aroma', 'Palate', 'Delight', 'Food', 'Dinner', 'Menu', 'Gastronomy', 'Fusion', 'Traditional', 'Bistro', 'Cuisine'],
+                sufijos: ['Kitchen', 'Bistro', 'Cafe', 'Restaurant', 'Food', 'Gourmet', 'House', 'Co', 'Table', 'Plate']
+            },
+            salud: {
+                es: ['Vital', 'Salud', 'Bienestar', 'Vida', 'Energía', 'Forma', 'Fit', 'Activo', 'Fuerte', 'Sano', 'Equilibrio', 'Armonía', 'Cuida', 'Nutre', 'Sana', 'Revitaliza', 'Recupera', 'Protege', 'Previene', 'Medicina'],
+                en: ['Vital', 'Health', 'Wellness', 'Life', 'Energy', 'Fit', 'Active', 'Strong', 'Healthy', 'Balance', 'Harmony', 'Care', 'Nourish', 'Heal', 'Revitalize', 'Recover', 'Protect', 'Prevent', 'Medical', 'Plus'],
+                sufijos: ['Health', 'Wellness', 'Care', 'Fit', 'Life', 'Plus', 'Med', 'Center', 'Clinic', 'Pro']
+            }
+        };
+
+        // Obtener configuración actual
+        function getConfig() {
+            return {
+                sector: document.getElementById('sector').value,
+                estilo: document.getElementById('estilo').value,
+                longitud: document.getElementById('longitud').value,
+                idioma: document.getElementById('idioma').value
+            };
+        }
+
+        // Seleccionar palabras según idioma
+        function getPalabras(sector, idioma) {
+            const vocab = vocabulario[sector];
+            if (idioma === 'espanol') return vocab.es;
+            if (idioma === 'ingles') return vocab.en;
+            return [...vocab.es, ...vocab.en]; // mixto
+        }
+
+        // Generar nombre tipo Portmanteau (fusión)
+        function generarPortmanteau(palabra1, palabra2) {
+            const mitad1 = palabra1.slice(0, Math.ceil(palabra1.length / 2));
+            const mitad2 = palabra2.slice(Math.floor(palabra2.length / 2));
+            return mitad1 + mitad2;
+        }
+
+        // Generar acrónimo
+        function generarAcronimo(palabras) {
+            return palabras.map(p => p[0]).join('').toUpperCase();
+        }
+
+        // Calcular pronunciabilidad (simple heurística)
+        function calcularPronunciabilidad(nombre) {
+            let score = 5;
+            const vocales = (nombre.match(/[aeiouáéíóú]/gi) || []).length;
+            const consonantes = (nombre.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+
+            // Penalizar si tiene demasiadas consonantes seguidas
+            if (/[bcdfghjklmnpqrstvwxyz]{4,}/i.test(nombre)) score -= 2;
+
+            // Bonificar ratio equilibrado de vocales/consonantes
+            const ratio = vocales / consonantes;
+            if (ratio >= 0.3 && ratio <= 0.7) score += 1;
+
+            // Penalizar nombres muy largos
+            if (nombre.length > 15) score -= 1;
+
+            return Math.max(1, Math.min(5, score));
+        }
+
+        // Filtrar por longitud
+        function cumpleLongitud(nombre, longitud) {
+            const len = nombre.length;
+            if (longitud === 'corto') return len >= 4 && len <= 8;
+            if (longitud === 'medio') return len >= 9 && len <= 12;
+            if (longitud === 'largo') return len >= 13;
+            return true; // cualquiera
+        }
+
+        // Generar nombres
+        function generarNombres() {
+            const config = getConfig();
+            const palabras = getPalabras(config.sector, config.idioma);
+            const sufijos = vocabulario[config.sector].sufijos;
+            const nombres = [];
+            const intentos = 100; // generar muchos e intentar obtener 10 únicos
+
+            for (let i = 0; i < intentos && nombres.length < 10; i++) {
+                let nombre = '';
+                let tecnica = '';
+
+                const tipo = Math.floor(Math.random() * 4);
+
+                if (tipo === 0 && config.estilo !== 'clasico') {
+                    // Portmanteau
+                    const p1 = palabras[Math.floor(Math.random() * palabras.length)];
+                    const p2 = palabras[Math.floor(Math.random() * palabras.length)];
+                    nombre = generarPortmanteau(p1, p2);
+                    tecnica = 'Portmanteau (fusión)';
+                } else if (tipo === 1 && config.estilo !== 'descriptivo') {
+                    // Prefijo + sufijo
+                    const prefijo = palabras[Math.floor(Math.random() * palabras.length)];
+                    const sufijo = sufijos[Math.floor(Math.random() * sufijos.length)];
+                    nombre = prefijo + sufijo;
+                    tecnica = 'Prefijo + Sufijo';
+                } else if (tipo === 2 && config.estilo === 'creativo') {
+                    // Acrónimo + palabra
+                    const p1 = palabras[Math.floor(Math.random() * palabras.length)];
+                    const p2 = palabras[Math.floor(Math.random() * palabras.length)];
+                    const p3 = palabras[Math.floor(Math.random() * palabras.length)];
+                    const acronimo = generarAcronimo([p1, p2, p3]);
+                    nombre = acronimo;
+                    tecnica = 'Acrónimo';
+                } else {
+                    // Descriptivo (palabra + sufijo clásico)
+                    const palabra = palabras[Math.floor(Math.random() * palabras.length)];
+                    const sufijo = sufijos[Math.floor(Math.random() * sufijos.length)];
+                    nombre = palabra + ' ' + sufijo;
+                    tecnica = 'Descriptivo';
+                }
+
+                // Capitalizar
+                nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+
+                // Verificar longitud y unicidad
+                if (cumpleLongitud(nombre, config.longitud) && !nombres.find(n => n.nombre === nombre)) {
+                    nombres.push({
+                        nombre: nombre.replace(/\s+/g, ''),
+                        tecnica: tecnica,
+                        pronunciabilidad: calcularPronunciabilidad(nombre)
+                    });
+                }
+            }
+
+            mostrarResultados(nombres);
+        }
+
+        // Mostrar resultados
+        function mostrarResultados(nombres) {
+            const grid = document.getElementById('resultadosGrid');
+            const section = document.getElementById('resultadosSection');
+
+            grid.innerHTML = '';
+
+            nombres.forEach(item => {
+                const estrellas = '★'.repeat(item.pronunciabilidad) + '☆'.repeat(5 - item.pronunciabilidad);
+                const nombreLower = item.nombre.toLowerCase().replace(/\s+/g, '');
+
+                const card = document.createElement('div');
+                card.className = 'nombre-card';
+                card.innerHTML = `
+                    <h3>💡 ${item.nombre}</h3>
+                    <span class="badge">${item.tecnica}</span>
+                    <p class="pronunciabilidad">Pronunciabilidad: ${estrellas}</p>
+
+                    <div class="verificar-section">
+                        <h4>🔍 Verificar disponibilidad y registrar:</h4>
+                        <a href="https://www.namecheap.com/domains/registration/results/?domain=${nombreLower}"
+                           target="_blank" rel="noopener" class="btn-registrador">
+                            <strong>Namecheap</strong> - .com desde 12€/año
+                        </a>
+                        <a href="https://www.dominios.es/dominios/buscar?q=${nombreLower}"
+                           target="_blank" rel="noopener" class="btn-registrador">
+                            <strong>Dominios.es</strong> - .es desde 10€/año
+                        </a>
+                        <a href="https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=${nombreLower}"
+                           target="_blank" rel="noopener" class="btn-registrador">
+                            <strong>GoDaddy</strong> - Múltiples extensiones
+                        </a>
+                    </div>
+
+                    <button class="btn-favorito" onclick="toggleFavorito('${item.nombre}', '${item.tecnica}')">
+                        ❤️ Añadir a Favoritos
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+
+            section.classList.remove('hidden');
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Sistema de favoritos
+        let favoritos = JSON.parse(localStorage.getItem('favoritos_nombres') || '[]');
+
+        function toggleFavorito(nombre, tecnica) {
+            const index = favoritos.findIndex(f => f.nombre === nombre);
+
+            if (index === -1) {
+                favoritos.push({ nombre, tecnica, fecha: new Date().toLocaleDateString('es-ES') });
+            } else {
+                favoritos.splice(index, 1);
+            }
+
+            localStorage.setItem('favoritos_nombres', JSON.stringify(favoritos));
+            actualizarFavoritos();
+        }
+
+        function eliminarFavorito(nombre) {
+            favoritos = favoritos.filter(f => f.nombre !== nombre);
+            localStorage.setItem('favoritos_nombres', JSON.stringify(favoritos));
+            actualizarFavoritos();
+        }
+
+        function actualizarFavoritos() {
+            const content = document.getElementById('favoritosContent');
+
+            if (favoritos.length === 0) {
+                content.innerHTML = `
+                    <div class="favoritos-vacio">
+                        <p>❤️ Aún no has añadido nombres favoritos</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Genera nombres y haz clic en "Añadir a Favoritos" para guardarlos aquí</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <table class="favoritos-tabla">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Técnica</th>
+                            <th>Fecha</th>
+                            <th>Verificar</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            favoritos.forEach(item => {
+                const nombreLower = item.nombre.toLowerCase().replace(/\s+/g, '');
+                html += `
+                    <tr>
+                        <td><strong>${item.nombre}</strong></td>
+                        <td>${item.tecnica}</td>
+                        <td>${item.fecha}</td>
+                        <td>
+                            <a href="https://www.namecheap.com/domains/registration/results/?domain=${nombreLower}"
+                               target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none;">
+                                Namecheap
+                            </a>
+                        </td>
+                        <td>
+                            <button class="btn-eliminar" onclick="eliminarFavorito('${item.nombre}')">
+                                🗑️ Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+                <div class="favoritos-acciones">
+                    <button class="btn btn-secondary" onclick="exportarFavoritos()">
+                        📥 Exportar a TXT
+                    </button>
+                    <button class="btn btn-secondary" onclick="limpiarFavoritos()">
+                        🗑️ Limpiar todos
+                    </button>
+                </div>
+            `;
+
+            content.innerHTML = html;
+        }
+
+        function exportarFavoritos() {
+            let texto = 'MIS NOMBRES FAVORITOS - meskeIA\n';
+            texto += '================================\n\n';
+
+            favoritos.forEach((item, i) => {
+                texto += `${i + 1}. ${item.nombre}\n`;
+                texto += `   Técnica: ${item.tecnica}\n`;
+                texto += `   Guardado: ${item.fecha}\n`;
+                texto += `   Verificar: https://www.namecheap.com/domains/registration/results/?domain=${item.nombre.toLowerCase()}\n\n`;
+            });
+
+            const blob = new Blob([texto], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'nombres-favoritos-meskeia.txt';
+            a.click();
+        }
+
+        function limpiarFavoritos() {
+            if (confirm('¿Estás seguro de que quieres eliminar todos los favoritos?')) {
+                favoritos = [];
+                localStorage.setItem('favoritos_nombres', JSON.stringify(favoritos));
+                actualizarFavoritos();
+            }
+        }
+
+        // Toggle FAQs
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarFavoritos();
+        });
+    </script>
+</body>
+</html>
