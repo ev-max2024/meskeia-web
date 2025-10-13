@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Optimizado -->
+    <title>Validador JSON y XML Online Gratis | meskeIA</title>
+    <meta name="description" content="Valida, formatea y verifica código JSON y XML gratis. Herramienta online sin registro que detecta errores, formatea código y minifica archivos JSON/XML al instante.">
+    <meta name="keywords" content="validador json, validador xml, json validator, xml validator, formatear json, validar json online, pretty print json, minificar json, herramientas desarrollo web">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="Validador JSON y XML Online Gratis | meskeIA">
+    <meta property="og:description" content="Valida y formatea código JSON y XML al instante. Sin registro, sin publicidad, 100% gratis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.es/validador-json/">
+    <meta property="og:image" content="https://meskeia.es/validador-json/icon_meskeia.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Validador JSON y XML Online | meskeIA">
+    <meta name="twitter:description" content="Valida y formatea código JSON y XML gratis. Detecta errores al instante.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.es/validador-json/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <style>
+        /* Reset y variables CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Estados adicionales */
+            --success: #10B981;
+            --error: #EF4444;
+            --warning: #F59E0B;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 80px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Tabs de navegación */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 30px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Área principal */
+        .validator-section {
+            display: none;
+        }
+
+        .validator-section.active {
+            display: block;
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .editor-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .editor-panel {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .char-count {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        /* Botones de acción */
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #256b8a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3a8a87;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(72,169,166,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-clear {
+            background: var(--error);
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Resultado de validación */
+        .result {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result.success {
+            border-left: 4px solid var(--success);
+            background: rgba(16,185,129,0.05);
+        }
+
+        .result.error {
+            border-left: 4px solid var(--error);
+            background: rgba(239,68,68,0.05);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .result-icon {
+            font-size: 1.5rem;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .result.success .result-title {
+            color: var(--success);
+        }
+
+        .result.error .result-title {
+            color: var(--error);
+        }
+
+        .result-message {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        /* Casos de prueba */
+        .examples {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .examples h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .example-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .example-btn {
+            padding: 10px 20px;
+            background: var(--hover);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .example-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Información y ayuda */
+        .info-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .info-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-section li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Contacto */
+        .contact-disclaimer {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-disclaimer p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-disclaimer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-disclaimer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 100px auto 80px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            textarea {
+                min-height: 300px;
+                font-size: 0.85rem;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>⚡ Validador JSON y XML</h1>
+            <p class="subtitle">Valida, formatea y verifica tu código JSON y XML al instante</p>
+        </header>
+
+        <!-- Tabs de navegación -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('json')">JSON</button>
+            <button class="tab-btn" onclick="switchTab('xml')">XML</button>
+        </div>
+
+        <!-- Sección JSON -->
+        <div id="json-section" class="validator-section active">
+            <!-- Casos de prueba JSON -->
+            <div class="examples">
+                <h3>📝 Casos de Prueba JSON</h3>
+                <div class="example-buttons">
+                    <button class="example-btn" onclick="loadExample('json-valid')">✓ JSON Válido</button>
+                    <button class="example-btn" onclick="loadExample('json-invalid')">✗ JSON Inválido</button>
+                    <button class="example-btn" onclick="loadExample('json-array')">📋 Array JSON</button>
+                    <button class="example-btn" onclick="loadExample('json-nested')">🔗 JSON Anidado</button>
+                </div>
+            </div>
+
+            <!-- Editor JSON -->
+            <div class="editor-container">
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Entrada JSON</h3>
+                        <span class="char-count" id="json-input-count">0 caracteres</span>
+                    </div>
+                    <textarea id="json-input" placeholder='Pega tu código JSON aquí, por ejemplo:
+{
+  "nombre": "Juan",
+  "edad": 30,
+  "ciudad": "Madrid"
+}'></textarea>
+                </div>
+
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Salida Formateada</h3>
+                        <span class="char-count" id="json-output-count">0 caracteres</span>
+                    </div>
+                    <textarea id="json-output" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+                </div>
+            </div>
+
+            <!-- Botones de acción JSON -->
+            <div class="actions">
+                <button class="btn btn-primary" onclick="validateJSON()">✓ Validar JSON</button>
+                <button class="btn btn-secondary" onclick="formatJSON()">📐 Formatear (Pretty Print)</button>
+                <button class="btn btn-outline" onclick="minifyJSON()">📦 Minificar</button>
+                <button class="btn btn-outline" onclick="copyOutput('json')">📋 Copiar Resultado</button>
+                <button class="btn btn-clear" onclick="clearAll('json')">🗑️ Limpiar Todo</button>
+            </div>
+
+            <!-- Resultado JSON -->
+            <div id="json-result" class="result"></div>
+        </div>
+
+        <!-- Sección XML -->
+        <div id="xml-section" class="validator-section">
+            <!-- Casos de prueba XML -->
+            <div class="examples">
+                <h3>📝 Casos de Prueba XML</h3>
+                <div class="example-buttons">
+                    <button class="example-btn" onclick="loadExample('xml-valid')">✓ XML Válido</button>
+                    <button class="example-btn" onclick="loadExample('xml-invalid')">✗ XML Inválido</button>
+                    <button class="example-btn" onclick="loadExample('xml-attributes')">🏷️ XML con Atributos</button>
+                    <button class="example-btn" onclick="loadExample('xml-nested')">🔗 XML Anidado</button>
+                </div>
+            </div>
+
+            <!-- Editor XML -->
+            <div class="editor-container">
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Entrada XML</h3>
+                        <span class="char-count" id="xml-input-count">0 caracteres</span>
+                    </div>
+                    <textarea id="xml-input" placeholder='Pega tu código XML aquí, por ejemplo:
+<?xml version="1.0" encoding="UTF-8"?>
+<persona>
+  <nombre>Juan</nombre>
+  <edad>30</edad>
+  <ciudad>Madrid</ciudad>
+</persona>'></textarea>
+                </div>
+
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Salida Formateada</h3>
+                        <span class="char-count" id="xml-output-count">0 caracteres</span>
+                    </div>
+                    <textarea id="xml-output" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+                </div>
+            </div>
+
+            <!-- Botones de acción XML -->
+            <div class="actions">
+                <button class="btn btn-primary" onclick="validateXML()">✓ Validar XML</button>
+                <button class="btn btn-secondary" onclick="formatXML()">📐 Formatear (Pretty Print)</button>
+                <button class="btn btn-outline" onclick="minifyXML()">📦 Minificar</button>
+                <button class="btn btn-outline" onclick="copyOutput('xml')">📋 Copiar Resultado</button>
+                <button class="btn btn-clear" onclick="clearAll('xml')">🗑️ Limpiar Todo</button>
+            </div>
+
+            <!-- Resultado XML -->
+            <div id="xml-result" class="result"></div>
+        </div>
+
+        <!-- Información de uso -->
+        <div class="info-section">
+            <h3>💡 ¿Cómo usar esta herramienta?</h3>
+            <ul>
+                <li>Pega o escribe tu código JSON/XML en el área de entrada</li>
+                <li>Haz clic en "Validar" para verificar si el código es válido</li>
+                <li>Usa "Formatear" para obtener una versión legible con indentación</li>
+                <li>Usa "Minificar" para comprimir el código (elimina espacios y saltos de línea)</li>
+                <li>Copia el resultado formateado directamente al portapapeles</li>
+                <li>Prueba los ejemplos incluidos para entender mejor cómo funciona</li>
+            </ul>
+        </div>
+
+        <!-- Características -->
+        <div class="info-section">
+            <h3>🎯 Características</h3>
+            <ul>
+                <li>Validación instantánea de sintaxis JSON y XML</li>
+                <li>Detección precisa de errores con ubicación exacta</li>
+                <li>Formateo automático (Pretty Print) para mejor legibilidad</li>
+                <li>Minificación para reducir tamaño de archivos</li>
+                <li>Contador de caracteres en tiempo real</li>
+                <li>Casos de prueba incluidos para aprender</li>
+                <li>100% privado: todo se procesa en tu navegador</li>
+                <li>Sin registro, sin publicidad, totalmente gratis</li>
+            </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="contact-disclaimer">
+            <p>¿Has encontrado algún error o tienes sugerencias?</p>
+            <p>Escríbenos a: <a href="mailto:meskeia24@gmail.com">meskeia24@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Ejemplos de código
+        const examples = {
+            'json-valid': `{
+  "nombre": "Juan Pérez",
+  "edad": 30,
+  "ciudad": "Madrid",
+  "email": "juan@example.com",
+  "telefono": "+34 123 456 789",
+  "activo": true,
+  "saldo": 1234.56
+}`,
+            'json-invalid': `{
+  "nombre": "Juan Pérez",
+  "edad": 30,
+  "ciudad": "Madrid"
+  "email": "juan@example.com"
+}`,
+            'json-array': `[
+  {
+    "id": 1,
+    "nombre": "Producto A",
+    "precio": 19.99
+  },
+  {
+    "id": 2,
+    "nombre": "Producto B",
+    "precio": 29.99
+  },
+  {
+    "id": 3,
+    "nombre": "Producto C",
+    "precio": 39.99
+  }
+]`,
+            'json-nested': `{
+  "empresa": {
+    "nombre": "TechCorp",
+    "fundacion": 2020,
+    "empleados": [
+      {
+        "id": 1,
+        "nombre": "Ana García",
+        "puesto": "CEO",
+        "departamento": {
+          "id": 10,
+          "nombre": "Dirección"
+        }
+      },
+      {
+        "id": 2,
+        "nombre": "Carlos Ruiz",
+        "puesto": "CTO",
+        "departamento": {
+          "id": 20,
+          "nombre": "Tecnología"
+        }
+      }
+    ],
+    "oficinas": [
+      "Madrid",
+      "Barcelona",
+      "Valencia"
+    ]
+  }
+}`,
+            'xml-valid': `<?xml version="1.0" encoding="UTF-8"?>
+<persona>
+  <nombre>Juan Pérez</nombre>
+  <edad>30</edad>
+  <ciudad>Madrid</ciudad>
+  <email>juan@example.com</email>
+  <activo>true</activo>
+</persona>`,
+            'xml-invalid': `<?xml version="1.0" encoding="UTF-8"?>
+<persona>
+  <nombre>Juan Pérez</nombre>
+  <edad>30</edad>
+  <ciudad>Madrid
+  <email>juan@example.com</email>
+</persona>`,
+            'xml-attributes': `<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+  <libro id="1" categoria="ficcion">
+    <titulo>El Quijote</titulo>
+    <autor>Miguel de Cervantes</autor>
+    <año>1605</año>
+    <precio moneda="EUR">15.99</precio>
+  </libro>
+  <libro id="2" categoria="ciencia">
+    <titulo>Breve historia del tiempo</titulo>
+    <autor>Stephen Hawking</autor>
+    <año>1988</año>
+    <precio moneda="EUR">22.50</precio>
+  </libro>
+</biblioteca>`,
+            'xml-nested': `<?xml version="1.0" encoding="UTF-8"?>
+<empresa>
+  <nombre>TechCorp</nombre>
+  <fundacion>2020</fundacion>
+  <empleados>
+    <empleado id="1">
+      <nombre>Ana García</nombre>
+      <puesto>CEO</puesto>
+      <departamento>
+        <id>10</id>
+        <nombre>Dirección</nombre>
+      </departamento>
+    </empleado>
+    <empleado id="2">
+      <nombre>Carlos Ruiz</nombre>
+      <puesto>CTO</puesto>
+      <departamento>
+        <id>20</id>
+        <nombre>Tecnología</nombre>
+      </departamento>
+    </empleado>
+  </empleados>
+  <oficinas>
+    <oficina>Madrid</oficina>
+    <oficina>Barcelona</oficina>
+    <oficina>Valencia</oficina>
+  </oficinas>
+</empresa>`
+        };
+
+        // Cambiar entre tabs
+        function switchTab(tab) {
+            // Actualizar botones
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Mostrar sección correcta
+            document.querySelectorAll('.validator-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`${tab}-section`).classList.add('active');
+        }
+
+        // Cargar ejemplos
+        function loadExample(exampleKey) {
+            const type = exampleKey.startsWith('json') ? 'json' : 'xml';
+            const input = document.getElementById(`${type}-input`);
+            input.value = examples[exampleKey];
+            updateCharCount(type, 'input');
+        }
+
+        // Actualizar contador de caracteres
+        function updateCharCount(type, side) {
+            const element = document.getElementById(`${type}-${side}`);
+            const count = element.value.length;
+            document.getElementById(`${type}-${side}-count`).textContent =
+                `${count.toLocaleString('es-ES')} caracteres`;
+        }
+
+        // Validar JSON
+        function validateJSON() {
+            const input = document.getElementById('json-input').value.trim();
+            const resultDiv = document.getElementById('json-result');
+
+            if (!input) {
+                showResult('json', false, 'Por favor, introduce código JSON para validar.');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(input);
+                const formatted = JSON.stringify(parsed, null, 2);
+                document.getElementById('json-output').value = formatted;
+                updateCharCount('json', 'output');
+
+                const lines = input.split('\n').length;
+                const size = new Blob([input]).size;
+
+                showResult('json', true,
+                    `✓ JSON válido correctamente\n\n` +
+                    `📊 Estadísticas:\n` +
+                    `• Líneas: ${lines.toLocaleString('es-ES')}\n` +
+                    `• Caracteres: ${input.length.toLocaleString('es-ES')}\n` +
+                    `• Tamaño: ${size.toLocaleString('es-ES')} bytes\n` +
+                    `• Tipo: ${Array.isArray(parsed) ? 'Array' : 'Objeto'}`
+                );
+            } catch (error) {
+                showResult('json', false,
+                    `✗ Error de sintaxis JSON\n\n` +
+                    `📍 Descripción:\n${error.message}\n\n` +
+                    `💡 Errores comunes:\n` +
+                    `• Falta una coma entre propiedades\n` +
+                    `• Las claves deben estar entre comillas dobles\n` +
+                    `• No se permiten comas finales\n` +
+                    `• Verifica que todas las llaves y corchetes estén cerrados`
+                );
+            }
+        }
+
+        // Formatear JSON (Pretty Print)
+        function formatJSON() {
+            const input = document.getElementById('json-input').value.trim();
+
+            if (!input) {
+                showResult('json', false, 'Por favor, introduce código JSON para formatear.');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(input);
+                const formatted = JSON.stringify(parsed, null, 2);
+                document.getElementById('json-output').value = formatted;
+                updateCharCount('json', 'output');
+                showResult('json', true, '✓ JSON formateado correctamente con indentación de 2 espacios');
+            } catch (error) {
+                showResult('json', false, `Error: ${error.message}`);
+            }
+        }
+
+        // Minificar JSON
+        function minifyJSON() {
+            const input = document.getElementById('json-input').value.trim();
+
+            if (!input) {
+                showResult('json', false, 'Por favor, introduce código JSON para minificar.');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(input);
+                const minified = JSON.stringify(parsed);
+                document.getElementById('json-output').value = minified;
+                updateCharCount('json', 'output');
+
+                const reduction = ((1 - minified.length / input.length) * 100).toFixed(1);
+                showResult('json', true,
+                    `✓ JSON minificado correctamente\n\n` +
+                    `📊 Resultados:\n` +
+                    `• Tamaño original: ${input.length.toLocaleString('es-ES')} caracteres\n` +
+                    `• Tamaño minificado: ${minified.length.toLocaleString('es-ES')} caracteres\n` +
+                    `• Reducción: ${reduction}%`
+                );
+            } catch (error) {
+                showResult('json', false, `Error: ${error.message}`);
+            }
+        }
+
+        // Validar XML
+        function validateXML() {
+            const input = document.getElementById('xml-input').value.trim();
+            const resultDiv = document.getElementById('xml-result');
+
+            if (!input) {
+                showResult('xml', false, 'Por favor, introduce código XML para validar.');
+                return;
+            }
+
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(input, "text/xml");
+
+                // Verificar errores de parsing
+                const parseError = xmlDoc.getElementsByTagName("parsererror");
+
+                if (parseError.length > 0) {
+                    const errorMsg = parseError[0].textContent;
+                    showResult('xml', false,
+                        `✗ Error de sintaxis XML\n\n` +
+                        `📍 Descripción:\n${errorMsg}\n\n` +
+                        `💡 Errores comunes:\n` +
+                        `• Etiqueta de apertura sin cierre correspondiente\n` +
+                        `• Atributos sin comillas\n` +
+                        `• Caracteres especiales sin escapar (&, <, >)\n` +
+                        `• Múltiples elementos raíz`
+                    );
+                    return;
+                }
+
+                // XML válido
+                const formatted = formatXMLString(input);
+                document.getElementById('xml-output').value = formatted;
+                updateCharCount('xml', 'output');
+
+                const lines = input.split('\n').length;
+                const size = new Blob([input]).size;
+                const elements = xmlDoc.getElementsByTagName("*").length;
+
+                showResult('xml', true,
+                    `✓ XML válido correctamente\n\n` +
+                    `📊 Estadísticas:\n` +
+                    `• Líneas: ${lines.toLocaleString('es-ES')}\n` +
+                    `• Caracteres: ${input.length.toLocaleString('es-ES')}\n` +
+                    `• Tamaño: ${size.toLocaleString('es-ES')} bytes\n` +
+                    `• Elementos: ${elements.toLocaleString('es-ES')}`
+                );
+            } catch (error) {
+                showResult('xml', false, `Error: ${error.message}`);
+            }
+        }
+
+        // Formatear XML (Pretty Print)
+        function formatXML() {
+            const input = document.getElementById('xml-input').value.trim();
+
+            if (!input) {
+                showResult('xml', false, 'Por favor, introduce código XML para formatear.');
+                return;
+            }
+
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(input, "text/xml");
+                const parseError = xmlDoc.getElementsByTagName("parsererror");
+
+                if (parseError.length > 0) {
+                    showResult('xml', false, 'Error: El XML contiene errores de sintaxis');
+                    return;
+                }
+
+                const formatted = formatXMLString(input);
+                document.getElementById('xml-output').value = formatted;
+                updateCharCount('xml', 'output');
+                showResult('xml', true, '✓ XML formateado correctamente con indentación de 2 espacios');
+            } catch (error) {
+                showResult('xml', false, `Error: ${error.message}`);
+            }
+        }
+
+        // Minificar XML
+        function minifyXML() {
+            const input = document.getElementById('xml-input').value.trim();
+
+            if (!input) {
+                showResult('xml', false, 'Por favor, introduce código XML para minificar.');
+                return;
+            }
+
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(input, "text/xml");
+                const parseError = xmlDoc.getElementsByTagName("parsererror");
+
+                if (parseError.length > 0) {
+                    showResult('xml', false, 'Error: El XML contiene errores de sintaxis');
+                    return;
+                }
+
+                // Minificar: eliminar espacios en blanco y saltos de línea entre tags
+                const minified = input.replace(/>\s+</g, '><').trim();
+                document.getElementById('xml-output').value = minified;
+                updateCharCount('xml', 'output');
+
+                const reduction = ((1 - minified.length / input.length) * 100).toFixed(1);
+                showResult('xml', true,
+                    `✓ XML minificado correctamente\n\n` +
+                    `📊 Resultados:\n` +
+                    `• Tamaño original: ${input.length.toLocaleString('es-ES')} caracteres\n` +
+                    `• Tamaño minificado: ${minified.length.toLocaleString('es-ES')} caracteres\n` +
+                    `• Reducción: ${reduction}%`
+                );
+            } catch (error) {
+                showResult('xml', false, `Error: ${error.message}`);
+            }
+        }
+
+        // Función auxiliar para formatear XML
+        function formatXMLString(xml) {
+            const PADDING = '  '; // 2 espacios de indentación
+            const reg = /(>)(<)(\/*)/g;
+            let pad = 0;
+
+            xml = xml.replace(reg, '$1\n$2$3');
+
+            return xml.split('\n').map((node) => {
+                let indent = 0;
+                if (node.match(/.+<\/\w[^>]*>$/)) {
+                    indent = 0;
+                } else if (node.match(/^<\/\w/) && pad > 0) {
+                    pad -= 1;
+                } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+                    indent = 1;
+                } else {
+                    indent = 0;
+                }
+
+                pad += indent;
+
+                return PADDING.repeat(pad - indent) + node;
+            }).join('\n');
+        }
+
+        // Copiar resultado al portapapeles
+        function copyOutput(type) {
+            const output = document.getElementById(`${type}-output`);
+
+            if (!output.value) {
+                showResult(type, false, 'No hay contenido para copiar. Primero valida o formatea el código.');
+                return;
+            }
+
+            output.select();
+            document.execCommand('copy');
+            showResult(type, true, '✓ Código copiado al portapapeles correctamente');
+        }
+
+        // Limpiar todo
+        function clearAll(type) {
+            document.getElementById(`${type}-input`).value = '';
+            document.getElementById(`${type}-output`).value = '';
+            document.getElementById(`${type}-result`).classList.remove('show');
+            updateCharCount(type, 'input');
+            updateCharCount(type, 'output');
+        }
+
+        // Mostrar resultado
+        function showResult(type, success, message) {
+            const resultDiv = document.getElementById(`${type}-result`);
+            resultDiv.className = `result ${success ? 'success' : 'error'} show`;
+
+            resultDiv.innerHTML = `
+                <div class="result-header">
+                    <span class="result-icon">${success ? '✓' : '✗'}</span>
+                    <h3 class="result-title">${success ? 'Éxito' : 'Error'}</h3>
+                </div>
+                <div class="result-message">${message}</div>
+            `;
+        }
+
+        // Event listeners para contador de caracteres
+        ['json', 'xml'].forEach(type => {
+            ['input', 'output'].forEach(side => {
+                const element = document.getElementById(`${type}-${side}`);
+                if (element) {
+                    element.addEventListener('input', () => updateCharCount(type, side));
+                }
+            });
+        });
+
+        // Inicializar contadores
+        updateCharCount('json', 'input');
+        updateCharCount('json', 'output');
+        updateCharCount('xml', 'input');
+        updateCharCount('xml', 'output');
+    </script>
+</body>
+</html>
