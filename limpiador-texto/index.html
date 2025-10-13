@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpiador de Texto Online | Eliminar Espacios y Limpiar Formato | meskeIA</title>
+    <meta name="description" content="Limpia y formatea texto eliminando espacios duplicados, saltos de línea extras, caracteres especiales y más. Herramienta gratuita 100% privada.">
+    <meta name="keywords" content="limpiador de texto, eliminar espacios duplicados, limpiar texto, quitar espacios, formatear texto, normalizar texto">
+    <meta name="author" content="meskeIA">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/limpiador-texto/">
+    <meta property="og:title" content="Limpiador de Texto Online | meskeIA">
+    <meta property="og:description" content="Limpia y formatea texto eliminando espacios duplicados, saltos de línea extras y caracteres especiales. Gratis y privado.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://meskeia.com/limpiador-texto/">
+    <meta property="twitter:title" content="Limpiador de Texto Online | meskeIA">
+    <meta property="twitter:description" content="Limpia y formatea texto eliminando espacios duplicados, saltos de línea extras y caracteres especiales. Gratis y privado.">
+
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Estados */
+            --success: #48A9A6;
+            --danger: #E63946;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header h1 .icon {
+            font-size: 2.8rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .text-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .text-section h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--bg-card);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: var(--bg-primary);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .cleaning-options {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .cleaning-options h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .option-card {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.15);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .option-checkbox {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .option-card.selected .option-checkbox {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .option-checkbox::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-card.selected .option-checkbox::after {
+            opacity: 1;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .option-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #246A8A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46,134,171,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #3A8885;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72,169,166,0.3);
+        }
+
+        .btn-danger {
+            background: transparent;
+            color: var(--danger);
+            border: 2px solid var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card ul li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-card ul li strong {
+            color: var(--text-primary);
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact-section p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-section a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+                padding: 60px 15px 15px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header h1 .icon {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            textarea {
+                min-height: 200px;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1>
+                <span class="icon">🧹</span>
+                Limpiador de Texto
+            </h1>
+            <p>Limpia y formatea tu texto eliminando espacios duplicados, saltos de línea extras y caracteres no deseados</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Texto Original -->
+            <div class="text-section">
+                <h2>✏️ Texto Original</h2>
+                <textarea
+                    id="inputText"
+                    placeholder="Pega o escribe tu texto aquí...&#10;&#10;Ejemplo:&#10;Hola    mundo   con   espacios    duplicados.&#10;&#10;&#10;&#10;Varias   líneas   en   blanco."
+                    oninput="updateStats()"
+                ></textarea>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Caracteres</span>
+                        <span class="stat-value" id="charCountOriginal">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Palabras</span>
+                        <span class="stat-value" id="wordCountOriginal">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Líneas</span>
+                        <span class="stat-value" id="lineCountOriginal">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Texto Limpio -->
+            <div class="text-section">
+                <h2>✨ Texto Limpio</h2>
+                <textarea
+                    id="outputText"
+                    placeholder="El resultado aparecerá aquí..."
+                    readonly
+                ></textarea>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Caracteres</span>
+                        <span class="stat-value" id="charCountClean">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Palabras</span>
+                        <span class="stat-value" id="wordCountClean">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Reducción</span>
+                        <span class="stat-value" id="reductionPercent">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opciones de Limpieza -->
+        <div class="cleaning-options">
+            <h2>🛠️ Opciones de Limpieza</h2>
+            <div class="options-grid">
+                <div class="option-card selected" id="option-spaces" onclick="toggleOption('spaces')">
+                    <div class="option-checkbox"></div>
+                    <div class="option-content">
+                        <div class="option-title">Eliminar espacios duplicados</div>
+                        <div class="option-description">Reduce múltiples espacios a uno solo</div>
+                    </div>
+                </div>
+
+                <div class="option-card selected" id="option-lines" onclick="toggleOption('lines')">
+                    <div class="option-checkbox"></div>
+                    <div class="option-content">
+                        <div class="option-title">Eliminar líneas vacías extras</div>
+                        <div class="option-description">Reduce múltiples saltos de línea a uno solo</div>
+                    </div>
+                </div>
+
+                <div class="option-card selected" id="option-trim" onclick="toggleOption('trim')">
+                    <div class="option-checkbox"></div>
+                    <div class="option-content">
+                        <div class="option-title">Eliminar espacios al inicio/final</div>
+                        <div class="option-description">Limpia espacios en los extremos de cada línea</div>
+                    </div>
+                </div>
+
+                <div class="option-card" id="option-tabs" onclick="toggleOption('tabs')">
+                    <div class="option-checkbox"></div>
+                    <div class="option-content">
+                        <div class="option-title">Convertir tabulaciones a espacios</div>
+                        <div class="option-description">Reemplaza tabs por espacios simples</div>
+                    </div>
+                </div>
+
+                <div class="option-card" id="option-special" onclick="toggleOption('special')">
+                    <div class="option-checkbox"></div>
+                    <div class="option-content">
+                        <div class="option-title">Eliminar caracteres especiales</div>
+                        <div class="option-description">Elimina símbolos no imprimibles y raros</div>
+                    </div>
+                </div>
+
+                <div class="option-card" id="option-emojis" onclick="toggleOption('emojis')">
+                    <div class="option-checkbox"></div>
+                    <div class="option-content">
+                        <div class="option-title">Eliminar emojis</div>
+                        <div class="option-description">Quita todos los emojis del texto</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="cleanText()">
+                🧹 Limpiar Texto
+            </button>
+            <button class="btn btn-success" onclick="copyResult()">
+                📋 Copiar Resultado
+            </button>
+            <button class="btn btn-secondary" onclick="replaceOriginal()">
+                🔄 Reemplazar Original
+            </button>
+            <button class="btn btn-danger" onclick="clearAll()">
+                🗑️ Limpiar Todo
+            </button>
+        </div>
+
+        <!-- Información -->
+        <div class="info-section">
+            <div class="info-card">
+                <h3>🎯 Casos de Uso</h3>
+                <ul>
+                    <li>✓ <strong>Escritores:</strong> Limpiar copias de Word o PDF mal formateadas</li>
+                    <li>✓ <strong>Programadores:</strong> Normalizar código copiado de documentación</li>
+                    <li>✓ <strong>Editores:</strong> Preparar textos para publicación web</li>
+                    <li>✓ <strong>Estudiantes:</strong> Limpiar apuntes copiados con formato</li>
+                    <li>✓ <strong>Traductores:</strong> Normalizar textos de múltiples fuentes</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🔧 Tipos de Limpieza</h3>
+                <ul>
+                    <li>✓ <strong>Espacios duplicados:</strong> "Hola    mundo" → "Hola mundo"</li>
+                    <li>✓ <strong>Líneas vacías:</strong> Reduce múltiples saltos de línea</li>
+                    <li>✓ <strong>Trim líneas:</strong> Elimina espacios al inicio/final</li>
+                    <li>✓ <strong>Tabulaciones:</strong> Convierte tabs a espacios</li>
+                    <li>✓ <strong>Caracteres especiales:</strong> Elimina símbolos raros</li>
+                    <li>✓ <strong>Emojis:</strong> Quita emojis si es necesario</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>⚡ Características</h3>
+                <ul>
+                    <li>✓ Limpieza instantánea con un clic</li>
+                    <li>✓ Procesamiento 100% local (privacidad total)</li>
+                    <li>✓ Opciones personalizables de limpieza</li>
+                    <li>✓ Estadísticas de reducción en tiempo real</li>
+                    <li>✓ Copiar resultado al portapapeles</li>
+                    <li>✓ Responsive para móviles</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="contact-section">
+            <p>¿Has encontrado algún error o tienes sugerencias?</p>
+            <p>Escríbenos a: <a href="mailto:meskeia24@gmail.com">meskeia24@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Estado de las opciones de limpieza
+        const cleaningOptions = {
+            spaces: true,
+            lines: true,
+            trim: true,
+            tabs: false,
+            special: false,
+            emojis: false
+        };
+
+        // Alternar opción de limpieza
+        function toggleOption(option) {
+            cleaningOptions[option] = !cleaningOptions[option];
+            const card = document.getElementById(`option-${option}`);
+
+            if (cleaningOptions[option]) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+        }
+
+        // Actualizar estadísticas del texto original
+        function updateStats() {
+            const text = document.getElementById('inputText').value;
+
+            const charCount = text.length;
+            const words = text.trim().length === 0 ? [] : text.trim().split(/\s+/);
+            const wordCount = words.length;
+            const lines = text.split('\n');
+            const lineCount = lines.length;
+
+            document.getElementById('charCountOriginal').textContent = charCount.toLocaleString('es-ES');
+            document.getElementById('wordCountOriginal').textContent = wordCount.toLocaleString('es-ES');
+            document.getElementById('lineCountOriginal').textContent = lineCount.toLocaleString('es-ES');
+        }
+
+        // Limpiar texto según opciones seleccionadas
+        function cleanText() {
+            const input = document.getElementById('inputText').value;
+
+            if (input.trim().length === 0) {
+                alert('Por favor, escribe o pega texto primero');
+                return;
+            }
+
+            let cleaned = input;
+
+            // Eliminar espacios duplicados
+            if (cleaningOptions.spaces) {
+                cleaned = cleaned.replace(/ {2,}/g, ' ');
+            }
+
+            // Convertir tabulaciones a espacios
+            if (cleaningOptions.tabs) {
+                cleaned = cleaned.replace(/\t/g, ' ');
+            }
+
+            // Eliminar espacios al inicio/final de cada línea
+            if (cleaningOptions.trim) {
+                cleaned = cleaned.split('\n').map(line => line.trim()).join('\n');
+            }
+
+            // Eliminar líneas vacías extras
+            if (cleaningOptions.lines) {
+                cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+            }
+
+            // Eliminar caracteres especiales no imprimibles
+            if (cleaningOptions.special) {
+                // Mantener letras, números, espacios, puntuación común y saltos de línea
+                cleaned = cleaned.replace(/[^\p{L}\p{N}\s.,;:!?¿¡'"()\-\n]/gu, '');
+            }
+
+            // Eliminar emojis
+            if (cleaningOptions.emojis) {
+                // Rango de emojis Unicode
+                cleaned = cleaned.replace(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
+            }
+
+            // Eliminar espacios al inicio y final del texto completo
+            cleaned = cleaned.trim();
+
+            document.getElementById('outputText').value = cleaned;
+            updateCleanStats(input, cleaned);
+        }
+
+        // Actualizar estadísticas del texto limpio
+        function updateCleanStats(original, cleaned) {
+            const charCount = cleaned.length;
+            const words = cleaned.trim().length === 0 ? [] : cleaned.trim().split(/\s+/);
+            const wordCount = words.length;
+
+            // Calcular porcentaje de reducción
+            const reduction = original.length > 0
+                ? Math.round(((original.length - cleaned.length) / original.length) * 100)
+                : 0;
+
+            document.getElementById('charCountClean').textContent = charCount.toLocaleString('es-ES');
+            document.getElementById('wordCountClean').textContent = wordCount.toLocaleString('es-ES');
+            document.getElementById('reductionPercent').textContent = reduction + '%';
+        }
+
+        // Copiar resultado al portapapeles
+        function copyResult() {
+            const output = document.getElementById('outputText').value;
+
+            if (output.trim().length === 0) {
+                alert('No hay texto limpio para copiar. Primero limpia el texto.');
+                return;
+            }
+
+            navigator.clipboard.writeText(output).then(() => {
+                const btn = event.target.closest('.btn');
+                const originalHTML = btn.innerHTML;
+
+                btn.innerHTML = '✓ Copiado';
+                btn.style.background = 'var(--success)';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                alert('Error al copiar al portapapeles');
+                console.error('Error:', err);
+            });
+        }
+
+        // Reemplazar texto original con el limpio
+        function replaceOriginal() {
+            const output = document.getElementById('outputText').value;
+
+            if (output.trim().length === 0) {
+                alert('No hay texto limpio para reemplazar. Primero limpia el texto.');
+                return;
+            }
+
+            document.getElementById('inputText').value = output;
+            document.getElementById('outputText').value = '';
+
+            updateStats();
+            document.getElementById('charCountClean').textContent = '0';
+            document.getElementById('wordCountClean').textContent = '0';
+            document.getElementById('reductionPercent').textContent = '0%';
+        }
+
+        // Limpiar todo
+        function clearAll() {
+            if (document.getElementById('inputText').value.length === 0 &&
+                document.getElementById('outputText').value.length === 0) {
+                return;
+            }
+
+            if (confirm('¿Estás seguro de que quieres borrar todo el contenido?')) {
+                document.getElementById('inputText').value = '';
+                document.getElementById('outputText').value = '';
+
+                document.getElementById('charCountOriginal').textContent = '0';
+                document.getElementById('wordCountOriginal').textContent = '0';
+                document.getElementById('lineCountOriginal').textContent = '0';
+
+                document.getElementById('charCountClean').textContent = '0';
+                document.getElementById('wordCountClean').textContent = '0';
+                document.getElementById('reductionPercent').textContent = '0%';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -133,7 +133,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://meskeia.com/conversor-texto/</loc>
+    <lastmod>2025-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://meskeia.com/contador-palabras/</loc>
+    <lastmod>2025-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meskeia.com/limpiador-texto/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
