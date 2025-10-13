@@ -679,7 +679,7 @@
             <button class="btn btn-primary" onclick="cleanText()">
                 🧹 Limpiar Texto
             </button>
-            <button class="btn btn-success" onclick="copyResult()">
+            <button class="btn btn-success" onclick="copyResult(event)">
                 📋 Copiar Resultado
             </button>
             <button class="btn btn-secondary" onclick="replaceOriginal()">
@@ -845,7 +845,7 @@
         }
 
         // Copiar resultado al portapapeles
-        function copyResult() {
+        function copyResult(event) {
             const output = document.getElementById('outputText').value;
 
             if (output.trim().length === 0) {
