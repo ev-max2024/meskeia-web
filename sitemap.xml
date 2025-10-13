@@ -199,6 +199,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://meskeia.com/generador-hash/</loc>
+    <lastmod>2025-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://meskeia.com/generador-horarios-estudio/</loc>
     <lastmod>2025-01-12</lastmod>
     <changefreq>monthly</changefreq>
