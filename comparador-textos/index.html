@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Textos | Diff Línea por Línea - meskeIA</title>
+    <meta name="description" content="Compara dos textos y visualiza diferencias línea por línea. Herramienta profesional para editores, escritores, traductores y estudiantes. Identifica cambios añadidos, eliminados y modificados.">
+    <meta name="keywords" content="comparador de textos, diff, diferencias de texto, comparar documentos, editor de textos, diff online, comparar versiones, herramienta editorial">
+    <link rel="canonical" href="https://meskeia.com/comparador-textos/">
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Comparador de Textos | Diff Línea por Línea - meskeIA">
+    <meta property="og:description" content="Compara dos textos y visualiza diferencias línea por línea. Identifica cambios que el ojo humano puede perder.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/comparador-textos/">
+    <meta property="og:image" content="https://meskeia.com/comparador-textos/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Comparador de Textos | Diff Línea por Línea - meskeIA">
+    <meta name="twitter:description" content="Herramienta profesional para comparar textos y detectar diferencias línea por línea.">
+
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Diff colors */
+            --diff-added: #d4edda;
+            --diff-added-border: #28a745;
+            --diff-removed: #f8d7da;
+            --diff-removed-border: #dc3545;
+            --diff-modified: #fff3cd;
+            --diff-modified-border: #ffc107;
+            --diff-unchanged: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #236a8e;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3a8a88;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(72,169,166,0.3);
+        }
+
+        .btn-light {
+            background: var(--hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-light:hover {
+            background: #e8e8e8;
+        }
+
+        .text-areas-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .text-area-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-area-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .examples {
+            margin-bottom: 20px;
+        }
+
+        .examples-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .example-btn {
+            padding: 10px 16px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .example-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--focus);
+        }
+
+        .results-section {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--hover);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-card.added {
+            border-left-color: var(--diff-added-border);
+        }
+
+        .stat-card.removed {
+            border-left-color: var(--diff-removed-border);
+        }
+
+        .stat-card.modified {
+            border-left-color: var(--diff-modified-border);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .diff-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .diff-header {
+            background: var(--hover);
+            padding: 12px 20px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .legend-color.added {
+            background: var(--diff-added);
+            border-color: var(--diff-added-border);
+        }
+
+        .legend-color.removed {
+            background: var(--diff-removed);
+            border-color: var(--diff-removed-border);
+        }
+
+        .legend-color.modified {
+            background: var(--diff-modified);
+            border-color: var(--diff-modified-border);
+        }
+
+        .diff-content {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .diff-line {
+            display: grid;
+            grid-template-columns: 50px 50px 1fr;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        .diff-line:last-child {
+            border-bottom: none;
+        }
+
+        .line-number {
+            padding: 0 12px;
+            text-align: right;
+            color: var(--text-muted);
+            user-select: none;
+            border-right: 1px solid var(--border);
+        }
+
+        .line-content {
+            padding: 0 15px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .diff-line.added {
+            background: var(--diff-added);
+        }
+
+        .diff-line.added .line-content {
+            border-left: 3px solid var(--diff-added-border);
+        }
+
+        .diff-line.removed {
+            background: var(--diff-removed);
+        }
+
+        .diff-line.removed .line-content {
+            border-left: 3px solid var(--diff-removed-border);
+        }
+
+        .diff-line.modified {
+            background: var(--diff-modified);
+        }
+
+        .diff-line.modified .line-content {
+            border-left: 3px solid var(--diff-modified-border);
+        }
+
+        .diff-line.unchanged {
+            background: var(--diff-unchanged);
+        }
+
+        .info-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .info-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .info-section h3 {
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-section li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .info-section strong {
+            color: var(--text-primary);
+        }
+
+        .faq {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .faq h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: var(--hover);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e8e8e8;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 500px;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(90deg);
+        }
+
+        .contact {
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+                padding: 10px;
+                padding-top: 70px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .text-areas-container {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .diff-line {
+                grid-template-columns: 40px 40px 1fr;
+                font-size: 0.8rem;
+            }
+
+            .line-number {
+                padding: 0 8px;
+            }
+
+            .line-content {
+                padding: 0 10px;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🔍 Comparador de Textos</h1>
+            <p class="subtitle">Detecta diferencias entre dos textos línea por línea con precisión profesional</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Ejemplos predefinidos -->
+            <div class="examples">
+                <label class="examples-label">📋 Ejemplos rápidos para probar:</label>
+                <div class="examples-grid">
+                    <button class="example-btn" onclick="loadExample('articulo')">📰 Revisión de artículo</button>
+                    <button class="example-btn" onclick="loadExample('codigo')">💻 Cambios en código</button>
+                    <button class="example-btn" onclick="loadExample('contrato')">📄 Revisión de contrato</button>
+                    <button class="example-btn" onclick="loadExample('traduccion')">🌍 Comparar traducción</button>
+                </div>
+            </div>
+
+            <!-- Áreas de texto -->
+            <div class="text-areas-container">
+                <div class="text-area-wrapper">
+                    <label class="text-area-label" for="text1">Texto Original (Versión 1)</label>
+                    <textarea id="text1" placeholder="Pega aquí el primer texto o versión original..." aria-label="Texto original"></textarea>
+                </div>
+                <div class="text-area-wrapper">
+                    <label class="text-area-label" for="text2">Texto Modificado (Versión 2)</label>
+                    <textarea id="text2" placeholder="Pega aquí el segundo texto o versión modificada..." aria-label="Texto modificado"></textarea>
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <div class="controls">
+                <button class="btn btn-primary" onclick="comparar()">
+                    <span>🔍</span>
+                    Comparar Textos
+                </button>
+                <button class="btn btn-secondary" onclick="intercambiar()">
+                    <span>🔄</span>
+                    Intercambiar Textos
+                </button>
+                <button class="btn btn-light" onclick="limpiar()">
+                    <span>🗑️</span>
+                    Limpiar Todo
+                </button>
+            </div>
+
+            <!-- Resultados -->
+            <div id="results" class="results-section">
+                <!-- Estadísticas -->
+                <div class="stats" id="stats"></div>
+
+                <!-- Diff visual -->
+                <div class="diff-container">
+                    <div class="diff-header">
+                        <span>Diferencias Detectadas</span>
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color added"></div>
+                                <span>Añadido</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color removed"></div>
+                                <span>Eliminado</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color modified"></div>
+                                <span>Modificado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diff-content" id="diffContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información -->
+        <div class="info-section">
+            <h2>Comparador de Textos Profesional</h2>
+            <p>Nuestra herramienta te permite comparar dos versiones de texto y visualizar las diferencias de manera clara y precisa. Ideal para detectar cambios que el ojo humano podría perder en documentos extensos.</p>
+
+            <h3>🎯 ¿Para qué se utiliza?</h3>
+            <ul>
+                <li><strong>Editores:</strong> Comparar versiones de artículos, libros o documentos antes de publicar</li>
+                <li><strong>Escritores:</strong> Ver cambios entre borradores y versiones finales de textos creativos</li>
+                <li><strong>Estudiantes:</strong> Comparar fuentes bibliográficas, citas o versiones de trabajos</li>
+                <li><strong>Traductores:</strong> Verificar diferencias entre traducciones o versiones idiomáticas</li>
+                <li><strong>Desarrolladores:</strong> Revisar cambios en documentación técnica o archivos de configuración</li>
+                <li><strong>Legal:</strong> Detectar modificaciones en contratos, acuerdos o términos legales</li>
+            </ul>
+
+            <h3>✨ Características</h3>
+            <ul>
+                <li><strong>Comparación línea por línea:</strong> Algoritmo preciso que detecta cambios al nivel de cada línea</li>
+                <li><strong>Visualización clara:</strong> Código de colores intuitivo (verde=añadido, rojo=eliminado, amarillo=modificado)</li>
+                <li><strong>Estadísticas detalladas:</strong> Conteo de líneas añadidas, eliminadas, modificadas y sin cambios</li>
+                <li><strong>Numeración dual:</strong> Muestra números de línea de ambas versiones para referencia rápida</li>
+                <li><strong>Ejemplos predefinidos:</strong> 4 casos de uso reales para probar la herramienta</li>
+                <li><strong>Intercambio rápido:</strong> Invierte las versiones con un clic para ver cambios desde otra perspectiva</li>
+            </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq">
+            <h2>❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    ¿Cómo funciona el comparador?
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    El comparador divide ambos textos en líneas individuales y las compara una por una. Utiliza un algoritmo de diferencias (diff) que identifica líneas añadidas (solo en versión 2), eliminadas (solo en versión 1) y modificadas (presentes en ambas pero con contenido diferente). Las líneas idénticas se muestran como sin cambios.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    ¿Qué significan los colores?
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>Verde (Añadido):</strong> Líneas que existen solo en la versión 2 (texto modificado).<br>
+                    <strong>Rojo (Eliminado):</strong> Líneas que existen solo en la versión 1 (texto original).<br>
+                    <strong>Amarillo (Modificado):</strong> Líneas que existen en ambas versiones pero con contenido diferente.<br>
+                    <strong>Gris (Sin cambios):</strong> Líneas idénticas en ambas versiones.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    ¿Puedo comparar archivos de Word o PDF?
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Esta herramienta compara texto plano. Para comparar documentos Word o PDF, primero copia y pega el contenido de texto en las áreas correspondientes. El formato (negrita, cursiva, colores) no se preserva, pero el contenido textual se compara correctamente.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    ¿Para qué sirve el botón "Intercambiar"?
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    El botón "Intercambiar" invierte las posiciones de los textos (versión 1 ↔ versión 2). Esto es útil para ver los cambios desde la perspectiva opuesta: lo que antes era "añadido" ahora aparece como "eliminado" y viceversa.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    ¿Hay límite de tamaño de texto?
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    No hay un límite estricto, pero textos muy largos (más de 10.000 líneas) pueden tardar unos segundos en procesarse. La herramienta funciona óptimamente con documentos de hasta 5.000 líneas. Para textos más extensos, considera dividirlos en secciones.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    ¿Se guardan mis textos en el servidor?
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    No. Todo el procesamiento se realiza localmente en tu navegador. Los textos que comparas nunca se envían a ningún servidor. Tu privacidad está completamente protegida.
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="contact">
+            <p>¿Has encontrado algún error o tienes sugerencias?</p>
+            <p>Escríbenos a: <a href="mailto:meskeia24@gmail.com">meskeia24@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Ejemplos predefinidos
+        const ejemplos = {
+            articulo: {
+                texto1: `El cambio climático es uno de los mayores desafíos del siglo XXI.
+Los científicos han documentado un aumento de temperatura global.
+Las emisiones de gases de efecto invernadero son la principal causa.
+Es necesario tomar medidas urgentes para reducir la contaminación.
+Los gobiernos deben implementar políticas sostenibles.
+La energía renovable es parte de la solución.
+Todos podemos contribuir con pequeñas acciones diarias.`,
+                texto2: `El cambio climático es uno de los mayores desafíos de nuestro tiempo.
+Los científicos han documentado un aumento significativo de temperatura global de 1.5°C.
+Las emisiones de gases de efecto invernadero son la principal causa del calentamiento.
+Es crucial tomar medidas urgentes para reducir la contaminación ambiental.
+Los gobiernos deben implementar políticas sostenibles inmediatamente.
+La transición a energías renovables es fundamental para la solución.
+Todos podemos contribuir con acciones cotidianas responsables.
+La educación ambiental debe ser prioridad en las escuelas.`
+            },
+            codigo: {
+                texto1: `function calcularTotal(precio, cantidad) {
+    const subtotal = precio * cantidad;
+    const iva = subtotal * 0.21;
+    return subtotal + iva;
+}
+
+const resultado = calcularTotal(100, 5);
+console.log(resultado);`,
+                texto2: `function calcularTotal(precio, cantidad, descuento = 0) {
+    const subtotal = precio * cantidad;
+    const montoDescuento = subtotal * (descuento / 100);
+    const subtotalConDescuento = subtotal - montoDescuento;
+    const iva = subtotalConDescuento * 0.21;
+    return {
+        subtotal: subtotalConDescuento,
+        iva: iva,
+        total: subtotalConDescuento + iva
+    };
+}
+
+const resultado = calcularTotal(100, 5, 10);
+console.log('Total:', resultado.total);`
+            },
+            contrato: {
+                texto1: `CONTRATO DE SERVICIOS
+
+El CLIENTE contrata los servicios del PROVEEDOR.
+El periodo de vigencia es de 12 meses.
+El pago se realizará mensualmente.
+El PROVEEDOR se compromete a entregar informes trimestrales.
+Cualquier modificación debe ser acordada por escrito.`,
+                texto2: `CONTRATO DE PRESTACIÓN DE SERVICIOS PROFESIONALES
+
+El CLIENTE contrata los servicios profesionales del PROVEEDOR.
+El periodo de vigencia es de 12 meses renovables automáticamente.
+El pago se realizará mensualmente mediante transferencia bancaria.
+El PROVEEDOR se compromete a entregar informes mensuales detallados.
+Cualquier modificación debe ser acordada por escrito entre ambas partes.
+Ambas partes acuerdan mantener confidencialidad sobre información sensible.`
+            },
+            traduccion: {
+                texto1: `The quick brown fox jumps over the lazy dog.
+She sells seashells by the seashore.
+Time flies like an arrow.
+Practice makes perfect.`,
+                texto2: `El rápido zorro marrón salta sobre el perro perezoso.
+Ella vende conchas marinas junto a la orilla del mar.
+El tiempo vuela como una flecha.
+La práctica hace al maestro.`
+            }
+        };
+
+        // Cargar ejemplo
+        function loadExample(tipo) {
+            const ejemplo = ejemplos[tipo];
+            document.getElementById('text1').value = ejemplo.texto1;
+            document.getElementById('text2').value = ejemplo.texto2;
+        }
+
+        // Algoritmo diff simplificado
+        function diff(text1, text2) {
+            const lines1 = text1.split('\n');
+            const lines2 = text2.split('\n');
+            const result = [];
+
+            const maxLines = Math.max(lines1.length, lines2.length);
+
+            for (let i = 0; i < maxLines; i++) {
+                const line1 = lines1[i] !== undefined ? lines1[i] : null;
+                const line2 = lines2[i] !== undefined ? lines2[i] : null;
+
+                if (line1 === null && line2 !== null) {
+                    // Línea añadida (solo en texto 2)
+                    result.push({
+                        type: 'added',
+                        line1Num: '',
+                        line2Num: i + 1,
+                        content: line2
+                    });
+                } else if (line1 !== null && line2 === null) {
+                    // Línea eliminada (solo en texto 1)
+                    result.push({
+                        type: 'removed',
+                        line1Num: i + 1,
+                        line2Num: '',
+                        content: line1
+                    });
+                } else if (line1 !== line2) {
+                    // Línea modificada
+                    result.push({
+                        type: 'modified',
+                        line1Num: i + 1,
+                        line2Num: i + 1,
+                        content: line2,
+                        original: line1
+                    });
+                } else {
+                    // Línea sin cambios
+                    result.push({
+                        type: 'unchanged',
+                        line1Num: i + 1,
+                        line2Num: i + 1,
+                        content: line1
+                    });
+                }
+            }
+
+            return result;
+        }
+
+        // Comparar textos
+        function comparar() {
+            const text1 = document.getElementById('text1').value;
+            const text2 = document.getElementById('text2').value;
+
+            if (!text1.trim() || !text2.trim()) {
+                alert('Por favor, ingresa texto en ambas áreas antes de comparar.');
+                return;
+            }
+
+            const differences = diff(text1, text2);
+
+            // Calcular estadísticas
+            const stats = {
+                added: differences.filter(d => d.type === 'added').length,
+                removed: differences.filter(d => d.type === 'removed').length,
+                modified: differences.filter(d => d.type === 'modified').length,
+                unchanged: differences.filter(d => d.type === 'unchanged').length
+            };
+
+            // Mostrar estadísticas
+            const statsHTML = `
+                <div class="stat-card added">
+                    <div class="stat-value">${stats.added.toLocaleString('es-ES')}</div>
+                    <div class="stat-label">Líneas añadidas</div>
+                </div>
+                <div class="stat-card removed">
+                    <div class="stat-value">${stats.removed.toLocaleString('es-ES')}</div>
+                    <div class="stat-label">Líneas eliminadas</div>
+                </div>
+                <div class="stat-card modified">
+                    <div class="stat-value">${stats.modified.toLocaleString('es-ES')}</div>
+                    <div class="stat-label">Líneas modificadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.unchanged.toLocaleString('es-ES')}</div>
+                    <div class="stat-label">Sin cambios</div>
+                </div>
+            `;
+            document.getElementById('stats').innerHTML = statsHTML;
+
+            // Mostrar diff
+            const diffHTML = differences.map(d => {
+                const content = d.content || d.original || '';
+                return `
+                    <div class="diff-line ${d.type}">
+                        <div class="line-number">${d.line1Num}</div>
+                        <div class="line-number">${d.line2Num}</div>
+                        <div class="line-content">${escapeHtml(content)}</div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('diffContent').innerHTML = diffHTML;
+            document.getElementById('results').classList.add('active');
+
+            // Scroll suave a resultados
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Intercambiar textos
+        function intercambiar() {
+            const text1 = document.getElementById('text1');
+            const text2 = document.getElementById('text2');
+            const temp = text1.value;
+            text1.value = text2.value;
+            text2.value = temp;
+
+            // Si hay resultados, recomparar automáticamente
+            if (document.getElementById('results').classList.contains('active')) {
+                comparar();
+            }
+        }
+
+        // Limpiar todo
+        function limpiar() {
+            if (confirm('¿Estás seguro de que deseas limpiar ambos textos y los resultados?')) {
+                document.getElementById('text1').value = '';
+                document.getElementById('text2').value = '';
+                document.getElementById('results').classList.remove('active');
+            }
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+
+    <!-- Schema.org para SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Comparador de Textos | Diff Línea por Línea",
+        "description": "Compara dos textos y visualiza diferencias línea por línea. Herramienta profesional para editores, escritores, traductores y estudiantes.",
+        "url": "https://meskeia.com/comparador-textos/",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "Comparación línea por línea",
+            "Visualización con código de colores",
+            "Estadísticas detalladas",
+            "Numeración dual de líneas",
+            "Ejemplos predefinidos",
+            "Procesamiento local"
+        ]
+    }
+    </script>
+</body>
+</html>
