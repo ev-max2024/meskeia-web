@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula tu tarifa freelance ideal considerando gastos, impuestos, vacaciones y margen de beneficio. Evita cobrar de menos con nuestra calculadora profesional gratuita.">
+    <meta name="keywords" content="calculadora freelance, tarifa freelance, precio hora freelance, calcular tarifa, freelancer, autónomo, tarifa por hora, calculadora precios">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/calculadora-tarifa-freelance/">
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/calculadora-tarifa-freelance/">
+    <meta property="og:title" content="Calculadora de Tarifa Freelance | Calcula tu Precio por Hora">
+    <meta property="og:description" content="Calcula tu tarifa freelance ideal considerando gastos, impuestos, vacaciones y margen de beneficio. Evita cobrar de menos.">
+    <meta property="og:image" content="https://meskeia.com/calculadora-tarifa-freelance/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://meskeia.com/calculadora-tarifa-freelance/">
+    <meta property="twitter:title" content="Calculadora de Tarifa Freelance | meskeIA">
+    <meta property="twitter:description" content="Calcula tu tarifa freelance ideal considerando todos los gastos ocultos. Herramienta gratuita.">
+    <meta property="twitter:image" content="https://meskeia.com/calculadora-tarifa-freelance/preview.png">
+
+    <title>Calculadora de Tarifa Freelance | Calcula tu Precio por Hora - meskeIA</title>
+
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Estados */
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Card genérica */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Form groups */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: -4px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .input-with-symbol {
+            position: relative;
+        }
+
+        .input-with-symbol input {
+            padding-right: 45px;
+        }
+
+        .input-with-symbol::after {
+            content: attr(data-symbol);
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        /* Resultados destacados */
+        .results-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(46, 134, 171, 0.25);
+        }
+
+        .results-hero h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .tarifa-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tarifa-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tarifa-card.destacada {
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .tarifa-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tarifa-valor {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .tarifa-descripcion {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        .objetivo-facturacion {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .objetivo-facturacion h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .objetivo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .objetivo-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .objetivo-item span:first-child {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .objetivo-item span:last-child {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Comparativa */
+        .comparativa {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .comparativa-item {
+            background: var(--hover);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .comparativa-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .comparativa-valor {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .comparativa-nota {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Desglose visual */
+        .desglose-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        #desgloseChart {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .desglose-leyenda {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--hover);
+            border-radius: 8px;
+        }
+
+        .leyenda-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .leyenda-info {
+            flex: 1;
+        }
+
+        .leyenda-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .leyenda-valor {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .leyenda-porcentaje {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Alertas */
+        .alert {
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-left: 4px solid;
+        }
+
+        .alert-warning {
+            background: #FEF3C7;
+            border-color: var(--warning);
+            color: #92400E;
+        }
+
+        .alert-info {
+            background: #DBEAFE;
+            border-color: var(--info);
+            color: #1E40AF;
+        }
+
+        .alert-success {
+            background: #D1FAE5;
+            border-color: var(--success);
+            color: #065F46;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Botones */
+        .button {
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .button:hover {
+            background: #236B8E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.3);
+        }
+
+        .button-secondary {
+            background: var(--secondary);
+        }
+
+        .button-secondary:hover {
+            background: #3A8A87;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Info boxes */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-box ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .info-box ul li {
+            padding: 5px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .info-box ul li::before {
+            content: "→ ";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* FAQs */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--hover);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer.active {
+            padding: 0 20px 20px 20px;
+            max-height: 500px;
+        }
+
+        /* Contacto */
+        .contact {
+            text-align: center;
+            padding: 30px;
+            background: var(--hover);
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .desglose-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tarifa-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .tarifa-card.destacada {
+                transform: scale(1);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparativa {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Ocultar resultados inicialmente */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>💰 Calculadora de Tarifa Freelance</h1>
+            <p>Calcula tu tarifa por hora ideal considerando gastos, impuestos, vacaciones y margen de beneficio. Evita el error más común: cobrar de menos.</p>
+        </div>
+
+        <!-- Sección 1: Datos Personales -->
+        <div class="card">
+            <h2>👤 Datos Personales</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="salarioDeseado">Salario neto deseado (anual)</label>
+                    <small>¿Cuánto quieres ganar al año después de impuestos?</small>
+                    <div class="input-with-symbol" data-symbol="€">
+                        <input type="number" id="salarioDeseado" value="30000" min="0" step="1000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="diasLaborables">Días laborables efectivos (año)</label>
+                    <small>Recomendado: 220-230 días (descontando vacaciones y festivos)</small>
+                    <div class="input-with-symbol" data-symbol="días">
+                        <input type="number" id="diasLaborables" value="220" min="150" max="260">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="horasDia">Horas facturables por día</label>
+                    <small>Realista: 5-6h (no 8h, hay administración, pausas, etc.)</small>
+                    <select id="horasDia">
+                        <option value="4">4 horas/día</option>
+                        <option value="5">5 horas/día</option>
+                        <option value="6" selected>6 horas/día</option>
+                        <option value="7">7 horas/día</option>
+                        <option value="8">8 horas/día</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 2: Gastos del Negocio -->
+        <div class="card">
+            <h2>💼 Gastos del Negocio</h2>
+
+            <h3 style="margin-bottom: 15px; color: var(--text-primary); font-size: 1.1rem;">Gastos Fijos Mensuales</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="alquiler">Alquiler oficina / coworking</label>
+                    <div class="input-with-symbol" data-symbol="€/mes">
+                        <input type="number" id="alquiler" value="0" min="0" step="50">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="software">Software y herramientas</label>
+                    <small>Adobe, hosting, apps, etc.</small>
+                    <div class="input-with-symbol" data-symbol="€/mes">
+                        <input type="number" id="software" value="100" min="0" step="10">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="internet">Internet y telefonía</label>
+                    <div class="input-with-symbol" data-symbol="€/mes">
+                        <input type="number" id="internet" value="50" min="0" step="5">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="seguros">Seguros profesionales</label>
+                    <small>Responsabilidad civil, salud, etc.</small>
+                    <div class="input-with-symbol" data-symbol="€/mes">
+                        <input type="number" id="seguros" value="50" min="0" step="10">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="autonomos">Cuota de autónomos</label>
+                    <small>En España: ~295€/mes (2025)</small>
+                    <div class="input-with-symbol" data-symbol="€/mes">
+                        <input type="number" id="autonomos" value="295" min="0" step="5">
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px 0; color: var(--text-primary); font-size: 1.1rem;">Gastos Variables Anuales</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="formacion">Formación y certificaciones</label>
+                    <small>Cursos, conferencias, libros</small>
+                    <div class="input-with-symbol" data-symbol="€/año">
+                        <input type="number" id="formacion" value="500" min="0" step="100">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="marketing">Marketing y publicidad</label>
+                    <small>Web, anuncios, networking</small>
+                    <div class="input-with-symbol" data-symbol="€/año">
+                        <input type="number" id="marketing" value="300" min="0" step="50">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gestoria">Gestoría / asesoría fiscal</label>
+                    <div class="input-with-symbol" data-symbol="€/año">
+                        <input type="number" id="gestoria" value="600" min="0" step="50">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="material">Material y equipamiento</label>
+                    <small>Ordenador, mobiliario, etc. (amortizado)</small>
+                    <div class="input-with-symbol" data-symbol="€/año">
+                        <input type="number" id="material" value="500" min="0" step="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 3: Impuestos y Márgenes -->
+        <div class="card">
+            <h2>📊 Impuestos y Márgenes</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="irpf">IRPF estimado</label>
+                    <small>Porcentaje de impuestos sobre beneficios</small>
+                    <div class="input-with-symbol" data-symbol="%">
+                        <input type="number" id="irpf" value="20" min="0" max="50" step="1">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="margen">Margen de seguridad</label>
+                    <small>Recomendado: 15-20% para imprevistos</small>
+                    <div class="input-with-symbol" data-symbol="%">
+                        <input type="number" id="margen" value="15" min="0" max="50" step="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="button" onclick="calcular()">
+                    🧮 Calcular mi Tarifa
+                </button>
+                <button class="button button-secondary" onclick="resetear()">
+                    🔄 Restablecer Valores
+                </button>
+            </div>
+        </div>
+
+        <!-- Sección 4: Resultados (oculta inicialmente) -->
+        <div id="resultados" class="hidden">
+            <div class="results-hero">
+                <h2>💰 Tu Tarifa Recomendada</h2>
+
+                <div class="tarifa-cards">
+                    <div class="tarifa-card">
+                        <div class="tarifa-label">⚠️ Mínima</div>
+                        <div class="tarifa-valor" id="tarifaMinima">--€</div>
+                        <div class="tarifa-descripcion">Para cubrir gastos</div>
+                    </div>
+
+                    <div class="tarifa-card destacada">
+                        <div class="tarifa-label">✅ Ideal</div>
+                        <div class="tarifa-valor" id="tarifaIdeal">--€</div>
+                        <div class="tarifa-descripcion">Recomendada</div>
+                    </div>
+
+                    <div class="tarifa-card">
+                        <div class="tarifa-label">🎯 Premium</div>
+                        <div class="tarifa-valor" id="tarifaPremium">--€</div>
+                        <div class="tarifa-descripcion">Para crecer</div>
+                    </div>
+                </div>
+
+                <div class="objetivo-facturacion">
+                    <h3>📈 Objetivo de Facturación</h3>
+                    <div class="objetivo-grid">
+                        <div class="objetivo-item">
+                            <span>Mensual</span>
+                            <span id="objetivoMensual">--€</span>
+                        </div>
+                        <div class="objetivo-item">
+                            <span>Anual</span>
+                            <span id="objetivoAnual">--€</span>
+                        </div>
+                        <div class="objetivo-item">
+                            <span>Horas/año</span>
+                            <span id="horasAnuales">--h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertas dinámicas -->
+            <div id="alertasContainer"></div>
+
+            <!-- Sección 5: Comparativa Empleado vs Freelance -->
+            <div class="card">
+                <h2>⚖️ Comparativa: Empleado vs Freelance</h2>
+                <div class="comparativa">
+                    <div class="comparativa-item">
+                        <h3>👔 Como Empleado</h3>
+                        <div class="comparativa-valor" id="salarioEmpleado">--€</div>
+                        <div class="comparativa-nota">
+                            Salario bruto anual equivalente a tu salario neto deseado.
+                            La empresa paga tus impuestos, seguridad social, vacaciones pagadas.
+                        </div>
+                    </div>
+
+                    <div class="comparativa-item" style="border-color: var(--secondary);">
+                        <h3>💼 Como Freelance</h3>
+                        <div class="comparativa-valor" id="facturacionFreelance">--€</div>
+                        <div class="comparativa-nota">
+                            Facturación bruta anual necesaria para obtener el mismo nivel de vida.
+                            Incluye todos tus gastos, impuestos, vacaciones sin pagar, margen de seguridad.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" style="margin-top: 20px;">
+                    <span style="font-size: 1.5rem;">💡</span>
+                    <div>
+                        <strong>¿Por qué necesitas facturar más?</strong>
+                        Como freelance pagas todos tus gastos: seguros, software, oficina, vacaciones sin cobrar, periodos sin proyectos, impuestos completos.
+                        Un empleado tiene estos costes cubiertos por la empresa.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 6: Desglose Visual -->
+            <div class="card">
+                <h2>📊 ¿Dónde va cada euro?</h2>
+                <div class="desglose-container">
+                    <div class="chart-container">
+                        <canvas id="desgloseChart"></canvas>
+                    </div>
+
+                    <div class="desglose-leyenda" id="desgloseLeyenda">
+                        <!-- Se generará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consejos según sector -->
+            <div class="card">
+                <h2>💡 Consejos para Optimizar tu Tarifa</h2>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>🎯 Especialización</h4>
+                        <p>Los freelancers especializados cobran 2-3x más que los generalistas. Define tu nicho claro.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📦 Paquetes de Servicios</h4>
+                        <p>Ofrece paquetes con valor fijo en lugar de solo horas. Facilita la decisión del cliente.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📈 Incrementos Progresivos</h4>
+                        <p>Revisa tus tarifas cada 6 meses. Incrementa 10-15% con clientes nuevos.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>🔄 Retainer Mensual</h4>
+                        <p>Estabilidad: ofrece a clientes recurrentes cuotas mensuales fijas con descuento.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>⚡ Urgencias Premium</h4>
+                        <p>Cobra 50-100% extra por proyectos urgentes o entregas express.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📊 Valor, no Tiempo</h4>
+                        <p>Factura por valor entregado, no por horas trabajadas. Tu experiencia vale más.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="card">
+            <h2>❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Por qué mi tarifa calculada parece alta?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Es normal que parezca alta al principio. Recuerda que como freelance pagas TODO: impuestos completos, seguridad social, vacaciones sin cobrar,
+                    equipamiento, software, formación, periodos sin proyectos. Un empleado con salario de 30.000€ le cuesta a la empresa ~45.000€.
+                    Como freelance debes facturar incluso más porque no tienes los beneficios (vacaciones pagadas, baja por enfermedad, etc.).
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Debo cobrar la misma tarifa a todos los clientes?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    No necesariamente. Esta es tu tarifa BASE mínima. Puedes (y debes) cobrar más según: urgencia del proyecto (+50-100%),
+                    complejidad especial (+20-50%), valor estratégico para el cliente (basado en ROI), tamaño del proyecto (descuento por volumen solo si conviene).
+                    Nunca cobres por debajo de tu tarifa mínima calculada.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Qué hago si los clientes dicen que es muy caro?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Opciones: 1) Demuestra el VALOR que aportas, no el tiempo. Si ahorras 50.000€ al cliente, 5.000€ es barato.
+                    2) Busca clientes con mayor presupuesto (empresas medianas/grandes, no startups sin fondos).
+                    3) Especialízate para justificar precios premium. 4) No es "caro", es "más de lo que pueden pagar" - no son tu cliente ideal.
+                    Recuerda: cobrar barato atrae malos clientes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Debo facturar por hora o por proyecto?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    SIEMPRE que puedas, factura por proyecto (precio fijo). Ventajas: capturas el valor de tu experiencia (trabajas más rápido pero cobras por resultado),
+                    evitas micromanagement del cliente, facilitas la decisión de compra, puedes ganar más si eres eficiente.
+                    Usa tu tarifa horaria solo como base para estimar proyectos: (horas estimadas × tarifa horaria) + margen de riesgo 20-30%.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Cuándo debo actualizar mi tarifa?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Revisa tu tarifa cada 6 meses. Actualízala cuando: tus gastos aumentan (inflación, nuevas herramientas),
+                    adquieres nuevas habilidades/certificaciones, tienes más demanda de la que puedes atender (señal clara de subir precios),
+                    cambias de nicho a uno más especializado. Regla: clientes actuales mantienen tarifa por 12 meses, nuevos clientes pagan nueva tarifa desde el inicio.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Qué son las "horas facturables" y por qué no son 8h/día?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Las horas facturables son las que realmente cobras al cliente. Como freelance también dedicas tiempo a:
+                    administración y contabilidad (facturas, emails), búsqueda de clientes y propuestas, formación y actualización,
+                    mantenimiento de web/portfolio, descansos y gestión personal.
+                    Realísticamente, de 8h de trabajo diarias, solo 5-6h son facturables. Pretender 8h facturables es la vía rápida al burnout.
+                </div>
+            </div>
+        </div>
+
+        <!-- Referencias de mercado -->
+        <div class="card">
+            <h2>📊 Referencias de Tarifas por Sector (España, 2025)</h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>💻 Desarrollo Web</h4>
+                    <ul>
+                        <li>Junior: 25-40€/h</li>
+                        <li>Mid-level: 40-70€/h</li>
+                        <li>Senior: 70-120€/h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>🎨 Diseño Gráfico</h4>
+                    <ul>
+                        <li>Junior: 20-35€/h</li>
+                        <li>Mid-level: 35-60€/h</li>
+                        <li>Senior: 60-100€/h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>✍️ Copywriting</h4>
+                    <ul>
+                        <li>Junior: 25-40€/h</li>
+                        <li>Mid-level: 40-75€/h</li>
+                        <li>Senior: 75-150€/h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>📊 Consultoría</h4>
+                    <ul>
+                        <li>Junior: 40-60€/h</li>
+                        <li>Mid-level: 60-100€/h</li>
+                        <li>Senior: 100-200€/h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>📱 Marketing Digital</h4>
+                    <ul>
+                        <li>Junior: 25-40€/h</li>
+                        <li>Mid-level: 40-70€/h</li>
+                        <li>Senior: 70-120€/h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>🎬 Vídeo/Fotografía</h4>
+                    <ul>
+                        <li>Junior: 30-50€/h</li>
+                        <li>Mid-level: 50-80€/h</li>
+                        <li>Senior: 80-150€/h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-info" style="margin-top: 20px;">
+                <span style="font-size: 1.5rem;">ℹ️</span>
+                <div>
+                    <strong>Nota importante:</strong>
+                    Estas tarifas son orientativas para España en 2025. Pueden variar según ciudad (Madrid/Barcelona vs provincias),
+                    especialización concreta, experiencia demostrable, y cartera de clientes. Úsalas como referencia, no como límite.
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="contact">
+            <p>¿Has encontrado algún error o tienes sugerencias?</p>
+            <p>Escríbenos a: <a href="mailto:meskeia24@gmail.com">meskeia24@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Datos globales
+        let chartInstance = null;
+
+        // Función principal de cálculo
+        function calcular() {
+            // Obtener valores
+            const salarioDeseado = parseFloat(document.getElementById('salarioDeseado').value) || 0;
+            const diasLaborables = parseFloat(document.getElementById('diasLaborables').value) || 220;
+            const horasDia = parseFloat(document.getElementById('horasDia').value) || 6;
+
+            // Gastos fijos mensuales
+            const alquiler = parseFloat(document.getElementById('alquiler').value) || 0;
+            const software = parseFloat(document.getElementById('software').value) || 0;
+            const internet = parseFloat(document.getElementById('internet').value) || 0;
+            const seguros = parseFloat(document.getElementById('seguros').value) || 0;
+            const autonomos = parseFloat(document.getElementById('autonomos').value) || 0;
+            const gastosFijosMensuales = alquiler + software + internet + seguros + autonomos;
+            const gastosFijosAnuales = gastosFijosMensuales * 12;
+
+            // Gastos variables anuales
+            const formacion = parseFloat(document.getElementById('formacion').value) || 0;
+            const marketing = parseFloat(document.getElementById('marketing').value) || 0;
+            const gestoria = parseFloat(document.getElementById('gestoria').value) || 0;
+            const material = parseFloat(document.getElementById('material').value) || 0;
+            const gastosVariablesAnuales = formacion + marketing + gestoria + material;
+
+            // Total gastos anuales
+            const gastosAnuales = gastosFijosAnuales + gastosVariablesAnuales;
+
+            // Impuestos y márgenes
+            const irpf = parseFloat(document.getElementById('irpf').value) || 0;
+            const margen = parseFloat(document.getElementById('margen').value) || 0;
+
+            // Horas facturables anuales
+            const horasAnuales = diasLaborables * horasDia;
+
+            // Cálculo de tarifa mínima (solo cubrir gastos + salario)
+            const baseAnual = salarioDeseado + gastosAnuales;
+            const baseConImpuestos = baseAnual / (1 - (irpf / 100));
+            const tarifaMinima = baseConImpuestos / horasAnuales;
+
+            // Cálculo de tarifa ideal (con margen de seguridad)
+            const idealAnual = baseConImpuestos * (1 + (margen / 100));
+            const tarifaIdeal = idealAnual / horasAnuales;
+
+            // Cálculo de tarifa premium (margen adicional 25%)
+            const tarifaPremium = tarifaIdeal * 1.25;
+
+            // Facturación anual necesaria
+            const facturacionAnual = tarifaIdeal * horasAnuales;
+            const facturacionMensual = facturacionAnual / 12;
+
+            // Comparativa empleado (salario bruto equivalente)
+            // Regla aproximada: salario bruto = salario neto / 0.75 (25% impuestos aprox)
+            const salarioEmpleadoEquivalente = salarioDeseado / 0.75;
+
+            // Mostrar resultados
+            document.getElementById('tarifaMinima').textContent = tarifaMinima.toFixed(0) + "€/h";
+            document.getElementById('tarifaIdeal').textContent = tarifaIdeal.toFixed(0) + "€/h";
+            document.getElementById('tarifaPremium').textContent = tarifaPremium.toFixed(0) + "€/h";
+
+            document.getElementById('objetivoMensual').textContent = facturacionMensual.toLocaleString('es-ES', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + "€";
+            document.getElementById('objetivoAnual').textContent = facturacionAnual.toLocaleString('es-ES', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + "€";
+            document.getElementById('horasAnuales').textContent = horasAnuales.toLocaleString('es-ES') + "h";
+
+            document.getElementById('salarioEmpleado').textContent = salarioEmpleadoEquivalente.toLocaleString('es-ES', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + "€/año";
+            document.getElementById('facturacionFreelance').textContent = facturacionAnual.toLocaleString('es-ES', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + "€/año";
+
+            // Mostrar alertas dinámicas
+            mostrarAlertas(tarifaIdeal, horasDia, margen);
+
+            // Generar gráfico de desglose
+            generarGraficoDesglose(salarioDeseado, gastosAnuales, baseConImpuestos, idealAnual);
+
+            // Mostrar sección de resultados
+            document.getElementById('resultados').classList.remove('hidden');
+
+            // Scroll suave a resultados
+            document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Mostrar alertas según cálculos
+        function mostrarAlertas(tarifa, horasDia, margen) {
+            const container = document.getElementById('alertasContainer');
+            container.innerHTML = '';
+
+            // Alerta si tarifa muy baja
+            if (tarifa < 25) {
+                container.innerHTML += `
+                    <div class="alert alert-warning">
+                        <span style="font-size: 1.5rem;">⚠️</span>
+                        <div>
+                            <strong>Tarifa por debajo del mercado</strong>
+                            Tu tarifa calculada está por debajo de las tarifas mínimas de mercado en España.
+                            Considera aumentar tu salario deseado o reducir gastos, o trabajar más horas facturables.
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Alerta si muchas horas facturables
+            if (horasDia >= 7) {
+                container.innerHTML += `
+                    <div class="alert alert-warning">
+                        <span style="font-size: 1.5rem;">⚠️</span>
+                        <div>
+                            <strong>Cuidado con el burnout</strong>
+                            Estás calculando ${horasDia} horas facturables al día. Esto es poco realista a largo plazo.
+                            Recuerda que también necesitas tiempo para administración, búsqueda de clientes y descanso.
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Alerta si margen bajo
+            if (margen < 10) {
+                container.innerHTML += `
+                    <div class="alert alert-warning">
+                        <span style="font-size: 1.5rem;">⚠️</span>
+                        <div>
+                            <strong>Margen de seguridad muy bajo</strong>
+                            Un margen menor al 10% te deja sin colchón para imprevistos: clientes que no pagan,
+                            reparaciones de equipos, formación urgente. Recomendamos al menos 15%.
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Alerta positiva si configuración buena
+            if (tarifa >= 40 && tarifa <= 150 && horasDia <= 6 && margen >= 15) {
+                container.innerHTML += `
+                    <div class="alert alert-success">
+                        <span style="font-size: 1.5rem;">✅</span>
+                        <div>
+                            <strong>Configuración saludable</strong>
+                            Tu configuración parece equilibrada: tarifa competitiva, horas realistas y margen de seguridad adecuado.
+                            ¡Buen trabajo!
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Generar gráfico circular de desglose
+        function generarGraficoDesglose(salarioDeseado, gastosAnuales, baseConImpuestos, idealAnual) {
+            const canvas = document.getElementById('desgloseChart');
+            const ctx = canvas.getContext('2d');
+
+            // Calcular valores
+            const impuestos = baseConImpuestos - (salarioDeseado + gastosAnuales);
+            const margenSeguridad = idealAnual - baseConImpuestos;
+
+            const total = idealAnual;
+
+            // Datos para el gráfico
+            const data = [
+                { label: 'Tu Salario Neto', valor: salarioDeseado, color: '#2E86AB' },
+                { label: 'Gastos Operativos', valor: gastosAnuales, color: '#48A9A6' },
+                { label: 'Impuestos (IRPF)', valor: impuestos, color: '#F59E0B' },
+                { label: 'Margen de Seguridad', valor: margenSeguridad, color: '#10B981' }
+            ];
+
+            // Generar leyenda
+            const leyendaContainer = document.getElementById('desgloseLeyenda');
+            leyendaContainer.innerHTML = '';
+
+            data.forEach(item => {
+                const porcentaje = ((item.valor / total) * 100).toFixed(1);
+                leyendaContainer.innerHTML += `
+                    <div class="leyenda-item">
+                        <div class="leyenda-color" style="background: ${item.color};"></div>
+                        <div class="leyenda-info">
+                            <div class="leyenda-label">${item.label}</div>
+                            <div>
+                                <span class="leyenda-valor">${item.valor.toLocaleString('es-ES', {minimumFractionDigits: 0, maximumFractionDigits: 0})}€</span>
+                                <span class="leyenda-porcentaje">(${porcentaje}%)</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Dibujar gráfico circular simple
+            const size = 300;
+            canvas.width = size;
+            canvas.height = size;
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size / 2 - 20;
+
+            let currentAngle = -Math.PI / 2; // Empezar arriba
+
+            data.forEach(item => {
+                const sliceAngle = (item.valor / total) * 2 * Math.PI;
+
+                // Dibujar slice
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+                ctx.closePath();
+                ctx.fillStyle = item.color;
+                ctx.fill();
+
+                // Borde blanco
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                currentAngle += sliceAngle;
+            });
+
+            // Círculo blanco en el centro (donut chart)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.5, 0, 2 * Math.PI);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fill();
+        }
+
+        // Resetear formulario
+        function resetear() {
+            document.getElementById('salarioDeseado').value = 30000;
+            document.getElementById('diasLaborables').value = 220;
+            document.getElementById('horasDia').value = 6;
+            document.getElementById('alquiler').value = 0;
+            document.getElementById('software').value = 100;
+            document.getElementById('internet').value = 50;
+            document.getElementById('seguros').value = 50;
+            document.getElementById('autonomos').value = 295;
+            document.getElementById('formacion').value = 500;
+            document.getElementById('marketing').value = 300;
+            document.getElementById('gestoria').value = 600;
+            document.getElementById('material').value = 500;
+            document.getElementById('irpf').value = 20;
+            document.getElementById('margen').value = 15;
+
+            // Ocultar resultados
+            document.getElementById('resultados').classList.add('hidden');
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+
+            answer.classList.toggle('active');
+
+            if (answer.classList.contains('active')) {
+                toggle.textContent = '▼';
+            } else {
+                toggle.textContent = '▶';
+            }
+        }
+    </script>
+</body>
+</html>
