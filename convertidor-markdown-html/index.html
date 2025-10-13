@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+    <title>Convertidor Markdown a HTML | Convierte MD a HTML - meskeIA</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Convierte Markdown a HTML limpio y listo para usar en tiempo real. Soporte completo de sintaxis: títulos, listas, enlaces, imágenes, código, tablas. Ideal para bloggers y desarrolladores.">
+    <meta name="keywords" content="markdown, html, convertidor markdown, markdown to html, md to html, parser markdown, markdown online, convertidor online, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/convertidor-markdown-html/">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Convertidor Markdown a HTML | meskeIA">
+    <meta property="og:description" content="Convierte Markdown a HTML limpio en tiempo real. Soporte completo de sintaxis con vista previa instantánea.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/convertidor-markdown-html/">
+    <meta property="og:image" content="https://meskeia.com/icon_meskeia.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="meskeIA">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertidor Markdown a HTML | meskeIA">
+    <meta name="twitter:description" content="Convierte Markdown a HTML limpio en tiempo real con vista previa instantánea.">
+    <meta name="twitter:image" content="https://meskeia.com/icon_meskeia.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Convertidor Markdown a HTML",
+        "description": "Convierte formato Markdown a HTML limpio y listo para usar en tiempo real",
+        "url": "https://meskeia.com/convertidor-markdown-html/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Qué es Markdown?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Markdown es un lenguaje de marcado ligero creado por John Gruber. Permite escribir usando un formato de texto plano fácil de leer y escribir, que luego se convierte a HTML estructurado. Es ampliamente usado en GitHub, Reddit, foros técnicos y plataformas de blogs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué sintaxis de Markdown se soporta?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Soportamos la sintaxis completa de Markdown: títulos (# H1 a ###### H6), negrita (**texto**), cursiva (*texto*), enlaces [texto](url), imágenes ![alt](url), listas ordenadas y desordenadas, código en línea (`código`) y bloques de código (```código```), citas (>), líneas horizontales (---) y tablas."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿El HTML generado es limpio y válido?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, el HTML generado sigue estándares HTML5 válidos y está optimizado para su uso directo en páginas web. Todos los elementos se escapan correctamente para prevenir XSS. El código generado es limpio, sin espacios innecesarios y listo para copiar y pegar."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Puedo usar el HTML en mi blog o sitio web?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutamente. El HTML generado es compatible con cualquier plataforma que acepte HTML: WordPress, Blogger, Medium (con extensiones), Wix, plataformas de email marketing, documentación web, y cualquier CMS moderno. Solo copia el código HTML y pégalo en tu editor."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Se guarda mi contenido en el servidor?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Todo el procesamiento se realiza localmente en tu navegador usando JavaScript. Tu contenido Markdown nunca se envía a ningún servidor. Tu privacidad está completamente protegida."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿La vista previa es en tiempo real?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, la conversión y vista previa se actualizan automáticamente mientras escribes. Puedes ver inmediatamente cómo se renderiza tu Markdown en HTML formateado, lo que facilita detectar errores de sintaxis al instante."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+
+            /* Markdown syntax colors */
+            --code-bg: #F6F8FA;
+            --code-border: #D1D9E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .examples-bar {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .examples-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .examples-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .example-btn {
+            padding: 10px 20px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .example-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .example-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-header.preview {
+            background: var(--secondary);
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .panel-content {
+            flex: 1;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        textarea {
+            width: 100%;
+            height: 500px;
+            padding: 20px;
+            border: none;
+            resize: vertical;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .preview-content {
+            padding: 20px;
+            min-height: 500px;
+            max-height: 500px;
+            overflow-y: auto;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .html-output {
+            width: 100%;
+            height: 500px;
+            padding: 20px;
+            border: none;
+            resize: vertical;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            background: var(--code-bg);
+            color: var(--text-primary);
+            overflow: auto;
+            white-space: pre;
+            outline: none;
+        }
+
+        /* Estilos de vista previa renderizada */
+        .preview-content h1 { font-size: 2rem; margin: 20px 0 10px; color: var(--primary); }
+        .preview-content h2 { font-size: 1.75rem; margin: 18px 0 10px; color: var(--primary); }
+        .preview-content h3 { font-size: 1.5rem; margin: 16px 0 8px; color: var(--primary); }
+        .preview-content h4 { font-size: 1.25rem; margin: 14px 0 8px; color: var(--text-primary); }
+        .preview-content h5 { font-size: 1.1rem; margin: 12px 0 6px; color: var(--text-primary); }
+        .preview-content h6 { font-size: 1rem; margin: 10px 0 6px; color: var(--text-secondary); }
+
+        .preview-content p { margin: 10px 0; line-height: 1.6; }
+        .preview-content strong { font-weight: 700; color: var(--text-primary); }
+        .preview-content em { font-style: italic; }
+        .preview-content code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            border: 1px solid var(--code-border);
+        }
+        .preview-content pre {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--code-border);
+            margin: 15px 0;
+        }
+        .preview-content pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            font-size: 0.85em;
+        }
+        .preview-content ul, .preview-content ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        .preview-content li { margin: 5px 0; }
+        .preview-content a {
+            color: var(--primary);
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        .preview-content a:hover { color: var(--secondary); }
+        .preview-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .preview-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin: 15px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .preview-content hr {
+            border: none;
+            border-top: 2px solid var(--border);
+            margin: 20px 0;
+        }
+        .preview-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        .preview-content th, .preview-content td {
+            border: 1px solid var(--border);
+            padding: 10px;
+            text-align: left;
+        }
+        .preview-content th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        .preview-content tr:nth-child(even) {
+            background: var(--bg-primary);
+        }
+
+        .actions-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .action-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-convert {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-convert:hover {
+            background: #236B8A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.3);
+        }
+
+        .btn-clear {
+            background: white;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-clear:hover {
+            background: var(--hover);
+            border-color: var(--text-secondary);
+        }
+
+        .syntax-guide {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .syntax-guide h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .syntax-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .syntax-item {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .syntax-item h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .syntax-item code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .info-section {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .info-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .info-section h3 {
+            color: var(--text-primary);
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-section li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .info-section strong {
+            color: var(--primary);
+        }
+
+        .faq-section {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .faq-section h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--hover);
+        }
+
+        .faq-question h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin: 0;
+            flex: 1;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .contact {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding-top: 60px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-bar {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .syntax-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .examples-buttons {
+                flex-direction: column;
+            }
+
+            .example-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>📝 Convertidor Markdown a HTML</h1>
+            <p>Convierte Markdown a HTML limpio con vista previa en tiempo real</p>
+        </div>
+
+        <!-- Ejemplos rápidos -->
+        <div class="examples-bar">
+            <div class="examples-label">📋 Ejemplos rápidos para probar:</div>
+            <div class="examples-buttons">
+                <button class="example-btn" onclick="cargarEjemplo('articulo')">📰 Artículo de blog</button>
+                <button class="example-btn" onclick="cargarEjemplo('documentacion')">📚 Documentación técnica</button>
+                <button class="example-btn" onclick="cargarEjemplo('readme')">📄 README de GitHub</button>
+            </div>
+        </div>
+
+        <!-- Convertidor -->
+        <div class="converter-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Markdown (Entrada)</span>
+                </div>
+                <div class="panel-content">
+                    <textarea id="markdownInput" placeholder="Escribe tu Markdown aquí...
+
+# Título Principal
+## Subtítulo
+
+Escribe texto en **negrita** o *cursiva*.
+
+- Lista item 1
+- Lista item 2
+
+[Enlace a meskeIA](https://meskeia.com)
+
+```javascript
+console.log('Hola mundo');
+```"></textarea>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header preview">
+                    <span>Vista Previa HTML</span>
+                </div>
+                <div class="panel-content">
+                    <div class="preview-content" id="previewOutput">
+                        <p style="color: #999;">La vista previa aparecerá aquí...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel HTML Code -->
+        <div class="panel" style="margin-bottom: 30px;">
+            <div class="panel-header">
+                <span>Código HTML Generado</span>
+                <button class="copy-btn" onclick="copiarHTML()">📋 Copiar HTML</button>
+            </div>
+            <div class="panel-content">
+                <div class="html-output" id="htmlOutput" contenteditable="false">&lt;!-- El código HTML aparecerá aquí --&gt;</div>
+            </div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="actions-bar">
+            <button class="action-btn btn-convert" onclick="convertir()">
+                <span>🔄</span>
+                <span>Convertir a HTML</span>
+            </button>
+            <button class="action-btn btn-clear" onclick="limpiar()">
+                <span>🗑️</span>
+                <span>Limpiar Todo</span>
+            </button>
+        </div>
+
+        <!-- Guía de sintaxis -->
+        <div class="syntax-guide">
+            <h2>📖 Guía Rápida de Sintaxis Markdown</h2>
+            <div class="syntax-grid">
+                <div class="syntax-item">
+                    <h3>Títulos</h3>
+                    <code># H1</code>
+                    <code>## H2</code>
+                    <code>### H3</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Énfasis</h3>
+                    <code>**negrita**</code>
+                    <code>*cursiva*</code>
+                    <code>***negrita y cursiva***</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Enlaces</h3>
+                    <code>[texto](https://url.com)</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Imágenes</h3>
+                    <code>![alt text](url-imagen.jpg)</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Listas</h3>
+                    <code>- Item lista</code>
+                    <code>1. Item numerado</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Código</h3>
+                    <code>`código en línea`</code>
+                    <code>```javascript</code>
+                    <code>bloque de código</code>
+                    <code>```</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Citas</h3>
+                    <code>&gt; Esto es una cita</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Línea horizontal</h3>
+                    <code>---</code>
+                </div>
+                <div class="syntax-item">
+                    <h3>Tablas</h3>
+                    <code>| Columna 1 | Columna 2 |</code>
+                    <code>|-----------|-----------|</code>
+                    <code>| Dato 1    | Dato 2    |</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información -->
+        <div class="info-section">
+            <h2>Convertidor Markdown a HTML Profesional</h2>
+            <p>Nuestra herramienta te permite convertir Markdown a HTML limpio y válido en tiempo real. Ideal para bloggers, desarrolladores y escritores técnicos que necesitan HTML listo para usar.</p>
+
+            <h3>🎯 ¿Para qué se utiliza?</h3>
+            <ul>
+                <li><strong>Bloggers:</strong> Escribir posts en Markdown y convertirlos a HTML para WordPress, Blogger, etc.</li>
+                <li><strong>Desarrolladores:</strong> Documentar proyectos y convertir README.md a HTML para web</li>
+                <li><strong>Escritores técnicos:</strong> Crear documentación con sintaxis simple que se convierte a HTML profesional</li>
+                <li><strong>Usuarios de GitHub:</strong> Convertir archivos .md de repositorios a HTML para sitios web</li>
+                <li><strong>Editores web:</strong> Escribir contenido rápido sin tocar código HTML manualmente</li>
+                <li><strong>Educadores:</strong> Crear material didáctico con formato limpio y estructurado</li>
+            </ul>
+
+            <h3>✨ Características</h3>
+            <ul>
+                <li><strong>Conversión en tiempo real:</strong> Ve el resultado HTML mientras escribes Markdown</li>
+                <li><strong>Vista previa renderizada:</strong> Visualiza cómo se verá el HTML en tu sitio web</li>
+                <li><strong>Sintaxis completa:</strong> Soporta títulos, listas, enlaces, imágenes, código, tablas y más</li>
+                <li><strong>HTML limpio y válido:</strong> Código HTML5 estándar listo para copiar y pegar</li>
+                <li><strong>Ejemplos predefinidos:</strong> 3 plantillas listas para usar (blog, documentación, README)</li>
+                <li><strong>Copiar con un clic:</strong> Copia el HTML generado directamente al portapapeles</li>
+                <li><strong>Sin instalación:</strong> Funciona directamente en tu navegador, sin software adicional</li>
+            </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2>❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Qué es Markdown?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Markdown es un lenguaje de marcado ligero creado por John Gruber. Permite escribir usando un formato de texto plano fácil de leer y escribir, que luego se convierte a HTML estructurado. Es ampliamente usado en GitHub, Reddit, foros técnicos y plataformas de blogs.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Qué sintaxis de Markdown se soporta?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Soportamos la sintaxis completa de Markdown: títulos (# H1 a ###### H6), negrita (**texto**), cursiva (*texto*), enlaces [texto](url), imágenes ![alt](url), listas ordenadas y desordenadas, código en línea (`código`) y bloques de código (```código```), citas (&gt;), líneas horizontales (---) y tablas.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿El HTML generado es limpio y válido?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Sí, el HTML generado sigue estándares HTML5 válidos y está optimizado para su uso directo en páginas web. Todos los elementos se escapan correctamente para prevenir XSS. El código generado es limpio, sin espacios innecesarios y listo para copiar y pegar.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Puedo usar el HTML en mi blog o sitio web?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutamente. El HTML generado es compatible con cualquier plataforma que acepte HTML: WordPress, Blogger, Medium (con extensiones), Wix, plataformas de email marketing, documentación web, y cualquier CMS moderno. Solo copia el código HTML y pégalo en tu editor.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿Se guarda mi contenido en el servidor?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    No. Todo el procesamiento se realiza localmente en tu navegador usando JavaScript. Tu contenido Markdown nunca se envía a ningún servidor. Tu privacidad está completamente protegida.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>¿La vista previa es en tiempo real?</h3>
+                    <span class="faq-toggle">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Sí, la conversión y vista previa se actualizan automáticamente mientras escribes. Puedes ver inmediatamente cómo se renderiza tu Markdown en HTML formateado, lo que facilita detectar errores de sintaxis al instante.
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="contact">
+            <p>¿Has encontrado algún error o tienes sugerencias?</p>
+            <p>Escríbenos a: <a href="mailto:meskeia24@gmail.com">meskeia24@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Ejemplos predefinidos
+        const ejemplos = {
+            articulo: `# Guía Completa de Markdown para Bloggers
+
+## ¿Qué es Markdown?
+
+Markdown es un **lenguaje de marcado ligero** que te permite escribir contenido web de forma *simple y rápida*. Fue creado por John Gruber en 2004.
+
+### Ventajas principales
+
+- Fácil de aprender
+- Legible en texto plano
+- Convertible a HTML
+- Usado por **GitHub**, **Reddit** y muchos blogs
+
+## Sintaxis básica
+
+### Formato de texto
+
+Puedes usar **negrita** para resaltar palabras importantes, *cursiva* para énfasis suave, o ***ambas*** para máximo impacto.
+
+### Enlaces e imágenes
+
+Visita [meskeIA](https://meskeia.com) para más herramientas útiles.
+
+![Logo meskeIA](https://meskeia.com/icon_meskeia.png)
+
+### Código
+
+En línea: \`const mensaje = 'Hola Markdown';\`
+
+Bloque de código:
+
+\`\`\`javascript
+function saludar(nombre) {
+    return \`Hola, \${nombre}!\`;
+}
+
+console.log(saludar('Mundo'));
+\`\`\`
+
+### Listas
+
+Lista de tareas:
+- [x] Aprender sintaxis básica
+- [x] Escribir primer post
+- [ ] Publicar en blog
+
+Lista numerada:
+1. Escribir en Markdown
+2. Convertir a HTML
+3. Publicar contenido
+
+### Citas
+
+> "La simplicidad es la máxima sofisticación."
+> - Leonardo da Vinci
+
+---
+
+## Conclusión
+
+Markdown es la herramienta perfecta para bloggers que quieren **escribir rápido** sin sacrificar formato profesional.
+
+¿Listo para empezar? ¡Prueba este convertidor ahora!`,
+
+            documentacion: `# API Documentation - meskeIA Tools
+
+## Introducción
+
+Bienvenido a la documentación oficial de **meskeIA Tools API**. Esta API te permite integrar nuestras herramientas de conversión en tus aplicaciones.
+
+## Instalación
+
+### Requisitos previos
+
+- Node.js >= 16.0.0
+- npm o yarn
+- Cuenta de meskeIA (registro gratuito)
+
+### Instalación via npm
+
+\`\`\`bash
+npm install @meskeia/tools-sdk
+\`\`\`
+
+### Instalación via yarn
+
+\`\`\`bash
+yarn add @meskeia/tools-sdk
+\`\`\`
+
+## Uso básico
+
+### Inicialización
+
+\`\`\`javascript
+import { MeskeiaTools } from '@meskeia/tools-sdk';
+
+const tools = new MeskeiaTools({
+    apiKey: 'tu-api-key-aqui',
+    region: 'eu-west'
+});
+\`\`\`
+
+### Convertir Markdown a HTML
+
+\`\`\`javascript
+const resultado = await tools.markdown.toHTML({
+    content: '# Hola Mundo',
+    options: {
+        sanitize: true,
+        highlightCode: true
+    }
+});
+
+console.log(resultado.html);
+\`\`\`
+
+## Endpoints disponibles
+
+| Endpoint | Método | Descripción |
+|----------|--------|-------------|
+| \`/api/convert/markdown\` | POST | Convierte Markdown a HTML |
+| \`/api/validate/json\` | POST | Valida sintaxis JSON |
+| \`/api/compare/diff\` | POST | Compara dos textos |
+
+## Parámetros
+
+### Opciones de conversión
+
+- **sanitize** (boolean): Sanitiza HTML de salida
+  - Default: \`true\`
+  - Recomendado: \`true\` para contenido público
+
+- **highlightCode** (boolean): Resalta sintaxis de código
+  - Default: \`false\`
+  - Requiere: Biblioteca de syntax highlighting
+
+- **breaks** (boolean): Convierte saltos de línea a \`<br>\`
+  - Default: \`false\`
+
+## Códigos de respuesta
+
+| Código | Significado |
+|--------|-------------|
+| 200 | Conversión exitosa |
+| 400 | Parámetros inválidos |
+| 401 | API key inválida |
+| 429 | Límite de rate excedido |
+| 500 | Error del servidor |
+
+## Límites de uso
+
+### Plan Free
+- 1.000 conversiones/mes
+- Tamaño máximo: 10 KB
+- Rate limit: 10 req/min
+
+### Plan Pro
+- 100.000 conversiones/mes
+- Tamaño máximo: 1 MB
+- Rate limit: 100 req/min
+
+> **Nota**: Para planes Enterprise, contacta con ventas@meskeia.com
+
+## Soporte
+
+¿Necesitas ayuda? Estamos aquí:
+
+- 📧 Email: soporte@meskeia.com
+- 💬 Chat: [chat.meskeia.com](https://chat.meskeia.com)
+- 📚 Docs: [docs.meskeia.com](https://docs.meskeia.com)
+
+---
+
+*Última actualización: Enero 2025*`,
+
+            readme: `# 🚀 meskeIA Markdown Converter
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-2.1.0-green.svg)](https://github.com/meskeia/converter)
+[![Downloads](https://img.shields.io/badge/downloads-10k%2Fmonth-brightgreen.svg)](https://npmjs.com/package/@meskeia/converter)
+
+**Convertidor de Markdown a HTML ultrarrápido y confiable para aplicaciones web modernas.**
+
+## ✨ Características
+
+- 🚄 **Rápido**: Conversión en < 1ms para documentos de 10KB
+- 🎨 **Personalizable**: Temas y estilos configurables
+- 🔒 **Seguro**: Sanitización XSS incorporada
+- 📦 **Ligero**: Solo 8KB minificado y gzipped
+- 🌐 **Universal**: Compatible con Node.js y navegadores
+- ♿ **Accesible**: HTML semántico válido
+
+## 📦 Instalación
+
+\`\`\`bash
+# Con npm
+npm install @meskeia/markdown-converter
+
+# Con yarn
+yarn add @meskeia/markdown-converter
+
+# Con pnpm
+pnpm add @meskeia/markdown-converter
+\`\`\`
+
+## 🚀 Inicio rápido
+
+\`\`\`javascript
+import { MarkdownConverter } from '@meskeia/markdown-converter';
+
+const converter = new MarkdownConverter();
+const html = converter.toHTML('# Hola Mundo');
+
+console.log(html);
+// Output: <h1>Hola Mundo</h1>
+\`\`\`
+
+## 📖 Uso avanzado
+
+### Con opciones personalizadas
+
+\`\`\`javascript
+const converter = new MarkdownConverter({
+    breaks: true,           // Convierte \\n a <br>
+    sanitize: true,         // Sanitiza HTML
+    highlight: true,        // Resalta código
+    emoji: true,            // Convierte :smile: a 😊
+    tables: true,           // Soporta tablas GFM
+    taskLists: true         // Soporta [ ] y [x]
+});
+
+const markdown = \`
+# Mi proyecto
+
+Características:
+- [x] Tarea completada
+- [ ] Tarea pendiente
+
+\\\`\\\`\\\`javascript
+console.log('Código resaltado');
+\\\`\\\`\\\`
+\`;
+
+const html = converter.toHTML(markdown);
+\`\`\`
+
+### En el navegador
+
+\`\`\`html
+<script src="https://cdn.meskeia.com/converter/2.1.0/converter.min.js"></script>
+<script>
+  const converter = new MeskeiaConverter();
+  document.getElementById('output').innerHTML =
+    converter.toHTML('**Texto en negrita**');
+</script>
+\`\`\`
+
+## 🎯 Sintaxis soportada
+
+| Elemento | Markdown | HTML |
+|----------|----------|------|
+| Título 1 | \`# H1\` | \`<h1>H1</h1>\` |
+| Negrita | \`**bold**\` | \`<strong>bold</strong>\` |
+| Cursiva | \`*italic*\` | \`<em>italic</em>\` |
+| Enlace | \`[text](url)\` | \`<a href="url">text</a>\` |
+| Imagen | \`![alt](url)\` | \`<img src="url" alt="alt">\` |
+| Código | \`\\\`code\\\`\` | \`<code>code</code>\` |
+| Lista | \`- item\` | \`<ul><li>item</li></ul>\` |
+
+## 🧪 Testing
+
+\`\`\`bash
+# Ejecutar tests
+npm test
+
+# Con cobertura
+npm run test:coverage
+
+# Watch mode
+npm run test:watch
+\`\`\`
+
+## 📊 Benchmark
+
+\`\`\`
+Documento 1KB:   0.1ms
+Documento 10KB:  0.8ms
+Documento 100KB: 7.2ms
+\`\`\`
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Por favor:
+
+1. Fork el repositorio
+2. Crea tu rama (\`git checkout -b feature/nueva-funcionalidad\`)
+3. Commit tus cambios (\`git commit -m 'feat: añadir funcionalidad'\`)
+4. Push a la rama (\`git push origin feature/nueva-funcionalidad\`)
+5. Abre un Pull Request
+
+Ver [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver [LICENSE](LICENSE) para más información.
+
+## 🙏 Agradecimientos
+
+- Inspirado en [marked.js](https://marked.js.org)
+- Iconos por [Feather Icons](https://feathericons.com)
+- Hospedado en [Vercel](https://vercel.com)
+
+## 📞 Contacto
+
+- **Website**: [meskeia.com](https://meskeia.com)
+- **Email**: meskeia24@gmail.com
+- **Twitter**: [@meskeia](https://twitter.com/meskeia)
+- **GitHub**: [@meskeia](https://github.com/meskeia)
+
+---
+
+⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub!`
+        };
+
+        // Parser Markdown a HTML
+        function parseMarkdown(markdown) {
+            let html = markdown;
+
+            // Escape HTML para prevenir XSS en bloques de código
+            const codeBlocks = [];
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+                const placeholder = `__CODEBLOCK_${codeBlocks.length}__`;
+                codeBlocks.push(`<pre><code>${escapeHtml(code)}</code></pre>`);
+                return placeholder;
+            });
+
+            // Código en línea
+            const inlineCode = [];
+            html = html.replace(/`([^`]+)`/g, (match, code) => {
+                const placeholder = `__INLINECODE_${inlineCode.length}__`;
+                inlineCode.push(`<code>${escapeHtml(code)}</code>`);
+                return placeholder;
+            });
+
+            // Títulos
+            html = html.replace(/^######\s+(.+)$/gm, '<h6>$1</h6>');
+            html = html.replace(/^#####\s+(.+)$/gm, '<h5>$1</h5>');
+            html = html.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
+            html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
+
+            // Negrita y cursiva
+            html = html.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+            // Enlaces
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+
+            // Imágenes
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+
+            // Listas desordenadas
+            html = html.replace(/^\s*[-*]\s+(.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, (match) => {
+                return '<ul>' + match + '</ul>';
+            });
+
+            // Listas ordenadas
+            html = html.replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, (match) => {
+                // Solo envolver si no está ya en <ul>
+                if (!match.includes('<ul>')) {
+                    return '<ol>' + match + '</ol>';
+                }
+                return match;
+            });
+
+            // Citas
+            html = html.replace(/^>\s+(.+)$/gm, '<blockquote>$1</blockquote>');
+
+            // Líneas horizontales
+            html = html.replace(/^---$/gm, '<hr>');
+            html = html.replace(/^\*\*\*$/gm, '<hr>');
+
+            // Tablas básicas
+            html = html.replace(/^\|(.+)\|$/gm, (match) => {
+                const cells = match.split('|').filter(c => c.trim());
+                if (cells.every(c => c.trim().match(/^-+$/))) {
+                    return ''; // Línea separadora de tabla
+                }
+                const cellTags = cells.map(c => `<td>${c.trim()}</td>`).join('');
+                return `<tr>${cellTags}</tr>`;
+            });
+            html = html.replace(/(<tr>.*<\/tr>\s*)+/gs, (match) => {
+                const rows = match.trim().split('</tr>').filter(r => r.trim());
+                if (rows.length > 0) {
+                    const headerRow = rows[0].replace(/<td>/g, '<th>').replace(/<\/td>/g, '</th>') + '</tr>';
+                    const bodyRows = rows.slice(1).map(r => r + '</tr>').join('');
+                    return `<table><thead>${headerRow}</thead><tbody>${bodyRows}</tbody></table>`;
+                }
+                return match;
+            });
+
+            // Párrafos
+            html = html.replace(/^(?!<[h|u|o|p|b|t|l|i|a]|__|```)(.+)$/gm, '<p>$1</p>');
+
+            // Restaurar bloques de código
+            codeBlocks.forEach((block, i) => {
+                html = html.replace(`__CODEBLOCK_${i}__`, block);
+            });
+
+            // Restaurar código en línea
+            inlineCode.forEach((code, i) => {
+                html = html.replace(`__INLINECODE_${i}__`, code);
+            });
+
+            // Limpiar etiquetas vacías y duplicados
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<[h|u|o|t|b])/g, '$1');
+            html = html.replace(/(<\/[h|u|o|t|b][^>]*>)<\/p>/g, '$1');
+
+            return html.trim();
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Convertir automáticamente mientras se escribe
+        const markdownInput = document.getElementById('markdownInput');
+        markdownInput.addEventListener('input', () => {
+            convertir();
+        });
+
+        function convertir() {
+            const markdown = document.getElementById('markdownInput').value;
+
+            if (!markdown.trim()) {
+                document.getElementById('previewOutput').innerHTML = '<p style="color: #999;">La vista previa aparecerá aquí...</p>';
+                document.getElementById('htmlOutput').textContent = '<!-- El código HTML aparecerá aquí -->';
+                return;
+            }
+
+            const html = parseMarkdown(markdown);
+
+            // Actualizar vista previa renderizada
+            document.getElementById('previewOutput').innerHTML = html;
+
+            // Actualizar código HTML
+            document.getElementById('htmlOutput').textContent = html;
+        }
+
+        function cargarEjemplo(tipo) {
+            // Remover clase active de todos los botones
+            document.querySelectorAll('.example-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Añadir clase active al botón clickeado
+            event.target.classList.add('active');
+
+            document.getElementById('markdownInput').value = ejemplos[tipo];
+            convertir();
+        }
+
+        function copiarHTML() {
+            const htmlOutput = document.getElementById('htmlOutput').textContent;
+
+            if (!htmlOutput || htmlOutput === '<!-- El código HTML aparecerá aquí -->') {
+                alert('No hay HTML para copiar. Primero escribe algo en Markdown.');
+                return;
+            }
+
+            navigator.clipboard.writeText(htmlOutput).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copiado';
+                btn.style.background = 'rgba(72, 169, 166, 0.3)';
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'rgba(255,255,255,0.2)';
+                }, 2000);
+            }).catch(err => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+
+        function limpiar() {
+            if (confirm('¿Estás seguro de que deseas limpiar todo el contenido?')) {
+                document.getElementById('markdownInput').value = '';
+                document.getElementById('previewOutput').innerHTML = '<p style="color: #999;">La vista previa aparecerá aquí...</p>';
+                document.getElementById('htmlOutput').textContent = '<!-- El código HTML aparecerá aquí -->';
+
+                // Remover clase active de todos los botones de ejemplo
+                document.querySelectorAll('.example-btn').forEach(btn => btn.classList.remove('active'));
+            }
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+
+            answer.classList.toggle('active');
+
+            if (answer.classList.contains('active')) {
+                toggle.textContent = '▼';
+            } else {
+                toggle.textContent = '▶';
+            }
+        }
+
+        // Conversión automática al cargar si hay contenido de ejemplo en el placeholder
+        window.addEventListener('load', () => {
+            // No convertir automáticamente, dejar que el usuario explore
+        });
+    </script>
+</body>
+</html>
