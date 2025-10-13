@@ -647,6 +647,69 @@
         .hidden {
             display: none;
         }
+
+        /* Disclaimer Legal */
+        .disclaimer-legal {
+            background: #FEF2F2;
+            border-left: 4px solid #EF4444;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(239,68,68,0.1);
+        }
+
+        .disclaimer-legal h3 {
+            color: #DC2626;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .disclaimer-legal p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .disclaimer-legal strong {
+            color: #991B1B;
+            font-weight: 600;
+        }
+
+        .disclaimer-legal ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .disclaimer-legal li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .disclaimer-legal .disclaimer-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #FECACA;
+        }
+
+        .disclaimer-legal .disclaimer-highlight {
+            background: #FEE2E2;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #EF4444;
+        }
+
+        .disclaimer-legal .disclaimer-footer {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #FECACA;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -773,6 +836,58 @@
             <table class="desglose-table" id="desgloseTable">
                 <!-- Se generará dinámicamente -->
             </table>
+        </div>
+
+        <!-- Disclaimer Legal -->
+        <div class="disclaimer-legal hidden" id="disclaimerLegal">
+            <h3>⚠️ IMPORTANTE - AVISO LEGAL Y LIMITACIONES</h3>
+
+            <p><strong>Esta calculadora es únicamente una herramienta informativa y orientativa.</strong></p>
+
+            <p>Los resultados obtenidos son estimaciones basadas en la normativa general del IRPF e IVA para autónomos en régimen de <strong>estimación directa</strong>, pero <strong>NO sustituyen el asesoramiento profesional</strong>. Cada situación fiscal es única y puede estar sujeta a particularidades no contempladas en esta herramienta.</p>
+
+            <div class="disclaimer-section">
+                <h4 style="color: #DC2626; margin-bottom: 10px;">⚠️ CASOS ESPECIALES NO INCLUIDOS:</h4>
+                <ul>
+                    <li>Régimen de <strong>módulos</strong> (estimación objetiva)</li>
+                    <li>Recargo de equivalencia</li>
+                    <li>Actividades con IVA exento o inversión del sujeto pasivo</li>
+                    <li>Gastos con límites máximos específicos (dietas, locomoción, etc.)</li>
+                    <li>Prorrateo de IVA en actividades mixtas (exentas + no exentas)</li>
+                    <li>Sociedades mercantiles (SL, SA)</li>
+                    <li>Gastos de difícil justificación (uso privativo, afectación parcial compleja)</li>
+                </ul>
+                <p><strong>Para estos casos, consulte con un asesor fiscal especializado.</strong></p>
+            </div>
+
+            <div class="disclaimer-section">
+                <h4 style="color: #DC2626; margin-bottom: 10px;">⚠️ RESPONSABILIDAD DEL USUARIO:</h4>
+                <ul>
+                    <li><strong>Conservar</strong> todas las facturas y justificantes durante al menos <strong>4 años</strong></li>
+                    <li><strong>Verificar</strong> que cada gasto cumple los requisitos de deducibilidad para su actividad específica</li>
+                    <li><strong>Documentar adecuadamente</strong> el porcentaje de afectación en gastos mixtos (móvil, vehículo, vivienda)</li>
+                    <li><strong>Consultar con la Agencia Tributaria</strong> o un asesor fiscal en caso de duda</li>
+                </ul>
+            </div>
+
+            <div class="disclaimer-highlight">
+                <h4 style="color: #DC2626; margin-bottom: 10px;">RECOMENDAMOS ENCARECIDAMENTE:</h4>
+                <ul>
+                    <li>✓ <strong>Consultar con un Asesor Fiscal profesional</strong> antes de tomar decisiones</li>
+                    <li>✓ Verificar los requisitos específicos de cada deducción con tu gestor</li>
+                    <li>✓ Confirmar que tu actividad y régimen permite las deducciones aplicadas</li>
+                    <li>✓ <strong>No deducir gastos de los que no tengas justificante completo</strong></li>
+                </ul>
+            </div>
+
+            <div class="disclaimer-section">
+                <p><strong>meskeIA no se responsabiliza</strong> de las decisiones tomadas basándose en estos cálculos ni de sanciones derivadas de deducciones incorrectas. El uso de esta herramienta implica la aceptación de estas condiciones.</p>
+            </div>
+
+            <div class="disclaimer-footer">
+                Última actualización: Enero 2025 - Normativa sujeta a cambios<br>
+                Para dudas específicas: <strong>consulte siempre con un asesor fiscal profesional</strong>
+            </div>
         </div>
 
         <!-- Tips de optimización -->
@@ -1174,7 +1289,9 @@
             html += '</tbody>';
             table.innerHTML = html;
 
+            // Mostrar sección de resultados y disclaimer
             section.classList.remove('hidden');
+            document.getElementById('disclaimerLegal').classList.remove('hidden');
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
