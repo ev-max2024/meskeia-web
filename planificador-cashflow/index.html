@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Cash Flow | Flujo de Caja 12 Meses - meskeIA</title>
+
+    <link rel="canonical" href="https://meskeia.com/planificador-cashflow/">
+
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Planifica el flujo de caja de tu negocio a 12 meses. Identifica meses críticos, previene crisis de liquidez y simula escenarios. Herramienta gratuita para emprendedores y autónomos.">
+    <meta name="keywords" content="cash flow, flujo de caja, planificación financiera, liquidez, tesorería, emprendimiento, autonomos, pymes, proyección financiera">
+    <meta name="author" content="meskeIA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Planificador de Cash Flow | meskeIA">
+    <meta property="og:description" content="Planifica tu flujo de caja a 12 meses. Previene crisis de liquidez y toma decisiones informadas con proyecciones visuales.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/planificador-cashflow/">
+    <meta property="og:image" content="https://meskeia.com/planificador-cashflow/icon_meskeia.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Planificador de Cash Flow | meskeIA">
+    <meta name="twitter:description" content="Herramienta gratuita para planificar el flujo de caja de tu negocio. Identifica meses críticos y previene problemas de liquidez.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        /* Paleta meskeIA oficial */
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --success: #27AE60;
+            --warning: #F39C12;
+            --danger: #E74C3C;
+            --info: #3498DB;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 80px 20px 80px 20px;
+        }
+
+        /* Logo meskeIA */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: var(--secondary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 20px 0 15px 0;
+        }
+
+        /* Configuración inicial */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        /* Líneas de movimientos */
+        .movimientos-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .movimiento-item {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1.5fr 1fr 50px;
+            gap: 10px;
+            align-items: center;
+            padding: 12px;
+            background: var(--hover);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .movimiento-item:hover {
+            background: #EEEEEE;
+        }
+
+        .movimiento-item input,
+        .movimiento-item select {
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .movimiento-item input:focus,
+        .movimiento-item select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn-remove {
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-remove:hover {
+            background: #C0392B;
+            transform: scale(1.1);
+        }
+
+        .btn-add {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-add:hover {
+            background: #3D9894;
+            transform: translateY(-2px);
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.3);
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 134, 171, 0.4);
+        }
+
+        /* Resultados */
+        .results-section {
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        /* Alertas */
+        .alerts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .alert {
+            padding: 16px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .alert-critical {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--danger);
+            color: #C0392B;
+        }
+
+        .alert-warning {
+            background: rgba(243, 156, 18, 0.1);
+            border-left: 4px solid var(--warning);
+            color: #D68910;
+        }
+
+        .alert-success {
+            background: rgba(39, 174, 96, 0.1);
+            border-left: 4px solid var(--success);
+            color: #229954;
+        }
+
+        /* Gráfico */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+        }
+
+        /* Tabla resumen */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: var(--hover);
+        }
+
+        .saldo-positivo {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .saldo-negativo {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .mes-critico {
+            background: rgba(231, 76, 60, 0.1) !important;
+        }
+
+        /* Simulador What-If */
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .scenario-card {
+            background: var(--hover);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid var(--border);
+        }
+
+        .scenario-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .scenario-result {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* FAQs */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            background: var(--hover);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #EEEEEE;
+        }
+
+        .faq-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.show {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        /* Botones de acción */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 70px 15px 70px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .movimiento-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>💰 Planificador de Cash Flow</h1>
+            <p class="subtitle">Proyecta tu flujo de caja a 12 meses, identifica meses críticos y previene crisis de liquidez antes de que ocurran</p>
+        </header>
+
+        <!-- Información explicativa -->
+        <div class="card">
+            <h2>📚 ¿Qué es el Cash Flow y por qué es crítico?</h2>
+            <p style="margin-bottom: 15px;">El <strong>Cash Flow</strong> (flujo de caja) es el dinero real que entra y sale de tu negocio cada mes. No confundir con beneficios: puedes ser rentable en papel pero quedarte sin liquidez.</p>
+
+            <div style="background: rgba(231, 76, 60, 0.1); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <strong style="color: var(--danger);">⚠️ Dato crítico:</strong> El 82% de los negocios que quiebran lo hacen por problemas de <strong>liquidez</strong>, no por falta de rentabilidad.
+            </div>
+
+            <p><strong>¿Cómo usar este planificador?</strong></p>
+            <ol style="margin-left: 20px; margin-top: 10px; color: var(--text-secondary);">
+                <li>Introduce tu <strong>saldo inicial de caja</strong> (dinero que tienes ahora)</li>
+                <li>Añade todos los <strong>ingresos esperados</strong> por mes (cobros de clientes, ventas, etc.)</li>
+                <li>Añade todos los <strong>gastos proyectados</strong> por mes (alquiler, nóminas, proveedores, etc.)</li>
+                <li>Haz clic en <strong>"Calcular Proyección"</strong> para ver tu flujo de caja mes a mes</li>
+                <li>Revisa las <strong>alertas automáticas</strong> para identificar meses críticos</li>
+            </ol>
+        </div>
+
+        <!-- Configuración inicial -->
+        <div class="card">
+            <h2>⚙️ Configuración Inicial</h2>
+            <div class="config-grid">
+                <div class="form-group">
+                    <label for="saldoInicial">Saldo Inicial de Caja</label>
+                    <small>¿Cuánto dinero tienes disponible ahora?</small>
+                    <input type="number" id="saldoInicial" placeholder="5.000" step="100" min="0" value="5000">
+                </div>
+                <div class="form-group">
+                    <label for="mesInicio">Mes de Inicio de la Proyección</label>
+                    <small>Desde qué mes quieres planificar</small>
+                    <select id="mesInicio">
+                        <option value="0">Enero</option>
+                        <option value="1">Febrero</option>
+                        <option value="2">Marzo</option>
+                        <option value="3">Abril</option>
+                        <option value="4">Mayo</option>
+                        <option value="5">Junio</option>
+                        <option value="6">Julio</option>
+                        <option value="7">Agosto</option>
+                        <option value="8">Septiembre</option>
+                        <option value="9">Octubre</option>
+                        <option value="10">Noviembre</option>
+                        <option value="11">Diciembre</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ingresos proyectados -->
+        <div class="card">
+            <h2>📈 Ingresos Proyectados (12 meses)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Añade todos los cobros que esperas recibir: ventas, cobros de clientes, facturas pendientes, etc.</p>
+
+            <div id="ingresosContainer" class="movimientos-container">
+                <div class="movimiento-item">
+                    <input type="text" placeholder="Concepto (ej: Cliente ABC - Proyecto)" class="concepto-ingreso">
+                    <input type="number" placeholder="Importe €" class="importe-ingreso" step="50" min="0">
+                    <select class="mes-ingreso">
+                        <option value="0">Enero</option>
+                        <option value="1">Febrero</option>
+                        <option value="2">Marzo</option>
+                        <option value="3">Abril</option>
+                        <option value="4">Mayo</option>
+                        <option value="5">Junio</option>
+                        <option value="6">Julio</option>
+                        <option value="7">Agosto</option>
+                        <option value="8">Septiembre</option>
+                        <option value="9">Octubre</option>
+                        <option value="10">Noviembre</option>
+                        <option value="11">Diciembre</option>
+                    </select>
+                    <select class="tipo-ingreso">
+                        <option value="recurrente">Recurrente</option>
+                        <option value="puntual">Puntual</option>
+                    </select>
+                    <button class="btn-remove" onclick="removeItem(this)">×</button>
+                </div>
+            </div>
+            <button class="btn-add" onclick="addIngreso()">+ Agregar Ingreso</button>
+        </div>
+
+        <!-- Gastos proyectados -->
+        <div class="card">
+            <h2>📉 Gastos Proyectados (12 meses)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Añade todos los pagos que tendrás que hacer: alquiler, nóminas, proveedores, seguros, etc.</p>
+
+            <div id="gastosContainer" class="movimientos-container">
+                <div class="movimiento-item">
+                    <input type="text" placeholder="Concepto (ej: Alquiler oficina)" class="concepto-gasto">
+                    <input type="number" placeholder="Importe €" class="importe-gasto" step="50" min="0">
+                    <select class="mes-gasto">
+                        <option value="0">Enero</option>
+                        <option value="1">Febrero</option>
+                        <option value="2">Marzo</option>
+                        <option value="3">Abril</option>
+                        <option value="4">Mayo</option>
+                        <option value="5">Junio</option>
+                        <option value="6">Julio</option>
+                        <option value="7">Agosto</option>
+                        <option value="8">Septiembre</option>
+                        <option value="9">Octubre</option>
+                        <option value="10">Noviembre</option>
+                        <option value="11">Diciembre</option>
+                    </select>
+                    <select class="tipo-gasto">
+                        <option value="fijo">Fijo</option>
+                        <option value="variable">Variable</option>
+                        <option value="extraordinario">Extraordinario</option>
+                    </select>
+                    <button class="btn-remove" onclick="removeItem(this)">×</button>
+                </div>
+            </div>
+            <button class="btn-add" onclick="addGasto()">+ Agregar Gasto</button>
+        </div>
+
+        <button class="btn-calculate" onclick="calcularCashFlow()">
+            💰 Calcular Proyección de Cash Flow
+        </button>
+
+        <!-- Resultados -->
+        <div class="results-section" id="resultados">
+            <!-- Alertas -->
+            <div class="card">
+                <h2>⚠️ Alertas de Liquidez</h2>
+                <div class="alerts-container" id="alertasContainer">
+                    <!-- Se generan dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="card">
+                <h2>📊 Evolución del Cash Flow (12 meses)</h2>
+                <div class="chart-container">
+                    <canvas id="cashflowChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tabla resumen -->
+            <div class="card">
+                <h2>📋 Tabla Detallada por Mes</h2>
+                <div class="table-container">
+                    <table id="tablaCashflow">
+                        <thead>
+                            <tr>
+                                <th>Mes</th>
+                                <th>Ingresos</th>
+                                <th>Gastos</th>
+                                <th>Flujo Neto</th>
+                                <th>Saldo Acumulado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se genera dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Simulador What-If -->
+            <div class="card">
+                <h2>🎯 Simulador "What-If"</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Simula escenarios para tomar decisiones informadas</p>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Escenario a simular:</label>
+                    <select id="tipoSimulacion" onchange="toggleSimuladorInputs()">
+                        <option value="">Selecciona un escenario...</option>
+                        <option value="perderCliente">¿Qué pasa si pierdo un cliente importante?</option>
+                        <option value="retrasoCliente">¿Qué pasa si se retrasa un cobro?</option>
+                        <option value="gastoExtra">¿Qué pasa si tengo un gasto extraordinario?</option>
+                        <option value="subirPrecio">¿Qué pasa si aumento mis precios X%?</option>
+                    </select>
+                </div>
+
+                <div id="simuladorInputs" style="display: none;">
+                    <div class="config-grid" style="margin-bottom: 20px;">
+                        <div class="form-group">
+                            <label id="labelImporteSimulacion">Importe €</label>
+                            <input type="number" id="importeSimulacion" placeholder="0" step="100">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelMesSimulacion">Mes afectado</label>
+                            <select id="mesSimulacion">
+                                <option value="0">Enero</option>
+                                <option value="1">Febrero</option>
+                                <option value="2">Marzo</option>
+                                <option value="3">Abril</option>
+                                <option value="4">Mayo</option>
+                                <option value="5">Junio</option>
+                                <option value="6">Julio</option>
+                                <option value="7">Agosto</option>
+                                <option value="8">Septiembre</option>
+                                <option value="9">Octubre</option>
+                                <option value="10">Noviembre</option>
+                                <option value="11">Diciembre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" onclick="ejecutarSimulacion()">🔮 Simular Escenario</button>
+                </div>
+
+                <div class="simulator-grid" id="resultadosSimulacion" style="display: none; margin-top: 25px;">
+                    <!-- Se genera dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="card">
+                <h2>💾 Guardar y Compartir</h2>
+                <div class="action-buttons">
+                    <button class="btn-secondary" onclick="guardarProyeccion()">💾 Guardar Proyección</button>
+                    <button class="btn-secondary" onclick="exportarExcel()">📥 Exportar a Excel (CSV)</button>
+                    <button class="btn-secondary" onclick="imprimirProyeccion()">🖨️ Imprimir</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="card">
+            <h2>❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cuál es la diferencia entre beneficio y cash flow?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Beneficio:</strong> Es la diferencia entre ingresos y gastos en un periodo. Aparece en tu contabilidad pero puede no ser dinero real disponible.</p>
+                    <p><strong>Cash Flow:</strong> Es el dinero <strong>real</strong> que entra y sale de tu cuenta bancaria. Puedes tener beneficios pero cash flow negativo (ejemplo: vendes pero no cobras hasta dentro de 3 meses).</p>
+                    <p><strong>Ejemplo real:</strong> Facturas 10.000€ en enero (beneficio) pero el cliente paga en marzo. En enero tu cash flow es 0€, en marzo es +10.000€.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué hago si detecto un mes con saldo negativo?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Opciones inmediatas:</strong></p>
+                    <p>1. <strong>Adelantar cobros:</strong> Ofrece descuento por pronto pago (2-5%) a clientes</p>
+                    <p>2. <strong>Retrasar pagos:</strong> Negocia plazos más largos con proveedores (30 a 60 días)</p>
+                    <p>3. <strong>Línea de crédito:</strong> Ten preparada una línea de crédito antes de necesitarla</p>
+                    <p>4. <strong>Reducir gastos:</strong> Pospón inversiones no críticas</p>
+                    <p>5. <strong>Acelerar ventas:</strong> Campañas promocionales para generar ingresos rápidos</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cuánto "colchón" de liquidez debería tener?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Regla general:</strong> Mantén siempre entre <strong>3-6 meses</strong> de gastos fijos como reserva de liquidez.</p>
+                    <p><strong>Por tipo de negocio:</strong></p>
+                    <p>• <strong>Servicios estables:</strong> 3 meses (ej: SaaS con suscripciones)</p>
+                    <p>• <strong>Negocios estacionales:</strong> 6 meses (ej: turismo, agricultura)</p>
+                    <p>• <strong>Proyectos irregulares:</strong> 6-12 meses (ej: consultores, freelancers)</p>
+                    <p>• <strong>Startups en crecimiento:</strong> 12-18 meses (runway necesario para fundraising)</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cómo proyecto ingresos si son irregulares?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Para freelancers/consultores:</strong></p>
+                    <p>1. <strong>Escenario pesimista:</strong> Solo proyecta clientes con contrato firmado</p>
+                    <p>2. <strong>Escenario realista:</strong> Clientes actuales + 50% de pipeline avanzado</p>
+                    <p>3. <strong>Escenario optimista:</strong> Clientes + pipeline completo</p>
+                    <p><strong>Consejo:</strong> Planifica siempre con el <strong>escenario pesimista</strong> para tomar decisiones. Si va mejor, es una sorpresa agradable.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Con qué frecuencia debo revisar mi cash flow?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Startups/Negocios en crecimiento:</strong> <strong>Semanal</strong> (literalmente cada lunes)</p>
+                    <p><strong>PYMEs establecidas:</strong> <strong>Mensual</strong> (primeros días del mes)</p>
+                    <p><strong>Negocios maduros:</strong> <strong>Trimestral</strong> (pero con alertas automáticas mensuales)</p>
+                    <p><strong>Momentos críticos para revisar siempre:</strong></p>
+                    <p>• Antes de contratar empleados nuevos</p>
+                    <p>• Antes de hacer inversiones grandes (local, maquinaria)</p>
+                    <p>• Cuando se pierde un cliente importante</p>
+                    <p>• Al planificar vacaciones/periodos de baja actividad</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué pasa si siempre tengo cash flow positivo?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>¡Genial! Pero atención:</strong> Puede significar que estás siendo <strong>demasiado conservador</strong>.</p>
+                    <p><strong>Pregúntate:</strong></p>
+                    <p>• ¿Estoy invirtiendo suficiente en crecimiento? (marketing, equipo, tecnología)</p>
+                    <p>• ¿Podría acelerar el crecimiento con esa liquidez?</p>
+                    <p>• ¿Estoy perdiendo oportunidades por miedo a gastar?</p>
+                    <p><strong>Estrategia óptima:</strong> Tener el colchón mínimo necesario (3-6 meses) e invertir el resto en crecimiento rentable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Configuración de la aplicación
+        let chartInstance = null;
+        let proyeccionActual = null;
+        const mesesNombres = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        // Formato español para números
+        function formatoEspanol(numero, decimales = 2) {
+            return numero.toLocaleString('es-ES', {
+                minimumFractionDigits: decimales,
+                maximumFractionDigits: decimales
+            });
+        }
+
+        // Añadir ingreso
+        function addIngreso() {
+            const container = document.getElementById('ingresosContainer');
+            const div = document.createElement('div');
+            div.className = 'movimiento-item';
+            div.innerHTML = `
+                <input type="text" placeholder="Concepto (ej: Cliente ABC - Proyecto)" class="concepto-ingreso">
+                <input type="number" placeholder="Importe €" class="importe-ingreso" step="50" min="0">
+                <select class="mes-ingreso">
+                    <option value="0">Enero</option>
+                    <option value="1">Febrero</option>
+                    <option value="2">Marzo</option>
+                    <option value="3">Abril</option>
+                    <option value="4">Mayo</option>
+                    <option value="5">Junio</option>
+                    <option value="6">Julio</option>
+                    <option value="7">Agosto</option>
+                    <option value="8">Septiembre</option>
+                    <option value="9">Octubre</option>
+                    <option value="10">Noviembre</option>
+                    <option value="11">Diciembre</option>
+                </select>
+                <select class="tipo-ingreso">
+                    <option value="recurrente">Recurrente</option>
+                    <option value="puntual">Puntual</option>
+                </select>
+                <button class="btn-remove" onclick="removeItem(this)">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        // Añadir gasto
+        function addGasto() {
+            const container = document.getElementById('gastosContainer');
+            const div = document.createElement('div');
+            div.className = 'movimiento-item';
+            div.innerHTML = `
+                <input type="text" placeholder="Concepto (ej: Alquiler oficina)" class="concepto-gasto">
+                <input type="number" placeholder="Importe €" class="importe-gasto" step="50" min="0">
+                <select class="mes-gasto">
+                    <option value="0">Enero</option>
+                    <option value="1">Febrero</option>
+                    <option value="2">Marzo</option>
+                    <option value="3">Abril</option>
+                    <option value="4">Mayo</option>
+                    <option value="5">Junio</option>
+                    <option value="6">Julio</option>
+                    <option value="7">Agosto</option>
+                    <option value="8">Septiembre</option>
+                    <option value="9">Octubre</option>
+                    <option value="10">Noviembre</option>
+                    <option value="11">Diciembre</option>
+                </select>
+                <select class="tipo-gasto">
+                    <option value="fijo">Fijo</option>
+                    <option value="variable">Variable</option>
+                    <option value="extraordinario">Extraordinario</option>
+                </select>
+                <button class="btn-remove" onclick="removeItem(this)">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        // Eliminar item
+        function removeItem(button) {
+            button.parentElement.remove();
+        }
+
+        // Calcular Cash Flow
+        function calcularCashFlow() {
+            const saldoInicial = parseFloat(document.getElementById('saldoInicial').value) || 0;
+            const mesInicio = parseInt(document.getElementById('mesInicio').value);
+
+            // Obtener ingresos
+            const ingresos = [];
+            document.querySelectorAll('#ingresosContainer .movimiento-item').forEach(item => {
+                const concepto = item.querySelector('.concepto-ingreso').value;
+                const importe = parseFloat(item.querySelector('.importe-ingreso').value) || 0;
+                const mes = parseInt(item.querySelector('.mes-ingreso').value);
+                const tipo = item.querySelector('.tipo-ingreso').value;
+                if (importe > 0) {
+                    ingresos.push({ concepto, importe, mes, tipo });
+                }
+            });
+
+            // Obtener gastos
+            const gastos = [];
+            document.querySelectorAll('#gastosContainer .movimiento-item').forEach(item => {
+                const concepto = item.querySelector('.concepto-gasto').value;
+                const importe = parseFloat(item.querySelector('.importe-gasto').value) || 0;
+                const mes = parseInt(item.querySelector('.mes-gasto').value);
+                const tipo = item.querySelector('.tipo-gasto').value;
+                if (importe > 0) {
+                    gastos.push({ concepto, importe, mes, tipo });
+                }
+            });
+
+            // Calcular flujo por mes
+            const proyeccion = [];
+            let saldoAcumulado = saldoInicial;
+
+            for (let i = 0; i < 12; i++) {
+                const mesActual = (mesInicio + i) % 12;
+
+                const ingresosMes = ingresos
+                    .filter(ing => ing.mes === mesActual)
+                    .reduce((sum, ing) => sum + ing.importe, 0);
+
+                const gastosMes = gastos
+                    .filter(gas => gas.mes === mesActual)
+                    .reduce((sum, gas) => sum + gas.importe, 0);
+
+                const flujoNeto = ingresosMes - gastosMes;
+                saldoAcumulado += flujoNeto;
+
+                proyeccion.push({
+                    mes: mesActual,
+                    nombre: mesesNombres[mesActual],
+                    ingresos: ingresosMes,
+                    gastos: gastosMes,
+                    flujoNeto: flujoNeto,
+                    saldoAcumulado: saldoAcumulado
+                });
+            }
+
+            proyeccionActual = proyeccion;
+
+            // Generar alertas
+            generarAlertas(proyeccion, gastos);
+
+            // Generar gráfico
+            generarGrafico(proyeccion);
+
+            // Generar tabla
+            generarTabla(proyeccion);
+
+            // Mostrar resultados
+            document.getElementById('resultados').classList.add('show');
+            document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Generar alertas
+        function generarAlertas(proyeccion, gastos) {
+            const container = document.getElementById('alertasContainer');
+            container.innerHTML = '';
+
+            let hayAlertas = false;
+
+            // Calcular gastos fijos mensuales promedio
+            const gastosFijos = gastos.filter(g => g.tipo === 'fijo');
+            const gastosFijosTotal = gastosFijos.reduce((sum, g) => sum + g.importe, 0) / 12;
+
+            // Verificar meses con saldo negativo
+            const mesesNegativos = proyeccion.filter(m => m.saldoAcumulado < 0);
+            if (mesesNegativos.length > 0) {
+                hayAlertas = true;
+                const div = document.createElement('div');
+                div.className = 'alert alert-critical';
+                div.innerHTML = `
+                    <span class="alert-icon">🚨</span>
+                    <div>
+                        <strong>CRISIS DE LIQUIDEZ DETECTADA</strong><br>
+                        Tienes <strong>${mesesNegativos.length} mes(es)</strong> con saldo negativo: ${mesesNegativos.map(m => m.nombre).join(', ')}.
+                        <strong>Acción inmediata necesaria:</strong> adelanta cobros o negocia retrasos en pagos.
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            // Verificar caídas importantes
+            for (let i = 1; i < proyeccion.length; i++) {
+                const caida = ((proyeccion[i].saldoAcumulado - proyeccion[i-1].saldoAcumulado) / proyeccion[i-1].saldoAcumulado) * 100;
+                if (caida < -50 && proyeccion[i-1].saldoAcumulado > 0) {
+                    hayAlertas = true;
+                    const div = document.createElement('div');
+                    div.className = 'alert alert-warning';
+                    div.innerHTML = `
+                        <span class="alert-icon">⚠️</span>
+                        <div>
+                            <strong>Caída significativa en ${proyeccion[i].nombre}</strong><br>
+                            Tu saldo cae ${Math.abs(caida).toFixed(0)}% respecto al mes anterior. Revisa tus gastos de ese mes.
+                        </div>
+                    `;
+                    container.appendChild(div);
+                    break; // Solo mostrar la primera
+                }
+            }
+
+            // Verificar colchón de liquidez
+            const saldoMinimo = Math.min(...proyeccion.map(m => m.saldoAcumulado));
+            const colchonMeses = gastosFijosTotal > 0 ? saldoMinimo / gastosFijosTotal : 999;
+
+            if (colchonMeses < 2 && colchonMeses >= 0) {
+                hayAlertas = true;
+                const div = document.createElement('div');
+                div.className = 'alert alert-warning';
+                div.innerHTML = `
+                    <span class="alert-icon">⚡</span>
+                    <div>
+                        <strong>Colchón de liquidez insuficiente</strong><br>
+                        Tu saldo mínimo (${formatoEspanol(saldoMinimo)}€) cubre menos de 2 meses de gastos fijos.
+                        <strong>Recomendado:</strong> mantén al menos 3-6 meses de reserva.
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            // Si todo está bien
+            if (!hayAlertas) {
+                const div = document.createElement('div');
+                div.className = 'alert alert-success';
+                div.innerHTML = `
+                    <span class="alert-icon">✅</span>
+                    <div>
+                        <strong>¡Tu cash flow está saludable!</strong><br>
+                        No se detectaron meses críticos. Mantén este nivel de liquidez y revisa mensualmente.
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+        }
+
+        // Generar gráfico
+        function generarGrafico(proyeccion) {
+            const ctx = document.getElementById('cashflowChart').getContext('2d');
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const labels = proyeccion.map(m => m.nombre);
+            const saldos = proyeccion.map(m => m.saldoAcumulado);
+            const flujos = proyeccion.map(m => m.flujoNeto);
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Saldo Acumulado',
+                            data: saldos,
+                            borderColor: '#2E86AB',
+                            backgroundColor: 'rgba(46, 134, 171, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Flujo Neto Mensual',
+                            data: flujos,
+                            borderColor: '#48A9A6',
+                            backgroundColor: 'rgba(72, 169, 166, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            borderDash: [5, 5]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += formatoEspanol(context.parsed.y) + '€';
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatoEspanol(value, 0) + '€';
+                                }
+                            },
+                            grid: {
+                                color: function(context) {
+                                    if (context.tick.value === 0) {
+                                        return '#E74C3C';
+                                    }
+                                    return 'rgba(0, 0, 0, 0.05)';
+                                },
+                                lineWidth: function(context) {
+                                    if (context.tick.value === 0) {
+                                        return 2;
+                                    }
+                                    return 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Generar tabla
+        function generarTabla(proyeccion) {
+            const tbody = document.querySelector('#tablaCashflow tbody');
+            tbody.innerHTML = '';
+
+            proyeccion.forEach(mes => {
+                const tr = document.createElement('tr');
+
+                if (mes.saldoAcumulado < 0) {
+                    tr.className = 'mes-critico';
+                }
+
+                tr.innerHTML = `
+                    <td><strong>${mes.nombre}</strong></td>
+                    <td style="color: var(--success);">+${formatoEspanol(mes.ingresos)}€</td>
+                    <td style="color: var(--danger);">-${formatoEspanol(mes.gastos)}€</td>
+                    <td class="${mes.flujoNeto >= 0 ? 'saldo-positivo' : 'saldo-negativo'}">
+                        ${mes.flujoNeto >= 0 ? '+' : ''}${formatoEspanol(mes.flujoNeto)}€
+                    </td>
+                    <td class="${mes.saldoAcumulado >= 0 ? 'saldo-positivo' : 'saldo-negativo'}">
+                        <strong>${formatoEspanol(mes.saldoAcumulado)}€</strong>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Toggle simulador inputs
+        function toggleSimuladorInputs() {
+            const tipo = document.getElementById('tipoSimulacion').value;
+            const container = document.getElementById('simuladorInputs');
+            const labelImporte = document.getElementById('labelImporteSimulacion');
+            const labelMes = document.getElementById('labelMesSimulacion');
+
+            if (tipo) {
+                container.style.display = 'block';
+
+                switch(tipo) {
+                    case 'perderCliente':
+                        labelImporte.textContent = 'Ingreso mensual que perderías';
+                        labelMes.textContent = 'A partir de qué mes';
+                        break;
+                    case 'retrasoCliente':
+                        labelImporte.textContent = 'Importe del cobro retrasado';
+                        labelMes.textContent = 'Mes del retraso';
+                        break;
+                    case 'gastoExtra':
+                        labelImporte.textContent = 'Importe del gasto extra';
+                        labelMes.textContent = 'Mes del gasto';
+                        break;
+                    case 'subirPrecio':
+                        labelImporte.textContent = 'Incremento % en ingresos';
+                        labelMes.textContent = 'A partir de qué mes';
+                        break;
+                }
+            } else {
+                container.style.display = 'none';
+            }
+
+            document.getElementById('resultadosSimulacion').style.display = 'none';
+        }
+
+        // Ejecutar simulación
+        function ejecutarSimulacion() {
+            if (!proyeccionActual) {
+                alert('Primero calcula la proyección base');
+                return;
+            }
+
+            const tipo = document.getElementById('tipoSimulacion').value;
+            const importe = parseFloat(document.getElementById('importeSimulacion').value) || 0;
+            const mes = parseInt(document.getElementById('mesSimulacion').value);
+
+            if (importe === 0) {
+                alert('Introduce un importe');
+                return;
+            }
+
+            // Clonar proyección actual
+            const proyeccionSimulada = JSON.parse(JSON.stringify(proyeccionActual));
+
+            // Aplicar simulación
+            switch(tipo) {
+                case 'perderCliente':
+                    for (let i = mes; i < 12; i++) {
+                        proyeccionSimulada[i].ingresos -= importe;
+                        proyeccionSimulada[i].flujoNeto -= importe;
+                    }
+                    break;
+                case 'retrasoCliente':
+                    proyeccionSimulada[mes].ingresos -= importe;
+                    proyeccionSimulada[mes].flujoNeto -= importe;
+                    break;
+                case 'gastoExtra':
+                    proyeccionSimulada[mes].gastos += importe;
+                    proyeccionSimulada[mes].flujoNeto -= importe;
+                    break;
+                case 'subirPrecio':
+                    for (let i = mes; i < 12; i++) {
+                        const incremento = proyeccionSimulada[i].ingresos * (importe / 100);
+                        proyeccionSimulada[i].ingresos += incremento;
+                        proyeccionSimulada[i].flujoNeto += incremento;
+                    }
+                    break;
+            }
+
+            // Recalcular saldos acumulados
+            let saldoInicial = parseFloat(document.getElementById('saldoInicial').value) || 0;
+            for (let i = 0; i < proyeccionSimulada.length; i++) {
+                saldoInicial += proyeccionSimulada[i].flujoNeto;
+                proyeccionSimulada[i].saldoAcumulado = saldoInicial;
+            }
+
+            // Mostrar resultados
+            mostrarResultadosSimulacion(proyeccionActual, proyeccionSimulada);
+        }
+
+        // Mostrar resultados simulación
+        function mostrarResultadosSimulacion(original, simulada) {
+            const container = document.getElementById('resultadosSimulacion');
+            container.innerHTML = '';
+            container.style.display = 'grid';
+
+            // Saldo final original
+            const saldoFinalOriginal = original[original.length - 1].saldoAcumulado;
+            const saldoFinalSimulado = simulada[simulada.length - 1].saldoAcumulado;
+            const diferencia = saldoFinalSimulado - saldoFinalOriginal;
+
+            // Card escenario actual
+            const cardActual = document.createElement('div');
+            cardActual.className = 'scenario-card';
+            cardActual.style.borderColor = '#2E86AB';
+            cardActual.innerHTML = `
+                <h4>📊 Escenario Actual</h4>
+                <p style="color: var(--text-secondary);">Saldo final proyectado</p>
+                <div class="scenario-result saldo-positivo">${formatoEspanol(saldoFinalOriginal)}€</div>
+            `;
+            container.appendChild(cardActual);
+
+            // Card escenario simulado
+            const cardSimulado = document.createElement('div');
+            cardSimulado.className = 'scenario-card';
+            cardSimulado.style.borderColor = diferencia >= 0 ? '#27AE60' : '#E74C3C';
+            cardSimulado.innerHTML = `
+                <h4>🔮 Escenario Simulado</h4>
+                <p style="color: var(--text-secondary);">Saldo final con cambios</p>
+                <div class="scenario-result ${saldoFinalSimulado >= 0 ? 'saldo-positivo' : 'saldo-negativo'}">${formatoEspanol(saldoFinalSimulado)}€</div>
+            `;
+            container.appendChild(cardSimulado);
+
+            // Card impacto
+            const cardImpacto = document.createElement('div');
+            cardImpacto.className = 'scenario-card';
+            cardImpacto.style.borderColor = diferencia >= 0 ? '#27AE60' : '#E74C3C';
+            cardImpacto.innerHTML = `
+                <h4>💥 Impacto Total</h4>
+                <p style="color: var(--text-secondary);">Diferencia en tu caja</p>
+                <div class="scenario-result" style="color: ${diferencia >= 0 ? 'var(--success)' : 'var(--danger)'};">
+                    ${diferencia >= 0 ? '+' : ''}${formatoEspanol(diferencia)}€
+                </div>
+            `;
+            container.appendChild(cardImpacto);
+
+            // Meses negativos
+            const mesesNegativos = simulada.filter(m => m.saldoAcumulado < 0);
+            if (mesesNegativos.length > 0) {
+                const cardAlerta = document.createElement('div');
+                cardAlerta.className = 'scenario-card';
+                cardAlerta.style.background = 'rgba(231, 76, 60, 0.1)';
+                cardAlerta.style.borderColor = '#E74C3C';
+                cardAlerta.innerHTML = `
+                    <h4>⚠️ Meses Críticos</h4>
+                    <p style="color: var(--danger); font-weight: 600;">
+                        ${mesesNegativos.map(m => m.nombre).join(', ')}
+                    </p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        En este escenario tendrías <strong>${mesesNegativos.length} mes(es)</strong> con saldo negativo.
+                    </p>
+                `;
+                container.appendChild(cardAlerta);
+            }
+        }
+
+        // Guardar proyección
+        function guardarProyeccion() {
+            if (!proyeccionActual) {
+                alert('Primero calcula una proyección');
+                return;
+            }
+
+            const nombre = prompt('Nombre de la proyección:');
+            if (!nombre) return;
+
+            const proyecciones = JSON.parse(localStorage.getItem('cashflow_proyecciones') || '[]');
+            proyecciones.push({
+                nombre: nombre,
+                fecha: new Date().toISOString(),
+                datos: proyeccionActual
+            });
+            localStorage.setItem('cashflow_proyecciones', JSON.stringify(proyecciones));
+
+            alert('Proyección guardada correctamente');
+        }
+
+        // Exportar a Excel (CSV)
+        function exportarExcel() {
+            if (!proyeccionActual) {
+                alert('Primero calcula una proyección');
+                return;
+            }
+
+            let csv = 'Mes,Ingresos,Gastos,Flujo Neto,Saldo Acumulado\n';
+            proyeccionActual.forEach(mes => {
+                csv += `${mes.nombre},${mes.ingresos},${mes.gastos},${mes.flujoNeto},${mes.saldoAcumulado}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cashflow-${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Imprimir proyección
+        function imprimirProyeccion() {
+            window.print();
+        }
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
+
+            // Cerrar todos los FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('show');
+            });
+
+            // Abrir el clickeado si estaba cerrado
+            if (!isActive) {
+                faqItem.classList.add('active');
+                answer.classList.add('show');
+            }
+        }
+
+        // Auto-scroll suave al hacer clic en calcular
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configurar mes actual por defecto
+            const mesActual = new Date().getMonth();
+            document.getElementById('mesInicio').value = mesActual;
+        });
+    </script>
+</body>
+</html>
