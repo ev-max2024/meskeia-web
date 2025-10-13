@@ -534,7 +534,7 @@
                 <div class="text-area-header">
                     <h2>✍️ Tu Texto</h2>
                     <div class="text-area-actions">
-                        <button class="btn" onclick="copyText()" title="Copiar texto">
+                        <button class="btn" onclick="copyText(event)" title="Copiar texto">
                             📋 Copiar
                         </button>
                         <button class="btn" onclick="clearText()" title="Limpiar texto">
@@ -731,7 +731,7 @@
         }
 
         // Copiar texto al portapapeles
-        function copyText() {
+        function copyText(event) {
             const text = document.getElementById('textInput').value;
 
             if (text.trim().length === 0) {
