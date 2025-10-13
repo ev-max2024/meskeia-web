@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora ROI de Marketing | CAC, CLV, ROI por Canal - meskeIA</title>
+
+    <link rel="canonical" href="https://meskeia.com/calculadora-roi-marketing/">
+
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Calcula el ROI de tus campañas de marketing por canal: Google Ads, Facebook, SEO. Analiza CAC, CLV y optimiza tu inversión publicitaria con datos reales.">
+    <meta name="keywords" content="ROI marketing, CAC, CLV, coste adquisición cliente, retorno inversión, google ads roi, facebook ads roi, marketing digital, calculadora marketing">
+    <meta name="author" content="meskeIA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora ROI de Marketing | meskeIA">
+    <meta property="og:description" content="Calcula el ROI de cada canal de marketing. Optimiza presupuesto, reduce CAC y maximiza beneficios con análisis basado en datos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/calculadora-roi-marketing/">
+    <meta property="og:image" content="https://meskeia.com/calculadora-roi-marketing/icon_meskeia.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora ROI de Marketing | meskeIA">
+    <meta name="twitter:description" content="Herramienta gratuita para calcular ROI, CAC y CLV de tus campañas de marketing. Optimiza tu inversión publicitaria.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon_meskeia.png">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --success: #27AE60;
+            --warning: #F39C12;
+            --danger: #E74C3C;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 80px 20px 80px 20px;
+        }
+
+        /* Logo meskeIA */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .meskeia-logo-text .meske { color: var(--primary); }
+        .meskeia-logo-text .ia {
+            color: var(--secondary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 20px 0 15px 0;
+        }
+
+        /* Form groups */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        /* Canales de marketing */
+        .canales-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .canal-item {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 50px;
+            gap: 12px;
+            align-items: center;
+            padding: 16px;
+            background: var(--hover);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .canal-item:hover {
+            background: #EEEEEE;
+            transform: translateY(-2px);
+        }
+
+        .canal-item input,
+        .canal-item select {
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .canal-item input:focus,
+        .canal-item select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn-remove {
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-remove:hover {
+            background: #C0392B;
+            transform: scale(1.1);
+        }
+
+        .btn-add {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-add:hover {
+            background: #3D9894;
+            transform: translateY(-2px);
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.3);
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 134, 171, 0.4);
+        }
+
+        /* Resultados */
+        .results-section {
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        /* Métricas cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: var(--hover);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .metric-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Resultados por canal */
+        .canal-result {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .canal-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .canal-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .canal-roi {
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .roi-excellent {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+        }
+
+        .roi-good {
+            background: rgba(72, 169, 166, 0.1);
+            color: var(--secondary);
+        }
+
+        .roi-warning {
+            background: rgba(243, 156, 18, 0.1);
+            color: var(--warning);
+        }
+
+        .roi-poor {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--danger);
+        }
+
+        .canal-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .canal-metric {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .canal-metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .canal-metric-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Gráfico */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+        }
+
+        /* Recomendaciones */
+        .recommendation {
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .recommendation-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .recommendation-escalar {
+            background: rgba(39, 174, 96, 0.1);
+            border-left: 4px solid var(--success);
+        }
+
+        .recommendation-optimizar {
+            background: rgba(243, 156, 18, 0.1);
+            border-left: 4px solid var(--warning);
+        }
+
+        .recommendation-pausar {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+
+        /* FAQs */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            background: var(--hover);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #EEEEEE;
+        }
+
+        .faq-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.show {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 70px 15px 70px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .canal-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>📊 Calculadora de ROI de Marketing</h1>
+            <p class="subtitle">Calcula el retorno de inversión de cada canal de marketing, optimiza tu presupuesto y maximiza beneficios con decisiones basadas en datos</p>
+        </header>
+
+        <!-- Información explicativa -->
+        <div class="card">
+            <h2>📚 ¿Por qué calcular el ROI de tu marketing?</h2>
+            <p style="margin-bottom: 15px;">El <strong>ROI (Return On Investment)</strong> te muestra cuántos euros ganas por cada euro que inviertes en marketing. Es la métrica más importante para optimizar tu presupuesto.</p>
+
+            <div style="background: rgba(231, 76, 60, 0.1); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <strong style="color: var(--danger);">⚠️ Dato crítico:</strong> El 63% de los marketers no saben calcular correctamente el ROI de sus campañas, resultando en <strong>miles de euros malgastados</strong> en canales ineficientes.
+            </div>
+
+            <p><strong>Métricas clave que calcularemos:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-secondary);">
+                <li><strong>ROI (%)</strong> = (Ingresos - Inversión) / Inversión × 100</li>
+                <li><strong>CAC (Coste Adquisición Cliente)</strong> = Inversión / Nº Clientes</li>
+                <li><strong>CLV (Customer Lifetime Value)</strong> = Ticket medio × Compras promedio × Margen</li>
+                <li><strong>Ratio CLV/CAC</strong> = Debe ser >3:1 para ser sostenible</li>
+            </ul>
+        </div>
+
+        <!-- Datos generales -->
+        <div class="card">
+            <h2>⚙️ Datos Generales del Negocio</h2>
+            <div class="config-grid">
+                <div class="form-group">
+                    <label for="ticketMedio">Ticket Medio (precio promedio)</label>
+                    <small>¿Cuánto paga un cliente de media?</small>
+                    <input type="number" id="ticketMedio" placeholder="100" step="10" min="0" value="100">
+                </div>
+                <div class="form-group">
+                    <label for="margenBeneficio">Margen de Beneficio (%)</label>
+                    <small>% de beneficio después de costes</small>
+                    <input type="number" id="margenBeneficio" placeholder="30" step="5" min="0" max="100" value="30">
+                </div>
+                <div class="form-group">
+                    <label for="comprasAnuales">Compras promedio por cliente/año</label>
+                    <small>Frecuencia de compra anual estimada</small>
+                    <input type="number" id="comprasAnuales" placeholder="3" step="1" min="1" value="3">
+                </div>
+            </div>
+        </div>
+
+        <!-- Canales de marketing -->
+        <div class="card">
+            <h2>📢 Canales de Marketing</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Añade cada canal donde inviertes en marketing: Google Ads, Facebook, Instagram, LinkedIn, SEO, etc.</p>
+
+            <div id="canalesContainer" class="canales-container">
+                <div class="canal-item">
+                    <select class="canal-tipo">
+                        <option value="Google Ads">Google Ads</option>
+                        <option value="Facebook Ads">Facebook Ads</option>
+                        <option value="Instagram Ads">Instagram Ads</option>
+                        <option value="LinkedIn Ads">LinkedIn Ads</option>
+                        <option value="Email Marketing">Email Marketing</option>
+                        <option value="SEO">SEO</option>
+                        <option value="Influencers">Influencers</option>
+                        <option value="YouTube Ads">YouTube Ads</option>
+                        <option value="TikTok Ads">TikTok Ads</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                    <input type="number" placeholder="Inversión €" class="canal-inversion" step="50" min="0">
+                    <input type="number" placeholder="Clientes conseguidos" class="canal-clientes" step="1" min="0">
+                    <input type="number" placeholder="Ventas generadas €" class="canal-ventas" step="50" min="0">
+                    <button class="btn-remove" onclick="removeCanal(this)">×</button>
+                </div>
+            </div>
+            <button class="btn-add" onclick="addCanal()">+ Agregar Canal</button>
+        </div>
+
+        <button class="btn-calculate" onclick="calcularROI()">
+            📊 Calcular ROI y Optimizar Presupuesto
+        </button>
+
+        <!-- Resultados -->
+        <div class="results-section" id="resultados">
+            <!-- Métricas generales -->
+            <div class="card">
+                <h2>📈 Métricas Generales</h2>
+                <div class="metrics-grid" id="metricasGenerales">
+                    <!-- Se genera dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Gráfico comparativo -->
+            <div class="card">
+                <h2>📊 ROI por Canal - Comparativa Visual</h2>
+                <div class="chart-container">
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Resultados por canal -->
+            <div class="card">
+                <h2>🎯 Análisis Detallado por Canal</h2>
+                <div id="canalesResultados">
+                    <!-- Se genera dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Recomendaciones -->
+            <div class="card">
+                <h2>💡 Recomendaciones Estratégicas</h2>
+                <div id="recomendaciones">
+                    <!-- Se genera dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="card">
+            <h2>❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué ROI se considera bueno en marketing digital?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Excelente: ROI >200%</strong> - Por cada 1€ invertido, ganas >2€ de beneficio neto. Escala inmediatamente.</p>
+                    <p><strong>Bueno: ROI 100-200%</strong> - Rentable pero con margen de mejora. Optimiza y escala gradualmente.</p>
+                    <p><strong>Aceptable: ROI 50-100%</strong> - Positivo pero justo. Necesita optimización urgente.</p>
+                    <p><strong>Pobre: ROI <50%</strong> - Estás perdiendo dinero. Pausa y rediseña la estrategia.</p>
+                    <p><strong>Nota:</strong> Estos valores son orientativos. Algunos negocios con alto CLV pueden aceptar ROIs menores inicialmente.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué es el CAC y por qué es importante?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>CAC (Customer Acquisition Cost)</strong> es cuánto te cuesta adquirir cada cliente nuevo.</p>
+                    <p><strong>Fórmula:</strong> CAC = Inversión en marketing / Número de clientes conseguidos</p>
+                    <p><strong>Ejemplo:</strong> Si gastas 1.000€ y consigues 20 clientes, tu CAC es 50€.</p>
+                    <p><strong>Regla de oro:</strong> Tu CLV debe ser al menos <strong>3 veces tu CAC</strong>. Si tu CAC es 50€, tu CLV debe ser >150€.</p>
+                    <p>Si tu ratio CLV/CAC es <3:1, no es sostenible a largo plazo.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué es el CLV (Customer Lifetime Value)?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>CLV</strong> es el valor total que un cliente genera durante toda su relación con tu negocio.</p>
+                    <p><strong>Fórmula simplificada:</strong> CLV = Ticket medio × Compras al año × Años de relación × Margen de beneficio</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>• Ticket medio: 50€</p>
+                    <p>• Compras al año: 4 veces</p>
+                    <p>• Años de cliente: 3 años</p>
+                    <p>• Margen: 30%</p>
+                    <p>CLV = 50€ × 4 × 3 × 0,30 = 180€</p>
+                    <p><strong>¿Para qué sirve?</strong> Saber cuánto puedes invertir en adquirir cada cliente sin perder dinero.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué hago si un canal tiene ROI negativo?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Opciones según la situación:</strong></p>
+                    <p><strong>1. Canal nuevo (<3 meses):</strong></p>
+                    <p>• Dale tiempo para optimizarse (fase de aprendizaje)</p>
+                    <p>• Analiza datos de conversión y ajusta targeting</p>
+                    <p><strong>2. Canal maduro (>3 meses):</strong></p>
+                    <p>• Pausa inmediatamente el canal</p>
+                    <p>• Analiza el embudo: ¿Qué falla? (clicks, conversión, precio)</p>
+                    <p>• Testea nuevo copy/creatividades</p>
+                    <p><strong>3. Canal estratégico (branding):</strong></p>
+                    <p>• Algunos canales tienen valor de marca difícil de medir</p>
+                    <p>• Considera métricas como notoriedad, engagement</p>
+                    <p><strong>Regla:</strong> Si tras 3 optimizaciones el ROI sigue <0%, cierra el canal sin piedad.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cómo atribuyo ventas a cada canal correctamente?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Métodos de atribución:</strong></p>
+                    <p><strong>1. Último click (simple):</strong> El canal por donde llegó el cliente antes de comprar se lleva todo el crédito.</p>
+                    <p><strong>2. Primer click:</strong> El primer canal por donde llegó se lleva el crédito (útil para awareness).</p>
+                    <p><strong>3. Lineal:</strong> Todos los canales que tocó el cliente se reparten el crédito equitativamente.</p>
+                    <p><strong>4. Basado en datos (avanzado):</strong> Algoritmos asignan valor según impacto real.</p>
+                    <p><strong>Consejo práctico:</strong> Para PYMEs, usa <strong>último click</strong> (más simple) y códigos de descuento únicos por canal para trackear mejor.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cada cuánto debo revisar el ROI de mis campañas?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Frecuencia recomendada:</strong></p>
+                    <p><strong>Startups con presupuesto limitado:</strong> Semanal (cada lunes)</p>
+                    <p><strong>PYMEs:</strong> Quincenal</p>
+                    <p><strong>Empresas establecidas:</strong> Mensual</p>
+                    <p><strong>Momentos críticos para revisar SIEMPRE:</strong></p>
+                    <p>• Antes de renovar presupuestos</p>
+                    <p>• Tras cambios importantes en campañas</p>
+                    <p>• En temporadas altas/bajas</p>
+                    <p>• Si hay caídas súbitas en conversiones</p>
+                    <p><strong>Regla de oro:</strong> Revisa <strong>antes</strong> de que se acabe el presupuesto, no después.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        let chartInstance = null;
+
+        // Formato español
+        function formatoEspanol(numero, decimales = 2) {
+            return numero.toLocaleString('es-ES', {
+                minimumFractionDigits: decimales,
+                maximumFractionDigits: decimales
+            });
+        }
+
+        // Añadir canal
+        function addCanal() {
+            const container = document.getElementById('canalesContainer');
+            const div = document.createElement('div');
+            div.className = 'canal-item';
+            div.innerHTML = `
+                <select class="canal-tipo">
+                    <option value="Google Ads">Google Ads</option>
+                    <option value="Facebook Ads">Facebook Ads</option>
+                    <option value="Instagram Ads">Instagram Ads</option>
+                    <option value="LinkedIn Ads">LinkedIn Ads</option>
+                    <option value="Email Marketing">Email Marketing</option>
+                    <option value="SEO">SEO</option>
+                    <option value="Influencers">Influencers</option>
+                    <option value="YouTube Ads">YouTube Ads</option>
+                    <option value="TikTok Ads">TikTok Ads</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <input type="number" placeholder="Inversión €" class="canal-inversion" step="50" min="0">
+                <input type="number" placeholder="Clientes conseguidos" class="canal-clientes" step="1" min="0">
+                <input type="number" placeholder="Ventas generadas €" class="canal-ventas" step="50" min="0">
+                <button class="btn-remove" onclick="removeCanal(this)">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        // Eliminar canal
+        function removeCanal(button) {
+            button.parentElement.remove();
+        }
+
+        // Calcular ROI
+        function calcularROI() {
+            // Obtener datos generales
+            const ticketMedio = parseFloat(document.getElementById('ticketMedio').value) || 0;
+            const margenBeneficio = parseFloat(document.getElementById('margenBeneficio').value) || 0;
+            const comprasAnuales = parseFloat(document.getElementById('comprasAnuales').value) || 0;
+
+            if (ticketMedio === 0 || margenBeneficio === 0) {
+                alert('Por favor, completa los datos generales del negocio');
+                return;
+            }
+
+            // Calcular CLV
+            const clv = ticketMedio * comprasAnuales * (margenBeneficio / 100);
+
+            // Obtener datos de canales
+            const canales = [];
+            document.querySelectorAll('#canalesContainer .canal-item').forEach(item => {
+                const tipo = item.querySelector('.canal-tipo').value;
+                const inversion = parseFloat(item.querySelector('.canal-inversion').value) || 0;
+                const clientes = parseFloat(item.querySelector('.canal-clientes').value) || 0;
+                const ventas = parseFloat(item.querySelector('.canal-ventas').value) || 0;
+
+                if (inversion > 0 && clientes > 0) {
+                    const beneficio = ventas * (margenBeneficio / 100);
+                    const roi = ((beneficio - inversion) / inversion) * 100;
+                    const cac = inversion / clientes;
+                    const ratioCLVCAC = cac > 0 ? clv / cac : 0;
+
+                    canales.push({
+                        tipo,
+                        inversion,
+                        clientes,
+                        ventas,
+                        beneficio,
+                        roi,
+                        cac,
+                        ratioCLVCAC
+                    });
+                }
+            });
+
+            if (canales.length === 0) {
+                alert('Por favor, añade al menos un canal con datos');
+                return;
+            }
+
+            // Calcular totales
+            const inversionTotal = canales.reduce((sum, c) => sum + c.inversion, 0);
+            const clientesTotal = canales.reduce((sum, c) => sum + c.clientes, 0);
+            const ventasTotal = canales.reduce((sum, c) => sum + c.ventas, 0);
+            const beneficioTotal = canales.reduce((sum, c) => sum + c.beneficio, 0);
+            const roiPromedio = ((beneficioTotal - inversionTotal) / inversionTotal) * 100;
+            const cacPromedio = inversionTotal / clientesTotal;
+
+            // Generar métricas generales
+            generarMetricasGenerales({
+                inversionTotal,
+                clientesTotal,
+                ventasTotal,
+                beneficioTotal,
+                roiPromedio,
+                cacPromedio,
+                clv,
+                ratioCLVCAC: clv / cacPromedio
+            });
+
+            // Generar gráfico
+            generarGrafico(canales);
+
+            // Generar resultados por canal
+            generarResultadosCanales(canales);
+
+            // Generar recomendaciones
+            generarRecomendaciones(canales, clv);
+
+            // Mostrar resultados
+            document.getElementById('resultados').classList.add('show');
+            document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Generar métricas generales
+        function generarMetricasGenerales(datos) {
+            const container = document.getElementById('metricasGenerales');
+            container.innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-label">Inversión Total</div>
+                    <div class="metric-value">${formatoEspanol(datos.inversionTotal, 0)}€</div>
+                    <div class="metric-subtitle">En todos los canales</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Clientes Conseguidos</div>
+                    <div class="metric-value">${formatoEspanol(datos.clientesTotal, 0)}</div>
+                    <div class="metric-subtitle">Total generados</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Ventas Generadas</div>
+                    <div class="metric-value">${formatoEspanol(datos.ventasTotal, 0)}€</div>
+                    <div class="metric-subtitle">Ingresos totales</div>
+                </div>
+                <div class="metric-card" style="border-left: 4px solid ${datos.roiPromedio >= 100 ? 'var(--success)' : 'var(--warning)'};">
+                    <div class="metric-label">ROI Promedio</div>
+                    <div class="metric-value" style="color: ${datos.roiPromedio >= 100 ? 'var(--success)' : 'var(--warning)'};">
+                        ${formatoEspanol(datos.roiPromedio, 1)}%
+                    </div>
+                    <div class="metric-subtitle">${datos.roiPromedio >= 200 ? 'Excelente' : datos.roiPromedio >= 100 ? 'Bueno' : datos.roiPromedio >= 50 ? 'Aceptable' : 'Necesita mejora'}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">CAC Promedio</div>
+                    <div class="metric-value">${formatoEspanol(datos.cacPromedio, 2)}€</div>
+                    <div class="metric-subtitle">Por cliente</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">CLV Estimado</div>
+                    <div class="metric-value">${formatoEspanol(datos.clv, 2)}€</div>
+                    <div class="metric-subtitle">Valor de vida del cliente</div>
+                </div>
+                <div class="metric-card" style="border-left: 4px solid ${datos.ratioCLVCAC >= 3 ? 'var(--success)' : 'var(--danger)'};">
+                    <div class="metric-label">Ratio CLV/CAC</div>
+                    <div class="metric-value" style="color: ${datos.ratioCLVCAC >= 3 ? 'var(--success)' : 'var(--danger)'};">
+                        ${formatoEspanol(datos.ratioCLVCAC, 2)}:1
+                    </div>
+                    <div class="metric-subtitle">${datos.ratioCLVCAC >= 3 ? 'Sostenible' : 'No sostenible (<3:1)'}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Beneficio Neto</div>
+                    <div class="metric-value" style="color: ${datos.beneficioTotal > 0 ? 'var(--success)' : 'var(--danger)'};">
+                        ${datos.beneficioTotal > 0 ? '+' : ''}${formatoEspanol(datos.beneficioTotal, 0)}€
+                    </div>
+                    <div class="metric-subtitle">Tras inversión marketing</div>
+                </div>
+            `;
+        }
+
+        // Generar gráfico
+        function generarGrafico(canales) {
+            const ctx = document.getElementById('roiChart').getContext('2d');
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Ordenar canales por ROI
+            const canalesOrdenados = [...canales].sort((a, b) => b.roi - a.roi);
+
+            const labels = canalesOrdenados.map(c => c.tipo);
+            const rois = canalesOrdenados.map(c => c.roi);
+            const colores = canalesOrdenados.map(c => {
+                if (c.roi >= 200) return '#27AE60';
+                if (c.roi >= 100) return '#48A9A6';
+                if (c.roi >= 50) return '#F39C12';
+                return '#E74C3C';
+            });
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ROI (%)',
+                        data: rois,
+                        backgroundColor: colores,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'ROI: ' + formatoEspanol(context.parsed.y, 1) + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Generar resultados por canal
+        function generarResultadosCanales(canales) {
+            const container = document.getElementById('canalesResultados');
+            container.innerHTML = '';
+
+            // Ordenar por ROI descendente
+            const canalesOrdenados = [...canales].sort((a, b) => b.roi - a.roi);
+
+            canalesOrdenados.forEach(canal => {
+                let roiClass = 'roi-poor';
+                if (canal.roi >= 200) roiClass = 'roi-excellent';
+                else if (canal.roi >= 100) roiClass = 'roi-good';
+                else if (canal.roi >= 50) roiClass = 'roi-warning';
+
+                const div = document.createElement('div');
+                div.className = 'canal-result';
+                div.innerHTML = `
+                    <div class="canal-result-header">
+                        <div class="canal-name">${canal.tipo}</div>
+                        <div class="canal-roi ${roiClass}">${formatoEspanol(canal.roi, 1)}%</div>
+                    </div>
+                    <div class="canal-metrics">
+                        <div class="canal-metric">
+                            <div class="canal-metric-label">Inversión</div>
+                            <div class="canal-metric-value">${formatoEspanol(canal.inversion, 0)}€</div>
+                        </div>
+                        <div class="canal-metric">
+                            <div class="canal-metric-label">Clientes</div>
+                            <div class="canal-metric-value">${formatoEspanol(canal.clientes, 0)}</div>
+                        </div>
+                        <div class="canal-metric">
+                            <div class="canal-metric-label">Ventas</div>
+                            <div class="canal-metric-value">${formatoEspanol(canal.ventas, 0)}€</div>
+                        </div>
+                        <div class="canal-metric">
+                            <div class="canal-metric-label">CAC</div>
+                            <div class="canal-metric-value">${formatoEspanol(canal.cac, 2)}€</div>
+                        </div>
+                        <div class="canal-metric">
+                            <div class="canal-metric-label">Beneficio Neto</div>
+                            <div class="canal-metric-value" style="color: ${canal.beneficio - canal.inversion > 0 ? 'var(--success)' : 'var(--danger)'};">
+                                ${canal.beneficio - canal.inversion > 0 ? '+' : ''}${formatoEspanol(canal.beneficio - canal.inversion, 0)}€
+                            </div>
+                        </div>
+                        <div class="canal-metric">
+                            <div class="canal-metric-label">Ratio CLV/CAC</div>
+                            <div class="canal-metric-value" style="color: ${canal.ratioCLVCAC >= 3 ? 'var(--success)' : 'var(--danger)'};">
+                                ${formatoEspanol(canal.ratioCLVCAC, 2)}:1
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Generar recomendaciones
+        function generarRecomendaciones(canales, clv) {
+            const container = document.getElementById('recomendaciones');
+            container.innerHTML = '';
+
+            const escalar = canales.filter(c => c.roi >= 200);
+            const optimizar = canales.filter(c => c.roi >= 50 && c.roi < 200);
+            const pausar = canales.filter(c => c.roi < 50);
+
+            if (escalar.length > 0) {
+                const div = document.createElement('div');
+                div.className = 'recommendation recommendation-escalar';
+                div.innerHTML = `
+                    <div class="recommendation-icon">🚀</div>
+                    <div>
+                        <strong>ESCALAR INMEDIATAMENTE:</strong><br>
+                        ${escalar.map(c => c.tipo).join(', ')} tienen ROI >200%.
+                        Aumenta presupuesto aquí. Por cada 1.000€ extra en ${escalar[0].tipo},
+                        generarás aprox. ${formatoEspanol((escalar[0].roi / 100) * 1000, 0)}€ de beneficio.
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            if (optimizar.length > 0) {
+                const div = document.createElement('div');
+                div.className = 'recommendation recommendation-optimizar';
+                div.innerHTML = `
+                    <div class="recommendation-icon">⚙️</div>
+                    <div>
+                        <strong>OPTIMIZAR:</strong><br>
+                        ${optimizar.map(c => c.tipo).join(', ')} son rentables pero mejorables.
+                        Prueba mejorar copy, creatividades, segmentación o landing pages.
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            if (pausar.length > 0) {
+                const div = document.createElement('div');
+                div.className = 'recommendation recommendation-pausar';
+                div.innerHTML = `
+                    <div class="recommendation-icon">⛔</div>
+                    <div>
+                        <strong>PAUSAR O REDISEÑAR:</strong><br>
+                        ${pausar.map(c => c.tipo).join(', ')} tienen ROI <50%.
+                        Estás perdiendo dinero. Pausa y analiza qué falla (targeting, oferta, producto-mercado fit).
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            // Recomendación CLV/CAC
+            const cacProblematico = canales.filter(c => c.ratioCLVCAC < 3);
+            if (cacProblematico.length > 0) {
+                const div = document.createElement('div');
+                div.className = 'recommendation recommendation-pausar';
+                div.innerHTML = `
+                    <div class="recommendation-icon">⚠️</div>
+                    <div>
+                        <strong>RATIO CLV/CAC PROBLEMÁTICO:</strong><br>
+                        ${cacProblematico.map(c => c.tipo).join(', ')} tienen ratio <3:1.
+                        No es sostenible. Opciones: reduce CAC, aumenta precio/margen, o mejora retención de clientes.
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            if (container.innerHTML === '') {
+                container.innerHTML = `
+                    <div class="recommendation recommendation-escalar">
+                        <div class="recommendation-icon">✅</div>
+                        <div>
+                            <strong>¡Excelente trabajo!</strong><br>
+                            Todos tus canales están funcionando bien. Continúa monitoreando y optimizando.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
+
+            // Cerrar todos
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('show');
+            });
+
+            // Abrir el clickeado si estaba cerrado
+            if (!isActive) {
+                faqItem.classList.add('active');
+                answer.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>
