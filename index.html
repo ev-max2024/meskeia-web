@@ -508,33 +508,69 @@
 
         /* Footer Minimalista */
         .footer {
-            background: var(--text-primary);
-            color: var(--bg-card);
+            background: #F5F5F5;
+            color: var(--text-primary);
             text-align: center;
-            padding: var(--spacing-lg);
+            padding: var(--spacing-xl) var(--spacing-lg);
             margin-top: var(--spacing-xl);
+            border-top: 1px solid var(--border);
         }
 
         .footer p {
-            opacity: 0.8;
             margin-bottom: var(--spacing-xs);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .footer-location {
+            color: var(--text-secondary);
             font-size: 0.9rem;
+            margin: var(--spacing-sm) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .footer-location span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .footer-links {
-            margin-top: var(--spacing-sm);
-            font-size: 0.85rem;
+            margin-top: var(--spacing-md);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
         .footer-links a {
             color: var(--primary);
             text-decoration: none;
-            margin: 0 var(--spacing-sm);
             font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
 
         .footer-links a:hover {
+            background: var(--hover);
             text-decoration: underline;
+        }
+
+        .footer-links span {
+            color: var(--text-secondary);
+        }
+
+        .footer-links strong {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         /* Chatbot Minimalista */
@@ -1167,10 +1203,15 @@
     <footer class="footer">
         <p>&copy; 2025 meskeIA - Biblioteca de Aplicaciones Web Gratuitas</p>
         <p>Aplicaciones desarrolladas para simplificar tu día a día</p>
+        <div class="footer-location">
+            <span>📍 Mataró (Barcelona), España</span>
+            <span>|</span>
+            <span>✉️ meskeia24@gmail.com</span>
+        </div>
         <div class="footer-links">
             <a href="privacidad.html" aria-label="Política de privacidad">Privacidad</a>
+            <span>•</span>
             <a href="terminos.html" aria-label="Términos de uso">Términos</a>
-            <span>Contacto: <strong>meskeia24@gmail.com</strong></span>
         </div>
     </footer>
 
