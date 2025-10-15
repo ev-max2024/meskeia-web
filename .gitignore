@@ -2,5 +2,6 @@
 # Playwright screenshots
 .playwright-mcp/
 
-# Claude settings
-.claude/settings.local.json
+# Claude settings (ignorar toda la carpeta)
+.claude/
+**/.claude/
