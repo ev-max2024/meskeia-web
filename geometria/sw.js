@@ -12,19 +12,6 @@ const urlsToCache = [
   './script.js',
   './manifest.json',
 
-  // Iconos
-  './icon-72x72.png',
-  './icon-96x96.png',
-  './icon-128x128.png',
-  './icon-144x144.png',
-  './icon-152x152.png',
-  './icon-192x192.png',
-  './icon-384x384.png',
-  './icon-512x512.png',
-  './favicon-16x16.png',
-  './favicon-32x32.png',
-  './apple-touch-icon.png',
-
   // CDN resources (Chart.js)
   'https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js'
 ];
@@ -152,21 +139,17 @@ self.addEventListener('push', function(event) {
 
     const options = {
       body: data.body || 'Nueva actualización disponible',
-      icon: './icon-192x192.png',
-      badge: './icon-72x72.png',
       tag: 'geometria-update',
       renotify: true,
       requireInteraction: false,
       actions: [
         {
           action: 'open',
-          title: 'Abrir App',
-          icon: './icon-72x72.png'
+          title: 'Abrir App'
         },
         {
           action: 'dismiss',
-          title: 'Cerrar',
-          icon: './icon-72x72.png'
+          title: 'Cerrar'
         }
       ]
     };
