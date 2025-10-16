@@ -87,6 +87,12 @@ self.addEventListener('activate', event => {
  * Intercepta las peticiones de red
  */
 self.addEventListener('fetch', event => {
+    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+        return;
+    }
+
+
     const request = event.request;
     const url = new URL(request.url);
 

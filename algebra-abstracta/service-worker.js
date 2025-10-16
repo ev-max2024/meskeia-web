@@ -42,6 +42,12 @@ self.addEventListener('activate', event => {
 
 // Estrategia de caché: Network First con fallback a caché
 self.addEventListener('fetch', event => {
+    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+        return;
+    }
+
+
     // Para MathJax y recursos externos, siempre intentar red primero
     if (event.request.url.includes('cdn.jsdelivr.net') ||
         event.request.url.includes('polyfill.io') ||

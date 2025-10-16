@@ -39,6 +39,12 @@ self.addEventListener('activate', event => {
 
 // Estrategia de caché: Network First con fallback a caché
 self.addEventListener('fetch', event => {
+    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+        return;
+    }
+
+
     // Skip para recursos externos (analytics, fonts, etc)
     if (!event.request.url.startsWith(self.location.origin)) {
         return;

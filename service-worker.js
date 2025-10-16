@@ -27,6 +27,12 @@ self.addEventListener('activate', event => {
 
 // Fetch - Estrategia simple: Network First, Cache Fallback
 self.addEventListener('fetch', event => {
+    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+        return;
+    }
+
+
   if (event.request.method !== 'GET') return;
 
   event.respondWith(

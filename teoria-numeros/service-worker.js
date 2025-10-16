@@ -47,6 +47,12 @@ self.addEventListener('activate', event => {
 
 // Intercepción de requests
 self.addEventListener('fetch', event => {
+    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+        return;
+    }
+
+
     // Solo manejar requests GET
     if (event.request.method !== 'GET') {
         return;

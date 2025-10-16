@@ -38,6 +38,12 @@ self.addEventListener('activate', event => {
 
 // Interceptar peticiones
 self.addEventListener('fetch', event => {
+    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+        return;
+    }
+
+
     event.respondWith(
         caches.match(event.request)
             .then(response => {
