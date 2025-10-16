@@ -1,14 +1,14 @@
 // service-worker.js - Service Worker para Álgebra Abstracta PWA
 
-const CACHE_NAME = 'algebra-abstracta-v1.0.0';
+const CACHE_NAME = 'algebra-abstracta-v1.0.1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json',
-    '/logo.svg',
-    '/favicon.png',
+    '/algebra-abstracta/',
+    '/algebra-abstracta/index.html',
+    '/algebra-abstracta/styles.css',
+    '/algebra-abstracta/app.js',
+    '/algebra-abstracta/manifest.json',
+    '/algebra-abstracta/logo.svg',
+    '/algebra-abstracta/favicon.png',
     'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
 ];
 
