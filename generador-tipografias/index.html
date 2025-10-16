@@ -358,13 +358,24 @@
         }
 
         @media (max-width: 480px) {
+            * {
+                max-width: 100%;
+            }
+
             body {
                 padding: 10px;
+                overflow-x: hidden;
             }
 
             .container {
                 margin-top: 50px;
                 padding: 0 10px;
+                max-width: 100%;
+            }
+
+            .main-grid {
+                max-width: 100%;
+                overflow: hidden;
             }
 
             h1 {
