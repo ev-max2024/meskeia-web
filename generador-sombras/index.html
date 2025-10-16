@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador de sombras CSS profesional: crea box-shadow y text-shadow con control total. Vista previa en tiempo real, múltiples capas, presets (neuromorfismo, material design) y código CSS listo para copiar.">
+    <meta name="keywords" content="generador sombras css, box-shadow generator, text-shadow, neuromorfismo, material design, css3, diseño web">
+    <meta name="author" content="meskeIA">
+    <title>Generador de Sombras CSS | Box-Shadow y Text-Shadow - meskeIA</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+
+    <style>
+        /* Reset y Variables meskeIA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta oficial meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 80px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Grid principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        /* Preview */
+        .shadow-preview-container {
+            background: #F0F0F0;
+            padding: 60px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .shadow-preview-box {
+            width: 250px;
+            height: 250px;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .shadow-preview-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Tipo de sombra */
+        .shadow-type-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .type-btn {
+            padding: 12px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .type-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .type-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Controles */
+        .control-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .control-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        /* Slider */
+        .slider-control {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.9rem;
+        }
+
+        .slider-value {
+            font-weight: 600;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            background: var(--border);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Color picker */
+        .color-picker-group {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .color-picker-box {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .color-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Capas de sombra */
+        .shadow-layers {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .shadow-layer {
+            padding: var(--spacing-md);
+            background: var(--hover);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .shadow-layer.active {
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .layer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .layer-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .layer-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .layer-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .layer-btn:hover {
+            background: var(--border);
+        }
+
+        .remove-layer-btn {
+            color: #F56565;
+        }
+
+        .add-layer-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .add-layer-btn:hover {
+            background: var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* Código CSS */
+        .css-output {
+            background: #1A1A1A;
+            color: #F0F0F0;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .copy-code-btn:hover {
+            background: var(--secondary);
+        }
+
+        .copy-code-btn.copied {
+            background: #48BB78;
+        }
+
+        /* Presets */
+        .presets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .preset-item {
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            transition: all 0.2s ease;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            position: relative;
+        }
+
+        .preset-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .preset-label {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .preset-demo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        /* Checkbox para inset */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+
+            .shadow-preview-box {
+                width: 200px;
+                height: 200px;
+            }
+
+            .shadow-preview-text {
+                font-size: 2rem;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>💫 Generador de Sombras CSS</h1>
+            <p class="subtitle">Crea box-shadow y text-shadow con múltiples capas y vista previa en tiempo real</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Panel izquierdo: Preview -->
+            <div>
+                <div class="card">
+                    <h2 class="card-title">Vista Previa</h2>
+                    <div class="shadow-preview-container" id="previewContainer">
+                        <div class="shadow-preview-box" id="previewBox">
+                            <span>Box</span>
+                        </div>
+                        <div class="shadow-preview-text" id="previewText" style="display: none;">
+                            Texto
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Código CSS -->
+                <div class="card">
+                    <h2 class="card-title">Código CSS</h2>
+                    <div class="css-output">
+                        <button class="copy-code-btn" onclick="copyCSSCode(this)">Copiar CSS</button>
+                        <pre id="cssCode">box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);</pre>
+                    </div>
+                </div>
+
+                <!-- Presets -->
+                <div class="card">
+                    <h2 class="card-title">🎨 Presets Populares</h2>
+                    <div class="presets-grid" id="presetsGrid"></div>
+                </div>
+            </div>
+
+            <!-- Panel derecho: Controles -->
+            <div class="card">
+                <h2 class="card-title">Configuración</h2>
+
+                <!-- Tipo de sombra -->
+                <div class="control-group">
+                    <label class="control-label">Tipo de Sombra</label>
+                    <div class="shadow-type-buttons">
+                        <button class="type-btn active" onclick="setShadowType('box')">Box Shadow</button>
+                        <button class="type-btn" onclick="setShadowType('text')">Text Shadow</button>
+                    </div>
+                </div>
+
+                <!-- Capas -->
+                <div class="control-group">
+                    <label class="control-label">Capas de Sombra</label>
+                    <div class="shadow-layers" id="shadowLayers"></div>
+                    <button class="add-layer-btn" onclick="addShadowLayer()">+ Añadir Capa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Estado de las sombras
+        let shadowState = {
+            type: 'box',
+            layers: [
+                { x: 0, y: 4, blur: 6, spread: 0, color: 'rgba(0, 0, 0, 0.1)', inset: false }
+            ],
+            activeLayer: 0
+        };
+
+        // Presets
+        const presets = {
+            box: [
+                { name: 'Suave', layers: [{ x: 0, y: 2, blur: 8, spread: 0, color: 'rgba(0, 0, 0, 0.1)', inset: false }] },
+                { name: 'Material Design', layers: [{ x: 0, y: 3, blur: 6, spread: 0, color: 'rgba(0, 0, 0, 0.16)', inset: false }] },
+                { name: 'Elevado', layers: [{ x: 0, y: 10, blur: 25, spread: 0, color: 'rgba(0, 0, 0, 0.2)', inset: false }] },
+                { name: 'Neuromorfismo', layers: [
+                    { x: 8, y: 8, blur: 16, spread: 0, color: 'rgba(0, 0, 0, 0.1)', inset: false },
+                    { x: -8, y: -8, blur: 16, spread: 0, color: 'rgba(255, 255, 255, 0.7)', inset: false }
+                ]},
+                { name: 'Inset Suave', layers: [{ x: 0, y: 2, blur: 4, spread: 0, color: 'rgba(0, 0, 0, 0.1)', inset: true }] },
+                { name: 'Glow', layers: [{ x: 0, y: 0, blur: 20, spread: 0, color: 'rgba(46, 134, 171, 0.5)', inset: false }] }
+            ],
+            text: [
+                { name: 'Suave', layers: [{ x: 0, y: 2, blur: 4, spread: 0, color: 'rgba(0, 0, 0, 0.3)' }] },
+                { name: 'Relieve', layers: [{ x: 1, y: 1, blur: 0, spread: 0, color: 'rgba(255, 255, 255, 0.8)' }] },
+                { name: 'Hundido', layers: [{ x: 0, y: 1, blur: 2, spread: 0, color: 'rgba(0, 0, 0, 0.5)' }] },
+                { name: 'Neon', layers: [
+                    { x: 0, y: 0, blur: 10, spread: 0, color: '#2E86AB' },
+                    { x: 0, y: 0, blur: 20, spread: 0, color: '#48A9A6' }
+                ]},
+                { name: '3D', layers: [
+                    { x: 1, y: 1, blur: 0, spread: 0, color: '#999' },
+                    { x: 2, y: 2, blur: 0, spread: 0, color: '#888' },
+                    { x: 3, y: 3, blur: 0, spread: 0, color: '#777' }
+                ]}
+            ]
+        };
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            renderShadowLayers();
+            renderPresets();
+            updatePreview();
+        });
+
+        // Renderizar capas
+        function renderShadowLayers() {
+            const container = document.getElementById('shadowLayers');
+            container.innerHTML = '';
+
+            shadowState.layers.forEach((layer, index) => {
+                const div = document.createElement('div');
+                div.className = 'shadow-layer' + (index === shadowState.activeLayer ? ' active' : '');
+                div.onclick = () => {
+                    shadowState.activeLayer = index;
+                    renderShadowLayers();
+                };
+
+                div.innerHTML = `
+                    <div class="layer-header">
+                        <span class="layer-title">Capa ${index + 1}</span>
+                        <div class="layer-controls">
+                            ${shadowState.layers.length > 1 ? `<button class="layer-btn remove-layer-btn" onclick="event.stopPropagation(); removeShadowLayer(${index})">✕</button>` : ''}
+                        </div>
+                    </div>
+                    ${index === shadowState.activeLayer ? renderLayerControls(layer, index) : ''}
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        // Renderizar controles de capa
+        function renderLayerControls(layer, index) {
+            const spreadControl = shadowState.type === 'box' ? `
+                <div class="slider-control">
+                    <div class="slider-label">
+                        <span>Expansión</span>
+                        <span class="slider-value">${layer.spread}px</span>
+                    </div>
+                    <input type="range" class="slider" min="-50" max="50" value="${layer.spread}"
+                           oninput="updateLayerProperty(${index}, 'spread', parseInt(this.value)); this.previousElementSibling.querySelector('.slider-value').textContent = this.value + 'px'">
+                </div>
+            ` : '';
+
+            const insetControl = shadowState.type === 'box' ? `
+                <div class="checkbox-group">
+                    <input type="checkbox" class="checkbox" id="inset-${index}" ${layer.inset ? 'checked' : ''}
+                           onchange="updateLayerProperty(${index}, 'inset', this.checked)">
+                    <label for="inset-${index}" style="cursor: pointer;">Sombra interior (inset)</label>
+                </div>
+            ` : '';
+
+            return `
+                <div style="margin-top: var(--spacing-md);">
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Desplazamiento X</span>
+                            <span class="slider-value">${layer.x}px</span>
+                        </div>
+                        <input type="range" class="slider" min="-50" max="50" value="${layer.x}"
+                               oninput="updateLayerProperty(${index}, 'x', parseInt(this.value)); this.previousElementSibling.querySelector('.slider-value').textContent = this.value + 'px'">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Desplazamiento Y</span>
+                            <span class="slider-value">${layer.y}px</span>
+                        </div>
+                        <input type="range" class="slider" min="-50" max="50" value="${layer.y}"
+                               oninput="updateLayerProperty(${index}, 'y', parseInt(this.value)); this.previousElementSibling.querySelector('.slider-value').textContent = this.value + 'px'">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Desenfoque</span>
+                            <span class="slider-value">${layer.blur}px</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="${layer.blur}"
+                               oninput="updateLayerProperty(${index}, 'blur', parseInt(this.value)); this.previousElementSibling.querySelector('.slider-value').textContent = this.value + 'px'">
+                    </div>
+
+                    ${spreadControl}
+
+                    <div class="control-group">
+                        <label class="control-label">Color</label>
+                        <div class="color-picker-group">
+                            <input type="color" class="color-picker-box" value="${rgbaToHex(layer.color)}"
+                                   onchange="updateLayerColor(${index}, this.value)">
+                            <input type="text" class="color-input" value="${layer.color}"
+                                   oninput="updateLayerProperty(${index}, 'color', this.value)">
+                        </div>
+                    </div>
+
+                    ${insetControl}
+                </div>
+            `;
+        }
+
+        // Renderizar presets
+        function renderPresets() {
+            const container = document.getElementById('presetsGrid');
+            const currentPresets = presets[shadowState.type];
+
+            container.innerHTML = '';
+            currentPresets.forEach(preset => {
+                const div = document.createElement('div');
+                div.className = 'preset-item';
+                div.onclick = () => applyPreset(preset);
+
+                const demo = document.createElement('div');
+                demo.className = 'preset-demo';
+                demo.style[shadowState.type === 'box' ? 'boxShadow' : 'textShadow'] = generateShadowCSS(preset.layers);
+
+                if (shadowState.type === 'text') {
+                    demo.textContent = 'Aa';
+                    demo.style.fontSize = '2rem';
+                    demo.style.fontWeight = '700';
+                    demo.style.display = 'flex';
+                    demo.style.alignItems = 'center';
+                    demo.style.justifyContent = 'center';
+                    demo.style.background = 'transparent';
+                }
+
+                div.appendChild(demo);
+                div.innerHTML += `<div class="preset-label">${preset.name}</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        // Actualizar preview
+        function updatePreview() {
+            const box = document.getElementById('previewBox');
+            const text = document.getElementById('previewText');
+            const shadow = generateShadowCSS(shadowState.layers);
+
+            if (shadowState.type === 'box') {
+                box.style.display = 'flex';
+                text.style.display = 'none';
+                box.style.boxShadow = shadow;
+            } else {
+                box.style.display = 'none';
+                text.style.display = 'block';
+                text.style.textShadow = shadow;
+            }
+
+            updateCSSCode();
+        }
+
+        // Generar CSS de sombra
+        function generateShadowCSS(layers) {
+            return layers.map(layer => {
+                const parts = [
+                    `${layer.x}px`,
+                    `${layer.y}px`,
+                    `${layer.blur}px`
+                ];
+
+                if (shadowState.type === 'box') {
+                    parts.push(`${layer.spread}px`);
+                }
+
+                parts.push(layer.color);
+
+                if (shadowState.type === 'box' && layer.inset) {
+                    parts.unshift('inset');
+                }
+
+                return parts.join(' ');
+            }).join(', ');
+        }
+
+        // Actualizar código CSS
+        function updateCSSCode() {
+            const cssCode = document.getElementById('cssCode');
+            const property = shadowState.type === 'box' ? 'box-shadow' : 'text-shadow';
+            const shadow = generateShadowCSS(shadowState.layers);
+            cssCode.textContent = `${property}: ${shadow};`;
+        }
+
+        // Cambiar tipo de sombra
+        function setShadowType(type) {
+            shadowState.type = type;
+            shadowState.activeLayer = 0;
+
+            // Actualizar botones
+            document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            renderShadowLayers();
+            renderPresets();
+            updatePreview();
+        }
+
+        // Actualizar propiedad de capa
+        function updateLayerProperty(index, property, value) {
+            shadowState.layers[index][property] = value;
+            updatePreview();
+        }
+
+        // Actualizar color de capa
+        function updateLayerColor(index, hexColor) {
+            const rgba = hexToRgba(hexColor, 0.5);
+            shadowState.layers[index].color = rgba;
+            renderShadowLayers();
+            updatePreview();
+        }
+
+        // Añadir capa
+        function addShadowLayer() {
+            shadowState.layers.push({
+                x: 0,
+                y: 4,
+                blur: 6,
+                spread: 0,
+                color: 'rgba(0, 0, 0, 0.1)',
+                inset: false
+            });
+            shadowState.activeLayer = shadowState.layers.length - 1;
+            renderShadowLayers();
+            updatePreview();
+        }
+
+        // Eliminar capa
+        function removeShadowLayer(index) {
+            if (shadowState.layers.length > 1) {
+                shadowState.layers.splice(index, 1);
+                shadowState.activeLayer = Math.max(0, shadowState.activeLayer - 1);
+                renderShadowLayers();
+                updatePreview();
+            }
+        }
+
+        // Aplicar preset
+        function applyPreset(preset) {
+            shadowState.layers = JSON.parse(JSON.stringify(preset.layers));
+            shadowState.activeLayer = 0;
+            renderShadowLayers();
+            updatePreview();
+        }
+
+        // Copiar código CSS
+        function copyCSSCode(btn) {
+            const cssCode = document.getElementById('cssCode').textContent;
+            navigator.clipboard.writeText(cssCode).then(() => {
+                btn.textContent = '¡Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copiar CSS';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Utilidades de color
+        function hexToRgba(hex, alpha = 1) {
+            hex = hex.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        function rgbaToHex(rgba) {
+            const match = rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (!match) return '#000000';
+            const r = parseInt(match[1]).toString(16).padStart(2, '0');
+            const g = parseInt(match[2]).toString(16).padStart(2, '0');
+            const b = parseInt(match[3]).toString(16).padStart(2, '0');
+            return `#${r}${g}${b}`;
+        }
+    </script>
+</body>
+</html>

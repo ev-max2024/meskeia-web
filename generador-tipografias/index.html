@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador de tipografías web profesional: combinaciones armoniosas de fuentes, Google Fonts integrado, preview personalizable, sugerencias de tamaños y espaciados. Evita combinaciones visualmente horribles.">
+    <meta name="keywords" content="tipografías web, google fonts, combinaciones fuentes, font pairing, serif sans-serif, diseño tipográfico, fuentes web">
+    <meta name="author" content="meskeIA">
+    <title>Generador de Tipografías Web | Combinaciones Armoniosas - meskeIA</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+
+    <style>
+        /* Reset y Variables meskeIA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta oficial meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 80px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Grid principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        /* Preview de tipografía */
+        .typography-preview {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            margin-bottom: var(--spacing-lg);
+            min-height: 500px;
+        }
+
+        .preview-heading {
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.2;
+        }
+
+        .preview-body {
+            line-height: 1.8;
+        }
+
+        /* Controles de fuente */
+        .font-control {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .control-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .font-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .font-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        /* Sliders */
+        .slider-control {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.9rem;
+        }
+
+        .slider-value {
+            font-weight: 600;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            background: var(--border);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Código CSS */
+        .css-output {
+            background: #1A1A1A;
+            color: #F0F0F0;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .copy-code-btn:hover {
+            background: var(--secondary);
+        }
+
+        .copy-code-btn.copied {
+            background: #48BB78;
+        }
+
+        /* Combinaciones sugeridas */
+        .pairings-grid {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .pairing-item {
+            padding: var(--spacing-md);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .pairing-item:hover {
+            border-color: var(--primary);
+            background: var(--focus);
+            transform: translateX(4px);
+        }
+
+        .pairing-heading {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pairing-body {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .pairing-tags {
+            margin-top: var(--spacing-sm);
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .pairing-tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            background: var(--hover);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Filtros */
+        .filter-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Editor de texto */
+        .text-editor {
+            width: 100%;
+            min-height: 100px;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.2s ease;
+        }
+
+        .text-editor:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+
+            .typography-preview {
+                padding: 20px;
+                min-height: 300px;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🔤 Generador de Tipografías Web</h1>
+            <p class="subtitle">Crea combinaciones armoniosas de fuentes con Google Fonts</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Panel izquierdo: Preview -->
+            <div>
+                <div class="card">
+                    <h2 class="card-title">Vista Previa</h2>
+
+                    <div class="typography-preview" id="typographyPreview">
+                        <div class="preview-heading" id="previewHeading">
+                            El diseño tipográfico es el arte de organizar las letras
+                        </div>
+                        <div class="preview-body" id="previewBody">
+                            La tipografía es el reflejo de una época. Por ello, la evolución del diseño de las mismas responde a proyecciones tecnológicas y artísticas. Una buena combinación tipográfica puede transformar completamente un diseño web. La armonía entre los títulos y el cuerpo de texto es esencial para crear una experiencia de lectura agradable y profesional.
+                        </div>
+                    </div>
+
+                    <!-- Editor de texto personalizado -->
+                    <div style="margin-top: var(--spacing-md);">
+                        <label class="control-label">Personalizar Título</label>
+                        <textarea class="text-editor" id="customHeading" rows="2" placeholder="Escribe tu título personalizado...">El diseño tipográfico es el arte de organizar las letras</textarea>
+                    </div>
+
+                    <div style="margin-top: var(--spacing-md);">
+                        <label class="control-label">Personalizar Texto</label>
+                        <textarea class="text-editor" id="customBody" rows="4" placeholder="Escribe tu texto personalizado...">La tipografía es el reflejo de una época. Por ello, la evolución del diseño de las mismas responde a proyecciones tecnológicas y artísticas. Una buena combinación tipográfica puede transformar completamente un diseño web. La armonía entre los títulos y el cuerpo de texto es esencial para crear una experiencia de lectura agradable y profesional.</textarea>
+                    </div>
+                </div>
+
+                <!-- Código CSS -->
+                <div class="card">
+                    <h2 class="card-title">Código CSS y Google Fonts</h2>
+                    <div class="css-output">
+                        <button class="copy-code-btn" onclick="copyCSSCode(this)">Copiar Todo</button>
+                        <pre id="cssCode"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel derecho: Controles -->
+            <div>
+                <!-- Selección de fuentes -->
+                <div class="card">
+                    <h2 class="card-title">Fuentes</h2>
+
+                    <div class="font-control">
+                        <label class="control-label">Fuente para Títulos</label>
+                        <select class="font-select" id="headingFont" onchange="updatePreview()"></select>
+                    </div>
+
+                    <div class="font-control">
+                        <label class="control-label">Fuente para Cuerpo</label>
+                        <select class="font-select" id="bodyFont" onchange="updatePreview()"></select>
+                    </div>
+                </div>
+
+                <!-- Controles de tamaño y espaciado -->
+                <div class="card">
+                    <h2 class="card-title">Tamaños y Espaciado</h2>
+
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Tamaño Título</span>
+                            <span class="slider-value" id="headingSizeValue">2.5rem</span>
+                        </div>
+                        <input type="range" id="headingSize" class="slider" min="1.5" max="4" step="0.1" value="2.5" oninput="updateSizes()">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Tamaño Cuerpo</span>
+                            <span class="slider-value" id="bodySizeValue">1rem</span>
+                        </div>
+                        <input type="range" id="bodySize" class="slider" min="0.8" max="1.5" step="0.05" value="1" oninput="updateSizes()">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Interlineado</span>
+                            <span class="slider-value" id="lineHeightValue">1.8</span>
+                        </div>
+                        <input type="range" id="lineHeight" class="slider" min="1.2" max="2.5" step="0.1" value="1.8" oninput="updateSizes()">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Espaciado Letras</span>
+                            <span class="slider-value" id="letterSpacingValue">0px</span>
+                        </div>
+                        <input type="range" id="letterSpacing" class="slider" min="-2" max="5" step="0.5" value="0" oninput="updateSizes()">
+                    </div>
+                </div>
+
+                <!-- Combinaciones sugeridas -->
+                <div class="card">
+                    <h2 class="card-title">⚡ Combinaciones Sugeridas</h2>
+
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterPairings('all')">Todas</button>
+                        <button class="filter-btn" onclick="filterPairings('modern')">Modernas</button>
+                        <button class="filter-btn" onclick="filterPairings('classic')">Clásicas</button>
+                        <button class="filter-btn" onclick="filterPairings('elegant')">Elegantes</button>
+                    </div>
+
+                    <div class="pairings-grid" id="pairingsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Google Fonts populares organizadas por categoría
+        const fonts = {
+            sansSerif: ['Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Raleway', 'Poppins', 'Inter', 'Work Sans', 'Nunito', 'Mulish'],
+            serif: ['Playfair Display', 'Merriweather', 'Lora', 'PT Serif', 'Crimson Text', 'Libre Baskerville', 'Spectral', 'Cormorant'],
+            display: ['Oswald', 'Bebas Neue', 'Righteous', 'Permanent Marker', 'Bungee'],
+            monospace: ['Roboto Mono', 'Source Code Pro', 'Fira Code', 'JetBrains Mono']
+        };
+
+        // Combinaciones armoniosas predefinidas
+        const pairings = [
+            { heading: 'Playfair Display', body: 'Lato', category: ['elegant', 'classic'], desc: 'Elegante y legible' },
+            { heading: 'Montserrat', body: 'Open Sans', category: ['modern'], desc: 'Moderna y limpia' },
+            { heading: 'Oswald', body: 'Roboto', category: ['modern'], desc: 'Impactante y profesional' },
+            { heading: 'Raleway', body: 'Merriweather', category: ['elegant'], desc: 'Sofisticada' },
+            { heading: 'Bebas Neue', body: 'Lato', category: ['modern'], desc: 'Audaz y moderna' },
+            { heading: 'Poppins', body: 'Inter', category: ['modern'], desc: 'Contemporánea' },
+            { heading: 'Playfair Display', body: 'Roboto', category: ['classic', 'elegant'], desc: 'Contraste clásico' },
+            { heading: 'Lora', body: 'Open Sans', category: ['classic'], desc: 'Tradicional y cálida' },
+            { heading: 'Montserrat', body: 'Merriweather', category: ['elegant'], desc: 'Equilibrada' },
+            { heading: 'Righteous', body: 'Nunito', category: ['modern'], desc: 'Divertida y amigable' },
+            { heading: 'Work Sans', body: 'PT Serif', category: ['modern', 'classic'], desc: 'Versátil' },
+            { heading: 'Crimson Text', body: 'Raleway', category: ['elegant'], desc: 'Refinada' }
+        ];
+
+        let currentFilter = 'all';
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGoogleFonts();
+            populateFontSelects();
+            renderPairings();
+            updatePreview();
+
+            // Event listeners para texto personalizado
+            document.getElementById('customHeading').addEventListener('input', (e) => {
+                document.getElementById('previewHeading').textContent = e.target.value;
+            });
+
+            document.getElementById('customBody').addEventListener('input', (e) => {
+                document.getElementById('previewBody').textContent = e.target.value;
+            });
+        });
+
+        // Cargar Google Fonts dinámicamente
+        function loadGoogleFonts() {
+            const allFonts = [...fonts.sansSerif, ...fonts.serif, ...fonts.display, ...fonts.monospace];
+            const link = document.createElement('link');
+            link.href = `https://fonts.googleapis.com/css2?${allFonts.map(f => `family=${f.replace(/ /g, '+')}`).join('&')}&display=swap`;
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+        }
+
+        // Poblar selects de fuentes
+        function populateFontSelects() {
+            const headingSelect = document.getElementById('headingFont');
+            const bodySelect = document.getElementById('bodyFont');
+
+            // Agrupar fuentes por categoría
+            Object.entries(fonts).forEach(([category, fontList]) => {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = getCategoryName(category);
+
+                fontList.forEach(font => {
+                    const option = document.createElement('option');
+                    option.value = font;
+                    option.textContent = font;
+                    option.style.fontFamily = font;
+                    optgroup.appendChild(option.cloneNode(true));
+                });
+
+                headingSelect.appendChild(optgroup);
+                bodySelect.appendChild(optgroup.cloneNode(true));
+            });
+
+            // Valores por defecto
+            headingSelect.value = 'Playfair Display';
+            bodySelect.value = 'Lato';
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                sansSerif: 'Sans Serif (Moderna)',
+                serif: 'Serif (Clásica)',
+                display: 'Display (Decorativa)',
+                monospace: 'Monospace (Código)'
+            };
+            return names[category] || category;
+        }
+
+        // Actualizar preview
+        function updatePreview() {
+            const headingFont = document.getElementById('headingFont').value;
+            const bodyFont = document.getElementById('bodyFont').value;
+
+            document.getElementById('previewHeading').style.fontFamily = `'${headingFont}', serif`;
+            document.getElementById('previewBody').style.fontFamily = `'${bodyFont}', sans-serif`;
+
+            updateSizes();
+            updateCSSCode();
+        }
+
+        // Actualizar tamaños
+        function updateSizes() {
+            const headingSize = document.getElementById('headingSize').value;
+            const bodySize = document.getElementById('bodySize').value;
+            const lineHeight = document.getElementById('lineHeight').value;
+            const letterSpacing = document.getElementById('letterSpacing').value;
+
+            document.getElementById('headingSizeValue').textContent = headingSize + 'rem';
+            document.getElementById('bodySizeValue').textContent = bodySize + 'rem';
+            document.getElementById('lineHeightValue').textContent = lineHeight;
+            document.getElementById('letterSpacingValue').textContent = letterSpacing + 'px';
+
+            const previewHeading = document.getElementById('previewHeading');
+            const previewBody = document.getElementById('previewBody');
+
+            previewHeading.style.fontSize = headingSize + 'rem';
+            previewBody.style.fontSize = bodySize + 'rem';
+            previewBody.style.lineHeight = lineHeight;
+            previewBody.style.letterSpacing = letterSpacing + 'px';
+
+            updateCSSCode();
+        }
+
+        // Generar código CSS
+        function updateCSSCode() {
+            const headingFont = document.getElementById('headingFont').value;
+            const bodyFont = document.getElementById('bodyFont').value;
+            const headingSize = document.getElementById('headingSize').value;
+            const bodySize = document.getElementById('bodySize').value;
+            const lineHeight = document.getElementById('lineHeight').value;
+            const letterSpacing = document.getElementById('letterSpacing').value;
+
+            const code = `/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=${headingFont.replace(/ /g, '+')}:wght@400;700&family=${bodyFont.replace(/ /g, '+')}:wght@400;700&display=swap');
+
+/* Fuentes para títulos (h1, h2, h3, etc.) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: '${headingFont}', serif;
+    font-size: ${headingSize}rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Fuente para el cuerpo del texto */
+body, p {
+    font-family: '${bodyFont}', sans-serif;
+    font-size: ${bodySize}rem;
+    line-height: ${lineHeight};
+    letter-spacing: ${letterSpacing}px;
+}`;
+
+            document.getElementById('cssCode').textContent = code;
+        }
+
+        // Renderizar combinaciones
+        function renderPairings() {
+            const container = document.getElementById('pairingsGrid');
+            container.innerHTML = '';
+
+            const filtered = currentFilter === 'all'
+                ? pairings
+                : pairings.filter(p => p.category.includes(currentFilter));
+
+            filtered.forEach(pairing => {
+                const div = document.createElement('div');
+                div.className = 'pairing-item';
+                div.onclick = () => applyPairing(pairing);
+
+                div.innerHTML = `
+                    <div class="pairing-heading" style="font-family: '${pairing.heading}', serif;">${pairing.heading}</div>
+                    <div class="pairing-body" style="font-family: '${pairing.body}', sans-serif;">${pairing.body}</div>
+                    <div class="pairing-tags">
+                        ${pairing.category.map(cat => `<span class="pairing-tag">${cat}</span>`).join('')}
+                        <span class="pairing-tag">${pairing.desc}</span>
+                    </div>
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        // Aplicar combinación
+        function applyPairing(pairing) {
+            document.getElementById('headingFont').value = pairing.heading;
+            document.getElementById('bodyFont').value = pairing.body;
+            updatePreview();
+        }
+
+        // Filtrar combinaciones
+        function filterPairings(category) {
+            currentFilter = category;
+
+            // Actualizar botones activos
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            renderPairings();
+        }
+
+        // Copiar código CSS
+        function copyCSSCode(btn) {
+            const cssCode = document.getElementById('cssCode').textContent;
+            navigator.clipboard.writeText(cssCode).then(() => {
+                btn.textContent = '¡Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copiar Todo';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

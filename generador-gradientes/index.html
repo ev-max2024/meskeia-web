@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador de gradientes CSS profesional: crea gradientes lineales, radiales y cónicos con múltiples colores. Vista previa en tiempo real, presets populares (sunset, ocean, fire) y código CSS listo para copiar.">
+    <meta name="keywords" content="generador gradientes css, css gradient generator, gradiente lineal, gradiente radial, background gradient, diseño web, css3">
+    <meta name="author" content="meskeIA">
+    <title>Generador de Gradientes CSS | Linear, Radial, Cónico - meskeIA</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+
+    <style>
+        /* Reset y Variables meskeIA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta oficial meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 80px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Grid principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        /* Preview del gradiente */
+        .gradient-preview {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .preview-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .preview-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .preview-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Controles */
+        .control-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .control-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .control-row {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        /* Tipo de gradiente */
+        .gradient-type-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .type-btn {
+            padding: 12px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .type-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .type-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Color stops */
+        .color-stops {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .color-stop {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--hover);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .color-stop-picker {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .color-stop-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .color-stop-position {
+            width: 80px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .remove-color-btn {
+            background: #F56565;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .remove-color-btn:hover {
+            background: #E53E3E;
+        }
+
+        .add-color-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .add-color-btn:hover {
+            background: var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* Slider de ángulo/posición */
+        .slider-control {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .slider-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            background: var(--border);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Código CSS */
+        .css-output {
+            background: #1A1A1A;
+            color: #F0F0F0;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .copy-code-btn:hover {
+            background: var(--secondary);
+        }
+
+        .copy-code-btn.copied {
+            background: #48BB78;
+        }
+
+        /* Presets */
+        .presets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .preset-item {
+            height: 100px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preset-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .preset-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+
+            .gradient-preview {
+                height: 300px;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌈 Generador de Gradientes CSS</h1>
+            <p class="subtitle">Crea gradientes lineales, radiales y cónicos con vista previa en tiempo real</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Panel izquierdo: Preview -->
+            <div>
+                <div class="card">
+                    <h2 class="card-title">Vista Previa</h2>
+                    <div class="gradient-preview" id="gradientPreview">
+                        <div class="preview-info">
+                            <div class="preview-label">Tipo de Gradiente</div>
+                            <div class="preview-value" id="gradientTypeInfo">Lineal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Código CSS -->
+                <div class="card">
+                    <h2 class="card-title">Código CSS</h2>
+                    <div class="css-output" id="cssOutput">
+                        <button class="copy-code-btn" onclick="copyCSSCode(this)">Copiar CSS</button>
+                        <pre id="cssCode">background: linear-gradient(90deg, #2E86AB 0%, #48A9A6 100%);</pre>
+                    </div>
+                </div>
+
+                <!-- Presets -->
+                <div class="card">
+                    <h2 class="card-title">🎨 Presets Populares</h2>
+                    <div class="presets-grid" id="presetsGrid"></div>
+                </div>
+            </div>
+
+            <!-- Panel derecho: Controles -->
+            <div class="card">
+                <h2 class="card-title">Configuración</h2>
+
+                <!-- Tipo de gradiente -->
+                <div class="control-group">
+                    <label class="control-label">Tipo de Gradiente</label>
+                    <div class="gradient-type-buttons">
+                        <button class="type-btn active" onclick="setGradientType('linear')">Lineal</button>
+                        <button class="type-btn" onclick="setGradientType('radial')">Radial</button>
+                        <button class="type-btn" onclick="setGradientType('conic')">Cónico</button>
+                    </div>
+                </div>
+
+                <!-- Ángulo/Posición -->
+                <div class="slider-control" id="angleControl">
+                    <div class="slider-label">
+                        <label class="control-label">Ángulo</label>
+                        <span class="slider-value" id="angleValue">90°</span>
+                    </div>
+                    <input type="range" id="angleSlider" class="slider" min="0" max="360" value="90" oninput="updateGradient()">
+                </div>
+
+                <!-- Color stops -->
+                <div class="control-group">
+                    <label class="control-label">Colores</label>
+                    <div class="color-stops" id="colorStops"></div>
+                    <button class="add-color-btn" onclick="addColorStop()">+ Añadir Color</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Estado del gradiente
+        let gradientState = {
+            type: 'linear',
+            angle: 90,
+            colors: [
+                { color: '#2E86AB', position: 0 },
+                { color: '#48A9A6', position: 100 }
+            ]
+        };
+
+        // Presets populares
+        const presets = [
+            { name: 'Sunset', type: 'linear', angle: 135, colors: [{color: '#FF6B6B', position: 0}, {color: '#FFE66D', position: 50}, {color: '#4ECDC4', position: 100}] },
+            { name: 'Ocean', type: 'linear', angle: 180, colors: [{color: '#2E3192', position: 0}, {color: '#1BFFFF', position: 100}] },
+            { name: 'Fire', type: 'linear', angle: 45, colors: [{color: '#FF0844', position: 0}, {color: '#FFB199', position: 100}] },
+            { name: 'Purple Haze', type: 'linear', angle: 90, colors: [{color: '#360033', position: 0}, {color: '#0b8793', position: 100}] },
+            { name: 'Green Beach', type: 'linear', angle: 120, colors: [{color: '#02AAB0', position: 0}, {color: '#00CDAC', position: 100}] },
+            { name: 'Twilight', type: 'linear', angle: 180, colors: [{color: '#0F2027', position: 0}, {color: '#203A43', position: 50}, {color: '#2C5364', position: 100}] },
+            { name: 'Peach', type: 'radial', angle: 0, colors: [{color: '#ED4264', position: 0}, {color: '#FFEDBC', position: 100}] },
+            { name: 'Skyline', type: 'linear', angle: 135, colors: [{color: '#1488CC', position: 0}, {color: '#2B32B2', position: 100}] }
+        ];
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            renderColorStops();
+            renderPresets();
+            updateGradient();
+        });
+
+        // Renderizar color stops
+        function renderColorStops() {
+            const container = document.getElementById('colorStops');
+            container.innerHTML = '';
+
+            gradientState.colors.forEach((colorStop, index) => {
+                const div = document.createElement('div');
+                div.className = 'color-stop';
+                div.innerHTML = `
+                    <input type="color" class="color-stop-picker" value="${colorStop.color}" onchange="updateColorStop(${index}, 'color', this.value)">
+                    <input type="text" class="color-stop-input" value="${colorStop.color}" oninput="updateColorStop(${index}, 'color', this.value)">
+                    <input type="number" class="color-stop-position" value="${colorStop.position}" min="0" max="100" oninput="updateColorStop(${index}, 'position', this.value)">
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">%</span>
+                    ${gradientState.colors.length > 2 ? `<button class="remove-color-btn" onclick="removeColorStop(${index})">✕</button>` : ''}
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Renderizar presets
+        function renderPresets() {
+            const container = document.getElementById('presetsGrid');
+            presets.forEach(preset => {
+                const div = document.createElement('div');
+                div.className = 'preset-item';
+                div.style.background = generateGradientCSS(preset);
+                div.onclick = () => applyPreset(preset);
+                div.innerHTML = `<div class="preset-label">${preset.name}</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        // Actualizar gradiente
+        function updateGradient() {
+            const preview = document.getElementById('gradientPreview');
+            const angleSlider = document.getElementById('angleSlider');
+            const angleValue = document.getElementById('angleValue');
+
+            gradientState.angle = parseInt(angleSlider.value);
+            angleValue.textContent = gradientState.angle + '°';
+
+            const gradient = generateGradientCSS(gradientState);
+            preview.style.background = gradient;
+
+            updateCSSCode();
+        }
+
+        // Generar CSS del gradiente
+        function generateGradientCSS(state) {
+            const sortedColors = [...state.colors].sort((a, b) => a.position - b.position);
+            const colorStops = sortedColors.map(c => `${c.color} ${c.position}%`).join(', ');
+
+            switch(state.type) {
+                case 'linear':
+                    return `linear-gradient(${state.angle}deg, ${colorStops})`;
+                case 'radial':
+                    return `radial-gradient(circle, ${colorStops})`;
+                case 'conic':
+                    return `conic-gradient(from ${state.angle}deg, ${colorStops})`;
+                default:
+                    return `linear-gradient(${state.angle}deg, ${colorStops})`;
+            }
+        }
+
+        // Actualizar código CSS
+        function updateCSSCode() {
+            const cssCode = document.getElementById('cssCode');
+            const gradient = generateGradientCSS(gradientState);
+            cssCode.textContent = `background: ${gradient};`;
+        }
+
+        // Cambiar tipo de gradiente
+        function setGradientType(type) {
+            gradientState.type = type;
+
+            // Actualizar botones
+            document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Actualizar etiqueta del ángulo
+            const angleControl = document.getElementById('angleControl');
+            const angleLabel = angleControl.querySelector('.control-label');
+
+            if (type === 'radial') {
+                angleLabel.textContent = 'Posición';
+            } else {
+                angleLabel.textContent = 'Ángulo';
+            }
+
+            // Actualizar info
+            const typeNames = { linear: 'Lineal', radial: 'Radial', conic: 'Cónico' };
+            document.getElementById('gradientTypeInfo').textContent = typeNames[type];
+
+            updateGradient();
+        }
+
+        // Actualizar color stop
+        function updateColorStop(index, property, value) {
+            if (property === 'color') {
+                gradientState.colors[index].color = value;
+                // Actualizar ambos inputs
+                const container = document.getElementById('colorStops');
+                const colorStop = container.children[index];
+                colorStop.querySelector('.color-stop-picker').value = value;
+                colorStop.querySelector('.color-stop-input').value = value;
+            } else if (property === 'position') {
+                gradientState.colors[index].position = Math.max(0, Math.min(100, parseInt(value) || 0));
+            }
+            updateGradient();
+        }
+
+        // Añadir color stop
+        function addColorStop() {
+            const newPosition = gradientState.colors.length > 0
+                ? Math.round((gradientState.colors[gradientState.colors.length - 1].position + 100) / 2)
+                : 50;
+
+            gradientState.colors.push({
+                color: '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0'),
+                position: newPosition
+            });
+
+            renderColorStops();
+            updateGradient();
+        }
+
+        // Eliminar color stop
+        function removeColorStop(index) {
+            if (gradientState.colors.length > 2) {
+                gradientState.colors.splice(index, 1);
+                renderColorStops();
+                updateGradient();
+            }
+        }
+
+        // Aplicar preset
+        function applyPreset(preset) {
+            gradientState = JSON.parse(JSON.stringify(preset));
+
+            // Actualizar tipo
+            document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+            const typeButtons = document.querySelectorAll('.type-btn');
+            const typeIndex = preset.type === 'linear' ? 0 : preset.type === 'radial' ? 1 : 2;
+            typeButtons[typeIndex].classList.add('active');
+
+            // Actualizar ángulo
+            document.getElementById('angleSlider').value = preset.angle;
+
+            // Actualizar info
+            const typeNames = { linear: 'Lineal', radial: 'Radial', conic: 'Cónico' };
+            document.getElementById('gradientTypeInfo').textContent = typeNames[preset.type];
+
+            renderColorStops();
+            updateGradient();
+        }
+
+        // Copiar código CSS
+        function copyCSSCode(btn) {
+            const cssCode = document.getElementById('cssCode').textContent;
+            navigator.clipboard.writeText(cssCode).then(() => {
+                btn.textContent = '¡Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copiar CSS';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

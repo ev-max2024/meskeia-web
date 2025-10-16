@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Herramienta de contraste de colores profesional: verifica accesibilidad WCAG AA/AAA, simula daltonismo (protanopía, deuteranopía, tritanopía), sugiere colores conformes. Cumplimiento legal de accesibilidad web.">
+    <meta name="keywords" content="contraste colores, WCAG, accesibilidad web, daltonismo, protanopía, deuteranopía, ratio contraste, AA AAA, diseño accesible">
+    <meta name="author" content="meskeIA">
+    <title>Herramienta de Contraste de Colores | WCAG AA/AAA - meskeIA</title>
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+
+    <style>
+        /* Reset y Variables meskeIA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta oficial meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --success: #48BB78;
+            --warning: #ECC94B;
+            --error: #F56565;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Grid principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        /* Selectores de color */
+        .color-selector {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .color-selector-label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .color-input-group {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .color-picker-box {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .color-picker-box:hover {
+            transform: scale(1.05);
+        }
+
+        .color-input-wrapper {
+            flex: 1;
+        }
+
+        .color-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            transition: all 0.2s ease;
+        }
+
+        .color-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        /* Preview de contraste */
+        .contrast-preview {
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .preview-section {
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .preview-large-text {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .preview-normal-text {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Resultados WCAG */
+        .wcag-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .wcag-item {
+            background: var(--hover);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            text-align: center;
+        }
+
+        .wcag-item.pass {
+            border-color: var(--success);
+            background: rgba(72, 187, 120, 0.1);
+        }
+
+        .wcag-item.fail {
+            border-color: var(--error);
+            background: rgba(245, 101, 101, 0.1);
+        }
+
+        .wcag-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .wcag-ratio {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .wcag-status {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .wcag-status.pass {
+            color: var(--success);
+        }
+
+        .wcag-status.fail {
+            color: var(--error);
+        }
+
+        /* Información WCAG */
+        .wcag-info {
+            background: var(--focus);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .wcag-info-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .wcag-info-list {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Simulación daltonismo */
+        .colorblind-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .colorblind-preview {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .colorblind-header {
+            padding: var(--spacing-sm);
+            background: var(--hover);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .colorblind-content {
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .colorblind-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .colorblind-small-text {
+            font-size: 0.9rem;
+        }
+
+        /* Sugerencias de colores */
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .suggestion-item {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .suggestion-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .suggestion-color-box {
+            height: 60px;
+        }
+
+        .suggestion-info {
+            padding: var(--spacing-sm);
+            background: white;
+            text-align: center;
+        }
+
+        .suggestion-hex {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .suggestion-ratio {
+            font-size: 0.75rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* Botón intercambio */
+        .swap-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .swap-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.02);
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wcag-results {
+                grid-template-columns: 1fr;
+            }
+
+            .colorblind-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>♿ Herramienta de Contraste de Colores</h1>
+            <p class="subtitle">Verifica accesibilidad WCAG AA/AAA y simula daltonismo para diseño inclusivo</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Panel izquierdo: Selectores de color -->
+            <div class="card">
+                <h2 class="card-title">Colores a Comparar</h2>
+
+                <!-- Color de texto -->
+                <div class="color-selector">
+                    <label class="color-selector-label">Color de Texto</label>
+                    <div class="color-input-group">
+                        <input type="color" id="textColorPicker" class="color-picker-box" value="#1A1A1A">
+                        <div class="color-input-wrapper">
+                            <input type="text" id="textColorInput" class="color-input" value="#1A1A1A" placeholder="#000000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color de fondo -->
+                <div class="color-selector">
+                    <label class="color-selector-label">Color de Fondo</label>
+                    <div class="color-input-group">
+                        <input type="color" id="bgColorPicker" class="color-picker-box" value="#FFFFFF">
+                        <div class="color-input-wrapper">
+                            <input type="text" id="bgColorInput" class="color-input" value="#FFFFFF" placeholder="#FFFFFF">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="swap-btn" onclick="swapColors()">🔄 Intercambiar Colores</button>
+
+                <!-- Información WCAG -->
+                <div class="wcag-info">
+                    <div class="wcag-info-title">📋 Requisitos WCAG 2.1</div>
+                    <ul class="wcag-info-list">
+                        <li><strong>AA Texto Normal:</strong> Ratio mínimo 4.5:1</li>
+                        <li><strong>AA Texto Grande:</strong> Ratio mínimo 3:1</li>
+                        <li><strong>AAA Texto Normal:</strong> Ratio mínimo 7:1</li>
+                        <li><strong>AAA Texto Grande:</strong> Ratio mínimo 4.5:1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Panel derecho: Resultados -->
+            <div class="card">
+                <h2 class="card-title">Resultados de Accesibilidad</h2>
+
+                <!-- Preview -->
+                <div class="contrast-preview" id="contrastPreview">
+                    <div class="preview-section">
+                        <div class="preview-large-text">Texto Grande (18pt+)</div>
+                        <div class="preview-normal-text">
+                            Este es un ejemplo de texto normal (menos de 18pt) para verificar el contraste y la legibilidad del diseño.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados WCAG -->
+                <div class="wcag-results">
+                    <div class="wcag-item" id="wcagNormalAA">
+                        <div class="wcag-label">Texto Normal - Nivel AA</div>
+                        <div class="wcag-ratio" id="ratioValue">21:1</div>
+                        <div class="wcag-status pass">✓ PASA</div>
+                    </div>
+
+                    <div class="wcag-item" id="wcagLargeAA">
+                        <div class="wcag-label">Texto Grande - Nivel AA</div>
+                        <div class="wcag-ratio">21:1</div>
+                        <div class="wcag-status pass">✓ PASA</div>
+                    </div>
+
+                    <div class="wcag-item" id="wcagNormalAAA">
+                        <div class="wcag-label">Texto Normal - Nivel AAA</div>
+                        <div class="wcag-ratio">21:1</div>
+                        <div class="wcag-status pass">✓ PASA</div>
+                    </div>
+
+                    <div class="wcag-item" id="wcagLargeAAA">
+                        <div class="wcag-label">Texto Grande - Nivel AAA</div>
+                        <div class="wcag-ratio">21:1</div>
+                        <div class="wcag-status pass">✓ PASA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulación de daltonismo -->
+        <div class="card">
+            <h2 class="card-title">Simulación de Daltonismo</h2>
+            <p class="subtitle" style="font-size: 0.9rem; margin-bottom: var(--spacing-md);">
+                Visualiza cómo ven tus colores personas con diferentes tipos de daltonismo
+            </p>
+
+            <div class="colorblind-grid">
+                <div class="colorblind-preview">
+                    <div class="colorblind-header">👁️ Visión Normal</div>
+                    <div class="colorblind-content" id="normalVision">
+                        <div class="colorblind-text">Texto de Ejemplo</div>
+                        <div class="colorblind-small-text">Texto pequeño de ejemplo</div>
+                    </div>
+                </div>
+
+                <div class="colorblind-preview">
+                    <div class="colorblind-header">🔴 Protanopía (Sin Rojo)</div>
+                    <div class="colorblind-content" id="protanopiaVision">
+                        <div class="colorblind-text">Texto de Ejemplo</div>
+                        <div class="colorblind-small-text">Texto pequeño de ejemplo</div>
+                    </div>
+                </div>
+
+                <div class="colorblind-preview">
+                    <div class="colorblind-header">🟢 Deuteranopía (Sin Verde)</div>
+                    <div class="colorblind-content" id="deuteranopiaVision">
+                        <div class="colorblind-text">Texto de Ejemplo</div>
+                        <div class="colorblind-small-text">Texto pequeño de ejemplo</div>
+                    </div>
+                </div>
+
+                <div class="colorblind-preview">
+                    <div class="colorblind-header">🔵 Tritanopía (Sin Azul)</div>
+                    <div class="colorblind-content" id="tritanopiaVision">
+                        <div class="colorblind-text">Texto de Ejemplo</div>
+                        <div class="colorblind-small-text">Texto pequeño de ejemplo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sugerencias de colores conformes -->
+        <div class="card">
+            <h2 class="card-title">💡 Sugerencias de Colores Conformes</h2>
+            <p class="subtitle" style="font-size: 0.9rem; margin-bottom: var(--spacing-md);">
+                Colores alternativos que cumplen WCAG AA (haz clic para usar)
+            </p>
+            <div class="suggestions-grid" id="suggestionsGrid"></div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Estado actual
+        let currentTextColor = '#1A1A1A';
+        let currentBgColor = '#FFFFFF';
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            setupEventListeners();
+            updateContrast();
+        });
+
+        function setupEventListeners() {
+            // Text color
+            document.getElementById('textColorPicker').addEventListener('input', (e) => {
+                currentTextColor = e.target.value;
+                document.getElementById('textColorInput').value = currentTextColor;
+                updateContrast();
+            });
+
+            document.getElementById('textColorInput').addEventListener('input', (e) => {
+                if (isValidHex(e.target.value)) {
+                    currentTextColor = e.target.value;
+                    document.getElementById('textColorPicker').value = currentTextColor;
+                    updateContrast();
+                }
+            });
+
+            // Background color
+            document.getElementById('bgColorPicker').addEventListener('input', (e) => {
+                currentBgColor = e.target.value;
+                document.getElementById('bgColorInput').value = currentBgColor;
+                updateContrast();
+            });
+
+            document.getElementById('bgColorInput').addEventListener('input', (e) => {
+                if (isValidHex(e.target.value)) {
+                    currentBgColor = e.target.value;
+                    document.getElementById('bgColorPicker').value = currentBgColor;
+                    updateContrast();
+                }
+            });
+        }
+
+        function updateContrast() {
+            // Actualizar preview
+            const preview = document.getElementById('contrastPreview');
+            preview.style.backgroundColor = currentBgColor;
+            preview.style.color = currentTextColor;
+
+            // Calcular ratio de contraste
+            const ratio = getContrastRatio(currentTextColor, currentBgColor);
+
+            // Actualizar valores
+            const ratios = document.querySelectorAll('.wcag-ratio');
+            ratios.forEach(r => r.textContent = ratio.toFixed(2) + ':1');
+
+            // Actualizar estados WCAG
+            updateWCAGStatus('wcagNormalAA', ratio >= 4.5);
+            updateWCAGStatus('wcagLargeAA', ratio >= 3);
+            updateWCAGStatus('wcagNormalAAA', ratio >= 7);
+            updateWCAGStatus('wcagLargeAAA', ratio >= 4.5);
+
+            // Actualizar simulación daltonismo
+            updateColorblindSimulation();
+
+            // Generar sugerencias
+            generateSuggestions();
+        }
+
+        function updateWCAGStatus(elementId, passes) {
+            const element = document.getElementById(elementId);
+            const status = element.querySelector('.wcag-status');
+
+            if (passes) {
+                element.classList.remove('fail');
+                element.classList.add('pass');
+                status.classList.remove('fail');
+                status.classList.add('pass');
+                status.textContent = '✓ PASA';
+            } else {
+                element.classList.remove('pass');
+                element.classList.add('fail');
+                status.classList.remove('pass');
+                status.classList.add('fail');
+                status.textContent = '✗ NO PASA';
+            }
+        }
+
+        function updateColorblindSimulation() {
+            // Visión normal
+            const normal = document.getElementById('normalVision');
+            normal.style.backgroundColor = currentBgColor;
+            normal.style.color = currentTextColor;
+
+            // Protanopía (sin rojo)
+            const protanopia = document.getElementById('protanopiaVision');
+            const protTextRgb = hexToRgb(currentTextColor);
+            const protBgRgb = hexToRgb(currentBgColor);
+            protanopia.style.backgroundColor = rgbToHex(protBgRgb.r * 0.567, protBgRgb.g * 0.433, protBgRgb.b);
+            protanopia.style.color = rgbToHex(protTextRgb.r * 0.567, protTextRgb.g * 0.433, protTextRgb.b);
+
+            // Deuteranopía (sin verde)
+            const deuteranopia = document.getElementById('deuteranopiaVision');
+            const deutTextRgb = hexToRgb(currentTextColor);
+            const deutBgRgb = hexToRgb(currentBgColor);
+            deuteranopia.style.backgroundColor = rgbToHex(deutBgRgb.r * 0.625, deutBgRgb.g * 0.375, deutBgRgb.b);
+            deuteranopia.style.color = rgbToHex(deutTextRgb.r * 0.625, deutTextRgb.g * 0.375, deutTextRgb.b);
+
+            // Tritanopía (sin azul)
+            const tritanopia = document.getElementById('tritanopiaVision');
+            const tritTextRgb = hexToRgb(currentTextColor);
+            const tritBgRgb = hexToRgb(currentBgColor);
+            tritanopia.style.backgroundColor = rgbToHex(tritBgRgb.r, tritBgRgb.g * 0.95, tritBgRgb.b * 0.05);
+            tritanopia.style.color = rgbToHex(tritTextRgb.r, tritTextRgb.g * 0.95, tritTextRgb.b * 0.05);
+        }
+
+        function generateSuggestions() {
+            const grid = document.getElementById('suggestionsGrid');
+            grid.innerHTML = '';
+
+            // Si el color actual cumple, no mostrar sugerencias
+            const currentRatio = getContrastRatio(currentTextColor, currentBgColor);
+            if (currentRatio >= 4.5) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--success); font-weight: 600;">✓ El contraste actual ya cumple con WCAG AA</p>';
+                return;
+            }
+
+            // Generar variaciones de color que cumplan
+            const bgRgb = hexToRgb(currentBgColor);
+            const suggestions = [];
+
+            // Variaciones oscuras
+            for (let i = 0; i <= 255; i += 25) {
+                const testColor = rgbToHex(i, i, i);
+                const ratio = getContrastRatio(testColor, currentBgColor);
+                if (ratio >= 4.5) {
+                    suggestions.push({ color: testColor, ratio });
+                }
+            }
+
+            // Limitar a 8 sugerencias
+            suggestions.slice(0, 8).forEach(suggestion => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.onclick = () => {
+                    currentTextColor = suggestion.color;
+                    document.getElementById('textColorPicker').value = suggestion.color;
+                    document.getElementById('textColorInput').value = suggestion.color;
+                    updateContrast();
+                };
+
+                item.innerHTML = `
+                    <div class="suggestion-color-box" style="background: ${currentBgColor}; color: ${suggestion.color}; display: flex; align-items: center; justify-content: center; font-weight: 600;">Aa</div>
+                    <div class="suggestion-info">
+                        <div class="suggestion-hex">${suggestion.color}</div>
+                        <div class="suggestion-ratio">${suggestion.ratio.toFixed(2)}:1</div>
+                    </div>
+                `;
+
+                grid.appendChild(item);
+            });
+        }
+
+        function swapColors() {
+            [currentTextColor, currentBgColor] = [currentBgColor, currentTextColor];
+            document.getElementById('textColorPicker').value = currentTextColor;
+            document.getElementById('textColorInput').value = currentTextColor;
+            document.getElementById('bgColorPicker').value = currentBgColor;
+            document.getElementById('bgColorInput').value = currentBgColor;
+            updateContrast();
+        }
+
+        // Funciones auxiliares
+        function getContrastRatio(color1, color2) {
+            const rgb1 = hexToRgb(color1);
+            const rgb2 = hexToRgb(color2);
+
+            const l1 = getLuminance(rgb1.r, rgb1.g, rgb1.b);
+            const l2 = getLuminance(rgb2.r, rgb2.g, rgb2.b);
+
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        function getLuminance(r, g, b) {
+            const [rs, gs, bs] = [r, g, b].map(c => {
+                c = c / 255;
+                return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+            });
+            return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+        }
+
+        function hexToRgb(hex) {
+            hex = hex.replace('#', '');
+            return {
+                r: parseInt(hex.substring(0, 2), 16),
+                g: parseInt(hex.substring(2, 4), 16),
+                b: parseInt(hex.substring(4, 6), 16)
+            };
+        }
+
+        function rgbToHex(r, g, b) {
+            r = Math.round(Math.max(0, Math.min(255, r)));
+            g = Math.round(Math.max(0, Math.min(255, g)));
+            b = Math.round(Math.max(0, Math.min(255, b)));
+
+            return '#' + [r, g, b].map(x => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('').toUpperCase();
+        }
+
+        function isValidHex(hex) {
+            return /^#[0-9A-F]{6}$/i.test(hex);
+        }
+    </script>
+</body>
+</html>
