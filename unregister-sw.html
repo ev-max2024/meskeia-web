@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desregistrar Service Workers - meskeIA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #2E86AB;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #2E86AB;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #48A9A6;
+        }
+        #log {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .info {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Desregistrar Service Workers</h1>
+        <p>Esta página te ayudará a eliminar todos los Service Workers activos de meskeIA y limpiar la caché.</p>
+
+        <button onclick="unregisterAll()">🗑️ Desregistrar Todos</button>
+        <button onclick="clearCache()">🧹 Limpiar Caché</button>
+        <button onclick="fullReset()">⚡ Reset Completo</button>
+        <button onclick="goHome()">🏠 Ir a meskeIA</button>
+
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = type;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        async function unregisterAll() {
+            addLog('Iniciando desregistro de Service Workers...', 'info');
+
+            if (!('serviceWorker' in navigator)) {
+                addLog('Service Workers no soportados en este navegador', 'error');
+                return;
+            }
+
+            try {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                addLog(`Encontrados ${registrations.length} Service Workers`, 'info');
+
+                for (const registration of registrations) {
+                    addLog(`Desregistrando: ${registration.scope}`, 'info');
+                    await registration.unregister();
+                    addLog(`✓ Desregistrado: ${registration.scope}`, 'success');
+                }
+
+                if (registrations.length === 0) {
+                    addLog('No hay Service Workers registrados', 'info');
+                } else {
+                    addLog(`✓ ${registrations.length} Service Workers eliminados`, 'success');
+                }
+            } catch (error) {
+                addLog(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function clearCache() {
+            addLog('Limpiando caché...', 'info');
+
+            try {
+                const cacheNames = await caches.keys();
+                addLog(`Encontradas ${cacheNames.length} cachés`, 'info');
+
+                for (const cacheName of cacheNames) {
+                    addLog(`Eliminando caché: ${cacheName}`, 'info');
+                    await caches.delete(cacheName);
+                    addLog(`✓ Eliminada: ${cacheName}`, 'success');
+                }
+
+                if (cacheNames.length === 0) {
+                    addLog('No hay cachés para limpiar', 'info');
+                } else {
+                    addLog(`✓ ${cacheNames.length} cachés eliminadas`, 'success');
+                }
+            } catch (error) {
+                addLog(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function fullReset() {
+            addLog('=== RESET COMPLETO ===', 'info');
+            await unregisterAll();
+            await clearCache();
+
+            // Limpiar localStorage y sessionStorage
+            addLog('Limpiando localStorage...', 'info');
+            localStorage.clear();
+            addLog('✓ localStorage limpiado', 'success');
+
+            addLog('Limpiando sessionStorage...', 'info');
+            sessionStorage.clear();
+            addLog('✓ sessionStorage limpiado', 'success');
+
+            addLog('=== RESET COMPLETADO ===', 'success');
+            addLog('Recarga la página o vuelve a meskeIA', 'info');
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        // Auto-ejecutar al cargar
+        window.addEventListener('load', async () => {
+            addLog('Página de desregistro cargada', 'info');
+            addLog('Haz clic en "Reset Completo" para limpiar todo', 'info');
+        });
+    </script>
+</body>
+</html>

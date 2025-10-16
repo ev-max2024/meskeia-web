@@ -279,21 +279,11 @@
         setTimeout(() => success.remove(), 4000);
     }
 
-    // Registrar Service Worker
+    // Registrar Service Worker - DESACTIVADO TEMPORALMENTE
     async function registerServiceWorker() {
-        if (!('serviceWorker' in navigator)) {
-            console.error('❌ Service Worker no soportado');
-            return false;
-        }
-
-        try {
-            const registration = await navigator.serviceWorker.register('service-worker.js');
-            console.log('✅ Service Worker registrado:', registration.scope);
-            return true;
-        } catch (error) {
-            console.error('❌ Error registrando Service Worker:', error);
-            return false;
-        }
+        console.log('⚠️ Service Worker DESACTIVADO temporalmente');
+        // NO registrar Service Worker para evitar bloqueos
+        return false;
     }
 
     // Inicialización principal
