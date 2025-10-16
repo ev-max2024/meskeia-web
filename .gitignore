@@ -5,3 +5,16 @@
 # Claude settings (ignorar toda la carpeta)
 .claude/
 **/.claude/
+
+# Windows system files
+desktop.ini
+Thumbs.db
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+# Logs
+*.log
