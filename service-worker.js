@@ -27,24 +27,27 @@ self.addEventListener('activate', event => {
 
 // Fetch - Estrategia simple: Network First, Cache Fallback
 self.addEventListener('fetch', event => {
-    // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
-    if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
-        return;
-    }
+  // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
+  if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+    return;
+  }
 
-
+  // Ignorar peticiones que no sean GET
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Clonar la respuesta antes de guardarla
-        const responseToCache = response.clone();
-        
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseToCache);
-        });
-        
+        // Solo cachear respuestas válidas
+        if (response && response.status === 200 && response.type === 'basic') {
+          // Clonar la respuesta antes de guardarla
+          const responseToCache = response.clone();
+
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+
         return response;
       })
       .catch(() => {
