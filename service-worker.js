@@ -1,58 +1,32 @@
-// Service Worker meskeIA - Versión Simplificada
-const CACHE_NAME = 'meskeia-v3';
+// Service Worker meskeIA - DESACTIVADO TEMPORALMENTE
+// Este Service Worker se desregistra automáticamente para evitar problemas
 
-// Instalación
+// Instalación - Desregistrar inmediatamente
 self.addEventListener('install', event => {
-  console.log('Service Worker instalando...');
+  console.log('[SW] Desinstalando Service Worker...');
   self.skipWaiting();
 });
 
-// Activación
+// Activación - Limpiar todas las cachés y desactivar
 self.addEventListener('activate', event => {
-  console.log('Service Worker activado');
+  console.log('[SW] Limpiando cachés y desactivando...');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
+          console.log('[SW] Eliminando cache:', cacheName);
+          return caches.delete(cacheName);
         })
       );
     }).then(() => {
+      console.log('[SW] Service Worker desactivado. Recarga la página.');
       return self.clients.claim();
     })
   );
 });
 
-// Fetch - Estrategia simple: Network First, Cache Fallback
+// NO interceptar ninguna petición - dejar que el navegador maneje todo
 self.addEventListener('fetch', event => {
-  // Ignorar peticiones no válidas (extensiones de Chrome, etc.)
-  if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
-    return;
-  }
-
-  // Ignorar peticiones que no sean GET
-  if (event.request.method !== 'GET') return;
-
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Solo cachear respuestas válidas
-        if (response && response.status === 200 && response.type === 'basic') {
-          // Clonar la respuesta antes de guardarla
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseToCache);
-          });
-        }
-
-        return response;
-      })
-      .catch(() => {
-        // Si falla la red, buscar en caché
-        return caches.match(event.request);
-      })
-  );
+  // No hacer nada - dejar pasar todas las peticiones sin interceptar
+  return;
 });
