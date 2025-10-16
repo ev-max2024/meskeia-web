@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fechas Online | Diferencia entre Fechas, Edad y Días - meskeIA</title>
+    <meta name="description" content="Calculadora de fechas online gratuita. Calcula diferencias entre fechas, suma o resta días, determina edad exacta y días de la semana. Herramienta profesional para cálculos temporales.">
+    <meta name="keywords" content="calculadora fechas, diferencia entre fechas, calcular edad, sumar días, restar fechas, día de la semana, calculadora temporal, edad exacta, calculadora días">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/calculadora-fechas/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Fechas Online | Herramienta Gratuita">
+    <meta property="og:description" content="Calcula diferencias entre fechas, suma o resta días, determina edades exactas y días de la semana. Herramienta profesional gratuita.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/calculadora-fechas/">
+    <meta property="og:image" content="../icon_meskeia.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de Fechas Online Gratis">
+    <meta name="twitter:description" content="Herramienta completa para cálculos con fechas y tiempo">
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de Fechas",
+      "description": "Herramienta online gratuita para calcular diferencias entre fechas, edades, sumar o restar días y determinar días de la semana",
+      "url": "https://meskeia.com/calculadora-fechas/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "meskeIA",
+        "url": "https://meskeia.com"
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 100px 20px 60px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Sección informativa */
+        .info-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .info-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2E86AB;
+        }
+        
+        .info-section h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+            color: #48A9A6;
+        }
+        
+        .info-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .info-section ul {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        
+        .info-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        input[type="date"], input[type="number"], select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        input[type="date"]:focus, input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #236a89;
+            transform: translateY(-1px);
+        }
+
+        .result-section {
+            background: var(--hover);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .result-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .result-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .faq-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #2E86AB;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .faq-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 15px 60px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1rem;
+            }
+        }
+
+        /* FAQ desplegables */
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 10px rgba(46, 134, 171, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        .faq-question h3 {
+            color: #2E86AB;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-toggle {
+            color: #2E86AB;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 20px 20px 20px;
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-question {
+                padding: 15px;
+            }
+            
+            .faq-answer p {
+                padding: 0 15px 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <nav class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;" role="navigation" aria-label="Volver al inicio">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Calculadora de Fechas Online</h1>
+            <p class="subtitle">Herramienta profesional para cálculos temporales y cronológicos</p>
+        </header>
+
+        <main class="calculator-grid" role="main">
+            <!-- Diferencia entre fechas -->
+            <article class="card">
+                <h2 class="card-title">📅 Diferencia entre fechas</h2>
+                
+                <div class="form-group">
+                    <label for="startDate" id="startDateLabel">Fecha inicial:</label>
+                    <input type="date" id="startDate" min="1900-01-01" aria-labelledby="startDateLabel">
+                </div>
+                
+                <div class="form-group">
+                    <label for="endDate" id="endDateLabel">Fecha final:</label>
+                    <input type="date" id="endDate" min="1900-01-01" aria-labelledby="endDateLabel">
+                </div>
+                
+                <button class="btn btn-primary" onclick="calculateDifference()" aria-label="Calcular diferencia entre fechas">
+                    🔢 Calcular Diferencia
+                </button>
+                
+                <section class="result-section" id="differenceResult" aria-live="polite">
+                    <div class="result-title">Resultado:</div>
+                    <div id="differenceOutput"></div>
+                </section>
+            </article>
+
+            <!-- Sumar/Restar días -->
+            <article class="card">
+                <h2 class="card-title">➕ Sumar/Restar tiempo</h2>
+                
+                <div class="form-group">
+                    <label for="baseDate" id="baseDateLabel">Fecha base:</label>
+                    <input type="date" id="baseDate" min="1900-01-01" aria-labelledby="baseDateLabel">
+                </div>
+                
+                <div class="form-group">
+                    <label for="operation" id="operationLabel">Operación:</label>
+                    <select id="operation" aria-labelledby="operationLabel">
+                        <option value="add">Sumar</option>
+                        <option value="subtract">Restar</option>
+                    </select>
+                </div>
+                
+                <div class="two-column">
+                    <div class="form-group">
+                        <label for="timeValue" id="timeValueLabel">Cantidad:</label>
+                        <input type="number" id="timeValue" value="1" min="1" max="10000" aria-labelledby="timeValueLabel">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeUnit" id="timeUnitLabel">Unidad:</label>
+                        <select id="timeUnit" aria-labelledby="timeUnitLabel">
+                            <option value="days">Días</option>
+                            <option value="weeks">Semanas</option>
+                            <option value="months">Meses</option>
+                            <option value="years">Años</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="calculateAddSubtract()" aria-label="Calcular suma o resta de tiempo">
+                    ⚡ Calcular
+                </button>
+                
+                <section class="result-section" id="addSubtractResult" aria-live="polite">
+                    <div class="result-title">Resultado:</div>
+                    <div id="addSubtractOutput"></div>
+                </section>
+            </article>
+
+            <!-- Día de la semana -->
+            <article class="card">
+                <h2 class="card-title">📆 Día de la semana</h2>
+                
+                <div class="form-group">
+                    <label for="dayDate" id="dayDateLabel">Fecha a consultar:</label>
+                    <input type="date" id="dayDate" min="1900-01-01" aria-labelledby="dayDateLabel">
+                </div>
+                
+                <button class="btn btn-primary" onclick="calculateDayOfWeek()" aria-label="Determinar día de la semana">
+                    🗓️ ¿Qué día era?
+                </button>
+                
+                <section class="result-section" id="dayOfWeekResult" aria-live="polite">
+                    <div class="result-title">Resultado:</div>
+                    <div id="dayOfWeekOutput"></div>
+                </section>
+            </article>
+
+            <!-- Calcular edad -->
+            <article class="card">
+                <h2 class="card-title">🎂 Calcular edad exacta</h2>
+                
+                <div class="form-group">
+                    <label for="birthDate" id="birthDateLabel">Fecha de nacimiento:</label>
+                    <input type="date" id="birthDate" min="1900-01-01" aria-labelledby="birthDateLabel">
+                </div>
+                
+                <div class="form-group">
+                    <label for="referenceDate" id="referenceDateLabel">Fecha de referencia (opcional):</label>
+                    <input type="date" id="referenceDate" aria-labelledby="referenceDateLabel">
+                </div>
+                
+                <button class="btn btn-primary" onclick="calculateAge()" aria-label="Calcular edad exacta">
+                    🎯 Calcular Edad
+                </button>
+                
+                <section class="result-section" id="ageResult" aria-live="polite">
+                    <div class="result-title">Resultado:</div>
+                    <div id="ageOutput"></div>
+                </section>
+            </article>
+        </main>
+
+        <!-- Sección informativa SEO -->
+        <section class="info-section">
+            <h2>¿Qué es una Calculadora de Fechas?</h2>
+            <p>
+                Una calculadora de fechas es una herramienta digital que permite realizar cálculos precisos con fechas y periodos de tiempo. 
+                Facilita operaciones complejas como determinar la diferencia exacta entre dos fechas, calcular edades precisas, 
+                sumar o restar días laborables, y determinar qué día de la semana corresponde a cualquier fecha histórica o futura.
+            </p>
+            <p>
+                Esta herramienta es esencial para profesionales de recursos humanos, contadores, project managers, historiadores 
+                y cualquier persona que necesite realizar cálculos temporales precisos. Nuestra calculadora considera años bisiestos, 
+                meses con diferentes cantidades de días y proporciona resultados exactos en múltiples formatos.
+            </p>
+            
+            <h3>Aplicaciones principales</h3>
+            <ul>
+                <li><strong>Gestión de Proyectos:</strong> Calcular duraciones, fechas límite y plazos de entrega</li>
+                <li><strong>Recursos Humanos:</strong> Determinar antigüedad laboral, vacaciones y jubilaciones</li>
+                <li><strong>Legal y Contable:</strong> Calcular vencimientos, prescripciones y periodos fiscales</li>
+                <li><strong>Personal:</strong> Conocer edad exacta, planificar eventos y calcular aniversarios</li>
+                <li><strong>Educación:</strong> Determinar duraciones de cursos y periodos académicos</li>
+            </ul>
+        </section>
+        
+        <!-- Sección FAQ con Schema Markup -->
+        <section class="faq-section">
+            <h2>Preguntas Frecuentes</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo calculo la diferencia entre dos fechas?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simplemente selecciona la fecha inicial y la fecha final en la primera calculadora. La herramienta te mostrará la diferencia en días, semanas, meses y años, además del tiempo exacto en formato años-meses-días.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿La calculadora considera los años bisiestos?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, nuestra calculadora tiene en cuenta los años bisiestos, los diferentes días de cada mes y proporciona cálculos precisos considerando el calendario gregoriano actual.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Puedo calcular fechas futuras?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Por supuesto. Puedes sumar días, semanas, meses o años a cualquier fecha base para obtener una fecha futura. También puedes restar tiempo para obtener fechas pasadas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo sé qué día de la semana fue una fecha histórica?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Usa la calculadora "Día de la semana" e introduce cualquier fecha desde 1900. Te dirá exactamente qué día de la semana fue y cuánto tiempo ha pasado desde entonces.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿La calculadora de edad es precisa?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Totalmente. La calculadora de edad proporciona la edad exacta en años, meses y días, además de información adicional como días totales vividos y días hasta el próximo cumpleaños.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Schema Markup FAQ -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cómo calculo la diferencia entre dos fechas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Simplemente selecciona la fecha inicial y la fecha final en la primera calculadora. La herramienta te mostrará la diferencia en días, semanas, meses y años."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿La calculadora considera los años bisiestos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, nuestra calculadora tiene en cuenta los años bisiestos, los diferentes días de cada mes y proporciona cálculos precisos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo calcular fechas futuras?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Por supuesto. Puedes sumar días, semanas, meses o años a cualquier fecha base para obtener una fecha futura."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo sé qué día de la semana fue una fecha histórica?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usa la calculadora 'Día de la semana' e introduce cualquier fecha desde 1900. Te dirá exactamente qué día fue."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿La calculadora de edad es precisa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Totalmente. La calculadora proporciona la edad exacta en años, meses y días, además de días totales vividos."
+              }
+            }
+          ]
+        }
+        </script>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Configurar fechas iniciales
+        window.addEventListener('load', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            document.getElementById('endDate').value = today;
+            document.getElementById('startDate').value = yesterday.toISOString().split('T')[0];
+            document.getElementById('baseDate').value = today;
+            document.getElementById('dayDate').value = today;
+            document.getElementById('referenceDate').value = today;
+        });
+
+        function formatDate(date) {
+            return date.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function calculateDifference() {
+            const startDate = new Date(document.getElementById('startDate').value);
+            const endDate = new Date(document.getElementById('endDate').value);
+            
+            if (!document.getElementById('startDate').value || !document.getElementById('endDate').value) {
+                alert('Por favor, selecciona ambas fechas');
+                return;
+            }
+            
+            if (startDate > endDate) {
+                alert('La fecha inicial debe ser anterior a la fecha final');
+                return;
+            }
+            
+            // Calcular diferencias
+            const diffTime = Math.abs(endDate - startDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffWeeks = Math.floor(diffDays / 7);
+            const diffMonths = Math.floor(diffDays / 30.44); // Promedio días por mes
+            const diffYears = Math.floor(diffDays / 365.25); // Considerando años bisiestos
+            
+            // Calcular diferencia exacta en años, meses y días
+            let years = endDate.getFullYear() - startDate.getFullYear();
+            let months = endDate.getMonth() - startDate.getMonth();
+            let days = endDate.getDate() - startDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            const output = `
+                <div class="result-item">
+                    <span class="result-label">Días totales:</span>
+                    <span class="result-value highlight">${diffDays.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Semanas:</span>
+                    <span class="result-value">${diffWeeks.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Meses (aprox.):</span>
+                    <span class="result-value">${diffMonths.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Años (aprox.):</span>
+                    <span class="result-value">${diffYears.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tiempo exacto:</span>
+                    <span class="result-value">${years} años, ${months} meses, ${days} días</span>
+                </div>
+            `;
+            
+            document.getElementById('differenceOutput').innerHTML = output;
+            document.getElementById('differenceResult').classList.add('show');
+        }
+
+        function calculateAddSubtract() {
+            const baseDate = new Date(document.getElementById('baseDate').value);
+            const operation = document.getElementById('operation').value;
+            const timeValue = parseInt(document.getElementById('timeValue').value);
+            const timeUnit = document.getElementById('timeUnit').value;
+            
+            if (!document.getElementById('baseDate').value || !timeValue) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+            
+            let resultDate = new Date(baseDate);
+            let multiplier = operation === 'add' ? 1 : -1;
+            
+            switch (timeUnit) {
+                case 'days':
+                    resultDate.setDate(resultDate.getDate() + (timeValue * multiplier));
+                    break;
+                case 'weeks':
+                    resultDate.setDate(resultDate.getDate() + (timeValue * 7 * multiplier));
+                    break;
+                case 'months':
+                    resultDate.setMonth(resultDate.getMonth() + (timeValue * multiplier));
+                    break;
+                case 'years':
+                    resultDate.setFullYear(resultDate.getFullYear() + (timeValue * multiplier));
+                    break;
+            }
+            
+            const operationText = operation === 'add' ? 'sumar' : 'restar';
+            const unitText = {
+                'days': 'días',
+                'weeks': 'semanas', 
+                'months': 'meses',
+                'years': 'años'
+            };
+            
+            const output = `
+                <div class="result-item">
+                    <span class="result-label">Operación:</span>
+                    <span class="result-value">${operationText} ${timeValue} ${unitText[timeUnit]}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Fecha base:</span>
+                    <span class="result-value">${formatDate(baseDate)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Fecha resultado:</span>
+                    <span class="result-value highlight">${formatDate(resultDate)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Fecha formato corto:</span>
+                    <span class="result-value">${resultDate.toLocaleDateString('es-ES')}</span>
+                </div>
+            `;
+            
+            document.getElementById('addSubtractOutput').innerHTML = output;
+            document.getElementById('addSubtractResult').classList.add('show');
+        }
+
+        function calculateDayOfWeek() {
+            const dayDate = new Date(document.getElementById('dayDate').value);
+            
+            if (!document.getElementById('dayDate').value) {
+                alert('Por favor, selecciona una fecha');
+                return;
+            }
+            
+            const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const dayOfWeek = dayNames[dayDate.getDay()];
+            
+            // Calcular hace cuánto tiempo fue
+            const today = new Date();
+            const diffTime = today - dayDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffYears = Math.floor(diffDays / 365.25);
+            
+            let timeAgoText = '';
+            if (diffDays === 0) {
+                timeAgoText = 'Hoy';
+            } else if (diffDays === 1) {
+                timeAgoText = 'Ayer';
+            } else if (diffDays === -1) {
+                timeAgoText = 'Mañana';
+            } else if (diffDays > 0) {
+                if (diffYears >= 1) {
+                    timeAgoText = `Hace ${diffYears} año${diffYears > 1 ? 's' : ''} y ${Math.floor((diffDays % 365.25))} días`;
+                } else {
+                    timeAgoText = `Hace ${diffDays} día${diffDays > 1 ? 's' : ''}`;
+                }
+            } else {
+                const futureDays = Math.abs(diffDays);
+                timeAgoText = `En ${futureDays} día${futureDays > 1 ? 's' : ''}`;
+            }
+            
+            const output = `
+                <div class="result-item">
+                    <span class="result-label">Fecha consultada:</span>
+                    <span class="result-value">${formatDate(dayDate)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Día de la semana:</span>
+                    <span class="result-value highlight">${dayOfWeek}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Referencia temporal:</span>
+                    <span class="result-value">${timeAgoText}</span>
+                </div>
+            `;
+            
+            document.getElementById('dayOfWeekOutput').innerHTML = output;
+            document.getElementById('dayOfWeekResult').classList.add('show');
+        }
+
+        function calculateAge() {
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            const referenceDate = document.getElementById('referenceDate').value ? 
+                                  new Date(document.getElementById('referenceDate').value) : 
+                                  new Date();
+            
+            if (!document.getElementById('birthDate').value) {
+                alert('Por favor, selecciona la fecha de nacimiento');
+                return;
+            }
+            
+            if (birthDate > referenceDate) {
+                alert('La fecha de nacimiento debe ser anterior a la fecha de referencia');
+                return;
+            }
+            
+            // Calcular edad exacta
+            let years = referenceDate.getFullYear() - birthDate.getFullYear();
+            let months = referenceDate.getMonth() - birthDate.getMonth();
+            let days = referenceDate.getDate() - birthDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(referenceDate.getFullYear(), referenceDate.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Calcular días totales vividos
+            const totalDays = Math.floor((referenceDate - birthDate) / (1000 * 60 * 60 * 24));
+            
+            // Calcular próximo cumpleaños
+            let nextBirthday = new Date(referenceDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (nextBirthday <= referenceDate) {
+                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+            }
+            const daysToNextBirthday = Math.floor((nextBirthday - referenceDate) / (1000 * 60 * 60 * 24));
+            
+            const output = `
+                <div class="result-item">
+                    <span class="result-label">Fecha de nacimiento:</span>
+                    <span class="result-value">${formatDate(birthDate)}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Edad exacta:</span>
+                    <span class="result-value highlight">${years} años, ${months} meses, ${days} días</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Días totales vividos:</span>
+                    <span class="result-value">${totalDays.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Días hasta próximo cumpleaños:</span>
+                    <span class="result-value">${daysToNextBirthday}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Próximo cumpleaños:</span>
+                    <span class="result-value">${formatDate(nextBirthday)}</span>
+                </div>
+            `;
+            
+            document.getElementById('ageOutput').innerHTML = output;
+            document.getElementById('ageResult').classList.add('show');
+        }
+
+        // Función para FAQ desplegables
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

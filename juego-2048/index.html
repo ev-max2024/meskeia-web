@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>2048 Gratis Online - Juego de Números y Lógica | meskeIA</title>
+    <meta name="description" content="Juega 2048 gratis online. El adictivo juego de números donde combinas fichas para llegar al 2048. Desarrolla tu lógica matemática y estrategia. ¡Sin descargas!">
+    <meta name="keywords" content="2048 online, juego 2048, números, lógica, matemáticas, estrategia, juego gratis, puzzle, rompecabezas, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/juego-2048/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2048 Gratis Online - Juego de Números y Lógica | meskeIA">
+    <meta property="og:description" content="Juega 2048 gratis online. El adictivo juego de números donde combinas fichas para llegar al 2048. Desarrolla tu lógica matemática y estrategia.">
+    <meta property="og:url" content="https://meskeia.com/juego-2048/">
+    <meta property="og:image" content="https://meskeia.com/assets/og-2048.png">
+    <meta property="og:image:alt" content="Juego 2048 - Combina números para llegar al 2048">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2048 Gratis Online - Juego de Números y Lógica | meskeIA">
+    <meta name="twitter:description" content="Juega 2048 gratis online. El adictivo juego de números donde combinas fichas para llegar al 2048. Desarrolla tu lógica matemática y estrategia.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-2048.png">
+    <meta name="twitter:image:alt" content="Juego 2048 - Combina números para llegar al 2048">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+    
+    <!-- Structured Data - Game -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "2048 Online",
+        "description": "Juego de números 2048 donde combinas fichas para llegar al número objetivo. Desarrolla tu lógica matemática y estrategia mientras juegas este adictivo puzzle.",
+        "url": "https://meskeia.com/2048/",
+        "image": "https://meskeia.com/assets/og-2048.png",
+        "genre": ["Puzzle", "Lógica", "Matemáticas", "Estrategia"],
+        "numberOfPlayers": "1",
+        "gamePlatform": ["Web Browser", "Mobile", "Desktop"],
+        "operatingSystem": ["Any"],
+        "applicationCategory": "Game",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Cómo se juega al 2048?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Usa las flechas del teclado para mover las fichas. Cuando dos fichas con el mismo número se tocan, se combinan en una sola ficha con el valor sumado. El objetivo es llegar al número 2048."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "¿Qué estrategias funcionan mejor en 2048?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Mantén las fichas de mayor valor en una esquina, construye secuencias ordenadas, planifica varios movimientos por adelantado y evita llenar completamente el tablero."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Es gratis jugar 2048 online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, nuestro juego 2048 es completamente gratis. No requiere descargas, registro ni pagos. Solo abre el navegador y comienza a jugar."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Funciona 2048 en dispositivos móviles?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, el juego está optimizado para móviles y tablets. Puedes usar gestos táctiles para deslizar y mover las fichas en cualquier dirección."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Es posible ganar siempre en 2048?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, 2048 tiene un elemento de azar que hace imposible ganar el 100% de las veces. Sin embargo, con buena estrategia puedes mejorar significativamente tus probabilidades de éxito."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué hacer después de alcanzar 2048?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puedes continuar jugando para alcanzar fichas más altas como 4096, 8192, etc. Muchos jugadores consideran esto más desafiante que llegar al 2048 inicial."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Se guardan mis puntuaciones?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El juego guarda automáticamente tu mejor puntuación en el almacenamiento local de tu navegador, por lo que persiste entre sesiones."
+                }
+            }
+        ]
+    }
+    </script>
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            /* Grid del juego */
+            --grid-bg: #5BA3C2;
+            --empty-cell: #A8D4E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 100px 20px 60px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Panel de puntuación */
+        .score-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .scores {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .score-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            min-width: 100px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .new-game-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .new-game-btn:hover {
+            background: #236a89;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.3);
+        }
+
+        /* Grid del juego */
+        .game-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .grid-container {
+            position: relative;
+            background: var(--grid-bg);
+            border-radius: 8px;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .grid-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .grid-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .grid-cell {
+            background: var(--empty-cell);
+            border-radius: 4px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            transition: all 0.15s ease;
+        }
+
+        .tile {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 2rem;
+            transition: all 0.15s ease;
+            z-index: 10;
+        }
+
+        /* Colores de las fichas */
+        .tile-2 { background: #eee4da; color: #776e65; }
+        .tile-4 { background: #ede0c8; color: #776e65; }
+        .tile-8 { background: #f2b179; color: #f9f6f2; }
+        .tile-16 { background: #f59563; color: #f9f6f2; }
+        .tile-32 { background: #f67c5f; color: #f9f6f2; }
+        .tile-64 { background: #f65e3b; color: #f9f6f2; }
+        .tile-128 { background: #edcf72; color: #f9f6f2; font-size: 1.8rem; }
+        .tile-256 { background: #edcc61; color: #f9f6f2; font-size: 1.8rem; }
+        .tile-512 { background: #edc850; color: #f9f6f2; font-size: 1.8rem; }
+        .tile-1024 { background: #edc53f; color: #f9f6f2; font-size: 1.6rem; }
+        .tile-2048 { background: #edc22e; color: #f9f6f2; font-size: 1.6rem; box-shadow: 0 0 20px rgba(237, 194, 46, 0.5); }
+
+        .tile-new {
+            animation: appear 0.2s ease;
+        }
+
+        .tile-merged {
+            animation: merge 0.15s ease;
+        }
+
+        @keyframes appear {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes merge {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Instrucciones */
+        .instructions {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .instructions h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .instructions p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .controls-hint {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .control-key {
+            background: var(--hover);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        /* Estado del juego */
+        .game-over, .game-won {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .game-over {
+            background: rgba(238, 228, 218, 0.95);
+        }
+
+        .game-won {
+            background: rgba(237, 194, 46, 0.95);
+        }
+
+        .game-message {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .game-over .game-message {
+            color: #776e65;
+        }
+
+        .game-won .game-message {
+            color: #f9f6f2;
+        }
+
+        .continue-btn, .try-again-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 0.25rem;
+        }
+
+        .continue-btn:hover, .try-again-btn:hover {
+            background: #236a89;
+            transform: translateY(-1px);
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 15px 60px;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .score-panel {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .grid-cell, .tile {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+
+            .tile-128, .tile-256, .tile-512 {
+                font-size: 1.3rem;
+            }
+
+            .tile-1024, .tile-2048 {
+                font-size: 1.1rem;
+            }
+
+            .controls-hint {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-cell, .tile {
+                width: 60px;
+                height: 60px;
+                font-size: 1.3rem;
+            }
+
+            .tile-128, .tile-256, .tile-512 {
+                font-size: 1.1rem;
+            }
+
+            .tile-1024, .tile-2048 {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* SEO Content responsive */
+        @media (max-width: 768px) {
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+            }
+        }
+
+        /* Touch gestures */
+        .game-container {
+            touch-action: none;
+            user-select: none;
+        }
+
+        /* Main game wrapper */
+        .main-game-wrapper {
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-game-wrapper">
+            <h1>2048</h1>
+            <p class="subtitle">Combina fichas para llegar al 2048</p>
+
+        <!-- Panel de puntuación -->
+        <div class="score-panel">
+            <div class="scores">
+                <div class="score-box">
+                    <div class="score-label">Puntuación</div>
+                    <div class="score-value" id="score">0</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">Mejor</div>
+                    <div class="score-value" id="bestScore">0</div>
+                </div>
+            </div>
+            <button class="new-game-btn" onclick="game.restart()">Nuevo Juego</button>
+        </div>
+
+        <!-- Contenedor del juego -->
+        <div class="game-container">
+            <div class="grid-container" id="gridContainer">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instrucciones -->
+        <div class="instructions">
+            <h3>Cómo jugar</h3>
+            <p>Usa las <strong>flechas del teclado</strong> para mover las fichas</p>
+            <p>Cuando dos fichas con el mismo número se tocan, <strong>se combinan en una</strong></p>
+            <div class="controls-hint">
+                <span class="control-key">↑</span>
+                <span class="control-key">←</span>
+                <span class="control-key">↓</span>
+                <span class="control-key">→</span>
+            </div>
+        </div>
+        
+    <!-- Información del juego -->
+    <div style="max-width: 900px; margin: 3rem auto 2rem; padding: 0 20px;">
+        <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5;">
+            <h2 style="color: #2E86AB; font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">🧮 Sobre el Juego 2048</h2>
+            <p style="color: #666666; line-height: 1.6; margin-bottom: 2rem; text-align: center; font-size: 1.1rem;">El adictivo juego de números donde combinas fichas para llegar al 2048. Desarrolla tu lógica matemática y estrategia mientras disfrutas de este clásico puzzle.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #2E86AB;">
+                    <h3 style="color: #2E86AB; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎯 Estrategias Ganadoras</h3>
+                    <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Técnicas esenciales para dominar el 2048 y maximizar tu puntuación en cada partida.</p>
+                    <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Estrategia de esquina:</strong> Mantén tu ficha mayor en una esquina</li>
+                        <li><strong>Construcción ordenada:</strong> Organiza fichas en secuencia decreciente</li>
+                        <li><strong>Planificación:</strong> Piensa varios movimientos por adelantado</li>
+                        <li><strong>Control del espacio:</strong> No llenes completamente el tablero</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #48A9A6;">
+                    <h3 style="color: #48A9A6; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🧠 Beneficios Cognitivos</h3>
+                    <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Jugar 2048 ejercita tu mente y desarrolla habilidades matemáticas y de concentración.</p>
+                    <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Matemáticas:</strong> Progresiones geométricas y potencias de 2</li>
+                        <li><strong>Lógica:</strong> Pensamiento estratégico y resolución de problemas</li>
+                        <li><strong>Concentración:</strong> Atención sostenida y memoria de trabajo</li>
+                        <li><strong>Neuroplasticidad:</strong> Estimula conexiones neuronales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div style="max-width: 900px; margin: 0 auto 2rem; padding: 0 20px;">
+        <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5;">
+            <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes sobre 2048</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cómo se juega al 2048?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Usa las flechas del teclado (↑↓←→) o gestos táctiles en móvil para mover las fichas. Cuando dos fichas con el mismo número se tocan, se combinan en una sola ficha con el valor sumado. El objetivo es llegar al número 2048. El juego termina cuando no hay movimientos posibles.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Qué estrategias funcionan mejor en 2048?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Las mejores estrategias incluyen: 1) Mantener tu ficha de mayor valor en una esquina (preferiblemente inferior derecha), 2) Construir fichas en orden decreciente desde esa esquina, 3) Planificar varios movimientos por adelantado, 4) Evitar llenar completamente el tablero para mantener opciones de movimiento.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Es posible ganar siempre en 2048?</summary>
+                    <p style="color: #666666; line-height: 1.6;">No, 2048 tiene un elemento de azar (aparición de fichas 2 o 4 en posiciones aleatorias) que hace imposible ganar el 100% de las veces. Sin embargo, con buena estrategia y práctica puedes mejorar significativamente tus probabilidades de éxito y alcanzar puntuaciones más altas consistentemente.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Qué hacer después de alcanzar 2048?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Una vez alcanzado el 2048, puedes elegir continuar jugando para obtener fichas más altas como 4096, 8192, 16384, etc. Muchos jugadores experimentados consideran esto más desafiante y emocionante que llegar al 2048 inicial. El juego te dará la opción de continuar o empezar de nuevo.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Se guardan mis puntuaciones?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Sí, el juego guarda automáticamente tu mejor puntuación en el almacenamiento local de tu navegador. Esto significa que tu récord personal persiste entre sesiones de juego, incluso si cierras el navegador. Tu puntuación actual y tu mejor puntuación se muestran siempre en la parte superior del juego.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        class Game2048 {
+            constructor() {
+                this.grid = [];
+                this.score = 0;
+                this.bestScore = parseInt(localStorage.getItem('meskeia_2048_best') || '0');
+                this.size = 4;
+                this.won = false;
+                this.over = false;
+                
+                this.init();
+                this.bindEvents();
+                this.updateDisplay();
+            }
+
+            init() {
+                // Inicializar grid vacío
+                this.grid = [];
+                for (let i = 0; i < this.size; i++) {
+                    this.grid[i] = [];
+                    for (let j = 0; j < this.size; j++) {
+                        this.grid[i][j] = 0;
+                    }
+                }
+
+                // Agregar dos fichas iniciales
+                this.addRandomTile();
+                this.addRandomTile();
+            }
+
+            bindEvents() {
+                document.addEventListener('keydown', (e) => {
+                    if (this.over && !this.won) return;
+
+                    switch(e.key) {
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            this.move('up');
+                            break;
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            this.move('down');
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            this.move('left');
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            this.move('right');
+                            break;
+                    }
+                });
+
+                // Touch events para móvil
+                let startX, startY;
+                const container = document.getElementById('gridContainer');
+                
+                container.addEventListener('touchstart', (e) => {
+                    const touch = e.touches[0];
+                    startX = touch.clientX;
+                    startY = touch.clientY;
+                    e.preventDefault();
+                });
+
+                container.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                });
+
+                container.addEventListener('touchend', (e) => {
+                    if (!startX || !startY) return;
+
+                    const touch = e.changedTouches[0];
+                    const diffX = startX - touch.clientX;
+                    const diffY = startY - touch.clientY;
+
+                    if (Math.abs(diffX) > Math.abs(diffY)) {
+                        // Movimiento horizontal
+                        if (diffX > 30) {
+                            this.move('left');
+                        } else if (diffX < -30) {
+                            this.move('right');
+                        }
+                    } else {
+                        // Movimiento vertical
+                        if (diffY > 30) {
+                            this.move('up');
+                        } else if (diffY < -30) {
+                            this.move('down');
+                        }
+                    }
+
+                    startX = null;
+                    startY = null;
+                    e.preventDefault();
+                });
+            }
+
+            addRandomTile() {
+                const emptyCells = [];
+                
+                for (let i = 0; i < this.size; i++) {
+                    for (let j = 0; j < this.size; j++) {
+                        if (this.grid[i][j] === 0) {
+                            emptyCells.push({x: i, y: j});
+                        }
+                    }
+                }
+
+                if (emptyCells.length > 0) {
+                    const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                    this.grid[randomCell.x][randomCell.y] = Math.random() < 0.9 ? 2 : 4;
+                    return true;
+                }
+                return false;
+            }
+
+            move(direction) {
+                const previousGrid = JSON.parse(JSON.stringify(this.grid));
+                let moved = false;
+
+                switch(direction) {
+                    case 'left':
+                        moved = this.moveLeft();
+                        break;
+                    case 'right':
+                        moved = this.moveRight();
+                        break;
+                    case 'up':
+                        moved = this.moveUp();
+                        break;
+                    case 'down':
+                        moved = this.moveDown();
+                        break;
+                }
+
+                if (moved) {
+                    this.addRandomTile();
+                    this.updateDisplay();
+                    
+                    if (this.checkWin() && !this.won) {
+                        this.showWinMessage();
+                    } else if (this.checkGameOver()) {
+                        this.showGameOverMessage();
+                    }
+                }
+            }
+
+            moveLeft() {
+                let moved = false;
+                for (let i = 0; i < this.size; i++) {
+                    const row = this.grid[i].filter(val => val !== 0);
+                    
+                    // Combinar fichas adyacentes
+                    for (let j = 0; j < row.length - 1; j++) {
+                        if (row[j] === row[j + 1]) {
+                            row[j] *= 2;
+                            this.score += row[j];
+                            row[j + 1] = 0;
+                        }
+                    }
+                    
+                    // Filtrar ceros y completar con ceros a la derecha
+                    const newRow = row.filter(val => val !== 0);
+                    while (newRow.length < this.size) {
+                        newRow.push(0);
+                    }
+                    
+                    // Verificar si hubo cambios
+                    for (let j = 0; j < this.size; j++) {
+                        if (this.grid[i][j] !== newRow[j]) {
+                            moved = true;
+                        }
+                        this.grid[i][j] = newRow[j];
+                    }
+                }
+                return moved;
+            }
+
+            moveRight() {
+                let moved = false;
+                for (let i = 0; i < this.size; i++) {
+                    const row = this.grid[i].filter(val => val !== 0);
+                    
+                    // Combinar fichas adyacentes (de derecha a izquierda)
+                    for (let j = row.length - 1; j > 0; j--) {
+                        if (row[j] === row[j - 1]) {
+                            row[j] *= 2;
+                            this.score += row[j];
+                            row[j - 1] = 0;
+                        }
+                    }
+                    
+                    // Filtrar ceros y completar con ceros a la izquierda
+                    const newRow = row.filter(val => val !== 0);
+                    while (newRow.length < this.size) {
+                        newRow.unshift(0);
+                    }
+                    
+                    // Verificar si hubo cambios
+                    for (let j = 0; j < this.size; j++) {
+                        if (this.grid[i][j] !== newRow[j]) {
+                            moved = true;
+                        }
+                        this.grid[i][j] = newRow[j];
+                    }
+                }
+                return moved;
+            }
+
+            moveUp() {
+                let moved = false;
+                for (let j = 0; j < this.size; j++) {
+                    const column = [];
+                    for (let i = 0; i < this.size; i++) {
+                        if (this.grid[i][j] !== 0) {
+                            column.push(this.grid[i][j]);
+                        }
+                    }
+                    
+                    // Combinar fichas adyacentes
+                    for (let i = 0; i < column.length - 1; i++) {
+                        if (column[i] === column[i + 1]) {
+                            column[i] *= 2;
+                            this.score += column[i];
+                            column[i + 1] = 0;
+                        }
+                    }
+                    
+                    // Filtrar ceros y completar
+                    const newColumn = column.filter(val => val !== 0);
+                    while (newColumn.length < this.size) {
+                        newColumn.push(0);
+                    }
+                    
+                    // Aplicar cambios
+                    for (let i = 0; i < this.size; i++) {
+                        if (this.grid[i][j] !== newColumn[i]) {
+                            moved = true;
+                        }
+                        this.grid[i][j] = newColumn[i];
+                    }
+                }
+                return moved;
+            }
+
+            moveDown() {
+                let moved = false;
+                for (let j = 0; j < this.size; j++) {
+                    const column = [];
+                    for (let i = 0; i < this.size; i++) {
+                        if (this.grid[i][j] !== 0) {
+                            column.push(this.grid[i][j]);
+                        }
+                    }
+                    
+                    // Combinar fichas adyacentes (de abajo hacia arriba)
+                    for (let i = column.length - 1; i > 0; i--) {
+                        if (column[i] === column[i - 1]) {
+                            column[i] *= 2;
+                            this.score += column[i];
+                            column[i - 1] = 0;
+                        }
+                    }
+                    
+                    // Filtrar ceros y completar
+                    const newColumn = column.filter(val => val !== 0);
+                    while (newColumn.length < this.size) {
+                        newColumn.unshift(0);
+                    }
+                    
+                    // Aplicar cambios
+                    for (let i = 0; i < this.size; i++) {
+                        if (this.grid[i][j] !== newColumn[i]) {
+                            moved = true;
+                        }
+                        this.grid[i][j] = newColumn[i];
+                    }
+                }
+                return moved;
+            }
+
+            updateDisplay() {
+                const container = document.getElementById('gridContainer');
+                
+                // Limpiar fichas existentes
+                const existingTiles = container.querySelectorAll('.tile');
+                existingTiles.forEach(tile => tile.remove());
+
+                // Agregar nuevas fichas
+                for (let i = 0; i < this.size; i++) {
+                    for (let j = 0; j < this.size; j++) {
+                        if (this.grid[i][j] !== 0) {
+                            this.createTile(this.grid[i][j], i, j);
+                        }
+                    }
+                }
+
+                // Actualizar puntuación
+                document.getElementById('score').textContent = this.score;
+                
+                // Actualizar mejor puntuación
+                if (this.score > this.bestScore) {
+                    this.bestScore = this.score;
+                    localStorage.setItem('meskeia_2048_best', this.bestScore.toString());
+                }
+                document.getElementById('bestScore').textContent = this.bestScore;
+            }
+
+            createTile(value, row, col) {
+                const container = document.getElementById('gridContainer');
+                const tile = document.createElement('div');
+                tile.className = `tile tile-${value}`;
+                tile.textContent = value;
+                
+                const cellSize = window.innerWidth <= 480 ? 60 : window.innerWidth <= 768 ? 70 : 100;
+                const gap = 8;
+                
+                tile.style.left = `${col * (cellSize + gap) + gap}px`;
+                tile.style.top = `${row * (cellSize + gap) + gap}px`;
+                
+                container.appendChild(tile);
+                
+                // Animación para fichas nuevas
+                if (this.isNewTile(row, col)) {
+                    tile.classList.add('tile-new');
+                }
+            }
+
+            isNewTile(row, col) {
+                // Lógica simple para detectar fichas nuevas
+                return Math.random() < 0.1; // Temporal, mejorará con sistema más sofisticado
+            }
+
+            checkWin() {
+                for (let i = 0; i < this.size; i++) {
+                    for (let j = 0; j < this.size; j++) {
+                        if (this.grid[i][j] === 2048) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            checkGameOver() {
+                // Verificar si hay celdas vacías
+                for (let i = 0; i < this.size; i++) {
+                    for (let j = 0; j < this.size; j++) {
+                        if (this.grid[i][j] === 0) {
+                            return false;
+                        }
+                    }
+                }
+
+                // Verificar si hay movimientos posibles
+                for (let i = 0; i < this.size; i++) {
+                    for (let j = 0; j < this.size; j++) {
+                        const current = this.grid[i][j];
+                        
+                        // Verificar vecinos
+                        if ((i > 0 && this.grid[i-1][j] === current) ||
+                            (i < this.size-1 && this.grid[i+1][j] === current) ||
+                            (j > 0 && this.grid[i][j-1] === current) ||
+                            (j < this.size-1 && this.grid[i][j+1] === current)) {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+
+            showWinMessage() {
+                this.won = true;
+                const container = document.getElementById('gridContainer');
+                const winOverlay = document.createElement('div');
+                winOverlay.className = 'game-won';
+                winOverlay.innerHTML = `
+                    <div class="game-message">¡Ganaste!</div>
+                    <button class="continue-btn" onclick="game.continueGame()">Continuar</button>
+                    <button class="try-again-btn" onclick="game.restart()">Nuevo Juego</button>
+                `;
+                container.appendChild(winOverlay);
+            }
+
+            showGameOverMessage() {
+                this.over = true;
+                const container = document.getElementById('gridContainer');
+                const gameOverOverlay = document.createElement('div');
+                gameOverOverlay.className = 'game-over';
+                gameOverOverlay.innerHTML = `
+                    <div class="game-message">¡Juego Terminado!</div>
+                    <button class="try-again-btn" onclick="game.restart()">Intentar de Nuevo</button>
+                `;
+                container.appendChild(gameOverOverlay);
+            }
+
+            continueGame() {
+                const overlay = document.querySelector('.game-won');
+                if (overlay) {
+                    overlay.remove();
+                }
+                this.won = true; // Mantener ganado pero permitir continuar
+            }
+
+            restart() {
+                this.score = 0;
+                this.won = false;
+                this.over = false;
+                
+                // Limpiar overlays
+                const overlays = document.querySelectorAll('.game-over, .game-won');
+                overlays.forEach(overlay => overlay.remove());
+                
+                this.init();
+                this.updateDisplay();
+            }
+        }
+
+        // Inicializar juego
+        const game = new Game2048();
+
+        // Prevenir scroll en móvil
+        document.addEventListener('touchmove', (e) => {
+            if (e.target.closest('.grid-container')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>

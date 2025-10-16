@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Conversor de Tallas Internacional Gratis - Ropa, Calzado y Complementos | meskeIA</title>
+    <meta name="description" content="Conversor de tallas internacional gratuito para ropa, calzado y complementos. Convierte entre tallas ES/EU, US y UK. Incluye hombre, mujer, niños, anillos, guantes y gorros. Ideal para compras online.">
+    <meta name="keywords" content="conversor tallas, tallas internacionales, tallas europa, tallas usa, tallas uk, calzado internacional, ropa internacional, equivalencia tallas, compras online, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/conversor-tallas/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conversor de Tallas Internacional Gratis - Ropa, Calzado y Complementos | meskeIA">
+    <meta property="og:description" content="Herramienta gratuita para convertir tallas internacionales. Ropa de hombre y mujer, calzado, anillos, guantes y gorros. Convierte entre ES/EU, US y UK fácilmente.">
+    <meta property="og:url" content="https://meskeia.com/conversor-tallas/">
+    <meta property="og:image" content="https://meskeia.com/assets/og-size-converter.png">
+    <meta property="og:image:alt" content="Conversor de Tallas Internacional - Ropa y Calzado">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conversor de Tallas Internacional Gratis | meskeIA">
+    <meta name="twitter:description" content="Convierte tallas de ropa, calzado y complementos entre sistemas ES/EU, US y UK. Perfecto para compras online internacionales.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-size-converter.png">
+    <meta name="twitter:image:alt" content="Conversor de Tallas Internacional">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+    
+    <!-- Structured Data - WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Conversor de Tallas Internacional",
+        "description": "Aplicación web gratuita para convertir tallas internacionales de ropa, calzado y complementos entre sistemas ES/EU, US y UK. Ideal para compras online internacionales con conversiones precisas.",
+        "url": "https://meskeia.com/conversor-tallas/",
+        "image": "https://meskeia.com/assets/og-size-converter.png",
+        "applicationCategory": "Shopping",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Cómo funciona el conversor de tallas internacional?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Selecciona el tipo de prenda (ropa hombre/mujer, calzado, complementos), elige tu sistema de tallas actual (ES/EU, US, UK), introduce tu talla y obtendrás las equivalencias automáticamente en los otros sistemas."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "¿Qué sistemas de tallas soporta?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Soportamos conversiones entre España/Europa (ES/EU), Estados Unidos (US) y Reino Unido (UK) para ropa de hombre y mujer, calzado de todas las edades, anillos, guantes y gorros."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Son exactas las conversiones de tallas?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Las conversiones son aproximadas basadas en estándares internacionales. Cada marca puede variar, por lo que recomendamos consultar siempre la guía de tallas específica del fabricante antes de comprar."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Puedo convertir tallas de calzado en centímetros?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, nuestro conversor de calzado también muestra la longitud aproximada del pie en centímetros, lo cual es muy útil para comparar con las medidas exactas del fabricante."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            /* Estados */
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 80px auto 100px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--bg-primary);
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 160px;
+            padding: 15px 10px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            background: white;
+            border-bottom-color: var(--primary);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--hover);
+            color: var(--text-primary);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .converter-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .size-option {
+            padding: 12px 8px;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            background: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .size-option:hover {
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .size-option.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .results-section {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .equivalence-table {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .table-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .table-content {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-primary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        .highlight-row {
+            background: var(--focus) !important;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #FFF8DC 0%, #F0F8FF 100%);
+            border: 1px solid #DDD;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .tips-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .tips-list li::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 60px auto 80px;
+            }
+
+            .converter-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                min-width: auto;
+                flex: none;
+            }
+
+            .size-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .size-option {
+                padding: 10px 4px;
+                font-size: 0.9rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        .disclaimer {
+            background: #FFF8DC;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .disclaimer h4 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        /* SEO Content Styles */
+        .main-app-wrapper {
+            padding: 20px;
+        }
+
+        .seo-content {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding: 0 20px;
+        }
+
+        .seo-content section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .seo-content h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .seo-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .seo-content h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .seo-content h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-section, .system-item, .tip-item, .conversion-category, .measure-category, .faq-item, .shopping-category {
+            margin-bottom: 30px;
+        }
+
+        .guide-section:last-child, .system-item:last-child, .tip-item:last-child, .conversion-category:last-child, .measure-category:last-child, .faq-item:last-child, .shopping-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .seo-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .seo-content strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .seo-content ul {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-left: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Grid Layouts for SEO Content */
+        .systems-grid, .tips-grid, .conversions-grid, .measuring-grid, .shopping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .system-item, .tip-item, .conversion-category, .measure-category, .shopping-category {
+            background: var(--bg-primary);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .system-item:hover, .tip-item:hover, .conversion-category:hover, .measure-category:hover, .shopping-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(46, 134, 171, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* FAQ Specific Styles */
+        /* FAQ desplegables */
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 10px rgba(46, 134, 171, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--hover);
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        .faq-question h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .faq-item h3 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Measuring Guide Specific */
+        .measures-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .measure-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .measure-item h4 {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .measure-item p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive for SEO Content */
+        @media (max-width: 768px) {
+            .main-app-wrapper {
+                padding: 15px;
+            }
+
+            .seo-content {
+                margin-top: 30px;
+                padding: 0 10px;
+            }
+
+            .seo-content section {
+                padding: 25px 20px;
+                margin-bottom: 25px;
+                border-radius: 12px;
+            }
+
+            .seo-content h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+
+            .seo-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+                margin-top: 20px;
+            }
+
+            .seo-content h4 {
+                font-size: 1rem;
+            }
+
+            .systems-grid, .tips-grid, .conversions-grid, .measuring-grid, .shopping-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .system-item, .tip-item, .conversion-category, .measure-category, .faq-item, .shopping-category {
+                padding: 20px;
+            }
+
+            .measures-list {
+                gap: 10px;
+            }
+
+            .measure-item {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .seo-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .seo-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .seo-content h4 {
+                font-size: 0.95rem;
+            }
+
+            .seo-content section {
+                padding: 20px 15px;
+            }
+
+            .system-item, .tip-item, .conversion-category, .measure-category, .faq-item, .shopping-category {
+                padding: 15px;
+            }
+
+            .measure-item {
+                padding: 10px;
+            }
+
+            .faq-question {
+                padding: 15px;
+            }
+            
+            .faq-answer p {
+                padding: 0 15px 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="main-app-wrapper">
+        <div class="container">
+        <div class="header">
+            <h1>👕 Conversor de Tallas Internacional</h1>
+            <p>Encuentra tu talla perfecta para compras online internacionales</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('ropa-hombre')">👔 Hombre</button>
+            <button class="tab" onclick="showTab('ropa-mujer')">👗 Mujer</button>
+            <button class="tab" onclick="showTab('calzado')">👟 Calzado</button>
+            <button class="tab" onclick="showTab('complementos')">💍 Complementos</button>
+        </div>
+
+        <!-- Tab: Ropa Hombre -->
+        <div class="tab-content active" id="ropa-hombre">
+            <div class="converter-section">
+                <div class="input-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">👔 Ropa de Hombre</h3>
+                    
+                    <div class="form-group">
+                        <label>Tipo de prenda</label>
+                        <select id="hombre-tipo" onchange="updateHombreSizes()">
+                            <option value="camisas-casual">Camisas Casuales (S, M, L...)</option>
+                            <option value="camisas-formal">Camisas Formales (Talla cuello)</option>
+                            <option value="pantalones">Pantalones</option>
+                            <option value="chaquetas">Chaquetas/Trajes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu sistema de tallas</label>
+                        <select id="hombre-sistema" onchange="convertHombreTalla()">
+                            <option value="ES">España/Europa (ES/EU)</option>
+                            <option value="US">Estados Unidos (US)</option>
+                            <option value="UK">Reino Unido (UK)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="hombre-input-label">Tu talla</label>
+                        <input type="text" id="hombre-input" placeholder="Ej: L, XL, M..." 
+                               oninput="convertHombreTalla()" style="padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">📏 Equivalencias</h3>
+                    
+                    <div class="result-card">
+                        <span class="result-label">🇪🇸 España/Europa (ES/EU)</span>
+                        <span class="result-value" id="hombre-es">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇺🇸 Estados Unidos (US)</span>
+                        <span class="result-value" id="hombre-us">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇬🇧 Reino Unido (UK)</span>
+                        <span class="result-value" id="hombre-uk">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equivalence-table" style="display: none;">
+                <div class="table-header">📊 Equivalencias Aproximadas - Hombre</div>
+                <div class="table-content">
+                    <p style="padding: 20px; color: var(--text-secondary); text-align: center;">
+                        💡 <strong>Tip:</strong> Introduce tu talla arriba para ver las conversiones automáticas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Ropa Mujer -->
+        <div class="tab-content" id="ropa-mujer">
+            <div class="converter-section">
+                <div class="input-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">👗 Ropa de Mujer</h3>
+                    
+                    <div class="form-group">
+                        <label>Tipo de prenda</label>
+                        <select id="mujer-tipo" onchange="updateMujerSizes()">
+                            <option value="blusas">Blusas/Camisas</option>
+                            <option value="pantalones">Pantalones</option>
+                            <option value="vestidos">Vestidos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu sistema de tallas</label>
+                        <select id="mujer-sistema" onchange="convertMujerTalla()">
+                            <option value="ES">España/Europa (ES/EU)</option>
+                            <option value="US">Estados Unidos (US)</option>
+                            <option value="UK">Reino Unido (UK)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu talla</label>
+                        <input type="text" id="mujer-input" placeholder="Ej: 38, M, 8..." 
+                               oninput="convertMujerTalla()" style="padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">📏 Equivalencias</h3>
+                    
+                    <div class="result-card">
+                        <span class="result-label">🇪🇸 España/Europa (ES/EU)</span>
+                        <span class="result-value" id="mujer-es">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇺🇸 Estados Unidos (US)</span>
+                        <span class="result-value" id="mujer-us">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇬🇧 Reino Unido (UK)</span>
+                        <span class="result-value" id="mujer-uk">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equivalence-table" style="display: none;">
+                <div class="table-header">📊 Equivalencias Aproximadas - Mujer</div>
+                <div class="table-content">
+                    <p style="padding: 20px; color: var(--text-secondary); text-align: center;">
+                        💡 <strong>Tip:</strong> Introduce tu talla arriba para ver las conversiones automáticas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Calzado -->
+        <div class="tab-content" id="calzado">
+            <div class="converter-section">
+                <div class="input-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">👟 Calzado</h3>
+                    
+                    <div class="form-group">
+                        <label>Tipo de calzado</label>
+                        <select id="calzado-tipo" onchange="updateCalzadoSizes()">
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                            <option value="nino">Niño</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu sistema de tallas</label>
+                        <select id="calzado-sistema" onchange="convertCalzadoTalla()">
+                            <option value="ES">España/Europa (ES/EU)</option>
+                            <option value="US">Estados Unidos (US)</option>
+                            <option value="UK">Reino Unido (UK)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu talla</label>
+                        <input type="text" id="calzado-input" placeholder="Ej: 42, 9.5, 8..." 
+                               oninput="convertCalzadoTalla()" style="padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">📏 Equivalencias</h3>
+                    
+                    <div class="result-card">
+                        <span class="result-label">🇪🇸 España/Europa (ES/EU)</span>
+                        <span class="result-value" id="calzado-es">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇺🇸 Estados Unidos (US)</span>
+                        <span class="result-value" id="calzado-us">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇬🇧 Reino Unido (UK)</span>
+                        <span class="result-value" id="calzado-uk">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">📏 Longitud (cm)</span>
+                        <span class="result-value" id="calzado-cm">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equivalence-table" style="display: none;">
+                <div class="table-header">📊 Equivalencias Aproximadas - Calzado</div>
+                <div class="table-content">
+                    <p style="padding: 20px; color: var(--text-secondary); text-align: center;">
+                        💡 <strong>Tip:</strong> Para mayor precisión, mide tu pie en centímetros.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Complementos -->
+        <div class="tab-content" id="complementos">
+            <div class="converter-section">
+                <div class="input-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">💍 Complementos</h3>
+                    
+                    <div class="form-group">
+                        <label>Tipo de complemento</label>
+                        <select id="complemento-tipo" onchange="updateComplementoSizes()">
+                            <option value="anillos">Anillos</option>
+                            <option value="gorros">Gorros</option>
+                            <option value="guantes">Guantes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu sistema de tallas</label>
+                        <select id="complemento-sistema" onchange="convertComplementoTalla()">
+                            <option value="ES">España/Europa (ES/EU)</option>
+                            <option value="US">Estados Unidos (US)</option>
+                            <option value="UK">Reino Unido (UK)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tu talla</label>
+                        <input type="text" id="complemento-input" placeholder="Ej: 16, 8, L..." 
+                               oninput="convertComplementoTalla()" style="padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">📏 Equivalencias</h3>
+                    
+                    <div class="result-card">
+                        <span class="result-label">🇪🇸 España/Europa (ES/EU)</span>
+                        <span class="result-value" id="complemento-es">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇺🇸 Estados Unidos (US)</span>
+                        <span class="result-value" id="complemento-us">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">🇬🇧 Reino Unido (UK)</span>
+                        <span class="result-value" id="complemento-uk">-</span>
+                    </div>
+
+                    <div class="result-card">
+                        <span class="result-label">📏 Medida (cm/mm)</span>
+                        <span class="result-value" id="complemento-medida">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equivalence-table" style="display: none;">
+                <div class="table-header">📊 Equivalencias Aproximadas - Complementos</div>
+                <div class="table-content">
+                    <p style="padding: 20px; color: var(--text-secondary); text-align: center;">
+                        💡 <strong>Tip:</strong> Para anillos, mide el diámetro interior de uno que te quede bien.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <h4>📋 Información Importante sobre Equivalencias de Tallas</h4>
+            <p><strong>Las equivalencias mostradas son aproximadas</strong> y pueden variar significativamente entre fabricantes, marcas y países. Cada empresa puede tener sus propios estándares de tallaje.</p>
+            <br>
+            <p><strong>Recomendaciones para compras online:</strong></p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Consulta siempre la <strong>guía de tallas específica</strong> del fabricante</li>
+                <li>Lee las <strong>reseñas de otros compradores</strong> sobre el tallaje del producto</li>
+                <li>Para calzado, mide tu pie en centímetros y compáralo con las medidas del fabricante</li>
+                <li>En caso de duda, elige la <strong>talla mayor</strong> - es más fácil ajustar que estirar</li>
+                <li>Ropa asiática suele tallar más pequeño - considera subir 1-2 tallas</li>
+            </ul>
+            <br>
+            <p>meskeIA no se hace responsable de problemas de tallas en compras realizadas basándose únicamente en estas equivalencias.</p>
+        </div>
+        </div>
+        
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <section class="size-guide">
+                <h2>Guía Completa de Tallas Internacionales</h2>
+                
+                <div class="guide-section">
+                    <h3>¿Por qué existen diferentes sistemas de tallas?</h3>
+                    <p>Los <strong>sistemas de tallas internacionales</strong> varían porque cada país desarrolló sus propios estándares basados en las características físicas promedio de su población, sistemas de medida (métrico vs imperial) y tradiciones manufactureras. Esto hace que las compras online internacionales requieran conversiones precisas.</p>
+                </div>
+                
+                <div class="guide-section">
+                    <h3>Sistemas de Tallas Principales</h3>
+                    <div class="systems-grid">
+                        <div class="system-item">
+                            <h4>🇪🇸 España/Europa (ES/EU)</h4>
+                            <p><strong>Sistema métrico</strong> basado en centímetros. Usado en toda la Unión Europea. Para ropa usa medidas directas del cuerpo, para calzado longitud en centímetros (Paris Point).</p>
+                        </div>
+                        
+                        <div class="system-item">
+                            <h4>🇺🇸 Estados Unidos (US)</h4>
+                            <p><strong>Sistema imperial</strong> basado en pulgadas. Usa letras (XS, S, M, L, XL) y números. Las tallas americanas suelen ser más grandes que las europeas para la misma medida corporal.</p>
+                        </div>
+                        
+                        <div class="system-item">
+                            <h4>🇬🇧 Reino Unido (UK)</h4>
+                            <p><strong>Sistema mixto</strong> que combina elementos imperiales y propios. Similar al americano pero con diferencias significativas en calzado y ropa formal.</p>
+                        </div>
+                        
+                        <div class="system-item">
+                            <h4>🌏 Otros Sistemas</h4>
+                            <p><strong>Francia (FR):</strong> Similar al EU pero con pequeñas diferencias<br>
+                            <strong>Italia (IT):</strong> Propio sistema numérico<br>
+                            <strong>Asia:</strong> Generalmente más pequeño que occidentales</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guide-section">
+                    <h3>Consejos para Compras Online Internacionales</h3>
+                    <div class="tips-grid">
+                        <div class="tip-item">
+                            <h4>📏 Mide tu Cuerpo</h4>
+                            <p>Toma medidas precisas de <strong>pecho, cintura, cadera y largo</strong>. Para calzado, mide tu pie en centímetros. Estas medidas son más fiables que las tallas.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>📋 Consulta Guías Específicas</h4>
+                            <p>Cada marca tiene su <strong>guía de tallas</strong>. Las marcas asiáticas suelen tallar 1-2 tallas más pequeñas que las occidentales.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>📱 Lee Reseñas</h4>
+                            <p>Los comentarios de otros compradores suelen mencionar si el producto <strong>"talla grande" o "talla pequeño"</strong> respecto a la guía oficial.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>📦 Política de Devoluciones</h4>
+                            <p>Antes de comprar, verifica la <strong>política de cambios</strong> y devoluciones. Algunos sitios ofrecen cambios gratuitos de talla.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>🎯 Talla de Seguridad</h4>
+                            <p>En caso de duda, elige la <strong>talla mayor</strong>. Es más fácil ajustar una prenda grande que estirar una pequeña.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>🕐 Horario de la Medición</h4>
+                            <p>Mide tu pie por la <strong>tarde-noche</strong> cuando está más hinchado. Para ropa, mide sobre la ropa interior que usarás normalmente.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="detailed-conversions">
+                <h2>Conversiones Detalladas por Categoría</h2>
+                
+                <div class="conversions-grid">
+                    <div class="conversion-category">
+                        <h3>👔 Ropa de Hombre</h3>
+                        <ul>
+                            <li><strong>Camisas casuales:</strong> XS-XXL (letras universales)</li>
+                            <li><strong>Camisas formales:</strong> Por medida del cuello en cm/pulgadas</li>
+                            <li><strong>Pantalones:</strong> Cintura en cm (ES) vs pulgadas (US/UK)</li>
+                            <li><strong>Chaquetas:</strong> Sistema numérico directo con diferencias</li>
+                            <li><strong>Diferencia típica:</strong> ES = US + 10, UK similar a US</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="conversion-category">
+                        <h3>👗 Ropa de Mujer</h3>
+                        <ul>
+                            <li><strong>Blusas:</strong> XS-XXL con equivalencias numéricas</li>
+                            <li><strong>Pantalones:</strong> ES: 34-50, US: 0-16, UK: 6-22</li>
+                            <li><strong>Vestidos:</strong> Similar a pantalones con ajustes por tipo</li>
+                            <li><strong>Fórmula aproximada:</strong> US = (ES-34)/2, UK = ES-28</li>
+                            <li><strong>Nota:</strong> Mayor variación entre marcas que en hombre</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="conversion-category">
+                        <h3>👟 Calzado</h3>
+                        <ul>
+                            <li><strong>Hombre:</strong> ES: 39-47, US: 6-14, UK: 5.5-13</li>
+                            <li><strong>Mujer:</strong> ES: 35-42, US: 5-11, UK: 2.5-8.5</li>
+                            <li><strong>Niños:</strong> ES: 16-35, US: 1-4, UK: 0.5-3.5</li>
+                            <li><strong>Centímetros:</strong> La medida más precisa universalmente</li>
+                            <li><strong>Consejo:</strong> Mide ambos pies y usa la medida mayor</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="conversion-category">
+                        <h3>💍 Complementos</h3>
+                        <ul>
+                            <li><strong>Anillos:</strong> ES: 10-24, US: 0-13, UK: J-Z</li>
+                            <li><strong>Gorros:</strong> Circunferencia craneal en cm</li>
+                            <li><strong>Guantes:</strong> Longitud de mano en cm o letras</li>
+                            <li><strong>Cinturones:</strong> Longitud total en cm/pulgadas</li>
+                            <li><strong>Medición clave:</strong> Diámetro interior para anillos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="measuring-guide">
+                <h2>Cómo Medir Correctamente</h2>
+                
+                <div class="measuring-grid">
+                    <div class="measure-category">
+                        <h3>📏 Medidas Corporales</h3>
+                        <div class="measures-list">
+                            <div class="measure-item">
+                                <h4>Pecho/Busto</h4>
+                                <p>Mide la parte más ancha del pecho con los brazos relajados. La cinta debe estar horizontal y ajustada pero sin apretar.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Cintura</h4>
+                                <p>Parte más estrecha del torso, generalmente a la altura del ombligo. Mide sin meter la barriga.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Cadera</h4>
+                                <p>Parte más ancha de las caderas, incluyendo los glúteos. La cinta debe estar horizontal.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Largo de Brazo</h4>
+                                <p>Desde el hombro hasta la muñeca con el brazo ligeramente flexionado.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="measure-category">
+                        <h3>👟 Medidas de Pie</h3>
+                        <div class="measures-list">
+                            <div class="measure-item">
+                                <h4>Longitud</h4>
+                                <p>Desde el talón hasta el dedo más largo. Hazlo de pie y con peso distribuido.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Ancho</h4>
+                                <p>La parte más ancha del pie, generalmente a la altura de los metatarsos.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Momento del día</h4>
+                                <p>Por la tarde cuando el pie está más hinchado. Mide ambos pies y usa la medida mayor.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Con calcetines</h4>
+                                <p>Usa el tipo de calcetín que planeas llevar con esos zapatos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="measure-category">
+                        <h3>💍 Medidas de Complementos</h3>
+                        <div class="measures-list">
+                            <div class="measure-item">
+                                <h4>Anillos</h4>
+                                <p>Diámetro interior de un anillo que te quede bien, o circunferencia del dedo con hilo.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Guantes</h4>
+                                <p>Circunferencia de la mano en la parte más ancha, excluyendo el pulgar.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Gorros</h4>
+                                <p>Circunferencia de la cabeza 2cm por encima de las orejas y cejas.</p>
+                            </div>
+                            <div class="measure-item">
+                                <h4>Cinturones</h4>
+                                <p>Medida de la cintura donde llevas habitualmente el cinturón, no la talla del pantalón.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="faq-section">
+                <h2>Preguntas Frecuentes sobre Tallas</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>¿Por qué una talla M americana no es igual a una M europea?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Cada país desarrolló sus estándares basándose en las características físicas promedio de su población. Las tallas americanas suelen ser más amplias que las europeas debido a diferencias en la constitución física promedio y en los estándares de la industria textil.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>¿Cómo sé si una marca talla grande o pequeño?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Lee las reseñas de otros compradores, ya que suelen mencionar el ajuste real. Marcas asiáticas típicamente tallan 1-2 números más pequeñas. Marcas deportivas pueden tallan diferente que ropa casual.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>¿Qué hago si estoy entre dos tallas?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Considera el tipo de prenda: para ropa ajustada elige la mayor, para oversize la menor. Para calzado, elige la mayor si tienes pies anchos, la menor si son estrechos. Siempre consulta las medidas en centímetros.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>¿Las tallas de hombre y mujer se convierten igual?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, tienen sistemas diferentes. En calzado, las tallas de mujer son típicamente 1.5-2 números menores que las de hombre para el mismo pie. En ropa, los sistemas son completamente diferentes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>¿Cómo afecta el material a la talla?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Materiales elásticos (lycra, spandex) permiten más flexibilidad en el tallaje. Materiales rígidos (denim sin elastano, cuero) requieren tallas más precisas. Tejidos que encogen (algodón 100%) pueden requerir una talla mayor.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="shopping-tips">
+                <h2>Consejos Específicos por Tipo de Compra</h2>
+                
+                <div class="shopping-grid">
+                    <div class="shopping-category">
+                        <h3>🛍️ Ropa Casual</h3>
+                        <ul>
+                            <li>Las tallas de letra (S, M, L) son más permisivas</li>
+                            <li>Marcas fast-fashion suelen tallar más grande</li>
+                            <li>Ropa deportiva puede tallar diferente que casual</li>
+                            <li>Considera el fit deseado: ajustado vs holgado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="shopping-category">
+                        <h3>👔 Ropa Formal</h3>
+                        <ul>
+                            <li>Usa siempre medidas corporales exactas</li>
+                            <li>Los trajes requieren ajustes profesionales</li>
+                            <li>Camisas formales se miden por cuello y manga</li>
+                            <li>Considera el uso de corbata en camisas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="shopping-category">
+                        <h3>👟 Calzado Deportivo</h3>
+                        <ul>
+                            <li>Suele tallar 0.5-1 número más grande</li>
+                            <li>Considera el grosor del calcetín deportivo</li>
+                            <li>Para running, deja espacio para el dedo gordo</li>
+                            <li>Diferentes marcas pueden variar significativamente</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="shopping-category">
+                        <h3>👠 Calzado Formal</h3>
+                        <ul>
+                            <li>Debe quedar ajustado pero cómodo</li>
+                            <li>Considera el ancho del pie, no solo el largo</li>
+                            <li>Los tacones requieren más precisión en la talla</li>
+                            <li>Materiales rígidos no ceden con el uso</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Datos de tallas eliminados - ahora usamos fórmulas de conversión
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Limpiar resultados al inicio
+            clearResults('hombre');
+            clearResults('mujer');
+            clearResults('calzado');
+            clearResults('complementos');
+        });
+
+        function showTab(tabName) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Mostrar el seleccionado
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Inicializar según pestaña
+            if (tabName === 'ropa-hombre') {
+                updateHombreSizes();
+            }
+        }
+
+        function updateHombreSizes() {
+            const tipo = document.getElementById('hombre-tipo').value;
+            const inputLabel = document.getElementById('hombre-input-label');
+            const input = document.getElementById('hombre-input');
+            
+            if (tipo === 'camisas-formal') {
+                inputLabel.textContent = 'Talla de cuello (cm)';
+                input.placeholder = 'Ej: 39, 40, 41...';
+            } else if (tipo === 'camisas-casual') {
+                inputLabel.textContent = 'Tu talla';
+                input.placeholder = 'Ej: S, M, L, XL...';
+            } else if (tipo === 'pantalones') {
+                inputLabel.textContent = 'Tu talla';
+                input.placeholder = 'Ej: 48, 32, 50...';
+            } else if (tipo === 'chaquetas') {
+                inputLabel.textContent = 'Tu talla';
+                input.placeholder = 'Ej: 48, 38, 50...';
+            }
+            
+            // Limpiar input y resultados al cambiar tipo
+            input.value = '';
+            clearResults('hombre');
+        }
+
+        // Conversiones para Ropa de Hombre
+        function convertHombreTalla() {
+            const tipo = document.getElementById('hombre-tipo').value;
+            const sistema = document.getElementById('hombre-sistema').value;
+            const input = document.getElementById('hombre-input').value.trim().toUpperCase();
+            
+            if (!input) {
+                clearResults('hombre');
+                return;
+            }
+
+            let esSize, usSize, ukSize;
+
+            if (tipo === 'camisas-casual') {
+                // Camisas casuales: XS, S, M, L, XL, XXL
+                const sizeMap = {
+                    'XS': { ES: 'XS', US: 'XS', UK: '32' },
+                    'S': { ES: 'S', US: 'S', UK: '34' },
+                    'M': { ES: 'M', US: 'M', UK: '36' },
+                    'L': { ES: 'L', US: 'L', UK: '38' },
+                    'XL': { ES: 'XL', US: 'XL', UK: '40' },
+                    'XXL': { ES: 'XXL', US: 'XXL', UK: '42' },
+                    'XXXL': { ES: 'XXXL', US: 'XXXL', UK: '44' }
+                };
+
+                if (sistema === 'UK') {
+                    // Convertir de UK numérico a letras
+                    const ukToSize = { '32': 'XS', '34': 'S', '36': 'M', '38': 'L', '40': 'XL', '42': 'XXL', '44': 'XXXL' };
+                    const sizeKey = ukToSize[input] || input;
+                    if (sizeMap[sizeKey]) {
+                        const result = sizeMap[sizeKey];
+                        esSize = result.ES; usSize = result.US; ukSize = result.UK;
+                    }
+                } else {
+                    if (sizeMap[input]) {
+                        const result = sizeMap[input];
+                        esSize = result.ES; usSize = result.US; ukSize = result.UK;
+                    }
+                }
+            } else if (tipo === 'camisas-formal') {
+                // Camisas formales: talla de cuello en cm
+                const inputNum = parseFloat(input);
+                if (isNaN(inputNum)) return;
+
+                if (sistema === 'ES') {
+                    // ES (cm) a US/UK (pulgadas)
+                    esSize = Math.round(inputNum);
+                    usSize = Math.round(inputNum * 0.394); // cm a pulgadas
+                    ukSize = usSize;
+                } else if (sistema === 'US' || sistema === 'UK') {
+                    // US/UK (pulgadas) a ES (cm)
+                    esSize = Math.round(inputNum * 2.54); // pulgadas a cm
+                    usSize = Math.round(inputNum);
+                    ukSize = Math.round(inputNum);
+                }
+            } else if (tipo === 'pantalones') {
+                // Pantalones: conversión numérica
+                const inputNum = parseFloat(input);
+                if (isNaN(inputNum)) return;
+
+                if (sistema === 'ES') {
+                    // ES (cm) a US/UK (pulgadas)
+                    esSize = Math.round(inputNum);
+                    usSize = Math.round((inputNum - 16) * 0.75);
+                    ukSize = usSize;
+                } else if (sistema === 'US' || sistema === 'UK') {
+                    // US/UK (pulgadas) a ES (cm)
+                    esSize = Math.round(inputNum / 0.75 + 16);
+                    usSize = Math.round(inputNum);
+                    ukSize = Math.round(inputNum);
+                }
+            } else if (tipo === 'chaquetas') {
+                // Chaquetas: conversión numérica directa
+                const inputNum = parseFloat(input);
+                if (isNaN(inputNum)) return;
+
+                if (sistema === 'ES') {
+                    esSize = Math.round(inputNum);
+                    usSize = Math.round(inputNum - 10);
+                    ukSize = usSize;
+                } else if (sistema === 'US' || sistema === 'UK') {
+                    esSize = Math.round(inputNum + 10);
+                    usSize = Math.round(inputNum);
+                    ukSize = Math.round(inputNum);
+                }
+            }
+
+            // Actualizar resultados
+            document.getElementById('hombre-es').textContent = esSize || '-';
+            document.getElementById('hombre-us').textContent = usSize || '-';
+            document.getElementById('hombre-uk').textContent = ukSize || '-';
+        }
+
+        // Conversiones para Ropa de Mujer
+        function convertMujerTalla() {
+            const tipo = document.getElementById('mujer-tipo').value;
+            const sistema = document.getElementById('mujer-sistema').value;
+            const input = document.getElementById('mujer-input').value.trim().toUpperCase();
+            
+            if (!input) {
+                clearResults('mujer');
+                return;
+            }
+
+            let esSize, usSize, ukSize;
+
+            if (tipo === 'blusas') {
+                // Blusas: XS, S, M, L, XL, XXL
+                const sizeMap = {
+                    'XS': { ES: 'XS', US: '0-2', UK: '6' },
+                    'S': { ES: 'S', US: '4-6', UK: '8' },
+                    'M': { ES: 'M', US: '8-10', UK: '10' },
+                    'L': { ES: 'L', US: '12-14', UK: '12' },
+                    'XL': { ES: 'XL', US: '16-18', UK: '14' },
+                    'XXL': { ES: 'XXL', US: '20-22', UK: '16' }
+                };
+
+                if (sizeMap[input]) {
+                    const result = sizeMap[input];
+                    esSize = result.ES; usSize = result.US; ukSize = result.UK;
+                }
+            } else if (tipo === 'pantalones' || tipo === 'vestidos') {
+                // Pantalones/Vestidos: conversión numérica
+                const inputNum = parseFloat(input);
+                if (isNaN(inputNum)) return;
+
+                if (sistema === 'ES') {
+                    esSize = Math.round(inputNum);
+                    usSize = Math.max(0, Math.round((inputNum - 34) / 2));
+                    ukSize = Math.round(inputNum - 28);
+                } else if (sistema === 'US') {
+                    esSize = Math.round(inputNum * 2 + 34);
+                    usSize = Math.round(inputNum);
+                    ukSize = Math.round(inputNum * 2 + 6);
+                } else if (sistema === 'UK') {
+                    esSize = Math.round(inputNum + 28);
+                    usSize = Math.max(0, Math.round((inputNum - 6) / 2));
+                    ukSize = Math.round(inputNum);
+                }
+            }
+
+            // Actualizar resultados
+            document.getElementById('mujer-es').textContent = esSize || '-';
+            document.getElementById('mujer-us').textContent = usSize || '-';
+            document.getElementById('mujer-uk').textContent = ukSize || '-';
+        }
+
+        // Conversiones para Calzado
+        function convertCalzadoTalla() {
+            const tipo = document.getElementById('calzado-tipo').value;
+            const sistema = document.getElementById('calzado-sistema').value;
+            const input = document.getElementById('calzado-input').value.trim();
+            
+            if (!input) {
+                clearResults('calzado');
+                return;
+            }
+
+            const inputNum = parseFloat(input);
+            if (isNaN(inputNum)) return;
+
+            let esSize, usSize, ukSize, cmSize;
+
+            if (tipo === 'hombre') {
+                if (sistema === 'ES') {
+                    esSize = inputNum;
+                    usSize = (inputNum - 33).toFixed(1);
+                    ukSize = (inputNum - 33.5).toFixed(1);
+                    cmSize = (inputNum * 0.67 + 2).toFixed(1);
+                } else if (sistema === 'US') {
+                    esSize = (inputNum + 33).toFixed(0);
+                    usSize = inputNum;
+                    ukSize = (inputNum - 0.5).toFixed(1);
+                    cmSize = (inputNum * 0.8 + 22).toFixed(1);
+                } else if (sistema === 'UK') {
+                    esSize = (inputNum + 33.5).toFixed(0);
+                    usSize = (inputNum + 0.5).toFixed(1);
+                    ukSize = inputNum;
+                    cmSize = (inputNum * 0.8 + 22.5).toFixed(1);
+                }
+            } else if (tipo === 'mujer') {
+                if (sistema === 'ES') {
+                    esSize = inputNum;
+                    usSize = (inputNum - 30.5).toFixed(1);
+                    ukSize = (inputNum - 32.5).toFixed(1);
+                    cmSize = (inputNum * 0.67 + 0.5).toFixed(1);
+                } else if (sistema === 'US') {
+                    esSize = (inputNum + 30.5).toFixed(0);
+                    usSize = inputNum;
+                    ukSize = (inputNum - 2).toFixed(1);
+                    cmSize = (inputNum * 0.8 + 20).toFixed(1);
+                } else if (sistema === 'UK') {
+                    esSize = (inputNum + 32.5).toFixed(0);
+                    usSize = (inputNum + 2).toFixed(1);
+                    ukSize = inputNum;
+                    cmSize = (inputNum * 0.8 + 22).toFixed(1);
+                }
+            } else if (tipo === 'nino') {
+                if (sistema === 'ES') {
+                    esSize = inputNum;
+                    usSize = (inputNum - 17).toFixed(1);
+                    ukSize = (inputNum - 18).toFixed(1);
+                    cmSize = (inputNum * 0.67 - 1).toFixed(1);
+                } else if (sistema === 'US') {
+                    esSize = (inputNum + 17).toFixed(0);
+                    usSize = inputNum;
+                    ukSize = (inputNum - 1).toFixed(1);
+                    cmSize = (inputNum * 0.8 + 4).toFixed(1);
+                } else if (sistema === 'UK') {
+                    esSize = (inputNum + 18).toFixed(0);
+                    usSize = (inputNum + 1).toFixed(1);
+                    ukSize = inputNum;
+                    cmSize = (inputNum * 0.8 + 5).toFixed(1);
+                }
+            }
+
+            // Actualizar resultados
+            document.getElementById('calzado-es').textContent = esSize || '-';
+            document.getElementById('calzado-us').textContent = usSize || '-';
+            document.getElementById('calzado-uk').textContent = ukSize || '-';
+            document.getElementById('calzado-cm').textContent = cmSize ? cmSize + ' cm' : '-';
+        }
+
+        // Conversiones para Complementos
+        function convertComplementoTalla() {
+            const tipo = document.getElementById('complemento-tipo').value;
+            const sistema = document.getElementById('complemento-sistema').value;
+            const input = document.getElementById('complemento-input').value.trim().toUpperCase();
+            
+            if (!input) {
+                clearResults('complementos');
+                return;
+            }
+
+            let esSize, usSize, ukSize, medida;
+
+            if (tipo === 'anillos') {
+                const inputNum = parseFloat(input);
+                if (isNaN(inputNum)) return;
+
+                if (sistema === 'ES') {
+                    esSize = inputNum;
+                    usSize = ((inputNum - 10) / 2).toFixed(1);
+                    // Conversión aproximada ES a UK letras
+                    const ukLetters = ['J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
+                    ukSize = ukLetters[Math.round(inputNum - 10)] || '-';
+                    medida = (inputNum * 0.8 + 7.7).toFixed(1);
+                } else if (sistema === 'US') {
+                    esSize = Math.round(inputNum * 2 + 10);
+                    usSize = inputNum;
+                    const ukLetters = ['J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
+                    ukSize = ukLetters[Math.round(inputNum * 2)] || '-';
+                    medida = (inputNum * 1.6 + 15.7).toFixed(1);
+                }
+            } else if (tipo === 'gorros') {
+                const sizeMap = {
+                    'S': { ES: 'S', US: 'S', UK: 'S', cm: '54-56' },
+                    'M': { ES: 'M', US: 'M', UK: 'M', cm: '56-58' },
+                    'L': { ES: 'L', US: 'L', UK: 'L', cm: '58-60' },
+                    'XL': { ES: 'XL', US: 'XL', UK: 'XL', cm: '60-62' }
+                };
+
+                if (sizeMap[input]) {
+                    const result = sizeMap[input];
+                    esSize = result.ES; usSize = result.US; ukSize = result.UK; medida = result.cm;
+                }
+            } else if (tipo === 'guantes') {
+                const inputNum = parseFloat(input);
+                if (!isNaN(inputNum)) {
+                    // Talla numérica europea
+                    esSize = inputNum;
+                    // Conversión a letras US/UK
+                    if (inputNum <= 6.5) { usSize = 'XS'; ukSize = 'XS'; }
+                    else if (inputNum <= 7.5) { usSize = 'S'; ukSize = 'S'; }
+                    else if (inputNum <= 8.5) { usSize = 'M'; ukSize = 'M'; }
+                    else if (inputNum <= 9.5) { usSize = 'L'; ukSize = 'L'; }
+                    else { usSize = 'XL'; ukSize = 'XL'; }
+                    medida = (inputNum * 2.5 + 2.5).toFixed(0);
+                } else {
+                    // Talla por letras
+                    const letterMap = {
+                        'XS': { ES: '6', US: 'XS', UK: 'XS', cm: '15' },
+                        'S': { ES: '7', US: 'S', UK: 'S', cm: '17' },
+                        'M': { ES: '8', US: 'M', UK: 'M', cm: '19' },
+                        'L': { ES: '9', US: 'L', UK: 'L', cm: '21' },
+                        'XL': { ES: '10', US: 'XL', UK: 'XL', cm: '23' }
+                    };
+                    
+                    if (letterMap[input]) {
+                        const result = letterMap[input];
+                        esSize = result.ES; usSize = result.US; ukSize = result.UK; medida = result.cm;
+                    }
+                }
+            }
+
+            // Actualizar resultados
+            document.getElementById('complemento-es').textContent = esSize || '-';
+            document.getElementById('complemento-us').textContent = usSize || '-';
+            document.getElementById('complemento-uk').textContent = ukSize || '-';
+            
+            if (medida) {
+                const unidad = tipo === 'anillos' ? 'mm' : 'cm';
+                document.getElementById('complemento-medida').textContent = medida + ' ' + unidad;
+            } else {
+                document.getElementById('complemento-medida').textContent = '-';
+            }
+        }
+
+        function clearResults(category) {
+            document.getElementById(`${category}-es`).textContent = '-';
+            document.getElementById(`${category}-us`).textContent = '-';
+            document.getElementById(`${category}-uk`).textContent = '-';
+            
+            if (category === 'calzado') {
+                document.getElementById('calzado-cm').textContent = '-';
+            } else if (category === 'complementos') {
+                document.getElementById('complemento-medida').textContent = '-';
+            }
+        }
+
+        // Función para FAQ desplegables
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

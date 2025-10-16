@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags SEO -->
+    <title>Lista de Tareas - Gestión de Tareas y Productividad | meskeIA</title>
+    <meta name="description" content="Organiza tus tareas con nuestra aplicación de gestión de tareas. Categorías, prioridades, fechas límite y filtros avanzados. Mejora tu productividad con el método GTD.">
+    <meta name="keywords" content="lista de tareas, gestión de tareas, productividad, organización, planificación, GTD, método pomodoro, priorización, agenda digital, aplicación de tareas">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Lista de Tareas - Gestión de Tareas y Productividad">
+    <meta property="og:description" content="Aplicación para organizar tareas con categorías, prioridades y filtros avanzados. Mejora tu productividad con herramientas profesionales.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/lista-tareas/">
+    <meta property="og:image" content="https://meskeia.com/assets/og-lista-tareas.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lista de Tareas - Gestión de Productividad">
+    <meta name="twitter:description" content="Organiza tus tareas con categorías, prioridades y filtros. Aplicación de productividad.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-lista-tareas.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/lista-tareas/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            /* Estados de tareas */
+            --success: #27AE60;
+            --danger: #E74C3C;
+            --warning: #F39C12;
+            /* Prioridades */
+            --priority-high: #E74C3C;
+            --priority-medium: #F39C12;
+            --priority-low: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 100px 20px 60px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Sección de nueva tarea */
+        .add-task-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .add-task-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .input-group.task-input-group {
+            flex: 3;
+            min-width: 250px;
+        }
+
+        .input-group.category-group {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .input-group.priority-group {
+            flex: 0.8;
+            min-width: 110px;
+        }
+
+        .input-group.date-group {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .task-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .add-btn {
+            padding: 0.75rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            min-width: 120px;
+            height: fit-content;
+        }
+
+        .add-btn:hover {
+            background: #236a89;
+            transform: translateY(-1px);
+        }
+
+        .add-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Filtros y estadísticas */
+        .controls-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .controls-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .controls-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-filter label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .category-select {
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .category-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: var(--hover);
+            border-color: var(--primary);
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .clear-completed-btn {
+            padding: 0.5rem 1rem;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .clear-completed-btn:hover {
+            background: #c0392b;
+            transform: translateY(-1px);
+        }
+
+        .clear-completed-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Botones de exportar/importar */
+        .data-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .export-btn, .import-btn {
+            padding: 0.5rem 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .export-btn:hover, .import-btn:hover {
+            background: #3a8987;
+            transform: translateY(-1px);
+        }
+
+        .import-file-input {
+            display: none;
+        }
+
+        /* Barra de búsqueda */
+        .search-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .sort-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            min-width: 180px;
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Selector de prioridad y fecha */
+        .priority-select, .date-input {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .priority-select:focus, .date-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        /* Indicador de prioridad */
+        .priority-indicator {
+            width: 4px;
+            height: 30px;
+            border-radius: 2px;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .priority-high { background: var(--priority-high); }
+        .priority-medium { background: var(--priority-medium); }
+        .priority-low { background: var(--priority-low); }
+
+        /* Fecha de vencimiento */
+        .task-due-date {
+            font-size: 0.85rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .due-overdue {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--danger);
+            font-weight: 500;
+        }
+
+        .due-today {
+            background: rgba(243, 156, 18, 0.1);
+            color: var(--warning);
+            font-weight: 500;
+        }
+
+        .due-soon {
+            background: rgba(46, 134, 171, 0.1);
+            color: var(--primary);
+        }
+
+        /* Edición inline */
+        .task-edit-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .task-edit-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .task-edit-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .edit-save-btn, .edit-cancel-btn {
+            padding: 0.25rem 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .edit-save-btn {
+            background: var(--success);
+            color: white;
+        }
+
+        .edit-save-btn:hover {
+            background: #229954;
+        }
+
+        .edit-cancel-btn {
+            background: var(--text-muted);
+            color: white;
+        }
+
+        .edit-cancel-btn:hover {
+            background: var(--text-secondary);
+        }
+
+        .task-text.editable {
+            cursor: pointer;
+        }
+
+        .task-text.editable:hover {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        /* Lista de tareas */
+        .tasks-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .tasks-header {
+            padding: 1.5rem;
+            background: var(--hover);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tasks-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .tasks-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-item:hover {
+            background: var(--hover);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            margin-right: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .task-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .task-checkbox:hover {
+            border-color: var(--primary);
+        }
+
+        .task-text {
+            flex: 1;
+            font-size: 1rem;
+            color: var(--text-primary);
+            word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .task-category {
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .task-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-right: 1rem;
+            white-space: nowrap;
+        }
+
+        .task-delete {
+            background: none;
+            border: none;
+            color: var(--danger);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            opacity: 0.7;
+        }
+
+        .task-delete:hover {
+            opacity: 1;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 15px 60px;
+            }
+            
+            /* Ajustes responsive para contenido educativo */
+            .container[style*="margin-top: 3rem"] {
+                margin-top: 2rem !important;
+            }
+            
+            .container[style*="margin-top: 2rem"] {
+                margin-top: 1.5rem !important;
+            }
+            
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            h2[style*="font-size: 1.5rem"] {
+                font-size: 1.3rem !important;
+            }
+            
+            h3[style*="font-size: 1.2rem"] {
+                font-size: 1.1rem !important;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .input-group.task-input-group,
+            .input-group.category-group,
+            .input-group.priority-group,
+            .input-group.date-group {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .add-btn {
+                width: 100%;
+            }
+
+            .controls-top-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .controls-bottom-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .category-filter {
+                justify-content: center;
+            }
+
+            .stats {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .data-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .export-btn, .import-btn, .clear-completed-btn {
+                width: 100%;
+            }
+
+            .task-item {
+                padding: 1rem;
+            }
+
+            .task-date {
+                display: none;
+            }
+        }
+
+        /* Animaciones */
+        .task-item {
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .task-item.removing {
+            animation: fadeOutRight 0.3s ease forwards;
+        }
+
+        @keyframes fadeOutRight {
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Lista de Tareas meskeIA",
+        "description": "Aplicación web gratuita para gestión de tareas con categorías, prioridades y filtros avanzados. Mejora tu productividad con herramientas profesionales.",
+        "url": "https://meskeia.com/lista-tareas",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "HTML5, JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "featureList": [
+            "Categorización de tareas",
+            "Sistema de prioridades",
+            "Fechas de vencimiento",
+            "Filtros avanzados",
+            "Búsqueda de tareas",
+            "Exportación de datos",
+            "Almacenamiento local"
+        ]
+    }
+    </script>
+    
+    <div class="container">
+        <h1>Lista de Tareas</h1>
+        <p class="subtitle">Organiza tu día de forma simple y efectiva</p>
+
+        <!-- Agregar nueva tarea -->
+        <div class="add-task-section">
+            <form class="add-task-form" id="addTaskForm">
+                <div class="form-row">
+                    <div class="input-group task-input-group">
+                        <label for="taskInput">Nueva tarea:</label>
+                        <input 
+                            type="text" 
+                            id="taskInput" 
+                            class="task-input" 
+                            placeholder="¿Qué necesitas hacer?"
+                            maxlength="200"
+                            required
+                        >
+                    </div>
+                    <div class="input-group category-group">
+                        <label for="categorySelect">Categoría:</label>
+                        <select id="categorySelect" class="task-input">
+                            <option value="otros">📝 Otros</option>
+                            <option value="trabajo">💼 Trabajo</option>
+                            <option value="personal">🏠 Personal</option>
+                            <option value="compras">🛒 Compras</option>
+                            <option value="salud">💊 Salud</option>
+                            <option value="estudio">📚 Estudio</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group priority-group">
+                        <label for="prioritySelect">Prioridad:</label>
+                        <select id="prioritySelect" class="priority-select">
+                            <option value="low">🟢 Baja</option>
+                            <option value="medium" selected>🟡 Media</option>
+                            <option value="high">🔴 Alta</option>
+                        </select>
+                    </div>
+                    <div class="input-group date-group">
+                        <label for="dueDateInput">Vencimiento:</label>
+                        <input 
+                            type="date" 
+                            id="dueDateInput" 
+                            class="date-input"
+                        >
+                    </div>
+                    <button type="submit" class="add-btn" id="addBtn" style="align-self: flex-end;">
+                        Agregar Tarea
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Búsqueda y ordenamiento -->
+        <div class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="🔍 Buscar tareas..."
+                >
+                <select id="sortSelect" class="sort-select">
+                    <option value="date-desc">Más recientes primero</option>
+                    <option value="date-asc">Más antiguas primero</option>
+                    <option value="priority-desc">Mayor prioridad primero</option>
+                    <option value="priority-asc">Menor prioridad primero</option>
+                    <option value="due-asc">Vencimiento más próximo</option>
+                    <option value="alpha-asc">Alfabético A-Z</option>
+                    <option value="alpha-desc">Alfabético Z-A</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Controles y estadísticas -->
+        <div class="controls-section">
+            <div class="controls-top-row">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="pending">Pendientes</button>
+                    <button class="filter-btn" data-filter="completed">Completadas</button>
+                </div>
+                
+                <div class="category-filter">
+                    <label for="categoryFilter">Filtrar por:</label>
+                    <select id="categoryFilter" class="category-select">
+                        <option value="">Todas las categorías</option>
+                        <option value="trabajo">💼 Trabajo</option>
+                        <option value="personal">🏠 Personal</option>
+                        <option value="compras">🛒 Compras</option>
+                        <option value="salud">💊 Salud</option>
+                        <option value="estudio">📚 Estudio</option>
+                        <option value="otros">📝 Otros</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="controls-bottom-row">
+                <div class="stats">
+                    <div class="stat-item">
+                        <span>Total:</span>
+                        <span class="stat-number" id="totalTasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Pendientes:</span>
+                        <span class="stat-number" id="pendingTasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Completadas:</span>
+                        <span class="stat-number" id="completedTasks">0</span>
+                    </div>
+                </div>
+
+                <div class="data-buttons">
+                    <button class="export-btn" id="exportBtn" title="Descargar tareas como JSON">
+                        📥 Exportar
+                    </button>
+                    <button class="import-btn" id="importBtn" title="Cargar tareas desde JSON">
+                        📤 Importar
+                    </button>
+                    <input type="file" id="importFileInput" class="import-file-input" accept=".json">
+                    <button class="clear-completed-btn" id="clearCompletedBtn" disabled>
+                        Limpiar completadas
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de tareas -->
+        <div class="tasks-section">
+            <div class="tasks-header">
+                <h2 class="tasks-title" id="tasksTitle">Todas las tareas</h2>
+            </div>
+            <div class="tasks-list" id="tasksList">
+                <div class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <p>No hay tareas aún. ¡Agrega tu primera tarea arriba!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido educativo sobre gestión de tareas -->
+    <div class="container" style="margin-top: 3rem;">
+        <div style="background: var(--bg-card); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border: 1px solid var(--border);">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">📋 Gestión Eficaz de Tareas</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎯 Método GTD (Getting Things Done)</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">El método GTD se basa en cinco pasos fundamentales: capturar, aclarar, organizar, reflexionar y ejecutar. Utiliza nuestra aplicación para implementar este sistema probado de productividad.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Captura todas las tareas en un lugar central</li>
+                        <li>Clasifica por categorías y prioridades</li>
+                        <li>Establece fechas de vencimiento realistas</li>
+                        <li>Revisa regularmente tu lista</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">⏰ Técnica Pomodoro</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Combina nuestra gestión de tareas con la técnica Pomodoro para maximizar tu enfoque. Divide tu trabajo en bloques de 25 minutos con descansos de 5 minutos.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Selecciona una tarea de tu lista</li>
+                        <li>Trabaja 25 minutos sin interrupciones</li>
+                        <li>Toma un descanso de 5 minutos</li>
+                        <li>Después de 4 pomodoros, descansa 30 minutos</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div>
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Matriz de Eisenhower</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Clasifica tus tareas según urgencia e importancia. Usa nuestro sistema de prioridades (Alta, Media, Baja) para aplicar este método eficazmente.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li><strong>Alta prioridad:</strong> Urgente e importante</li>
+                        <li><strong>Media prioridad:</strong> Importante pero no urgente</li>
+                        <li><strong>Baja prioridad:</strong> Ni urgente ni importante</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📊 Seguimiento de Productividad</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">Utiliza las estadísticas de nuestra aplicación para analizar tu productividad. El seguimiento te ayuda a identificar patrones y optimizar tu gestión del tiempo.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Revisa tus estadísticas semanalmente</li>
+                        <li>Identifica las categorías más productivas</li>
+                        <li>Ajusta las prioridades según resultados</li>
+                        <li>Exporta datos para análisis detallado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Schema.org -->
+    <div class="container" style="margin-top: 2rem;">
+        <div style="background: var(--bg-card); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border: 1px solid var(--border);">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes</h2>
+            
+            <!-- Estilos para elementos desplegables -->
+            <style>
+                details {
+                    border: 1px solid var(--border);
+                    border-radius: 8px;
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    background: var(--hover);
+                    transition: all 0.3s ease;
+                }
+                
+                details:hover {
+                    border-color: var(--primary);
+                    box-shadow: 0 2px 8px rgba(46, 134, 171, 0.1);
+                }
+                
+                details[open] {
+                    background: var(--bg-card);
+                    border-color: var(--primary);
+                }
+                
+                summary {
+                    font-weight: 600;
+                    color: var(--text-primary);
+                    cursor: pointer;
+                    margin-bottom: 0.5rem;
+                    padding: 0.25rem 0;
+                    user-select: none;
+                    outline: none;
+                    position: relative;
+                }
+                
+                summary {
+                    list-style: none;
+                }
+                
+                summary::-webkit-details-marker {
+                    display: none;
+                }
+                
+                summary::-moz-list-bullet {
+                    list-style-type: none;
+                }
+                
+                summary::before {
+                    content: '▶';
+                    margin-right: 0.5rem;
+                    transition: transform 0.2s ease;
+                    display: inline-block;
+                    font-size: 0.8rem;
+                    color: var(--primary);
+                }
+                
+                details[open] summary::before {
+                    transform: rotate(90deg);
+                }
+                
+                details p {
+                    margin-bottom: 0;
+                    padding-top: 0.5rem;
+                }
+            </style>
+            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo organizar tareas de forma efectiva?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Para organizar tareas efectivamente: 1) Usa categorías para agrupar tareas similares, 2) Establece prioridades según urgencia e importancia, 3) Asigna fechas de vencimiento realistas, 4) Revisa y actualiza tu lista regularmente. Nuestra aplicación incluye todas estas funcionalidades."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué es el método GTD y cómo aplicarlo?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "GTD (Getting Things Done) es un método de productividad que se basa en 5 pasos: capturar todas las tareas, aclarar qué significan, organizar por contexto, reflexionar mediante revisiones regulares y ejecutar con confianza. Usa nuestra aplicación como tu sistema de captura y organización central."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo establecer prioridades en las tareas?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Establece prioridades usando la matriz de Eisenhower: Alta prioridad para tareas urgentes e importantes, Media prioridad para importantes pero no urgentes, Baja prioridad para tareas rutinarias. Nuestra aplicación permite clasificar cada tarea con estos niveles de prioridad."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Se pueden exportar e importar las tareas?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí, la aplicación permite exportar todas tus tareas en formato JSON para backup o análisis. También puedes importar tareas desde archivos JSON, con opciones para reemplazar o fusionar con las tareas existentes. Se crean backups automáticos antes de operaciones importantes."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo funciona el sistema de fechas de vencimiento?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "El sistema muestra alertas visuales para fechas de vencimiento: rojo para tareas vencidas, amarillo para tareas que vencen hoy, azul para tareas próximas a vencer. Puedes ordenar las tareas por fecha de vencimiento y filtrar por diferentes criterios temporales."
+                        }
+                    }
+                ]
+            }
+            </script>
+            
+            <div style="display: flex; flex-direction: column; gap: 0;">
+                <details>
+                    <summary>¿Cómo organizar tareas de forma efectiva?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Para organizar tareas efectivamente: 1) Usa categorías para agrupar tareas similares (trabajo, personal, compras), 2) Establece prioridades según urgencia e importancia, 3) Asigna fechas de vencimiento realistas, 4) Revisa y actualiza tu lista regularmente. Nuestra aplicación incluye todas estas funcionalidades con una interfaz intuitiva.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Qué es el método GTD y cómo aplicarlo?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">GTD (Getting Things Done) es un método de productividad que se basa en 5 pasos: capturar todas las tareas, aclarar qué significan, organizar por contexto, reflexionar mediante revisiones regulares y ejecutar con confianza. Usa nuestra aplicación como tu sistema de captura y organización central.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Cómo establecer prioridades en las tareas?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Establece prioridades usando la matriz de Eisenhower: Alta prioridad (🔴) para tareas urgentes e importantes, Media prioridad (🟡) para importantes pero no urgentes, Baja prioridad (🟢) para tareas rutinarias. Nuestra aplicación permite clasificar cada tarea con estos niveles de prioridad.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Se pueden exportar e importar las tareas?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Sí, la aplicación permite exportar todas tus tareas en formato JSON para backup o análisis. También puedes importar tareas desde archivos JSON, con opciones para reemplazar o fusionar con las tareas existentes. Se crean backups automáticos antes de operaciones importantes.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Cómo funciona el sistema de fechas de vencimiento?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El sistema muestra alertas visuales para fechas de vencimiento: rojo para tareas vencidas, amarillo para tareas que vencen hoy, azul para tareas próximas a vencer. Puedes ordenar las tareas por fecha de vencimiento y filtrar por diferentes criterios temporales para una mejor gestión del tiempo.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        class TodoApp {
+            constructor() {
+                this.tasks = this.loadTasks();
+                this.currentFilter = 'all';
+                this.currentCategory = '';
+                this.searchQuery = '';
+                this.currentSort = 'date-desc';
+                this.editingTaskId = null;
+                this.categories = {
+                    trabajo: { emoji: '💼', name: 'Trabajo' },
+                    personal: { emoji: '🏠', name: 'Personal' },
+                    compras: { emoji: '🛒', name: 'Compras' },
+                    salud: { emoji: '💊', name: 'Salud' },
+                    estudio: { emoji: '📚', name: 'Estudio' },
+                    otros: { emoji: '📝', name: 'Otros' }
+                };
+                this.priorities = {
+                    high: { emoji: '🔴', name: 'Alta', weight: 3 },
+                    medium: { emoji: '🟡', name: 'Media', weight: 2 },
+                    low: { emoji: '🟢', name: 'Baja', weight: 1 }
+                };
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.render();
+                this.updateStats();
+            }
+
+            bindEvents() {
+                // Formulario agregar tarea
+                document.getElementById('addTaskForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addTask();
+                });
+
+                // Botones de filtro
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.setFilter(e.target.dataset.filter);
+                    });
+                });
+
+                // Filtro por categoría
+                document.getElementById('categoryFilter').addEventListener('change', (e) => {
+                    this.setCategoryFilter(e.target.value);
+                });
+
+                // Búsqueda
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    this.searchQuery = e.target.value.toLowerCase();
+                    this.render();
+                });
+
+                // Ordenamiento
+                document.getElementById('sortSelect').addEventListener('change', (e) => {
+                    this.currentSort = e.target.value;
+                    this.render();
+                });
+
+                // Botón limpiar completadas
+                document.getElementById('clearCompletedBtn').addEventListener('click', () => {
+                    this.clearCompleted();
+                });
+
+                // Botón exportar
+                document.getElementById('exportBtn').addEventListener('click', () => {
+                    this.exportTasks();
+                });
+
+                // Botón importar
+                document.getElementById('importBtn').addEventListener('click', () => {
+                    document.getElementById('importFileInput').click();
+                });
+
+                // Input de archivo para importar
+                document.getElementById('importFileInput').addEventListener('change', (e) => {
+                    this.importTasks(e.target.files[0]);
+                    e.target.value = ''; // Reset input
+                });
+
+                // Auto-resize del input y validación
+                const taskInput = document.getElementById('taskInput');
+                taskInput.addEventListener('input', () => {
+                    this.validateInput();
+                });
+
+                // Establecer fecha mínima para el input de fecha
+                const dueDateInput = document.getElementById('dueDateInput');
+                const today = new Date().toISOString().split('T')[0];
+                dueDateInput.setAttribute('min', today);
+            }
+
+            addTask() {
+                const taskInput = document.getElementById('taskInput');
+                const categorySelect = document.getElementById('categorySelect');
+                const prioritySelect = document.getElementById('prioritySelect');
+                const dueDateInput = document.getElementById('dueDateInput');
+                
+                const taskText = taskInput.value.trim();
+                const category = categorySelect.value;
+                const priority = prioritySelect.value;
+                const dueDate = dueDateInput.value;
+
+                if (!taskText) return;
+
+                const newTask = {
+                    id: Date.now(),
+                    text: taskText,
+                    category: category,
+                    priority: priority,
+                    dueDate: dueDate || null,
+                    completed: false,
+                    createdAt: new Date().toISOString(),
+                    completedAt: null
+                };
+
+                this.tasks.unshift(newTask);
+                this.saveTasks();
+                this.render();
+                this.updateStats();
+
+                // Reset form
+                taskInput.value = '';
+                categorySelect.value = 'otros';
+                prioritySelect.value = 'medium';
+                dueDateInput.value = '';
+                this.validateInput();
+
+                // Focus en el input para seguir agregando tareas
+                taskInput.focus();
+            }
+
+            toggleTask(taskId) {
+                const task = this.tasks.find(t => t.id === taskId);
+                if (task) {
+                    task.completed = !task.completed;
+                    task.completedAt = task.completed ? new Date().toISOString() : null;
+                    this.saveTasks();
+                    this.render();
+                    this.updateStats();
+                }
+            }
+
+            deleteTask(taskId) {
+                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+                if (taskElement) {
+                    taskElement.classList.add('removing');
+                    setTimeout(() => {
+                        this.tasks = this.tasks.filter(t => t.id !== taskId);
+                        this.saveTasks();
+                        this.render();
+                        this.updateStats();
+                    }, 300);
+                }
+            }
+
+            startEditTask(taskId) {
+                this.editingTaskId = taskId;
+                this.render();
+                // Focus en el input de edición
+                setTimeout(() => {
+                    const editInput = document.querySelector('.task-edit-input');
+                    if (editInput) {
+                        editInput.focus();
+                        editInput.select();
+                    }
+                }, 50);
+            }
+
+            saveEditTask(taskId) {
+                const editInput = document.querySelector('.task-edit-input');
+                const newText = editInput.value.trim();
+                
+                if (newText) {
+                    const task = this.tasks.find(t => t.id === taskId);
+                    if (task) {
+                        task.text = newText;
+                        this.saveTasks();
+                    }
+                }
+                
+                this.editingTaskId = null;
+                this.render();
+                this.updateStats();
+            }
+
+            cancelEditTask() {
+                this.editingTaskId = null;
+                this.render();
+            }
+
+            clearCompleted() {
+                const completedCount = this.tasks.filter(t => t.completed).length;
+                if (completedCount === 0) return;
+                
+                if (confirm(`¿Estás seguro de que quieres eliminar ${completedCount} tarea${completedCount !== 1 ? 's' : ''} completada${completedCount !== 1 ? 's' : ''}?\n\nSe creará un backup automático antes de eliminar.`)) {
+                    // Crear backup automático
+                    this.createBackup('backup_antes_limpiar');
+                    
+                    this.tasks = this.tasks.filter(task => !task.completed);
+                    this.saveTasks();
+                    this.render();
+                    this.updateStats();
+                    
+                    alert(`Se eliminaron ${completedCount} tarea${completedCount !== 1 ? 's' : ''}. Se creó un backup automático.`);
+                }
+            }
+
+            exportTasks() {
+                if (this.tasks.length === 0) {
+                    alert('No hay tareas para exportar.');
+                    return;
+                }
+                
+                const dataToExport = {
+                    version: '1.0',
+                    exportDate: new Date().toISOString(),
+                    tasksCount: this.tasks.length,
+                    tasks: this.tasks
+                };
+                
+                const jsonStr = JSON.stringify(dataToExport, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `tareas_${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                alert(`Se exportaron ${this.tasks.length} tarea${this.tasks.length !== 1 ? 's' : ''} correctamente.`);
+            }
+
+            createBackup(prefix = 'backup') {
+                const dataToExport = {
+                    version: '1.0',
+                    exportDate: new Date().toISOString(),
+                    tasksCount: this.tasks.length,
+                    tasks: this.tasks
+                };
+                
+                const jsonStr = JSON.stringify(dataToExport, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${prefix}_${new Date().toISOString().split('T')[0]}_${Date.now()}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+
+            importTasks(file) {
+                if (!file) return;
+                
+                if (!file.name.endsWith('.json')) {
+                    alert('Por favor selecciona un archivo JSON válido.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const imported = JSON.parse(e.target.result);
+                        
+                        // Validar estructura
+                        if (!imported.tasks || !Array.isArray(imported.tasks)) {
+                            alert('El archivo no tiene un formato válido.');
+                            return;
+                        }
+                        
+                        const importCount = imported.tasks.length;
+                        
+                        if (importCount === 0) {
+                            alert('El archivo no contiene tareas.');
+                            return;
+                        }
+                        
+                        // Preguntar qué hacer con las tareas existentes
+                        let mergeMode = 'replace';
+                        if (this.tasks.length > 0) {
+                            const response = confirm(
+                                `Tienes ${this.tasks.length} tarea${this.tasks.length !== 1 ? 's' : ''} actual${this.tasks.length !== 1 ? 'es' : ''}.\n\n` +
+                                `¿Quieres REEMPLAZAR todas las tareas actuales?\n\n` +
+                                `Aceptar = Reemplazar todo\n` +
+                                `Cancelar = Agregar las nuevas a las existentes`
+                            );
+                            mergeMode = response ? 'replace' : 'merge';
+                        }
+                        
+                        if (mergeMode === 'replace') {
+                            // Crear backup antes de reemplazar
+                            if (this.tasks.length > 0) {
+                                this.createBackup('backup_antes_importar');
+                            }
+                            this.tasks = imported.tasks;
+                        } else {
+                            // Merge: agregar nuevas tareas
+                            this.tasks = [...this.tasks, ...imported.tasks];
+                        }
+                        
+                        // Asegurar que todas las tareas tengan los campos necesarios
+                        this.tasks = this.tasks.map(task => ({
+                            ...task,
+                            id: task.id || Date.now() + Math.random(),
+                            category: task.category || 'otros',
+                            priority: task.priority || 'medium',
+                            dueDate: task.dueDate || null,
+                            createdAt: task.createdAt || new Date().toISOString(),
+                            completedAt: task.completedAt || null
+                        }));
+                        
+                        this.saveTasks();
+                        this.render();
+                        this.updateStats();
+                        
+                        alert(
+                            mergeMode === 'replace' 
+                                ? `Se importaron ${importCount} tarea${importCount !== 1 ? 's' : ''} correctamente.`
+                                : `Se agregaron ${importCount} tarea${importCount !== 1 ? 's' : ''} a las existentes.`
+                        );
+                        
+                    } catch (error) {
+                        console.error('Error importing tasks:', error);
+                        alert('Error al importar el archivo. Asegúrate de que sea un JSON válido.');
+                    }
+                };
+                
+                reader.onerror = () => {
+                    alert('Error al leer el archivo.');
+                };
+                
+                reader.readAsText(file);
+            }
+
+            setFilter(filter) {
+                this.currentFilter = filter;
+                
+                // Actualizar botones activos
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.filter === filter);
+                });
+
+                this.updateTitle();
+                this.render();
+            }
+
+            setCategoryFilter(category) {
+                this.currentCategory = category;
+                this.updateTitle();
+                this.render();
+            }
+
+            updateTitle() {
+                const filterTitles = {
+                    all: 'Todas las tareas',
+                    pending: 'Tareas pendientes',
+                    completed: 'Tareas completadas'
+                };
+
+                let title = filterTitles[this.currentFilter];
+                
+                if (this.currentCategory) {
+                    const categoryName = this.categories[this.currentCategory].name;
+                    title += ` - ${categoryName}`;
+                }
+
+                document.getElementById('tasksTitle').textContent = title;
+            }
+
+            getFilteredTasks() {
+                let filtered = [...this.tasks];
+
+                // Filtrar por búsqueda
+                if (this.searchQuery) {
+                    filtered = filtered.filter(task => 
+                        task.text.toLowerCase().includes(this.searchQuery) ||
+                        (task.category && this.categories[task.category].name.toLowerCase().includes(this.searchQuery))
+                    );
+                }
+
+                // Filtrar por estado
+                switch (this.currentFilter) {
+                    case 'pending':
+                        filtered = filtered.filter(task => !task.completed);
+                        break;
+                    case 'completed':
+                        filtered = filtered.filter(task => task.completed);
+                        break;
+                }
+
+                // Filtrar por categoría
+                if (this.currentCategory) {
+                    filtered = filtered.filter(task => task.category === this.currentCategory);
+                }
+
+                // Ordenar tareas
+                filtered = this.sortTasks(filtered);
+
+                return filtered;
+            }
+
+            sortTasks(tasks) {
+                const sorted = [...tasks];
+                
+                switch (this.currentSort) {
+                    case 'date-desc':
+                        return sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    case 'date-asc':
+                        return sorted.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                    case 'priority-desc':
+                        return sorted.sort((a, b) => {
+                            const priorityA = this.priorities[a.priority] || this.priorities.medium;
+                            const priorityB = this.priorities[b.priority] || this.priorities.medium;
+                            return priorityB.weight - priorityA.weight;
+                        });
+                    case 'priority-asc':
+                        return sorted.sort((a, b) => {
+                            const priorityA = this.priorities[a.priority] || this.priorities.medium;
+                            const priorityB = this.priorities[b.priority] || this.priorities.medium;
+                            return priorityA.weight - priorityB.weight;
+                        });
+                    case 'due-asc':
+                        return sorted.sort((a, b) => {
+                            if (!a.dueDate && !b.dueDate) return 0;
+                            if (!a.dueDate) return 1;
+                            if (!b.dueDate) return -1;
+                            return new Date(a.dueDate) - new Date(b.dueDate);
+                        });
+                    case 'alpha-asc':
+                        return sorted.sort((a, b) => a.text.localeCompare(b.text));
+                    case 'alpha-desc':
+                        return sorted.sort((a, b) => b.text.localeCompare(a.text));
+                    default:
+                        return sorted;
+                }
+            }
+
+            render() {
+                const tasksList = document.getElementById('tasksList');
+                const filteredTasks = this.getFilteredTasks();
+
+                if (filteredTasks.length === 0) {
+                    let emptyMessage = 'No hay tareas aún. ¡Agrega tu primera tarea arriba!';
+                    
+                    if (this.currentCategory) {
+                        const categoryName = this.categories[this.currentCategory].name;
+                        emptyMessage = `No hay tareas en la categoría "${categoryName}".`;
+                    } else if (this.currentFilter === 'pending') {
+                        emptyMessage = 'No hay tareas pendientes. ¡Buen trabajo!';
+                    } else if (this.currentFilter === 'completed') {
+                        emptyMessage = 'No hay tareas completadas aún.';
+                    }
+
+                    tasksList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">📝</div>
+                            <p>${emptyMessage}</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                tasksList.innerHTML = filteredTasks.map(task => {
+                    const category = this.categories[task.category] || this.categories['otros'];
+                    const priority = this.priorities[task.priority] || this.priorities.medium;
+                    const isEditing = this.editingTaskId === task.id;
+                    
+                    if (isEditing) {
+                        return `
+                            <div class="task-item ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
+                                <div class="priority-indicator priority-${task.priority || 'medium'}"></div>
+                                <div class="task-checkbox ${task.completed ? 'checked' : ''}" 
+                                     onclick="todoApp.toggleTask(${task.id})"></div>
+                                <input type="text" class="task-edit-input" value="${this.escapeHtml(task.text)}" 
+                                       onkeypress="if(event.key==='Enter') todoApp.saveEditTask(${task.id})"
+                                       onkeydown="if(event.key==='Escape') todoApp.cancelEditTask()">
+                                <div class="task-edit-buttons">
+                                    <button class="edit-save-btn" onclick="todoApp.saveEditTask(${task.id})">✓</button>
+                                    <button class="edit-cancel-btn" onclick="todoApp.cancelEditTask()">✕</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    const dueDateInfo = this.getDueDateInfo(task.dueDate);
+                    
+                    return `
+                        <div class="task-item ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
+                            <div class="priority-indicator priority-${task.priority || 'medium'}"></div>
+                            <div class="task-checkbox ${task.completed ? 'checked' : ''}" 
+                                 onclick="todoApp.toggleTask(${task.id})"></div>
+                            <span class="task-text editable" ondblclick="todoApp.startEditTask(${task.id})" title="Doble clic para editar">
+                                <span class="task-category">${category.emoji}</span>
+                                ${this.escapeHtml(task.text)}
+                                ${dueDateInfo ? `<span class="task-due-date ${dueDateInfo.class}">${dueDateInfo.text}</span>` : ''}
+                            </span>
+                            <span class="task-date">${this.formatDate(task.createdAt)}</span>
+                            <button class="task-delete" onclick="todoApp.deleteTask(${task.id})" 
+                                    title="Eliminar tarea">×</button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            updateStats() {
+                const total = this.tasks.length;
+                const completed = this.tasks.filter(task => task.completed).length;
+                const pending = total - completed;
+
+                document.getElementById('totalTasks').textContent = total;
+                document.getElementById('pendingTasks').textContent = pending;
+                document.getElementById('completedTasks').textContent = completed;
+
+                // Habilitar/deshabilitar botón de limpiar completadas
+                const clearBtn = document.getElementById('clearCompletedBtn');
+                clearBtn.disabled = completed === 0;
+            }
+
+            validateInput() {
+                const taskInput = document.getElementById('taskInput');
+                const addBtn = document.getElementById('addBtn');
+                const isValid = taskInput.value.trim().length > 0;
+                
+                addBtn.disabled = !isValid;
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffTime = now - date;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays === 0) return 'Hoy';
+                if (diffDays === 1) return 'Ayer';
+                if (diffDays < 7) return `Hace ${diffDays} días`;
+                
+                return date.toLocaleDateString('es-ES', { 
+                    day: 'numeric', 
+                    month: 'short' 
+                });
+            }
+
+            getDueDateInfo(dueDate) {
+                if (!dueDate) return null;
+                
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                const due = new Date(dueDate);
+                due.setHours(0, 0, 0, 0);
+                
+                const diffTime = due - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays < 0) {
+                    return {
+                        text: `Vencida hace ${Math.abs(diffDays)} día${Math.abs(diffDays) !== 1 ? 's' : ''}`,
+                        class: 'due-overdue'
+                    };
+                } else if (diffDays === 0) {
+                    return {
+                        text: 'Vence hoy',
+                        class: 'due-today'
+                    };
+                } else if (diffDays === 1) {
+                    return {
+                        text: 'Vence mañana',
+                        class: 'due-soon'
+                    };
+                } else if (diffDays <= 3) {
+                    return {
+                        text: `Vence en ${diffDays} días`,
+                        class: 'due-soon'
+                    };
+                } else {
+                    return {
+                        text: due.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }),
+                        class: ''
+                    };
+                }
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            loadTasks() {
+                try {
+                    const stored = localStorage.getItem('meskeia_tasks');
+                    const tasks = stored ? JSON.parse(stored) : [];
+                    
+                    // Migrar tareas antiguas con valores por defecto para nuevos campos
+                    return tasks.map(task => ({
+                        ...task,
+                        category: task.category || 'otros',
+                        priority: task.priority || 'medium',
+                        dueDate: task.dueDate || null
+                    }));
+                } catch (error) {
+                    console.error('Error loading tasks:', error);
+                    return [];
+                }
+            }
+
+            saveTasks() {
+                try {
+                    localStorage.setItem('meskeia_tasks', JSON.stringify(this.tasks));
+                } catch (error) {
+                    console.error('Error saving tasks:', error);
+                    alert('No se pudieron guardar las tareas. Tu navegador puede tener el almacenamiento local deshabilitado.');
+                }
+            }
+        }
+
+        // Inicializar la aplicación
+        const todoApp = new TodoApp();
+
+        // Atajos de teclado
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + Enter para agregar tarea rápida
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                const taskInput = document.getElementById('taskInput');
+                if (taskInput.value.trim()) {
+                    todoApp.addTask();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

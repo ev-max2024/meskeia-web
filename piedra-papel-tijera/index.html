@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- Meta Tags SEO Ampliados -->
+    <title>Piedra Papel Tijera Online - Juego Clásico contra IA | meskeIA</title>
+    <meta name="description" content="Juega Piedra Papel Tijera contra inteligencia artificial. Versión digital del clásico juego de manos con estadísticas, historial y 3 modos de IA. ¡100% gratis sin registro!">
+    <meta name="keywords" content="piedra papel tijera, rock paper scissors, juego manos, jankenpon, juego azar, juego estrategia, inteligencia artificial, juego online gratis">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Piedra Papel Tijera - Juego Clásico contra IA">
+    <meta property="og:description" content="Desafía a la inteligencia artificial en el clásico Piedra Papel Tijera. Estadísticas en tiempo real y diferentes modos de juego.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/piedra-papel-tijera">
+    <meta property="og:image" content="https://meskeia.com/assets/og-rps-game.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Piedra Papel Tijera - Juego Clásico">
+    <meta name="twitter:description" content="El clásico juego de manos ahora contra IA. Estadísticas y diferentes niveles de dificultad.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-rps-game.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/piedra-papel-tijera">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "Piedra Papel Tijera contra IA",
+        "description": "Juego clásico de Piedra Papel Tijera contra inteligencia artificial. Incluye estadísticas detalladas, historial de partidas y diferentes modos de IA para todos los niveles.",
+        "url": "https://meskeia.com/piedra-papel-tijera",
+        "gameLocation": "Online",
+        "numberOfPlayers": "1",
+        "playMode": "SinglePlayer",
+        "genre": ["Strategy", "Casual", "Classic"],
+        "gamePlatform": "Web Browser",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "IA con comportamiento adaptativo",
+            "Estadísticas en tiempo real",
+            "Historial de partidas",
+            "Interfaz responsive",
+            "Sin registro requerido",
+            "Modo clásico y modos especiales"
+        ]
+    }
+    </script>
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            /* Tu identidad de marca */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            /* Estados del juego */
+            --win: #27AE60;
+            --lose: #E74C3C;
+            --tie: #F39C12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Contenedor principal del juego centrado */
+        .main-game-wrapper {
+            min-height: 100vh;
+            padding: 100px 20px 60px;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Contenido SEO que aparece después del juego */
+        .seo-content {
+            padding: 40px 20px;
+            background: var(--bg-primary);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Marcador */
+        .scoreboard {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .scoreboard-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .scores {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .score-item {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .score-player {
+            background: rgba(39, 174, 96, 0.1);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+
+        .score-ties {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .score-ia {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .reset-btn {
+            background: var(--text-muted);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background: var(--text-secondary);
+            transform: translateY(-1px);
+        }
+
+        /* Área de juego */
+        .game-area {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .choices-display {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            min-height: 120px;
+        }
+
+        .choice-display {
+            text-align: center;
+        }
+
+        .choice-display h3 {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .choice-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .vs-separator {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .choice-name {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Botones de selección */
+        .choices-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .choice-btn {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--primary);
+            background: var(--focus);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .choice-btn:active {
+            transform: translateY(0);
+        }
+
+        .choice-btn-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .choice-btn-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Resultado */
+        .result-area {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-area.win {
+            background: rgba(39, 174, 96, 0.1);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+
+        .result-area.lose {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .result-area.tie {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .result-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .result-area.win .result-text {
+            color: var(--win);
+        }
+
+        .result-area.lose .result-text {
+            color: var(--lose);
+        }
+
+        .result-area.tie .result-text {
+            color: var(--tie);
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* CSS Cr\u00edtico Inline para m\u00f3vil */
+        @media screen and (max-width: 768px) {
+            * {
+                box-sizing: border-box !important;
+            }
+            
+            html, body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .main-game-wrapper {
+                padding: 80px 15px 60px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .choices-display {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .vs-separator {
+                display: none;
+            }
+
+            .choices-buttons {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .choice-btn {
+                padding: 1.5rem 1rem;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+                gap: 1rem;
+                text-align: left;
+            }
+
+            .choice-btn-icon {
+                font-size: 2rem;
+                margin-bottom: 0;
+            }
+
+            .choice-icon {
+                font-size: 3rem;
+            }
+
+            .scores {
+                gap: 0.5rem;
+            }
+
+            .score-item {
+                padding: 0.75rem;
+            }
+
+            .score-number {
+                font-size: 1.5rem;
+            }
+            
+            /* SEO Content Responsive */
+            .seo-content {
+                padding: 16px !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+                box-sizing: border-box !important;
+            }
+            
+            .seo-content * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                word-wrap: break-word !important;
+            }
+            
+            .seo-content > div {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .seo-content div[style*="grid"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            .seo-content div[style*="padding"] {
+                padding: 16px !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .seo-content h2 {
+                font-size: 1.3rem !important;
+            }
+            
+            .seo-content h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .seo-content p {
+                font-size: 0.9rem !important;
+            }
+            
+            .seo-content ul {
+                padding-left: 20px !important;
+            }
+            
+            .seo-content details {
+                margin-bottom: 12px !important;
+            }
+        }
+
+        /* Animaciones */
+        .choice-display {
+            transition: all 0.3s ease;
+        }
+
+        .animate-choice {
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-result {
+            animation: slideInUp 0.4s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Wrapper del juego centrado -->
+    <div class="main-game-wrapper">
+        <div class="container">
+        <h1>Piedra, Papel o Tijera</h1>
+        <p class="subtitle">Juega contra la inteligencia artificial</p>
+
+        <!-- Marcador -->
+        <div class="scoreboard">
+            <h2 class="scoreboard-title">Marcador</h2>
+            <div class="scores">
+                <div class="score-item score-player">
+                    <div class="score-label">Tú</div>
+                    <div class="score-number" id="playerScore">0</div>
+                </div>
+                <div class="score-item score-ties">
+                    <div class="score-label">Empates</div>
+                    <div class="score-number" id="tiesScore">0</div>
+                </div>
+                <div class="score-item score-ia">
+                    <div class="score-label">IA</div>
+                    <div class="score-number" id="iaScore">0</div>
+                </div>
+            </div>
+            <button class="reset-btn" onclick="resetGame()">Reiniciar</button>
+        </div>
+
+        <!-- Área de juego -->
+        <div class="game-area">
+            <!-- Visualización de elecciones -->
+            <div class="choices-display">
+                <div class="choice-display">
+                    <h3>Tu elección</h3>
+                    <span class="choice-icon" id="playerChoiceIcon">❓</span>
+                    <div class="choice-name" id="playerChoiceName">Selecciona tu jugada</div>
+                </div>
+                <div class="vs-separator">VS</div>
+                <div class="choice-display">
+                    <h3>IA</h3>
+                    <span class="choice-icon" id="iaChoiceIcon">❓</span>
+                    <div class="choice-name" id="iaChoiceName">Esperando...</div>
+                </div>
+            </div>
+
+            <!-- Botones de selección -->
+            <div class="choices-buttons">
+                <button class="choice-btn" onclick="playGame('rock')">
+                    <span class="choice-btn-icon">🪨</span>
+                    <span class="choice-btn-text">Piedra</span>
+                </button>
+                <button class="choice-btn" onclick="playGame('paper')">
+                    <span class="choice-btn-icon">📄</span>
+                    <span class="choice-btn-text">Papel</span>
+                </button>
+                <button class="choice-btn" onclick="playGame('scissors')">
+                    <span class="choice-btn-icon">✂️</span>
+                    <span class="choice-btn-text">Tijera</span>
+                </button>
+            </div>
+
+            <!-- Resultado -->
+            <div class="result-area" id="resultArea">
+                <div class="result-text" id="resultText">Elige tu jugada para empezar</div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        class RockPaperScissorsGame {
+            constructor() {
+                this.playerScore = 0;
+                this.iaScore = 0;
+                this.ties = 0;
+                this.choices = {
+                    rock: { icon: '🪨', name: 'Piedra' },
+                    paper: { icon: '📄', name: 'Papel' },
+                    scissors: { icon: '✂️', name: 'Tijera' }
+                };
+                this.loadScores();
+            }
+
+            getRandomChoice() {
+                const choices = Object.keys(this.choices);
+                return choices[Math.floor(Math.random() * choices.length)];
+            }
+
+            determineWinner(playerChoice, iaChoice) {
+                if (playerChoice === iaChoice) {
+                    return 'tie';
+                }
+
+                const winConditions = {
+                    rock: 'scissors',
+                    paper: 'rock',
+                    scissors: 'paper'
+                };
+
+                return winConditions[playerChoice] === iaChoice ? 'player' : 'ia';
+            }
+
+            updateDisplay(playerChoice, iaChoice, result) {
+                // Actualizar iconos y nombres
+                document.getElementById('playerChoiceIcon').textContent = this.choices[playerChoice].icon;
+                document.getElementById('playerChoiceName').textContent = this.choices[playerChoice].name;
+                document.getElementById('iaChoiceIcon').textContent = this.choices[iaChoice].icon;
+                document.getElementById('iaChoiceName').textContent = this.choices[iaChoice].name;
+
+                // Animaciones
+                document.getElementById('playerChoiceIcon').classList.add('animate-choice');
+                document.getElementById('iaChoiceIcon').classList.add('animate-choice');
+
+                // Actualizar resultado
+                const resultArea = document.getElementById('resultArea');
+                const resultText = document.getElementById('resultText');
+                
+                resultArea.classList.remove('win', 'lose', 'tie');
+                
+                switch (result) {
+                    case 'player':
+                        resultArea.classList.add('win');
+                        resultText.textContent = '¡Ganaste! 🎉';
+                        break;
+                    case 'ia':
+                        resultArea.classList.add('lose');
+                        resultText.textContent = 'Perdiste 😔';
+                        break;
+                    case 'tie':
+                        resultArea.classList.add('tie');
+                        resultText.textContent = '¡Empate! 🤝';
+                        break;
+                }
+
+                resultArea.classList.add('animate-result');
+
+                // Limpiar animaciones después de un tiempo
+                setTimeout(() => {
+                    document.getElementById('playerChoiceIcon').classList.remove('animate-choice');
+                    document.getElementById('iaChoiceIcon').classList.remove('animate-choice');
+                    resultArea.classList.remove('animate-result');
+                }, 500);
+            }
+
+            updateScores() {
+                document.getElementById('playerScore').textContent = this.playerScore;
+                document.getElementById('iaScore').textContent = this.iaScore;
+                document.getElementById('tiesScore').textContent = this.ties;
+                this.saveScores();
+            }
+
+            playRound(playerChoice) {
+                const iaChoice = this.getRandomChoice();
+                const result = this.determineWinner(playerChoice, iaChoice);
+
+                // Actualizar puntuación
+                switch (result) {
+                    case 'player':
+                        this.playerScore++;
+                        break;
+                    case 'ia':
+                        this.iaScore++;
+                        break;
+                    case 'tie':
+                        this.ties++;
+                        break;
+                }
+
+                this.updateDisplay(playerChoice, iaChoice, result);
+                this.updateScores();
+            }
+
+            resetGame() {
+                if (confirm('¿Estás seguro de que quieres reiniciar el marcador?')) {
+                    this.playerScore = 0;
+                    this.iaScore = 0;
+                    this.ties = 0;
+                    
+                    // Resetear display
+                    document.getElementById('playerChoiceIcon').textContent = '❓';
+                    document.getElementById('playerChoiceName').textContent = 'Selecciona tu jugada';
+                    document.getElementById('iaChoiceIcon').textContent = '❓';
+                    document.getElementById('iaChoiceName').textContent = 'Esperando...';
+                    
+                    const resultArea = document.getElementById('resultArea');
+                    resultArea.classList.remove('win', 'lose', 'tie');
+                    document.getElementById('resultText').textContent = 'Elige tu jugada para empezar';
+                    
+                    this.updateScores();
+                }
+            }
+
+            saveScores() {
+                try {
+                    const scores = {
+                        playerScore: this.playerScore,
+                        iaScore: this.iaScore,
+                        ties: this.ties
+                    };
+                    localStorage.setItem('meskeia_rps_scores', JSON.stringify(scores));
+                } catch (error) {
+                    console.error('Error saving scores:', error);
+                }
+            }
+
+            loadScores() {
+                try {
+                    const stored = localStorage.getItem('meskeia_rps_scores');
+                    if (stored) {
+                        const scores = JSON.parse(stored);
+                        this.playerScore = scores.playerScore || 0;
+                        this.iaScore = scores.iaScore || 0;
+                        this.ties = scores.ties || 0;
+                        this.updateScores();
+                    }
+                } catch (error) {
+                    console.error('Error loading scores:', error);
+                }
+            }
+        }
+
+        // Inicializar el juego
+        const game = new RockPaperScissorsGame();
+
+        // Función global para jugar
+        function playGame(choice) {
+            game.playRound(choice);
+        }
+
+        // Función global para resetear
+        function resetGame() {
+            game.resetGame();
+        }
+
+        // Atajos de teclado
+        document.addEventListener('keydown', (e) => {
+            switch (e.key.toLowerCase()) {
+                case '1':
+                case 'r':
+                    playGame('rock');
+                    break;
+                case '2':
+                case 'p':
+                    playGame('paper');
+                    break;
+                case '3':
+                case 's':
+                case 't':
+                    playGame('scissors');
+                    break;
+                case 'escape':
+                    resetGame();
+                    break;
+            }
+        });
+
+        // Mostrar atajos en consola para usuarios avanzados
+        console.log('🎮 Atajos de teclado:');
+        console.log('1 o R - Piedra');
+        console.log('2 o P - Papel'); 
+        console.log('3, S o T - Tijera');
+        console.log('ESC - Reiniciar');
+    </script>
+    
+    <!-- Contenido SEO educativo sobre Piedra Papel Tijera -->
+    <div class="seo-content">
+        <div style="max-width: 900px; margin: 2rem auto; padding: 0 20px;">
+            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5; margin-bottom: 2rem;">
+                <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">✊ Guía Completa de Piedra, Papel o Tijera</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #2E86AB;">
+                        <h3 style="color: #2E86AB; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎮 Reglas del Juego</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">El clásico juego de manos ahora en versión digital. Cada jugador elige simultáneamente una de las tres opciones disponibles.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Piedra vence a Tijera:</strong> La rompe con su dureza</li>
+                            <li><strong>Papel vence a Piedra:</strong> La envuelve completamente</li>
+                            <li><strong>Tijera vence a Papel:</strong> Lo corta fácilmente</li>
+                            <li><strong>Empate:</strong> Cuando ambos eligen lo mismo</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #48A9A6;">
+                        <h3 style="color: #48A9A6; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🧠 Estrategias y Psicología</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Aunque parece puro azar, existen patrones psicológicos que puedes aprovechar para ganar más partidas.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Piedra inicial:</strong> Es la opción más común en primera jugada</li>
+                            <li><strong>Rotación:</strong> Los novatos tienden a rotar en orden</li>
+                            <li><strong>Repetición:</strong> Tras ganar, muchos repiten su jugada</li>
+                            <li><strong>Cambio:</strong> Tras perder, suelen cambiar de opción</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #6AAA64;">
+                        <h3 style="color: #6AAA64; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📊 Estadísticas Curiosas</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Datos fascinantes sobre este juego milenario y su comportamiento estadístico.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>35.4%:</strong> Frecuencia de elección de Piedra</li>
+                            <li><strong>35%:</strong> Frecuencia de elección de Tijera</li>
+                            <li><strong>29.6%:</strong> Frecuencia de elección de Papel</li>
+                            <li><strong>Origen:</strong> Juego con más de 2000 años de historia</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #C9B458;">
+                        <h3 style="color: #C9B458; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Torneos y Competiciones</h3>
+                        <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">El Piedra Papel Tijera tiene campeonatos mundiales oficiales con premios importantes.</p>
+                        <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Mundial RPS:</strong> Torneo anual desde 2002</li>
+                            <li><strong>Premios:</strong> Hasta $50,000 en competiciones</li>
+                            <li><strong>Variantes:</strong> Existen más de 15 variaciones</li>
+                            <li><strong>Récord:</strong> Partida más larga: 8 horas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Schema.org -->
+        <div style="max-width: 900px; margin: 0 auto 2rem; padding: 0 20px;">
+            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5;">
+                <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes sobre Piedra, Papel o Tijera</h2>
+                
+                <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "¿Es Piedra Papel Tijera puro azar o hay estrategia?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Aunque parece aleatorio, existen estrategias basadas en psicología. Los humanos siguen patrones predecibles: piedra es más común en primera jugada (35.4%), la gente tiende a no repetir tras perder, y los novatos rotan opciones secuencialmente."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Cuál es la mejor estrategia para ganar?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "La mejor estrategia es ser impredecible. Sin embargo, estadísticamente: 1) Comienza con papel (vence a piedra, la opción más común), 2) Si pierdes, elige lo que hubiera vencido a tu jugada anterior, 3) Si ganas, elige lo que perdería contra tu jugada anterior."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Cuál es el origen del juego?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "El juego tiene más de 2000 años de historia, originándose en China durante la dinastía Han (206 aC - 220 dC). Se extendió a Japón donde se conoce como 'Jankenpon', y posteriormente al resto del mundo con diferentes nombres y variaciones."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Existen torneos profesionales de Piedra Papel Tijera?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Sí, existe la World RPS Society que organiza campeonatos mundiales desde 2002. Los premios pueden alcanzar los $50,000. Los jugadores profesionales estudian patrones de comportamiento, lenguaje corporal y psicología para obtener ventajas competitivas."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Qué variantes existen del juego?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Existen más de 15 variantes oficiales. La más popular es 'Piedra, Papel, Tijera, Lagarto, Spock' con 5 opciones. Otras incluyen versiones con 7, 9 o hasta 101 gestos diferentes. Cada cultura tiene sus propias adaptaciones con elementos locales."
+                            }
+                        }
+                    ]
+                }
+                </script>
+                
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                        <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Es Piedra Papel Tijera puro azar o hay estrategia?</summary>
+                        <p style="color: #666666; line-height: 1.6;">Aunque parece completamente aleatorio, existen estrategias basadas en psicología humana. Los estudios muestran que los humanos siguen patrones predecibles: piedra es la opción más común en la primera jugada (35.4%), la gente tiende a no repetir su elección tras perder, y los jugadores novatos suelen rotar las opciones secuencialmente. Conocer estos patrones te da ventaja.</p>
+                    </details>
+                    
+                    <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                        <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cuál es la mejor estrategia para ganar?</summary>
+                        <p style="color: #666666; line-height: 1.6;">La mejor estrategia es mantener la imprevisibilidad. Sin embargo, estadísticamente puedes mejorar tus probabilidades: 1) Comienza con papel (vence a piedra, la elección inicial más común), 2) Si pierdes una ronda, elige lo que hubiera vencido a tu jugada anterior, 3) Si ganas, elige lo que perdería contra tu jugada anterior. Observa los patrones de tu oponente y rompe los tuyos propios.</p>
+                    </details>
+                    
+                    <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                        <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cuál es el origen del juego?</summary>
+                        <p style="color: #666666; line-height: 1.6;">El juego tiene más de 2000 años de historia, originándose en China durante la dinastía Han (206 aC - 220 dC) con el nombre de 'shoushiling'. Se extendió a Japón en el siglo XVII donde se conoce como 'Jankenpon', y posteriormente llegó a Occidente a través del comercio marítimo. Cada cultura ha adaptado el juego con sus propias variaciones y nombres.</p>
+                    </details>
+                    
+                    <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                        <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Existen torneos profesionales de Piedra Papel Tijera?</summary>
+                        <p style="color: #666666; line-height: 1.6;">Sí, existe la World RPS Society que organiza campeonatos mundiales oficiales desde 2002 en Toronto, Canadá. Los premios pueden alcanzar los $50,000 USD. Los jugadores profesionales estudian intensamente patrones de comportamiento, lenguaje corporal y psicología del oponente. Algunos países tienen ligas nacionales y el juego es considerado un deporte mental legítimo.</p>
+                    </details>
+                    
+                    <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                        <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Qué variantes existen del juego?</summary>
+                        <p style="color: #666666; line-height: 1.6;">Existen más de 15 variantes oficiales reconocidas. La más popular es 'Piedra, Papel, Tijera, Lagarto, Spock' con 5 opciones que reduce los empates. Otras incluyen versiones con 7, 9, 15 o hasta 101 gestos diferentes. En Indonesia juegan 'Semut, Orang, Gajah' (hormiga, humano, elefante), mientras que en Francia existe una versión con pozo de agua. Cada variante mantiene el principio de equilibrio cíclico.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

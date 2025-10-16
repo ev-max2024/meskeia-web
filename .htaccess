@@ -1,21 +1,17 @@
 # Redirecciones 301 permanentes para Google Search Console
-# Redirigir URLs sin subdirectorio a las URLs correctas con subdirectorio
+# Redirigir URLs sin barra final a URLs con barra final
 
 RewriteEngine On
 
-# Redirecciones específicas para aplicaciones
-RewriteRule ^algebra/?$ /algebra/ [L,R=301]
-RewriteRule ^algebra-abstracta/?$ /algebra-abstracta/ [L,R=301]
-RewriteRule ^calculadora-simple/?$ /calculadora-simple/ [L,R=301]
-RewriteRule ^calculadora-movimiento/?$ /calculadora-movimiento/ [L,R=301]
-RewriteRule ^tabla-periodica/?$ /tabla-periodica/ [L,R=301]
-RewriteRule ^probabilidad/?$ /probabilidad/ [L,R=301]
-RewriteRule ^geometria/?$ /geometria/ [L,R=301]
-RewriteRule ^calculo/?$ /calculo/ [L,R=301]
-RewriteRule ^trigonometria/?$ /trigonometria/ [L,R=301]
-RewriteRule ^investigacion-operativa/?$ /investigacion-operativa/ [L,R=301]
-RewriteRule ^teoria-numeros/?$ /teoria-numeros/ [L,R=301]
-RewriteRule ^curso-decisiones-inversion/?$ /curso-decisiones-inversion/ [L,R=301]
+# Forzar HTTPS (si no está habilitado por el servidor)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Añadir barra final a directorios (evitar bucles)
+# Solo si NO tiene barra final Y NO es un archivo
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ $1/ [L,R=301]
 
 # Asegurar que se sirva index.html cuando se accede a directorios
 DirectoryIndex index.html

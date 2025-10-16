@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Simulador de Hipoteca Online Gratis - Sistema Francés | meskeIA</title>
+    <link rel="canonical" href="https://meskeia.com/simulador-hipoteca/simulador-hipoteca">
+    <meta name="description" content="Simulador de hipoteca gratuito con sistema francés. Calcula cuotas mensuales, intereses totales, tabla de amortización completa y genera PDF. Herramientas financieras profesionales para compra de vivienda, cálculos precisos y visualizaciones interactivas.">
+    <meta name="keywords" content="simulador hipoteca, calculadora préstamos, sistema francés, amortización, cuotas mensuales, intereses, finanzas personales, hipoteca vivienda, tabla amortización, calculadora financiera, préstamo inmobiliario, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="rating" content="general">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Simulador de Hipoteca Online Gratis - Sistema Francés | meskeIA">
+    <meta property="og:description" content="Simulador de hipoteca gratuito con sistema francés. Calcula cuotas, intereses y tabla de amortización completa con visualizaciones interactivas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/simulador-hipoteca">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Simulador de Hipoteca Online Gratis | meskeIA">
+    <meta name="twitter:description" content="Simulador de hipoteca gratuito con sistema francés. Calcula cuotas, intereses y tabla de amortización completa.">
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Simulador de Hipoteca",
+        "applicationCategory": "FinanceApplication",
+        "description": "Simulador de hipoteca online gratuito con sistema francés. Calcula cuotas mensuales, intereses totales, tabla de amortización completa y genera reportes en PDF.",
+        "url": "https://meskeia.com/simulador-hipoteca",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        },
+        "operatingSystem": "Web",
+        "permissions": "No requiere permisos",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "featureList": [
+            "Cálculo de cuotas mensuales",
+            "Tabla de amortización completa",
+            "Gráficos de evolución de la hipoteca",
+            "Cálculo de intereses totales",
+            "Generación de reportes PDF",
+            "Visualización interactiva",
+            "Sistema francés de amortización",
+            "Cálculos financieros precisos"
+        ],
+        "mainEntity": {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "¿Cómo funciona el simulador de hipoteca?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El simulador utiliza el sistema francés de amortización para calcular cuotas mensuales constantes. Introduce el importe, duración en años y tipo de interés anual para obtener cálculos precisos de tu hipoteca."
+                    }
+                },
+                {
+                    "@type": "Question", 
+                    "name": "¿Qué es el sistema francés de amortización?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El sistema francés es el método más común en España. Calcula cuotas mensuales constantes donde inicialmente se pagan más intereses y menos capital, equilibrándose progresivamente hasta el final del préstamo."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Puedo descargar los resultados de la simulación?", 
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sí, el simulador genera reportes en PDF con todos los detalles: parámetros de la hipoteca, resumen de resultados y tabla de amortización completa para los primeros 24 meses."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Es gratuito el simulador de hipoteca?",
+                    "acceptedAnswer": {
+                        "@type": "Answer", 
+                        "text": "Completamente gratuito. No requiere registro ni instalación. Todos los cálculos se realizan localmente en tu navegador garantizando total privacidad de tus datos financieros."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Qué información necesito para simular mi hipoteca?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Solo necesitas tres datos: el importe total de la hipoteca, la duración en años y el tipo de interés anual (TIN). El simulador calculará automáticamente cuotas, intereses totales y tabla de amortización."
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+            
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            --primary-light: rgba(46, 134, 171, 0.1);
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            
+            /* Estados */
+            --success: #28a745;
+            --success-hover: #218838;
+            --success-light: rgba(40, 167, 69, 0.1);
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --info-hover: #138496;
+            
+            /* Espaciado consistente */
+            --radius: 8px;
+            --radius-large: 16px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-large);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+        }
+
+        .hero:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Layout principal */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* Paneles */
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-large);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .panel:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .panel h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Formulario */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: var(--spacing-xs);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Botones */
+        .btn {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-info {
+            background: var(--info);
+            color: white;
+            border-color: var(--info);
+        }
+
+        .btn-info:hover {
+            background: var(--info-hover);
+            border-color: var(--info-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        /* Tarjetas de resultados */
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .result-card.highlight {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .result-card.highlight:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .result-card h4 {
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        /* Gráfico */
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
+            margin-bottom: var(--spacing-xl);
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .chart-container h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Tabla */
+        .table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            margin-bottom: var(--spacing-xl);
+            transition: all 0.3s ease;
+        }
+
+        .table-container:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .table-header {
+            background: var(--primary);
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-xl);
+        }
+
+        .table-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--hover);
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        tbody tr:hover {
+            background: var(--hover);
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: var(--hover);
+        }
+
+        /* Estados */
+        .hidden {
+            display: none;
+        }
+
+        /* Animaciones */
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .result-card {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* SEO Content Styles */
+        .seo-content {
+            max-width: 1400px;
+            margin: 40px auto 20px;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border);
+        }
+
+        .mortgage-guide h2 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .mortgage-guide > p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            background: var(--hover);
+            padding: 25px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-item h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .applications h3, .concepts h3, .tips h3, .faq h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .applications-grid, .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .application-card, .concept-item {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, var(--success-light) 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--success);
+            transition: transform 0.3s ease;
+        }
+
+        .application-card:hover, .concept-item:hover, .tip-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .application-card h4, .concept-item h4, .tip-card h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tip-card h4 {
+            color: var(--success);
+        }
+
+        .application-card p, .concept-item p, .tip-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--hover);
+            padding: 25px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .faq-item h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .results-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .control-buttons {
+                flex-direction: column;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .footer {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+
+            th, td {
+                padding: var(--spacing-sm);
+                font-size: 0.9rem;
+            }
+            
+            /* SEO Content Mobile */
+            .seo-content {
+                margin: 20px 10px 10px;
+                padding: 20px 15px;
+                border-radius: var(--radius);
+            }
+            
+            .mortgage-guide h2 {
+                font-size: 22px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .applications-grid, .concepts-grid, .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .feature-item, .application-card, .concept-item, .tip-card, .faq-item {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: var(--spacing-lg);
+            }
+
+            .panel {
+                padding: var(--spacing-lg);
+            }
+
+            .chart-container {
+                padding: var(--spacing-lg);
+            }
+
+            .result-value {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="main-app-wrapper">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero">
+                <h1>🏠 Simulador de Hipoteca</h1>
+                <p>Calcula tu hipoteca con sistema francés y visualiza toda la información de amortización de forma clara y detallada</p>
+            </div>
+
+        <!-- Layout Principal -->
+        <div class="main-layout">
+            <!-- Panel de Entrada -->
+            <div class="panel">
+                <h3>📊 Datos de la Hipoteca</h3>
+                
+                <div class="form-group">
+                    <label for="amount">💰 Importe de la Hipoteca (€)</label>
+                    <input type="number" id="amount" value="200000" min="1000" step="1000">
+                    <small>Cantidad total que necesitas pedir prestada</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="years">📅 Duración (años)</label>
+                    <input type="number" id="years" value="25" min="1" max="50" step="1">
+                    <small>Tiempo para devolver la hipoteca completa</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="rate">📈 Interés Anual (%)</label>
+                    <input type="number" id="rate" value="3.5" min="0.1" max="15" step="0.1">
+                    <small>Tipo de interés anual (TIN)</small>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="btn btn-primary" onclick="calculateLoan(true)">
+                        🧮 Calcular Hipoteca
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetCalculator()">
+                        🔄 Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel de Resultados -->
+            <div class="panel">
+                <h3>💡 Resumen de Resultados</h3>
+                
+                <div class="results-summary" id="resultsSummary">
+                    <div class="result-card highlight">
+                        <h4>💳 Cuota Mensual</h4>
+                        <div class="result-value" id="monthlyPayment">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>💰 Total a Pagar</h4>
+                        <div class="result-value" id="totalPayment">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>📊 Total Intereses</h4>
+                        <div class="result-value" id="totalInterest">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>🎯 Número de Cuotas</h4>
+                        <div class="result-value" id="totalPayments">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Evolución -->
+        <div class="chart-container" id="chartContainer" style="display: none;">
+            <h3>📈 Evolución de la Hipoteca</h3>
+            <div class="chart-wrapper">
+                <canvas id="loanChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tabla de Amortización -->
+        <div class="table-container" id="tableContainer" style="display: none;">
+            <div class="table-header">
+                <h3>📋 Tabla de Amortización Completa</h3>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cuota</th>
+                            <th>Capital</th>
+                            <th>Intereses</th>
+                            <th>Cuota Total</th>
+                            <th>Capital Pendiente</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Los datos se generarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="control-buttons" id="actionButtons" style="display: none; justify-content: center; margin-top: var(--spacing-xl);">
+            <button class="btn btn-info" onclick="generatePDF()">
+                📄 Descargar PDF
+            </button>
+            <button class="btn btn-secondary" onclick="shareResults()">
+                📤 Compartir
+            </button>
+        </div>
+    </div>
+    
+    <!-- SEO Content -->
+    <div class="seo-content">
+        <section class="mortgage-guide">
+            <h2>Guía Completa del Simulador de Hipoteca</h2>
+            <p>Nuestro simulador de hipoteca utiliza el sistema francés de amortización, el método más utilizado en España para el cálculo de préstamos hipotecarios. Con esta herramienta gratuita podrás planificar tu compra de vivienda conociendo exactamente cuánto pagarás cada mes y cuántos intereses totales generará tu hipoteca.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>🧮 Cálculos Precisos del Sistema Francés</h4>
+                    <p><strong>Cuotas constantes:</strong> El sistema francés calcula cuotas mensuales fijas durante toda la vida del préstamo.</p>
+                    <p>Al principio pagas más intereses y menos capital, equilibrándose gradualmente hasta que al final pagas más capital que intereses. Nuestro simulador aplica las fórmulas matemáticas oficiales utilizadas por entidades bancarias.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>📊 Tabla de Amortización Completa</h4>
+                    <p><strong>Desglose detallado:</strong> Visualiza mes a mes cómo evoluciona tu hipoteca con información precisa.</p>
+                    <p>Cada fila muestra el capital amortizado, intereses pagados, cuota total y capital pendiente de pago. Información completa para planificar amortizaciones anticipadas y entender el comportamiento financiero de tu préstamo.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>📈 Visualizaciones Interactivas</h4>
+                    <p><strong>Gráficos evolutivos:</strong> Comprende visualmente cómo evoluciona tu hipoteca año a año.</p>
+                    <p>Los gráficos muestran la evolución del capital pendiente y capital amortizado, facilitando la comprensión del comportamiento financiero del préstamo y ayudando en la toma de decisiones sobre amortizaciones anticipadas.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>📄 Reportes en PDF</h4>
+                    <p><strong>Documentación completa:</strong> Genera reportes profesionales con todos los detalles de tu simulación.</p>
+                    <p>Los PDF incluyen parámetros de entrada, resumen de resultados y tabla de amortización detallada. Ideal para presentar a asesores financieros o para tu planificación personal de compra de vivienda.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>🔒 Privacidad Total</h4>
+                    <p><strong>Cálculos locales:</strong> Todos los cálculos se realizan en tu navegador sin enviar datos a servidores externos.</p>
+                    <p>Tu información financiera permanece completamente privada. No guardamos, almacenamos ni transmitimos ningún dato personal o financiero, garantizando confidencialidad absoluta en tus simulaciones hipotecarias.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>⚡ Resultados Instantáneos</h4>
+                    <p><strong>Cálculo automático:</strong> Los resultados se actualizan automáticamente al modificar cualquier parámetro.</p>
+                    <p>Sistema de recálculo dinámico que permite experimentar con diferentes escenarios: variar el importe, duración o tipo de interés para encontrar la configuración de hipoteca que mejor se ajuste a tu capacidad financiera.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="applications">
+            <h3>Casos de Uso del Simulador de Hipoteca</h3>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <h4>🏠 Compra de Primera Vivienda</h4>
+                    <p>Planifica tu primera compra inmobiliaria calculando cuotas mensuales ajustadas a tus ingresos. Simula diferentes escenarios de financiación para tomar la mejor decisión financiera.</p>
+                </div>
+                
+                <div class="application-card">
+                    <h4>🔄 Cambio de Hipoteca</h4>
+                    <p>Compara tu hipoteca actual con nuevas ofertas del mercado. Evalúa si te conviene cambiar de entidad bancaria o renegociar condiciones con tu banco actual.</p>
+                </div>
+                
+                <div class="application-card">
+                    <h4>💰 Planificación de Amortizaciones</h4>
+                    <p>Utiliza la tabla detallada para planificar amortizaciones anticipadas estratégicas que reduzcan significativamente el coste total de tu hipoteca.</p>
+                </div>
+                
+                <div class="application-card">
+                    <h4>📊 Asesoramiento Financiero</h4>
+                    <p>Herramienta profesional para asesores financieros e inmobiliarios que necesitan generar simulaciones precisas y reportes detallados para sus clientes.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="concepts">
+            <h3>Conceptos Clave de Hipotecas</h3>
+            <div class="concepts-grid">
+                <div class="concept-item">
+                    <h4>Sistema Francés de Amortización</h4>
+                    <p>Método de cálculo donde las cuotas mensuales permanecen constantes durante toda la vida del préstamo. Al inicio se pagan más intereses, equilibrándose progresivamente hacia el capital.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>TIN - Tipo de Interés Nominal</h4>
+                    <p>Porcentaje anual que se aplica sobre el capital pendiente de amortizar. Es el interés puro sin incluir comisiones ni gastos adicionales del préstamo hipotecario.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Capital e Intereses</h4>
+                    <p>Cada cuota se divide en capital (cantidad que reduce la deuda) e intereses (coste del dinero prestado). La proporción varía mensualmente según el sistema francés.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Amortización Anticipada</h4>
+                    <p>Pago adicional voluntario que reduce el capital pendiente, disminuyendo significativamente los intereses totales y/o acortando la duración del préstamo hipotecario.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="tips">
+            <h3>Consejos para Optimizar tu Hipoteca</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>💡 Tip 1: Compara Ofertas</h4>
+                    <p>Utiliza el simulador para comparar diferentes ofertas bancarias variando el tipo de interés. Una diferencia de 0,5% puede suponer miles de euros de ahorro.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>💡 Tip 2: Amortiza Estratégicamente</h4>
+                    <p>Las amortizaciones anticipadas en los primeros años generan mayores ahorros. Consulta la tabla para identificar los mejores momentos para amortizar.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>💡 Tip 3: Considera la Duración</h4>
+                    <p>Préstamos más largos tienen cuotas menores pero intereses totales mayores. Encuentra el equilibrio entre cuota mensual asumible e intereses totales.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>💡 Tip 4: Planifica tu Capacidad</h4>
+                    <p>La cuota hipotecaria no debería superar el 35% de tus ingresos netos. Deja margen para gastos imprevistos y mantenimiento de la vivienda.</p>
+                </div>
+            </div>
+        </section>
+        
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo funciona el sistema francés de amortización?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El sistema francés calcula cuotas mensuales constantes donde inicialmente se pagan más intereses y menos capital, equilibrándose progresivamente. Es el método más utilizado en España por su predictibilidad en el pago mensual.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Son precisos los cálculos del simulador?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Sí, utilizamos las fórmulas matemáticas oficiales del sistema francés empleadas por entidades bancarias. Los cálculos son exactos y coinciden con las simulaciones bancarias oficiales.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Puedo simular amortizaciones anticipadas?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">La tabla detallada te permite ver el capital pendiente mes a mes, facilitando el cálculo manual de amortizaciones anticipadas. Próximamente incluiremos esta funcionalidad automática.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Qué diferencia hay entre TIN y TAE?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El TIN es el tipo de interés puro que utilizamos en el simulador. La TAE incluye comisiones y gastos adicionales. Para simulaciones básicas, el TIN proporciona una aproximación muy precisa.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Es seguro introducir mis datos financieros?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Completamente seguro. Todos los cálculos se realizan localmente en tu navegador. No enviamos, almacenamos ni procesamos ningún dato en servidores externos, garantizando privacidad total.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer class="footer">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Variables globales
+        let calculationResults = null;
+        let loanChart = null;
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Simulador de Hipoteca cargado');
+            
+            // Agregar listeners para cálculo automático
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', debounce(autoCalculate, 500));
+            });
+            
+            // Calcular con valores por defecto
+            calculateLoan();
+        });
+
+        // Función principal de cálculo
+        function calculateLoan(shouldScroll = false) {
+            try {
+                console.log('🧮 Iniciando cálculo de hipoteca...');
+                
+                // Obtener valores del formulario
+                const amount = parseFloat(document.getElementById('amount').value) || 0;
+                const years = parseInt(document.getElementById('years').value) || 1;
+                const annualRate = parseFloat(document.getElementById('rate').value) || 0;
+                
+                // Validar entradas
+                if (amount <= 0 || years <= 0 || annualRate < 0) {
+                    alert('Por favor, ingresa valores válidos.');
+                    return;
+                }
+                
+                // Realizar cálculos
+                const results = performLoanCalculation(amount, years, annualRate);
+                
+                // Guardar resultados globalmente
+                calculationResults = results;
+                
+                // Mostrar resultados
+                displayResults(results, shouldScroll);
+                
+                console.log('✅ Cálculo completado exitosamente');
+                
+            } catch (error) {
+                console.error('❌ Error en el cálculo:', error);
+                alert('Error al realizar el cálculo. Por favor, verifica los valores ingresados.');
+            }
+        }
+
+        // Función para realizar los cálculos matemáticos
+        function performLoanCalculation(principal, years, annualRate) {
+            const monthlyRate = annualRate / 12 / 100;
+            const totalPayments = years * 12;
+            
+            // Calcular cuota mensual (Sistema Francés)
+            const numerator = principal * monthlyRate * Math.pow(1 + monthlyRate, totalPayments);
+            const denominator = Math.pow(1 + monthlyRate, totalPayments) - 1;
+            const monthlyPayment = numerator / denominator;
+            
+            // Generar tabla de amortización
+            let amortizationTable = [];
+            let remainingBalance = principal;
+            let totalInterestPaid = 0;
+            
+            for (let payment = 1; payment <= totalPayments; payment++) {
+                const interestPayment = remainingBalance * monthlyRate;
+                const principalPayment = monthlyPayment - interestPayment;
+                remainingBalance -= principalPayment;
+                totalInterestPaid += interestPayment;
+                
+                // Evitar valores negativos muy pequeños por precisión
+                if (remainingBalance < 0.01) {
+                    remainingBalance = 0;
+                }
+                
+                amortizationTable.push({
+                    payment: payment,
+                    principal: principalPayment,
+                    interest: interestPayment,
+                    monthlyPayment: monthlyPayment,
+                    remainingBalance: remainingBalance
+                });
+            }
+            
+            const totalPayment = monthlyPayment * totalPayments;
+            
+            return {
+                monthlyPayment: monthlyPayment,
+                totalPayment: totalPayment,
+                totalInterest: totalInterestPaid,
+                totalPayments: totalPayments,
+                amortizationTable: amortizationTable,
+                parameters: {
+                    principal: principal,
+                    years: years,
+                    annualRate: annualRate
+                }
+            };
+        }
+
+        // Mostrar resultados en la interfaz
+        function displayResults(results, shouldScroll = false) {
+            // Actualizar tarjetas de resumen
+            document.getElementById('monthlyPayment').textContent = formatCurrency(results.monthlyPayment);
+            document.getElementById('totalPayment').textContent = formatCurrency(results.totalPayment);
+            document.getElementById('totalInterest').textContent = formatCurrency(results.totalInterest);
+            document.getElementById('totalPayments').textContent = results.totalPayments;
+            
+            // Mostrar contenedores
+            document.getElementById('chartContainer').style.display = 'block';
+            document.getElementById('tableContainer').style.display = 'block';
+            document.getElementById('actionButtons').style.display = 'flex';
+            
+            // Generar tabla detallada
+            generateAmortizationTable(results.amortizationTable);
+            
+            // Generar gráfico
+            generateChart(results.amortizationTable);
+            
+            // Scroll suave si se solicita
+            if (shouldScroll) {
+                setTimeout(() => {
+                    document.getElementById('chartContainer').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+        }
+
+        // Generar tabla de amortización
+        function generateAmortizationTable(amortizationTable) {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            
+            amortizationTable.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${row.payment}</strong></td>
+                    <td>${formatCurrency(row.principal)}</td>
+                    <td>${formatCurrency(row.interest)}</td>
+                    <td><strong>${formatCurrency(row.monthlyPayment)}</strong></td>
+                    <td>${formatCurrency(row.remainingBalance)}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Generar gráfico con nueva paleta de colores
+        function generateChart(amortizationTable) {
+            const ctx = document.getElementById('loanChart').getContext('2d');
+            
+            if (loanChart) {
+                loanChart.destroy();
+            }
+            
+            // Preparar datos para el gráfico (solo cada 12 meses para mejor visualización)
+            const yearlyData = amortizationTable.filter((_, index) => (index + 1) % 12 === 0);
+            
+            const labels = yearlyData.map((_, index) => `Año ${index + 1}`);
+            const principalData = yearlyData.map(row => row.remainingBalance);
+            const principalPaidData = yearlyData.map((row, index) => {
+                return calculationResults.parameters.principal - row.remainingBalance;
+            });
+            
+            loanChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '💰 Capital Pendiente',
+                            data: principalData,
+                            borderColor: '#2E86AB',
+                            backgroundColor: 'rgba(46, 134, 171, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '✅ Capital Amortizado',
+                            data: principalPaidData,
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                },
+                                color: '#666666'
+                            },
+                            grid: {
+                                color: '#E5E5E5'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#666666'
+                            },
+                            grid: {
+                                color: '#E5E5E5'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#1A1A1A',
+                                font: {
+                                    weight: '600'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                                }
+                            },
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#1A1A1A',
+                            bodyColor: '#666666',
+                            borderColor: '#E5E5E5',
+                            borderWidth: 1
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        // Funciones de utilidad
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+
+        // Limpiar calculadora
+        function resetCalculator() {
+            document.getElementById('amount').value = 200000;
+            document.getElementById('years').value = 25;
+            document.getElementById('rate').value = 3.5;
+            
+            document.getElementById('chartContainer').style.display = 'none';
+            document.getElementById('tableContainer').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            
+            if (loanChart) {
+                loanChart.destroy();
+                loanChart = null;
+            }
+            
+            calculationResults = null;
+            
+            // Recalcular con valores por defecto
+            calculateLoan();
+            
+            console.log('🔄 Calculadora reiniciada');
+        }
+
+        // Cálculo automático con debounce
+        function autoCalculate() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 1;
+            const annualRate = parseFloat(document.getElementById('rate').value) || 0;
+            
+            if (amount > 0 && years > 0 && annualRate >= 0) {
+                calculateLoan(false);
+            }
+        }
+
+        // Función debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Generar PDF
+        function generatePDF() {
+            if (!calculationResults) {
+                alert('No hay resultados para generar el reporte.');
+                return;
+            }
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Configuración
+                const margin = 20;
+                let yPosition = margin;
+                
+                // Título
+                doc.setFontSize(20);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Reporte de Hipoteca - Sistema Frances', margin, yPosition);
+                yPosition += 15;
+                
+                // Fecha
+                const today = new Date().toLocaleDateString('es-ES');
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Fecha de generacion: ${today}`, margin, yPosition);
+                yPosition += 20;
+                
+                // Parámetros
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Parametros de la Hipoteca:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Importe: ${formatCurrency(calculationResults.parameters.principal)}`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Duracion: ${calculationResults.parameters.years} anos`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Interes Anual: ${calculationResults.parameters.annualRate}%`, margin, yPosition);
+                yPosition += 15;
+                
+                // Resultados
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Resumen de Resultados:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Cuota Mensual: ${formatCurrency(calculationResults.monthlyPayment)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Total a Pagar: ${formatCurrency(calculationResults.totalPayment)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Total Intereses: ${formatCurrency(calculationResults.totalInterest)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Numero de Cuotas: ${calculationResults.totalPayments}`, margin, yPosition);
+                yPosition += 15;
+                
+                // Tabla de amortización (primeros 24 meses)
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Tabla de Amortizacion (primeros 24 meses):', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                
+                // Encabezados de tabla
+                doc.text('Cuota', margin, yPosition);
+                doc.text('Capital', margin + 25, yPosition);
+                doc.text('Intereses', margin + 65, yPosition);
+                doc.text('Cuota Total', margin + 105, yPosition);
+                doc.text('Pendiente', margin + 150, yPosition);
+                yPosition += 8;
+                
+                // Datos de tabla
+                const maxRows = Math.min(24, calculationResults.amortizationTable.length);
+                for (let i = 0; i < maxRows; i++) {
+                    const row = calculationResults.amortizationTable[i];
+                    doc.text(`${row.payment}`, margin, yPosition);
+                    doc.text(`${formatCurrency(row.principal)}`, margin + 25, yPosition);
+                    doc.text(`${formatCurrency(row.interest)}`, margin + 65, yPosition);
+                    doc.text(`${formatCurrency(row.monthlyPayment)}`, margin + 105, yPosition);
+                    doc.text(`${formatCurrency(row.remainingBalance)}`, margin + 150, yPosition);
+                    yPosition += 6;
+                    
+                    // Nueva página si es necesario
+                    if (yPosition > 270) {
+                        doc.addPage();
+                        yPosition = margin;
+                    }
+                }
+                
+                // Pie de página
+                const footerY = doc.internal.pageSize.height - 20;
+                doc.setFontSize(8);
+                doc.setFont('helvetica', 'italic');
+                doc.text('Reporte generado por meskeIA - Simulador de Hipoteca', margin, footerY);
+                
+                // Descargar
+                const fileName = `hipoteca-${today.replace(/\//g, '-')}.pdf`;
+                doc.save(fileName);
+                
+                console.log('✅ PDF generado exitosamente:', fileName);
+                
+            } catch (error) {
+                console.error('❌ Error al generar PDF:', error);
+                alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
+            }
+        }
+
+        // Compartir resultados
+        function shareResults() {
+            if (!calculationResults) {
+                alert('No hay resultados para compartir.');
+                return;
+            }
+            
+            const shareText = `🏠 Mi simulación de hipoteca:
+💰 Importe: ${formatCurrency(calculationResults.parameters.principal)}
+📅 Duración: ${calculationResults.parameters.years} años
+📈 Interés: ${calculationResults.parameters.annualRate}%
+
+💳 Cuota mensual: ${formatCurrency(calculationResults.monthlyPayment)}
+💰 Total a pagar: ${formatCurrency(calculationResults.totalPayment)}
+📊 Total intereses: ${formatCurrency(calculationResults.totalInterest)}
+
+Calculado con meskeIA 🚀`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mi Simulación de Hipoteca',
+                    text: shareText,
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Resultados copiados al portapapeles 📋');
+                }).catch(() => {
+                    // Fallback para navegadores que no soportan clipboard
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('Resultados copiados al portapapeles 📋');
+                });
+            }
+        }
+
+        console.log('🎯 Simulador de Hipoteca cargado completamente');
+    </script>
+</body>
+</html>

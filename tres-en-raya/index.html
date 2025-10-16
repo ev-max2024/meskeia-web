@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- Meta Tags SEO Ampliados -->
+    <title>Tres en Raya con IA - Juego Clásico de Estrategia Online | meskeIA</title>
+    <meta name="description" content="Juega Tres en Raya contra inteligencia artificial con 3 niveles de dificultad. Entrena tu mente con el juego de estrategia clásico. Estadísticas y partidas ilimitadas gratis.">
+    <meta name="keywords" content="tres en raya, tic tac toe, juego estrategia, inteligencia artificial, juego mesa online, tateti, gato, juego lógica, entretenimiento mental">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tres en Raya con IA - Juego de Estrategia">
+    <meta property="og:description" content="Desafía a la inteligencia artificial en el clásico Tres en Raya. 3 niveles de dificultad para entrenar tu mente y mejorar tu estrategia.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/tres-en-raya">
+    <meta property="og:image" content="https://meskeia.com/assets/og-tres-en-raya.jpg">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tres en Raya con IA - Juego Clásico">
+    <meta name="twitter:description" content="Juega contra IA en 3 niveles de dificultad. El clásico juego de estrategia para entrenar la mente.">
+    <meta name="twitter:image" content="https://meskeia.com/assets/twitter-tres-en-raya.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://meskeia.com/tres-en-raya">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css?v=2025010401">
+    
+    <!-- CSS Crítico Inline para móvil -->
+    <style>
+    @media screen and (max-width: 768px) {
+        html, body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+        }
+        
+        * {
+            box-sizing: border-box !important;
+        }
+        
+        .main-game-wrapper {
+            width: 100% !important;
+            max-width: 100vw !important;
+            padding: 16px !important;
+            overflow-x: hidden !important;
+        }
+        
+        .container {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+        }
+        
+        #game-board, .game-board {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-rows: repeat(3, 1fr) !important;
+            width: 270px !important;
+            height: 270px !important;
+            max-width: calc(100vw - 60px) !important;
+            max-height: calc(100vw - 60px) !important;
+            margin: 20px auto !important;
+            gap: 3px !important;
+            background: #1A1A1A !important;
+            border-radius: 12px !important;
+            padding: 4px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            z-index: 10 !important;
+        }
+        
+        .cell {
+            background: #FFFFFF !important;
+            border-radius: 8px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 2.2rem !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            user-select: none !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 80px !important;
+            box-sizing: border-box !important;
+            color: #2E86AB !important;
+            transition: all 0.2s ease !important;
+            border: none !important;
+            outline: none !important;
+        }
+        
+        .seo-content {
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            padding: 16px !important;
+            box-sizing: border-box !important;
+        }
+        
+        .seo-content * {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            word-wrap: break-word !important;
+        }
+    }
+    </style>
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "Tres en Raya con Inteligencia Artificial",
+        "description": "Juego clásico de Tres en Raya (Tic Tac Toe) contra inteligencia artificial con 3 niveles de dificultad. Perfecto para entrenar la mente, desarrollar estrategias y disfrutar del juego de mesa más popular del mundo.",
+        "url": "https://meskeia.com/tres-en-raya",
+        "gameLocation": "Online",
+        "numberOfPlayers": "1",
+        "playMode": "SinglePlayer",
+        "genre": ["Strategy", "Board Game", "Puzzle"],
+        "gamePlatform": "Web Browser",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "url": "https://meskeia.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "3 niveles de dificultad de IA",
+            "Estadísticas de partidas",
+            "Interfaz intuitiva y responsiva",
+            "Partidas ilimitadas gratis",
+            "Juego instantáneo sin registro"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Wrapper del juego centrado -->
+    <div class="main-game-wrapper">
+        <div class="container">
+        <header>
+            <h1>Tres en Raya</h1>
+            <p class="subtitle">El clásico juego de estrategia contra la inteligencia artificial</p>
+        </header>
+        
+        <div class="game-controls">
+            <div class="control-section">
+                <label for="difficulty" class="control-label">Dificultad de la IA</label>
+                <select id="difficulty" class="difficulty-select">
+                    <option value="easy">Principiante</option>
+                    <option value="medium" selected>Intermedio</option>
+                    <option value="hard">Experto</option>
+                </select>
+            </div>
+            
+            <div class="game-buttons">
+                <button id="new-game" class="btn btn-primary">Nueva Partida</button>
+                <button id="reset-stats" class="btn btn-outline">Reiniciar Stats</button>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <div class="stat-item">
+                <span class="stat-label">Victorias</span>
+                <span id="wins" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Empates</span>
+                <span id="draws" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Derrotas</span>
+                <span id="losses" class="stat-value">0</span>
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <div class="game-status">
+                <p id="current-player">Tu turno - Eres las <strong>X</strong></p>
+            </div>
+            
+            <div id="game-board" class="game-board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+        </div>
+        
+            <div class="message-area">
+                <p id="game-message" class="game-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer class="footer-copyright">
+        © 2025 meskeIA
+    </footer>
+
+    <script src="js/game.js"></script>
+    
+    <!-- Contenido SEO educativo sobre Tres en Raya -->
+    <div class="seo-content">
+    <div style="max-width: 900px; margin: 2rem auto; padding: 0 20px;">
+        <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5; margin-bottom: 2rem;">
+            <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">🎲 Guía Completa del Tres en Raya</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #2E86AB;">
+                    <h3 style="color: #2E86AB; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎮 Reglas y Objetivos</h3>
+                    <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">El Tres en Raya es un juego de estrategia para dos jugadores donde el objetivo es conseguir tres símbolos iguales en línea antes que el oponente.</p>
+                    <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Tablero:</strong> Cuadrícula de 3x3 casillas</li>
+                        <li><strong>Símbolos:</strong> X (jugador) vs O (IA)</li>
+                        <li><strong>Victoria:</strong> Tres en fila, columna o diagonal</li>
+                        <li><strong>Empate:</strong> Tablero lleno sin ganador</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #48A9A6;">
+                    <h3 style="color: #48A9A6; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🧠 Estrategias Ganadoras</h3>
+                    <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Domina las técnicas fundamentales para mejorar tu rendimiento contra la inteligencia artificial en todos los niveles de dificultad.</p>
+                    <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Centro:</strong> Controla la casilla central</li>
+                        <li><strong>Esquinas:</strong> Ocupa las esquinas estratégicas</li>
+                        <li><strong>Bloqueo:</strong> Impide las líneas del oponente</li>
+                        <li><strong>Doble amenaza:</strong> Crea múltiples oportunidades</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #6AAA64;">
+                    <h3 style="color: #6AAA64; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🎯 Niveles de Dificultad IA</h3>
+                    <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Nuestra IA ofrece tres niveles de desafío progresivo, desde principiante hasta experto, adaptándose a tu nivel de habilidad.</p>
+                    <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Principiante:</strong> Movimientos aleatorios ocasionales</li>
+                        <li><strong>Intermedio:</strong> Estrategia básica con errores</li>
+                        <li><strong>Experto:</strong> Algoritmo minimax perfecto</li>
+                        <li><strong>Progresión:</strong> Aumenta dificultad gradualmente</li>
+                    </ul>
+                </div>
+                
+                <div style="padding: 1.5rem; background: #F5F5F5; border-radius: 12px; border-left: 4px solid #C9B458;">
+                    <h3 style="color: #C9B458; font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🏆 Beneficios Mentales</h3>
+                    <p style="color: #666666; line-height: 1.6; margin-bottom: 1rem;">Jugar Tres en Raya regularmente desarrolla habilidades cognitivas importantes y mejora el pensamiento estratégico.</p>
+                    <ul style="color: #666666; padding-left: 1.5rem; line-height: 1.5;">
+                        <li><strong>Lógica:</strong> Desarrolla pensamiento deductivo</li>
+                        <li><strong>Planificación:</strong> Anticipa movimientos futuros</li>
+                        <li><strong>Concentración:</strong> Mantiene atención sostenida</li>
+                        <li><strong>Toma decisiones:</strong> Evalúa opciones rápidamente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 900px; margin: 0 auto 2rem; padding: 0 20px;">
+        <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #E5E5E5;">
+            <h2 style="color: #1A1A1A; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes sobre Tres en Raya</h2>
+            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo ganar al Tres en Raya contra la IA?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Para ganar contra la IA: 1) Ocupa el centro primero, 2) Controla las esquinas, 3) Bloquea las líneas del oponente, 4) Crea dobles amenazas. En nivel experto, el juego perfecto siempre termina en empate, así que busca los errores de la IA."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cuál es la diferencia entre los niveles de dificultad?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Principiante hace movimientos aleatorios ocasionales, Intermedio usa estrategia básica pero comete errores, y Experto implementa el algoritmo minimax que juega perfectamente. Recomendamos empezar en Principiante y subir gradualmente."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Es posible ganar siempre en Tres en Raya?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "En teoría de juegos, el Tres en Raya perfecto siempre termina en empate cuando ambos jugadores juegan óptimamente. Sin embargo, puedes ganar aprovechando los errores del oponente o jugando contra niveles más bajos de IA."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué beneficios tiene jugar Tres en Raya?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Jugar Tres en Raya desarrolla el pensamiento lógico, mejora la capacidad de planificación, entrena la concentración y enseña a tomar decisiones rápidas. Es excelente para ejercitar la mente de forma divertida."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo se calculan las estadísticas del juego?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Las estadísticas se guardan localmente en tu navegador y cuentan: Victorias (ganas tú), Empates (nadie gana), y Derrotas (gana la IA). Puedes reiniciar las estadísticas en cualquier momento con el botón correspondiente."
+                        }
+                    }
+                ]
+            }
+            </script>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cómo ganar al Tres en Raya contra la IA?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Para maximizar tus posibilidades de victoria: 1) Ocupa el centro en tu primer movimiento, 2) Controla las esquinas, 3) Siempre bloquea las líneas del oponente, 4) Intenta crear dobles amenazas. En nivel experto, el juego perfecto siempre termina en empate, así que busca aprovechar cualquier error de la IA.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cuál es la diferencia entre los niveles de dificultad?</summary>
+                    <p style="color: #666666; line-height: 1.6;">El nivel Principiante hace movimientos aleatorios ocasionales, facilitando las victorias. Intermedio usa estrategia básica pero comete errores calculados. Experto implementa el algoritmo minimax que juega perfectamente. Recomendamos empezar en Principiante y subir gradualmente para mejorar tus habilidades.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Es posible ganar siempre en Tres en Raya?</summary>
+                    <p style="color: #666666; line-height: 1.6;">En teoría de juegos, el Tres en Raya perfecto siempre termina en empate cuando ambos jugadores juegan óptimamente. Sin embargo, puedes ganar consistentemente aprovechando los errores del oponente o jugando contra niveles más bajos de IA. La clave está en la estrategia y la paciencia.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Qué beneficios tiene jugar Tres en Raya?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Jugar Tres en Raya regularmente desarrolla el pensamiento lógico y deductivo, mejora la capacidad de planificación a corto plazo, entrena la concentración y enseña a tomar decisiones rápidas bajo presión. Es una excelente forma de ejercitar la mente de manera divertida y accesible.</p>
+                </details>
+                
+                <details style="border: 1px solid #E5E5E5; border-radius: 8px; padding: 1rem; background: #F5F5F5;">
+                    <summary style="font-weight: 600; color: #1A1A1A; cursor: pointer; margin-bottom: 0.5rem;">¿Cómo se calculan las estadísticas del juego?</summary>
+                    <p style="color: #666666; line-height: 1.6;">Las estadísticas se guardan localmente en tu navegador y registran: Victorias (cuando tú ganas), Empates (cuando nadie gana), y Derrotas (cuando gana la IA). Los datos persisten entre sesiones y puedes reiniciar las estadísticas en cualquier momento usando el botón "Reiniciar Stats".</p>
+                </details>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

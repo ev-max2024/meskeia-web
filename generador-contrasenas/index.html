@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <title>Generador de Contraseñas Seguras Online | meskeIA</title>
+    <meta name="description" content="Crea contraseñas seguras y aleatorias con nuestro generador. Personalizable, privado y sin registro. Incluye medidor de fortaleza.">
+    <meta name="keywords" content="generador contraseñas, password generator, seguridad online, contraseñas aleatorias, ciberseguridad">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meskeia.com/generador-contraseñas/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Generador de Contraseñas Seguras - meskeIA">
+    <meta property="og:description" content="Genera contraseñas seguras y aleatorias. Personalizable, privado y sin registro requerido.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/generador-contraseñas/">
+    <meta property="og:image" content="../icon_meskeia.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Generador de Contraseñas - meskeIA">
+    <meta name="twitter:description" content="Herramienta gratuita para generar contraseñas seguras y aleatorias">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Generador de Contraseñas Seguras",
+      "description": "Generador de contraseñas seguras y aleatorias con opciones personalizables",
+      "url": "https://meskeia.com/generador-contraseñas/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "meskeIA",
+        "url": "https://meskeia.com"
+      }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+            
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            
+            /* Estados */
+            --success: #28a745;
+            --success-hover: #218838;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            
+            /* Espaciado consistente */
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            padding: var(--spacing-lg);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        .app-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+        
+        /* Sección informativa */
+        .info-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .info-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2E86AB;
+        }
+        
+        .info-section h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+            color: #48A9A6;
+        }
+        
+        .info-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .info-section ul {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        
+        .info-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .faq-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        details {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            background: var(--hover);
+            transition: all 0.2s ease;
+        }
+        
+        details:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        details summary {
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            list-style: none;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        details summary::after {
+            content: '▶';
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: transform 0.2s ease;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+        
+        details p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-medium);
+            max-width: 500px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .settings {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .setting-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Input numérico para longitud */
+        input[type="number"] {
+            width: 120px;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            outline: none;
+            font-family: inherit;
+        }
+
+        input[type="number"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .length-info {
+            margin-top: var(--spacing-xs);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: var(--hover);
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: normal;
+            color: var(--text-primary);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-lg);
+            font-family: inherit;
+        }
+
+        .generate-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+
+        .password-output {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .password-display {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background: var(--hover);
+            word-break: break-all;
+            min-height: 60px;
+            resize: none;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .password-display.strong {
+            border-color: var(--success);
+            background: rgba(40, 167, 69, 0.05);
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .strength-meter {
+            margin-top: var(--spacing-md);
+        }
+
+        .strength-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .strength-text {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .history {
+            margin-top: var(--spacing-lg);
+            border-top: 1px solid var(--border);
+            padding-top: var(--spacing-lg);
+        }
+
+        .history h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .history-item {
+            background: var(--hover);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing-sm);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .history-item:hover {
+            background: var(--bg-card);
+            border-color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .clear-history {
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: var(--spacing-xs) var(--spacing-md);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: var(--spacing-sm);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .clear-history:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .info-box {
+            background: rgba(46, 134, 171, 0.05);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            color: var(--text-primary);
+        }
+
+        .security-tips {
+            margin-top: var(--spacing-lg);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .security-tips strong {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            body {
+                padding: var(--spacing-sm);
+            }
+
+            .container {
+                padding: var(--spacing-lg);
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            input[type="number"] {
+                width: 100px;
+                font-size: 1rem;
+            }
+
+            .footer {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .copy-btn {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin-top: var(--spacing-sm);
+                width: 100%;
+            }
+
+            .password-output {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        /* Accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <nav class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;" role="navigation" aria-label="Volver al inicio">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <header>
+            <h1 style="text-align: center; margin-bottom: 1rem;">Generador de Contraseñas Seguras</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Crea contraseñas únicas e imposibles de descifrar</p>
+        </header>
+
+        <div class="app-container">
+            <main class="container" role="main">
+                <h2 style="display: none;">Generador de Contraseñas</h2>
+                
+                <div class="settings">
+                    <div class="setting-group">
+                        <label for="passwordLength" id="passwordLengthLabel">Longitud de la contraseña:</label>
+                        <input type="number" id="passwordLength" min="4" max="64" value="16" aria-labelledby="passwordLengthLabel">
+                        <div class="length-info">Rango permitido: 4-64 caracteres</div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Incluir caracteres:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="uppercase" checked aria-label="Incluir mayúsculas">
+                                <label for="uppercase">Mayúsculas (A-Z)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="lowercase" checked aria-label="Incluir minúsculas">
+                                <label for="lowercase">Minúsculas (a-z)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="numbers" checked aria-label="Incluir números">
+                                <label for="numbers">Números (0-9)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="symbols" checked aria-label="Incluir símbolos">
+                                <label for="symbols">Símbolos (!@#$%)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="generate-btn" onclick="generatePassword()" aria-label="Generar nueva contraseña segura">
+                    🎲 Generar Contraseña Segura
+                </button>
+
+                <div class="password-output">
+                    <textarea class="password-display" id="passwordDisplay" 
+                             placeholder="Tu contraseña segura aparecerá aquí..." readonly aria-label="Contraseña generada"></textarea>
+                    <button class="copy-btn" id="copyBtn" onclick="copyPassword()" style="display: none;" aria-label="Copiar contraseña al portapapeles">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="strength-meter" id="strengthMeter" style="display: none;" aria-live="polite">
+                    <div class="strength-bar" role="progressbar" aria-label="Medidor de fortaleza de contraseña">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                    <div class="strength-text" id="strengthText"></div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Consejos de seguridad:</strong><br>
+                    • Usa contraseñas únicas para cada sitio web<br>
+                    • Nunca compartas tus contraseñas<br>
+                    • Considera usar un gestor de contraseñas<br>
+                    • Cambia contraseñas regularmente en sitios importantes
+                </div>
+
+                <section class="history" aria-label="Historial de contraseñas">
+                    <h3>📝 Historial de contraseñas generadas</h3>
+                    <div id="historyList"></div>
+                    <button class="clear-history" onclick="clearHistory()" aria-label="Limpiar historial de contraseñas">🗑️ Limpiar historial</button>
+                </section>
+
+                <div class="security-tips">
+                    <strong>🔐 ¿Por qué son seguras estas contraseñas?</strong><br>
+                    Cada contraseña se genera usando un algoritmo criptográficamente seguro que garantiza 
+                    que cada una sea completamente única y aleatoria, imposible de predecir.
+                </div>
+            </main>
+        </div>
+        
+        <!-- Sección informativa SEO -->
+        <section class="info-section">
+            <h2>¿Por qué necesitas contraseñas seguras?</h2>
+            <p>
+                En la era digital actual, las contraseñas son la primera línea de defensa contra el cibercrimen. 
+                Una contraseña débil puede comprometer tu información personal, cuentas bancarias, correo electrónico 
+                y redes sociales. Los hackers utilizan sofisticados algoritmos y técnicas de fuerza bruta para descifrar 
+                contraseñas simples en cuestión de minutos.
+            </p>
+            <p>
+                Nuestro generador utiliza criptografía avanzada para crear contraseñas verdaderamente aleatorias e 
+                impredecibles. Cada contraseña generada es única y cumple con los más altos estándares de seguridad 
+                informática, protegiendo tus datos con la misma tecnología que usan los bancos y organismos gubernamentales.
+            </p>
+            
+            <h3>Características de una contraseña segura</h3>
+            <ul>
+                <li><strong>Longitud mínima:</strong> Al menos 12 caracteres, idealmente 16 o más</li>
+                <li><strong>Complejidad:</strong> Combinación de mayúsculas, minúsculas, números y símbolos</li>
+                <li><strong>Aleatoriedad:</strong> Sin patrones predecibles o información personal</li>
+                <li><strong>Unicidad:</strong> Diferente para cada cuenta y servicio</li>
+                <li><strong>Actualización:</strong> Cambiada regularmente, especialmente tras brechas de seguridad</li>
+            </ul>
+        </section>
+        
+        <!-- Sección FAQ -->
+        <section class="faq-section">
+            <h2>❓ Preguntas Frecuentes sobre Seguridad</h2>
+            
+            <div class="faq-container">
+                <details>
+                    <summary>¿Qué hace que una contraseña sea realmente segura?</summary>
+                    <p>Una contraseña segura debe tener al menos 12 caracteres, incluir una mezcla de mayúsculas, minúsculas, números y símbolos, ser completamente aleatoria y única para cada cuenta. Nuestro generador cumple todos estos criterios automáticamente.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Es seguro usar un generador de contraseñas online?</summary>
+                    <p>Sí, nuestro generador funciona completamente en tu navegador sin enviar datos a ningún servidor. Las contraseñas se generan localmente usando algoritmos criptográficamente seguros y nunca son transmitidas por internet.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Con qué frecuencia debo cambiar mis contraseñas?</summary>
+                    <p>Se recomienda cambiar contraseñas cada 3-6 meses para cuentas importantes como banca online y correo. Sin embargo, es más importante usar contraseñas únicas y fuertes que cambiarlas frecuentemente.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Puedo memorizar contraseñas tan complejas?</summary>
+                    <p>No es necesario memorizar estas contraseñas. Te recomendamos usar un gestor de contraseñas como LastPass, 1Password o Bitwarden para almacenar y administrar tus contraseñas de forma segura.</p>
+                </details>
+                
+                <details>
+                    <summary>¿Qué pasa si olvido una contraseña generada?</summary>
+                    <p>Si usas un gestor de contraseñas, podrás recuperarla fácilmente. Sin gestor, tendrás que usar las opciones de "recuperar contraseña" del sitio web. Por eso recomendamos siempre usar un gestor de contraseñas.</p>
+                </details>
+            </div>
+        </section>
+        
+        <!-- Schema Markup FAQ -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué hace que una contraseña sea realmente segura?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Una contraseña segura debe tener al menos 12 caracteres, incluir una mezcla de mayúsculas, minúsculas, números y símbolos, ser completamente aleatoria y única para cada cuenta."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Es seguro usar un generador de contraseñas online?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, nuestro generador funciona completamente en tu navegador sin enviar datos a ningún servidor. Las contraseñas se generan localmente usando algoritmos criptográficamente seguros."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Con qué frecuencia debo cambiar mis contraseñas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Se recomienda cambiar contraseñas cada 3-6 meses para cuentas importantes. Sin embargo, es más importante usar contraseñas únicas y fuertes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo memorizar contraseñas tan complejas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No es necesario memorizar estas contraseñas. Te recomendamos usar un gestor de contraseñas como LastPass, 1Password o Bitwarden."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué pasa si olvido una contraseña generada?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Si usas un gestor de contraseñas, podrás recuperarla fácilmente. Sin gestor, tendrás que usar las opciones de 'recuperar contraseña' del sitio web."
+              }
+            }
+          ]
+        }
+        </script>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer class="footer">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Configuración de caracteres
+        const charSets = {
+            uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            lowercase: 'abcdefghijklmnopqrstuvwxyz',
+            numbers: '0123456789',
+            symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+        };
+
+        let passwordHistory = [];
+
+        // Función para generar contraseña segura
+        function generatePassword() {
+            const lengthInput = document.getElementById('passwordLength');
+            let length = parseInt(lengthInput.value);
+
+            // Validar y ajustar longitud
+            if (length < 4) {
+                length = 4;
+                lengthInput.value = 4;
+            } else if (length > 64) {
+                length = 64;
+                lengthInput.value = 64;
+            }
+
+            const includeUppercase = document.getElementById('uppercase').checked;
+            const includeLowercase = document.getElementById('lowercase').checked;
+            const includeNumbers = document.getElementById('numbers').checked;
+            const includeSymbols = document.getElementById('symbols').checked;
+
+            // Validar que al menos una opción esté seleccionada
+            if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
+                alert('¡Debes seleccionar al menos un tipo de carácter!');
+                return;
+            }
+
+            // Construir el conjunto de caracteres disponibles
+            let availableChars = '';
+            let requiredChars = '';
+
+            if (includeUppercase) {
+                availableChars += charSets.uppercase;
+                requiredChars += getRandomChar(charSets.uppercase);
+            }
+            if (includeLowercase) {
+                availableChars += charSets.lowercase;
+                requiredChars += getRandomChar(charSets.lowercase);
+            }
+            if (includeNumbers) {
+                availableChars += charSets.numbers;
+                requiredChars += getRandomChar(charSets.numbers);
+            }
+            if (includeSymbols) {
+                availableChars += charSets.symbols;
+                requiredChars += getRandomChar(charSets.symbols);
+            }
+
+            // Generar caracteres restantes aleatoriamente
+            let password = requiredChars;
+            for (let i = requiredChars.length; i < length; i++) {
+                password += getRandomChar(availableChars);
+            }
+
+            // Mezclar la contraseña para que los caracteres requeridos no estén al principio
+            password = shuffleString(password);
+
+            // Mostrar la contraseña
+            const passwordDisplay = document.getElementById('passwordDisplay');
+            passwordDisplay.value = password;
+            passwordDisplay.classList.add('strong');
+
+            // Mostrar botón de copiar
+            document.getElementById('copyBtn').style.display = 'block';
+
+            // Evaluar fortaleza
+            evaluateStrength(password);
+
+            // Agregar al historial
+            addToHistory(password);
+
+            // Animación de generación
+            passwordDisplay.style.opacity = '0.5';
+            setTimeout(() => {
+                passwordDisplay.style.opacity = '1';
+            }, 100);
+        }
+
+        // Función para obtener un carácter aleatorio criptográficamente seguro
+        function getRandomChar(chars) {
+            const array = new Uint8Array(1);
+            let randomIndex;
+            
+            do {
+                crypto.getRandomValues(array);
+                randomIndex = array[0];
+            } while (randomIndex >= chars.length * Math.floor(256 / chars.length));
+            
+            return chars[randomIndex % chars.length];
+        }
+
+        // Función para mezclar string de forma segura
+        function shuffleString(str) {
+            const array = str.split('');
+            for (let i = array.length - 1; i > 0; i--) {
+                const randomBytes = new Uint8Array(1);
+                crypto.getRandomValues(randomBytes);
+                const j = Math.floor((randomBytes[0] / 256) * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array.join('');
+        }
+
+        // Función para copiar contraseña
+        function copyPassword() {
+            const passwordDisplay = document.getElementById('passwordDisplay');
+            passwordDisplay.select();
+            passwordDisplay.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(passwordDisplay.value).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ ¡Copiado!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                // Método alternativo para navegadores antiguos
+                const textArea = document.createElement('textarea');
+                textArea.value = passwordDisplay.value;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ ¡Copiado!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Función para evaluar fortaleza de contraseña
+        function evaluateStrength(password) {
+            let score = 0;
+
+            // Criterios de evaluación
+            if (password.length >= 12) score += 25;
+            else if (password.length >= 8) score += 15;
+
+            if (/[a-z]/.test(password)) score += 20;
+            if (/[A-Z]/.test(password)) score += 20;
+            if (/[0-9]/.test(password)) score += 20;
+            if (/[^A-Za-z0-9]/.test(password)) score += 25;
+
+            // Penalizar patrones repetitivos
+            if (!/(.)\1{2,}/.test(password)) score += 10;
+
+            // Determinar nivel de fortaleza
+            const strengthMeter = document.getElementById('strengthMeter');
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+
+            let color, text;
+            if (score >= 90) {
+                color = '#28a745';
+                text = '🔒 Muy Fuerte';
+            } else if (score >= 70) {
+                color = '#28a745';
+                text = '🔐 Fuerte';
+            } else if (score >= 50) {
+                color = '#ffc107';
+                text = '⚠️ Media';
+            } else {
+                color = '#dc3545';
+                text = '🚨 Débil';
+            }
+
+            strengthFill.style.width = score + '%';
+            strengthFill.style.backgroundColor = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+
+            strengthMeter.style.display = 'block';
+        }
+
+        // Función para agregar al historial
+        function addToHistory(password) {
+            const timestamp = new Date().toLocaleString('es-ES');
+            passwordHistory.unshift({
+                password: password,
+                timestamp: timestamp
+            });
+
+            // Limitar historial a 10 elementos
+            if (passwordHistory.length > 10) {
+                passwordHistory = passwordHistory.slice(0, 10);
+            }
+
+            updateHistoryDisplay();
+        }
+
+        // Función para actualizar display del historial
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            
+            if (passwordHistory.length === 0) {
+                historyList.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">No hay contraseñas generadas aún</p>';
+                return;
+            }
+
+            historyList.innerHTML = passwordHistory.map((item, index) => `
+                <div class="history-item" onclick="selectHistoryPassword(${index})" title="Clic para seleccionar">
+                    <div style="font-size: 0.8em; color: var(--text-muted); margin-bottom: 5px;">${item.timestamp}</div>
+                    <div>${item.password}</div>
+                </div>
+            `).join('');
+        }
+
+        // Función para seleccionar contraseña del historial
+        function selectHistoryPassword(index) {
+            const password = passwordHistory[index].password;
+            document.getElementById('passwordDisplay').value = password;
+            document.getElementById('copyBtn').style.display = 'block';
+            evaluateStrength(password);
+        }
+
+        // Función para limpiar historial
+        function clearHistory() {
+            if (confirm('¿Estás seguro de que quieres limpiar el historial?')) {
+                passwordHistory = [];
+                updateHistoryDisplay();
+            }
+        }
+
+        // Validación en tiempo real del input numérico
+        document.getElementById('passwordLength').addEventListener('input', function() {
+            let value = parseInt(this.value);
+            if (value < 4) {
+                this.value = 4;
+            } else if (value > 64) {
+                this.value = 64;
+            }
+        });
+
+        // Generar una contraseña inicial
+        generatePassword();
+    </script>
+</body>
+</html>

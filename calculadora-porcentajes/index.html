@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta básicas mejoradas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="meskeIA">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- Evitar caché para correcciones responsive -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- SEO Principal -->
+    <title>Calculadora de Porcentajes Avanzada - Cálculos con Visualización | meskeIA</title>
+    <meta name="description" content="Calculadora de porcentajes avanzada con visualizaciones interactivas. Calcula descuentos, IVA, propinas, incrementos y cambios porcentuales. Incluye ejemplos españoles y explicaciones paso a paso.">
+    <meta name="keywords" content="calculadora porcentajes, descuentos, IVA España, propinas, cambio porcentual, incremento, reducción, cálculo porcentajes, matemáticas básicas, herramientas cálculo, meskeIA">
+
+    <link rel="canonical" href="https://meskeia.com/calculadora-porcentajes/">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Porcentajes Avanzada - meskeIA">
+    <meta property="og:description" content="Herramienta completa para cálculos de porcentajes con visualizaciones. Descuentos, IVA, propinas y más. Ejemplos españoles incluidos.">
+    <meta property="og:url" content="https://meskeia.com/calculadora-porcentajes/">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Porcentajes Avanzada - meskeIA">
+    <meta name="twitter:description" content="Calcula porcentajes, descuentos, IVA y propinas con visualizaciones interactivas y ejemplos españoles">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Calc Porcentajes">
+    <meta name="msapplication-TileColor" content="#2E86AB">
+    <meta name="msapplication-TileImage" content="../icon_meskeia.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Porcentajes Avanzada",
+        "description": "Herramienta web para cálculos de porcentajes con visualizaciones interactivas, ejemplos españoles y explicaciones paso a paso",
+        "url": "https://meskeia.com/calculadora-porcentajes/calculadora-porcentajes.html",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA",
+            "email": "meskeia24@gmail.com"
+        },
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "inLanguage": "es-ES",
+        "audience": {
+            "@type": "Audience",
+            "geographicArea": "Spain"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "Cálculo básico de porcentajes",
+            "Descuentos y aumentos",
+            "Cálculo de IVA español",
+            "Calculadora de propinas",
+            "Visualizaciones interactivas",
+            "Ejemplos predefinidos",
+            "Historial de cálculos"
+        ]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPGLJBQ4Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SPPGLJBQ4Z');
+    </script>
+
+    <!-- Chart.js para visualizaciones -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Reset y Variables Minimalistas meskeIA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista meskeIA - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            --secondary: #48A9A6;       /* Verde azulado complementario */
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --success: #4CAF50;         /* Verde éxito */
+            --warning: #FF9800;         /* Naranja advertencia */
+            --error: #F44336;           /* Rojo error */
+
+            /* Sombras y efectos */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-strong: 0 8px 24px rgba(0,0,0,0.12);
+
+            /* Espaciado consistente */
+            --radius: 8px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        /* Prevenir overflow en todos los elementos */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Reglas drásticas anti-overflow para móvil */
+        @media (max-width: 768px) {
+            *, *::before, *::after {
+                max-width: 100vw !important;
+                box-sizing: border-box !important;
+            }
+
+            body, html {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+            }
+
+            .container, .main-grid, .calculator-panel, .visualization-panel {
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+        }
+
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-lg);
+            padding-top: 80px; /* Espacio para el logo flotante */
+        }
+
+        /* Título principal */
+        .page-title {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Panel de calculadoras */
+        .calculator-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            border-radius: var(--radius) var(--radius) 0 0;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--hover);
+            color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Formularios de cálculo */
+        .calc-form {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .input-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--spacing-sm);
+            align-items: end;
+        }
+
+        .input-field {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            background: var(--bg-card);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+        }
+
+        .unit-label {
+            background: var(--hover);
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .calc-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .calc-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Resultado */
+        .result-section {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--hover);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .result-main {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .result-explanation {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Panel de visualización */
+        .visualization-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .visualization-panel h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: var(--spacing-lg);
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .chart-container canvas {
+            max-width: 100% !important;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Ejemplos predefinidos */
+        .examples-section {
+            margin-top: var(--spacing-lg);
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .example-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .example-btn:hover {
+            border-color: var(--primary);
+            background: var(--hover);
+        }
+
+        .example-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .example-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Historial */
+        .history-section {
+            margin-top: var(--spacing-lg);
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+        }
+
+        .history-item {
+            padding: var(--spacing-sm);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-item:hover {
+            background: var(--hover);
+        }
+
+        .clear-history {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: var(--spacing-sm);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .calculator-tabs {
+                flex-wrap: wrap;
+                gap: var(--spacing-xs);
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: var(--spacing-md) var(--spacing-sm);
+                padding-top: 70px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .calculator-panel,
+            .visualization-panel {
+                padding: var(--spacing-md);
+                margin: 0;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .input-row {
+                gap: var(--spacing-xs);
+            }
+
+            .input-field {
+                min-width: 0;
+                flex: 1;
+            }
+
+            .unit-label {
+                min-width: 40px;
+                padding: var(--spacing-xs);
+            }
+
+            .tab-btn {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.8rem;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .examples-grid .example-btn {
+                padding: var(--spacing-xs);
+            }
+
+            .chart-container {
+                height: 250px;
+                width: 100% !important;
+                max-width: calc(100vw - 32px) !important;
+                overflow: hidden !important;
+            }
+
+            .chart-container canvas {
+                max-width: 100% !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .history-list {
+                max-height: 150px;
+            }
+        }
+
+        /* Fix para móviles muy pequeños */
+        @media (max-width: 375px) {
+            .container {
+                padding: var(--spacing-sm) 4px;
+                margin: 0;
+                max-width: 100vw;
+            }
+
+            .calculator-panel,
+            .visualization-panel {
+                padding: var(--spacing-sm);
+                margin: 0 -2px; /* Margen negativo para compensar */
+                border-left: none;
+                border-right: none;
+                border-radius: var(--radius) 0 0 var(--radius);
+            }
+
+            .main-grid {
+                gap: var(--spacing-sm);
+                margin: 0;
+                padding: 0;
+            }
+
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .tab-btn {
+                font-size: 0.75rem;
+                padding: 6px 4px;
+            }
+
+            .input-row {
+                gap: 4px;
+            }
+
+            .input-field,
+            .unit-label {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Fix para pantallas muy estrechas */
+        @media (max-width: 320px) {
+            .container {
+                padding: 8px 2px;
+            }
+
+            .calculator-panel,
+            .visualization-panel {
+                margin: 0 -4px;
+                padding: 8px;
+            }
+
+            .tab-btn {
+                padding: 4px 2px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calculator-panel,
+        .visualization-panel {
+            animation: fadeInUp 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <!-- Título -->
+        <div class="page-title">
+            <h1>Calculadora de Porcentajes Avanzada</h1>
+            <p class="page-subtitle">
+                Herramienta completa para cálculos de porcentajes con visualizaciones interactivas y ejemplos españoles
+            </p>
+        </div>
+
+        <!-- Grid principal -->
+        <div class="main-grid">
+            <!-- Panel de calculadoras -->
+            <div class="calculator-panel">
+                <!-- Pestañas de calculadoras -->
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('basic')">Básico</button>
+                    <button class="tab-btn" onclick="switchTab('change')">Cambios</button>
+                    <button class="tab-btn" onclick="switchTab('iva')">IVA</button>
+                    <button class="tab-btn" onclick="switchTab('tips')">Propinas</button>
+                </div>
+
+                <!-- Calculadora básica -->
+                <div id="basic-tab" class="tab-content active">
+                    <form class="calc-form">
+                        <div class="input-group">
+                            <label>¿Cuánto es el X% de Y?</label>
+                            <div class="input-row">
+                                <input type="number" id="basic-percent" class="input-field" placeholder="Porcentaje" step="0.01">
+                                <span class="unit-label">%</span>
+                            </div>
+                            <div style="text-align: center; margin: 8px 0; color: var(--text-secondary);">de</div>
+                            <div class="input-row">
+                                <input type="number" id="basic-total" class="input-field" placeholder="Cantidad total" step="0.01">
+                                <span class="unit-label">€</span>
+                            </div>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="calculateBasic()">Calcular</button>
+                    </form>
+
+                    <div class="input-group" style="margin-top: var(--spacing-lg);">
+                        <label>¿Qué porcentaje representa X de Y?</label>
+                        <div class="input-row">
+                            <input type="number" id="part-value" class="input-field" placeholder="Parte" step="0.01">
+                            <span class="unit-label">€</span>
+                        </div>
+                        <div style="text-align: center; margin: 8px 0; color: var(--text-secondary);">de</div>
+                        <div class="input-row">
+                            <input type="number" id="total-value" class="input-field" placeholder="Total" step="0.01">
+                            <span class="unit-label">€</span>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="calculatePart()">Calcular Porcentaje</button>
+                    </div>
+                </div>
+
+                <!-- Calculadora de cambios -->
+                <div id="change-tab" class="tab-content">
+                    <form class="calc-form">
+                        <div class="input-group">
+                            <label>Calculadora de cambio porcentual</label>
+                            <div class="input-row">
+                                <input type="number" id="old-value" class="input-field" placeholder="Valor inicial" step="0.01">
+                                <span class="unit-label">€</span>
+                            </div>
+                            <div class="input-row">
+                                <input type="number" id="new-value" class="input-field" placeholder="Valor final" step="0.01">
+                                <span class="unit-label">€</span>
+                            </div>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="calculateChange()">Calcular Cambio</button>
+                    </form>
+
+                    <div class="input-group" style="margin-top: var(--spacing-lg);">
+                        <label>Aplicar descuento/incremento</label>
+                        <div class="input-row">
+                            <input type="number" id="base-amount" class="input-field" placeholder="Cantidad base" step="0.01">
+                            <span class="unit-label">€</span>
+                        </div>
+                        <div class="input-row">
+                            <input type="number" id="change-percent" class="input-field" placeholder="Porcentaje (+ o -)" step="0.01">
+                            <span class="unit-label">%</span>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="applyChange()">Aplicar Cambio</button>
+                    </div>
+                </div>
+
+                <!-- Calculadora IVA -->
+                <div id="iva-tab" class="tab-content">
+                    <form class="calc-form">
+                        <div class="input-group">
+                            <label>Calcular IVA español</label>
+                            <div class="input-row">
+                                <input type="number" id="iva-base" class="input-field" placeholder="Precio sin IVA" step="0.01">
+                                <span class="unit-label">€</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Tipo de IVA</label>
+                                <select id="iva-type" class="input-field">
+                                    <option value="21">General (21%)</option>
+                                    <option value="10">Reducido (10%)</option>
+                                    <option value="4">Superreducido (4%)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="calculateIVA()">Calcular IVA</button>
+                    </form>
+
+                    <div class="input-group" style="margin-top: var(--spacing-lg);">
+                        <label>Calcular precio sin IVA</label>
+                        <div class="input-row">
+                            <input type="number" id="iva-total" class="input-field" placeholder="Precio con IVA" step="0.01">
+                            <span class="unit-label">€</span>
+                        </div>
+                        <div class="input-group">
+                            <label>Tipo de IVA incluido</label>
+                            <select id="iva-type-reverse" class="input-field">
+                                <option value="21">General (21%)</option>
+                                <option value="10">Reducido (10%)</option>
+                                <option value="4">Superreducido (4%)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="reverseIVA()">Calcular Sin IVA</button>
+                    </div>
+                </div>
+
+                <!-- Calculadora de propinas -->
+                <div id="tips-tab" class="tab-content">
+                    <form class="calc-form">
+                        <div class="input-group">
+                            <label>Calculadora de propinas</label>
+                            <div class="input-row">
+                                <input type="number" id="bill-amount" class="input-field" placeholder="Total de la cuenta" step="0.01">
+                                <span class="unit-label">€</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Nivel de servicio</label>
+                                <select id="tip-type" class="input-field" onchange="updateTipPercent()">
+                                    <option value="5">Básico (5%)</option>
+                                    <option value="10">Bueno (10%)</option>
+                                    <option value="15">Excelente (15%)</option>
+                                    <option value="custom">Personalizado</option>
+                                </select>
+                            </div>
+                            <div class="input-row" id="custom-tip-row" style="display: none;">
+                                <input type="number" id="custom-tip" class="input-field" placeholder="Porcentaje personalizado" step="0.01">
+                                <span class="unit-label">%</span>
+                            </div>
+                        </div>
+                        <button type="button" class="calc-btn" onclick="calculateTip()">Calcular Propina</button>
+                    </form>
+                </div>
+
+                <!-- Resultado -->
+                <div id="result-section" class="result-section" style="display: none;">
+                    <div id="result-main" class="result-main"></div>
+                    <div id="result-explanation" class="result-explanation"></div>
+                </div>
+
+                <!-- Ejemplos predefinidos -->
+                <div class="examples-section">
+                    <h4>Ejemplos rápidos:</h4>
+                    <div class="examples-grid">
+                        <button class="example-btn" onclick="loadExample('discount20')">
+                            <div class="example-title">Descuento 20%</div>
+                            <div class="example-desc">Precio: 100€</div>
+                        </button>
+                        <button class="example-btn" onclick="loadExample('iva21')">
+                            <div class="example-title">IVA 21%</div>
+                            <div class="example-desc">Base: 50€</div>
+                        </button>
+                        <button class="example-btn" onclick="loadExample('tip10')">
+                            <div class="example-title">Propina 10%</div>
+                            <div class="example-desc">Cuenta: 35€</div>
+                        </button>
+                        <button class="example-btn" onclick="loadExample('increase15')">
+                            <div class="example-title">Aumento 15%</div>
+                            <div class="example-desc">Sueldo: 1.500€</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de visualización -->
+            <div class="visualization-panel">
+                <h3>Visualización</h3>
+                <div class="chart-container">
+                    <canvas id="percentageChart"></canvas>
+                </div>
+
+                <!-- Historial -->
+                <div class="history-section">
+                    <h4>Historial de cálculos</h4>
+                    <div id="history-list" class="history-list">
+                        <div style="padding: var(--spacing-md); text-align: center; color: var(--text-muted);">
+                            No hay cálculos aún
+                        </div>
+                    </div>
+                    <button class="clear-history" onclick="clearHistory()">Limpiar historial</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Variables globales
+        let currentChart = null;
+        let calculationHistory = JSON.parse(localStorage.getItem('meskeia_percentage_history') || '[]');
+
+        // Formateo de números español
+        function formatNumber(num) {
+            return new Intl.NumberFormat('es-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function formatCurrency(num) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR'
+            }).format(num);
+        }
+
+        function formatPercent(num) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'percent',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num / 100);
+        }
+
+        // Gestión de pestañas
+        function switchTab(tabName) {
+            // Ocultar todas las pestañas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar pestaña seleccionada
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+
+            // Limpiar resultado
+            hideResult();
+        }
+
+        // Mostrar/ocultar resultado
+        function showResult(mainText, explanation) {
+            document.getElementById('result-main').textContent = mainText;
+            document.getElementById('result-explanation').innerHTML = explanation;
+            document.getElementById('result-section').style.display = 'block';
+        }
+
+        function hideResult() {
+            document.getElementById('result-section').style.display = 'none';
+        }
+
+        // Calculadora básica
+        function calculateBasic() {
+            const percent = parseFloat(document.getElementById('basic-percent').value);
+            const total = parseFloat(document.getElementById('basic-total').value);
+
+            if (isNaN(percent) || isNaN(total)) {
+                alert('Por favor, introduce valores válidos');
+                return;
+            }
+
+            const result = (percent / 100) * total;
+            const explanation = `Cálculo: ${formatPercent(percent)} de ${formatCurrency(total)} = ${formatCurrency(result)}`;
+
+            showResult(formatCurrency(result), explanation);
+            updateChart('doughnut', [result, total - result], ['Porcentaje calculado', 'Resto'], `${formatPercent(percent)} de ${formatCurrency(total)}`);
+            addToHistory(`${formatPercent(percent)} de ${formatCurrency(total)}`, formatCurrency(result));
+        }
+
+        function calculatePart() {
+            const part = parseFloat(document.getElementById('part-value').value);
+            const total = parseFloat(document.getElementById('total-value').value);
+
+            if (isNaN(part) || isNaN(total) || total === 0) {
+                alert('Por favor, introduce valores válidos');
+                return;
+            }
+
+            const percent = (part / total) * 100;
+            const explanation = `${formatCurrency(part)} representa el ${formatPercent(percent)} de ${formatCurrency(total)}`;
+
+            showResult(formatPercent(percent), explanation);
+            updateChart('doughnut', [part, total - part], ['Parte calculada', 'Resto'], `${formatCurrency(part)} de ${formatCurrency(total)}`);
+            addToHistory(`${formatCurrency(part)} de ${formatCurrency(total)}`, formatPercent(percent));
+        }
+
+        // Calculadora de cambios
+        function calculateChange() {
+            const oldValue = parseFloat(document.getElementById('old-value').value);
+            const newValue = parseFloat(document.getElementById('new-value').value);
+
+            if (isNaN(oldValue) || isNaN(newValue) || oldValue === 0) {
+                alert('Por favor, introduce valores válidos');
+                return;
+            }
+
+            const change = newValue - oldValue;
+            const percentChange = (change / oldValue) * 100;
+            const changeType = change > 0 ? 'aumento' : 'reducción';
+            const explanation = `Cambio de ${formatCurrency(oldValue)} a ${formatCurrency(newValue)}: ${changeType} del ${formatPercent(Math.abs(percentChange))}`;
+
+            showResult(`${change > 0 ? '+' : ''}${formatPercent(percentChange)}`, explanation);
+            updateChart('bar', [oldValue, newValue], ['Valor inicial', 'Valor final'], 'Comparación de valores');
+            addToHistory(`${formatCurrency(oldValue)} → ${formatCurrency(newValue)}`, `${change > 0 ? '+' : ''}${formatPercent(percentChange)}`);
+        }
+
+        function applyChange() {
+            const baseAmount = parseFloat(document.getElementById('base-amount').value);
+            const changePercent = parseFloat(document.getElementById('change-percent').value);
+
+            if (isNaN(baseAmount) || isNaN(changePercent)) {
+                alert('Por favor, introduce valores válidos');
+                return;
+            }
+
+            const change = (changePercent / 100) * baseAmount;
+            const finalAmount = baseAmount + change;
+            const changeType = changePercent > 0 ? 'incremento' : 'descuento';
+            const explanation = `${formatCurrency(baseAmount)} con ${changeType} del ${formatPercent(Math.abs(changePercent))} = ${formatCurrency(finalAmount)}`;
+
+            showResult(formatCurrency(finalAmount), explanation);
+            updateChart('bar', [baseAmount, Math.abs(change), finalAmount], ['Base', 'Cambio', 'Final'], `${changeType} del ${formatPercent(Math.abs(changePercent))}`);
+            addToHistory(`${formatCurrency(baseAmount)} ${changePercent > 0 ? '+' : ''}${formatPercent(changePercent)}`, formatCurrency(finalAmount));
+        }
+
+        // Calculadora IVA
+        function calculateIVA() {
+            const base = parseFloat(document.getElementById('iva-base').value);
+            const ivaRate = parseFloat(document.getElementById('iva-type').value);
+
+            if (isNaN(base)) {
+                alert('Por favor, introduce un valor válido');
+                return;
+            }
+
+            const ivaAmount = (ivaRate / 100) * base;
+            const total = base + ivaAmount;
+            const explanation = `Base: ${formatCurrency(base)} + IVA (${ivaRate}%): ${formatCurrency(ivaAmount)} = Total: ${formatCurrency(total)}`;
+
+            showResult(formatCurrency(total), explanation);
+            updateChart('doughnut', [base, ivaAmount], ['Base sin IVA', `IVA (${ivaRate}%)`], 'Desglose del precio');
+            addToHistory(`${formatCurrency(base)} + IVA ${ivaRate}%`, formatCurrency(total));
+        }
+
+        function reverseIVA() {
+            const total = parseFloat(document.getElementById('iva-total').value);
+            const ivaRate = parseFloat(document.getElementById('iva-type-reverse').value);
+
+            if (isNaN(total)) {
+                alert('Por favor, introduce un valor válido');
+                return;
+            }
+
+            const base = total / (1 + ivaRate / 100);
+            const ivaAmount = total - base;
+            const explanation = `Total con IVA: ${formatCurrency(total)} = Base: ${formatCurrency(base)} + IVA (${ivaRate}%): ${formatCurrency(ivaAmount)}`;
+
+            showResult(formatCurrency(base), explanation);
+            updateChart('doughnut', [base, ivaAmount], ['Base sin IVA', `IVA (${ivaRate}%)`], 'Desglose del precio');
+            addToHistory(`${formatCurrency(total)} sin IVA ${ivaRate}%`, formatCurrency(base));
+        }
+
+        // Calculadora de propinas
+        function updateTipPercent() {
+            const tipType = document.getElementById('tip-type').value;
+            const customRow = document.getElementById('custom-tip-row');
+
+            if (tipType === 'custom') {
+                customRow.style.display = 'flex';
+            } else {
+                customRow.style.display = 'none';
+            }
+        }
+
+        function calculateTip() {
+            const billAmount = parseFloat(document.getElementById('bill-amount').value);
+            const tipType = document.getElementById('tip-type').value;
+            let tipPercent;
+
+            if (tipType === 'custom') {
+                tipPercent = parseFloat(document.getElementById('custom-tip').value);
+            } else {
+                tipPercent = parseFloat(tipType);
+            }
+
+            if (isNaN(billAmount) || isNaN(tipPercent)) {
+                alert('Por favor, introduce valores válidos');
+                return;
+            }
+
+            const tipAmount = (tipPercent / 100) * billAmount;
+            const total = billAmount + tipAmount;
+            const explanation = `Cuenta: ${formatCurrency(billAmount)} + Propina (${formatPercent(tipPercent)}): ${formatCurrency(tipAmount)} = Total: ${formatCurrency(total)}`;
+
+            showResult(formatCurrency(total), explanation);
+            updateChart('doughnut', [billAmount, tipAmount], ['Cuenta', `Propina (${formatPercent(tipPercent)})`], 'Desglose del total');
+            addToHistory(`${formatCurrency(billAmount)} + propina ${formatPercent(tipPercent)}`, formatCurrency(total));
+        }
+
+        // Gestión del gráfico
+        function updateChart(type, data, labels, title) {
+            const ctx = document.getElementById('percentageChart').getContext('2d');
+
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            const config = {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            '#2E86AB',
+                            '#48A9A6',
+                            '#A3C4A2',
+                            '#F7C59F',
+                            '#FF9800'
+                        ],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    devicePixelRatio: 1,
+                    resizeDelay: 0,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            font: {
+                                size: window.innerWidth < 400 ? 12 : 16,
+                                weight: 'bold'
+                            },
+                            color: '#1A1A1A'
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: window.innerWidth < 400 ? 10 : 12
+                                },
+                                boxWidth: window.innerWidth < 400 ? 10 : 12
+                            }
+                        },
+                        tooltip: {
+                            titleFont: {
+                                size: window.innerWidth < 400 ? 10 : 12
+                            },
+                            bodyFont: {
+                                size: window.innerWidth < 400 ? 10 : 12
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    if (type === 'doughnut') {
+                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((context.raw / total) * 100).toFixed(2);
+                                        return `${context.label}: ${formatCurrency(context.raw)} (${percentage}%)`;
+                                    }
+                                    return `${context.label}: ${formatCurrency(context.raw)}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: type === 'bar' ? {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: window.innerWidth < 400 ? 10 : 12
+                                },
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: window.innerWidth < 400 ? 10 : 12
+                                }
+                            }
+                        }
+                    } : {},
+                    layout: {
+                        padding: {
+                            left: window.innerWidth < 400 ? 5 : 10,
+                            right: window.innerWidth < 400 ? 5 : 10,
+                            top: window.innerWidth < 400 ? 5 : 10,
+                            bottom: window.innerWidth < 400 ? 5 : 10
+                        }
+                    }
+                }
+            };
+
+            currentChart = new Chart(ctx, config);
+        }
+
+        // Gestión del historial
+        function addToHistory(calculation, result) {
+            const historyItem = {
+                calculation: calculation,
+                result: result,
+                timestamp: new Date().toLocaleString('es-ES')
+            };
+
+            calculationHistory.unshift(historyItem);
+            if (calculationHistory.length > 20) {
+                calculationHistory = calculationHistory.slice(0, 20);
+            }
+
+            localStorage.setItem('meskeia_percentage_history', JSON.stringify(calculationHistory));
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('history-list');
+
+            if (calculationHistory.length === 0) {
+                historyList.innerHTML = '<div style="padding: var(--spacing-md); text-align: center; color: var(--text-muted);">No hay cálculos aún</div>';
+                return;
+            }
+
+            historyList.innerHTML = calculationHistory.map(item => `
+                <div class="history-item">
+                    <div>
+                        <strong>${item.result}</strong><br>
+                        <small>${item.calculation}</small>
+                    </div>
+                    <small>${item.timestamp}</small>
+                </div>
+            `).join('');
+        }
+
+        function clearHistory() {
+            if (confirm('¿Estás seguro de que quieres limpiar el historial?')) {
+                calculationHistory = [];
+                localStorage.removeItem('meskeia_percentage_history');
+                updateHistoryDisplay();
+            }
+        }
+
+        // Ejemplos predefinidos
+        function loadExample(exampleType) {
+            switch (exampleType) {
+                case 'discount20':
+                    switchTab('change');
+                    document.querySelector('[onclick="switchTab(\'change\')"]').click();
+                    document.getElementById('base-amount').value = '100';
+                    document.getElementById('change-percent').value = '-20';
+                    applyChange();
+                    break;
+                case 'iva21':
+                    switchTab('iva');
+                    document.querySelector('[onclick="switchTab(\'iva\')"]').click();
+                    document.getElementById('iva-base').value = '50';
+                    document.getElementById('iva-type').value = '21';
+                    calculateIVA();
+                    break;
+                case 'tip10':
+                    switchTab('tips');
+                    document.querySelector('[onclick="switchTab(\'tips\')"]').click();
+                    document.getElementById('bill-amount').value = '35';
+                    document.getElementById('tip-type').value = '10';
+                    calculateTip();
+                    break;
+                case 'increase15':
+                    switchTab('change');
+                    document.querySelector('[onclick="switchTab(\'change\')"]').click();
+                    document.getElementById('base-amount').value = '1500';
+                    document.getElementById('change-percent').value = '15';
+                    applyChange();
+                    break;
+            }
+        }
+
+        // Registro del Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then((registration) => {
+                        console.log('SW registrado exitosamente:', registration.scope);
+
+                        // Notificar cuando hay una actualización disponible
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // Nueva versión disponible
+                                    console.log('Nueva versión de la aplicación disponible');
+                                }
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.log('Error al registrar SW:', error);
+                    });
+            });
+        }
+
+        // Listener para redimensionar gráficos en cambios de orientación
+        window.addEventListener('resize', function() {
+            if (currentChart) {
+                setTimeout(() => {
+                    currentChart.resize();
+                }, 100);
+            }
+        });
+
+        window.addEventListener('orientationchange', function() {
+            if (currentChart) {
+                setTimeout(() => {
+                    currentChart.resize();
+                }, 300);
+            }
+        });
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateHistoryDisplay();
+
+            // Inicializar gráfico vacío
+            updateChart('doughnut', [100], ['Esperando cálculo...'], 'Realiza un cálculo para ver la visualización');
+
+            // Evento de tracking para Google Analytics
+            gtag('event', 'page_view', {
+                page_title: 'Calculadora de Porcentajes Avanzada',
+                page_location: window.location.href
+            });
+
+            // Tracking de PWA
+            gtag('event', 'pwa_ready', {
+                app_name: 'Calculadora Porcentajes meskeIA',
+                app_version: '1.0.0'
+            });
+
+            // Forzar redimensión inicial en móvil
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    if (currentChart) {
+                        currentChart.resize();
+                    }
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

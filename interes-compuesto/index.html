@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Calculadora de Interés Compuesto Online Gratis - El 8º Milagro | meskeIA</title>
+    <link rel="canonical" href="https://meskeia.com/interes-compuesto/interes-compuesto">
+    <meta name="description" content="Calculadora de interés compuesto gratuita online. Descubre el poder del 'octavo milagro del mundo' con cálculos precisos, gráficos evolutivos y tabla detallada año por año. Visualiza cómo el tiempo multiplica exponencialmente tus inversiones y ahorro.">
+    <meta name="keywords" content="calculadora interés compuesto, octavo milagro del mundo, crecimiento exponencial, inversiones, ahorro, finanzas personales, rentabilidad, capitalización, ROI, valor futuro, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="rating" content="general">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Calculadora de Interés Compuesto Online Gratis - El 8º Milagro | meskeIA">
+    <meta property="og:description" content="Calculadora de interés compuesto gratuita online. Descubre el poder del 'octavo milagro del mundo' con cálculos precisos y visualizaciones interactivas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/interes-compuesto">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de Interés Compuesto Online | meskeIA">
+    <meta name="twitter:description" content="Calculadora gratuita de interés compuesto. Visualiza el crecimiento exponencial de tus inversiones.">
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Interés Compuesto",
+        "applicationCategory": "FinanceApplication",
+        "description": "Calculadora online gratuita de interés compuesto. Descubre el poder del 'octavo milagro del mundo' con cálculos precisos, gráficos evolutivos, tabla detallada año por año y generación de reportes PDF.",
+        "url": "https://meskeia.com/interes-compuesto",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        },
+        "operatingSystem": "Web",
+        "permissions": "No requiere permisos",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "featureList": [
+            "Cálculo de interés compuesto con diferentes frecuencias de capitalización",
+            "Visualización gráfica de evolución de inversiones",
+            "Tabla detallada año por año",
+            "Generación de reportes PDF",
+            "Insights inteligentes sobre crecimiento",
+            "Presets de rentabilidad conservador, moderado y agresivo",
+            "Cálculo automático en tiempo real",
+            "Análisis de ROI y valor futuro"
+        ],
+        "mainEntity": {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "¿Qué es el interés compuesto?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El interés compuesto es el 'octavo milagro del mundo' según Einstein. Es el interés que se genera sobre el capital inicial más los intereses acumulados, creando un efecto exponencial de crecimiento que se acelera con el tiempo."
+                    }
+                },
+                {
+                    "@type": "Question", 
+                    "name": "¿Cómo funciona la calculadora de interés compuesto?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Introduce tu capital inicial, aportación mensual, rentabilidad anual esperada, período de inversión y frecuencia de capitalización. La calculadora proyectará tu crecimiento con gráficos y tablas detalladas."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Qué frecuencias de capitalización están disponibles?", 
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Puedes elegir entre capitalización anual, trimestral, mensual y diaria. Mayor frecuencia de capitalización genera ligeramente más rendimientos debido al efecto compuesto más frecuente."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Puedo descargar los resultados?",
+                    "acceptedAnswer": {
+                        "@type": "Answer", 
+                        "text": "Sí, la calculadora genera reportes detallados en PDF con todos los parámetros, resultados y tabla de evolución anual. También puedes compartir los resultados fácilmente."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Son realistas las proyecciones de rentabilidad?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Los presets están basados en promedios históricos: conservador (3%), moderado (7%), agresivo (10%). Las proyecciones son estimativas y los rendimientos pasados no garantizan resultados futuros."
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Scripts externos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Minimalista - Inspirada en Claude */
+            --bg-primary: #FAFAFA;      /* Background principal */
+            --bg-card: #FFFFFF;         /* Cards y contenedores */
+            
+            /* Identidad meskeIA */
+            --primary: #2E86AB;         /* Azul principal */
+            --primary-hover: #246b8a;   /* Azul hover */
+            --primary-light: rgba(46, 134, 171, 0.1);
+            
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;    /* Negro suave */
+            --text-secondary: #666666;  /* Gris medio */
+            --text-muted: #999999;      /* Gris claro */
+            
+            /* Elementos estructurales */
+            --border: #E5E5E5;          /* Bordes sutiles */
+            --hover: #F5F5F5;           /* Estados hover */
+            --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 12px rgba(0,0,0,0.08);
+            
+            /* Estados */
+            --success: #28a745;
+            --success-hover: #218838;
+            --success-light: rgba(40, 167, 69, 0.1);
+            --warning: #f39c12;
+            --info: #17a2b8;
+            --info-hover: #138496;
+            
+            /* Espaciado consistente */
+            --radius: 8px;
+            --radius-large: 16px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* Hero Section */
+        .compound-hero {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            text-align: center;
+            padding: var(--spacing-xl);
+            margin: var(--spacing-lg);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .compound-hero:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .compound-hero h1 {
+            font-size: 2.5em;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .compound-hero p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .input-panel {
+            background: var(--bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .input-panel:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .input-panel h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: var(--spacing-xs);
+            color: var(--text-muted);
+            font-size: 0.85em;
+        }
+
+        .quick-presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .preset-btn {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85em;
+            text-align: center;
+            color: var(--text-secondary);
+            font-family: inherit;
+        }
+
+        .preset-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .btn {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .results-panel {
+            background: var(--bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .results-panel:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .result-card {
+            background: var(--hover);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .result-card.highlight {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .result-card.highlight:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .result-card h4 {
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .comparison-mode {
+            margin: var(--spacing-lg) 0;
+            padding: var(--spacing-lg);
+            background: var(--hover);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .comparison-toggle {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .comparison-toggle input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+        }
+
+        .chart-container {
+            margin: var(--spacing-xl) 0;
+            background: var(--bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .table-container {
+            margin-top: var(--spacing-xl);
+            background: var(--bg-card);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .table-container:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .table-header {
+            background: var(--primary);
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-xl);
+        }
+
+        .table-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--hover);
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        tbody tr:hover {
+            background: var(--hover);
+        }
+
+        .insights-panel {
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-xl);
+            background: var(--success-light);
+            border-radius: var(--radius-large);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .insights-panel h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .insight-item {
+            background: var(--bg-card);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--success);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            .calculator-layout {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .calculator-container {
+                padding: var(--spacing-sm);
+            }
+
+            .compound-hero h1 {
+                font-size: 1.8em;
+            }
+
+            .results-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .control-buttons {
+                flex-direction: column;
+            }
+
+            .quick-presets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .footer {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .input-panel,
+            .results-panel {
+                padding: var(--spacing-lg);
+            }
+
+            .chart-container {
+                padding: var(--spacing-lg);
+            }
+
+            .compound-hero {
+                padding: var(--spacing-lg);
+                margin: var(--spacing-sm);
+            }
+
+            .result-value {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        /* SEO Content Styles */
+        .seo-content {
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border);
+        }
+
+        .compound-guide h2 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .compound-guide > p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            background: var(--hover);
+            padding: 25px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-item h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .investment-strategies h3, .compound-concepts h3, .compound-examples h3, .faq h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .strategies-grid, .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .strategy-card, .concept-item {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .example-card {
+            background: linear-gradient(135deg, var(--success-light) 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--success);
+            transition: transform 0.3s ease;
+        }
+
+        .strategy-card:hover, .concept-item:hover, .example-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .strategy-card h4, .concept-item h4, .example-card h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .example-card h4 {
+            color: var(--success);
+        }
+
+        .strategy-card p, .concept-item p, .example-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--hover);
+            padding: 25px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .faq-item h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* SEO Content Mobile */
+        @media (max-width: 768px) {
+            .seo-content {
+                margin: 20px 10px 10px;
+                padding: 20px 15px;
+                border-radius: var(--radius);
+            }
+            
+            .compound-guide h2 {
+                font-size: 22px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .strategies-grid, .concepts-grid, .examples-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .feature-item, .strategy-card, .concept-item, .example-card, .faq-item {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="main-app-wrapper">
+        <div class="calculator-container">
+            <!-- Hero Section -->
+            <div class="compound-hero">
+                <h1>🚀 Interés Compuesto</h1>
+                <p>Descubre el poder del "octavo milagro del mundo" y visualiza cómo el tiempo y la consistencia pueden multiplicar exponencialmente tus inversiones</p>
+            </div>
+
+        <!-- Layout Principal -->
+        <div class="calculator-layout">
+            <!-- Panel de Entrada -->
+            <div class="input-panel">
+                <h3>📊 Parámetros de Inversión</h3>
+                
+                <div class="form-group">
+                    <label for="initialCapital">💰 Capital Inicial (€)</label>
+                    <input type="number" id="initialCapital" value="10000" min="0" step="100">
+                    <small>Cantidad inicial que vas a invertir</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="monthlyContribution">📅 Aportación Mensual (€)</label>
+                    <input type="number" id="monthlyContribution" value="500" min="0" step="50">
+                    <small>Cantidad que aportarás cada mes</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="annualRate">📈 Rentabilidad Anual (%)</label>
+                    <input type="number" id="annualRate" value="7" min="0" max="30" step="0.1">
+                    <small>Rentabilidad anual esperada</small>
+                    
+                    <div class="quick-presets">
+                        <button class="preset-btn" onclick="setRate(3)">Conservador 3%</button>
+                        <button class="preset-btn" onclick="setRate(7)">Moderado 7%</button>
+                        <button class="preset-btn" onclick="setRate(10)">Agresivo 10%</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="investmentPeriod">⏰ Período (años)</label>
+                    <input type="number" id="investmentPeriod" value="20" min="1" max="50" step="1">
+                    <small>Tiempo que mantendrás la inversión</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="compoundFrequency">🔄 Frecuencia de Capitalización</label>
+                    <select id="compoundFrequency">
+                        <option value="1">Anual</option>
+                        <option value="4">Trimestral</option>
+                        <option value="12" selected>Mensual</option>
+                        <option value="365">Diaria</option>
+                    </select>
+                    <small>Frecuencia con la que se calculan los intereses</small>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="btn btn-primary" onclick="calculateCompoundInterest(true)">
+                        🧮 Calcular Proyección
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetCalculator()">
+                        🔄 Limpiar
+                    </button>
+                </div>
+
+                <div class="comparison-mode">
+                    <div class="comparison-toggle">
+                        <input type="checkbox" id="comparisonMode">
+                        <label for="comparisonMode">🔍 Modo Comparación</label>
+                    </div>
+                    <p><small>Activa para comparar diferentes escenarios de inversión</small></p>
+                </div>
+            </div>
+
+            <!-- Panel de Resultados -->
+            <div class="results-panel">
+                <h3>💡 Resumen de Resultados</h3>
+                
+                <div class="results-summary" id="resultsSummary">
+                    <div class="result-card highlight">
+                        <h4>💰 Capital Final</h4>
+                        <div class="result-value" id="finalAmount">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>🔥 Total Aportado</h4>
+                        <div class="result-value" id="totalContributed">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>📊 Intereses Generados</h4>
+                        <div class="result-value" id="interestEarned">€0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>🎯 ROI Total</h4>
+                        <div class="result-value" id="totalROI">0%</div>
+                    </div>
+                </div>
+
+                <div class="insights-panel" id="insightsPanel" style="display: none;">
+                    <h3>💡 Insights Inteligentes</h3>
+                    <div id="insightsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Evolución -->
+        <div class="chart-container" id="chartContainer" style="display: none;">
+            <h3>📈 Evolución de tu Inversión a lo Largo del Tiempo</h3>
+            <div class="chart-wrapper">
+                <canvas id="compoundChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tabla Detallada -->
+        <div class="table-container" id="tableContainer" style="display: none;">
+            <div class="table-header">
+                <h3>📋 Desglose Año por Año</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Año</th>
+                        <th>Aportaciones</th>
+                        <th>Intereses Generados</th>
+                        <th>Balance Total</th>
+                        <th>% Crecimiento</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Los datos se generarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Acciones -->
+        <div class="control-buttons" id="actionButtons" style="display: none; justify-content: center; margin-top: var(--spacing-xl);">
+            <button class="btn btn-primary" onclick="generatePDF()">
+                📄 Descargar Reporte PDF
+            </button>
+            <button class="btn btn-secondary" onclick="shareResults()">
+                📤 Compartir Resultados
+            </button>
+        </div>
+    </div>
+    
+    <!-- SEO Content -->
+    <div class="seo-content">
+        <section class="compound-guide">
+            <h2>El Poder del Interés Compuesto: El 8º Milagro del Mundo</h2>
+            <p>Albert Einstein llamó al interés compuesto "el octavo milagro del mundo" porque quien lo entiende lo gana, y quien no lo entiende lo paga. Nuestra calculadora te permite experimentar con diferentes escenarios y visualizar cómo el tiempo convierte pequeñas inversiones en fortunas significativas mediante el poder del crecimiento exponencial.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>🚀 Crecimiento Exponencial</h4>
+                    <p><strong>Efecto multiplicador:</strong> El interés compuesto genera rendimientos sobre los rendimientos, creando un crecimiento acelerado.</p>
+                    <p>A diferencia del interés simple que crece linealmente, el interés compuesto crece exponencialmente. Cada año, los intereses del año anterior también generan nuevos intereses, creando una bola de nieve financiera que se acelera con el tiempo.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>📊 Múltiples Frecuencias de Capitalización</h4>
+                    <p><strong>Maximiza tu crecimiento:</strong> Elige entre capitalización anual, trimestral, mensual o diaria.</p>
+                    <p>Mayor frecuencia de capitalización significa que tus intereses se reinvierten más frecuentemente, generando ligeramente más rendimientos. La capitalización diaria maximiza el efecto compuesto al reinvertir intereses cada día.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>📈 Visualización Interactiva</h4>
+                    <p><strong>Gráficos evolutivos:</strong> Observa visualmente cómo tu dinero crece año tras año.</p>
+                    <p>Los gráficos muestran tres líneas: balance total, total aportado e intereses generados. Puedes ver claramente cómo los intereses eventualmente superan tus aportaciones, demostrando el verdadero poder del tiempo en las inversiones.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>🎯 Presets de Rentabilidad</h4>
+                    <p><strong>Escenarios realistas:</strong> Conservador (3%), Moderado (7%) y Agresivo (10%) basados en promedios históricos.</p>
+                    <p>Los presets te ayudan a explorar diferentes estrategias de inversión. El conservador refleja bonos gubernamentales, el moderado índices diversificados, y el agresivo acciones de crecimiento.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>🧠 Insights Inteligentes</h4>
+                    <p><strong>Análisis automático:</strong> La calculadora identifica patrones y te proporciona insights personalizados.</p>
+                    <p>Recibe automáticamente análisis sobre el poder de tu interés compuesto, la importancia del tiempo, el efecto de la capitalización frecuente y el impacto de tu ROI en el crecimiento total.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>📄 Reportes Detallados</h4>
+                    <p><strong>Documentación completa:</strong> Genera reportes PDF con todos los cálculos y proyecciones.</p>
+                    <p>Los reportes incluyen parámetros de inversión, resultados resumidos y tabla de evolución anual. Ideal para planificación financiera personal o presentar a asesores de inversión.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="investment-strategies">
+            <h3>Estrategias de Inversión con Interés Compuesto</h3>
+            <div class="strategies-grid">
+                <div class="strategy-card">
+                    <h4>🏛️ Estrategia Conservadora</h4>
+                    <p>Rentabilidad del 3% anual con muy bajo riesgo. Ideal para inversores que priorizan la seguridad del capital sobre el crecimiento. Utiliza bonos del estado, depósitos a plazo y fondos de renta fija.</p>
+                </div>
+                
+                <div class="strategy-card">
+                    <h4>⚖️ Estrategia Moderada</h4>
+                    <p>Rentabilidad del 7% anual con riesgo moderado. Combina renta fija y variable para equilibrar seguridad y crecimiento. Fondos indexados diversificados y ETFs balanceados.</p>
+                </div>
+                
+                <div class="strategy-card">
+                    <h4>📈 Estrategia Agresiva</h4>
+                    <p>Rentabilidad del 10% anual con mayor riesgo. Para inversores jóvenes con horizonte temporal largo. Mayor exposición a acciones de crecimiento y mercados emergentes.</p>
+                </div>
+                
+                <div class="strategy-card">
+                    <h4>💰 Aportaciones Regulares</h4>
+                    <p>La clave del éxito es la consistencia. Pequeñas aportaciones regulares aprovechan el promediado del coste y maximizan el tiempo de crecimiento compuesto.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="compound-concepts">
+            <h3>Conceptos Clave del Interés Compuesto</h3>
+            <div class="concepts-grid">
+                <div class="concept-item">
+                    <h4>Efecto Bola de Nieve</h4>
+                    <p>Como una bola de nieve rodando cuesta abajo, el interés compuesto empieza lento pero se acelera exponencialmente. Los primeros años pueden parecer modestos, pero las últimas décadas muestran un crecimiento espectacular.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Regla del 72</h4>
+                    <p>Divide 72 entre la rentabilidad anual para saber cuántos años tardarás en duplicar tu dinero. Con 7% anual: 72÷7 = 10.3 años para duplicar tu inversión.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Valor del Tiempo</h4>
+                    <p>Empezar temprano es más poderoso que aportar más dinero tarde. 10 años adicionales de crecimiento compuesto pueden valer más que duplicar tus aportaciones.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Capitalización</h4>
+                    <p>La frecuencia de capitalización (anual, mensual, diaria) determina cuántas veces al año se reinvierten los intereses. Mayor frecuencia = ligeramente más rendimientos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="compound-examples">
+            <h3>Ejemplos Reales del Poder del Interés Compuesto</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4>💡 El Joven Inversor</h4>
+                    <p><strong>Escenario:</strong> María, 25 años, invierte €200 mensuales al 7% anual hasta los 65 años.</p>
+                    <p><strong>Resultado:</strong> Aporta €96,000 pero acumula €525,000. Los intereses generan €429,000 - ¡4.5 veces sus aportaciones!</p>
+                </div>
+                
+                <div class="example-card">
+                    <h4>⏰ El Efecto de Empezar Tarde</h4>
+                    <p><strong>Escenario:</strong> Carlos, 35 años, invierte €400 mensuales al 7% anual hasta los 65 años.</p>
+                    <p><strong>Resultado:</strong> Aporta €144,000 pero acumula €490,000. Aporta más que María pero obtiene menos debido a 10 años menos.</p>
+                </div>
+                
+                <div class="example-card">
+                    <h4>🚀 La Ventaja de la Rentabilidad</h4>
+                    <p><strong>Escenario:</strong> Ana invierte €300 mensuales durante 30 años. Al 5% obtiene €249,000, pero al 10% obtiene €678,000.</p>
+                    <p><strong>Lección:</strong> 5% adicional de rentabilidad puede triplicar tu resultado final gracias al interés compuesto.</p>
+                </div>
+                
+                <div class="example-card">
+                    <h4>🏆 El Millonario del Interés Compuesto</h4>
+                    <p><strong>Escenario:</strong> Pedro invierte €500 mensuales al 8% anual durante 35 años.</p>
+                    <p><strong>Resultado:</strong> Aporta €210,000 pero acumula €1,037,000. ¡Se convierte en millonario principalmente gracias a los intereses compuestos!</p>
+                </div>
+            </div>
+        </section>
+        
+    <!-- FAQ Schema.org -->
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">❓ Preguntas Frecuentes</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Por qué Einstein llamó al interés compuesto el 8º milagro del mundo?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Einstein reconoció que el interés compuesto es la fuerza más poderosa en finanzas. Transforma pequeñas cantidades en grandes fortunas a través del tiempo, creando riqueza de manera casi "milagrosa" para quienes lo entienden y utilizan.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cuál es la diferencia entre interés simple e interés compuesto?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El interés simple se calcula solo sobre el capital inicial. El interés compuesto se calcula sobre el capital inicial MÁS los intereses acumulados, generando un crecimiento exponencial vs. linear.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Qué es más importante: cantidad invertida o tiempo?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">El tiempo es generalmente más poderoso debido al efecto exponencial. Empezar temprano con menos dinero suele generar más riqueza que empezar tarde con más dinero, gracias al interés compuesto.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Cómo afecta la frecuencia de capitalización a los resultados?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Mayor frecuencia de capitalización (diaria vs anual) genera ligeramente más rendimientos porque los intereses se reinvierten más frecuentemente. Sin embargo, la diferencia es pequeña comparada con la rentabilidad base y el tiempo.</p>
+                </details>
+                
+                <details style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--hover);">
+                    <summary style="font-weight: 600; color: var(--text-primary); cursor: pointer; margin-bottom: 0.5rem;">¿Son realistas las proyecciones de la calculadora?</summary>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Las proyecciones asumen rentabilidades constantes y no consideran inflación, impuestos o fluctuaciones del mercado. Son útiles para planificación, pero los resultados reales pueden variar significativamente.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer class="footer">
+        © 2025 meskeIA
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Variables globales
+        let calculationResults = null;
+        let compoundChart = null;
+        let comparisonMode = false;
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Calculadora de Interés Compuesto cargada');
+            
+            // Agregar listeners para cálculo automático
+            const inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', debounce(autoCalculate, 500));
+            });
+            
+            // Calcular con valores por defecto
+            calculateCompoundInterest();
+        });
+
+        // Función principal de cálculo
+        function calculateCompoundInterest(shouldScroll = false) {
+            try {
+                console.log('🧮 Iniciando cálculo de interés compuesto...');
+                
+                // Obtener valores del formulario
+                const initialCapital = parseFloat(document.getElementById('initialCapital').value) || 0;
+                const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+                const annualRate = parseFloat(document.getElementById('annualRate').value) || 0;
+                const investmentPeriod = parseInt(document.getElementById('investmentPeriod').value) || 1;
+                const compoundFrequency = parseInt(document.getElementById('compoundFrequency').value) || 12;
+                
+                // Validar entradas
+                if (initialCapital < 0 || monthlyContribution < 0 || annualRate < 0 || investmentPeriod <= 0) {
+                    alert('Por favor, ingresa valores válidos (no negativos).');
+                    return;
+                }
+                
+                // Realizar cálculos
+                const results = performCompoundCalculation(
+                    initialCapital,
+                    monthlyContribution,
+                    annualRate,
+                    investmentPeriod,
+                    compoundFrequency
+                );
+                
+                // Guardar resultados globalmente
+                calculationResults = results;
+                
+                // Mostrar resultados
+                displayResults(results, shouldScroll);
+                generateInsights(results);
+                
+                console.log('✅ Cálculo completado exitosamente');
+                
+            } catch (error) {
+                console.error('❌ Error en el cálculo:', error);
+                alert('Error al realizar el cálculo. Por favor, verifica los valores ingresados.');
+            }
+        }
+
+        // Función para realizar los cálculos matemáticos
+        function performCompoundCalculation(principal, monthlyPayment, annualRate, years, compoundingFrequency) {
+            const monthlyRate = annualRate / 100 / 12;
+            const totalMonths = years * 12;
+            
+            let yearlyData = [];
+            let currentBalance = principal;
+            let totalContributed = principal;
+            
+            // Cálculo año por año
+            for (let year = 1; year <= years; year++) {
+                let yearStartBalance = currentBalance;
+                let yearContributions = 0;
+                let yearInterest = 0;
+                
+                // Cálculo mes por mes para este año
+                for (let month = 1; month <= 12; month++) {
+                    // Agregar aportación mensual
+                    currentBalance += monthlyPayment;
+                    yearContributions += monthlyPayment;
+                    totalContributed += monthlyPayment;
+                    
+                    // Calcular interés compuesto según frecuencia
+                    if (compoundingFrequency === 12) {
+                        // Capitalización mensual
+                        const monthlyInterest = currentBalance * monthlyRate;
+                        currentBalance += monthlyInterest;
+                        yearInterest += monthlyInterest;
+                    } else {
+                        // Otras frecuencias de capitalización
+                        const periodsPerYear = compoundingFrequency;
+                        const ratePerPeriod = annualRate / 100 / periodsPerYear;
+                        const periodsThisMonth = periodsPerYear / 12;
+                        
+                        for (let period = 0; period < periodsThisMonth; period++) {
+                            currentBalance *= (1 + ratePerPeriod);
+                        }
+                        yearInterest = currentBalance - yearStartBalance - yearContributions;
+                    }
+                }
+                
+                const growthRate = year === 1 ? 0 : ((currentBalance - yearlyData[year-2].endBalance) / yearlyData[year-2].endBalance) * 100;
+                
+                yearlyData.push({
+                    year: year,
+                    startBalance: yearStartBalance,
+                    contributions: yearContributions,
+                    interest: yearInterest,
+                    endBalance: currentBalance,
+                    totalContributed: totalContributed,
+                    growthRate: growthRate
+                });
+            }
+            
+            const finalAmount = currentBalance;
+            const totalInterest = finalAmount - totalContributed;
+            const roi = ((finalAmount - totalContributed) / totalContributed) * 100;
+            
+            return {
+                finalAmount: finalAmount,
+                totalContributed: totalContributed,
+                totalInterest: totalInterest,
+                roi: roi,
+                yearlyData: yearlyData,
+                parameters: {
+                    initialCapital: principal,
+                    monthlyContribution: monthlyPayment,
+                    annualRate: annualRate,
+                    investmentPeriod: years,
+                    compoundFrequency: compoundingFrequency
+                }
+            };
+        }
+
+        // Mostrar resultados en la interfaz
+        function displayResults(results, shouldScroll = false) {
+            // Actualizar tarjetas de resumen
+            document.getElementById('finalAmount').textContent = formatCurrency(results.finalAmount);
+            document.getElementById('totalContributed').textContent = formatCurrency(results.totalContributed);
+            document.getElementById('interestEarned').textContent = formatCurrency(results.totalInterest);
+            document.getElementById('totalROI').textContent = formatPercentage(results.roi);
+            
+            // Mostrar contenedores
+            document.getElementById('chartContainer').style.display = 'block';
+            document.getElementById('tableContainer').style.display = 'block';
+            document.getElementById('actionButtons').style.display = 'flex';
+            
+            // Generar tabla detallada
+            generateDetailTable(results.yearlyData);
+            
+            // Generar gráfico
+            generateChart(results.yearlyData);
+            
+            // Scroll suave si se solicita
+            if (shouldScroll) {
+                setTimeout(() => {
+                    document.getElementById('chartContainer').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+        }
+
+        // Generar tabla detallada
+        function generateDetailTable(yearlyData) {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            
+            yearlyData.forEach(data => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>Año ${data.year}</strong></td>
+                    <td>${formatCurrency(data.contributions)}</td>
+                    <td>${formatCurrency(data.interest)}</td>
+                    <td><strong>${formatCurrency(data.endBalance)}</strong></td>
+                    <td><span style="color: ${data.growthRate > 0 ? '#28a745' : '#f56565'}">${data.growthRate.toFixed(1)}%</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Generar gráfico con nueva paleta
+        function generateChart(yearlyData) {
+            const ctx = document.getElementById('compoundChart').getContext('2d');
+            
+            if (compoundChart) {
+                compoundChart.destroy();
+            }
+            
+            const labels = yearlyData.map(data => `Año ${data.year}`);
+            const balanceData = yearlyData.map(data => data.endBalance);
+            const contributionsData = yearlyData.map(data => data.totalContributed);
+            const interestData = yearlyData.map(data => data.endBalance - data.totalContributed);
+            
+            compoundChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '💰 Balance Total',
+                            data: balanceData,
+                            borderColor: '#2E86AB',
+                            backgroundColor: 'rgba(46, 134, 171, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '🔥 Total Aportado',
+                            data: contributionsData,
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: false
+                        },
+                        {
+                            label: '📊 Intereses Generados',
+                            data: interestData,
+                            borderColor: '#f39c12',
+                            backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                },
+                                color: '#666666'
+                            },
+                            grid: {
+                                color: '#E5E5E5'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#666666'
+                            },
+                            grid: {
+                                color: '#E5E5E5'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#1A1A1A',
+                                font: {
+                                    weight: '600'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                                }
+                            },
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#1A1A1A',
+                            bodyColor: '#666666',
+                            borderColor: '#E5E5E5',
+                            borderWidth: 1
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        // Generar insights inteligentes
+        function generateInsights(results) {
+            const insightsPanel = document.getElementById('insightsPanel');
+            const insightsList = document.getElementById('insightsList');
+            
+            insightsList.innerHTML = '';
+            
+            const insights = [];
+            
+            // Insight sobre el poder del interés compuesto
+            const compoundPower = ((results.totalInterest / results.totalContributed) * 100);
+            if (compoundPower > 50) {
+                insights.push({
+                    icon: '🚀',
+                    title: 'Poder del Interés Compuesto',
+                    text: `¡Increíble! Los intereses generados (${formatCurrency(results.totalInterest)}) representan el ${compoundPower.toFixed(1)}% de tus aportaciones. Esto demuestra el verdadero poder del interés compuesto.`
+                });
+            }
+            
+            // Insight sobre tiempo vs dinero
+            const monthlyTotal = results.parameters.monthlyContribution * 12 * results.parameters.investmentPeriod;
+            if (results.totalInterest > monthlyTotal) {
+                insights.push({
+                    icon: '⏰',
+                    title: 'El Tiempo es tu Mejor Aliado',
+                    text: `Los intereses generados (${formatCurrency(results.totalInterest)}) superan todas tus aportaciones mensuales de ${results.parameters.investmentPeriod} años. ¡El tiempo realmente multiplica tu dinero!`
+                });
+            }
+            
+            // Insight sobre frecuencia de capitalización
+            if (results.parameters.compoundFrequency >= 12) {
+                insights.push({
+                    icon: '🔄',
+                    title: 'Capitalización Frecuente',
+                    text: `Con capitalización ${results.parameters.compoundFrequency === 12 ? 'mensual' : 'diaria'}, tus intereses generan más intereses más rápidamente, maximizando tu crecimiento.`
+                });
+            }
+            
+            // Insight sobre rentabilidad
+            if (results.roi > 100) {
+                insights.push({
+                    icon: '📈',
+                    title: 'ROI Excepcional',
+                    text: `Tu ROI del ${formatPercentage(results.roi)} significa que tu dinero se ha multiplicado por ${(results.roi/100 + 1).toFixed(1)}. ¡Una inversión muy exitosa!`
+                });
+            }
+            
+            // Mostrar insights
+            if (insights.length > 0) {
+                insights.forEach(insight => {
+                    const insightElement = document.createElement('div');
+                    insightElement.className = 'insight-item';
+                    insightElement.innerHTML = `
+                        <strong>${insight.icon} ${insight.title}</strong><br>
+                        <span>${insight.text}</span>
+                    `;
+                    insightsList.appendChild(insightElement);
+                });
+                
+                insightsPanel.style.display = 'block';
+            } else {
+                insightsPanel.style.display = 'none';
+            }
+        }
+
+        // Funciones de utilidad
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatPercentage(percentage) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'percent',
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }).format(percentage / 100);
+        }
+
+        // Presets de rentabilidad
+        function setRate(rate) {
+            document.getElementById('annualRate').value = rate;
+            autoCalculate();
+        }
+
+        // Limpiar calculadora
+        function resetCalculator() {
+            document.getElementById('initialCapital').value = 10000;
+            document.getElementById('monthlyContribution').value = 500;
+            document.getElementById('annualRate').value = 7;
+            document.getElementById('investmentPeriod').value = 20;
+            document.getElementById('compoundFrequency').value = 12;
+            
+            document.getElementById('chartContainer').style.display = 'none';
+            document.getElementById('tableContainer').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            document.getElementById('insightsPanel').style.display = 'none';
+            
+            if (compoundChart) {
+                compoundChart.destroy();
+                compoundChart = null;
+            }
+            
+            calculationResults = null;
+            
+            // Recalcular con valores por defecto
+            calculateCompoundInterest();
+            
+            console.log('🔄 Calculadora reiniciada');
+        }
+
+        // Cálculo automático con debounce
+        function autoCalculate() {
+            const initialCapital = parseFloat(document.getElementById('initialCapital').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const annualRate = parseFloat(document.getElementById('annualRate').value) || 0;
+            const investmentPeriod = parseInt(document.getElementById('investmentPeriod').value) || 1;
+            
+            if (initialCapital >= 0 && monthlyContribution >= 0 && annualRate >= 0 && investmentPeriod > 0) {
+                calculateCompoundInterest(false);
+            }
+        }
+
+        // Función debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Generar PDF
+        function generatePDF() {
+            if (!calculationResults) {
+                alert('No hay resultados para generar el reporte.');
+                return;
+            }
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Configuración
+                const margin = 20;
+                let yPosition = margin;
+                
+                // Título
+                doc.setFontSize(20);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Reporte de Interés Compuesto', margin, yPosition);
+                yPosition += 15;
+                
+                // Fecha
+                const today = new Date().toLocaleDateString('es-ES');
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Fecha de generación: ${today}`, margin, yPosition);
+                yPosition += 20;
+                
+                // Parámetros
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Parámetros de Inversión:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Capital Inicial: ${formatCurrency(calculationResults.parameters.initialCapital)}`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Aportación Mensual: ${formatCurrency(calculationResults.parameters.monthlyContribution)}`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Rentabilidad Anual: ${calculationResults.parameters.annualRate}%`, margin, yPosition);
+                yPosition += 7;
+                doc.text(`Período de Inversión: ${calculationResults.parameters.investmentPeriod} años`, margin, yPosition);
+                yPosition += 15;
+                
+                // Resultados
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Resultados:', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Capital Final: ${formatCurrency(calculationResults.finalAmount)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Total Aportado: ${formatCurrency(calculationResults.totalContributed)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`Intereses Generados: ${formatCurrency(calculationResults.totalInterest)}`, margin, yPosition);
+                yPosition += 8;
+                doc.text(`ROI Total: ${formatPercentage(calculationResults.roi)}`, margin, yPosition);
+                yPosition += 15;
+                
+                // Tabla de evolución (primeros 10 años)
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Evolución Anual (primeros 10 años):', margin, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                
+                // Encabezados de tabla
+                doc.text('Año', margin, yPosition);
+                doc.text('Aportaciones', margin + 30, yPosition);
+                doc.text('Intereses', margin + 80, yPosition);
+                doc.text('Balance Total', margin + 130, yPosition);
+                yPosition += 8;
+                
+                // Datos de tabla
+                const maxYears = Math.min(10, calculationResults.yearlyData.length);
+                for (let i = 0; i < maxYears; i++) {
+                    const data = calculationResults.yearlyData[i];
+                    doc.text(`${data.year}`, margin, yPosition);
+                    doc.text(`${formatCurrency(data.contributions)}`, margin + 30, yPosition);
+                    doc.text(`${formatCurrency(data.interest)}`, margin + 80, yPosition);
+                    doc.text(`${formatCurrency(data.endBalance)}`, margin + 130, yPosition);
+                    yPosition += 6;
+                }
+                
+                // Pie de página
+                const footerY = doc.internal.pageSize.height - 20;
+                doc.setFontSize(8);
+                doc.setFont('helvetica', 'italic');
+                doc.text('Reporte generado por la Calculadora de Interés Compuesto', margin, footerY);
+                doc.text('meskeIA - Herramientas Financieras', margin, footerY + 5);
+                
+                // Descargar
+                const fileName = `interes-compuesto-${today.replace(/\//g, '-')}.pdf`;
+                doc.save(fileName);
+                
+                console.log('✅ PDF generado exitosamente:', fileName);
+                
+            } catch (error) {
+                console.error('❌ Error al generar PDF:', error);
+                alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
+            }
+        }
+
+        // Compartir resultados
+        function shareResults() {
+            if (!calculationResults) {
+                alert('No hay resultados para compartir.');
+                return;
+            }
+            
+            const shareText = `🚀 Mi proyección de interés compuesto:
+💰 Capital final: ${formatCurrency(calculationResults.finalAmount)}
+🔥 Total aportado: ${formatCurrency(calculationResults.totalContributed)}
+📊 Intereses generados: ${formatCurrency(calculationResults.totalInterest)}
+🎯 ROI: ${formatPercentage(calculationResults.roi)}
+
+¡El poder del interés compuesto en acción! 💪
+Calculado con meskeIA`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mi Proyección de Interés Compuesto',
+                    text: shareText,
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Resultados copiados al portapapeles 📋');
+                }).catch(() => {
+                    // Fallback para navegadores que no soportan clipboard
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('Resultados copiados al portapapeles 📋');
+                });
+            }
+        }
+
+        console.log('🎯 Calculadora de Interés Compuesto cargada completamente');
+    </script>
+</body>
+</html>

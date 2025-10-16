@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Conversor de Unidades Gratis - Longitud, Peso, Temperatura | meskeIA</title>
+    <link rel="canonical" href="https://meskeia.com/conversor-unidades/">
+    <meta name="description" content="Conversor de unidades gratuito online con 8 categorías: longitud, peso, temperatura, área, volumen, tiempo, velocidad y datos digitales. Conversiones precisas e instantáneas entre sistemas métrico e imperial. Herramientas de conversión profesionales para estudiantes, profesionales e ingenieros.">
+    <meta name="keywords" content="conversor de unidades, conversión métrica, imperial, longitud, peso, temperatura, área, volumen, tiempo, velocidad, datos, metros, pies, celsius, fahrenheit, kilogramos, libras, conversor online, meskeIA">
+    <meta name="author" content="meskeIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="rating" content="general">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Conversor de Unidades Gratis - Longitud, Peso, Temperatura | meskeIA">
+    <meta property="og:description" content="Conversor de unidades gratuito online con 8 categorías de conversión. Herramientas precisas para conversiones entre sistemas métrico e imperial.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meskeia.com/conversor-unidades/">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Conversor de Unidades Gratis | meskeIA">
+    <meta name="twitter:description" content="Conversor de unidades online con 8 categorías. Conversiones precisas entre sistemas métrico e imperial.">
+    
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Conversor de Unidades",
+        "applicationCategory": "EducationalApplication",
+        "description": "Aplicación web gratuita para conversiones de unidades con 8 categorías: longitud, peso, temperatura, área, volumen, tiempo, velocidad y datos digitales.",
+        "url": "https://meskeia.com/conversor-unidades",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        },
+        "operatingSystem": "Web",
+        "permissions": "No requiere permisos",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "featureList": [
+            "Conversión de longitud",
+            "Conversión de peso y masa", 
+            "Conversión de temperatura",
+            "Conversión de área",
+            "Conversión de volumen",
+            "Conversión de tiempo",
+            "Conversión de velocidad",
+            "Conversión de datos digitales"
+        ],
+        "mainEntity": {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "¿Cómo funciona el conversor de unidades?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El conversor utiliza factores matemáticos exactos para transformar valores entre diferentes sistemas de medidas. Simplemente selecciona las unidades de origen y destino, introduce el valor y obtén el resultado instantáneamente."
+                    }
+                },
+                {
+                    "@type": "Question", 
+                    "name": "¿Qué precisión tienen las conversiones?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Nuestras conversiones utilizan hasta 6 decimales de precisión y factores de conversión oficiales internacionales, garantizando la exactitud para aplicaciones científicas y profesionales."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Puedo convertir entre sistemas métrico e imperial?", 
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sí, el conversor soporta conversiones bidireccionales entre el sistema métrico (metros, kilogramos, Celsius) y el sistema imperial (pies, libras, Fahrenheit) en todas las categorías."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Es gratuito el conversor de unidades?",
+                    "acceptedAnswer": {
+                        "@type": "Answer", 
+                        "text": "Completamente gratuito. No requiere registro, descarga ni instalación. Funciona directamente en tu navegador con acceso ilimitado a todas las funciones de conversión."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "¿Qué categorías de conversión están disponibles?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "El conversor incluye 8 categorías: longitud, peso, temperatura, área, volumen, tiempo, velocidad y datos digitales, cubriendo las necesidades más comunes de conversión."
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta minimalista meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #28a745;
+            --warning: #ffc107;
+            --error: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        /* Logo meskeIA - Componente reutilizable */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: var(--primary);
+        }
+
+        .meskeia-logo-text .ia {
+            color: var(--secondary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), #7FB3D3);
+            border-radius: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+            margin-bottom: 100px;
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        /* Selector de categorías */
+        .category-selector {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .category-selector h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .category-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .category-tab {
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .category-tab:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .category-tab.active {
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .category-tab .icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .category-tab .name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        /* Conversor principal - LAYOUT CORREGIDO */
+        .converter-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        /* SOLUCIÓN: Layout simplificado para PC */
+        .converter-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .converter-row {
+            display: flex;
+            gap: 20px;
+            align-items: end;
+        }
+
+        .converter-input {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            flex: 1;
+        }
+
+        .converter-input h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .value-input {
+            flex: 2;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            transition: border-color 0.3s;
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .value-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .unit-select {
+            flex: 3;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .unit-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .swap-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .swap-button:hover {
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: 0 5px 15px rgba(46, 134, 171, 0.3);
+        }
+
+        .result-highlight {
+            background: linear-gradient(135deg, var(--focus) 0%, #e8f5e9 100%);
+            border-color: var(--primary);
+        }
+
+        /* Equivalencias rápidas */
+        .quick-equivalents {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--hover);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .quick-equivalents h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .equivalents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .equivalent-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .equivalent-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .equivalent-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .error-message {
+            background: #ffebee;
+            border-left: 4px solid var(--error);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #c62828;
+            font-size: 14px;
+        }
+
+        /* Footer meskeIA */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        /* SEO Content Styles */
+        .seo-content {
+            max-width: 900px;
+            margin: 40px auto 20px;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .conversion-guide h2 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .conversion-guide > p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-item {
+            background: var(--hover);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 134, 171, 0.1);
+        }
+
+        .category-item h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .category-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .applications h3, .concepts h3, .faq h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .applications-grid, .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .application-card, .concept-item {
+            background: linear-gradient(135deg, var(--focus) 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .application-card:hover, .concept-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .application-card h4, .concept-item h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .application-card p, .concept-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* FAQ desplegables */
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 10px rgba(46, 134, 171, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--hover);
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(46, 134, 171, 0.05);
+        }
+
+        .faq-question h4 {
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                padding-top: 60px;
+            }
+            
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 0;
+                margin-bottom: 60px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .category-selector {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .category-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-tab {
+                padding: 10px 8px;
+            }
+            
+            /* CORRECCIÓN PRINCIPAL: Layout móvil mejorado */
+            .converter-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .converter-main {
+                gap: 15px;
+            }
+            
+            .converter-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .converter-input {
+                padding: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .converter-input h4 {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .value-input, .unit-select {
+                width: 100%;
+                padding: 12px;
+                font-size: 16px;
+                box-sizing: border-box;
+            }
+            
+            .swap-button {
+                align-self: center;
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .quick-equivalents {
+                padding: 15px;
+                margin-top: 15px;
+            }
+            
+            .equivalents-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .equivalent-item {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .info-box {
+                margin: 15px 0;
+                padding: 12px;
+                font-size: 13px;
+            }
+            
+            footer {
+                bottom: 5px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+            
+            /* SEO Content Mobile */
+            .seo-content {
+                margin: 20px 10px 10px;
+                padding: 20px 15px;
+                border-radius: 10px;
+            }
+            
+            .conversion-guide h2 {
+                font-size: 22px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .applications-grid, .concepts-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .category-item, .application-card, .concept-item {
+                padding: 15px;
+            }
+            
+            .faq-question {
+                padding: 15px;
+            }
+            
+            .faq-answer p {
+                padding: 0 15px 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="main-app-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>🔄 Conversor de Unidades</h1>
+                <p>Conversiones precisas entre diferentes sistemas de medidas</p>
+            </div>
+        
+        <div class="content">
+            <!-- Selector de categorías -->
+            <div class="category-selector">
+                <h3>🔍 Selecciona la categoría de conversión:</h3>
+                
+                <div class="category-tabs">
+                    <div class="category-tab active" data-category="longitud">
+                        <div class="icon">📏</div>
+                        <div class="name">Longitud</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="peso">
+                        <div class="icon">⚖️</div>
+                        <div class="name">Peso</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="temperatura">
+                        <div class="icon">🌡️</div>
+                        <div class="name">Temperatura</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="area">
+                        <div class="icon">📐</div>
+                        <div class="name">Área</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="volumen">
+                        <div class="icon">🧊</div>
+                        <div class="name">Volumen</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="tiempo">
+                        <div class="icon">⏰</div>
+                        <div class="name">Tiempo</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="velocidad">
+                        <div class="icon">🏃</div>
+                        <div class="name">Velocidad</div>
+                    </div>
+                    
+                    <div class="category-tab" data-category="datos">
+                        <div class="icon">💾</div>
+                        <div class="name">Datos</div>
+                    </div>
+
+                    <div class="category-tab" data-category="quimica">
+                        <div class="icon">🧪</div>
+                        <div class="name">Química</div>
+                    </div>
+
+                    <div class="category-tab" data-category="presion">
+                        <div class="icon">🔬</div>
+                        <div class="name">Presión</div>
+                    </div>
+
+                    <div class="category-tab" data-category="energia">
+                        <div class="icon">⚡</div>
+                        <div class="name">Energía</div>
+                    </div>
+
+                    <div class="category-tab" data-category="fuerza">
+                        <div class="icon">💪</div>
+                        <div class="name">Fuerza</div>
+                    </div>
+
+                    <div class="category-tab" data-category="potencia">
+                        <div class="icon">⚙️</div>
+                        <div class="name">Potencia</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversor principal -->
+            <div class="converter-section">
+                <div class="converter-main">
+                    <!-- Primera fila: Entrada (De) -->
+                    <div class="converter-row">
+                        <div class="converter-input">
+                            <h4>De:</h4>
+                            <div class="input-group">
+                                <input type="number" id="input-value" class="value-input" value="1" step="any" placeholder="0">
+                                <select id="from-unit" class="unit-select">
+                                    <!-- Se llenarán dinámicamente -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón intercambiar centrado -->
+                    <button class="swap-button" onclick="swapUnits()" title="Intercambiar unidades">⇄</button>
+
+                    <!-- Segunda fila: Salida (A) -->
+                    <div class="converter-row">
+                        <div class="converter-input result-highlight">
+                            <h4>A:</h4>
+                            <div class="input-group">
+                                <input type="number" id="output-value" class="value-input" readonly>
+                                <select id="to-unit" class="unit-select">
+                                    <!-- Se llenarán dinámicamente -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equivalencias rápidas -->
+                <div class="quick-equivalents">
+                    <h4>📋 Equivalencias rápidas:</h4>
+                    <div id="equivalents-list" class="equivalents-grid">
+                        <!-- Se llenarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información contextual -->
+            <div class="info-box">
+                <span id="category-info">
+                    <strong>Longitud:</strong> Sistema Internacional (metros) y sistemas tradicionales (pies, pulgadas, yardas). 
+                    Útil para arquitectura, ingeniería y uso cotidiano.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SEO Content -->
+    <div class="seo-content">
+        <section class="conversion-guide">
+            <h2>Guía Completa de Conversión de Unidades</h2>
+            <p>Nuestro conversor de unidades online te permite realizar conversiones precisas e instantáneas entre diferentes sistemas de medidas. Con 13 categorías principales y más de 60 unidades diferentes, es la herramienta perfecta para estudiantes, profesionales e ingenieros.</p>
+            
+            <div class="categories-grid">
+                <div class="category-item">
+                    <h4>📏 Conversión de Longitud</h4>
+                    <p><strong>Unidades disponibles:</strong> milímetros, centímetros, metros, kilómetros, pulgadas, pies, yardas, millas.</p>
+                    <p>Convierte entre el sistema métrico e imperial. Ideal para arquitectura, construcción, ingeniería y medidas cotidianas. Precisión hasta 6 decimales.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>⚖️ Conversión de Peso y Masa</h4>
+                    <p><strong>Unidades disponibles:</strong> miligramos, gramos, kilogramos, toneladas, onzas, libras.</p>
+                    <p>Conversiones exactas para cocina, comercio, medicina y aplicaciones industriales. Soporte completo para sistemas métrico e imperial.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>🌡️ Conversión de Temperatura</h4>
+                    <p><strong>Unidades disponibles:</strong> Celsius (°C), Fahrenheit (°F), Kelvin (K).</p>
+                    <p>Conversiones de temperatura para ciencia, cocina, climatología y aplicaciones técnicas. Fórmulas matemáticas precisas.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>📐 Conversión de Área</h4>
+                    <p><strong>Unidades disponibles:</strong> centímetros cuadrados, metros cuadrados, hectáreas, kilómetros cuadrados, pulgadas cuadradas, pies cuadrados, acres.</p>
+                    <p>Para cálculos inmobiliarios, agrícolas, arquitectónicos y topográficos. Conversiones exactas entre sistemas.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>🧊 Conversión de Volumen</h4>
+                    <p><strong>Unidades disponibles:</strong> mililitros, litros, metros cúbicos, onzas líquidas, tazas, galones (US).</p>
+                    <p>Ideal para recetas de cocina, química, ingeniería y aplicaciones industriales. Soporte para medidas culinarias y científicas.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>⏰ Conversión de Tiempo</h4>
+                    <p><strong>Unidades disponibles:</strong> segundos, minutos, horas, días, semanas, meses, años.</p>
+                    <p>Conversiones temporales para planificación, cálculos científicos, gestión de proyectos y aplicaciones financieras.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>🏃 Conversión de Velocidad</h4>
+                    <p><strong>Unidades disponibles:</strong> metros por segundo, kilómetros por hora, millas por hora, nudos.</p>
+                    <p>Para transporte, deportes, navegación y aplicaciones técnicas. Conversiones precisas entre sistemas de velocidad.</p>
+                </div>
+                
+                <div class="category-item">
+                    <h4>💾 Conversión de Datos Digitales</h4>
+                    <p><strong>Unidades disponibles:</strong> bytes, kilobytes, megabytes, gigabytes, terabytes.</p>
+                    <p>Para almacenamiento, transferencia de datos, informática y telecomunicaciones. Sistema decimal (base 1000).</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>🧪 Conversión Química</h4>
+                    <p><strong>Unidades disponibles:</strong> moles, milimoles, micromoles, moléculas, gramos (con masa molecular).</p>
+                    <p>Conversiones fundamentales para química, bioquímica y laboratorio. Incluye número de Avogadro y cálculos estequiométricos.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>🔬 Conversión de Presión</h4>
+                    <p><strong>Unidades disponibles:</strong> pascales, kilopascales, bares, atmósferas, PSI, torr, milímetros de mercurio.</p>
+                    <p>Esencial para física, meteorología, ingeniería neumática e hidráulica. Conversiones precisas entre sistemas.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>⚡ Conversión de Energía</h4>
+                    <p><strong>Unidades disponibles:</strong> julios, kilojulios, calorías, kilocalorías, kilovatios-hora, BTU, electronvoltios.</p>
+                    <p>Para cálculos de física, nutrición, electricidad y termodinámica. Incluye equivalencias energéticas completas.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>💪 Conversión de Fuerza</h4>
+                    <p><strong>Unidades disponibles:</strong> newton, kilonewton, kilogramo-fuerza, libra-fuerza, dina, onza-fuerza.</p>
+                    <p>Fundamental para ingeniería mecánica, construcción y física. Conversiones entre sistema internacional e imperial.</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>⚙️ Conversión de Potencia</h4>
+                    <p><strong>Unidades disponibles:</strong> vatios, kilovatios, megavatios, caballos de vapor (CV), caballos de fuerza (HP), BTU/hora.</p>
+                    <p>Imprescindible para motores, sistemas eléctricos y climatización. Comparación entre estándares europeos y americanos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="applications">
+            <h3>Aplicaciones Profesionales del Conversor</h3>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <h4>🏗️ Arquitectura e Ingeniería</h4>
+                    <p>Convierte medidas de planos, cálculos estructurales y especificaciones técnicas entre sistemas métrico e imperial.</p>
+                </div>
+                
+                <div class="application-card">
+                    <h4>🍳 Cocina y Gastronomía</h4>
+                    <p>Adapta recetas internacionales convirtiendo peso, volumen y temperatura entre diferentes sistemas de medidas.</p>
+                </div>
+                
+                <div class="application-card">
+                    <h4>🎓 Educación y Estudios</h4>
+                    <p>Herramienta educativa para estudiantes de física, química, matemáticas e ingeniería en conversiones de unidades.</p>
+                </div>
+                
+                <div class="application-card">
+                    <h4>💼 Comercio Internacional</h4>
+                    <p>Facilita transacciones comerciales convertiendo especificaciones de productos entre diferentes estándares internacionales.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="concepts">
+            <h3>Conceptos Fundamentales de Conversión</h3>
+            <div class="concepts-grid">
+                <div class="concept-item">
+                    <h4>Sistema Métrico Decimal</h4>
+                    <p>Sistema internacional de unidades basado en el metro, kilogramo y segundo. Utiliza potencias de 10 para facilitar conversiones.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Sistema Imperial</h4>
+                    <p>Sistema tradicional anglosajón con unidades como pie, libra y galón. Ampliamente usado en Estados Unidos y Reino Unido.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Factores de Conversión</h4>
+                    <p>Relaciones matemáticas exactas entre unidades que permiten transformar una medida de un sistema a otro manteniendo la equivalencia.</p>
+                </div>
+                
+                <div class="concept-item">
+                    <h4>Precisión y Redondeo</h4>
+                    <p>Nuestro conversor utiliza hasta 6 decimales de precisión para garantizar la exactitud en cálculos científicos e ingenieriles.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq">
+            <h3>Preguntas Frecuentes sobre Conversión de Unidades</h3>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>¿Cómo funciona el conversor de unidades?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El conversor utiliza factores matemáticos exactos para transformar valores entre diferentes sistemas de medidas. Simplemente selecciona las unidades de origen y destino, introduce el valor y obtén el resultado instantáneamente.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>¿Qué precisión tienen las conversiones?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestras conversiones utilizan hasta 6 decimales de precisión y factores de conversión oficiales internacionales, garantizando la exactitud para aplicaciones científicas y profesionales.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>¿Puedo convertir entre sistemas métrico e imperial?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, el conversor soporta conversiones bidireccionales entre el sistema métrico (metros, kilogramos, Celsius) y el sistema imperial (pies, libras, Fahrenheit) en todas las categorías.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>¿Es gratuito el conversor de unidades?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Completamente gratuito. No requiere registro, descarga ni instalación. Funciona directamente en tu navegador con acceso ilimitado a todas las funciones de conversión.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>¿Qué categorías de conversión están disponibles?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El conversor incluye 13 categorías: longitud, peso, temperatura, área, volumen, tiempo, velocidad, datos digitales, química, presión, energía, fuerza y potencia, cubriendo necesidades desde básicas hasta científicas avanzadas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer>
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // ==========================================
+        // BASE DE DATOS DE CONVERSIONES
+        // ==========================================
+
+        const CONVERSION_DATA = {
+            longitud: {
+                name: 'Longitud',
+                info: 'Sistema Internacional (metros) y sistemas tradicionales. Útil para arquitectura, ingeniería y uso cotidiano.',
+                baseUnit: 'metro',
+                units: {
+                    'milimetro': { name: 'Milímetro', symbol: 'mm', factor: 0.001 },
+                    'centimetro': { name: 'Centímetro', symbol: 'cm', factor: 0.01 },
+                    'metro': { name: 'Metro', symbol: 'm', factor: 1 },
+                    'kilometro': { name: 'Kilómetro', symbol: 'km', factor: 1000 },
+                    'pulgada': { name: 'Pulgada', symbol: 'in', factor: 0.0254 },
+                    'pie': { name: 'Pie', symbol: 'ft', factor: 0.3048 },
+                    'yarda': { name: 'Yarda', symbol: 'yd', factor: 0.9144 },
+                    'milla': { name: 'Milla', symbol: 'mi', factor: 1609.344 }
+                }
+            },
+            peso: {
+                name: 'Peso y Masa',
+                info: 'Conversiones entre sistemas métrico e imperial. Útil para cocina, comercio y aplicaciones cotidianas.',
+                baseUnit: 'gramo',
+                units: {
+                    'miligramo': { name: 'Miligramo', symbol: 'mg', factor: 0.001 },
+                    'gramo': { name: 'Gramo', symbol: 'g', factor: 1 },
+                    'kilogramo': { name: 'Kilogramo', symbol: 'kg', factor: 1000 },
+                    'tonelada': { name: 'Tonelada', symbol: 't', factor: 1000000 },
+                    'onza': { name: 'Onza', symbol: 'oz', factor: 28.3495 },
+                    'libra': { name: 'Libra', symbol: 'lb', factor: 453.592 }
+                }
+            },
+            temperatura: {
+                name: 'Temperatura',
+                info: 'Conversiones entre Celsius, Fahrenheit y Kelvin. Esencial para ciencia, cocina y climatología.',
+                baseUnit: 'celsius',
+                isSpecial: true,
+                units: {
+                    'celsius': { name: 'Celsius', symbol: '°C' },
+                    'fahrenheit': { name: 'Fahrenheit', symbol: '°F' },
+                    'kelvin': { name: 'Kelvin', symbol: 'K' }
+                }
+            },
+            area: {
+                name: 'Área',
+                info: 'Medidas de superficie para inmuebles, terrenos y aplicaciones técnicas.',
+                baseUnit: 'metro_cuadrado',
+                units: {
+                    'centimetro_cuadrado': { name: 'Centímetro cuadrado', symbol: 'cm²', factor: 0.0001 },
+                    'metro_cuadrado': { name: 'Metro cuadrado', symbol: 'm²', factor: 1 },
+                    'hectarea': { name: 'Hectárea', symbol: 'ha', factor: 10000 },
+                    'kilometro_cuadrado': { name: 'Kilómetro cuadrado', symbol: 'km²', factor: 1000000 },
+                    'pulgada_cuadrada': { name: 'Pulgada cuadrada', symbol: 'in²', factor: 0.00064516 },
+                    'pie_cuadrado': { name: 'Pie cuadrado', symbol: 'ft²', factor: 0.092903 },
+                    'acre': { name: 'Acre', symbol: 'ac', factor: 4046.86 }
+                }
+            },
+            volumen: {
+                name: 'Volumen',
+                info: 'Medidas de capacidad para líquidos, gases y contenedores.',
+                baseUnit: 'litro',
+                units: {
+                    'mililitro': { name: 'Mililitro', symbol: 'ml', factor: 0.001 },
+                    'litro': { name: 'Litro', symbol: 'L', factor: 1 },
+                    'metro_cubico': { name: 'Metro cúbico', symbol: 'm³', factor: 1000 },
+                    'onza_liquida': { name: 'Onza líquida', symbol: 'fl oz', factor: 0.0295735 },
+                    'taza': { name: 'Taza', symbol: 'cup', factor: 0.236588 },
+                    'galon_us': { name: 'Galón (US)', symbol: 'gal', factor: 3.78541 }
+                }
+            },
+            tiempo: {
+                name: 'Tiempo',
+                info: 'Conversiones entre unidades temporales para planificación y cálculos.',
+                baseUnit: 'segundo',
+                units: {
+                    'segundo': { name: 'Segundo', symbol: 's', factor: 1 },
+                    'minuto': { name: 'Minuto', symbol: 'min', factor: 60 },
+                    'hora': { name: 'Hora', symbol: 'h', factor: 3600 },
+                    'dia': { name: 'Día', symbol: 'd', factor: 86400 },
+                    'semana': { name: 'Semana', symbol: 'sem', factor: 604800 },
+                    'mes': { name: 'Mes', symbol: 'mes', factor: 2629746 },
+                    'ano': { name: 'Año', symbol: 'año', factor: 31556952 }
+                }
+            },
+            velocidad: {
+                name: 'Velocidad',
+                info: 'Conversiones de velocidad para transporte, deportes y aplicaciones técnicas.',
+                baseUnit: 'metro_por_segundo',
+                units: {
+                    'metro_por_segundo': { name: 'Metro por segundo', symbol: 'm/s', factor: 1 },
+                    'kilometro_por_hora': { name: 'Kilómetro por hora', symbol: 'km/h', factor: 0.277778 },
+                    'milla_por_hora': { name: 'Milla por hora', symbol: 'mph', factor: 0.44704 },
+                    'nudo': { name: 'Nudo', symbol: 'kn', factor: 0.514444 }
+                }
+            },
+            datos: {
+                name: 'Datos Digitales',
+                info: 'Conversiones entre unidades de almacenamiento y transferencia de datos (sistema decimal).',
+                baseUnit: 'byte',
+                units: {
+                    'byte': { name: 'Byte', symbol: 'B', factor: 1 },
+                    'kilobyte': { name: 'Kilobyte', symbol: 'KB', factor: 1000 },
+                    'megabyte': { name: 'Megabyte', symbol: 'MB', factor: 1000000 },
+                    'gigabyte': { name: 'Gigabyte', symbol: 'GB', factor: 1000000000 },
+                    'terabyte': { name: 'Terabyte', symbol: 'TB', factor: 1000000000000 }
+                }
+            },
+            quimica: {
+                name: 'Química',
+                info: 'Conversiones entre moles, gramos y moléculas. Requiere masa molecular para algunas conversiones.',
+                isSpecial: true,
+                baseUnit: 'mol',
+                units: {
+                    'mol': { name: 'Mol', symbol: 'mol' },
+                    'milimol': { name: 'Milimol', symbol: 'mmol' },
+                    'micromol': { name: 'Micromol', symbol: 'μmol' },
+                    'moleculas': { name: 'Moléculas', symbol: 'moléculas' },
+                    'gramos_con_mm': { name: 'Gramos (MM=18)', symbol: 'g' }
+                }
+            },
+            presion: {
+                name: 'Presión',
+                info: 'Conversiones entre diferentes unidades de presión para física, meteorología e ingeniería.',
+                baseUnit: 'pascal',
+                units: {
+                    'pascal': { name: 'Pascal', symbol: 'Pa', factor: 1 },
+                    'kilopascal': { name: 'Kilopascal', symbol: 'kPa', factor: 1000 },
+                    'bar': { name: 'Bar', symbol: 'bar', factor: 100000 },
+                    'atmosfera': { name: 'Atmósfera', symbol: 'atm', factor: 101325 },
+                    'psi': { name: 'PSI', symbol: 'psi', factor: 6894.76 },
+                    'torr': { name: 'Torr', symbol: 'Torr', factor: 133.322 },
+                    'mmhg': { name: 'milímetros de mercurio', symbol: 'mmHg', factor: 133.322 }
+                }
+            },
+            energia: {
+                name: 'Energía',
+                info: 'Conversiones entre unidades de energía para física, nutrición y aplicaciones técnicas.',
+                baseUnit: 'julio',
+                units: {
+                    'julio': { name: 'Julio', symbol: 'J', factor: 1 },
+                    'kilojulio': { name: 'Kilojulio', symbol: 'kJ', factor: 1000 },
+                    'caloria': { name: 'Caloría', symbol: 'cal', factor: 4.184 },
+                    'kilocaloria': { name: 'Kilocaloría', symbol: 'kcal', factor: 4184 },
+                    'kilovatio_hora': { name: 'Kilovatio-hora', symbol: 'kWh', factor: 3600000 },
+                    'btu': { name: 'BTU', symbol: 'BTU', factor: 1055.06 },
+                    'electronvoltio': { name: 'Electronvoltio', symbol: 'eV', factor: 1.60218e-19 }
+                }
+            },
+            fuerza: {
+                name: 'Fuerza',
+                info: 'Conversiones entre unidades de fuerza para física, ingeniería mecánica y construcción.',
+                baseUnit: 'newton',
+                units: {
+                    'newton': { name: 'Newton', symbol: 'N', factor: 1 },
+                    'kilonewton': { name: 'Kilonewton', symbol: 'kN', factor: 1000 },
+                    'kilogramo_fuerza': { name: 'Kilogramo-fuerza', symbol: 'kgf', factor: 9.80665 },
+                    'libra_fuerza': { name: 'Libra-fuerza', symbol: 'lbf', factor: 4.44822 },
+                    'dina': { name: 'Dina', symbol: 'dyn', factor: 0.00001 },
+                    'onza_fuerza': { name: 'Onza-fuerza', symbol: 'ozf', factor: 0.278014 }
+                }
+            },
+            potencia: {
+                name: 'Potencia',
+                info: 'Conversiones entre unidades de potencia para motores, electricidad y climatización.',
+                baseUnit: 'vatio',
+                units: {
+                    'vatio': { name: 'Vatio', symbol: 'W', factor: 1 },
+                    'kilovatio': { name: 'Kilovatio', symbol: 'kW', factor: 1000 },
+                    'megavatio': { name: 'Megavatio', symbol: 'MW', factor: 1000000 },
+                    'caballo_vapor': { name: 'Caballo de vapor', symbol: 'CV', factor: 735.49875 },
+                    'caballo_fuerza': { name: 'Caballo de fuerza', symbol: 'HP', factor: 745.69987 },
+                    'btu_hora': { name: 'BTU/hora', symbol: 'BTU/h', factor: 0.293071 }
+                }
+            }
+        };
+
+        // ==========================================
+        // VARIABLES GLOBALES
+        // ==========================================
+
+        let currentCategory = 'longitud';
+        let isConverting = false;
+
+        // ==========================================
+        // INICIALIZACIÓN
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupCategoryTabs();
+            loadCategory(currentCategory);
+            setupEventListeners();
+        });
+
+        function setupCategoryTabs() {
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    switchCategory(category);
+                });
+            });
+        }
+
+        function setupEventListeners() {
+            // Input de valor con conversión automática (reducir el debounce)
+            document.getElementById('input-value').addEventListener('input', debounce(performConversion, 100));
+            
+            // Selectores de unidades - conversión inmediata
+            document.getElementById('from-unit').addEventListener('change', performConversion);
+            document.getElementById('to-unit').addEventListener('change', performConversion);
+            
+            // También convertir cuando se hace focus en los campos
+            document.getElementById('from-unit').addEventListener('focus', performConversion);
+            document.getElementById('to-unit').addEventListener('focus', performConversion);
+            
+            // Permitir solo números válidos
+            document.getElementById('input-value').addEventListener('keypress', function(e) {
+                // Permitir números, punto, coma y signos
+                if (!/[\d.,\-+e]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+            
+            // Forzar conversión cuando se carga la página
+            setTimeout(() => {
+                console.log('Forzando conversión inicial...');
+                performConversion();
+            }, 500);
+        }
+
+        function switchCategory(category) {
+            if (category === currentCategory) return;
+            
+            // Actualizar tabs activos
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            currentCategory = category;
+            loadCategory(category);
+        }
+
+        function loadCategory(category) {
+            const categoryData = CONVERSION_DATA[category];
+            if (!categoryData) return;
+            
+            // Actualizar información de categoría
+            document.getElementById('category-info').innerHTML = 
+                `<strong>${categoryData.name}:</strong> ${categoryData.info}`;
+            
+            // Cargar unidades en los selectores
+            loadUnitsIntoSelects(categoryData.units);
+            
+            // Resetear valores
+            document.getElementById('input-value').value = '1';
+            
+            // Realizar conversión inicial
+            performConversion();
+        }
+
+        function loadUnitsIntoSelects(units) {
+            const fromSelect = document.getElementById('from-unit');
+            const toSelect = document.getElementById('to-unit');
+            
+            // Limpiar selectores
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
+            
+            // Llenar con opciones
+            Object.entries(units).forEach(([key, unit]) => {
+                const option1 = new Option(`${unit.name} (${unit.symbol})`, key);
+                const option2 = new Option(`${unit.name} (${unit.symbol})`, key);
+                
+                fromSelect.add(option1);
+                toSelect.add(option2);
+            });
+            
+            // Seleccionar unidades por defecto inteligentes
+            setDefaultUnits();
+        }
+
+        function setDefaultUnits() {
+            const fromSelect = document.getElementById('from-unit');
+            const toSelect = document.getElementById('to-unit');
+            
+            // Configuraciones por defecto por categoría
+            const defaults = {
+                'longitud': ['metro', 'pie'],
+                'peso': ['kilogramo', 'libra'],
+                'temperatura': ['celsius', 'fahrenheit'],
+                'area': ['metro_cuadrado', 'pie_cuadrado'],
+                'volumen': ['litro', 'galon_us'],
+                'tiempo': ['hora', 'minuto'],
+                'velocidad': ['kilometro_por_hora', 'milla_por_hora'],
+                'datos': ['gigabyte', 'megabyte']
+            };
+            
+            const [from, to] = defaults[currentCategory] || [fromSelect.options[0]?.value, fromSelect.options[1]?.value];
+            
+            if (from) fromSelect.value = from;
+            if (to) toSelect.value = to;
+        }
+
+        // ==========================================
+        // LÓGICA DE CONVERSIÓN
+        // ==========================================
+
+        function performConversion() {
+            if (isConverting) return;
+            isConverting = true;
+            
+            try {
+                const inputValue = parseFloat(document.getElementById('input-value').value) || 0;
+                const fromUnit = document.getElementById('from-unit').value;
+                const toUnit = document.getElementById('to-unit').value;
+                const outputElement = document.getElementById('output-value');
+                
+                console.log(`Convertir: ${inputValue} de ${fromUnit} a ${toUnit}`);
+                
+                if (!fromUnit || !toUnit) {
+                    console.error('Unidades no seleccionadas');
+                    outputElement.value = 'Error';
+                    isConverting = false;
+                    return;
+                }
+                
+                let result;
+                const categoryData = CONVERSION_DATA[currentCategory];
+                
+                if (categoryData.isSpecial) {
+                    if (currentCategory === 'temperatura') {
+                        result = convertTemperature(inputValue, fromUnit, toUnit);
+                    } else if (currentCategory === 'quimica') {
+                        result = convertChemistry(inputValue, fromUnit, toUnit);
+                    }
+                } else {
+                    result = convertStandard(inputValue, fromUnit, toUnit, categoryData);
+                }
+                
+                console.log(`Resultado calculado: ${result}`);
+                
+                // Verificar que el resultado es válido
+                if (result === undefined || result === null || !isFinite(result)) {
+                    console.error('Resultado inválido:', result);
+                    outputElement.value = 'Error';
+                } else {
+                    // Formatear y mostrar resultado
+                    const formattedResult = formatResult(result);
+                    console.log(`Resultado formateado: ${formattedResult}`);
+                    
+                    // Forzar la actualización del campo
+                    outputElement.value = formattedResult;
+                    
+                    // Verificar que se actualizó
+                    setTimeout(() => {
+                        if (outputElement.value !== formattedResult) {
+                            console.warn('Campo no actualizado, reintentando...');
+                            outputElement.value = formattedResult;
+                        }
+                    }, 10);
+                }
+                
+                // Actualizar equivalencias rápidas
+                updateQuickEquivalents(inputValue, fromUnit, categoryData);
+                
+            } catch (error) {
+                console.error('Error en conversión:', error);
+                document.getElementById('output-value').value = 'Error';
+            }
+            
+            isConverting = false;
+        }
+
+        function convertStandard(value, fromUnit, toUnit, categoryData) {
+            console.log(`=== convertStandard ===`);
+            console.log(`Entrada: ${value} ${fromUnit} -> ${toUnit}`);
+            
+            if (fromUnit === toUnit) {
+                console.log('Misma unidad, retornando valor original');
+                return value;
+            }
+            
+            const fromFactor = categoryData.units[fromUnit]?.factor;
+            const toFactor = categoryData.units[toUnit]?.factor;
+            
+            console.log(`Factor origen (${fromUnit}): ${fromFactor}`);
+            console.log(`Factor destino (${toUnit}): ${toFactor}`);
+            
+            if (fromFactor === undefined || toFactor === undefined) {
+                console.error('Factor no encontrado');
+                return NaN;
+            }
+            
+            // Los factores representan "cuántas unidades base hay en 1 unidad de esta medida"
+            const baseValue = value * fromFactor;
+            const result = baseValue / toFactor;
+            
+            console.log(`Cálculo: ${value} * ${fromFactor} = ${baseValue} (base)`);
+            console.log(`Cálculo: ${baseValue} / ${toFactor} = ${result} (resultado)`);
+            
+            return result;
+        }
+
+        function convertChemistry(value, fromUnit, toUnit) {
+            const avogadro = 6.022e23;
+            const masaMolecular = 18; // Agua por defecto (H2O), el usuario puede modificar
+
+            // Primero convertir a moles
+            let moles = value;
+
+            switch(fromUnit) {
+                case 'mol':
+                    moles = value;
+                    break;
+                case 'milimol':
+                    moles = value / 1000;
+                    break;
+                case 'micromol':
+                    moles = value / 1000000;
+                    break;
+                case 'moleculas':
+                    moles = value / avogadro;
+                    break;
+                case 'gramos_con_mm':
+                    moles = value / masaMolecular;
+                    break;
+            }
+
+            // Luego convertir de moles a la unidad destino
+            switch(toUnit) {
+                case 'mol':
+                    return moles;
+                case 'milimol':
+                    return moles * 1000;
+                case 'micromol':
+                    return moles * 1000000;
+                case 'moleculas':
+                    return moles * avogadro;
+                case 'gramos_con_mm':
+                    return moles * masaMolecular;
+                default:
+                    return moles;
+            }
+        }
+
+        function convertTemperature(value, fromUnit, toUnit) {
+            if (fromUnit === toUnit) return value;
+            
+            // Convertir todo a Celsius primero
+            let celsius;
+            switch (fromUnit) {
+                case 'celsius': celsius = value; break;
+                case 'fahrenheit': celsius = (value - 32) * 5/9; break;
+                case 'kelvin': celsius = value - 273.15; break;
+                default: celsius = value;
+            }
+            
+            // Convertir desde Celsius a unidad destino
+            switch (toUnit) {
+                case 'celsius': return celsius;
+                case 'fahrenheit': return celsius * 9/5 + 32;
+                case 'kelvin': return celsius + 273.15;
+                default: return celsius;
+            }
+        }
+
+        function formatResult(value) {
+            console.log(`Formateando resultado: ${value} (tipo: ${typeof value})`);
+            
+            if (value === null || value === undefined) {
+                console.warn('Valor nulo o undefined');
+                return '0';
+            }
+            
+            if (!isFinite(value)) {
+                console.warn('Valor infinito');
+                return 'Infinito';
+            }
+            
+            const absValue = Math.abs(value);
+            let formatted;
+            
+            // Formatear según el tamaño del número - USANDO PUNTO DECIMAL SIEMPRE para campos numéricos
+            if (absValue >= 1e12) {
+                formatted = value.toExponential(6);
+            } else if (absValue >= 1000000) {
+                formatted = value.toFixed(2);
+            } else if (absValue >= 1) {
+                formatted = value.toFixed(6).replace(/\.?0+$/, ''); 
+            } else if (absValue >= 0.001) {
+                formatted = value.toFixed(6).replace(/\.?0+$/, ''); 
+            } else if (value === 0) {
+                formatted = '0';
+            } else {
+                formatted = value.toExponential(6);
+            }
+            
+            console.log(`Resultado formateado: "${formatted}"`);
+            return formatted;
+        }
+
+        // Nueva función para formatear números en el display (equivalencias rápidas)
+        function formatDisplayNumber(value) {
+            if (value === null || value === undefined || !isFinite(value)) {
+                return '0';
+            }
+            
+            const absValue = Math.abs(value);
+            
+            if (absValue >= 1e12) {
+                return value.toExponential(6);
+            } else if (absValue >= 1000000) {
+                // Formato español: separador de miles con punto, decimal con coma
+                return value.toLocaleString('es-ES', { maximumFractionDigits: 2 });
+            } else if (absValue >= 1000) {
+                // Aplicar separador de miles solo para números grandes
+                return value.toLocaleString('es-ES', { maximumFractionDigits: 6 });
+            } else if (absValue >= 1) {
+                // Sin separador de miles para números menores a 1000
+                return value.toFixed(6).replace(/\.?0+$/, '').replace('.', ',');
+            } else if (absValue >= 0.001) {
+                return value.toFixed(6).replace(/\.?0+$/, '').replace('.', ',');
+            } else if (value === 0) {
+                return '0';
+            } else {
+                return value.toExponential(6).replace('.', ',');
+            }
+        }
+
+        function updateQuickEquivalents(inputValue, fromUnit, categoryData) {
+            const equivalentsList = document.getElementById('equivalents-list');
+            
+            if (inputValue === 0) {
+                equivalentsList.innerHTML = '<div class="equivalent-item"><span class="equivalent-label">Introduce un valor para ver equivalencias</span></div>';
+                return;
+            }
+            
+            // Mostrar 6 conversiones comunes
+            const commonUnits = getCommonUnits(fromUnit);
+            let html = '';
+            
+            commonUnits.forEach(unitKey => {
+                if (unitKey !== fromUnit) {
+                    let result;
+                    
+                    if (categoryData.isSpecial) {
+                        if (currentCategory === 'temperatura') {
+                            result = convertTemperature(inputValue, fromUnit, unitKey);
+                        } else if (currentCategory === 'quimica') {
+                            result = convertChemistry(inputValue, fromUnit, unitKey);
+                        }
+                    } else {
+                        result = convertStandard(inputValue, fromUnit, unitKey, categoryData);
+                    }
+                    
+                    const unit = categoryData.units[unitKey];
+                    html += `
+                        <div class="equivalent-item">
+                            <span class="equivalent-label">${unit.name}:</span>
+                            <span class="equivalent-value">${formatDisplayNumber(result)} ${unit.symbol}</span>
+                        </div>
+                    `;
+                }
+            });
+            
+            equivalentsList.innerHTML = html;
+        }
+
+        function getCommonUnits(currentUnit) {
+            const commonByCategory = {
+                'longitud': ['milimetro', 'centimetro', 'metro', 'kilometro', 'pulgada', 'pie'],
+                'peso': ['miligramo', 'gramo', 'kilogramo', 'tonelada', 'onza', 'libra'],
+                'temperatura': ['celsius', 'fahrenheit', 'kelvin'],
+                'area': ['centimetro_cuadrado', 'metro_cuadrado', 'hectarea', 'pie_cuadrado', 'acre'],
+                'volumen': ['mililitro', 'litro', 'metro_cubico', 'onza_liquida', 'taza', 'galon_us'],
+                'tiempo': ['segundo', 'minuto', 'hora', 'dia', 'semana', 'mes'],
+                'velocidad': ['metro_por_segundo', 'kilometro_por_hora', 'milla_por_hora', 'nudo'],
+                'datos': ['byte', 'kilobyte', 'megabyte', 'gigabyte', 'terabyte']
+            };
+            
+            return commonByCategory[currentCategory] || [];
+        }
+
+        function swapUnits() {
+            const fromSelect = document.getElementById('from-unit');
+            const toSelect = document.getElementById('to-unit');
+            const inputValue = document.getElementById('input-value');
+            const outputValue = document.getElementById('output-value');
+            
+            // Intercambiar selectores
+            const tempValue = fromSelect.value;
+            fromSelect.value = toSelect.value;
+            toSelect.value = tempValue;
+            
+            // Intercambiar valores
+            const tempInputValue = inputValue.value;
+            inputValue.value = outputValue.value;
+            
+            // Reconvertir
+            performConversion();
+        }
+
+        // ==========================================
+        // UTILIDADES
+        // ==========================================
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // ==========================================
+        // LOGGING Y DEBUG
+        // ==========================================
+
+        console.log('🔄 Conversor de Unidades cargado correctamente');
+
+        // ==========================================
+        // FUNCIÓN PARA FAQ DESPLEGABLES
+        // ==========================================
+        
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
