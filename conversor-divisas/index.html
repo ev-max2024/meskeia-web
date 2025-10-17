@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="meskeIA">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- SEO Principal -->
+    <title>Conversor de Divisas - Tipos de Cambio en Tiempo Real | meskeIA</title>
+    <meta name="description" content="Conversor de divisas con tipos de cambio actualizados del Banco Central Europeo. Convierte entre 33 monedas internacionales: EUR, USD, GBP, JPY y más. Datos oficiales en tiempo real con historial de conversiones.">
+    <meta name="keywords" content="conversor divisas, cambio divisas, euro dolar, EUR USD, tipos cambio, convertidor moneda, calculadora divisas, exchange rate, forex, libra esterlina, yen japones, banco central europeo, cambio euro dolar, cotizacion divisas">
+
+    <link rel="canonical" href="https://meskeia.com/conversor-divisas/">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conversor de Divisas - Tipos de Cambio en Tiempo Real">
+    <meta property="og:description" content="Convierte entre 33 divisas con datos oficiales del Banco Central Europeo. EUR, USD, GBP, JPY y más.">
+    <meta property="og:url" content="https://meskeia.com/conversor-divisas/">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conversor de Divisas - meskeIA">
+    <meta name="twitter:description" content="Tipos de cambio actualizados del BCE. Convierte entre 33 divisas internacionales.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Conversor de Divisas",
+        "description": "Conversor de divisas con tipos de cambio actualizados del Banco Central Europeo",
+        "url": "https://meskeia.com/conversor-divisas/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "inLanguage": "es-ES",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "33 divisas internacionales",
+            "Datos del Banco Central Europeo",
+            "Actualización diaria automática",
+            "Conversión bidireccional simultánea",
+            "Historial de conversiones",
+            "Divisas favoritas",
+            "Funciona offline con caché"
+        ]
+    }
+    </script>
+
+    <!-- Breadcrumbs Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "meskeIA",
+            "item": "https://meskeia.com/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculadoras y Utilidades",
+            "item": "https://meskeia.com/#calculadoras"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Conversor de Divisas",
+            "item": "https://meskeia.com/conversor-divisas/"
+        }]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .update-info {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .converter-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .currency-input {
+            margin-bottom: 1.5rem;
+        }
+
+        .currency-input label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        .input-group input {
+            flex: 2;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .input-group select {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: white;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .swap-button {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .btn-swap {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-swap:hover {
+            background: #3a8784;
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        .result {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .result-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .result-rate {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .favorites {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .favorites h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .favorite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .favorite-item {
+            background: var(--hover);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .favorite-item:hover {
+            background: var(--focus);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .favorite-currency {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .favorite-rate {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .history {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-clear {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-clear:hover {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .history-item:hover {
+            background: var(--hover);
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-conversion {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .history-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* RESPONSIVE MÓVIL - OBLIGATORIO */
+        @media (max-width: 768px) {
+            /* Logo meskeIA responsive */
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            /* Contenedor principal */
+            .container {
+                padding: 10px;
+            }
+
+            /* Headers responsive */
+            body {
+                padding-top: 60px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            /* Converter card responsive */
+            .converter-card {
+                padding: 1.5rem;
+            }
+
+            /* Input responsive */
+            .input-group {
+                flex-direction: column;
+            }
+
+            .input-group input,
+            .input-group select {
+                width: 100%;
+            }
+
+            .input-group input {
+                font-size: 1.2rem;
+            }
+
+            /* Result responsive */
+            .result-amount {
+                font-size: 2rem;
+            }
+
+            .result-rate {
+                font-size: 0.95rem;
+            }
+
+            /* Favorites responsive */
+            .favorite-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* History responsive */
+            .history h3 {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .history-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>💱 Conversor de Divisas</h1>
+            <p>Tipos de cambio actualizados del Banco Central Europeo</p>
+        </header>
+
+        <div class="update-info" id="update-info">
+            📅 Última actualización: Cargando...
+        </div>
+
+        <div class="converter-card">
+            <div class="currency-input">
+                <label>Cantidad a convertir</label>
+                <div class="input-group">
+                    <input type="number" id="amount-from" value="100" min="0" step="0.01">
+                    <select id="currency-from">
+                        <option value="EUR" selected>EUR - Euro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="swap-button">
+                <button class="btn-swap" id="swap-btn">⇅</button>
+            </div>
+
+            <div class="currency-input">
+                <label>Cantidad convertida</label>
+                <div class="input-group">
+                    <input type="number" id="amount-to" readonly>
+                    <select id="currency-to">
+                        <option value="USD">USD - Dólar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="result" id="result" style="display: none;">
+                <div class="result-amount" id="result-amount">0,00</div>
+                <div class="result-rate" id="result-rate">1 EUR = 0 USD</div>
+            </div>
+        </div>
+
+        <div class="favorites">
+            <h3>💫 Divisas populares</h3>
+            <div class="favorite-grid" id="favorites-grid">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+
+        <div class="history">
+            <h3>
+                <span>📜 Historial de conversiones</span>
+                <button class="btn-clear" id="clear-history">Limpiar</button>
+            </h3>
+            <div id="history-list">
+                <div class="empty-state">
+                    <div class="empty-state-icon">💱</div>
+                    <p>No hay conversiones recientes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Lista de divisas disponibles (API frankfurter.app - BCE)
+        const currencies = {
+            'EUR': 'Euro',
+            'USD': 'Dólar estadounidense',
+            'GBP': 'Libra esterlina',
+            'JPY': 'Yen japonés',
+            'CHF': 'Franco suizo',
+            'CAD': 'Dólar canadiense',
+            'AUD': 'Dólar australiano',
+            'NZD': 'Dólar neozelandés',
+            'CNY': 'Yuan chino',
+            'HKD': 'Dólar de Hong Kong',
+            'SGD': 'Dólar de Singapur',
+            'SEK': 'Corona sueca',
+            'NOK': 'Corona noruega',
+            'DKK': 'Corona danesa',
+            'PLN': 'Zloty polaco',
+            'CZK': 'Corona checa',
+            'HUF': 'Forinto húngaro',
+            'RON': 'Leu rumano',
+            'BGN': 'Lev búlgaro',
+            'TRY': 'Lira turca',
+            'ILS': 'Shekel israelí',
+            'ZAR': 'Rand sudafricano',
+            'BRL': 'Real brasileño',
+            'MXN': 'Peso mexicano',
+            'ARS': 'Peso argentino',
+            'CLP': 'Peso chileno',
+            'INR': 'Rupia india',
+            'KRW': 'Won surcoreano',
+            'THB': 'Baht tailandés',
+            'MYR': 'Ringgit malayo',
+            'IDR': 'Rupia indonesia',
+            'PHP': 'Peso filipino',
+            'ISK': 'Corona islandesa'
+        };
+
+        // Divisas favoritas para mostrar
+        const favoriteCurrencies = ['USD', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'];
+
+        // API Base URL
+        const API_URL = 'https://api.frankfurter.app';
+
+        // Elementos del DOM
+        const amountFrom = document.getElementById('amount-from');
+        const amountTo = document.getElementById('amount-to');
+        const currencyFrom = document.getElementById('currency-from');
+        const currencyTo = document.getElementById('currency-to');
+        const swapBtn = document.getElementById('swap-btn');
+        const result = document.getElementById('result');
+        const resultAmount = document.getElementById('result-amount');
+        const resultRate = document.getElementById('result-rate');
+        const updateInfo = document.getElementById('update-info');
+        const favoritesGrid = document.getElementById('favorites-grid');
+        const historyList = document.getElementById('history-list');
+        const clearHistoryBtn = document.getElementById('clear-history');
+
+        // Cache y datos
+        let exchangeRates = {};
+        let lastUpdate = null;
+
+        // Inicializar
+        async function init() {
+            populateCurrencySelects();
+            loadFromCache();
+            await fetchExchangeRates();
+            renderFavorites();
+            renderHistory();
+            convert();
+        }
+
+        // Poblar selectores con divisas
+        function populateCurrencySelects() {
+            const fromHTML = Object.entries(currencies).map(([code, name]) =>
+                `<option value="${code}" ${code === 'EUR' ? 'selected' : ''}>${code} - ${name}</option>`
+            ).join('');
+
+            const toHTML = Object.entries(currencies).map(([code, name]) =>
+                `<option value="${code}" ${code === 'USD' ? 'selected' : ''}>${code} - ${name}</option>`
+            ).join('');
+
+            currencyFrom.innerHTML = fromHTML;
+            currencyTo.innerHTML = toHTML;
+        }
+
+        // Obtener tipos de cambio de la API
+        async function fetchExchangeRates() {
+            try {
+                const response = await fetch(`${API_URL}/latest`);
+                const data = await response.json();
+
+                exchangeRates = data.rates;
+                exchangeRates['EUR'] = 1; // EUR es la base
+                lastUpdate = data.date;
+
+                // Guardar en caché
+                localStorage.setItem('meskeIA_exchange_rates', JSON.stringify(exchangeRates));
+                localStorage.setItem('meskeIA_last_update', lastUpdate);
+
+                updateInfo.textContent = `📅 Última actualización: ${new Date(lastUpdate).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })}`;
+            } catch (error) {
+                console.error('Error al obtener tipos de cambio:', error);
+                updateInfo.textContent = '⚠️ Error al cargar tipos de cambio. Usando datos en caché.';
+                updateInfo.style.background = 'linear-gradient(135deg, #dc3545, #ff6b6b)';
+            }
+        }
+
+        // Cargar desde caché
+        function loadFromCache() {
+            const cachedRates = localStorage.getItem('meskeIA_exchange_rates');
+            const cachedUpdate = localStorage.getItem('meskeIA_last_update');
+
+            if (cachedRates && cachedUpdate) {
+                exchangeRates = JSON.parse(cachedRates);
+                lastUpdate = cachedUpdate;
+                updateInfo.textContent = `📅 Última actualización: ${new Date(lastUpdate).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })} (caché)`;
+            }
+        }
+
+        // Convertir divisas
+        function convert() {
+            const from = currencyFrom.value;
+            const to = currencyTo.value;
+            const amount = parseFloat(amountFrom.value) || 0;
+
+            if (!exchangeRates[from] || !exchangeRates[to]) {
+                return;
+            }
+
+            // Conversión: amount * (rateTo / rateFrom)
+            const rate = exchangeRates[to] / exchangeRates[from];
+            const converted = amount * rate;
+
+            amountTo.value = converted.toFixed(2);
+
+            // Mostrar resultado
+            result.style.display = 'block';
+            resultAmount.textContent = converted.toLocaleString('es-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            resultRate.textContent = `1 ${from} = ${rate.toLocaleString('es-ES', {
+                minimumFractionDigits: 4,
+                maximumFractionDigits: 4
+            })} ${to}`;
+
+            // Agregar al historial
+            addToHistory(amount, from, converted, to, rate);
+        }
+
+        // Intercambiar divisas
+        function swapCurrencies() {
+            const tempCurrency = currencyFrom.value;
+            currencyFrom.value = currencyTo.value;
+            currencyTo.value = tempCurrency;
+
+            const tempAmount = amountFrom.value;
+            amountFrom.value = amountTo.value;
+
+            convert();
+        }
+
+        // Renderizar divisas favoritas
+        function renderFavorites() {
+            if (!exchangeRates['EUR']) return;
+
+            favoritesGrid.innerHTML = favoriteCurrencies.map(currency => {
+                const rate = exchangeRates[currency];
+                return `
+                    <div class="favorite-item" onclick="selectFavorite('${currency}')">
+                        <div class="favorite-currency">${currency}</div>
+                        <div class="favorite-rate">${rate ? rate.toLocaleString('es-ES', { minimumFractionDigits: 4, maximumFractionDigits: 4 }) : '...'}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Seleccionar divisa favorita
+        function selectFavorite(currency) {
+            currencyTo.value = currency;
+            convert();
+        }
+
+        // Agregar al historial
+        function addToHistory(amountFrom, currencyFrom, amountTo, currencyTo, rate) {
+            const history = JSON.parse(localStorage.getItem('meskeIA_conversion_history') || '[]');
+
+            const entry = {
+                from: `${amountFrom.toLocaleString('es-ES', { minimumFractionDigits: 2 })} ${currencyFrom}`,
+                to: `${amountTo.toLocaleString('es-ES', { minimumFractionDigits: 2 })} ${currencyTo}`,
+                rate: rate.toLocaleString('es-ES', { minimumFractionDigits: 4, maximumFractionDigits: 4 }),
+                timestamp: Date.now()
+            };
+
+            history.unshift(entry);
+
+            // Mantener solo las últimas 10 conversiones
+            if (history.length > 10) {
+                history.pop();
+            }
+
+            localStorage.setItem('meskeIA_conversion_history', JSON.stringify(history));
+            renderHistory();
+        }
+
+        // Renderizar historial
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('meskeIA_conversion_history') || '[]');
+
+            if (history.length === 0) {
+                historyList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💱</div>
+                        <p>No hay conversiones recientes</p>
+                    </div>
+                `;
+                return;
+            }
+
+            historyList.innerHTML = history.map(entry => {
+                const date = new Date(entry.timestamp);
+                return `
+                    <div class="history-item">
+                        <div>
+                            <div class="history-conversion">${entry.from} → ${entry.to}</div>
+                            <div class="history-time">${date.toLocaleString('es-ES')}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Limpiar historial
+        function clearHistory() {
+            if (confirm('¿Estás seguro de que quieres eliminar todo el historial?')) {
+                localStorage.removeItem('meskeIA_conversion_history');
+                renderHistory();
+            }
+        }
+
+        // Event Listeners
+        amountFrom.addEventListener('input', convert);
+        currencyFrom.addEventListener('change', convert);
+        currencyTo.addEventListener('change', convert);
+        swapBtn.addEventListener('click', swapCurrencies);
+        clearHistoryBtn.addEventListener('click', clearHistory);
+
+        // Actualizar cada 24 horas
+        setInterval(() => {
+            fetchExchangeRates();
+            renderFavorites();
+        }, 24 * 60 * 60 * 1000);
+
+        // Inicializar aplicación
+        init();
+    </script>
+</body>
+</html>
