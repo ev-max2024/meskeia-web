@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="meskeIA">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- SEO Principal -->
+    <title>Cronómetro y Temporizador - Herramienta de Gestión del Tiempo | meskeIA</title>
+    <meta name="description" content="Cronómetro, temporizador y técnica Pomodoro en una sola herramienta. Mide tiempo, establece alarmas y gestiona sesiones de trabajo con descansos automáticos. Funciona offline con sonidos personalizados.">
+    <meta name="keywords" content="cronometro online, temporizador online, pomodoro, técnica pomodoro, contador tiempo, stopwatch, timer, alarma online, gestión tiempo, productividad, concentración, descansos, sesiones trabajo, cronómetro deportivo, temporizador cocina, contador regresivo">
+
+    <link rel="canonical" href="https://meskeia.com/cronometro-temporizador/">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cronómetro y Temporizador - Gestión del Tiempo">
+    <meta property="og:description" content="Herramienta 3 en 1: Cronómetro, Temporizador y Técnica Pomodoro. Gestiona tu tiempo de forma eficiente con alarmas y sonidos personalizados.">
+    <meta property="og:url" content="https://meskeia.com/cronometro-temporizador/">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cronómetro y Temporizador - meskeIA">
+    <meta name="twitter:description" content="Cronómetro, temporizador y Pomodoro en una herramienta. Gestiona tu tiempo eficientemente.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Cronómetro y Temporizador",
+        "description": "Herramienta de gestión del tiempo con cronómetro, temporizador y técnica Pomodoro integrados",
+        "url": "https://meskeia.com/cronometro-temporizador/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "inLanguage": "es-ES",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "Cronómetro con medición precisa",
+            "Temporizador con alarma personalizable",
+            "Técnica Pomodoro con descansos automáticos",
+            "Sonidos de notificación",
+            "Historial de sesiones",
+            "Funciona completamente offline"
+        ]
+    }
+    </script>
+
+    <!-- Breadcrumbs Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "meskeIA",
+            "item": "https://meskeia.com/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Herramientas de Productividad",
+            "item": "https://meskeia.com/#productividad"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cronómetro y Temporizador",
+            "item": "https://meskeia.com/cronometro-temporizador/"
+        }]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Backgrounds - Inspirados en Claude */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            /* Identidad de marca meskeIA */
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+
+            /* Textos minimalistas */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+
+            /* Elementos estructurales */
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            color: var(--primary);
+            background: var(--hover);
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .timer-display {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .time {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.1em;
+            margin: 1rem 0;
+        }
+
+        .milliseconds {
+            font-size: 2rem;
+            color: var(--text-muted);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #246d8a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3a8784;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(72,169,166,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-field label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .input-field input {
+            width: 100px;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .input-field input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .pomodoro-status {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pomodoro-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .laps {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .laps h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .lap-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .lap-item:last-child {
+            border-bottom: none;
+        }
+
+        .lap-number {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .lap-time {
+            font-variant-numeric: tabular-nums;
+            color: var(--text-primary);
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        /* RESPONSIVE MÓVIL - OBLIGATORIO */
+        @media (max-width: 768px) {
+            /* Logo meskeIA responsive */
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+
+            /* Contenedor principal */
+            .container {
+                padding: 10px;
+            }
+
+            /* Headers responsive */
+            body {
+                padding-top: 60px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            /* Tabs responsive */
+            .tabs {
+                justify-content: center;
+            }
+
+            .tab {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.95rem;
+            }
+
+            /* Display responsive */
+            .timer-display {
+                padding: 2rem 1rem;
+            }
+
+            .time {
+                font-size: 3.5rem;
+            }
+
+            .milliseconds {
+                font-size: 1.5rem;
+            }
+
+            /* Controles responsive */
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            /* Input responsive */
+            .input-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .input-field input {
+                width: 80px;
+                font-size: 1.2rem;
+            }
+
+            /* Stats responsive */
+            .pomodoro-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>⏱️ Cronómetro y Temporizador</h1>
+            <p>Gestiona tu tiempo de forma eficiente con cronómetro, temporizador y técnica Pomodoro</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="cronometro">⏱️ Cronómetro</button>
+            <button class="tab" data-tab="temporizador">⏲️ Temporizador</button>
+            <button class="tab" data-tab="pomodoro">🍅 Pomodoro</button>
+        </div>
+
+        <!-- Cronómetro -->
+        <div id="cronometro" class="tab-content active">
+            <div class="timer-display">
+                <div class="time" id="cronometro-display">00:00:00<span class="milliseconds">.00</span></div>
+            </div>
+            <div class="controls">
+                <button class="btn btn-primary" id="cronometro-start">Iniciar</button>
+                <button class="btn btn-secondary" id="cronometro-lap">Vuelta</button>
+                <button class="btn btn-outline" id="cronometro-reset">Reiniciar</button>
+            </div>
+            <div class="laps" id="cronometro-laps" style="display: none;">
+                <h3>Vueltas registradas</h3>
+                <div id="cronometro-laps-list"></div>
+            </div>
+        </div>
+
+        <!-- Temporizador -->
+        <div id="temporizador" class="tab-content">
+            <div class="input-group">
+                <div class="input-field">
+                    <label>Horas</label>
+                    <input type="number" id="temp-hours" min="0" max="23" value="0">
+                </div>
+                <div class="input-field">
+                    <label>Minutos</label>
+                    <input type="number" id="temp-minutes" min="0" max="59" value="5">
+                </div>
+                <div class="input-field">
+                    <label>Segundos</label>
+                    <input type="number" id="temp-seconds" min="0" max="59" value="0">
+                </div>
+            </div>
+            <div class="timer-display">
+                <div class="time" id="temporizador-display">00:05:00</div>
+            </div>
+            <div class="controls">
+                <button class="btn btn-primary" id="temporizador-start">Iniciar</button>
+                <button class="btn btn-outline" id="temporizador-reset">Reiniciar</button>
+            </div>
+        </div>
+
+        <!-- Pomodoro -->
+        <div id="pomodoro" class="tab-content">
+            <div class="pomodoro-status" id="pomodoro-status">
+                🍅 Listo para comenzar
+            </div>
+            <div class="timer-display">
+                <div class="time" id="pomodoro-display">25:00</div>
+            </div>
+            <div class="controls">
+                <button class="btn btn-primary" id="pomodoro-start">Iniciar Pomodoro</button>
+                <button class="btn btn-outline" id="pomodoro-reset">Reiniciar</button>
+            </div>
+            <div class="pomodoro-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="pomodoro-completed">0</div>
+                    <div class="stat-label">Pomodoros completados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="pomodoro-current">0</div>
+                    <div class="stat-label">Sesión actual</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // Gestión de pestañas
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // ===== CRONÓMETRO =====
+        let cronometroInterval = null;
+        let cronometroRunning = false;
+        let cronometroTime = 0;
+        let cronometroLaps = [];
+
+        const cronometroDisplay = document.getElementById('cronometro-display');
+        const cronometroStartBtn = document.getElementById('cronometro-start');
+        const cronometroLapBtn = document.getElementById('cronometro-lap');
+        const cronometroResetBtn = document.getElementById('cronometro-reset');
+        const cronometroLapsContainer = document.getElementById('cronometro-laps');
+        const cronometroLapsList = document.getElementById('cronometro-laps-list');
+
+        function formatCronometro(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            const milliseconds = Math.floor((ms % 1000) / 10);
+
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}<span class="milliseconds">.${String(milliseconds).padStart(2, '0')}</span>`;
+        }
+
+        cronometroStartBtn.addEventListener('click', () => {
+            if (!cronometroRunning) {
+                cronometroRunning = true;
+                cronometroStartBtn.textContent = 'Pausar';
+                cronometroStartBtn.classList.remove('btn-primary');
+                cronometroStartBtn.classList.add('btn-secondary');
+
+                const startTime = Date.now() - cronometroTime;
+                cronometroInterval = setInterval(() => {
+                    cronometroTime = Date.now() - startTime;
+                    cronometroDisplay.innerHTML = formatCronometro(cronometroTime);
+                }, 10);
+            } else {
+                cronometroRunning = false;
+                cronometroStartBtn.textContent = 'Reanudar';
+                cronometroStartBtn.classList.remove('btn-secondary');
+                cronometroStartBtn.classList.add('btn-primary');
+                clearInterval(cronometroInterval);
+            }
+        });
+
+        cronometroLapBtn.addEventListener('click', () => {
+            if (cronometroRunning) {
+                cronometroLaps.push(cronometroTime);
+                const lapItem = document.createElement('div');
+                lapItem.className = 'lap-item';
+                lapItem.innerHTML = `
+                    <span class="lap-number">Vuelta ${cronometroLaps.length}</span>
+                    <span class="lap-time">${formatCronometro(cronometroTime).replace(/<[^>]*>/g, '')}</span>
+                `;
+                cronometroLapsList.insertBefore(lapItem, cronometroLapsList.firstChild);
+                cronometroLapsContainer.style.display = 'block';
+            }
+        });
+
+        cronometroResetBtn.addEventListener('click', () => {
+            cronometroRunning = false;
+            cronometroTime = 0;
+            cronometroLaps = [];
+            clearInterval(cronometroInterval);
+            cronometroDisplay.innerHTML = formatCronometro(0);
+            cronometroStartBtn.textContent = 'Iniciar';
+            cronometroStartBtn.classList.remove('btn-secondary');
+            cronometroStartBtn.classList.add('btn-primary');
+            cronometroLapsList.innerHTML = '';
+            cronometroLapsContainer.style.display = 'none';
+        });
+
+        // ===== TEMPORIZADOR =====
+        let temporizadorInterval = null;
+        let temporizadorRunning = false;
+        let temporizadorTime = 300; // 5 minutos por defecto
+
+        const tempHoursInput = document.getElementById('temp-hours');
+        const tempMinutesInput = document.getElementById('temp-minutes');
+        const tempSecondsInput = document.getElementById('temp-seconds');
+        const temporizadorDisplay = document.getElementById('temporizador-display');
+        const temporizadorStartBtn = document.getElementById('temporizador-start');
+        const temporizadorResetBtn = document.getElementById('temporizador-reset');
+
+        function formatTemporizador(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function updateTemporizadorFromInputs() {
+            const hours = parseInt(tempHoursInput.value) || 0;
+            const minutes = parseInt(tempMinutesInput.value) || 0;
+            const seconds = parseInt(tempSecondsInput.value) || 0;
+            temporizadorTime = hours * 3600 + minutes * 60 + seconds;
+            temporizadorDisplay.textContent = formatTemporizador(temporizadorTime);
+        }
+
+        [tempHoursInput, tempMinutesInput, tempSecondsInput].forEach(input => {
+            input.addEventListener('input', () => {
+                if (!temporizadorRunning) {
+                    updateTemporizadorFromInputs();
+                }
+            });
+        });
+
+        temporizadorStartBtn.addEventListener('click', () => {
+            if (!temporizadorRunning) {
+                if (temporizadorTime <= 0) {
+                    alert('⚠️ Por favor, establece un tiempo válido');
+                    return;
+                }
+
+                temporizadorRunning = true;
+                temporizadorStartBtn.textContent = 'Pausar';
+                temporizadorStartBtn.classList.remove('btn-primary');
+                temporizadorStartBtn.classList.add('btn-secondary');
+
+                temporizadorInterval = setInterval(() => {
+                    temporizadorTime--;
+                    temporizadorDisplay.textContent = formatTemporizador(temporizadorTime);
+
+                    if (temporizadorTime <= 0) {
+                        clearInterval(temporizadorInterval);
+                        temporizadorRunning = false;
+                        temporizadorStartBtn.textContent = 'Iniciar';
+                        temporizadorStartBtn.classList.remove('btn-secondary');
+                        temporizadorStartBtn.classList.add('btn-primary');
+                        playSound();
+                        alert('⏰ ¡Tiempo finalizado!');
+                    }
+                }, 1000);
+            } else {
+                temporizadorRunning = false;
+                temporizadorStartBtn.textContent = 'Reanudar';
+                temporizadorStartBtn.classList.remove('btn-secondary');
+                temporizadorStartBtn.classList.add('btn-primary');
+                clearInterval(temporizadorInterval);
+            }
+        });
+
+        temporizadorResetBtn.addEventListener('click', () => {
+            temporizadorRunning = false;
+            clearInterval(temporizadorInterval);
+            updateTemporizadorFromInputs();
+            temporizadorStartBtn.textContent = 'Iniciar';
+            temporizadorStartBtn.classList.remove('btn-secondary');
+            temporizadorStartBtn.classList.add('btn-primary');
+        });
+
+        // ===== POMODORO =====
+        let pomodoroInterval = null;
+        let pomodoroRunning = false;
+        let pomodoroTime = 1500; // 25 minutos
+        let pomodoroMode = 'work'; // 'work' o 'break'
+        let pomodoroCompleted = parseInt(localStorage.getItem('pomodoro_completed')) || 0;
+        let pomodoroCurrent = 0;
+
+        const pomodoroDisplay = document.getElementById('pomodoro-display');
+        const pomodoroStatus = document.getElementById('pomodoro-status');
+        const pomodoroStartBtn = document.getElementById('pomodoro-start');
+        const pomodoroResetBtn = document.getElementById('pomodoro-reset');
+        const pomodoroCompletedEl = document.getElementById('pomodoro-completed');
+        const pomodoroCurrentEl = document.getElementById('pomodoro-current');
+
+        pomodoroCompletedEl.textContent = pomodoroCompleted;
+
+        function formatPomodoro(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function updatePomodoroStatus() {
+            if (pomodoroMode === 'work') {
+                pomodoroStatus.textContent = '🍅 Sesión de trabajo';
+                pomodoroStatus.style.background = 'linear-gradient(135deg, #2E86AB, #48A9A6)';
+            } else {
+                pomodoroStatus.textContent = '☕ Descanso';
+                pomodoroStatus.style.background = 'linear-gradient(135deg, #48A9A6, #7FB3D3)';
+            }
+        }
+
+        pomodoroStartBtn.addEventListener('click', () => {
+            if (!pomodoroRunning) {
+                pomodoroRunning = true;
+                pomodoroStartBtn.textContent = 'Pausar';
+                pomodoroStartBtn.classList.remove('btn-primary');
+                pomodoroStartBtn.classList.add('btn-secondary');
+
+                pomodoroInterval = setInterval(() => {
+                    pomodoroTime--;
+                    pomodoroDisplay.textContent = formatPomodoro(pomodoroTime);
+
+                    if (pomodoroTime <= 0) {
+                        playSound();
+
+                        if (pomodoroMode === 'work') {
+                            // Completar Pomodoro
+                            pomodoroCurrent++;
+                            pomodoroCompleted++;
+                            pomodoroCurrentEl.textContent = pomodoroCurrent;
+                            pomodoroCompletedEl.textContent = pomodoroCompleted;
+                            localStorage.setItem('pomodoro_completed', pomodoroCompleted);
+
+                            // Cambiar a descanso
+                            pomodoroMode = 'break';
+                            pomodoroTime = pomodoroCurrent % 4 === 0 ? 900 : 300; // 15min cada 4 pomodoros, 5min normal
+                            alert(`🎉 ¡Pomodoro completado! Toma un descanso de ${pomodoroCurrent % 4 === 0 ? '15' : '5'} minutos`);
+                        } else {
+                            // Volver a trabajo
+                            pomodoroMode = 'work';
+                            pomodoroTime = 1500;
+                            alert('⏰ Descanso finalizado. ¡A trabajar!');
+                        }
+
+                        updatePomodoroStatus();
+                        pomodoroDisplay.textContent = formatPomodoro(pomodoroTime);
+                    }
+                }, 1000);
+            } else {
+                pomodoroRunning = false;
+                pomodoroStartBtn.textContent = 'Reanudar';
+                pomodoroStartBtn.classList.remove('btn-secondary');
+                pomodoroStartBtn.classList.add('btn-primary');
+                clearInterval(pomodoroInterval);
+            }
+        });
+
+        pomodoroResetBtn.addEventListener('click', () => {
+            pomodoroRunning = false;
+            pomodoroMode = 'work';
+            pomodoroTime = 1500;
+            pomodoroCurrent = 0;
+            clearInterval(pomodoroInterval);
+            pomodoroDisplay.textContent = formatPomodoro(pomodoroTime);
+            pomodoroStartBtn.textContent = 'Iniciar Pomodoro';
+            pomodoroStartBtn.classList.remove('btn-secondary');
+            pomodoroStartBtn.classList.add('btn-primary');
+            pomodoroCurrentEl.textContent = pomodoroCurrent;
+            updatePomodoroStatus();
+        });
+
+        // Sonido de alarma (beep simple)
+        function playSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+
+        // Inicializar
+        updatePomodoroStatus();
+    </script>
+</body>
+</html>
