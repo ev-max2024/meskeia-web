@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="meskeIA">
+    <meta name="theme-color" content="#2E86AB">
+
+    <!-- SEO Principal -->
+    <title>Calculadora de Cocina - Conversor de Unidades y Escalador de Recetas | meskeIA</title>
+    <meta name="description" content="Calculadora de cocina completa: conversor de unidades (tazas, gramos, ml, temperatura), escalador de recetas, tiempos de cocción y sustitutos de ingredientes. Herramienta gratuita online para cocinar.">
+    <meta name="keywords" content="calculadora cocina, conversor unidades cocina, tazas a gramos, ml a tazas, conversor temperatura horno, celsius fahrenheit, escalador recetas, ajustar recetas, tiempos cocción, cocinar carne, cocinar pollo, cocinar pasta, sustitutos ingredientes, sin huevo, sin lactosa, sin gluten, recetas veganas, cocina española, herramientas cocina online">
+
+    <link rel="canonical" href="https://meskeia.com/calculadora-cocina/">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Cocina - Conversor y Escalador de Recetas">
+    <meta property="og:description" content="Conversor de unidades, escalador de recetas, tiempos de cocción y sustitutos de ingredientes. Todo lo que necesitas para cocinar.">
+    <meta property="og:url" content="https://meskeia.com/calculadora-cocina/">
+    <meta property="og:site_name" content="meskeIA">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Cocina - meskeIA">
+    <meta name="twitter:description" content="Conversor de unidades, escalador de recetas, tiempos de cocción. Herramienta gratuita para cocinar.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_meskeia.png">
+    <link rel="apple-touch-icon" href="../icon_meskeia.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Cocina",
+        "description": "Calculadora de cocina completa con conversor de unidades, escalador de recetas, tiempos de cocción y sustitutos de ingredientes",
+        "url": "https://meskeia.com/calculadora-cocina/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "inLanguage": "es-ES",
+        "author": {
+            "@type": "Organization",
+            "name": "meskeIA"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "Conversor de unidades de volumen (ml, litros, tazas, cucharadas)",
+            "Conversor de peso (gramos, kg, onzas, libras)",
+            "Conversor de temperatura (Celsius, Fahrenheit, Gas Mark)",
+            "Escalador de recetas por número de comensales",
+            "Calculadora de tiempos de cocción",
+            "Sustitutos de ingredientes para dietas especiales"
+        ]
+    }
+    </script>
+
+    <!-- Breadcrumbs Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://meskeia.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Calculadora de Cocina",
+                "item": "https://meskeia.com/calculadora-cocina/"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Paleta oficial meskeIA */
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #E5E5E5;
+            --hover: #F5F5F5;
+            --focus: rgba(46,134,171,0.1);
+            --success: #4CAF50;
+            --warning: #FF9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            padding-top: 80px;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        /* Pestañas de navegación */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button:hover {
+            background: var(--hover);
+            border-color: var(--primary);
+        }
+
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Contenido de pestañas */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Formularios */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Botones */
+        button {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,134,171,0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Resultados */
+        .result {
+            background: var(--focus);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        /* Grid de conversores */
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 20px;
+        }
+
+        .swap-button {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0;
+        }
+
+        .swap-button:hover {
+            transform: rotate(180deg);
+            background: var(--primary);
+        }
+
+        /* Lista de ingredientes */
+        .ingredient-list {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .ingredient-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ingredient-item:last-child {
+            border-bottom: none;
+        }
+
+        .ingredient-original {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .ingredient-new {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Tabla de tiempos */
+        .time-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .time-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .time-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .time-table tr:hover {
+            background: var(--hover);
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Alertas */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-warning {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            color: #E65100;
+        }
+
+        .alert-success {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid var(--success);
+            color: #2E7D32;
+        }
+
+        /* Responsive móvil optimizado */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                padding-top: 70px;
+                padding-bottom: 50px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .tabs {
+                gap: 8px;
+            }
+
+            .tab-button {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .card h2 {
+                font-size: 1.2rem;
+            }
+
+            .converter-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .swap-button {
+                transform: rotate(90deg);
+                margin: 0 auto;
+            }
+
+            .swap-button:hover {
+                transform: rotate(270deg);
+            }
+
+            input, select, button {
+                font-size: 16px; /* Evita zoom en iOS */
+            }
+        }
+
+        /* Logo meskeIA - Componente oficial */
+        .meskeia-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 134, 171, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 20px rgba(46, 134, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meskeia-logo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(46, 134, 171, 0.15);
+        }
+
+        .meskeia-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2E86AB 0%, #48A9A6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meskeia-logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .meskeia-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #2E86AB;
+            border-radius: 50%;
+            top: 13px;
+            left: 13px;
+        }
+
+        .meskeia-neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .meskeia-neural-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .meskeia-neural-dot:nth-child(1) { top: 4px; left: 6px; }
+        .meskeia-neural-dot:nth-child(2) { top: 8px; right: 5px; }
+        .meskeia-neural-dot:nth-child(3) { bottom: 6px; left: 4px; }
+        .meskeia-neural-dot:nth-child(4) { bottom: 4px; right: 8px; }
+
+        .meskeia-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .meskeia-logo-text .meske {
+            color: #2E86AB;
+        }
+
+        .meskeia-logo-text .ia {
+            color: #48A9A6;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .meskeia-logo-text .ia::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #48A9A6, #7FB3D3);
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .meskeia-logo-container {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .meskeia-logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .meskeia-logo-icon::before {
+                width: 9px;
+                height: 9px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+
+            .meskeia-logo-icon::after {
+                width: 4px;
+                height: 4px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .meskeia-logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo meskeIA -->
+    <div class="meskeia-logo-container" onclick="window.location.href='../index.html'" style="cursor: pointer;">
+        <div class="meskeia-logo-icon">
+            <div class="meskeia-neural-network">
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+                <div class="meskeia-neural-dot"></div>
+            </div>
+        </div>
+        <div class="meskeia-logo-text">
+            <span class="meske">meske</span><span class="ia">IA</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>🍳 Calculadora de Cocina</h1>
+        <p class="subtitle">Conversor de unidades, escalador de recetas y tiempos de cocción</p>
+
+        <!-- Pestañas de navegación -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('conversor')">📏 Conversor</button>
+            <button class="tab-button" onclick="openTab('escalador')">📊 Escalador</button>
+            <button class="tab-button" onclick="openTab('tiempos')">⏱️ Tiempos</button>
+            <button class="tab-button" onclick="openTab('sustitutos')">🔄 Sustitutos</button>
+        </div>
+
+        <!-- TAB 1: Conversor de Unidades -->
+        <div id="conversor" class="tab-content active">
+            <div class="card">
+                <h2>📏 Conversor de Unidades</h2>
+
+                <!-- Tipo de conversión -->
+                <div class="form-group">
+                    <label for="conversionType">Tipo de conversión:</label>
+                    <select id="conversionType" onchange="updateConversionUnits()">
+                        <option value="volume">Volumen (ml, litros, tazas)</option>
+                        <option value="weight">Peso (gramos, kg, onzas)</option>
+                        <option value="temperature">Temperatura (°C, °F, Gas Mark)</option>
+                        <option value="length">Longitud (cm, pulgadas)</option>
+                    </select>
+                </div>
+
+                <!-- Grid de conversión -->
+                <div class="converter-grid">
+                    <div class="form-group">
+                        <label for="fromValue">Cantidad:</label>
+                        <input type="number" id="fromValue" placeholder="Ingresa cantidad" oninput="convertUnits()">
+                        <select id="fromUnit" onchange="convertUnits()"></select>
+                    </div>
+
+                    <button class="swap-button" onclick="swapUnits()" title="Intercambiar unidades">⇄</button>
+
+                    <div class="form-group">
+                        <label for="toValue">Resultado:</label>
+                        <input type="number" id="toValue" readonly>
+                        <select id="toUnit" onchange="convertUnits()"></select>
+                    </div>
+                </div>
+
+                <div class="result" id="conversionResult">
+                    <strong>Resultado:</strong>
+                    <div class="result-value" id="conversionResultText"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Escalador de Recetas -->
+        <div id="escalador" class="tab-content">
+            <div class="card">
+                <h2>📊 Escalador de Recetas</h2>
+
+                <div class="form-group">
+                    <label for="originalServings">Porciones originales:</label>
+                    <input type="number" id="originalServings" placeholder="Ej: 4" min="1" value="4">
+                </div>
+
+                <div class="form-group">
+                    <label for="newServings">Porciones deseadas:</label>
+                    <input type="number" id="newServings" placeholder="Ej: 6" min="1" value="6">
+                </div>
+
+                <div class="form-group">
+                    <label for="ingredients">Ingredientes (uno por línea, formato: "cantidad unidad ingrediente"):</label>
+                    <textarea id="ingredients" placeholder="Ejemplo:&#10;400 g harina&#10;2 huevos&#10;250 ml leche&#10;50 g azúcar&#10;1 cucharadita sal"></textarea>
+                </div>
+
+                <button onclick="scaleRecipe()">Calcular Receta Escalada</button>
+
+                <div class="result" id="scaleResult">
+                    <h3>Receta Ajustada:</h3>
+                    <div id="scaledIngredients"></div>
+                    <div class="alert alert-warning" id="scaleWarning" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Tiempos de Cocción -->
+        <div id="tiempos" class="tab-content">
+            <div class="card">
+                <h2>⏱️ Calculadora de Tiempos de Cocción</h2>
+
+                <div class="form-group">
+                    <label for="foodCategory">Categoría de alimento:</label>
+                    <select id="foodCategory" onchange="updateFoodTypes()">
+                        <option value="carnes">Carnes</option>
+                        <option value="aves">Aves</option>
+                        <option value="pescados">Pescados y Mariscos</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="arroz">Arroz</option>
+                        <option value="verduras">Verduras</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="foodType">Tipo específico:</label>
+                    <select id="foodType"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cookingMethod">Método de cocción:</label>
+                    <select id="cookingMethod" onchange="calculateCookingTime()">
+                        <option value="horno">Horno</option>
+                        <option value="plancha">Plancha/Sartén</option>
+                        <option value="hervido">Hervido</option>
+                        <option value="vapor">Al Vapor</option>
+                        <option value="fritura">Fritura</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="foodWeight">Peso/Cantidad (gramos o unidades):</label>
+                    <input type="number" id="foodWeight" placeholder="Ej: 500" min="1">
+                </div>
+
+                <button onclick="calculateCookingTime()">Calcular Tiempo</button>
+
+                <div class="result" id="timeResult">
+                    <h3>Tiempo de Cocción:</h3>
+                    <div class="result-value" id="cookingTimeValue"></div>
+                    <div id="cookingTips"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Sustitutos de Ingredientes -->
+        <div id="sustitutos" class="tab-content">
+            <div class="card">
+                <h2>🔄 Sustitutos de Ingredientes</h2>
+
+                <div class="form-group">
+                    <label for="ingredientCategory">Categoría:</label>
+                    <select id="ingredientCategory" onchange="updateIngredientList()">
+                        <option value="huevos">Huevos</option>
+                        <option value="lacteos">Lácteos</option>
+                        <option value="harinas">Harinas</option>
+                        <option value="endulzantes">Endulzantes</option>
+                        <option value="grasas">Grasas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="originalIngredient">Ingrediente original:</label>
+                    <select id="originalIngredient" onchange="showSubstitutes()"></select>
+                </div>
+
+                <button onclick="showSubstitutes()">Mostrar Sustitutos</button>
+
+                <div class="result" id="substituteResult">
+                    <h3>Opciones de Sustitución:</h3>
+                    <div id="substituteList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer meskeIA -->
+    <footer style="position: fixed; bottom: 10px; right: 20px; color: #2d3748; font-size: 0.9rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        © 2025 meskeIA
+    </footer>
+
+    <script>
+        // ========== SISTEMA DE PESTAÑAS ==========
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+
+            contents.forEach(content => content.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ========== CONVERSOR DE UNIDADES ==========
+        const conversionData = {
+            volume: {
+                'ml': 1,
+                'litros': 1000,
+                'tazas': 240,
+                'cucharadas': 15,
+                'cucharaditas': 5,
+                'onzas líquidas': 29.5735
+            },
+            weight: {
+                'gramos': 1,
+                'kilogramos': 1000,
+                'onzas': 28.3495,
+                'libras': 453.592
+            },
+            temperature: {
+                'celsius': 'base',
+                'fahrenheit': 'formula',
+                'gas_mark': 'formula'
+            },
+            length: {
+                'centímetros': 1,
+                'pulgadas': 2.54
+            }
+        };
+
+        function updateConversionUnits() {
+            const type = document.getElementById('conversionType').value;
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+
+            fromUnit.innerHTML = '';
+            toUnit.innerHTML = '';
+
+            const units = Object.keys(conversionData[type]);
+
+            units.forEach(unit => {
+                fromUnit.innerHTML += `<option value="${unit}">${unit}</option>`;
+                toUnit.innerHTML += `<option value="${unit}">${unit}</option>`;
+            });
+
+            if (units.length > 1) {
+                toUnit.selectedIndex = 1;
+            }
+
+            convertUnits();
+        }
+
+        function convertUnits() {
+            const type = document.getElementById('conversionType').value;
+            const fromValue = parseFloat(document.getElementById('fromValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            if (isNaN(fromValue)) {
+                document.getElementById('toValue').value = '';
+                document.getElementById('conversionResult').classList.remove('show');
+                return;
+            }
+
+            let result;
+
+            if (type === 'temperature') {
+                result = convertTemperature(fromValue, fromUnit, toUnit);
+            } else {
+                const fromFactor = conversionData[type][fromUnit];
+                const toFactor = conversionData[type][toUnit];
+                result = (fromValue * fromFactor) / toFactor;
+            }
+
+            document.getElementById('toValue').value = result.toLocaleString('es-ES', {maximumFractionDigits: 2});
+            document.getElementById('conversionResultText').textContent =
+                `${fromValue.toLocaleString('es-ES')} ${fromUnit} = ${result.toLocaleString('es-ES', {maximumFractionDigits: 2})} ${toUnit}`;
+            document.getElementById('conversionResult').classList.add('show');
+        }
+
+        function convertTemperature(value, from, to) {
+            let celsius;
+
+            // Convertir a Celsius primero
+            if (from === 'celsius') {
+                celsius = value;
+            } else if (from === 'fahrenheit') {
+                celsius = (value - 32) * 5/9;
+            } else if (from === 'gas_mark') {
+                celsius = (value * 14) + 121;
+            }
+
+            // Convertir desde Celsius al destino
+            if (to === 'celsius') {
+                return celsius;
+            } else if (to === 'fahrenheit') {
+                return (celsius * 9/5) + 32;
+            } else if (to === 'gas_mark') {
+                return (celsius - 121) / 14;
+            }
+        }
+
+        function swapUnits() {
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+            const fromValue = document.getElementById('fromValue');
+            const toValue = document.getElementById('toValue');
+
+            // Intercambiar selecciones
+            const tempIndex = fromUnit.selectedIndex;
+            fromUnit.selectedIndex = toUnit.selectedIndex;
+            toUnit.selectedIndex = tempIndex;
+
+            // Intercambiar valores
+            fromValue.value = toValue.value;
+
+            convertUnits();
+        }
+
+        // ========== ESCALADOR DE RECETAS ==========
+        function scaleRecipe() {
+            const originalServings = parseFloat(document.getElementById('originalServings').value);
+            const newServings = parseFloat(document.getElementById('newServings').value);
+            const ingredientsText = document.getElementById('ingredients').value;
+
+            if (!originalServings || !newServings || !ingredientsText) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+
+            const scaleFactor = newServings / originalServings;
+            const lines = ingredientsText.split('\n').filter(line => line.trim());
+
+            let scaledHTML = '<div class="ingredient-list">';
+            let warnings = [];
+
+            lines.forEach(line => {
+                const parts = line.trim().match(/^([\d.,]+)\s*(\w+)\s+(.+)$/);
+
+                if (parts) {
+                    const originalAmount = parseFloat(parts[1].replace(',', '.'));
+                    const unit = parts[2];
+                    const ingredient = parts[3];
+                    const newAmount = originalAmount * scaleFactor;
+
+                    // Alertas especiales
+                    if (ingredient.toLowerCase().includes('levadura') && scaleFactor > 2) {
+                        warnings.push('⚠️ Levadura: No duplicar proporcionalmente. Ajustar al gusto.');
+                    }
+                    if (ingredient.toLowerCase().includes('sal') && scaleFactor > 2) {
+                        warnings.push('⚠️ Sal: Aumentar con cuidado. Probar antes de añadir más.');
+                    }
+                    if (ingredient.toLowerCase().includes('huevo') && !Number.isInteger(newAmount)) {
+                        warnings.push(`⚠️ ${ingredient}: ${newAmount.toFixed(1)} huevos → Redondear a ${Math.round(newAmount)} o ajustar líquidos`);
+                    }
+
+                    scaledHTML += `
+                        <div class="ingredient-item">
+                            <span class="ingredient-original">${originalAmount.toLocaleString('es-ES')} ${unit} ${ingredient}</span>
+                            <span class="ingredient-new">${newAmount.toLocaleString('es-ES', {maximumFractionDigits: 1})} ${unit} ${ingredient}</span>
+                        </div>
+                    `;
+                } else {
+                    scaledHTML += `<div class="ingredient-item"><span>${line}</span></div>`;
+                }
+            });
+
+            scaledHTML += '</div>';
+
+            document.getElementById('scaledIngredients').innerHTML = scaledHTML;
+
+            if (warnings.length > 0) {
+                document.getElementById('scaleWarning').innerHTML = warnings.join('<br>');
+                document.getElementById('scaleWarning').style.display = 'block';
+            } else {
+                document.getElementById('scaleWarning').style.display = 'none';
+            }
+
+            document.getElementById('scaleResult').classList.add('show');
+        }
+
+        // ========== TIEMPOS DE COCCIÓN ==========
+        const cookingDatabase = {
+            carnes: {
+                'ternera_filete': {horno: {temp: 180, time: 20, unit: 'min/500g'}, plancha: {temp: 'Alta', time: 8, unit: 'min total'}, note: 'Para término medio'},
+                'cerdo_lomo': {horno: {temp: 170, time: 30, unit: 'min/500g'}, plancha: {temp: 'Media', time: 6, unit: 'min/lado'}},
+                'cordero_pierna': {horno: {temp: 180, time: 25, unit: 'min/500g'}},
+                'hamburguesa': {plancha: {temp: 'Alta', time: 4, unit: 'min/lado'}, horno: {temp: 200, time: 15, unit: 'min total'}}
+            },
+            aves: {
+                'pollo_entero': {horno: {temp: 180, time: 20, unit: 'min/500g'}, note: 'Verificar jugos claros'},
+                'pechuga_pollo': {plancha: {temp: 'Media', time: 6, unit: 'min/lado'}, horno: {temp: 180, time: 20, unit: 'min total'}},
+                'muslo_pollo': {horno: {temp: 200, time: 25, unit: 'min/500g'}},
+                'pavo_entero': {horno: {temp: 165, time: 15, unit: 'min/500g'}}
+            },
+            pescados: {
+                'salmon': {horno: {temp: 180, time: 12, unit: 'min/filete'}, plancha: {temp: 'Media', time: 4, unit: 'min/lado'}},
+                'merluza': {horno: {temp: 180, time: 15, unit: 'min total'}, vapor: {time: 8, unit: 'min total'}},
+                'atun': {plancha: {temp: 'Alta', time: 2, unit: 'min/lado'}, note: 'Sellado, interior rosado'},
+                'gambas': {plancha: {temp: 'Alta', time: 2, unit: 'min/lado'}, hervido: {time: 3, unit: 'min total'}}
+            },
+            pasta: {
+                'espaguetis': {hervido: {time: 10, unit: 'min'}},
+                'macarrones': {hervido: {time: 12, unit: 'min'}},
+                'penne': {hervido: {time: 11, unit: 'min'}},
+                'lasana': {horno: {temp: 180, time: 30, unit: 'min'}},
+                'raviolis': {hervido: {time: 5, unit: 'min'}}
+            },
+            arroz: {
+                'arroz_blanco': {hervido: {time: 18, ratio: '1:2 arroz:agua', unit: 'min'}},
+                'arroz_integral': {hervido: {time: 40, ratio: '1:2.5 arroz:agua', unit: 'min'}},
+                'arroz_basmati': {hervido: {time: 15, ratio: '1:1.5 arroz:agua', unit: 'min'}},
+                'arroz_bomba': {hervido: {time: 18, ratio: '1:3 arroz:agua', unit: 'min'}}
+            },
+            verduras: {
+                'patatas': {horno: {temp: 200, time: 45, unit: 'min'}, hervido: {time: 20, unit: 'min'}},
+                'zanahorias': {hervido: {time: 15, unit: 'min'}, vapor: {time: 12, unit: 'min'}},
+                'brocoli': {vapor: {time: 7, unit: 'min'}, hervido: {time: 5, unit: 'min'}},
+                'esparragos': {plancha: {temp: 'Media', time: 5, unit: 'min'}, vapor: {time: 6, unit: 'min'}},
+                'calabacin': {plancha: {temp: 'Media', time: 4, unit: 'min/lado'}, horno: {temp: 200, time: 20, unit: 'min'}}
+            }
+        };
+
+        function updateFoodTypes() {
+            const category = document.getElementById('foodCategory').value;
+            const foodType = document.getElementById('foodType');
+
+            foodType.innerHTML = '';
+
+            Object.keys(cookingDatabase[category]).forEach(food => {
+                const displayName = food.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                foodType.innerHTML += `<option value="${food}">${displayName}</option>`;
+            });
+        }
+
+        function calculateCookingTime() {
+            const category = document.getElementById('foodCategory').value;
+            const food = document.getElementById('foodType').value;
+            const method = document.getElementById('cookingMethod').value;
+            const weight = parseFloat(document.getElementById('foodWeight').value);
+
+            if (!food || isNaN(weight)) {
+                return;
+            }
+
+            const data = cookingDatabase[category][food][method];
+
+            if (!data) {
+                document.getElementById('cookingTimeValue').textContent = 'Método no disponible para este alimento';
+                document.getElementById('cookingTips').innerHTML = '';
+                document.getElementById('timeResult').classList.add('show');
+                return;
+            }
+
+            let timeText = '';
+
+            if (data.unit.includes('/')) {
+                // Tiempo proporcional al peso
+                const baseWeight = parseInt(data.unit.split('/')[1].replace('g', ''));
+                const calculatedTime = (weight / baseWeight) * data.time;
+                timeText = `${Math.round(calculatedTime)} minutos`;
+            } else {
+                timeText = `${data.time} ${data.unit}`;
+            }
+
+            document.getElementById('cookingTimeValue').textContent = timeText;
+
+            let tipsHTML = '';
+            if (data.temp) {
+                tipsHTML += `<div class="alert alert-success">🌡️ Temperatura: ${data.temp}${typeof data.temp === 'number' ? '°C' : ''}</div>`;
+            }
+            if (data.ratio) {
+                tipsHTML += `<div class="alert alert-success">💧 Proporción: ${data.ratio}</div>`;
+            }
+            if (data.note) {
+                tipsHTML += `<div class="alert alert-warning">💡 Consejo: ${data.note}</div>`;
+            }
+
+            document.getElementById('cookingTips').innerHTML = tipsHTML;
+            document.getElementById('timeResult').classList.add('show');
+        }
+
+        // ========== SUSTITUTOS DE INGREDIENTES ==========
+        const substitutesDatabase = {
+            huevos: {
+                '1 huevo': [
+                    {substitute: '1 plátano maduro machacado', ratio: '1:1', notes: 'Ideal para repostería, añade dulzor'},
+                    {substitute: '3 cucharadas de aquafaba', ratio: '1:1', notes: 'Líquido de garbanzos, perfecto para merengues'},
+                    {substitute: '1 cucharada de semillas de lino + 3 cucharadas de agua', ratio: '1:1', notes: 'Dejar reposar 5 minutos'},
+                    {substitute: '1/4 taza de puré de manzana', ratio: '1:1', notes: 'Reduce grasa, añade humedad'}
+                ]
+            },
+            lacteos: {
+                'leche de vaca (1 taza)': [
+                    {substitute: 'Leche de almendras', ratio: '1:1', notes: 'Sabor neutro, baja en calorías'},
+                    {substitute: 'Leche de soja', ratio: '1:1', notes: 'Alta en proteínas'},
+                    {substitute: 'Leche de avena', ratio: '1:1', notes: 'Cremosa, ideal para café'},
+                    {substitute: 'Leche de coco', ratio: '1:1', notes: 'Sabor tropical, muy cremosa'}
+                ],
+                'mantequilla (100g)': [
+                    {substitute: 'Aceite de oliva (80ml)', ratio: '100g:80ml', notes: 'Reduce cantidad en 20%'},
+                    {substitute: 'Aceite de coco (90ml)', ratio: '100g:90ml', notes: 'Textura similar, sabor suave'},
+                    {substitute: 'Puré de aguacate (100g)', ratio: '1:1', notes: 'Grasas saludables, color verdoso'},
+                    {substitute: 'Margarina vegana (100g)', ratio: '1:1', notes: 'Sustituto directo'}
+                ],
+                'yogur (1 taza)': [
+                    {substitute: 'Yogur de coco', ratio: '1:1', notes: 'Cremoso, sin lactosa'},
+                    {substitute: 'Yogur de soja', ratio: '1:1', notes: 'Alto en proteínas'},
+                    {substitute: 'Crema agria (3/4 taza)', ratio: '1:0.75', notes: 'Más ácido'}
+                ]
+            },
+            harinas: {
+                'harina de trigo (1 taza)': [
+                    {substitute: 'Harina de arroz (1 taza)', ratio: '1:1', notes: 'Sin gluten, textura ligera'},
+                    {substitute: 'Harina de almendra (1 taza)', ratio: '1:1', notes: 'Baja en carbohidratos, rica en proteínas'},
+                    {substitute: 'Harina de avena (1 taza + 2 cucharadas)', ratio: '1:1+', notes: 'Sin gluten, añade fibra'},
+                    {substitute: 'Mezcla sin gluten (1 taza)', ratio: '1:1', notes: 'Sustituto comercial directo'}
+                ]
+            },
+            endulzantes: {
+                'azúcar blanco (1 taza)': [
+                    {substitute: 'Miel (3/4 taza)', ratio: '1:0.75', notes: 'Reduce líquidos en 1/4 taza'},
+                    {substitute: 'Sirope de arce (3/4 taza)', ratio: '1:0.75', notes: 'Reduce líquidos en 3 cucharadas'},
+                    {substitute: 'Stevia (1 cucharadita)', ratio: '1 taza:1 cdta', notes: '200 veces más dulce'},
+                    {substitute: 'Azúcar de coco (1 taza)', ratio: '1:1', notes: 'Índice glucémico bajo'},
+                    {substitute: 'Dátiles machacados (1 taza)', ratio: '1:1', notes: 'Añade humedad y fibra'}
+                ]
+            },
+            grasas: {
+                'aceite vegetal (1 taza)': [
+                    {substitute: 'Aceite de oliva (1 taza)', ratio: '1:1', notes: 'Sabor más fuerte'},
+                    {substitute: 'Aceite de coco (1 taza)', ratio: '1:1', notes: 'Solidifica en frío'},
+                    {substitute: 'Puré de manzana (1 taza)', ratio: '1:1', notes: 'Reduce grasas, añade humedad'},
+                    {substitute: 'Yogur griego (1 taza)', ratio: '1:1', notes: 'Textura densa, reduce calorías'}
+                ]
+            }
+        };
+
+        function updateIngredientList() {
+            const category = document.getElementById('ingredientCategory').value;
+            const select = document.getElementById('originalIngredient');
+
+            select.innerHTML = '';
+
+            Object.keys(substitutesDatabase[category]).forEach(ingredient => {
+                select.innerHTML += `<option value="${ingredient}">${ingredient}</option>`;
+            });
+        }
+
+        function showSubstitutes() {
+            const category = document.getElementById('ingredientCategory').value;
+            const ingredient = document.getElementById('originalIngredient').value;
+
+            if (!ingredient) return;
+
+            const substitutes = substitutesDatabase[category][ingredient];
+            let html = '<div class="ingredient-list">';
+
+            substitutes.forEach((sub, index) => {
+                html += `
+                    <div class="ingredient-item" style="display: block; padding: 15px; border-bottom: 1px solid var(--border);">
+                        <div style="margin-bottom: 8px;">
+                            <span class="tag">${index + 1}</span>
+                            <strong style="color: var(--primary);">${sub.substitute}</strong>
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                            📊 Proporción: ${sub.ratio}
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 4px;">
+                            💡 ${sub.notes}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+
+            document.getElementById('substituteList').innerHTML = html;
+            document.getElementById('substituteResult').classList.add('show');
+        }
+
+        // ========== INICIALIZACIÓN ==========
+        window.onload = function() {
+            updateConversionUnits();
+            updateFoodTypes();
+            updateIngredientList();
+        };
+    </script>
+</body>
+</html>
