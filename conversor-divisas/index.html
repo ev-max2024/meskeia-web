@@ -768,11 +768,11 @@
                 localStorage.setItem('meskeIA_exchange_rates', JSON.stringify(exchangeRates));
                 localStorage.setItem('meskeIA_last_update', lastUpdate);
 
-                updateInfo.textContent = `📅 Última actualización: ${new Date(lastUpdate).toLocaleDateString('es-ES', {
+                updateInfo.textContent = `📅 ${new Date(lastUpdate).toLocaleDateString('es-ES', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                })}`;
+                })} · Tipos de cambio orientativos (BCE)`;
             } catch (error) {
                 console.error('Error al obtener tipos de cambio:', error);
                 updateInfo.textContent = '⚠️ Error al cargar tipos de cambio. Usando datos en caché.';
@@ -788,11 +788,11 @@
             if (cachedRates && cachedUpdate) {
                 exchangeRates = JSON.parse(cachedRates);
                 lastUpdate = cachedUpdate;
-                updateInfo.textContent = `📅 Última actualización: ${new Date(lastUpdate).toLocaleDateString('es-ES', {
+                updateInfo.textContent = `📅 ${new Date(lastUpdate).toLocaleDateString('es-ES', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                })} (caché)`;
+                })} · Tipos de cambio orientativos (BCE)`;
             }
         }
 
