@@ -737,6 +737,12 @@
                     </select>
                     <span class="help-text">Inglés suele tener más dominios .com disponibles</span>
                 </div>
+
+                <div class="form-group">
+                    <label for="palabraPersonal">🎯 Palabra personalizada (opcional)</label>
+                    <input type="text" id="palabraPersonal" placeholder="Ej: tu apellido, ciudad, concepto..." maxlength="20">
+                    <span class="help-text">Introduce una palabra para nombres únicos. Deja vacío para generación automática pura</span>
+                </div>
             </div>
 
             <button class="btn btn-primary btn-generar" onclick="generarNombres()">
@@ -942,7 +948,8 @@
                 sector: document.getElementById('sector').value,
                 estilo: document.getElementById('estilo').value,
                 longitud: document.getElementById('longitud').value,
-                idioma: document.getElementById('idioma').value
+                idioma: document.getElementById('idioma').value,
+                palabraPersonal: document.getElementById('palabraPersonal').value.trim()
             };
         }
 
@@ -994,15 +1001,79 @@
             return true; // cualquiera
         }
 
+        // Generar nombre con palabra personalizada
+        function generarNombrePersonalizado(palabraPersonal, sufijos, palabras, tipoFusion) {
+            // Capitalizar palabra personal
+            const palabraCapital = palabraPersonal.charAt(0).toUpperCase() + palabraPersonal.slice(1).toLowerCase();
+
+            if (tipoFusion === 0) {
+                // Palabra personal + sufijo sector
+                const sufijo = sufijos[Math.floor(Math.random() * sufijos.length)];
+                return {
+                    nombre: palabraCapital + sufijo,
+                    tecnica: 'Personalizado + Sufijo'
+                };
+            } else if (tipoFusion === 1) {
+                // Fusión (portmanteau) con palabra del sector
+                const palabra = palabras[Math.floor(Math.random() * palabras.length)];
+                const mitad1 = palabraCapital.slice(0, Math.ceil(palabraCapital.length * 0.6));
+                const mitad2 = palabra.slice(Math.floor(palabra.length * 0.4));
+                return {
+                    nombre: mitad1 + mitad2,
+                    tecnica: 'Fusión Personalizada'
+                };
+            } else if (tipoFusion === 2) {
+                // Prefijo del sector + palabra personal
+                const prefijo = palabras[Math.floor(Math.random() * palabras.length)];
+                return {
+                    nombre: prefijo + palabraCapital,
+                    tecnica: 'Prefijo + Personalizado'
+                };
+            } else {
+                // Palabra personal + palabra del sector
+                const palabra = palabras[Math.floor(Math.random() * palabras.length)];
+                return {
+                    nombre: palabraCapital + ' ' + palabra,
+                    tecnica: 'Personalizado Descriptivo'
+                };
+            }
+        }
+
         // Generar nombres
         function generarNombres() {
             const config = getConfig();
             const palabras = getPalabras(config.sector, config.idioma);
             const sufijos = vocabulario[config.sector].sufijos;
             const nombres = [];
-            const intentos = 100; // generar muchos e intentar obtener 10 únicos
+            const tienePersonalizado = config.palabraPersonal.length > 0;
 
-            for (let i = 0; i < intentos && nombres.length < 10; i++) {
+            // Determinar cuántos nombres de cada tipo generar
+            const nombresPersonalizados = tienePersonalizado ? 5 : 0;
+            const nombresAutomaticos = tienePersonalizado ? 5 : 10;
+
+            // Generar nombres personalizados si hay palabra personal
+            if (tienePersonalizado) {
+                const intentosPersonalizados = 50;
+                for (let i = 0; i < intentosPersonalizados && nombres.length < nombresPersonalizados; i++) {
+                    const tipoFusion = Math.floor(Math.random() * 4);
+                    const resultado = generarNombrePersonalizado(config.palabraPersonal, sufijos, palabras, tipoFusion);
+
+                    let nombre = resultado.nombre.replace(/\s+/g, '');
+
+                    // Verificar longitud y unicidad
+                    if (cumpleLongitud(nombre, config.longitud) && !nombres.find(n => n.nombre === nombre)) {
+                        nombres.push({
+                            nombre: nombre,
+                            tecnica: resultado.tecnica,
+                            pronunciabilidad: calcularPronunciabilidad(nombre)
+                        });
+                    }
+                }
+            }
+
+            // Generar nombres automáticos (puros del algoritmo)
+            const intentos = 100;
+            for (let i = 0; i < intentos && nombres.length < (nombresPersonalizados + nombresAutomaticos); i++) {
                 let nombre = '';
                 let tecnica = '';
 
