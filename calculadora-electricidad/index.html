@@ -812,6 +812,85 @@
         </div>
     </main>
 
+    <!-- Secciones Educativas meskeIA -->
+    <style>
+        .meskeia-edu-section {
+            max-width: 800px;
+            margin: 3rem auto 2rem;
+            padding: 2rem;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(46, 134, 171, 0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+        }
+        .meskeia-edu-section h2 {
+            color: #2E86AB;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #48A9A6;
+            padding-bottom: 0.5rem;
+        }
+        .meskeia-edu-section p {
+            color: #1A1A1A;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .meskeia-edu-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .meskeia-edu-section li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #1A1A1A;
+        }
+        .meskeia-edu-section li:before {
+            content: "→";
+            color: #48A9A6;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .meskeia-edu-section strong {
+            color: #2E86AB;
+        }
+        @media (max-width: 768px) {
+            .meskeia-edu-section {
+                margin: 2rem 1rem 1.5rem;
+                padding: 1.5rem;
+            }
+            .meskeia-edu-section h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+
+    <div class="meskeia-edu-section">
+        <h2>¿Cómo funciona esta calculadora eléctrica?</h2>
+        <p>Calcula potencia, voltaje, corriente y resistencia según la Ley de Ohm. Estima consumo eléctrico y costos energéticos de aparatos domésticos y circuitos.</p>
+        <ul>
+            <li><strong>Ley de Ohm</strong>: Calcula V, I, R o P conociendo dos valores (V=IR, P=VI)</li>
+            <li><strong>Consumo energético</strong>: Estima kWh consumidos por aparato según potencia y horas de uso</li>
+            <li><strong>Costo eléctrico</strong>: Calcula gasto en euros/dólares según tarifa de tu país</li>
+            <li><strong>Dimensionado de cables</strong>: Sección de cable necesaria según corriente y distancia</li>
+            <li><strong>Circuitos serie/paralelo</strong>: Resistencia equivalente en configuraciones combinadas</li>
+        </ul>
+    </div>
+
+    <div class="meskeia-edu-section">
+        <h2>Casos de uso prácticos</h2>
+        <ul>
+            <li><strong>Factura eléctrica</strong>: Nevera 150W funciona 24h/día. ¿Cuánto cuesta al mes a 0,15€/kWh? = 16,20€</li>
+            <li><strong>Instalaciones domésticas</strong>: Circuito de 16A a 230V, ¿qué potencia máxima soporta? = 3.680W</li>
+            <li><strong>Paneles solares</strong>: Panel genera 300W, ¿cuántas horas para 5kWh? = 16,67 horas</li>
+            <li><strong>Electrodomésticos</strong>: Aire acondicionado 2.000W, 8h/día, 30 días. Costo a 0,12€/kWh = 57,60€</li>
+            <li><strong>Diseño de circuitos</strong>: LED 3V necesita 20mA, batería 9V. ¿Qué resistencia usar? = 300Ω</li>
+        </ul>
+    </div>
+
     <!-- Footer meskeIA -->
     <footer class="footer-meskeia">
         <span>© 2025 meskeIA</span>
