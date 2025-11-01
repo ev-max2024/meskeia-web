@@ -68,10 +68,14 @@ User-agent: YouBot
 Allow: /
 
 # ============================================
-# SITEMAP
+# SITEMAP Y ÍNDICES ESTRUCTURADOS
 # ============================================
 
 Sitemap: https://meskeia.com/sitemap.xml
+
+# Índice estructurado para crawlers de IA
+# Contiene catálogo completo de 82 apps con categorías, casos de uso y características
+AI-Index: https://meskeia.com/ai-index.json
 
 # ============================================
 # NOTAS PARA CRAWLERS DE IA
