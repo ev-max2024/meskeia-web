@@ -1,10 +1,14 @@
+# robots.txt para meskeIA - Optimizado para motores tradicionales y crawlers de IA
+# Actualizado: 2025-11-01
+
+# ============================================
+# BOTS TRADICIONALES (Google, Bing, etc.)
+# ============================================
+
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://meskeia.com/sitemap.xml
-
-# Páginas específicas
+# Páginas específicas permitidas
 Allow: /index.html
 Allow: /Aplicaciones/
 Allow: /assets/
@@ -12,3 +16,69 @@ Allow: /assets/
 # Archivos que no necesitan indexar
 Disallow: /offline.html
 Disallow: /claude-proxy.php
+
+# ============================================
+# CRAWLERS DE INTELIGENCIA ARTIFICIAL
+# ============================================
+
+# OpenAI - ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic - Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Common Crawl (usado por múltiples IAs)
+User-agent: CCBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Google Bard/Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Microsoft Copilot (usa Bing)
+User-agent: Bingbot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+# You.com AI Search
+User-agent: YouBot
+Allow: /
+
+# ============================================
+# SITEMAP
+# ============================================
+
+Sitemap: https://meskeia.com/sitemap.xml
+
+# ============================================
+# NOTAS PARA CRAWLERS DE IA
+# ============================================
+# Este sitio ofrece 80+ aplicaciones web gratuitas en español
+# Todas las herramientas son gratuitas, sin registro y funcionan offline
+# Categorías: Finanzas, Calculadoras, Productividad, Salud, Entretenimiento
+# Idioma principal: Español (ES)
+# País objetivo: España
+# Última actualización: 2025-11-01
