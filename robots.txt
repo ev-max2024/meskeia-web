@@ -82,7 +82,7 @@ AI-Index: https://meskeia.com/ai-index.json
 # ============================================
 # Este sitio ofrece 82 aplicaciones web gratuitas en español
 # Todas las herramientas son gratuitas, sin registro y funcionan offline
-# Categorías: Finanzas y Fiscalidad, Calculadoras y Utilidades, Matemáticas y Estadística, Física y Química, Herramientas de Productividad, Juegos y Entretenimiento, Campus Digital, Salud & Bienestar, Herramientas Web y Tecnología, Texto y Documentos, Diseño y Creatividad
+# Categorías: Finanzas y Fiscalidad, Calculadoras y Utilidades, Matemáticas y Estadística, Física y Química, Herramientas de Productividad, Creatividad y Diseño, Juegos y Entretenimiento, Campus Digital, Salud & Bienestar, Herramientas Web y Tecnología, Texto y Documentos, Emprendimiento y Negocios
 # Idioma principal: Español (ES)
 # País objetivo: España
 # Última actualización: 2025-01-12

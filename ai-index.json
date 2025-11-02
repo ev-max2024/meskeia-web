@@ -1,7 +1,7 @@
 {
   "site": "meskeIA",
   "url": "https://meskeia.com",
-  "description": "Biblioteca gratuita de 82 aplicaciones web educativas organizadas en 11 categorías: Finanzas y Fiscalidad, Calculadoras y Utilidades, Matemáticas y Estadística, Física y Química, Herramientas de Productividad, Juegos y Entretenimiento, Campus Digital, Salud & Bienestar, Herramientas Web y Tecnología, Texto y Documentos, y Diseño y Creatividad. Todas las apps funcionan 100% en el navegador sin registro ni instalación.",
+  "description": "Biblioteca gratuita de 82 aplicaciones web educativas organizadas en 12 categorías: Finanzas y Fiscalidad, Calculadoras y Utilidades, Matemáticas y Estadística, Física y Química, Herramientas de Productividad, Creatividad y Diseño, Juegos y Entretenimiento, Campus Digital, Salud & Bienestar, Herramientas Web y Tecnología, Texto y Documentos, y Emprendimiento y Negocios. Todas las apps funcionan 100% en el navegador sin registro ni instalación.",
   "language": "es",
   "country": "ES",
   "total_tools": 82,
@@ -80,15 +80,6 @@
           "keywords": ["TIR", "VAN", "inversión", "rentabilidad", "proyecto"]
         },
         {
-          "name": "Calculadora de ROI Marketing",
-          "slug": "calculadora-roi-marketing",
-          "url": "https://meskeia.com/calculadora-roi-marketing/",
-          "description": "Calcula Retorno de Inversión en campañas de marketing y publicidad digital.",
-          "use_cases": ["Medir efectividad de campañas publicitarias", "Justificar presupuesto de marketing"],
-          "features": ["ROI", "CPA", "ROAS", "Conversión"],
-          "keywords": ["ROI", "marketing", "publicidad", "retorno inversión", "campañas"]
-        },
-        {
           "name": "Control de Gastos Mensual",
           "slug": "control-gastos-mensual",
           "url": "https://meskeia.com/control-gastos-mensual/",
@@ -98,15 +89,6 @@
           "keywords": ["gastos", "presupuesto", "finanzas personales", "ahorro"]
         },
         {
-          "name": "Calculadora Tarifa Freelance",
-          "slug": "calculadora-tarifa-freelance",
-          "url": "https://meskeia.com/calculadora-tarifa-freelance/",
-          "description": "Calcula tarifa por hora como freelance según gastos, objetivos y tiempo disponible.",
-          "use_cases": ["Establecer tarifa competitiva", "Considerar gastos operativos"],
-          "features": ["Tarifa hora", "Gastos incluidos", "Objetivos ingresos"],
-          "keywords": ["freelance", "tarifa", "autónomo", "precio hora"]
-        },
-        {
           "name": "Simulador IRPF",
           "slug": "simulador-irpf",
           "url": "https://meskeia.com/simulador-irpf/",
@@ -114,15 +96,6 @@
           "use_cases": ["Estimar IRPF a pagar", "Planificar declaración renta"],
           "features": ["Tramos IRPF", "Deducciones", "Cálculo retención"],
           "keywords": ["IRPF", "impuestos", "renta", "declaración", "España"]
-        },
-        {
-          "name": "Simulador Gastos Deducibles",
-          "slug": "simulador-gastos-deducibles",
-          "url": "https://meskeia.com/simulador-gastos-deducibles/",
-          "description": "Calcula gastos deducibles para autónomos y empresas en declaración de impuestos.",
-          "use_cases": ["Identificar gastos deducibles", "Optimizar declaración fiscal"],
-          "features": ["Categorías deducibles", "Porcentajes", "Ahorro fiscal"],
-          "keywords": ["gastos deducibles", "autónomo", "impuestos", "fiscalidad"]
         },
         {
           "name": "Impuesto de Donaciones",
@@ -141,24 +114,6 @@
           "use_cases": ["Estimar impuesto por herencia", "Planificar sucesión familiar"],
           "features": ["Por CCAA", "Parentesco", "Reducciones"],
           "keywords": ["sucesiones", "herencia", "impuesto", "comunidad autónoma"]
-        },
-        {
-          "name": "Margen de Equilibrio",
-          "slug": "margen-equilibrio",
-          "url": "https://meskeia.com/margen-equilibrio/",
-          "description": "Calcula punto de equilibrio empresarial entre costos fijos, variables y ventas.",
-          "use_cases": ["Determinar unidades mínimas a vender", "Analizar viabilidad negocio"],
-          "features": ["Punto equilibrio", "Costos fijos/variables", "Margen contribución"],
-          "keywords": ["punto equilibrio", "breakeven", "costos", "ventas"]
-        },
-        {
-          "name": "Planificador de Cashflow",
-          "slug": "planificador-cashflow",
-          "url": "https://meskeia.com/planificador-cashflow/",
-          "description": "Planifica flujo de caja mensual para negocios y finanzas empresariales.",
-          "use_cases": ["Proyectar ingresos y gastos mensuales", "Evitar problemas de liquidez"],
-          "features": ["Flujo caja", "Proyecciones", "Ingresos/egresos"],
-          "keywords": ["cashflow", "flujo caja", "liquidez", "finanzas empresa"]
         }
       ]
     },
@@ -517,15 +472,6 @@
           "keywords": ["Lorem Ipsum", "texto aleatorio", "placeholder", "dummy text"]
         },
         {
-          "name": "Generador de Nombres de Empresa",
-          "slug": "generador-nombres-empresa",
-          "url": "https://meskeia.com/generador-nombres-empresa/",
-          "description": "Genera nombres creativos para empresas, marcas y startups con disponibilidad de dominio.",
-          "use_cases": ["Brainstorming de marca", "Ideas para startup"],
-          "features": ["Algoritmo creativo", "Verificar dominio", "Favoritos"],
-          "keywords": ["nombres empresa", "marca", "branding", "startup", "dominio"]
-        },
-        {
           "name": "Generador de Contraseñas",
           "slug": "generador-contrasenas",
           "url": "https://meskeia.com/generador-contrasenas/",
@@ -867,7 +813,7 @@
       ]
     },
     {
-      "name": "Diseño y Creatividad",
+      "name": "Creatividad y Diseño",
       "description": "Herramientas para diseñadores: colores, gradientes, tipografías y sombras",
       "icon": "🎨",
       "tools": [
@@ -942,6 +888,67 @@
           ],
           "features": ["Ratios predefinidos", "Cálculo bidireccional", "Presets plataformas"],
           "keywords": ["aspect ratio", "imagen", "dimensiones", "redimensionar", "proporciones"]
+        }
+      ]
+    },
+    {
+      "name": "Emprendimiento y Negocios",
+      "description": "Herramientas profesionales para freelancers, emprendedores y autónomos",
+      "icon": "💼",
+      "tools": [
+        {
+          "name": "Calculadora de Tarifa Freelance",
+          "slug": "calculadora-tarifa-freelance",
+          "url": "https://meskeia.com/calculadora-tarifa-freelance/",
+          "description": "Calcula tarifa por hora como freelance según gastos, objetivos y tiempo disponible.",
+          "use_cases": ["Establecer tarifa competitiva considerando gastos", "Evitar cobrar de menos como autónomo"],
+          "features": ["Tarifa por hora", "Gastos operativos", "Objetivos de ingresos", "Vacaciones incluidas"],
+          "keywords": ["freelance", "tarifa", "autónomo", "precio hora", "cotización"]
+        },
+        {
+          "name": "Margen de Equilibrio (Break-Even)",
+          "slug": "margen-equilibrio",
+          "url": "https://meskeia.com/margen-equilibrio/",
+          "description": "Calcula punto de equilibrio empresarial entre costos fijos, variables y ventas.",
+          "use_cases": ["Determinar unidades mínimas a vender", "Analizar viabilidad de negocio", "Fijar precios estratégicos"],
+          "features": ["Punto de equilibrio", "Costos fijos/variables", "Margen de contribución", "Gráficos"],
+          "keywords": ["punto de equilibrio", "break-even", "costos", "ventas", "rentabilidad"]
+        },
+        {
+          "name": "Planificador de Cash Flow",
+          "slug": "planificador-cashflow",
+          "url": "https://meskeia.com/planificador-cashflow/",
+          "description": "Planifica flujo de caja mensual para negocios y finanzas empresariales.",
+          "use_cases": ["Proyectar ingresos y gastos mensuales", "Evitar problemas de liquidez", "Identificar meses críticos"],
+          "features": ["Flujo de caja mensual", "Proyecciones 12 meses", "Ingresos/egresos", "Escenarios What-If"],
+          "keywords": ["cashflow", "flujo de caja", "liquidez", "finanzas empresa", "tesorería"]
+        },
+        {
+          "name": "Calculadora de ROI de Marketing",
+          "slug": "calculadora-roi-marketing",
+          "url": "https://meskeia.com/calculadora-roi-marketing/",
+          "description": "Calcula Retorno de Inversión en campañas de marketing y publicidad digital.",
+          "use_cases": ["Medir efectividad de campañas publicitarias", "Optimizar inversión en Google Ads/Facebook", "Calcular CAC y CLV"],
+          "features": ["ROI por canal", "CPA", "ROAS", "Conversión", "Comparación de canales"],
+          "keywords": ["ROI", "marketing", "publicidad", "retorno inversión", "campañas", "CAC", "CLV"]
+        },
+        {
+          "name": "Generador de Nombres de Empresa",
+          "slug": "generador-nombres-empresa",
+          "url": "https://meskeia.com/generador-nombres-empresa/",
+          "description": "Genera nombres creativos para empresas, marcas y startups con disponibilidad de dominio.",
+          "use_cases": ["Brainstorming de marca", "Ideas para startup", "Verificar dominios disponibles"],
+          "features": ["Algoritmo creativo", "Verificar disponibilidad", "Favoritos", "Por sectores"],
+          "keywords": ["nombres empresa", "marca", "branding", "startup", "dominio", "naming"]
+        },
+        {
+          "name": "Simulador de Gastos Deducibles",
+          "slug": "simulador-gastos-deducibles",
+          "url": "https://meskeia.com/simulador-gastos-deducibles/",
+          "description": "Calcula gastos deducibles para autónomos y empresas en declaración de impuestos.",
+          "use_cases": ["Identificar gastos deducibles", "Optimizar declaración fiscal", "Calcular ahorro en IRPF e IVA"],
+          "features": ["Categorías deducibles", "Porcentajes (100%, 50%, 30%)", "Ahorro fiscal", "IRPF + IVA"],
+          "keywords": ["gastos deducibles", "autónomo", "impuestos", "fiscalidad", "IRPF", "IVA"]
         }
       ]
     }
