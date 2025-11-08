@@ -1069,6 +1069,129 @@
             return Math.max(1, Math.min(5, score));
         }
 
+        // NUEVAS FUNCIONES DE ANÁLISIS EXPANDIDO
+
+        // Calcular memorabilidad (1-10)
+        function calcularMemorabilidad(nombre) {
+            let score = 10;
+            const len = nombre.length;
+
+            // Longitud ideal: 5-10 caracteres
+            if (len < 4) score -= 3;
+            else if (len >= 4 && len <= 7) score += 0; // Perfecto
+            else if (len >= 8 && len <= 10) score -= 1;
+            else if (len >= 11 && len <= 14) score -= 2;
+            else score -= 4; // Muy largo
+
+            // Bonificar si tiene ritmo (sílabas balanceadas)
+            const silabas = (nombre.match(/[aeiouáéíóú]/gi) || []).length;
+            if (silabas >= 2 && silabas <= 4) score += 1;
+
+            // Penalizar números o caracteres especiales
+            if (/[0-9]/.test(nombre)) score -= 2;
+            if (/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(nombre)) score -= 1;
+
+            // Bonificar si empieza con mayúscula fuerte (K, X, Z, Q)
+            if (/^[KXZQ]/i.test(nombre)) score += 1;
+
+            return Math.max(1, Math.min(10, score));
+        }
+
+        // Calcular SEO Score (1-10)
+        function calcularSEO(nombre) {
+            let score = 7; // Base media
+            const len = nombre.length;
+
+            // Longitud para SEO (5-15 caracteres ideal)
+            if (len >= 5 && len <= 15) score += 1;
+            else if (len > 20) score -= 2;
+
+            // Bonificar si es una palabra única (portmanteau)
+            const palabrasComunes = ['tech', 'digital', 'smart', 'pro', 'solutions', 'group', 'consulting'];
+            const esComun = palabrasComunes.some(p => nombre.toLowerCase().includes(p));
+            if (!esComun) score += 2; // Más único = mejor SEO
+
+            // Penalizar si tiene caracteres difíciles de escribir
+            if (/[ñÑáéíóúÁÉÍÓÚ]/.test(nombre)) score -= 1; // Para SEO internacional
+
+            // Bonificar si tiene keywords relevantes del sector
+            if (/tech|soft|cloud|data|web|app/i.test(nombre)) score += 1;
+
+            return Math.max(1, Math.min(10, score));
+        }
+
+        // Calcular Brandability (1-10)
+        function calcularBrandability(nombre, sector) {
+            let score = 7;
+            const len = nombre.length;
+
+            // Nombre corto es más brandable
+            if (len <= 8) score += 2;
+            else if (len > 15) score -= 2;
+
+            // Verificar si suena profesional según sector
+            const sectoresProfesionales = ['consultoria', 'servicios', 'construccion'];
+            const sectoresCreativos = ['creativos', 'hosteleria', 'salud'];
+
+            if (sectoresProfesionales.includes(sector)) {
+                // Para sectores profesionales: sufijos clásicos suman
+                if (/consulting|advisory|solutions|partners|group/i.test(nombre)) score += 1;
+                if (/lab|studio|creative/i.test(nombre)) score -= 1;
+            } else if (sectoresCreativos.includes(sector)) {
+                // Para sectores creativos: nombres únicos suman
+                if (/studio|lab|creative|atelier|house/i.test(nombre)) score += 1;
+                if (/solutions|consulting|group/i.test(nombre)) score -= 1;
+            }
+
+            // Bonificar si es fácil de pronunciar
+            const vocales = (nombre.match(/[aeiouáéíóú]/gi) || []).length;
+            const consonantes = (nombre.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+            const ratio = vocales / consonantes;
+            if (ratio >= 0.35 && ratio <= 0.65) score += 1;
+
+            // Penalizar números
+            if (/[0-9]/.test(nombre)) score -= 2;
+
+            return Math.max(1, Math.min(10, score));
+        }
+
+        // Calcular Claridad (1-10)
+        function calcularClaridad(nombre, sector) {
+            let score = 5; // Neutral
+
+            // Nombres descriptivos = alta claridad
+            const palabrasSector = vocabulario[sector];
+            const todasPalabras = [...palabrasSector.es, ...palabrasSector.en, ...palabrasSector.sufijos];
+
+            let coincidencias = 0;
+            todasPalabras.forEach(palabra => {
+                if (nombre.toLowerCase().includes(palabra.toLowerCase())) {
+                    coincidencias++;
+                }
+            });
+
+            // Más coincidencias = más claro qué hace la empresa
+            if (coincidencias >= 2) score = 9; // Muy descriptivo
+            else if (coincidencias === 1) score = 7; // Descriptivo
+            else score = 4; // Abstracto (no está mal, es creativo)
+
+            // Bonificar si tiene sufijo clásico que indica sector
+            if (/tech|soft|shop|store|consulting|health|fit|food|build/i.test(nombre)) score += 1;
+
+            return Math.max(1, Math.min(10, score));
+        }
+
+        // Análisis completo de un nombre
+        function analizarNombreCompleto(nombre, sector) {
+            return {
+                memorabilidad: calcularMemorabilidad(nombre),
+                seoScore: calcularSEO(nombre),
+                brandability: calcularBrandability(nombre, sector),
+                claridad: calcularClaridad(nombre, sector),
+                pronunciabilidad: calcularPronunciabilidad(nombre)
+            };
+        }
+
         // Filtrar por longitud
         function cumpleLongitud(nombre, longitud) {
             const len = nombre.length;
@@ -1139,10 +1262,11 @@
 
                     // Verificar longitud y unicidad
                     if (cumpleLongitud(nombre, config.longitud) && !nombres.find(n => n.nombre === nombre)) {
+                        const analisis = analizarNombreCompleto(nombre, config.sector);
                         nombres.push({
                             nombre: nombre,
                             tecnica: resultado.tecnica,
-                            pronunciabilidad: calcularPronunciabilidad(nombre)
+                            ...analisis
                         });
                     }
                 }
@@ -1189,10 +1313,12 @@
 
                 // Verificar longitud y unicidad
                 if (cumpleLongitud(nombre, config.longitud) && !nombres.find(n => n.nombre === nombre)) {
+                    const nombreFinal = nombre.replace(/\s+/g, '');
+                    const analisis = analizarNombreCompleto(nombreFinal, config.sector);
                     nombres.push({
-                        nombre: nombre.replace(/\s+/g, ''),
+                        nombre: nombreFinal,
                         tecnica: tecnica,
-                        pronunciabilidad: calcularPronunciabilidad(nombre)
+                        ...analisis
                     });
                 }
             }
@@ -1216,7 +1342,37 @@
                 card.innerHTML = `
                     <h3>💡 ${item.nombre}</h3>
                     <span class="badge">${item.tecnica}</span>
-                    <p class="pronunciabilidad">Pronunciabilidad: ${estrellas}</p>
+
+                    <div style="background: var(--hover); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <h4 style="font-size: 0.95rem; color: var(--primary); margin-bottom: 10px;">📊 Análisis de Marca</h4>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 0.85rem;">
+                            <div>
+                                <strong>Memorabilidad:</strong> ${item.memorabilidad}/10
+                                <div style="background: var(--border); height: 6px; border-radius: 3px; margin-top: 3px;">
+                                    <div style="width: ${item.memorabilidad * 10}%; background: var(--primary); height: 100%; border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <strong>SEO Score:</strong> ${item.seoScore}/10
+                                <div style="background: var(--border); height: 6px; border-radius: 3px; margin-top: 3px;">
+                                    <div style="width: ${item.seoScore * 10}%; background: var(--secondary); height: 100%; border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <strong>Brandability:</strong> ${item.brandability}/10
+                                <div style="background: var(--border); height: 6px; border-radius: 3px; margin-top: 3px;">
+                                    <div style="width: ${item.brandability * 10}%; background: var(--primary); height: 100%; border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <strong>Claridad:</strong> ${item.claridad}/10
+                                <div style="background: var(--border); height: 6px; border-radius: 3px; margin-top: 3px;">
+                                    <div style="width: ${item.claridad * 10}%; background: var(--secondary); height: 100%; border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 10px; color: var(--text-secondary);"><strong>Pronunciabilidad:</strong> ${estrellas}</p>
+                    </div>
 
                     <div class="verificar-section">
                         <h4>🔍 Verificar disponibilidad y registrar:</h4>
@@ -1234,7 +1390,25 @@
                         </a>
                     </div>
 
-                    <button class="btn-favorito" onclick="toggleFavorito('${item.nombre}', '${item.tecnica}')">
+                    <div style="margin: 15px 0;">
+                        <h4 style="font-size: 0.9rem; margin-bottom: 8px;">🌐 Verificar en redes sociales:</h4>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://namechk.com/${nombreLower}" target="_blank" rel="noopener"
+                               style="padding: 6px 12px; background: white; border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text-primary); font-size: 0.85rem; transition: all 0.3s;">
+                                🔍 Namechk
+                            </a>
+                            <a href="https://twitter.com/${nombreLower}" target="_blank" rel="noopener"
+                               style="padding: 6px 12px; background: white; border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text-primary); font-size: 0.85rem; transition: all 0.3s;">
+                                𝕏 Twitter
+                            </a>
+                            <a href="https://instagram.com/${nombreLower}" target="_blank" rel="noopener"
+                               style="padding: 6px 12px; background: white; border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text-primary); font-size: 0.85rem; transition: all 0.3s;">
+                                📷 Instagram
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="btn-favorito" onclick="toggleFavorito('${item.nombre}', '${item.tecnica}', ${item.memorabilidad}, ${item.seoScore}, ${item.brandability}, ${item.claridad}, ${item.pronunciabilidad})">
                         ❤️ Añadir a Favoritos
                     </button>
                 `;
@@ -1248,11 +1422,20 @@
         // Sistema de favoritos
         let favoritos = JSON.parse(localStorage.getItem('favoritos_nombres') || '[]');
 
-        function toggleFavorito(nombre, tecnica) {
+        function toggleFavorito(nombre, tecnica, memorabilidad, seoScore, brandability, claridad, pronunciabilidad) {
             const index = favoritos.findIndex(f => f.nombre === nombre);
 
             if (index === -1) {
-                favoritos.push({ nombre, tecnica, fecha: new Date().toLocaleDateString('es-ES') });
+                favoritos.push({
+                    nombre,
+                    tecnica,
+                    fecha: new Date().toLocaleDateString('es-ES'),
+                    memorabilidad,
+                    seoScore,
+                    brandability,
+                    claridad,
+                    pronunciabilidad
+                });
             } else {
                 favoritos.splice(index, 1);
             }
@@ -1284,32 +1467,35 @@
                 <table class="favoritos-tabla">
                     <thead>
                         <tr>
+                            <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)"></th>
                             <th>Nombre</th>
                             <th>Técnica</th>
+                            <th>Memorab.</th>
+                            <th>SEO</th>
+                            <th>Brand.</th>
+                            <th>Claridad</th>
                             <th>Fecha</th>
-                            <th>Verificar</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-            favoritos.forEach(item => {
+            favoritos.forEach((item, index) => {
                 const nombreLower = item.nombre.toLowerCase().replace(/\s+/g, '');
                 html += `
                     <tr>
+                        <td><input type="checkbox" class="select-favorito" data-index="${index}"></td>
                         <td><strong>${item.nombre}</strong></td>
-                        <td>${item.tecnica}</td>
-                        <td>${item.fecha}</td>
-                        <td>
-                            <a href="https://www.namecheap.com/domains/registration/results/?domain=${nombreLower}"
-                               target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none;">
-                                Namecheap
-                            </a>
-                        </td>
+                        <td style="font-size: 0.85rem;">${item.tecnica}</td>
+                        <td>${item.memorabilidad || '-'}/10</td>
+                        <td>${item.seoScore || '-'}/10</td>
+                        <td>${item.brandability || '-'}/10</td>
+                        <td>${item.claridad || '-'}/10</td>
+                        <td style="font-size: 0.85rem;">${item.fecha}</td>
                         <td>
                             <button class="btn-eliminar" onclick="eliminarFavorito('${item.nombre}')">
-                                🗑️ Eliminar
+                                🗑️
                             </button>
                         </td>
                     </tr>
@@ -1320,8 +1506,14 @@
                     </tbody>
                 </table>
                 <div class="favoritos-acciones">
+                    <button class="btn btn-primary" onclick="compararSeleccionados()" style="font-weight: bold;">
+                        📊 Comparar Seleccionados
+                    </button>
                     <button class="btn btn-secondary" onclick="exportarFavoritos()">
-                        📥 Exportar a TXT
+                        📥 Exportar TXT
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportarFavoritosHTML()">
+                        📄 Exportar HTML
                     </button>
                     <button class="btn btn-secondary" onclick="limpiarFavoritos()">
                         🗑️ Limpiar todos
@@ -1356,6 +1548,240 @@
                 favoritos = [];
                 localStorage.setItem('favoritos_nombres', JSON.stringify(favoritos));
                 actualizarFavoritos();
+            }
+        }
+
+        // Exportar favoritos a HTML
+        function exportarFavoritosHTML() {
+            let html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Nombres Favoritos - meskeIA</title>
+    <style>
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --primary: #2E86AB;
+            --secondary: #48A9A6;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --border: #E5E5E5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 30px; }
+        .card {
+            background: var(--bg-card);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .nombre { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
+        .metricas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 15px 0; }
+        .metrica { text-align: center; }
+        .metrica-valor { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .metrica-label { font-size: 0.85rem; color: var(--text-secondary); }
+        .footer { text-align: center; margin-top: 40px; color: var(--text-secondary); font-size: 0.9rem; }
+        @media print { body { background: white; } }
+    </style>
+</head>
+<body>
+    <h1>💡 Mis Nombres Favoritos - meskeIA</h1>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+        Generado el ${new Date().toLocaleDateString('es-ES')} desde meskeIA.com/generador-nombres-empresa
+    </p>
+`;
+
+            favoritos.forEach((item, i) => {
+                html += `
+    <div class="card">
+        <div class="nombre">${i + 1}. ${item.nombre}</div>
+        <div style="color: var(--text-secondary); margin-bottom: 15px;">
+            <strong>Técnica:</strong> ${item.tecnica} &nbsp;|&nbsp;
+            <strong>Guardado:</strong> ${item.fecha}
+        </div>
+        <div class="metricas">
+            <div class="metrica">
+                <div class="metrica-valor">${item.memorabilidad || '-'}/10</div>
+                <div class="metrica-label">Memorabilidad</div>
+            </div>
+            <div class="metrica">
+                <div class="metrica-valor">${item.seoScore || '-'}/10</div>
+                <div class="metrica-label">SEO Score</div>
+            </div>
+            <div class="metrica">
+                <div class="metrica-valor">${item.brandability || '-'}/10</div>
+                <div class="metrica-label">Brandability</div>
+            </div>
+            <div class="metrica">
+                <div class="metrica-valor">${item.claridad || '-'}/10</div>
+                <div class="metrica-label">Claridad</div>
+            </div>
+        </div>
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border);">
+            <strong>🔍 Verificar disponibilidad:</strong><br>
+            <a href="https://www.namecheap.com/domains/registration/results/?domain=${item.nombre.toLowerCase()}" target="_blank">Namecheap</a> |
+            <a href="https://www.dominios.es/dominios/buscar?q=${item.nombre.toLowerCase()}" target="_blank">Dominios.es</a> |
+            <a href="https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=${item.nombre.toLowerCase()}" target="_blank">GoDaddy</a>
+        </div>
+    </div>
+`;
+            });
+
+            html += `
+    <div class="footer">
+        <p>© 2025 meskeIA - Generador de Nombres de Empresa</p>
+        <p><a href="https://meskeia.com/generador-nombres-empresa/" target="_blank">Genera más nombres en meskeIA.com</a></p>
+    </div>
+</body>
+</html>`;
+
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mis-nombres-favoritos-meskeia.html';
+            a.click();
+        }
+
+        // Funciones para el comparador
+        function toggleSelectAll(checkbox) {
+            const checkboxes = document.querySelectorAll('.select-favorito');
+            checkboxes.forEach(cb => cb.checked = checkbox.checked);
+        }
+
+        function compararSeleccionados() {
+            const checkboxes = document.querySelectorAll('.select-favorito:checked');
+            const indices = Array.from(checkboxes).map(cb => parseInt(cb.dataset.index));
+
+            if (indices.length < 2) {
+                alert('Selecciona al menos 2 nombres para comparar');
+                return;
+            }
+
+            if (indices.length > 5) {
+                alert('Máximo 5 nombres para comparar. Deselecciona algunos.');
+                return;
+            }
+
+            const nombresSeleccionados = indices.map(i => favoritos[i]);
+            mostrarComparador(nombresSeleccionados);
+        }
+
+        function mostrarComparador(nombres) {
+            // Crear modal de comparación
+            const modalHTML = `
+                <div id="comparadorModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                    <div style="background: white; border-radius: 16px; max-width: 1200px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 style="color: var(--primary); margin: 0;">📊 Comparación de Nombres</h2>
+                            <button onclick="cerrarComparador()" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">×</button>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: var(--hover);">
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border);">Métrica</th>
+                                        ${nombres.map(n => `<th style="padding: 12px; text-align: center; border-bottom: 2px solid var(--border); color: var(--primary);">${n.nombre}</th>`).join('')}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 12px; font-weight: 600;">Técnica</td>
+                                        ${nombres.map(n => `<td style="padding: 12px; text-align: center; font-size: 0.85rem;">${n.tecnica}</td>`).join('')}
+                                    </tr>
+                                    <tr style="background: var(--hover);">
+                                        <td style="padding: 12px; font-weight: 600;">Memorabilidad</td>
+                                        ${nombres.map(n => {
+                                            const val = n.memorabilidad || 0;
+                                            const max = Math.max(...nombres.map(x => x.memorabilidad || 0));
+                                            const isMax = val === max && val > 0;
+                                            return `<td style="padding: 12px; text-align: center; ${isMax ? 'background: #d4edda; font-weight: bold;' : ''}">${val}/10</td>`;
+                                        }).join('')}
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-weight: 600;">SEO Score</td>
+                                        ${nombres.map(n => {
+                                            const val = n.seoScore || 0;
+                                            const max = Math.max(...nombres.map(x => x.seoScore || 0));
+                                            const isMax = val === max && val > 0;
+                                            return `<td style="padding: 12px; text-align: center; ${isMax ? 'background: #d4edda; font-weight: bold;' : ''}">${val}/10</td>`;
+                                        }).join('')}
+                                    </tr>
+                                    <tr style="background: var(--hover);">
+                                        <td style="padding: 12px; font-weight: 600;">Brandability</td>
+                                        ${nombres.map(n => {
+                                            const val = n.brandability || 0;
+                                            const max = Math.max(...nombres.map(x => x.brandability || 0));
+                                            const isMax = val === max && val > 0;
+                                            return `<td style="padding: 12px; text-align: center; ${isMax ? 'background: #d4edda; font-weight: bold;' : ''}">${val}/10</td>`;
+                                        }).join('')}
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-weight: 600;">Claridad</td>
+                                        ${nombres.map(n => {
+                                            const val = n.claridad || 0;
+                                            const max = Math.max(...nombres.map(x => x.claridad || 0));
+                                            const isMax = val === max && val > 0;
+                                            return `<td style="padding: 12px; text-align: center; ${isMax ? 'background: #d4edda; font-weight: bold;' : ''}">${val}/10</td>`;
+                                        }).join('')}
+                                    </tr>
+                                    <tr style="background: var(--hover);">
+                                        <td style="padding: 12px; font-weight: 600;">Pronunciabilidad</td>
+                                        ${nombres.map(n => {
+                                            const val = n.pronunciabilidad || 0;
+                                            const max = Math.max(...nombres.map(x => x.pronunciabilidad || 0));
+                                            const isMax = val === max && val > 0;
+                                            const estrellas = '★'.repeat(val) + '☆'.repeat(5 - val);
+                                            return `<td style="padding: 12px; text-align: center; ${isMax ? 'background: #d4edda; font-weight: bold;' : ''}">${estrellas}</td>`;
+                                        }).join('')}
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-weight: 600; color: var(--primary);">PUNTUACIÓN TOTAL</td>
+                                        ${nombres.map(n => {
+                                            const total = (n.memorabilidad || 0) + (n.seoScore || 0) + (n.brandability || 0) + (n.claridad || 0) + (n.pronunciabilidad || 0) * 2;
+                                            const maxTotal = Math.max(...nombres.map(x => ((x.memorabilidad || 0) + (x.seoScore || 0) + (x.brandability || 0) + (x.claridad || 0) + (x.pronunciabilidad || 0) * 2)));
+                                            const isMax = total === maxTotal;
+                                            return `<td style="padding: 12px; text-align: center; font-size: 1.2rem; font-weight: bold; ${isMax ? 'background: #d4edda; color: var(--primary);' : ''}">${total}/50</td>`;
+                                        }).join('')}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="margin-top: 20px; padding: 15px; background: var(--hover); border-radius: 8px;">
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                💡 <strong>Interpretación:</strong> Las celdas verdes destacan el mejor valor en cada métrica.
+                                La puntuación total combina todas las métricas (Pronunciabilidad pesa x2).
+                            </p>
+                        </div>
+
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button onclick="cerrarComparador()" class="btn btn-secondary">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const modalDiv = document.createElement('div');
+            modalDiv.innerHTML = modalHTML;
+            document.body.appendChild(modalDiv);
+        }
+
+        function cerrarComparador() {
+            const modal = document.getElementById('comparadorModal');
+            if (modal) {
+                modal.parentElement.remove();
             }
         }
 
