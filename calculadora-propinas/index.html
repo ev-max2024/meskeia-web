@@ -150,6 +150,29 @@
             background: var(--focus);
         }
 
+        .input-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .input-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--focus);
+        }
+
+        .input-select:hover {
+            border-color: var(--secondary);
+        }
+
         .porcentajes {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -180,6 +203,31 @@
             border-color: var(--secondary);
         }
 
+        .btn-reset {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-reset:hover {
+            background: var(--hover);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-reset:active {
+            transform: scale(0.98);
+        }
+
         .resultados {
             background: var(--focus);
             border: 2px solid var(--primary);
@@ -195,13 +243,30 @@
             font-size: 0.95rem;
         }
 
-        .resultado-item:last-child {
-            margin-bottom: 0;
+        .resultado-total {
             border-top: 2px solid var(--primary);
             padding-top: 12px;
             font-weight: 600;
             font-size: 1.1rem;
             color: var(--primary);
+        }
+
+        .resultado-persona {
+            border-top: 2px dashed var(--secondary);
+            padding-top: 12px;
+            margin-top: 8px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--secondary);
+            display: none;
+        }
+
+        .resultado-persona.activo {
+            display: flex;
+        }
+
+        .resultado-item:last-child {
+            margin-bottom: 0;
         }
 
         .etiqueta {
@@ -375,13 +440,22 @@
                 font-size: 0.95rem;
             }
 
-            input {
+            input, .input-select {
                 padding: 14px;
                 font-size: 16px;
             }
 
+            .btn-reset {
+                padding: 14px;
+                font-size: 0.95rem;
+            }
+
             .resultado-item {
                 font-size: 0.9rem;
+            }
+
+            .resultado-persona {
+                font-size: 1rem;
             }
         }
 
@@ -439,6 +513,30 @@
         <input type="number" id="porcentaje" value="15" min="0" max="100" step="0.5">
     </div>
 
+    <!-- Selector de país/contexto -->
+    <div class="input-group">
+        <label for="pais">País/Contexto de propina</label>
+        <select id="pais" class="input-select">
+            <option value="10">🇪🇸 España (10%)</option>
+            <option value="18">🇺🇸 Estados Unidos (18%)</option>
+            <option value="12">🇲🇽 México (12%)</option>
+            <option value="10">🇬🇧 Reino Unido (10%)</option>
+            <option value="8">🇫🇷 Francia (8%)</option>
+            <option value="8">🇩🇪 Alemania (8%)</option>
+            <option value="0">🇯🇵 Japón (0% - No propina)</option>
+            <option value="custom" selected>✏️ Personalizado</option>
+        </select>
+    </div>
+
+    <!-- División de cuenta -->
+    <div class="input-group">
+        <label for="personas">Número de personas</label>
+        <input type="number" id="personas" value="1" min="1" max="50" step="1">
+    </div>
+
+    <!-- Botón Reset -->
+    <button type="button" class="btn-reset" onclick="resetear()">🔄 Limpiar</button>
+
     <!-- Resultados -->
     <div class="resultados">
         <div class="resultado-item">
@@ -446,12 +544,16 @@
             <span class="valor" id="montoOriginal">0,00 €</span>
         </div>
         <div class="resultado-item">
-            <span class="etiqueta">Propina:</span>
+            <span class="etiqueta">Propina total:</span>
             <span class="valor" id="propina">0,00 €</span>
         </div>
-        <div class="resultado-item">
+        <div class="resultado-item resultado-total">
             <span class="etiqueta">Total:</span>
             <span class="valor" id="total">0,00 €</span>
+        </div>
+        <div class="resultado-item resultado-persona" id="resultadoPersona">
+            <span class="etiqueta">Por persona:</span>
+            <span class="valor" id="totalPersona">0,00 €</span>
         </div>
     </div>
 </div>
@@ -513,23 +615,53 @@
     </style>
 
     <div class="meskeia-edu-section">
-        <h2>¿Cómo funciona esta herramienta propinas?</h2>
-        <p>Herramienta especializada en herramienta propinas. Proporciona cálculos y análisis precisos para facilitar tu trabajo.</p>
+        <h2>¿Cómo usar la Calculadora de Propinas?</h2>
+        <p>Calcular propinas correctamente es muy sencillo con esta herramienta gratuita. Sigue estos pasos para obtener el cálculo perfecto:</p>
         <ul>
-            <li><strong>Función principal</strong>: Realiza cálculos especializados de forma rápida</li>
-            <li><strong>Interfaz intuitiva</strong>: Diseño simple y fácil de usar sin curva de aprendizaje</li>
-            <li><strong>Resultados instantáneos</strong>: Obtén respuestas al momento sin esperas</li>
-            <li><strong>100% gratuito</strong>: Sin registro, sin límites, sin costos ocultos</li>
+            <li><strong>Paso 1</strong>: Introduce el monto total de la cuenta en euros (ejemplo: 45,50 €)</li>
+            <li><strong>Paso 2</strong>: Selecciona un país/contexto para aplicar el porcentaje recomendado, o usa los botones rápidos (10%, 15%, 20%)</li>
+            <li><strong>Paso 3</strong>: Si estás en grupo, indica el número de personas para dividir la cuenta automáticamente</li>
+            <li><strong>Paso 4</strong>: La calculadora muestra al instante el total con propina y el monto que debe pagar cada persona</li>
         </ul>
+        <p>Tus preferencias se guardan automáticamente para la próxima vez. Usa el botón "Limpiar" para resetear todos los valores.</p>
     </div>
 
     <div class="meskeia-edu-section">
-        <h2>Casos de uso prácticos</h2>
+        <h2>Porcentajes de Propina por País</h2>
+        <p>Las costumbres de propinas varían significativamente según el país y la cultura. Aquí tienes una guía rápida de los porcentajes más comunes:</p>
         <ul>
-            <li><strong>Uso profesional</strong>: Aplica en tu trabajo diario para ahorrar tiempo</li>
-            <li><strong>Estudios</strong>: Ayuda en tareas académicas y proyectos</li>
-            <li><strong>Vida cotidiana</strong>: Resuelve situaciones comunes del día a día</li>
-            <li><strong>Toma de decisiones</strong>: Obtén datos precisos para decidir mejor</li>
+            <li><strong>🇪🇸 España</strong>: 5-10% (opcional, servicio excepcional. No es obligatorio)</li>
+            <li><strong>🇺🇸 Estados Unidos</strong>: 15-20% (esperado y parte del salario del camarero)</li>
+            <li><strong>🇲🇽 México</strong>: 10-15% (común en restaurantes, a veces incluido en cuenta)</li>
+            <li><strong>🇬🇧 Reino Unido</strong>: 10-15% (discrecional, a veces incluido como "service charge")</li>
+            <li><strong>🇫🇷 Francia</strong>: 5-10% (el servicio suele estar incluido en la cuenta)</li>
+            <li><strong>🇩🇪 Alemania</strong>: 5-10% (costumbre redondear al alza el total)</li>
+            <li><strong>🇯🇵 Japón</strong>: 0% (dejar propina se considera ofensivo culturalmente)</li>
+        </ul>
+        <p>Recuerda: Siempre revisa si el servicio ya está incluido en la cuenta antes de añadir propina adicional.</p>
+    </div>
+
+    <div class="meskeia-edu-section">
+        <h2>¿Cuándo dejar más propina?</h2>
+        <p>Hay situaciones donde es apropiado aumentar el porcentaje de propina como reconocimiento al servicio:</p>
+        <ul>
+            <li><strong>Servicio excepcional</strong>: Si el servicio superó tus expectativas, considera 20% o más</li>
+            <li><strong>Grupos grandes</strong>: Para 6 o más personas, 15-18% es apropiado (requiere más trabajo del personal)</li>
+            <li><strong>Pedidos complejos</strong>: Alergias alimentarias, personalizaciones o requerimientos especiales del menú</li>
+            <li><strong>Horarios difíciles</strong>: Servicio en madrugada, festivos o condiciones climáticas adversas</li>
+            <li><strong>Servicio a domicilio</strong>: Los repartidores merecen 10-15% por el esfuerzo del transporte</li>
+        </ul>
+        <p>Por el contrario, si el servicio fue deficiente, es aceptable reducir la propina o hablar con el gerente sobre el problema.</p>
+    </div>
+
+    <div class="meskeia-edu-section">
+        <h2>Consejos para calcular propinas</h2>
+        <ul>
+            <li><strong>Método rápido 10%</strong>: Mueve el decimal un lugar a la izquierda (45,00€ → 4,50€ de propina)</li>
+            <li><strong>Para 15%</strong>: Calcula 10% y súmale la mitad (10% = 4,50€ → 15% = 4,50€ + 2,25€ = 6,75€)</li>
+            <li><strong>Divide antes o después</strong>: Puedes calcular la propina del total y luego dividir, o dividir la cuenta primero y que cada uno añada su propina</li>
+            <li><strong>Usa efectivo cuando puedas</strong>: Algunos camareros prefieren propinas en efectivo en lugar de tarjeta</li>
+            <li><strong>Revisa la cuenta</strong>: En algunos países la propina ya está incluida como "servicio" o "service charge"</li>
         </ul>
     </div>
 
@@ -541,18 +673,57 @@
 <script>
     // Variables
     let porcentajeActual = 15;
+    let numPersonas = 1;
 
     // Elementos del DOM
     const inputMonto = document.getElementById('monto');
     const inputPorcentaje = document.getElementById('porcentaje');
+    const inputPersonas = document.getElementById('personas');
+    const selectPais = document.getElementById('pais');
     const textoMontoOriginal = document.getElementById('montoOriginal');
     const textoPropina = document.getElementById('propina');
     const textoTotal = document.getElementById('total');
+    const textoTotalPersona = document.getElementById('totalPersona');
+    const resultadoPersona = document.getElementById('resultadoPersona');
+
+    // Cargar preferencias guardadas
+    function cargarPreferencias() {
+        const prefs = localStorage.getItem('prefs-propinas');
+        if (prefs) {
+            try {
+                const datos = JSON.parse(prefs);
+                if (datos.porcentaje) {
+                    porcentajeActual = datos.porcentaje;
+                    inputPorcentaje.value = datos.porcentaje;
+                }
+                if (datos.personas) {
+                    numPersonas = datos.personas;
+                    inputPersonas.value = datos.personas;
+                }
+                if (datos.pais) {
+                    selectPais.value = datos.pais;
+                }
+            } catch (e) {
+                console.error('Error al cargar preferencias:', e);
+            }
+        }
+    }
+
+    // Guardar preferencias
+    function guardarPreferencias() {
+        const prefs = {
+            porcentaje: porcentajeActual,
+            personas: numPersonas,
+            pais: selectPais.value
+        };
+        localStorage.setItem('prefs-propinas', JSON.stringify(prefs));
+    }
 
     // Función para establecer porcentaje desde botones
     function establecerPorcentaje(valor) {
         porcentajeActual = valor;
         inputPorcentaje.value = valor;
+        selectPais.value = 'custom';
 
         // Actualizar botones activos
         document.querySelectorAll('.btn-porcentaje').forEach(btn => {
@@ -563,25 +734,127 @@
         calcular();
     }
 
+    // Validar entrada de monto
+    function validarMonto(valor) {
+        const monto = parseFloat(valor);
+
+        if (isNaN(monto) || monto < 0) {
+            return 0;
+        }
+
+        return monto;
+    }
+
     // Función para calcular propina
     function calcular() {
+        // Obtener valores
+        const montoRaw = inputMonto.value;
+        const monto = validarMonto(montoRaw);
         porcentajeActual = parseFloat(inputPorcentaje.value) || 0;
-        const monto = parseFloat(inputMonto.value) || 0;
+        numPersonas = parseInt(inputPersonas.value) || 1;
 
+        // Validar número de personas
+        if (numPersonas < 1) {
+            numPersonas = 1;
+            inputPersonas.value = 1;
+        }
+
+        // Calcular propina y total
         const propina = monto * (porcentajeActual / 100);
         const total = monto + propina;
+        const totalPorPersona = total / numPersonas;
 
         // Formatear números en español
-        textoMontoOriginal.textContent = monto.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
-        textoPropina.textContent = propina.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
-        textoTotal.textContent = total.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+        textoMontoOriginal.textContent = monto.toLocaleString('es-ES', {
+            style: 'currency',
+            currency: 'EUR'
+        });
+        textoPropina.textContent = propina.toLocaleString('es-ES', {
+            style: 'currency',
+            currency: 'EUR'
+        });
+        textoTotal.textContent = total.toLocaleString('es-ES', {
+            style: 'currency',
+            currency: 'EUR'
+        });
+        textoTotalPersona.textContent = totalPorPersona.toLocaleString('es-ES', {
+            style: 'currency',
+            currency: 'EUR'
+        });
+
+        // Mostrar/ocultar resultado por persona
+        if (numPersonas > 1) {
+            resultadoPersona.classList.add('activo');
+        } else {
+            resultadoPersona.classList.remove('activo');
+        }
+
+        // Guardar preferencias
+        guardarPreferencias();
+    }
+
+    // Función para manejar cambio de país
+    function cambiarPais() {
+        const valorPais = selectPais.value;
+
+        if (valorPais !== 'custom') {
+            const porcentaje = parseInt(valorPais);
+            inputPorcentaje.value = porcentaje;
+            porcentajeActual = porcentaje;
+
+            // Actualizar botones
+            document.querySelectorAll('.btn-porcentaje').forEach(btn => {
+                btn.classList.remove('activo');
+            });
+
+            calcular();
+        }
+    }
+
+    // Función para sincronizar input manual con botones
+    function sincronizarBotones() {
+        const valor = parseFloat(inputPorcentaje.value);
+        selectPais.value = 'custom';
+
+        document.querySelectorAll('.btn-porcentaje').forEach(btn => {
+            btn.classList.remove('activo');
+            const btnValor = parseInt(btn.textContent);
+            if (btnValor === valor) {
+                btn.classList.add('activo');
+            }
+        });
+
+        calcular();
+    }
+
+    // Función para resetear
+    function resetear() {
+        inputMonto.value = '';
+        inputPorcentaje.value = 15;
+        inputPersonas.value = 1;
+        selectPais.value = 'custom';
+        porcentajeActual = 15;
+        numPersonas = 1;
+
+        // Resetear botones
+        document.querySelectorAll('.btn-porcentaje').forEach(btn => {
+            btn.classList.remove('activo');
+            if (btn.textContent === '15%') {
+                btn.classList.add('activo');
+            }
+        });
+
+        calcular();
     }
 
     // Event listeners
     inputMonto.addEventListener('input', calcular);
-    inputPorcentaje.addEventListener('input', calcular);
+    inputPorcentaje.addEventListener('input', sincronizarBotones);
+    inputPersonas.addEventListener('input', calcular);
+    selectPais.addEventListener('change', cambiarPais);
 
-    // Calcular al cargar
+    // Cargar preferencias y calcular al iniciar
+    cargarPreferencias();
     calcular();
 </script>
 
