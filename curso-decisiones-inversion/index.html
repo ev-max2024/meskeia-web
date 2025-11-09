@@ -424,6 +424,29 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Animaciones para mensaje de compartir */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -791,6 +814,51 @@
                 overlay.style.display = 'flex';
             }
         }
+
+
+    // Función para compartir la aplicación
+    async function compartirApp() {
+        const titulo = document.title;
+        const url = window.location.href;
+        const texto = '¡Mira esta herramienta útil de meskeIA!';
+
+        // Intentar usar Web Share API nativa (móviles y algunos navegadores modernos)
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: titulo,
+                    text: texto,
+                    url: url
+                });
+                console.log('✅ Compartido exitosamente');
+            } catch (err) {
+                // Usuario canceló el compartir, no hacer nada
+                if (err.name !== 'AbortError') {
+                    console.error('Error al compartir:', err);
+                }
+            }
+        } else {
+            // Fallback: copiar enlace al portapapeles (escritorio)
+            try {
+                await navigator.clipboard.writeText(url);
+
+                // Mostrar mensaje temporal de confirmación
+                const mensaje = document.createElement('div');
+                mensaje.textContent = '✅ Enlace copiado al portapapeles';
+                mensaje.style.cssText = 'position: fixed; bottom: 60px; right: 20px; background: #2E86AB; color: white; padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; font-family: inherit; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; animation: fadeIn 0.3s;';
+                document.body.appendChild(mensaje);
+
+                // Remover mensaje después de 3 segundos
+                setTimeout(() => {
+                    mensaje.style.animation = 'fadeOut 0.3s';
+                    setTimeout(() => mensaje.remove(), 300);
+                }, 3000);
+            } catch (err) {
+                // Último fallback: mostrar prompt manual
+                prompt('Copia este enlace para compartir:', url);
+            }
+        }
+    }
     </script>
 
     <!-- meskeIA Analytics - Tracking de uso -->
