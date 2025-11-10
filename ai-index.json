@@ -2173,6 +2173,45 @@
             "Quiero saber qué micronutrientes me faltan en mi alimentación",
             "¿Hay alguna app que me haga un plan de comidas según mis macronutrientes?"
           ]
+        },
+        {
+          "name": "Seguimiento de Hábitos",
+          "slug": "seguimiento-habitos",
+          "url": "https://meskeia.com/seguimiento-habitos/",
+          "description": "Rastrea hasta 5 hábitos saludables con visualización de rachas, calendario mensual y estadísticas motivadoras.",
+          "use_cases": [
+            "Seguimiento de hábitos diarios",
+            "Visualización de rachas consecutivas",
+            "Estadísticas de progreso"
+          ],
+          "features": [
+            "5 hábitos simultáneos",
+            "Calendario de 30 días",
+            "Rachas y estadísticas",
+            "Gráficos con Chart.js",
+            "Sistema de logros",
+            "Exportación de datos"
+          ],
+          "keywords": [
+            "rastreador de habitos",
+            "seguimiento habitos saludables",
+            "tracker habitos",
+            "contador rachas",
+            "app habitos diarios",
+            "seguimiento rutinas",
+            "habitos saludables app",
+            "motivacion habitos",
+            "registro habitos",
+            "calendario habitos"
+          ],
+          "_category": "Salud & Bienestar",
+          "casos_de_uso": [
+            "¿Cómo puedo hacer seguimiento de mis hábitos saludables con rachas?",
+            "Necesito una app para controlar si cumplo mis rutinas diarias",
+            "¿Dónde encuentro un tracker de hábitos con calendario y estadísticas?",
+            "Quiero visualizar mis rachas de ejercicio, lectura y otros hábitos",
+            "¿Hay alguna herramienta para motivarme a mantener mis hábitos con estadísticas?"
+          ]
         }
       ]
     },
