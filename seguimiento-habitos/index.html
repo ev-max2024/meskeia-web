@@ -283,6 +283,7 @@
             color: var(--text-primary);
             min-width: 150px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .calendario-grid {
@@ -820,6 +821,29 @@
                 align-items: stretch;
             }
 
+            /* Ajustes para navegación del calendario en móvil */
+            .calendario-nav {
+                gap: 8px;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .calendario-nav button {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .mes-actual {
+                min-width: auto;
+                max-width: 140px;
+                font-size: 0.9rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
             .calendario-grid {
                 gap: 4px;
             }
@@ -833,12 +857,35 @@
                 height: 6px;
             }
 
+            /* Ajustes para gráficos en móvil */
             .charts-container {
                 grid-template-columns: 1fr;
             }
 
+            .chart-wrapper {
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .chart-wrapper canvas {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
             .logros-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            /* Ajuste general para prevenir overflow horizontal */
+            .container {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .calendario-section,
+            .habito-card {
+                max-width: 100%;
+                overflow-x: hidden;
             }
         }
     </style>
