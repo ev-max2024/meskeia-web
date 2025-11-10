@@ -21,6 +21,15 @@ secrets.json
 .security/
 **/README_SEGURIDAD.md
 
+# ===================================================
+# HERRAMIENTAS INTERNAS DE ADMINISTRACIÓN
+# ===================================================
+# Dashboard de analytics (métricas confidenciales de negocio)
+dashboard-analytics/
+
+# API interna (endpoints de tracking y estadísticas)
+api/
+
 # Playwright screenshots
 .playwright-mcp/
 
